@@ -1,0 +1,682 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>LCOV - iris.info - components/impl/genericRouterVct.cc</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LTP GCOV extension - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+        <tr>
+          <td class="headerItem" width="20%">Current&nbsp;view:</td>
+          <td class="headerValue" width="80%" colspan=4><a href="../../index.html">directory</a> - <a href="index.html">components/impl</a> - genericRouterVct.cc</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Test:</td>
+          <td class="headerValue" width="80%" colspan=4>iris.info</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Date:</td>
+          <td class="headerValue" width="20%">2010-05-24</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Instrumented&nbsp;lines:</td>
+          <td class="headerValue" width="20%">233</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Code&nbsp;covered:</td>
+          <td class="headerValue" width="20%">97.4 %</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Executed&nbsp;lines:</td>
+          <td class="headerValue" width="20%">227</td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><pre class="source">
+<span class="lineNum">       1 </span>                : /*
+<span class="lineNum">       2 </span>                :  * =====================================================================================
+<span class="lineNum">       3 </span>                :  *
+<span class="lineNum">       4 </span>                :  *       Filename:  genericRouterVct.cc
+<span class="lineNum">       5 </span>                :  *
+<span class="lineNum">       6 </span>                :  *! \brief    Description: Implementing a generic 4 stage physical router model
+<span class="lineNum">       7 </span>                :  *    BW-&gt;RC-&gt;SA-&gt;ST-&gt;LT
+<span class="lineNum">       8 </span>                :  *    Buffer write(BW)
+<span class="lineNum">       9 </span>                :  *    Route Computation (RC)
+<span class="lineNum">      10 </span>                :  *    Configure Crossbar (CC)
+<span class="lineNum">      11 </span>                :  *    Switch Traversal (ST)
+<span class="lineNum">      12 </span>                :  *    Link Traversal (LT)
+<span class="lineNum">      13 </span>                :  *
+<span class="lineNum">      14 </span>                :  *    Model Description in cycles:
+<span class="lineNum">      15 </span>                :  *    ---------------------------
+<span class="lineNum">      16 </span>                :  *    BW and RC stages happen in the same cycle ( BW pushes the flits into the
+<span class="lineNum">      17 </span>                :  *    input buffer and the RC unit. )
+<span class="lineNum">      18 </span>                :  *    SA: Pick one output port from n requesting input ports (0&lt;n&lt;p) for the pxp crossbar 
+<span class="lineNum">      19 </span>                :  *    ST: Move the flits across the crossbar and push it out on the link
+<span class="lineNum">      20 </span>                :  *    LT: This is not modelled within the router and is part of the link component.
+<span class="lineNum">      21 </span>                :  *
+<span class="lineNum">      22 </span>                :  *        Version:  1.0
+<span class="lineNum">      23 </span>                :  *        Created:  03/11/2010 09:20:54 PM
+<span class="lineNum">      24 </span>                :  *       Revision:  none
+<span class="lineNum">      25 </span>                :  *       Compiler:  gcc
+<span class="lineNum">      26 </span>                :  *
+<span class="lineNum">      27 </span>                :  *         Author:  Mitchelle Rasquinha (), mitchelle.rasquinha@gatech.edu
+<span class="lineNum">      28 </span>                :  *        Company:  Georgia Institute of Technology
+<span class="lineNum">      29 </span>                :  *
+<span class="lineNum">      30 </span>                :  * =====================================================================================
+<span class="lineNum">      31 </span>                :  */
+<span class="lineNum">      32 </span>                : 
+<span class="lineNum">      33 </span>                : #ifndef  _genericRouterVct_cc_INC
+<span class="lineNum">      34 </span>                : #define  _genericRouterVct_cc_INC
+<span class="lineNum">      35 </span>                : 
+<span class="lineNum">      36 </span>                : #include        &quot;genericRouterVct.h&quot;
+<span class="lineNum">      37 </span>                : using namespace std;
+<span class="lineNum">      38 </span>                : 
+<span class="lineNum">      39 </span><span class="lineCov">            320 : GenericRouterVct::GenericRouterVct ()</span>
+<span class="lineNum">      40 </span>                : {
+<span class="lineNum">      41 </span><span class="lineCov">             64 :     name = &quot;Router&quot; ;</span>
+<span class="lineNum">      42 </span><span class="lineCov">             64 :     ticking = false;</span>
+<span class="lineNum">      43 </span><span class="lineCov">             64 : }  /* -----  end of method GenericRouterVct::GenericRouterVct  (constructor)  ----- */</span>
+<span class="lineNum">      44 </span>                : 
+<span class="lineNum">      45 </span><span class="lineCov">             64 : GenericRouterVct::~GenericRouterVct()</span>
+<span class="lineNum">      46 </span>                : {
+<span class="lineNum">      47 </span><span class="lineCov">             64 : }</span>
+<span class="lineNum">      48 </span>                : 
+<span class="lineNum">      49 </span>                : void
+<span class="lineNum">      50 </span><span class="lineCov">             64 : GenericRouterVct::init (uint p, uint v, uint cr, uint bs)</span>
+<span class="lineNum">      51 </span>                : {
+<span class="lineNum">      52 </span><span class="lineCov">             64 :     ports =p;</span>
+<span class="lineNum">      53 </span><span class="lineCov">             64 :     vcs =v;</span>
+<span class="lineNum">      54 </span><span class="lineCov">             64 :     credits =cr;</span>
+<span class="lineNum">      55 </span><span class="lineCov">             64 :     buffer_size = bs;</span>
+<span class="lineNum">      56 </span>                : 
+<span class="lineNum">      57 </span><span class="lineCov">            128 :     address = myId();</span>
+<span class="lineNum">      58 </span>                : 
+<span class="lineNum">      59 </span>                :     /*  set_input_ports(ports); */
+<span class="lineNum">      60 </span><span class="lineCov">             64 :     in_buffers.resize(ports);</span>
+<span class="lineNum">      61 </span><span class="lineCov">             64 :     decoders.resize(ports);</span>
+<span class="lineNum">      62 </span><span class="lineCov">             64 :     input_buffer_state.resize(ports*vcs);</span>
+<span class="lineNum">      63 </span><span class="lineCov">             64 :     swa.resize(ports);</span>
+<span class="lineNum">      64 </span><span class="lineCov">             64 :     downstream_credits.resize(ports);</span>
+<span class="lineNum">      65 </span>                : 
+<span class="lineNum">      66 </span>                :     /* set_output_ports(ports); */
+<span class="lineNum">      67 </span><span class="lineCov">             64 :     xbar.set_input_ports(ports);</span>
+<span class="lineNum">      68 </span><span class="lineCov">             64 :     xbar.set_output_ports(ports);</span>
+<span class="lineNum">      69 </span><span class="lineCov">             64 :     xbar.set_no_virtual_channels(vcs);</span>
+<span class="lineNum">      70 </span>                : 
+<span class="lineNum">      71 </span>                :     /* All decoders and vc arbiters need to know the node_ip for routing */
+<span class="lineNum">      72 </span><span class="lineCov">            384 :     for(uint i=0; i&lt;ports; i++)</span>
+<span class="lineNum">      73 </span>                :     {
+<span class="lineNum">      74 </span><span class="lineCov">            640 :         decoders[i].node_ip = node_ip;</span>
+<span class="lineNum">      75 </span><span class="lineCov">            640 :         decoders[i].address = address;</span>
+<span class="lineNum">      76 </span>                :     }
+<span class="lineNum">      77 </span>                : 
+<span class="lineNum">      78 </span>                :     /*  set_no_virtual_channels(vcs); */
+<span class="lineNum">      79 </span><span class="lineCov">            384 :     for(uint i=0; i&lt;ports; i++)</span>
+<span class="lineNum">      80 </span>                :     {
+<span class="lineNum">      81 </span><span class="lineCov">            640 :         downstream_credits[i].resize(vcs);</span>
+<span class="lineNum">      82 </span><span class="lineCov">            640 :         in_buffers[i].resize( vcs, buffer_size );</span>
+<span class="lineNum">      83 </span><span class="lineCov">            640 :         decoders[i].resize( vcs );</span>
+<span class="lineNum">      84 </span>                :     }
+<span class="lineNum">      85 </span>                : 
+<span class="lineNum">      86 </span><span class="lineCov">            384 :     for(uint i=0; i&lt;ports; i++)</span>
+<span class="lineNum">      87 </span><span class="lineCov">            640 :         for(uint j=0; j&lt;vcs; j++)</span>
+<span class="lineNum">      88 </span><span class="lineCov">            640 :             downstream_credits[i][j] = credits;</span>
+<span class="lineNum">      89 </span>                : 
+<span class="lineNum">      90 </span>                :     /* init the countes */
+<span class="lineNum">      91 </span><span class="lineCov">             64 :     packets = 0;</span>
+<span class="lineNum">      92 </span><span class="lineCov">             64 :     flits = 0;</span>
+<span class="lineNum">      93 </span><span class="lineCov">             64 :     total_packet_latency = 0;</span>
+<span class="lineNum">      94 </span>                : 
+<span class="lineNum">      95 </span>                :     return ;
+<span class="lineNum">      96 </span>                : }               /* -----  end of function GenericRouterVct::init  ----- */
+<span class="lineNum">      97 </span>                : 
+<span class="lineNum">      98 </span>                : /*! \brief These functions are mainly for DOR routing and are seperated so as to not
+<span class="lineNum">      99 </span>                :  * force DOR modelling in all designs */
+<span class="lineNum">     100 </span>                : void
+<span class="lineNum">     101 </span><span class="lineCov">             64 : GenericRouterVct::set_no_nodes( uint nodes )</span>
+<span class="lineNum">     102 </span>                : {
+<span class="lineNum">     103 </span><span class="lineCov">            768 :     for ( uint i=0; i&lt;decoders.size(); i++)</span>
+<span class="lineNum">     104 </span>                :     {
+<span class="lineNum">     105 </span><span class="lineCov">            640 :         decoders[i].grid_xloc.resize(nodes);</span>
+<span class="lineNum">     106 </span><span class="lineCov">            640 :         decoders[i].grid_yloc.resize(nodes);</span>
+<span class="lineNum">     107 </span>                :     }
+<span class="lineNum">     108 </span><span class="lineCov">             64 : }</span>
+<span class="lineNum">     109 </span>                : 
+<span class="lineNum">     110 </span>                : void
+<span class="lineNum">     111 </span><span class="lineCov">          20480 : GenericRouterVct::set_grid_x_location( uint port, uint x_node, uint value)</span>
+<span class="lineNum">     112 </span>                : {
+<span class="lineNum">     113 </span><span class="lineCov">          61440 :     decoders[port].grid_xloc[x_node]= value;</span>
+<span class="lineNum">     114 </span><span class="lineCov">          20480 : }</span>
+<span class="lineNum">     115 </span>                : 
+<span class="lineNum">     116 </span>                : void
+<span class="lineNum">     117 </span><span class="lineCov">          20480 : GenericRouterVct::set_grid_y_location( uint port, uint y_node, uint value)</span>
+<span class="lineNum">     118 </span>                : {
+<span class="lineNum">     119 </span><span class="lineCov">          61440 :     decoders[port].grid_yloc[y_node]= value;</span>
+<span class="lineNum">     120 </span><span class="lineCov">          20480 : }</span>
+<span class="lineNum">     121 </span>                : 
+<span class="lineNum">     122 </span>                : /*  End of DOR grid location functions */
+<span class="lineNum">     123 </span>                : 
+<span class="lineNum">     124 </span>                : void
+<span class="lineNum">     125 </span><span class="lineCov">       22882619 : GenericRouterVct::process_event ( IrisEvent* e )</span>
+<span class="lineNum">     126 </span>                : {
+<span class="lineNum">     127 </span><span class="lineCov">       22882619 :     switch(e-&gt;type)</span>
+<span class="lineNum">     128 </span>                :     {
+<span class="lineNum">     129 </span>                :         case LINK_ARRIVAL_EVENT:
+<span class="lineNum">     130 </span><span class="lineCov">        7534204 :             handle_link_arrival_event(e);</span>
+<span class="lineNum">     131 </span><span class="lineCov">        7534204 :             break;</span>
+<span class="lineNum">     132 </span>                :         case TICK_EVENT:
+<span class="lineNum">     133 </span><span class="lineCov">       15348415 :             handle_tick_event(e);</span>
+<span class="lineNum">     134 </span><span class="lineCov">       15348415 :             break;</span>
+<span class="lineNum">     135 </span>                :         default:
+<span class="lineNum">     136 </span><span class="lineNoCov">              0 :             _DBG(&quot;GenericRouterVct:: Unk event exception %d&quot;, e-&gt;type);</span>
+<span class="lineNum">     137 </span>                :             break;
+<span class="lineNum">     138 </span>                :     }
+<span class="lineNum">     139 </span>                :     return ;
+<span class="lineNum">     140 </span>                : }               /* -----  end of function GenericRouterVct::process_event  ----- */
+<span class="lineNum">     141 </span>                : 
+<span class="lineNum">     142 </span>                : string
+<span class="lineNum">     143 </span><span class="lineCov">             64 : GenericRouterVct::print_stats()</span>
+<span class="lineNum">     144 </span>                : {
+<span class="lineNum">     145 </span><span class="lineCov">             64 :     stringstream str;</span>
+<span class="lineNum">     146 </span>                :     str &lt;&lt; &quot;\n router[&quot; &lt;&lt; node_ip &lt;&lt; &quot;] packets: &quot; &lt;&lt; packets
+<span class="lineNum">     147 </span>                :         &lt;&lt; &quot;\n router[&quot; &lt;&lt; node_ip &lt;&lt; &quot;] flits: &quot; &lt;&lt; flits
+<span class="lineNum">     148 </span>                :         &lt;&lt; &quot;\n router[&quot; &lt;&lt; node_ip &lt;&lt; &quot;] packet latency: &quot; &lt;&lt; total_packet_latency
+<span class="lineNum">     149 </span>                :         &lt;&lt; &quot;\n router[&quot; &lt;&lt; node_ip &lt;&lt; &quot;] flits/packets: &quot; &lt;&lt; (flits+0.0)/(packets)
+<span class="lineNum">     150 </span>                :         &lt;&lt; &quot;\n router[&quot; &lt;&lt; node_ip &lt;&lt; &quot;] average packet latency: &quot; &lt;&lt; (total_packet_latency+0.0)/packets
+<span class="lineNum">     151 </span>                :         &lt;&lt; &quot;\n router[&quot; &lt;&lt; node_ip &lt;&lt; &quot;] last_flit_out_cycle: &quot; &lt;&lt; last_flit_out_cycle
+<span class="lineNum">     152 </span><span class="lineCov">            832 :         &lt;&lt; &quot; &quot;;</span>
+<span class="lineNum">     153 </span>                : 
+<span class="lineNum">     154 </span><span class="lineCov">             64 :     return str.str();</span>
+<span class="lineNum">     155 </span>                : }
+<span class="lineNum">     156 </span>                : 
+<span class="lineNum">     157 </span>                : /*! \brief Event handle for the LINK_ARRIVAL_EVENT event. Entry from DES kernel */
+<span class="lineNum">     158 </span>                : void
+<span class="lineNum">     159 </span><span class="lineCov">        7534204 : GenericRouterVct::handle_link_arrival_event ( IrisEvent* e )</span>
+<span class="lineNum">     160 </span>                : {
+<span class="lineNum">     161 </span><span class="lineCov">        7534204 :     LinkArrivalData* data = static_cast&lt;LinkArrivalData*&gt;(e-&gt;event_data.at(0));</span>
+<span class="lineNum">     162 </span><span class="lineCov">        7534204 :     if(data-&gt;type == FLIT_ID)</span>
+<span class="lineNum">     163 </span>                :     {
+<span class="lineNum">     164 </span>                :         /*  Update stats */
+<span class="lineNum">     165 </span><span class="lineCov">        3767131 :         flits++;</span>
+<span class="lineNum">     166 </span><span class="lineCov">        3767131 :         if( data-&gt;ptr-&gt;type == TAIL || </span>
+<span class="lineNum">     167 </span>                :             (data-&gt;ptr-&gt;type == HEAD &amp;&amp; static_cast&lt;HeadFlit*&gt;(data-&gt;ptr)-&gt;msg_class == ONE_FLIT_REQ) )
+<span class="lineNum">     168 </span>                :         {
+<span class="lineNum">     169 </span><span class="lineCov">        1870861 :             packets++;</span>
+<span class="lineNum">     170 </span>                :         }
+<span class="lineNum">     171 </span>                : 
+<span class="lineNum">     172 </span>                :         /*Find the port the flit came in on */
+<span class="lineNum">     173 </span><span class="lineCov">        3767131 :         bool found = false;</span>
+<span class="lineNum">     174 </span><span class="lineCov">        3767131 :         uint port = -1;</span>
+<span class="lineNum">     175 </span>                :         /*  Need to check for null here as there may be null links to corner routers */
+<span class="lineNum">     176 </span><span class="lineCov">       11681906 :         for ( uint i=0 ; i&lt; ports ; i++ )</span>
+<span class="lineNum">     177 </span><span class="lineCov">       23363812 :             if(static_cast&lt;GenericLink*&gt;(input_connections[i])-&gt;input_connection) </span>
+<span class="lineNum">     178 </span><span class="lineCov">       22385252 :             if( e-&gt;src_id == static_cast&lt;GenericLink*&gt;(input_connections[i])-&gt;input_connection-&gt;address)</span>
+<span class="lineNum">     179 </span>                :             {
+<span class="lineNum">     180 </span><span class="lineCov">        3767131 :                 found = true;</span>
+<span class="lineNum">     181 </span><span class="lineCov">        3767131 :                 port = i;</span>
+<span class="lineNum">     182 </span><span class="lineCov">        3767131 :                 break;</span>
+<span class="lineNum">     183 </span>                :             }
+<span class="lineNum">     184 </span>                : 
+<span class="lineNum">     185 </span>                :         /* Throw and exception if it was not found */
+<span class="lineNum">     186 </span><span class="lineCov">        3767131 :         if( !found )</span>
+<span class="lineNum">     187 </span>                :         {
+<span class="lineNum">     188 </span><span class="lineNoCov">              0 :             _DBG(&quot; Input port not found src_addr: %d&quot;, e-&gt;src_id);</span>
+<span class="lineNum">     189 </span>                :         }
+<span class="lineNum">     190 </span>                : 
+<span class="lineNum">     191 </span>                :         /* Push the flit into the buffer */
+<span class="lineNum">     192 </span><span class="lineCov">        7534262 :         in_buffers[port].change_push_channel(data-&gt;vc);</span>
+<span class="lineNum">     193 </span><span class="lineCov">        7534262 :         in_buffers[port].push(data-&gt;ptr);</span>
+<span class="lineNum">     194 </span><span class="lineCov">        7534262 :         decoders[port].push(data-&gt;ptr,data-&gt;vc);</span>
+<span class="lineNum">     195 </span><span class="lineCov">        3767131 :         if( data-&gt;ptr-&gt;type == HEAD )</span>
+<span class="lineNum">     196 </span>                :         {
+<span class="lineNum">     197 </span><span class="lineCov">        1870870 :             HeadFlit* hf = static_cast&lt;HeadFlit*&gt;(data-&gt;ptr);</span>
+<span class="lineNum">     198 </span><span class="lineCov">        3741740 :             input_buffer_state[port*vcs+data-&gt;vc].input_port = port;</span>
+<span class="lineNum">     199 </span><span class="lineCov">        3741740 :             input_buffer_state[port*vcs+data-&gt;vc].input_channel = data-&gt;vc;</span>
+<span class="lineNum">     200 </span><span class="lineCov">        3741740 :             input_buffer_state[port*vcs+data-&gt;vc].pipe_stage = FULL;</span>
+<span class="lineNum">     201 </span><span class="lineCov">        3741740 :             input_buffer_state[port*vcs+data-&gt;vc].possible_oports.clear(); </span>
+<span class="lineNum">     202 </span><span class="lineCov">        3741740 :             input_buffer_state[port*vcs+data-&gt;vc].possible_ovcs.clear(); </span>
+<span class="lineNum">     203 </span><span class="lineCov">        3741740 :             input_buffer_state[port*vcs+data-&gt;vc].possible_oports.resize(1); </span>
+<span class="lineNum">     204 </span><span class="lineCov">        3741740 :             input_buffer_state[port*vcs+data-&gt;vc].possible_ovcs.resize(1); </span>
+<span class="lineNum">     205 </span><span class="lineCov">        7483480 :             input_buffer_state[port*vcs+data-&gt;vc].possible_oports[0] = decoders[port].get_output_port(data-&gt;vc);</span>
+<span class="lineNum">     206 </span><span class="lineCov">        5612610 :             input_buffer_state[port*vcs+data-&gt;vc].possible_ovcs[0] = 0;</span>
+<span class="lineNum">     207 </span><span class="lineCov">        3741740 :             input_buffer_state[port*vcs+data-&gt;vc].length= hf-&gt;length;</span>
+<span class="lineNum">     208 </span><span class="lineCov">        3741740 :             input_buffer_state[port*vcs+data-&gt;vc].credits_sent= hf-&gt;length;</span>
+<span class="lineNum">     209 </span><span class="lineCov">        3741740 :             input_buffer_state[port*vcs+data-&gt;vc].arrival_time= ceil(Simulator::Now());</span>
+<span class="lineNum">     210 </span><span class="lineCov">        3741740 :             input_buffer_state[port*vcs+data-&gt;vc].clear_message= false;</span>
+<span class="lineNum">     211 </span><span class="lineCov">        3741740 :             input_buffer_state[port*vcs+data-&gt;vc].flits_in_ib = 0;</span>
+<span class="lineNum">     212 </span>                : 
+<span class="lineNum">     213 </span>                :         }
+<span class="lineNum">     214 </span>                :         else
+<span class="lineNum">     215 </span>                :         {
+<span class="lineNum">     216 </span>                : #ifdef _DEBUG_ROUTER
+<span class="lineNum">     217 </span>                :             _DBG(&quot; BW inport:%d invc:%d oport:%d ovc:%d ft:%d&quot;, port, data-&gt;vc,
+<span class="lineNum">     218 </span>                :                  input_buffer_state[port*vcs+data-&gt;vc].output_port, input_buffer_state[port*vcs+data-&gt;vc].output_channel, data-&gt;ptr-&gt;type);
+<span class="lineNum">     219 </span>                : #endif
+<span class="lineNum">     220 </span>                : 
+<span class="lineNum">     221 </span>                :         }
+<span class="lineNum">     222 </span>                :         
+<span class="lineNum">     223 </span>                :     }
+<span class="lineNum">     224 </span><span class="lineCov">        3767073 :     else if ( data-&gt;type == CREDIT_ID)</span>
+<span class="lineNum">     225 </span>                :     {
+<span class="lineNum">     226 </span>                :         /* Find the corresponding output port */
+<span class="lineNum">     227 </span><span class="lineCov">        3767073 :         bool found = false;</span>
+<span class="lineNum">     228 </span><span class="lineCov">        3767073 :         uint port = -1;</span>
+<span class="lineNum">     229 </span><span class="lineCov">       11716687 :         for ( uint i=0 ; ports ; i++ )</span>
+<span class="lineNum">     230 </span><span class="lineCov">       23433374 :             if(static_cast&lt;GenericLink*&gt;(output_connections[i])-&gt;output_connection) /* Some links of corner routers may be null */</span>
+<span class="lineNum">     231 </span><span class="lineCov">       22436494 :             if( static_cast&lt;GenericLink*&gt;(output_connections[i])-&gt;output_connection-&gt;address == e-&gt;src_id)</span>
+<span class="lineNum">     232 </span>                :             {
+<span class="lineNum">     233 </span><span class="lineCov">        3767073 :                 port = i;</span>
+<span class="lineNum">     234 </span><span class="lineCov">        3767073 :                 found = true;</span>
+<span class="lineNum">     235 </span><span class="lineCov">        3767073 :                 break;</span>
+<span class="lineNum">     236 </span>                :             }
+<span class="lineNum">     237 </span><span class="lineCov">        3767073 :         if(!found)</span>
+<span class="lineNum">     238 </span>                :         {
+<span class="lineNum">     239 </span><span class="lineNoCov">              0 :             _DBG(&quot; Output port not found src_addr: %d&quot;, e-&gt;src_id);</span>
+<span class="lineNum">     240 </span>                :         }
+<span class="lineNum">     241 </span>                : 
+<span class="lineNum">     242 </span><span class="lineCov">        7534146 :         downstream_credits[port][data-&gt;vc]++;</span>
+<span class="lineNum">     243 </span>                : #ifdef _DEBUG_ROUTER
+<span class="lineNum">     244 </span>                :         _DBG(&quot; Got a credit port:%d vc:%d in_buffers[port][vc]:%d &quot;, port, data-&gt;vc, downstream_credits[port][data-&gt;vc]);
+<span class="lineNum">     245 </span>                : #endif
+<span class="lineNum">     246 </span>                : 
+<span class="lineNum">     247 </span>                :     }
+<span class="lineNum">     248 </span>                :     else
+<span class="lineNum">     249 </span>                :     {
+<span class="lineNum">     250 </span><span class="lineNoCov">              0 :         _DBG( &quot;handle_link_arrival_event Unk data type %d &quot;, data-&gt;type);</span>
+<span class="lineNum">     251 </span>                :     }
+<span class="lineNum">     252 </span>                : 
+<span class="lineNum">     253 </span>                :         /* Tick since you update a credit or flit */
+<span class="lineNum">     254 </span><span class="lineCov">        7534204 :         if(!ticking)</span>
+<span class="lineNum">     255 </span>                :         {
+<span class="lineNum">     256 </span><span class="lineCov">        2850456 :             ticking = true;</span>
+<span class="lineNum">     257 </span><span class="lineCov">        2850456 :             IrisEvent* event = new IrisEvent();</span>
+<span class="lineNum">     258 </span><span class="lineCov">        2850456 :             event-&gt;type = TICK_EVENT;</span>
+<span class="lineNum">     259 </span><span class="lineCov">        2850456 :             event-&gt;vc = e-&gt;vc;</span>
+<span class="lineNum">     260 </span><span class="lineCov">        2850456 :             Simulator::Schedule( floor(Simulator::Now())+1, &amp;NetworkComponent::process_event, this, event);</span>
+<span class="lineNum">     261 </span>                :         }
+<span class="lineNum">     262 </span>                : 
+<span class="lineNum">     263 </span><span class="lineCov">        7534204 :         delete data;</span>
+<span class="lineNum">     264 </span><span class="lineCov">        7534204 :         delete e;</span>
+<span class="lineNum">     265 </span>                :     return ;
+<span class="lineNum">     266 </span>                : }               /* -----  end of function GenericRouterVct::handle_link_arrival_event  ----- */
+<span class="lineNum">     267 </span>                : 
+<span class="lineNum">     268 </span>                : void
+<span class="lineNum">     269 </span><span class="lineCov">       15348415 : GenericRouterVct::do_switch_traversal()</span>
+<span class="lineNum">     270 </span>                : {
+<span class="lineNum">     271 </span>                :     /* Switch traversal */
+<span class="lineNum">     272 </span><span class="lineCov">       92090490 :     for( uint i=0; i&lt;ports*vcs; i++)</span>
+<span class="lineNum">     273 </span><span class="lineCov">      153484150 :         if( input_buffer_state[i].pipe_stage == ST)</span>
+<span class="lineNum">     274 </span>                :         {
+<span class="lineNum">     275 </span><span class="lineCov">       24394994 :                 uint oport = input_buffer_state[i].output_port;</span>
+<span class="lineNum">     276 </span><span class="lineCov">       24394994 :                 uint och = input_buffer_state[i].output_channel;</span>
+<span class="lineNum">     277 </span><span class="lineCov">       24394994 :                 uint iport = input_buffer_state[i].input_port;</span>
+<span class="lineNum">     278 </span><span class="lineCov">       24394994 :                 uint ich = input_buffer_state[i].input_channel;</span>
+<span class="lineNum">     279 </span><span class="lineCov">       32799970 :                 if( !xbar.is_empty(oport,och) </span>
+<span class="lineNum">     280 </span>                :                     &amp;&amp; input_buffer_state[i].flits_in_ib &gt; 0
+<span class="lineNum">     281 </span>                :                     &amp;&amp; downstream_credits[oport][och]&gt;0 )
+<span class="lineNum">     282 </span>                :                 {
+<span class="lineNum">     283 </span><span class="lineCov">        7534194 :                     in_buffers[iport].change_pull_channel(ich);</span>
+<span class="lineNum">     284 </span><span class="lineCov">        7534194 :                     Flit* f = in_buffers[iport].pull();</span>
+<span class="lineNum">     285 </span><span class="lineCov">        7534194 :                     input_buffer_state[i].flits_in_ib--;</span>
+<span class="lineNum">     286 </span>                :                     
+<span class="lineNum">     287 </span><span class="lineCov">        3767097 :                     last_flit_out_cycle = Simulator::Now();</span>
+<span class="lineNum">     288 </span>                : 
+<span class="lineNum">     289 </span><span class="lineCov">        3767097 :                     LinkArrivalData* data = new LinkArrivalData();</span>
+<span class="lineNum">     290 </span><span class="lineCov">        3767097 :                     data-&gt;type = FLIT_ID;</span>
+<span class="lineNum">     291 </span><span class="lineCov">        3767097 :                     data-&gt;vc = och;</span>
+<span class="lineNum">     292 </span><span class="lineCov">        3767097 :                     data-&gt;ptr = f;</span>
+<span class="lineNum">     293 </span>                : #ifdef _DEEP_DEBUG
+<span class="lineNum">     294 </span>                :                     _DBG(&quot; FLIT OUT ftype: %d &quot;, f-&gt;type);
+<span class="lineNum">     295 </span>                :                     switch( f-&gt;type)
+<span class="lineNum">     296 </span>                :                     {
+<span class="lineNum">     297 </span>                :                         case HEAD:
+<span class="lineNum">     298 </span>                :                             cout &lt;&lt; static_cast&lt;HeadFlit*&gt;(f)-&gt;toString();
+<span class="lineNum">     299 </span>                :                             break;
+<span class="lineNum">     300 </span>                :                         case BODY:
+<span class="lineNum">     301 </span>                :                             cout &lt;&lt; static_cast&lt;BodyFlit*&gt;(f)-&gt;toString();
+<span class="lineNum">     302 </span>                :                             break;
+<span class="lineNum">     303 </span>                :                         case TAIL:
+<span class="lineNum">     304 </span>                :                             cout &lt;&lt; static_cast&lt;TailFlit*&gt;(f)-&gt;toString();
+<span class="lineNum">     305 </span>                :                             break;
+<span class="lineNum">     306 </span>                :                     }
+<span class="lineNum">     307 </span>                : #endif
+<span class="lineNum">     308 </span><span class="lineCov">        3767097 :                     IrisEvent* event = new IrisEvent();</span>
+<span class="lineNum">     309 </span><span class="lineCov">        3767097 :                     event-&gt;type = LINK_ARRIVAL_EVENT;</span>
+<span class="lineNum">     310 </span><span class="lineCov">        3767097 :                     event-&gt;event_data.push_back(data);</span>
+<span class="lineNum">     311 </span><span class="lineCov">        3767097 :                     event-&gt;src_id = address;</span>
+<span class="lineNum">     312 </span><span class="lineCov">        7534194 :                     event-&gt;dst_id = output_connections[oport]-&gt;address;</span>
+<span class="lineNum">     313 </span><span class="lineCov">        3767097 :                     event-&gt;vc = data-&gt;vc;</span>
+<span class="lineNum">     314 </span>                :                     Simulator::Schedule( Simulator::Now()+0.75,
+<span class="lineNum">     315 </span>                :                                      &amp;NetworkComponent::process_event,
+<span class="lineNum">     316 </span><span class="lineCov">        7534194 :                                      static_cast&lt;GenericLink*&gt;(output_connections[oport])-&gt;output_connection,event);</span>
+<span class="lineNum">     317 </span><span class="lineCov">        7534194 :                     downstream_credits[oport][och]--;</span>
+<span class="lineNum">     318 </span><span class="lineCov">        3767097 :                     if( f-&gt;type == TAIL || (f-&gt;type == HEAD &amp;&amp; static_cast&lt;HeadFlit*&gt;(f)-&gt;msg_class == ONE_FLIT_REQ))</span>
+<span class="lineNum">     319 </span>                :                     {
+<span class="lineNum">     320 </span><span class="lineCov">        3741672 :                         input_buffer_state[i].clear_message = true;</span>
+<span class="lineNum">     321 </span><span class="lineCov">        3741672 :                         input_buffer_state[i].pipe_stage = EMPTY;</span>
+<span class="lineNum">     322 </span><span class="lineCov">        5612508 :                         swa.clear_winner(input_buffer_state[i].output_port, input_buffer_state[i].input_port);</span>
+<span class="lineNum">     323 </span><span class="lineCov">        5612508 :                         xbar.pull(input_buffer_state[i].output_port,input_buffer_state[i].output_channel);</span>
+<span class="lineNum">     324 </span>                : #ifdef _DEBUG_ROUTER
+<span class="lineNum">     325 </span>                :     _DBG(&quot; Tail FO clear pkt for inport %d inch %d oport %d och %d &quot;, iport, ich, oport, och);
+<span class="lineNum">     326 </span>                : #endif
+<span class="lineNum">     327 </span>                :                         /* Update packet stats */
+<span class="lineNum">     328 </span><span class="lineCov">        3741672 :                         double lat = Simulator::Now() - input_buffer_state[i].arrival_time;</span>
+<span class="lineNum">     329 </span><span class="lineCov">        1870836 :                         total_packet_latency+= lat;</span>
+<span class="lineNum">     330 </span>                :                     }
+<span class="lineNum">     331 </span>                :                     else
+<span class="lineNum">     332 </span>                :                     {
+<span class="lineNum">     333 </span>                : #ifdef _DEBUG_ROUTER
+<span class="lineNum">     334 </span>                :     _DBG(&quot; Flit out for inport %d inch %d oport %d och %d fty: %d &quot;, iport, ich, oport, och, f-&gt;type);
+<span class="lineNum">     335 </span>                : #endif
+<span class="lineNum">     336 </span>                :                     }
+<span class="lineNum">     337 </span>                : 
+<span class="lineNum">     338 </span>                :                     /* Safe to send credits here as the flit is sure to empty
+<span class="lineNum">     339 </span>                :                      * the buffer. */
+<span class="lineNum">     340 </span>                : //                    if(!send_early_credit)
+<span class="lineNum">     341 </span><span class="lineCov">        3767097 :                         send_credit_back(i);</span>
+<span class="lineNum">     342 </span>                : 
+<span class="lineNum">     343 </span>                :                 }
+<span class="lineNum">     344 </span>                :                 else
+<span class="lineNum">     345 </span>                :                 {
+<span class="lineNum">     346 </span><span class="lineCov">       16860800 :                     if(in_buffers[iport].get_occupancy(ich)==0)</span>
+<span class="lineNum">     347 </span>                :                     {
+<span class="lineNum">     348 </span>                : #ifdef _DEBUG_ROUTER
+<span class="lineNum">     349 </span>                :                         _DBG(&quot; Waiting for flits on inch %d. Credits are %d&quot;,
+<span class="lineNum">     350 </span>                :                              iport,downstream_credits[oport][och]);
+<span class="lineNum">     351 </span>                : #endif
+<span class="lineNum">     352 </span>                :                     }
+<span class="lineNum">     353 </span><span class="lineCov">        6534139 :                     else if (xbar.is_empty(oport,och))</span>
+<span class="lineNum">     354 </span>                :                     {
+<span class="lineNum">     355 </span><span class="lineNoCov">              0 :                         _DBG_NOARG(&quot; switch was allocated but crossbar is empty &quot;);</span>
+<span class="lineNum">     356 </span>                :                     }
+<span class="lineNum">     357 </span><span class="lineCov">       13068278 :                     else if (downstream_credits[oport][och] == 0)</span>
+<span class="lineNum">     358 </span>                :                     {
+<span class="lineNum">     359 </span>                : #ifdef _DEBUG_ROUTER
+<span class="lineNum">     360 </span>                :                         _DBG(&quot; Waiting for downstream credits on oport %d och %d &quot;, oport, och);
+<span class="lineNum">     361 </span>                : #endif
+<span class="lineNum">     362 </span><span class="lineCov">        6228379 :                        ticking = true;</span>
+<span class="lineNum">     363 </span>                :                     }
+<span class="lineNum">     364 </span>                :                 }
+<span class="lineNum">     365 </span>                : 
+<span class="lineNum">     366 </span>                :         }
+<span class="lineNum">     367 </span>                : 
+<span class="lineNum">     368 </span><span class="lineCov">       15348415 : }</span>
+<span class="lineNum">     369 </span>                : 
+<span class="lineNum">     370 </span>                : void
+<span class="lineNum">     371 </span><span class="lineCov">       15348415 : GenericRouterVct::do_switch_allocation()</span>
+<span class="lineNum">     372 </span>                : {
+<span class="lineNum">     373 </span>                :     /* Switch Allocation */
+<span class="lineNum">     374 </span><span class="lineCov">       92090490 :     for( uint i=0; i&lt;ports*vcs; i++)</span>
+<span class="lineNum">     375 </span><span class="lineCov">      153484150 :         if( input_buffer_state[i].pipe_stage == SWA_REQUESTED)</span>
+<span class="lineNum">     376 </span>                :         {
+<span class="lineNum">     377 </span><span class="lineCov">        1975560 :             if ( !swa.is_empty())</span>
+<span class="lineNum">     378 </span>                :             {
+<span class="lineNum">     379 </span><span class="lineCov">        1975560 :                 uint oport = -1;</span>
+<span class="lineNum">     380 </span>                :                 SA_unit vca_winner;
+<span class="lineNum">     381 </span><span class="lineCov">        3951120 :                 uint iport = input_buffer_state[i].input_port;</span>
+<span class="lineNum">     382 </span><span class="lineCov">        3951120 :                 uint ich = input_buffer_state[i].input_channel;</span>
+<span class="lineNum">     383 </span>                : 
+<span class="lineNum">     384 </span><span class="lineCov">       11853360 :                 for ( uint j=0; j&lt;input_buffer_state[i].possible_oports.size(); j++)</span>
+<span class="lineNum">     385 </span>                :                 {
+<span class="lineNum">     386 </span><span class="lineCov">        5926680 :                     oport = input_buffer_state[i].possible_oports[j];</span>
+<span class="lineNum">     387 </span><span class="lineCov">        1975560 :                     vca_winner = swa.pick_winner(oport);</span>
+<span class="lineNum">     388 </span>                :                 }
+<span class="lineNum">     389 </span>                : 
+<span class="lineNum">     390 </span><span class="lineCov">        1975560 :                 if( vca_winner.port == iport )</span>
+<span class="lineNum">     391 </span>                :                 {
+<span class="lineNum">     392 </span><span class="lineCov">        3741680 :                         input_buffer_state[i].pipe_stage = ST;</span>
+<span class="lineNum">     393 </span><span class="lineCov">        3741680 :                         input_buffer_state[i].output_port = oport;</span>
+<span class="lineNum">     394 </span><span class="lineCov">        3741680 :                         input_buffer_state[i].output_channel = 0;</span>
+<span class="lineNum">     395 </span><span class="lineCov">        1870840 :                         xbar.configure_crossbar(iport,oport,0);</span>
+<span class="lineNum">     396 </span><span class="lineCov">        1870840 :                         xbar.push(oport,0); /* The crossbar is generic and needs to know the vc being used as well */</span>
+<span class="lineNum">     397 </span>                : 
+<span class="lineNum">     398 </span>                : #ifdef _DEBUG_ROUTER
+<span class="lineNum">     399 </span>                :                 _DBG(&quot; SWA won for inport %d oport %d &quot;, iport, oport);
+<span class="lineNum">     400 </span>                : #endif
+<span class="lineNum">     401 </span>                :                     /* After allocating the downstream path for this message
+<span class="lineNum">     402 </span>                :                      * send a credit on this inport for the HEAD. 
+<span class="lineNum">     403 </span>                :                     if(send_early_credit)
+<span class="lineNum">     404 </span>                :                         send_credit_back(i);
+<span class="lineNum">     405 </span>                :                      * */
+<span class="lineNum">     406 </span>                :                 }
+<span class="lineNum">     407 </span>                :                 else
+<span class="lineNum">     408 </span>                :                 {
+<span class="lineNum">     409 </span>                : #ifdef _DEBUG_ROUTER
+<span class="lineNum">     410 </span>                :                     _DBG(&quot; Dint win for inport %d SWA winner was inport %d for oport %d &quot;
+<span class="lineNum">     411 </span>                :                          ,iport, vca_winner.port, oport);
+<span class="lineNum">     412 </span>                : #endif
+<span class="lineNum">     413 </span><span class="lineCov">         104720 :                         swa.clear_requested(oport, iport);</span>
+<span class="lineNum">     414 </span><span class="lineCov">         209440 :                         input_buffer_state[i].pipe_stage = FULL;</span>
+<span class="lineNum">     415 </span><span class="lineCov">         209440 :                         input_buffer_state[i].flits_in_ib--;</span>
+<span class="lineNum">     416 </span>                : 
+<span class="lineNum">     417 </span>                :                 }
+<span class="lineNum">     418 </span><span class="lineCov">        1975560 :                 ticking = true;</span>
+<span class="lineNum">     419 </span>                :             }
+<span class="lineNum">     420 </span>                :             else
+<span class="lineNum">     421 </span>                :             {
+<span class="lineNum">     422 </span><span class="lineNoCov">              0 :                 cout &lt;&lt; &quot;ERROR SWA was requested but the switch allocator has no requests&quot; &lt;&lt; endl;</span>
+<span class="lineNum">     423 </span>                :             }
+<span class="lineNum">     424 </span>                :         }
+<span class="lineNum">     425 </span>                : 
+<span class="lineNum">     426 </span><span class="lineCov">       15348415 : }</span>
+<span class="lineNum">     427 </span>                : 
+<span class="lineNum">     428 </span>                : /*! \brief Event handle for the TICK_EVENT. Entry from DES kernel */
+<span class="lineNum">     429 </span>                : void
+<span class="lineNum">     430 </span><span class="lineCov">       15348415 : GenericRouterVct::handle_tick_event ( IrisEvent* e )</span>
+<span class="lineNum">     431 </span>                : {
+<span class="lineNum">     432 </span>                : 
+<span class="lineNum">     433 </span>                : #ifdef _DEEP_DEBUG
+<span class="lineNum">     434 </span>                :     _DBG_NOARG(&quot;input_buffer_state matrix\n&quot;);
+<span class="lineNum">     435 </span>                :     for( uint i=0; i&lt;ports*vcs; i++)
+<span class="lineNum">     436 </span>                :         cout &lt;&lt;i&lt;&lt;&quot; &quot;&lt;&lt; input_buffer_state[i].toString()&lt;&lt; &quot; buff_occ:&quot; &lt;&lt;in_buffers[input_buffer_state[i].
+<span class="lineNum">     437 </span>                :             input_port].get_occupancy(input_buffer_state[i].input_channel) &lt;&lt; endl;
+<span class="lineNum">     438 </span>                : #endif
+<span class="lineNum">     439 </span>                : 
+<span class="lineNum">     440 </span><span class="lineCov">       15348415 :     ticking = false;</span>
+<span class="lineNum">     441 </span>                : 
+<span class="lineNum">     442 </span>                :     /* We need to estimate the actual time at which the input buffer empties
+<span class="lineNum">     443 </span>                :      * and send the credit back. After SA it is known that the buffer for the
+<span class="lineNum">     444 </span>                :      * HEAD will empty in the next cycle and hence a credit can be sent to the
+<span class="lineNum">     445 </span>                :      * link for the HEAD. Post this a check for if the message is in ST and
+<span class="lineNum">     446 </span>                :      * there are flits doing IB. One can send a credit back for BODY and TAIL
+<span class="lineNum">     447 </span>                :      * flits such that the credit is at LT when the flit is in ST.
+<span class="lineNum">     448 </span>                :     for( uint i=0; i&lt;(ports*vcs); i++)
+<span class="lineNum">     449 </span>                :         if( input_buffer_state[i].pipe_stage == ST || input_buffer_state[i].pipe_stage == SW_ALLOCATED)
+<span class="lineNum">     450 </span>                :         {
+<span class="lineNum">     451 </span>                :             if(in_buffers[input_buffer_state[i].input_port].get_occupancy(input_buffer_state[i].input_channel) &gt;0 
+<span class="lineNum">     452 </span>                :                &amp;&amp; input_buffer_state[i].credits_sent&gt;0 )
+<span class="lineNum">     453 </span>                :                 send_credit_back(i);
+<span class="lineNum">     454 </span>                :         }
+<span class="lineNum">     455 </span>                :      * */
+<span class="lineNum">     456 </span>                : 
+<span class="lineNum">     457 </span><span class="lineCov">       15348415 :     do_switch_allocation();</span>
+<span class="lineNum">     458 </span><span class="lineCov">       15348415 :     do_switch_traversal();</span>
+<span class="lineNum">     459 </span>                : 
+<span class="lineNum">     460 </span>                :    
+<span class="lineNum">     461 </span>                :     /*  Input buffering 
+<span class="lineNum">     462 </span>                :      *  Flits are pushed into the input buffer in the link arrival handler
+<span class="lineNum">     463 </span>                :      *  itself. To ensure the pipeline stages are executed in reverse pipe
+<span class="lineNum">     464 </span>                :      *  order IB is done here and all link_traversals have higher priority and get done before
+<span class="lineNum">     465 </span>                :      *  tick. Head/Body and Tail flits go thru the IB stage.*/
+<span class="lineNum">     466 </span><span class="lineCov">       92090490 :     for( uint i=0; i&lt;(ports*vcs); i++)</span>
+<span class="lineNum">     467 </span><span class="lineCov">      153484150 :         if( input_buffer_state[i].pipe_stage == FULL )</span>
+<span class="lineNum">     468 </span>                :     {
+<span class="lineNum">     469 </span>                : #ifdef _DEBUG_ROUTER
+<span class="lineNum">     470 </span>                :         _DBG(&quot; IB + RC inport:%d oport:%d length:%d arrival_time: %f&quot;, input_buffer_state[i].input_port,
+<span class="lineNum">     471 </span>                :              input_buffer_state[i].output_port, input_buffer_state[i].length, Simulator::Now());
+<span class="lineNum">     472 </span>                : #endif
+<span class="lineNum">     473 </span><span class="lineCov">        3951178 :             input_buffer_state[i].pipe_stage = IB;</span>
+<span class="lineNum">     474 </span><span class="lineCov">        3951178 :             input_buffer_state[i].flits_in_ib++;</span>
+<span class="lineNum">     475 </span><span class="lineCov">        1975589 :             ticking = true;</span>
+<span class="lineNum">     476 </span>                :     }
+<span class="lineNum">     477 </span>                : 
+<span class="lineNum">     478 </span>                :     /*! \brief Body and tail flits get written in link arrival and since the message
+<span class="lineNum">     479 </span>                :      * state may already been pushed to ST because of the header we want to
+<span class="lineNum">     480 </span>                :      * ensure that all flits go thru an IB and ST stage. Hence ST is done on
+<span class="lineNum">     481 </span>                :      * the flits_in_ib information and not buffer occupancy. */
+<span class="lineNum">     482 </span><span class="lineCov">       92090490 :     for( uint i=0; i&lt;(ports*vcs); i++)</span>
+<span class="lineNum">     483 </span>                :     {
+<span class="lineNum">     484 </span><span class="lineCov">      153484150 :             uint iport = input_buffer_state[i].input_port;</span>
+<span class="lineNum">     485 </span><span class="lineCov">      153484150 :             uint ich = input_buffer_state[i].input_channel;</span>
+<span class="lineNum">     486 </span><span class="lineCov">      153484150 :             uint oport = input_buffer_state[i].output_port ;</span>
+<span class="lineNum">     487 </span><span class="lineCov">      153484150 :             uint och = input_buffer_state[i].output_channel; </span>
+<span class="lineNum">     488 </span>                : 
+<span class="lineNum">     489 </span><span class="lineCov">      254844254 :             if ((input_buffer_state[i].pipe_stage == ST || input_buffer_state[i].pipe_stage == IB )</span>
+<span class="lineNum">     490 </span>                : //                      || input_buffer_state[i].pipe_stage == SWA_REQUESTED 
+<span class="lineNum">     491 </span>                :                 &amp;&amp; (input_buffer_state[i].flits_in_ib &lt; in_buffers[iport].get_occupancy(ich)))
+<span class="lineNum">     492 </span>                :                 { 
+<span class="lineNum">     493 </span><span class="lineCov">        3792520 :                     input_buffer_state[i].flits_in_ib++;</span>
+<span class="lineNum">     494 </span><span class="lineCov">        1896260 :                     ticking = true;</span>
+<span class="lineNum">     495 </span>                : #ifdef _DEBUG_ROUTER
+<span class="lineNum">     496 </span>                :                 _DBG(&quot; IB for BODY/TAIL for inport %d oport %d &quot;, iport, oport);
+<span class="lineNum">     497 </span>                : #endif
+<span class="lineNum">     498 </span>                :                     /* Sending credits back for body+tail: Condition being
+<span class="lineNum">     499 </span>                :                      * HEAD in ST and having downstream credits 
+<span class="lineNum">     500 </span>                :                     if(send_early_credit)
+<span class="lineNum">     501 </span>                :                         if( input_buffer_state[i].pipe_stage == ST &amp;&amp; downstream_credits[oport][och] &gt; 0)
+<span class="lineNum">     502 </span>                :                             send_credit_back(i);
+<span class="lineNum">     503 </span>                :                         */
+<span class="lineNum">     504 </span>                :                 }
+<span class="lineNum">     505 </span>                :     }
+<span class="lineNum">     506 </span>                : 
+<span class="lineNum">     507 </span>                :     /* Request Switch Allocation */
+<span class="lineNum">     508 </span><span class="lineCov">       92090490 :     for( uint i=0; i&lt;(ports*vcs); i++)</span>
+<span class="lineNum">     509 </span>                :     {
+<span class="lineNum">     510 </span><span class="lineCov">      153484150 :         if( input_buffer_state[i].pipe_stage == IB )</span>
+<span class="lineNum">     511 </span>                :         {
+<span class="lineNum">     512 </span><span class="lineCov">       14291368 :             uint iport = input_buffer_state[i].input_port;</span>
+<span class="lineNum">     513 </span><span class="lineCov">       14291368 :             uint ich = input_buffer_state[i].input_channel;</span>
+<span class="lineNum">     514 </span><span class="lineCov">       21437052 :             uint oport = input_buffer_state[i].possible_oports[0];</span>
+<span class="lineNum">     515 </span><span class="lineCov">       21437052 :             uint och = input_buffer_state[i].possible_ovcs[0]; </span>
+<span class="lineNum">     516 </span>                :             //input_buffer_state[i].pipe_stage = ROUTED;
+<span class="lineNum">     517 </span><span class="lineCov">       14291368 :             if( !swa.is_requested(oport,iport) </span>
+<span class="lineNum">     518 </span>                :                 &amp;&amp; downstream_credits[oport][och] == credits)
+<span class="lineNum">     519 </span>                :             {
+<span class="lineNum">     520 </span><span class="lineCov">        1975561 :                 swa.request(oport, iport);</span>
+<span class="lineNum">     521 </span><span class="lineCov">        3951122 :                 input_buffer_state[i].pipe_stage = SWA_REQUESTED;</span>
+<span class="lineNum">     522 </span><span class="lineCov">        1975561 :                 ticking = true;</span>
+<span class="lineNum">     523 </span>                : #ifdef _DEBUG_ROUTER
+<span class="lineNum">     524 </span>                :                 _DBG(&quot; Req SWA for inport %d inch %d oport %d och %d &quot;, iport, ich,oport,och);
+<span class="lineNum">     525 </span>                : #endif
+<span class="lineNum">     526 </span>                :             }
+<span class="lineNum">     527 </span>                : #ifdef _DEBUG_ROUTER
+<span class="lineNum">     528 </span>                :             else
+<span class="lineNum">     529 </span>                :             {
+<span class="lineNum">     530 </span>                :                 if (swa.is_requested(oport, iport))
+<span class="lineNum">     531 </span>                :                 {
+<span class="lineNum">     532 </span>                :                     _DBG(&quot;Cant req SWA. SWA full inport:%d inch:%d oport:%d och:%d&quot;,iport,ich,oport,och);
+<span class="lineNum">     533 </span>                :                 }
+<span class="lineNum">     534 </span>                :                 else if(downstream_credits[input_buffer_state[i].possible_oports[0]][input_buffer_state[i].possible_ovcs[0]] != credits)
+<span class="lineNum">     535 </span>                :                 {
+<span class="lineNum">     536 </span>                :                     _DBG(&quot;Not requesting SWA. No downstream credits for oport:%d och:%d&quot;,oport,och);
+<span class="lineNum">     537 </span>                :                 }
+<span class="lineNum">     538 </span>                :             }
+<span class="lineNum">     539 </span>                : #endif
+<span class="lineNum">     540 </span>                :         }
+<span class="lineNum">     541 </span>                :     }
+<span class="lineNum">     542 </span><span class="lineCov">       92090490 :     for( uint i=0; i&lt;(ports*vcs); i++)</span>
+<span class="lineNum">     543 </span><span class="lineCov">      153484150 :         if( input_buffer_state[i].pipe_stage == ST )</span>
+<span class="lineNum">     544 </span><span class="lineCov">       10326661 :             ticking = true;</span>
+<span class="lineNum">     545 </span>                : 
+<span class="lineNum">     546 </span><span class="lineCov">       15348415 :     if(ticking)</span>
+<span class="lineNum">     547 </span>                :     {
+<span class="lineNum">     548 </span><span class="lineCov">       12497966 :         ticking = true;</span>
+<span class="lineNum">     549 </span><span class="lineCov">       12497966 :         IrisEvent* event = new IrisEvent();</span>
+<span class="lineNum">     550 </span><span class="lineCov">       12497966 :         event-&gt;type = TICK_EVENT;</span>
+<span class="lineNum">     551 </span><span class="lineCov">       12497966 :         event-&gt;vc = e-&gt;vc;</span>
+<span class="lineNum">     552 </span><span class="lineCov">       12497966 :         Simulator::Schedule(Simulator::Now()+1, &amp;NetworkComponent::process_event, this, event);</span>
+<span class="lineNum">     553 </span>                :     }
+<span class="lineNum">     554 </span>                : 
+<span class="lineNum">     555 </span><span class="lineCov">       15348415 :         delete e;</span>
+<span class="lineNum">     556 </span>                :     return;
+<span class="lineNum">     557 </span>                : 
+<span class="lineNum">     558 </span>                : }               /* -----  end of function GenericRouterVct::handle_input_arbitration_event  ----- */
+<span class="lineNum">     559 </span>                : 
+<span class="lineNum">     560 </span>                : string
+<span class="lineNum">     561 </span><span class="lineCov">             64 : GenericRouterVct::toString() const</span>
+<span class="lineNum">     562 </span>                : {
+<span class="lineNum">     563 </span><span class="lineCov">             64 :     stringstream str;</span>
+<span class="lineNum">     564 </span>                :     str &lt;&lt; &quot;GenericRouterVct&quot;
+<span class="lineNum">     565 </span>                :         &lt;&lt; &quot;\t addr: &quot; &lt;&lt; address
+<span class="lineNum">     566 </span>                :         &lt;&lt; &quot; node_ip: &quot; &lt;&lt; node_ip
+<span class="lineNum">     567 </span><span class="lineCov">            320 :         &lt;&lt; &quot;\n Input buffers: &quot; &lt;&lt; in_buffers.size() &lt;&lt; &quot; &quot;;</span>
+<span class="lineNum">     568 </span><span class="lineCov">            128 :     if( in_buffers.size() &gt; 0)</span>
+<span class="lineNum">     569 </span><span class="lineCov">            128 :         str &lt;&lt; in_buffers[0].toString();</span>
+<span class="lineNum">     570 </span>                : 
+<span class="lineNum">     571 </span><span class="lineCov">             64 :     str &lt;&lt; &quot;\n SWA: &quot; &lt;&lt; swa.toString();</span>
+<span class="lineNum">     572 </span>                : 
+<span class="lineNum">     573 </span><span class="lineCov">            192 :     str &lt;&lt; &quot;\n decoders: &quot; &lt;&lt; decoders.size() &lt;&lt; &quot; &quot;;</span>
+<span class="lineNum">     574 </span><span class="lineCov">            128 :     if( decoders.size() &gt; 0)</span>
+<span class="lineNum">     575 </span><span class="lineCov">            128 :         str &lt;&lt; decoders[0].toString();</span>
+<span class="lineNum">     576 </span>                : 
+<span class="lineNum">     577 </span><span class="lineCov">             64 :     str &lt;&lt; &quot;\n Xbar &quot;;</span>
+<span class="lineNum">     578 </span><span class="lineCov">             64 :     str &lt;&lt; xbar.toString();</span>
+<span class="lineNum">     579 </span>                : 
+<span class="lineNum">     580 </span><span class="lineCov">             64 :     return str.str();</span>
+<span class="lineNum">     581 </span>                : }
+<span class="lineNum">     582 </span>                : 
+<span class="lineNum">     583 </span>                : void
+<span class="lineNum">     584 </span><span class="lineCov">        3767097 : GenericRouterVct::send_credit_back(uint i)</span>
+<span class="lineNum">     585 </span>                : {
+<span class="lineNum">     586 </span>                : //    if( input_buffer_state[i].credits_sent)
+<span class="lineNum">     587 </span>                : //    {
+<span class="lineNum">     588 </span><span class="lineCov">        7534194 :     input_buffer_state[i].credits_sent--;</span>
+<span class="lineNum">     589 </span><span class="lineCov">        3767097 :     LinkArrivalData* data = new LinkArrivalData();</span>
+<span class="lineNum">     590 </span><span class="lineCov">        7534194 :     uint port = input_buffer_state[i].input_port;</span>
+<span class="lineNum">     591 </span><span class="lineCov">        3767097 :     data-&gt;type = CREDIT_ID;</span>
+<span class="lineNum">     592 </span><span class="lineCov">        7534194 :     data-&gt;vc = input_buffer_state[i].input_channel;</span>
+<span class="lineNum">     593 </span><span class="lineCov">        3767097 :     IrisEvent* event = new IrisEvent();</span>
+<span class="lineNum">     594 </span><span class="lineCov">        3767097 :     event-&gt;type = LINK_ARRIVAL_EVENT;</span>
+<span class="lineNum">     595 </span><span class="lineCov">        3767097 :     event-&gt;event_data.push_back(data);</span>
+<span class="lineNum">     596 </span><span class="lineCov">        3767097 :     event-&gt;src_id = address;</span>
+<span class="lineNum">     597 </span><span class="lineCov">        3767097 :     event-&gt;vc = data-&gt;vc; </span>
+<span class="lineNum">     598 </span>                :     Simulator::Schedule(Simulator::Now()+0.75, &amp;NetworkComponent::process_event,
+<span class="lineNum">     599 </span><span class="lineCov">        7534194 :                         static_cast&lt;GenericLink*&gt;(input_connections[port])-&gt;input_connection, event);</span>
+<span class="lineNum">     600 </span>                : #ifdef _DEBUG_ROUTER
+<span class="lineNum">     601 </span>                :     _DBG(&quot; Credit back for inport %d inch %d &quot;, port, data-&gt;vc);
+<span class="lineNum">     602 </span>                : #endif
+<span class="lineNum">     603 </span>                :     /* 
+<span class="lineNum">     604 </span>                :     }
+<span class="lineNum">     605 </span>                :     else
+<span class="lineNum">     606 </span>                :     {
+<span class="lineNum">     607 </span>                :         _DBG(&quot; Requested to send extra Credit back for inport %d &quot;,
+<span class="lineNum">     608 </span>                :              input_buffer_state[i].input_port);
+<span class="lineNum">     609 </span>                :     }
+<span class="lineNum">     610 </span>                :      * */
+<span class="lineNum">     611 </span><span class="lineCov">        3767099 : }</span>
+<span class="lineNum">     612 </span>                : 
+<span class="lineNum">     613 </span>                : 
+<span class="lineNum">     614 </span>                : #endif   /* ----- #ifndef _genericRouterVct_cc_INC  ----- */
+<span class="lineNum">     615 </span>                : 
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+  <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LTP GCOV extension version 1.6</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

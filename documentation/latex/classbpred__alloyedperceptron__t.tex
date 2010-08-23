@@ -1,0 +1,237 @@
+\section{bpred\_\-alloyedperceptron\_\-t Class Reference}
+\label{classbpred__alloyedperceptron__t}\index{bpred\_\-alloyedperceptron\_\-t@{bpred\_\-alloyedperceptron\_\-t}}
+Inheritance diagram for bpred\_\-alloyedperceptron\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classbpred__alloyedperceptron__t__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for bpred\_\-alloyedperceptron\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classbpred__alloyedperceptron__t__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class {\bf bpred\_\-alloyedperceptron\_\-sc\_\-t}
+\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf bpred\_\-alloyedperceptron\_\-t} (char $\ast$const arg\_\-name, const int arg\_\-ghistory\_\-length, const int arg\_\-bht\_\-size, const int arg\_\-lhistory\_\-length, const int arg\_\-top\_\-size)
+\item 
+{\bf $\sim$bpred\_\-alloyedperceptron\_\-t} ()
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+int {\bf bht\_\-size}
+\item 
+int {\bf bht\_\-mask}
+\item 
+qword\_\-t $\ast$ {\bf bht}
+\item 
+int {\bf bhr\_\-size}
+\item 
+qword\_\-t {\bf bhr}
+\item 
+int {\bf top\_\-size}
+\item 
+short $\ast$$\ast$ {\bf top}
+\item 
+short $\ast$$\ast$ {\bf ltop}
+\item 
+int {\bf weight\_\-width}
+\item 
+int {\bf weight\_\-max}
+\item 
+int {\bf weight\_\-min}
+\item 
+int {\bf threshold}
+\item 
+int {\bf ghistory\_\-length}
+\item 
+qword\_\-t {\bf ghistory\_\-mask}
+\item 
+int {\bf lhistory\_\-length}
+\item 
+qword\_\-t {\bf lhistory\_\-mask}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 25 of file bpred-alloyedperceptron.cpp.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{bpred\_\-alloyedperceptron\_\-t@{bpred\_\-alloyedperceptron\_\-t}!bpred\_\-alloyedperceptron\_\-t@{bpred\_\-alloyedperceptron\_\-t}}
+\index{bpred\_\-alloyedperceptron\_\-t@{bpred\_\-alloyedperceptron\_\-t}!bpred_alloyedperceptron_t@{bpred\_\-alloyedperceptron\_\-t}}
+\subsubsection[{bpred\_\-alloyedperceptron\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}bpred\_\-alloyedperceptron\_\-t::bpred\_\-alloyedperceptron\_\-t (char $\ast$const  {\em arg\_\-name}, \/  const int {\em arg\_\-ghistory\_\-length}, \/  const int {\em arg\_\-bht\_\-size}, \/  const int {\em arg\_\-lhistory\_\-length}, \/  const int {\em arg\_\-top\_\-size})\hspace{0.3cm}{\tt  [inline]}}\label{classbpred__alloyedperceptron__t_744d82c645e142d31a9bcd7e0eca6e66}
+
+
+
+
+Definition at line 66 of file bpred-alloyedperceptron.cpp.
+
+References bht, bht\_\-mask, bht\_\-size, bpred\_\-dir\_\-t::bits, CHECK\_\-NNEG, CHECK\_\-PPOW2, COMPONENT\_\-NAME, fatal(), ghistory\_\-length, ghistory\_\-mask, bpred\_\-dir\_\-t::init(), lhistory\_\-length, lhistory\_\-mask, log\_\-base2(), ltop, bpred\_\-dir\_\-t::name, threshold, top, top\_\-size, bpred\_\-dir\_\-t::type, weight\_\-max, weight\_\-min, and weight\_\-width.\index{bpred\_\-alloyedperceptron\_\-t@{bpred\_\-alloyedperceptron\_\-t}!$\sim$bpred\_\-alloyedperceptron\_\-t@{$\sim$bpred\_\-alloyedperceptron\_\-t}}
+\index{$\sim$bpred\_\-alloyedperceptron\_\-t@{$\sim$bpred\_\-alloyedperceptron\_\-t}!bpred_alloyedperceptron_t@{bpred\_\-alloyedperceptron\_\-t}}
+\subsubsection[{$\sim$bpred\_\-alloyedperceptron\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}bpred\_\-alloyedperceptron\_\-t::$\sim$bpred\_\-alloyedperceptron\_\-t ()\hspace{0.3cm}{\tt  [inline]}}\label{classbpred__alloyedperceptron__t_02d80ab5de7a8777362ef612fbfa74d3}
+
+
+
+
+Definition at line 132 of file bpred-alloyedperceptron.cpp.
+
+References bht, ltop, top, and top\_\-size.
+
+\subsection{Member Data Documentation}
+\index{bpred\_\-alloyedperceptron\_\-t@{bpred\_\-alloyedperceptron\_\-t}!bhr@{bhr}}
+\index{bhr@{bhr}!bpred_alloyedperceptron_t@{bpred\_\-alloyedperceptron\_\-t}}
+\subsubsection[{bhr}]{\setlength{\rightskip}{0pt plus 5cm}qword\_\-t {\bf bpred\_\-alloyedperceptron\_\-t::bhr}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__alloyedperceptron__t_dc77ee5356225426ea9c22605ab4fb74}
+
+
+
+
+Definition at line 48 of file bpred-alloyedperceptron.cpp.\index{bpred\_\-alloyedperceptron\_\-t@{bpred\_\-alloyedperceptron\_\-t}!bhr\_\-size@{bhr\_\-size}}
+\index{bhr\_\-size@{bhr\_\-size}!bpred_alloyedperceptron_t@{bpred\_\-alloyedperceptron\_\-t}}
+\subsubsection[{bhr\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-alloyedperceptron\_\-t::bhr\_\-size}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__alloyedperceptron__t_2ea7ec17b15e1128345da8e53d1bf8d9}
+
+
+
+
+Definition at line 47 of file bpred-alloyedperceptron.cpp.\index{bpred\_\-alloyedperceptron\_\-t@{bpred\_\-alloyedperceptron\_\-t}!bht@{bht}}
+\index{bht@{bht}!bpred_alloyedperceptron_t@{bpred\_\-alloyedperceptron\_\-t}}
+\subsubsection[{bht}]{\setlength{\rightskip}{0pt plus 5cm}qword\_\-t$\ast$ {\bf bpred\_\-alloyedperceptron\_\-t::bht}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__alloyedperceptron__t_be3f7ee98a14b7c516a7ec51ab1f6836}
+
+
+
+
+Definition at line 45 of file bpred-alloyedperceptron.cpp.
+
+Referenced by bpred\_\-alloyedperceptron\_\-t(), and $\sim$bpred\_\-alloyedperceptron\_\-t().\index{bpred\_\-alloyedperceptron\_\-t@{bpred\_\-alloyedperceptron\_\-t}!bht\_\-mask@{bht\_\-mask}}
+\index{bht\_\-mask@{bht\_\-mask}!bpred_alloyedperceptron_t@{bpred\_\-alloyedperceptron\_\-t}}
+\subsubsection[{bht\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-alloyedperceptron\_\-t::bht\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__alloyedperceptron__t_1c054788b15d19d019e00a4f111798f3}
+
+
+
+
+Definition at line 44 of file bpred-alloyedperceptron.cpp.
+
+Referenced by bpred\_\-alloyedperceptron\_\-t().\index{bpred\_\-alloyedperceptron\_\-t@{bpred\_\-alloyedperceptron\_\-t}!bht\_\-size@{bht\_\-size}}
+\index{bht\_\-size@{bht\_\-size}!bpred_alloyedperceptron_t@{bpred\_\-alloyedperceptron\_\-t}}
+\subsubsection[{bht\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-alloyedperceptron\_\-t::bht\_\-size}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__alloyedperceptron__t_08f9d533a998b87af1c979a522cf175d}
+
+
+
+
+Definition at line 43 of file bpred-alloyedperceptron.cpp.
+
+Referenced by bpred\_\-alloyedperceptron\_\-t().\index{bpred\_\-alloyedperceptron\_\-t@{bpred\_\-alloyedperceptron\_\-t}!ghistory\_\-length@{ghistory\_\-length}}
+\index{ghistory\_\-length@{ghistory\_\-length}!bpred_alloyedperceptron_t@{bpred\_\-alloyedperceptron\_\-t}}
+\subsubsection[{ghistory\_\-length}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-alloyedperceptron\_\-t::ghistory\_\-length}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__alloyedperceptron__t_215a322176a1680c946439949d84a610}
+
+
+
+
+Definition at line 58 of file bpred-alloyedperceptron.cpp.
+
+Referenced by bpred\_\-alloyedperceptron\_\-t().\index{bpred\_\-alloyedperceptron\_\-t@{bpred\_\-alloyedperceptron\_\-t}!ghistory\_\-mask@{ghistory\_\-mask}}
+\index{ghistory\_\-mask@{ghistory\_\-mask}!bpred_alloyedperceptron_t@{bpred\_\-alloyedperceptron\_\-t}}
+\subsubsection[{ghistory\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}qword\_\-t {\bf bpred\_\-alloyedperceptron\_\-t::ghistory\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__alloyedperceptron__t_62328ebcbe413156beb595e3ddacb9ee}
+
+
+
+
+Definition at line 59 of file bpred-alloyedperceptron.cpp.
+
+Referenced by bpred\_\-alloyedperceptron\_\-t().\index{bpred\_\-alloyedperceptron\_\-t@{bpred\_\-alloyedperceptron\_\-t}!lhistory\_\-length@{lhistory\_\-length}}
+\index{lhistory\_\-length@{lhistory\_\-length}!bpred_alloyedperceptron_t@{bpred\_\-alloyedperceptron\_\-t}}
+\subsubsection[{lhistory\_\-length}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-alloyedperceptron\_\-t::lhistory\_\-length}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__alloyedperceptron__t_1706124ee1c53e90627d1768dc18b6f0}
+
+
+
+
+Definition at line 60 of file bpred-alloyedperceptron.cpp.
+
+Referenced by bpred\_\-alloyedperceptron\_\-t().\index{bpred\_\-alloyedperceptron\_\-t@{bpred\_\-alloyedperceptron\_\-t}!lhistory\_\-mask@{lhistory\_\-mask}}
+\index{lhistory\_\-mask@{lhistory\_\-mask}!bpred_alloyedperceptron_t@{bpred\_\-alloyedperceptron\_\-t}}
+\subsubsection[{lhistory\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}qword\_\-t {\bf bpred\_\-alloyedperceptron\_\-t::lhistory\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__alloyedperceptron__t_50b6c1a3608fbbac1fc7699fe5d1072a}
+
+
+
+
+Definition at line 61 of file bpred-alloyedperceptron.cpp.
+
+Referenced by bpred\_\-alloyedperceptron\_\-t().\index{bpred\_\-alloyedperceptron\_\-t@{bpred\_\-alloyedperceptron\_\-t}!ltop@{ltop}}
+\index{ltop@{ltop}!bpred_alloyedperceptron_t@{bpred\_\-alloyedperceptron\_\-t}}
+\subsubsection[{ltop}]{\setlength{\rightskip}{0pt plus 5cm}short$\ast$$\ast$ {\bf bpred\_\-alloyedperceptron\_\-t::ltop}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__alloyedperceptron__t_35f98da5832c4582e23966ad9dbb4c3b}
+
+
+
+
+Definition at line 52 of file bpred-alloyedperceptron.cpp.
+
+Referenced by bpred\_\-alloyedperceptron\_\-t(), and $\sim$bpred\_\-alloyedperceptron\_\-t().\index{bpred\_\-alloyedperceptron\_\-t@{bpred\_\-alloyedperceptron\_\-t}!threshold@{threshold}}
+\index{threshold@{threshold}!bpred_alloyedperceptron_t@{bpred\_\-alloyedperceptron\_\-t}}
+\subsubsection[{threshold}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-alloyedperceptron\_\-t::threshold}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__alloyedperceptron__t_36cdca7285239cd7208f37c175f45146}
+
+
+
+
+Definition at line 56 of file bpred-alloyedperceptron.cpp.
+
+Referenced by bpred\_\-alloyedperceptron\_\-t().\index{bpred\_\-alloyedperceptron\_\-t@{bpred\_\-alloyedperceptron\_\-t}!top@{top}}
+\index{top@{top}!bpred_alloyedperceptron_t@{bpred\_\-alloyedperceptron\_\-t}}
+\subsubsection[{top}]{\setlength{\rightskip}{0pt plus 5cm}short$\ast$$\ast$ {\bf bpred\_\-alloyedperceptron\_\-t::top}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__alloyedperceptron__t_caf6bb6799be2fe01ad9761a5bbc2f54}
+
+
+
+
+Definition at line 51 of file bpred-alloyedperceptron.cpp.
+
+Referenced by bpred\_\-alloyedperceptron\_\-t(), and $\sim$bpred\_\-alloyedperceptron\_\-t().\index{bpred\_\-alloyedperceptron\_\-t@{bpred\_\-alloyedperceptron\_\-t}!top\_\-size@{top\_\-size}}
+\index{top\_\-size@{top\_\-size}!bpred_alloyedperceptron_t@{bpred\_\-alloyedperceptron\_\-t}}
+\subsubsection[{top\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-alloyedperceptron\_\-t::top\_\-size}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__alloyedperceptron__t_4988e806ded4559c8bbad3082d8aeb0d}
+
+
+
+
+Definition at line 50 of file bpred-alloyedperceptron.cpp.
+
+Referenced by bpred\_\-alloyedperceptron\_\-t(), and $\sim$bpred\_\-alloyedperceptron\_\-t().\index{bpred\_\-alloyedperceptron\_\-t@{bpred\_\-alloyedperceptron\_\-t}!weight\_\-max@{weight\_\-max}}
+\index{weight\_\-max@{weight\_\-max}!bpred_alloyedperceptron_t@{bpred\_\-alloyedperceptron\_\-t}}
+\subsubsection[{weight\_\-max}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-alloyedperceptron\_\-t::weight\_\-max}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__alloyedperceptron__t_915bb35a9a7065b1e2af511a2d54fdb2}
+
+
+
+
+Definition at line 54 of file bpred-alloyedperceptron.cpp.
+
+Referenced by bpred\_\-alloyedperceptron\_\-t().\index{bpred\_\-alloyedperceptron\_\-t@{bpred\_\-alloyedperceptron\_\-t}!weight\_\-min@{weight\_\-min}}
+\index{weight\_\-min@{weight\_\-min}!bpred_alloyedperceptron_t@{bpred\_\-alloyedperceptron\_\-t}}
+\subsubsection[{weight\_\-min}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-alloyedperceptron\_\-t::weight\_\-min}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__alloyedperceptron__t_7399978c24c6d743266519a0033be51c}
+
+
+
+
+Definition at line 55 of file bpred-alloyedperceptron.cpp.
+
+Referenced by bpred\_\-alloyedperceptron\_\-t().\index{bpred\_\-alloyedperceptron\_\-t@{bpred\_\-alloyedperceptron\_\-t}!weight\_\-width@{weight\_\-width}}
+\index{weight\_\-width@{weight\_\-width}!bpred_alloyedperceptron_t@{bpred\_\-alloyedperceptron\_\-t}}
+\subsubsection[{weight\_\-width}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-alloyedperceptron\_\-t::weight\_\-width}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__alloyedperceptron__t_c55109bb5f5feccc64b254b96fe177bb}
+
+
+
+
+Definition at line 53 of file bpred-alloyedperceptron.cpp.
+
+Referenced by bpred\_\-alloyedperceptron\_\-t().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf bpred-alloyedperceptron.cpp}\end{CompactItemize}

@@ -1,0 +1,175 @@
+\section{prefetch\_\-t Class Reference}
+\label{classprefetch__t}\index{prefetch\_\-t@{prefetch\_\-t}}
+{\tt \#include $<$zesto-prefetch.h$>$}
+
+Inheritance diagram for prefetch\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classprefetch__t__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for prefetch\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classprefetch__t__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf prefetch\_\-t} (void)
+\item 
+virtual {\bf $\sim$prefetch\_\-t} ()
+\item 
+virtual {\bf md\_\-paddr\_\-t} {\bf lookup} (const {\bf md\_\-addr\_\-t}, const {\bf md\_\-paddr\_\-t})=0
+\item 
+virtual void {\bf reg\_\-stats} (struct {\bf stat\_\-sdb\_\-t} $\ast$const, const struct {\bf core\_\-t} $\ast$const)
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf init} (void)
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+struct {\bf cache\_\-t} $\ast$ {\bf cp}
+\item 
+char $\ast$ {\bf type}
+\item 
+int {\bf bits}
+\item 
+{\bf counter\_\-t} {\bf lookups}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 82 of file zesto-prefetch.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{prefetch\_\-t@{prefetch\_\-t}!prefetch\_\-t@{prefetch\_\-t}}
+\index{prefetch\_\-t@{prefetch\_\-t}!prefetch_t@{prefetch\_\-t}}
+\subsubsection[{prefetch\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}prefetch\_\-t::prefetch\_\-t (void)}\label{classprefetch__t_2b7a04b9c8b103944a24a51d5280fa60}
+
+
+
+
+Definition at line 93 of file zesto-prefetch.cpp.
+
+References init().\index{prefetch\_\-t@{prefetch\_\-t}!$\sim$prefetch\_\-t@{$\sim$prefetch\_\-t}}
+\index{$\sim$prefetch\_\-t@{$\sim$prefetch\_\-t}!prefetch_t@{prefetch\_\-t}}
+\subsubsection[{$\sim$prefetch\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}prefetch\_\-t::$\sim$prefetch\_\-t ()\hspace{0.3cm}{\tt  [virtual]}}\label{classprefetch__t_24ac332db14ad22399215866022e5535}
+
+
+
+
+Definition at line 98 of file zesto-prefetch.cpp.
+
+References type.
+
+\subsection{Member Function Documentation}
+\index{prefetch\_\-t@{prefetch\_\-t}!init@{init}}
+\index{init@{init}!prefetch_t@{prefetch\_\-t}}
+\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}void prefetch\_\-t::init (void)\hspace{0.3cm}{\tt  [protected]}}\label{classprefetch__t_af277c5bf289dbe46e0e66d64aa350ce}
+
+
+
+
+Definition at line 85 of file zesto-prefetch.cpp.
+
+References bits, cp, lookups, and type.
+
+Referenced by prefetch\_\-context\_\-t::prefetch\_\-context\_\-t(), prefetch\_\-IP\_\-t::prefetch\_\-IP\_\-t(), prefetch\_\-nextline\_\-t::prefetch\_\-nextline\_\-t(), prefetch\_\-stream\_\-t::prefetch\_\-stream\_\-t(), and prefetch\_\-t().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=173pt]{classprefetch__t_af277c5bf289dbe46e0e66d64aa350ce_icgraph}
+\end{center}
+\end{figure}
+\index{prefetch\_\-t@{prefetch\_\-t}!lookup@{lookup}}
+\index{lookup@{lookup}!prefetch_t@{prefetch\_\-t}}
+\subsubsection[{lookup}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf md\_\-paddr\_\-t} prefetch\_\-t::lookup (const  {\em md\_\-addr\_\-t}, \/  const  {\em md\_\-paddr\_\-t})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classprefetch__t_f2a748bc302cee9529644cd4efca07e1}
+
+
+
+
+Referenced by cache\_\-process(), and cache\_\-process\_\-llc().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=231pt]{classprefetch__t_f2a748bc302cee9529644cd4efca07e1_icgraph}
+\end{center}
+\end{figure}
+\index{prefetch\_\-t@{prefetch\_\-t}!reg\_\-stats@{reg\_\-stats}}
+\index{reg\_\-stats@{reg\_\-stats}!prefetch_t@{prefetch\_\-t}}
+\subsubsection[{reg\_\-stats}]{\setlength{\rightskip}{0pt plus 5cm}void prefetch\_\-t::reg\_\-stats (struct {\bf stat\_\-sdb\_\-t} $\ast$ const {\em sdb}, \/  const struct {\bf core\_\-t} $\ast$ const {\em core})\hspace{0.3cm}{\tt  [virtual]}}\label{classprefetch__t_485ee44aa3f5af50d2cfb05f6485db35}
+
+
+
+
+Definition at line 106 of file zesto-prefetch.cpp.
+
+References bits, cp, core\_\-t::current\_\-thread, thread\_\-t::id, lookups, cache\_\-t::name, stat\_\-reg\_\-counter, stat\_\-reg\_\-formula(), stat\_\-reg\_\-int(), and type.
+
+Referenced by cache\_\-reg\_\-stats(), and LLC\_\-reg\_\-stats().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{classprefetch__t_485ee44aa3f5af50d2cfb05f6485db35_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\index{prefetch\_\-t@{prefetch\_\-t}!bits@{bits}}
+\index{bits@{bits}!prefetch_t@{prefetch\_\-t}}
+\subsubsection[{bits}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf prefetch\_\-t::bits}\hspace{0.3cm}{\tt  [protected]}}\label{classprefetch__t_a001179693334a34373e18033af99d06}
+
+
+
+
+Definition at line 87 of file zesto-prefetch.h.
+
+Referenced by init(), prefetch\_\-context\_\-t::prefetch\_\-context\_\-t(), prefetch\_\-IP\_\-t::prefetch\_\-IP\_\-t(), prefetch\_\-nextline\_\-t::prefetch\_\-nextline\_\-t(), prefetch\_\-stream\_\-t::prefetch\_\-stream\_\-t(), and reg\_\-stats().\index{prefetch\_\-t@{prefetch\_\-t}!cp@{cp}}
+\index{cp@{cp}!prefetch_t@{prefetch\_\-t}}
+\subsubsection[{cp}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf cache\_\-t}$\ast$ {\bf prefetch\_\-t::cp}\hspace{0.3cm}{\tt  [read, protected]}}\label{classprefetch__t_dd006212c8953054b686c7370ee8f8ec}
+
+
+
+
+Definition at line 85 of file zesto-prefetch.h.
+
+Referenced by init(), prefetch\_\-context\_\-t::prefetch\_\-context\_\-t(), prefetch\_\-IP\_\-t::prefetch\_\-IP\_\-t(), prefetch\_\-nextline\_\-t::prefetch\_\-nextline\_\-t(), prefetch\_\-stream\_\-t::prefetch\_\-stream\_\-t(), and reg\_\-stats().\index{prefetch\_\-t@{prefetch\_\-t}!lookups@{lookups}}
+\index{lookups@{lookups}!prefetch_t@{prefetch\_\-t}}
+\subsubsection[{lookups}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf prefetch\_\-t::lookups}\hspace{0.3cm}{\tt  [protected]}}\label{classprefetch__t_e28873e1d8241bc8b4af771ecb0bc9ff}
+
+
+
+
+Definition at line 88 of file zesto-prefetch.h.
+
+Referenced by init(), and reg\_\-stats().\index{prefetch\_\-t@{prefetch\_\-t}!type@{type}}
+\index{type@{type}!prefetch_t@{prefetch\_\-t}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf prefetch\_\-t::type}\hspace{0.3cm}{\tt  [protected]}}\label{classprefetch__t_bc4f84c961bf88646104ac47716ca693}
+
+
+
+
+Definition at line 86 of file zesto-prefetch.h.
+
+Referenced by init(), prefetch\_\-context\_\-t::prefetch\_\-context\_\-t(), prefetch\_\-create(), prefetch\_\-IP\_\-t::prefetch\_\-IP\_\-t(), prefetch\_\-nextline\_\-t::prefetch\_\-nextline\_\-t(), prefetch\_\-stream\_\-t::prefetch\_\-stream\_\-t(), reg\_\-stats(), and $\sim$prefetch\_\-t().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf zesto-prefetch.h}\item 
+{\bf zesto-prefetch.cpp}\end{CompactItemize}

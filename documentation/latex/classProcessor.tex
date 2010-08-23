@@ -1,0 +1,148 @@
+\section{Processor Class Reference}
+\label{classProcessor}\index{Processor@{Processor}}
+{\tt \#include $<$processor.h$>$}
+
+Inheritance diagram for Processor:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classProcessor__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for Processor:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classProcessor__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Processor} ()
+\item 
+virtual {\bf $\sim$Processor} ()
+\item 
+void {\bf init} ()
+\item 
+virtual string {\bf toString} () const 
+\item 
+virtual void {\bf process\_\-event} ({\bf IrisEvent} $\ast$e)=0
+\item 
+virtual void {\bf setup} ({\bf uint} n, {\bf uint} v, {\bf uint} time)=0
+\item 
+virtual void {\bf set\_\-output\_\-path} (string outpath\_\-name)=0
+\item 
+virtual string {\bf print\_\-stats} () const =0
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+vector$<$ {\bf Interface} $\ast$ $>$ {\bf interface\_\-connections}
+\item 
+bool {\bf ni\_\-recv}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 32 of file processor.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Processor@{Processor}!Processor@{Processor}}
+\index{Processor@{Processor}!Processor@{Processor}}
+\subsubsection[{Processor}]{\setlength{\rightskip}{0pt plus 5cm}Processor::Processor ()}\label{classProcessor_50c89dbf76a073f4fb491628258cf292}
+
+
+
+
+Definition at line 22 of file processor.cc.
+
+References NetworkComponent::processor, and NetworkComponent::type.\index{Processor@{Processor}!$\sim$Processor@{$\sim$Processor}}
+\index{$\sim$Processor@{$\sim$Processor}!Processor@{Processor}}
+\subsubsection[{$\sim$Processor}]{\setlength{\rightskip}{0pt plus 5cm}Processor::$\sim$Processor ()\hspace{0.3cm}{\tt  [virtual]}}\label{classProcessor_cf37952c5b420d4e903a512571678692}
+
+
+
+
+Definition at line 27 of file processor.cc.
+
+\subsection{Member Function Documentation}
+\index{Processor@{Processor}!init@{init}}
+\index{init@{init}!Processor@{Processor}}
+\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}void Processor::init ()}\label{classProcessor_22e869ee49d974ad0ee7ee81961ab88f}
+
+
+
+
+Reimplemented in {\bf GenericRPG} \doxyref{}{p.}{classGenericRPG_83b1fba5595a25b24b32374ec8e85020}.
+
+Definition at line 39 of file processor.cc.\index{Processor@{Processor}!print\_\-stats@{print\_\-stats}}
+\index{print\_\-stats@{print\_\-stats}!Processor@{Processor}}
+\subsubsection[{print\_\-stats}]{\setlength{\rightskip}{0pt plus 5cm}virtual string Processor::print\_\-stats () const\hspace{0.3cm}{\tt  [pure virtual]}}\label{classProcessor_4026b719628ed5e3f65ba0702253ba4d}
+
+
+
+
+Implemented in {\bf NI} \doxyref{}{p.}{classNI_a9e212607f84abb12bd8202829ac9b66}, {\bf GenericFlatMc} \doxyref{}{p.}{classGenericFlatMc_819c7233b108ca87206d8bc1ae9b70a5}, {\bf GenericTPG} \doxyref{}{p.}{classGenericTPG_7244d25ec5ab9a9be6a64e5492288ce1}, {\bf GenericTPGVcs} \doxyref{}{p.}{classGenericTPGVcs_a92d5aa7e9d58ad53ac4705a5b7d8cc3}, and {\bf uncore\_\-t} \doxyref{}{p.}{classuncore__t_99952211693debb09e106c13dd637995}.\index{Processor@{Processor}!process\_\-event@{process\_\-event}}
+\index{process\_\-event@{process\_\-event}!Processor@{Processor}}
+\subsubsection[{process\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Processor::process\_\-event ({\bf IrisEvent} $\ast$ {\em e})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classProcessor_18cdeefafbd8225cb3ad18dd098c0e08}
+
+
+
+
+Implements {\bf NetworkComponent} \doxyref{}{p.}{classNetworkComponent_c93793eea1e2d424abe86e110ca8b399}.
+
+Implemented in {\bf NI} \doxyref{}{p.}{classNI_3ed3e6f65c38e630706af16212ded02a}, {\bf GenericFlatMc} \doxyref{}{p.}{classGenericFlatMc_ee9c1fdd90f9f4e8dd03b0c2b0dfdcde}, {\bf GenericRPG} \doxyref{}{p.}{classGenericRPG_72d08c87beeb16514c6c81af3296f6af}, {\bf GenericSink} \doxyref{}{p.}{classGenericSink_a0beb58f52adfe869ba47f4b51537409}, {\bf GenericTPG} \doxyref{}{p.}{classGenericTPG_a2e59f102384206268808835bcb9d5b5}, {\bf GenericTPGVcs} \doxyref{}{p.}{classGenericTPGVcs_155b0ddc9e20a35dfef9e6c2203c33f7}, and {\bf uncore\_\-t} \doxyref{}{p.}{classuncore__t_779e7bab275968208e714aaf6ec84787}.\index{Processor@{Processor}!set\_\-output\_\-path@{set\_\-output\_\-path}}
+\index{set\_\-output\_\-path@{set\_\-output\_\-path}!Processor@{Processor}}
+\subsubsection[{set\_\-output\_\-path}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Processor::set\_\-output\_\-path (string {\em outpath\_\-name})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classProcessor_b4c5dff8417f916a1e0611ae73510a89}
+
+
+
+
+Implemented in {\bf NI} \doxyref{}{p.}{classNI_7a3889ea698efbc5b42a3c996dc96a20}, {\bf GenericFlatMc} \doxyref{}{p.}{classGenericFlatMc_62559db0eb299a00670893462e77cabc}, {\bf GenericTPG} \doxyref{}{p.}{classGenericTPG_e0d8c6615b3f67674c30b6df8a65c104}, {\bf GenericTPGVcs} \doxyref{}{p.}{classGenericTPGVcs_72392370414721e54a5e0bbed5f84f2b}, and {\bf uncore\_\-t} \doxyref{}{p.}{classuncore__t_821de0da5fb4b47ab85b9c81c3b0679d}.\index{Processor@{Processor}!setup@{setup}}
+\index{setup@{setup}!Processor@{Processor}}
+\subsubsection[{setup}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Processor::setup ({\bf uint} {\em n}, \/  {\bf uint} {\em v}, \/  {\bf uint} {\em time})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classProcessor_dd2277b3c802f5e10419e1180c7e97a5}
+
+
+
+
+Implemented in {\bf NI} \doxyref{}{p.}{classNI_b21c80fe863fa252403777f90c6b9a45}, {\bf GenericFlatMc} \doxyref{}{p.}{classGenericFlatMc_16a89fa62af68252e19a1166569c57fa}, {\bf GenericRPG} \doxyref{}{p.}{classGenericRPG_20d03e727205897b6a7e55ba15badff0}, {\bf GenericSink} \doxyref{}{p.}{classGenericSink_49d81c43be1b9ec34190d4c2abc2babb}, {\bf GenericTPG} \doxyref{}{p.}{classGenericTPG_574d128d07b2576a1ed48b2201ceb3e7}, {\bf GenericTPGVcs} \doxyref{}{p.}{classGenericTPGVcs_e160fb292a8caa353c368547c4635469}, and {\bf uncore\_\-t} \doxyref{}{p.}{classuncore__t_7ea0333b0a6648b99a33db0571e59df2}.\index{Processor@{Processor}!toString@{toString}}
+\index{toString@{toString}!Processor@{Processor}}
+\subsubsection[{toString}]{\setlength{\rightskip}{0pt plus 5cm}string Processor::toString () const\hspace{0.3cm}{\tt  [virtual]}}\label{classProcessor_d3bdbedfbb00b05f61504e411a418106}
+
+
+
+
+Reimplemented from {\bf NetworkComponent} \doxyref{}{p.}{classNetworkComponent_9bb9874e1f5705588cb3d9c201d8fc6f}.
+
+Reimplemented in {\bf NI} \doxyref{}{p.}{classNI_06887ce2728265794ba26da5ccb082ce}, {\bf GenericFlatMc} \doxyref{}{p.}{classGenericFlatMc_d011dfa6126be294b2025618b4e16ef5}, {\bf GenericRPG} \doxyref{}{p.}{classGenericRPG_a4303867728559ab6e6ae3d1390ede71}, {\bf GenericSink} \doxyref{}{p.}{classGenericSink_a1703a08208816130a4ee2f4d4a8334f}, {\bf GenericTPG} \doxyref{}{p.}{classGenericTPG_c2e1dc7b0de824c846f37c4a1c282303}, {\bf GenericTPGVcs} \doxyref{}{p.}{classGenericTPGVcs_ddd4f7942861ff25a833ef90989099ad}, and {\bf uncore\_\-t} \doxyref{}{p.}{classuncore__t_336925ab404ce8e63bbbde7184934669}.
+
+Definition at line 31 of file processor.cc.
+
+\subsection{Member Data Documentation}
+\index{Processor@{Processor}!interface\_\-connections@{interface\_\-connections}}
+\index{interface\_\-connections@{interface\_\-connections}!Processor@{Processor}}
+\subsubsection[{interface\_\-connections}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Interface}$\ast$ $>$ {\bf Processor::interface\_\-connections}}\label{classProcessor_63351f5faee21f5b43dce853b117ea23}
+
+
+
+
+Definition at line 36 of file processor.h.
+
+Referenced by uncore\_\-t::enqueue(), GenericFlatMc::GenericFlatMc(), GenericRPG::GenericRPG(), GenericTPG::GenericTPG(), uncore\_\-t::handle\_\-new\_\-packet\_\-event(), NI::handle\_\-new\_\-packet\_\-event(), GenericTPGVcs::handle\_\-new\_\-packet\_\-event(), GenericTPG::handle\_\-new\_\-packet\_\-event(), GenericSink::handle\_\-new\_\-packet\_\-event(), GenericRPG::handle\_\-new\_\-packet\_\-event(), GenericFlatMc::handle\_\-new\_\-packet\_\-event(), NI::handle\_\-out\_\-pull\_\-event(), GenericTPGVcs::handle\_\-out\_\-pull\_\-event(), GenericTPG::handle\_\-out\_\-pull\_\-event(), GenericRPG::handle\_\-out\_\-pull\_\-event(), GenericFlatMc::handle\_\-out\_\-pull\_\-event(), GenericSink::handle\_\-outpull\_\-event(), GenericSink::setup(), uncore\_\-t::toString(), and NI::toString().\index{Processor@{Processor}!ni\_\-recv@{ni\_\-recv}}
+\index{ni\_\-recv@{ni\_\-recv}!Processor@{Processor}}
+\subsubsection[{ni\_\-recv}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Processor::ni\_\-recv}}\label{classProcessor_e2a18097fafe330e77a2e6b04f53bd5c}
+
+
+
+
+Definition at line 44 of file processor.h.
+
+Referenced by GenericTPGVcs::GenericTPGVcs(), uncore\_\-t::handle\_\-new\_\-packet\_\-event(), NI::handle\_\-new\_\-packet\_\-event(), GenericTPGVcs::handle\_\-new\_\-packet\_\-event(), and NI::NI().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf processor.h}\item 
+{\bf processor.cc}\end{CompactItemize}

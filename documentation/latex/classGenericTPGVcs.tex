@@ -1,0 +1,662 @@
+\section{GenericTPGVcs Class Reference}
+\label{classGenericTPGVcs}\index{GenericTPGVcs@{GenericTPGVcs}}
+{\tt \#include $<$genericTPGVcs.h$>$}
+
+Inheritance diagram for GenericTPGVcs:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classGenericTPGVcs__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for GenericTPGVcs:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classGenericTPGVcs__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf GenericTPGVcs} ()
+\item 
+{\bf $\sim$GenericTPGVcs} ()
+\item 
+void {\bf setup} ({\bf uint} {\bf no\_\-nodes}, {\bf uint} {\bf vcs}, {\bf uint} {\bf max\_\-sim\_\-time})
+\item 
+void {\bf finish} ()
+\item 
+void {\bf process\_\-event} ({\bf IrisEvent} $\ast$e)
+\item 
+string {\bf toString} () const 
+\item 
+string {\bf print\_\-stats} () const 
+\item 
+void {\bf set\_\-trace\_\-filename} (string filename)
+\item 
+void {\bf set\_\-no\_\-vcs} ({\bf uint} v)
+\item 
+void {\bf set\_\-output\_\-path} (string outpath)
+\item 
+bool {\bf compare} ()
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+unsigned int {\bf packets}
+\item 
+unsigned int {\bf packets\_\-in}
+\item 
+double {\bf min\_\-pkt\_\-latency}
+\item 
+double {\bf last\_\-packet\_\-out\_\-cycle}
+\item 
+{\bf ullint} {\bf fwd\_\-path\_\-delay}
+\item 
+{\bf ullint} {\bf roundTripLat}
+\item 
+{\bf ullint} {\bf TotalBLP}
+\item 
+{\bf ullint} {\bf stat\_\-round\_\-trip\_\-network\_\-latency}
+\item 
+{\bf ullint} {\bf stat\_\-round\_\-trip\_\-hop\_\-count}
+\item 
+{\bf ullint} {\bf stat\_\-round\_\-trip\_\-memory\_\-latency}
+\item 
+{\bf ullint} {\bf stat\_\-waiting\_\-in\_\-ni}
+\item 
+{\bf MSHR\_\-H} $\ast$ {\bf mshrHandler}
+\item 
+vector$<$ bool $>$ {\bf ready}
+\item 
+bool {\bf sending}
+\item 
+{\bf ullint} {\bf max\_\-time}
+\item 
+vector$<$ {\bf uint} $>$ {\bf mc\_\-node\_\-ip}
+\item 
+{\bf ullint} {\bf lastSentTime}
+\end{CompactItemize}
+\subsection*{Private Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Request} $\ast$ {\bf GetNextRequest} ()
+\item 
+bool {\bf GetNewRequest} ({\bf Request} $\ast$req)
+\item 
+{\bf Request} $\ast$ {\bf GetRequest} ()
+\item 
+void {\bf convertToBitStream} ({\bf Request} $\ast$req, {\bf HighLevelPacket} $\ast$hlp)
+\item 
+void {\bf convertFromBitStream} ({\bf Request} $\ast$req, {\bf HighLevelPacket} $\ast$hlp)
+\item 
+void {\bf handle\_\-new\_\-packet\_\-event} ({\bf IrisEvent} $\ast$e)
+\item 
+void {\bf handle\_\-ready\_\-event} ({\bf IrisEvent} $\ast$e)
+\item 
+void {\bf handle\_\-out\_\-pull\_\-event} ({\bf IrisEvent} $\ast$e)
+\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+{\bf uint} {\bf vcs}
+\item 
+{\bf uint} {\bf no\_\-nodes}
+\item 
+{\bf uint} {\bf no\_\-outstanding}
+\item 
+{\bf ullint} {\bf max\_\-sim\_\-time}
+\item 
+deque$<$ {\bf HighLevelPacket} $>$ {\bf out\_\-packets}
+\item 
+deque$<$ {\bf HighLevelPacket} $>$ {\bf sent\_\-packets}
+\item 
+string {\bf out\_\-filename}
+\item 
+string {\bf trace\_\-name}
+\item 
+ofstream {\bf out\_\-file}
+\item 
+ifstream $\ast$ {\bf trace\_\-filename}
+\item 
+unsigned int {\bf last\_\-vc}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 23 of file genericTPGVcs.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{GenericTPGVcs@{GenericTPGVcs}!GenericTPGVcs@{GenericTPGVcs}}
+\index{GenericTPGVcs@{GenericTPGVcs}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{GenericTPGVcs}]{\setlength{\rightskip}{0pt plus 5cm}GenericTPGVcs::GenericTPGVcs ()}\label{classGenericTPGVcs_204e76a9ff19597b8fc3c9c6cb22cd18}
+
+
+
+
+Definition at line 15 of file genericTPGVcs.cc.
+
+References last\_\-vc, NetworkComponent::name, Processor::ni\_\-recv, out\_\-filename, and sending.\index{GenericTPGVcs@{GenericTPGVcs}!$\sim$GenericTPGVcs@{$\sim$GenericTPGVcs}}
+\index{$\sim$GenericTPGVcs@{$\sim$GenericTPGVcs}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{$\sim$GenericTPGVcs}]{\setlength{\rightskip}{0pt plus 5cm}GenericTPGVcs::$\sim$GenericTPGVcs ()}\label{classGenericTPGVcs_5abd93ef92d8478464dee2a506fddbf8}
+
+
+
+
+Definition at line 26 of file genericTPGVcs.cc.
+
+References MSHR\_\-H::mshr, mshrHandler, out\_\-file, and MSHR\_\-H::trace\_\-filename.
+
+\subsection{Member Function Documentation}
+\index{GenericTPGVcs@{GenericTPGVcs}!compare@{compare}}
+\index{compare@{compare}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{compare}]{\setlength{\rightskip}{0pt plus 5cm}bool GenericTPGVcs::compare ()}\label{classGenericTPGVcs_7c0ead3b26df36980b8473ba7f009fa1}
+
+
+\index{GenericTPGVcs@{GenericTPGVcs}!convertFromBitStream@{convertFromBitStream}}
+\index{convertFromBitStream@{convertFromBitStream}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{convertFromBitStream}]{\setlength{\rightskip}{0pt plus 5cm}void GenericTPGVcs::convertFromBitStream ({\bf Request} $\ast$ {\em req}, \/  {\bf HighLevelPacket} $\ast$ {\em hlp})\hspace{0.3cm}{\tt  [private]}}\label{classGenericTPGVcs_7bdd8c1c281837c940686c0426078d02}
+
+
+
+
+Definition at line 494 of file genericTPGVcs.cc.
+
+References Request::address, CACHE\_\-BLOCK\_\-SIZE, CACHE\_\-PREFETCH, CACHE\_\-READ, CACHE\_\-WRITE, Request::cmdType, Request::data, HighLevelPacket::data, max\_\-phy\_\-link\_\-bits, Request::mcNo, NETWORK\_\-ADDRESS\_\-BITS, Data::size, HighLevelPacket::source, and Data::value.
+
+Referenced by handle\_\-new\_\-packet\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classGenericTPGVcs_7bdd8c1c281837c940686c0426078d02_icgraph}
+\end{center}
+\end{figure}
+\index{GenericTPGVcs@{GenericTPGVcs}!convertToBitStream@{convertToBitStream}}
+\index{convertToBitStream@{convertToBitStream}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{convertToBitStream}]{\setlength{\rightskip}{0pt plus 5cm}void GenericTPGVcs::convertToBitStream ({\bf Request} $\ast$ {\em req}, \/  {\bf HighLevelPacket} $\ast$ {\em hlp})\hspace{0.3cm}{\tt  [private]}}\label{classGenericTPGVcs_637387eafac2708f3ab4de91a54bd86f}
+
+
+
+
+Definition at line 456 of file genericTPGVcs.cc.
+
+References Request::address, Request::arrivalTime, bool, CACHE\_\-BLOCK\_\-SIZE, CACHE\_\-WRITEBACK, Request::cmdType, HighLevelPacket::data, HighLevelPacket::data\_\-payload\_\-length, max\_\-phy\_\-link\_\-bits, HighLevelPacket::msg\_\-class, NETWORK\_\-ADDRESS\_\-BITS, NETWORK\_\-COMMAND\_\-BITS, NETWORK\_\-THREADID\_\-BITS, ONE\_\-FLIT\_\-REQ, HighLevelPacket::sent\_\-time, Request::threadId, and WRITE\_\-REQ.
+
+Referenced by handle\_\-out\_\-pull\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classGenericTPGVcs_637387eafac2708f3ab4de91a54bd86f_icgraph}
+\end{center}
+\end{figure}
+\index{GenericTPGVcs@{GenericTPGVcs}!finish@{finish}}
+\index{finish@{finish}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{finish}]{\setlength{\rightskip}{0pt plus 5cm}void GenericTPGVcs::finish ()}\label{classGenericTPGVcs_6c2cf5056c9bdc6e1a3ed7b3756c7630}
+
+
+
+
+Definition at line 159 of file genericTPGVcs.cc.
+
+References out\_\-file, and trace\_\-filename.\index{GenericTPGVcs@{GenericTPGVcs}!GetNewRequest@{GetNewRequest}}
+\index{GetNewRequest@{GetNewRequest}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{GetNewRequest}]{\setlength{\rightskip}{0pt plus 5cm}bool GenericTPGVcs::GetNewRequest ({\bf Request} $\ast$ {\em req})\hspace{0.3cm}{\tt  [private]}}\label{classGenericTPGVcs_e89f7369c5eef50f8cf26d04693d8f9b}
+
+
+
+
+Definition at line 412 of file genericTPGVcs.cc.
+
+References MSHR\_\-H::lastScheduledIndex, MSHR\_\-H::mshr, mshrHandler, Simulator::Now(), and MSHR\_\-H::writeQueue.
+
+Referenced by GetRequest().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classGenericTPGVcs_e89f7369c5eef50f8cf26d04693d8f9b_icgraph}
+\end{center}
+\end{figure}
+\index{GenericTPGVcs@{GenericTPGVcs}!GetNextRequest@{GetNextRequest}}
+\index{GetNextRequest@{GetNextRequest}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{GetNextRequest}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Request} $\ast$ GenericTPGVcs::GetNextRequest ()\hspace{0.3cm}{\tt  [private]}}\label{classGenericTPGVcs_1700695db38a19d41bc0783aca3d3173}
+
+
+
+
+Definition at line 374 of file genericTPGVcs.cc.
+
+References Request::address, Request::arrivalTime, Request::cmdType, MSHR\_\-H::GlobalAddrMap(), mshrHandler, NetworkComponent::node\_\-ip, Request::threadId, and trace\_\-filename.
+
+Referenced by handle\_\-out\_\-pull\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classGenericTPGVcs_1700695db38a19d41bc0783aca3d3173_icgraph}
+\end{center}
+\end{figure}
+\index{GenericTPGVcs@{GenericTPGVcs}!GetRequest@{GetRequest}}
+\index{GetRequest@{GetRequest}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{GetRequest}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Request} $\ast$ GenericTPGVcs::GetRequest ()\hspace{0.3cm}{\tt  [private]}}\label{classGenericTPGVcs_c54379bdfa1089a5e8d6ddc6957e2395}
+
+
+
+
+Definition at line 444 of file genericTPGVcs.cc.
+
+References GetNewRequest().
+
+Referenced by handle\_\-out\_\-pull\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classGenericTPGVcs_c54379bdfa1089a5e8d6ddc6957e2395_icgraph}
+\end{center}
+\end{figure}
+\index{GenericTPGVcs@{GenericTPGVcs}!handle\_\-new\_\-packet\_\-event@{handle\_\-new\_\-packet\_\-event}}
+\index{handle\_\-new\_\-packet\_\-event@{handle\_\-new\_\-packet\_\-event}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{handle\_\-new\_\-packet\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void GenericTPGVcs::handle\_\-new\_\-packet\_\-event ({\bf IrisEvent} $\ast$ {\em e})\hspace{0.3cm}{\tt  [private]}}\label{classGenericTPGVcs_ab8db0c7101eecb21e119d6ec398616f}
+
+
+
+
+Definition at line 188 of file genericTPGVcs.cc.
+
+References \_\-DBG, Request::address, HighLevelPacket::avg\_\-network\_\-latency, convertFromBitStream(), DEBUG, IrisEvent::event\_\-data, HighLevelPacket::hop\_\-count, Processor::interface\_\-connections, last\_\-packet\_\-out\_\-cycle, min\_\-pkt\_\-latency, MSHR\_\-DELETE, mshrHandler, Processor::ni\_\-recv, Simulator::Now(), out\_\-file, out\_\-filename, packets\_\-in, NetworkComponent::process\_\-event(), MSHR\_\-H::process\_\-event(), READY\_\-EVENT, HighLevelPacket::req\_\-start\_\-time, Simulator::Schedule(), HighLevelPacket::sent\_\-time, Request::startTime, HighLevelPacket::stat\_\-memory\_\-serviced\_\-time, stat\_\-round\_\-trip\_\-hop\_\-count, stat\_\-round\_\-trip\_\-memory\_\-latency, stat\_\-round\_\-trip\_\-network\_\-latency, stat\_\-waiting\_\-in\_\-ni, HighLevelPacket::toString(), IrisEvent::type, IrisEvent::vc, HighLevelPacket::virtual\_\-channel, and HighLevelPacket::waiting\_\-in\_\-ni.
+
+Referenced by process\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classGenericTPGVcs_ab8db0c7101eecb21e119d6ec398616f_icgraph}
+\end{center}
+\end{figure}
+\index{GenericTPGVcs@{GenericTPGVcs}!handle\_\-out\_\-pull\_\-event@{handle\_\-out\_\-pull\_\-event}}
+\index{handle\_\-out\_\-pull\_\-event@{handle\_\-out\_\-pull\_\-event}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{handle\_\-out\_\-pull\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void GenericTPGVcs::handle\_\-out\_\-pull\_\-event ({\bf IrisEvent} $\ast$ {\em e})\hspace{0.3cm}{\tt  [private]}}\label{classGenericTPGVcs_38763a186bf49ee00aaa5ebc4943614d}
+
+
+
+
+Definition at line 245 of file genericTPGVcs.cc.
+
+References \_\-DBG, HighLevelPacket::addr, Request::address, Request::arrivalTime, convertToBitStream(), HighLevelPacket::destination, fwd\_\-path\_\-delay, GetNextRequest(), GetRequest(), Processor::interface\_\-connections, last\_\-vc, lastSentTime, Request::mcNo, MSHR\_\-H::mshr, mshrHandler, NEW\_\-PACKET\_\-EVENT, no\_\-nodes, NetworkComponent::node\_\-ip, Simulator::Now(), OUT\_\-PULL\_\-EVENT, packets, NetworkComponent::process\_\-event(), ready, HighLevelPacket::req\_\-start\_\-time, Simulator::Schedule(), sending, HighLevelPacket::sent\_\-time, HighLevelPacket::source, Request::startTime, HighLevelPacket::toString(), HighLevelPacket::transaction\_\-id, IrisEvent::type, vcs, and HighLevelPacket::virtual\_\-channel.
+
+Referenced by process\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classGenericTPGVcs_38763a186bf49ee00aaa5ebc4943614d_icgraph}
+\end{center}
+\end{figure}
+\index{GenericTPGVcs@{GenericTPGVcs}!handle\_\-ready\_\-event@{handle\_\-ready\_\-event}}
+\index{handle\_\-ready\_\-event@{handle\_\-ready\_\-event}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{handle\_\-ready\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void GenericTPGVcs::handle\_\-ready\_\-event ({\bf IrisEvent} $\ast$ {\em e})\hspace{0.3cm}{\tt  [private]}}\label{classGenericTPGVcs_f6f336a06133a2ce6f1ebf7b75587f61}
+
+
+
+
+Definition at line 351 of file genericTPGVcs.cc.
+
+References \_\-DBG, max\_\-sim\_\-time, Simulator::Now(), OUT\_\-PULL\_\-EVENT, NetworkComponent::process\_\-event(), ready, Simulator::Schedule(), sending, IrisEvent::vc, and vcs.
+
+Referenced by process\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classGenericTPGVcs_f6f336a06133a2ce6f1ebf7b75587f61_icgraph}
+\end{center}
+\end{figure}
+\index{GenericTPGVcs@{GenericTPGVcs}!print\_\-stats@{print\_\-stats}}
+\index{print\_\-stats@{print\_\-stats}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{print\_\-stats}]{\setlength{\rightskip}{0pt plus 5cm}string GenericTPGVcs::print\_\-stats (void) const\hspace{0.3cm}{\tt  [virtual]}}\label{classGenericTPGVcs_a92d5aa7e9d58ad53ac4705a5b7d8cc3}
+
+
+
+
+Implements {\bf Processor} \doxyref{}{p.}{classProcessor_4026b719628ed5e3f65ba0702253ba4d}.
+
+Definition at line 539 of file genericTPGVcs.cc.
+
+References fwd\_\-path\_\-delay, last\_\-packet\_\-out\_\-cycle, min\_\-pkt\_\-latency, mshrHandler, NetworkComponent::node\_\-ip, packets, packets\_\-in, roundTripLat, stat\_\-round\_\-trip\_\-hop\_\-count, stat\_\-round\_\-trip\_\-memory\_\-latency, stat\_\-round\_\-trip\_\-network\_\-latency, stat\_\-waiting\_\-in\_\-ni, TotalBLP, and MSHR\_\-H::unsink.\index{GenericTPGVcs@{GenericTPGVcs}!process\_\-event@{process\_\-event}}
+\index{process\_\-event@{process\_\-event}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{process\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void GenericTPGVcs::process\_\-event ({\bf IrisEvent} $\ast$ {\em e})\hspace{0.3cm}{\tt  [virtual]}}\label{classGenericTPGVcs_155b0ddc9e20a35dfef9e6c2203c33f7}
+
+
+
+
+Implements {\bf Processor} \doxyref{}{p.}{classProcessor_18cdeefafbd8225cb3ad18dd098c0e08}.
+
+Definition at line 167 of file genericTPGVcs.cc.
+
+References NetworkComponent::address, handle\_\-new\_\-packet\_\-event(), handle\_\-out\_\-pull\_\-event(), handle\_\-ready\_\-event(), NEW\_\-PACKET\_\-EVENT, OUT\_\-PULL\_\-EVENT, READY\_\-EVENT, and IrisEvent::type.
+
+Referenced by MSHR\_\-H::process\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=391pt]{classGenericTPGVcs_155b0ddc9e20a35dfef9e6c2203c33f7_icgraph}
+\end{center}
+\end{figure}
+\index{GenericTPGVcs@{GenericTPGVcs}!set\_\-no\_\-vcs@{set\_\-no\_\-vcs}}
+\index{set\_\-no\_\-vcs@{set\_\-no\_\-vcs}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{set\_\-no\_\-vcs}]{\setlength{\rightskip}{0pt plus 5cm}void GenericTPGVcs::set\_\-no\_\-vcs ({\bf uint} {\em v})}\label{classGenericTPGVcs_1fa75496dddf53379e92d813eb8c440b}
+
+
+
+
+Definition at line 43 of file genericTPGVcs.cc.
+
+References vcs.\index{GenericTPGVcs@{GenericTPGVcs}!set\_\-output\_\-path@{set\_\-output\_\-path}}
+\index{set\_\-output\_\-path@{set\_\-output\_\-path}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{set\_\-output\_\-path}]{\setlength{\rightskip}{0pt plus 5cm}void GenericTPGVcs::set\_\-output\_\-path (string {\em outpath})\hspace{0.3cm}{\tt  [virtual]}}\label{classGenericTPGVcs_72392370414721e54a5e0bbed5f84f2b}
+
+
+
+
+Implements {\bf Processor} \doxyref{}{p.}{classProcessor_b4c5dff8417f916a1e0611ae73510a89}.
+
+Definition at line 141 of file genericTPGVcs.cc.
+
+References NetworkComponent::node\_\-ip, out\_\-file, and out\_\-filename.\index{GenericTPGVcs@{GenericTPGVcs}!set\_\-trace\_\-filename@{set\_\-trace\_\-filename}}
+\index{set\_\-trace\_\-filename@{set\_\-trace\_\-filename}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{set\_\-trace\_\-filename}]{\setlength{\rightskip}{0pt plus 5cm}void GenericTPGVcs::set\_\-trace\_\-filename (string {\em filename})}\label{classGenericTPGVcs_6e7938462c04a87c85278ed3c0999cdf}
+
+
+
+
+Definition at line 36 of file genericTPGVcs.cc.
+
+References trace\_\-name.\index{GenericTPGVcs@{GenericTPGVcs}!setup@{setup}}
+\index{setup@{setup}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{setup}]{\setlength{\rightskip}{0pt plus 5cm}void GenericTPGVcs::setup ({\bf uint} {\em no\_\-nodes}, \/  {\bf uint} {\em vcs}, \/  {\bf uint} {\em max\_\-sim\_\-time})\hspace{0.3cm}{\tt  [virtual]}}\label{classGenericTPGVcs_e160fb292a8caa353c368547c4635469}
+
+
+
+
+Implements {\bf Processor} \doxyref{}{p.}{classProcessor_dd2277b3c802f5e10419e1180c7e97a5}.
+
+Definition at line 49 of file genericTPGVcs.cc.
+
+References Request::address, NetworkComponent::address, Request::arrivalTime, Request::cmdType, MSHR\_\-H::filename, fwd\_\-path\_\-delay, MSHR\_\-H::GlobalAddrMap(), MSHR\_\-H::id, last\_\-packet\_\-out\_\-cycle, last\_\-vc, lastSentTime, max\_\-sim\_\-time, min\_\-pkt\_\-latency, mshrHandler, Component::myId(), no\_\-nodes, NetworkComponent::node\_\-ip, Simulator::Now(), packets, packets\_\-in, MSHR\_\-H::parent, NetworkComponent::process\_\-event(), MSHR\_\-H::process\_\-event(), ready, READY\_\-EVENT, roundTripLat, Simulator::Schedule(), stat\_\-round\_\-trip\_\-hop\_\-count, stat\_\-round\_\-trip\_\-memory\_\-latency, stat\_\-round\_\-trip\_\-network\_\-latency, stat\_\-waiting\_\-in\_\-ni, Request::threadId, TotalBLP, MSHR\_\-H::trace\_\-filename, trace\_\-filename, trace\_\-name, and vcs.\index{GenericTPGVcs@{GenericTPGVcs}!toString@{toString}}
+\index{toString@{toString}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{toString}]{\setlength{\rightskip}{0pt plus 5cm}string GenericTPGVcs::toString () const\hspace{0.3cm}{\tt  [virtual]}}\label{classGenericTPGVcs_ddd4f7942861ff25a833ef90989099ad}
+
+
+
+
+Reimplemented from {\bf Processor} \doxyref{}{p.}{classProcessor_d3bdbedfbb00b05f61504e411a418106}.
+
+Definition at line 526 of file genericTPGVcs.cc.
+
+References NetworkComponent::address, NetworkComponent::node\_\-ip, ready, and trace\_\-name.
+
+\subsection{Member Data Documentation}
+\index{GenericTPGVcs@{GenericTPGVcs}!fwd\_\-path\_\-delay@{fwd\_\-path\_\-delay}}
+\index{fwd\_\-path\_\-delay@{fwd\_\-path\_\-delay}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{fwd\_\-path\_\-delay}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ullint} {\bf GenericTPGVcs::fwd\_\-path\_\-delay}}\label{classGenericTPGVcs_1b5471513588525e9a274121d0cc50a4}
+
+
+
+
+Definition at line 55 of file genericTPGVcs.h.
+
+Referenced by handle\_\-out\_\-pull\_\-event(), print\_\-stats(), and setup().\index{GenericTPGVcs@{GenericTPGVcs}!last\_\-packet\_\-out\_\-cycle@{last\_\-packet\_\-out\_\-cycle}}
+\index{last\_\-packet\_\-out\_\-cycle@{last\_\-packet\_\-out\_\-cycle}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{last\_\-packet\_\-out\_\-cycle}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf GenericTPGVcs::last\_\-packet\_\-out\_\-cycle}}\label{classGenericTPGVcs_67e6d6258a29019a6cb437f96ef5c7a8}
+
+
+
+
+Definition at line 54 of file genericTPGVcs.h.
+
+Referenced by handle\_\-new\_\-packet\_\-event(), print\_\-stats(), and setup().\index{GenericTPGVcs@{GenericTPGVcs}!last\_\-vc@{last\_\-vc}}
+\index{last\_\-vc@{last\_\-vc}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{last\_\-vc}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf GenericTPGVcs::last\_\-vc}\hspace{0.3cm}{\tt  [private]}}\label{classGenericTPGVcs_ce37f68f99c79c21244e9837b8e60ddc}
+
+
+
+
+Definition at line 37 of file genericTPGVcs.h.
+
+Referenced by GenericTPGVcs(), handle\_\-out\_\-pull\_\-event(), and setup().\index{GenericTPGVcs@{GenericTPGVcs}!lastSentTime@{lastSentTime}}
+\index{lastSentTime@{lastSentTime}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{lastSentTime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ullint} {\bf GenericTPGVcs::lastSentTime}}\label{classGenericTPGVcs_c089a4fcdadcbfdfb6976e3bc37ace2b}
+
+
+
+
+Definition at line 77 of file genericTPGVcs.h.
+
+Referenced by handle\_\-out\_\-pull\_\-event(), and setup().\index{GenericTPGVcs@{GenericTPGVcs}!max\_\-sim\_\-time@{max\_\-sim\_\-time}}
+\index{max\_\-sim\_\-time@{max\_\-sim\_\-time}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{max\_\-sim\_\-time}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ullint} {\bf GenericTPGVcs::max\_\-sim\_\-time}\hspace{0.3cm}{\tt  [private]}}\label{classGenericTPGVcs_7983b109582af826ca9b94c0edd917b9}
+
+
+
+
+Definition at line 30 of file genericTPGVcs.h.
+
+Referenced by handle\_\-ready\_\-event(), and setup().\index{GenericTPGVcs@{GenericTPGVcs}!max\_\-time@{max\_\-time}}
+\index{max\_\-time@{max\_\-time}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{max\_\-time}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ullint} {\bf GenericTPGVcs::max\_\-time}}\label{classGenericTPGVcs_7a2a83454b3624e8ec10dde3d0ed71c7}
+
+
+
+
+Definition at line 66 of file genericTPGVcs.h.\index{GenericTPGVcs@{GenericTPGVcs}!mc\_\-node\_\-ip@{mc\_\-node\_\-ip}}
+\index{mc\_\-node\_\-ip@{mc\_\-node\_\-ip}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{mc\_\-node\_\-ip}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf uint}$>$ {\bf GenericTPGVcs::mc\_\-node\_\-ip}}\label{classGenericTPGVcs_d917977e4b47e7acd1300342260aec8b}
+
+
+
+
+Definition at line 76 of file genericTPGVcs.h.\index{GenericTPGVcs@{GenericTPGVcs}!min\_\-pkt\_\-latency@{min\_\-pkt\_\-latency}}
+\index{min\_\-pkt\_\-latency@{min\_\-pkt\_\-latency}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{min\_\-pkt\_\-latency}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf GenericTPGVcs::min\_\-pkt\_\-latency}}\label{classGenericTPGVcs_2473c8d37c9c2b51b8fa725d9fc11fab}
+
+
+
+
+Definition at line 53 of file genericTPGVcs.h.
+
+Referenced by handle\_\-new\_\-packet\_\-event(), print\_\-stats(), and setup().\index{GenericTPGVcs@{GenericTPGVcs}!mshrHandler@{mshrHandler}}
+\index{mshrHandler@{mshrHandler}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{mshrHandler}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MSHR\_\-H}$\ast$ {\bf GenericTPGVcs::mshrHandler}}\label{classGenericTPGVcs_1ac4e6d4c2a9960a5261280d65805de3}
+
+
+
+
+Definition at line 63 of file genericTPGVcs.h.
+
+Referenced by GetNewRequest(), GetNextRequest(), handle\_\-new\_\-packet\_\-event(), handle\_\-out\_\-pull\_\-event(), print\_\-stats(), setup(), and $\sim$GenericTPGVcs().\index{GenericTPGVcs@{GenericTPGVcs}!no\_\-nodes@{no\_\-nodes}}
+\index{no\_\-nodes@{no\_\-nodes}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{no\_\-nodes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf GenericTPGVcs::no\_\-nodes}\hspace{0.3cm}{\tt  [private]}}\label{classGenericTPGVcs_c516a9ea262ef5ed8f84c3b15b20e9d3}
+
+
+
+
+Definition at line 28 of file genericTPGVcs.h.
+
+Referenced by handle\_\-out\_\-pull\_\-event(), and setup().\index{GenericTPGVcs@{GenericTPGVcs}!no\_\-outstanding@{no\_\-outstanding}}
+\index{no\_\-outstanding@{no\_\-outstanding}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{no\_\-outstanding}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf GenericTPGVcs::no\_\-outstanding}\hspace{0.3cm}{\tt  [private]}}\label{classGenericTPGVcs_56c6e150528f094a9e4d2df7c928d68d}
+
+
+
+
+Definition at line 29 of file genericTPGVcs.h.\index{GenericTPGVcs@{GenericTPGVcs}!out\_\-file@{out\_\-file}}
+\index{out\_\-file@{out\_\-file}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{out\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}ofstream {\bf GenericTPGVcs::out\_\-file}\hspace{0.3cm}{\tt  [private]}}\label{classGenericTPGVcs_f163269f6308d94e66d7854e5456041e}
+
+
+
+
+Definition at line 35 of file genericTPGVcs.h.
+
+Referenced by finish(), handle\_\-new\_\-packet\_\-event(), set\_\-output\_\-path(), and $\sim$GenericTPGVcs().\index{GenericTPGVcs@{GenericTPGVcs}!out\_\-filename@{out\_\-filename}}
+\index{out\_\-filename@{out\_\-filename}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{out\_\-filename}]{\setlength{\rightskip}{0pt plus 5cm}string {\bf GenericTPGVcs::out\_\-filename}\hspace{0.3cm}{\tt  [private]}}\label{classGenericTPGVcs_84da010e7cc2c24e5fa1f5fe80c6a9e7}
+
+
+
+
+Definition at line 33 of file genericTPGVcs.h.
+
+Referenced by GenericTPGVcs(), handle\_\-new\_\-packet\_\-event(), and set\_\-output\_\-path().\index{GenericTPGVcs@{GenericTPGVcs}!out\_\-packets@{out\_\-packets}}
+\index{out\_\-packets@{out\_\-packets}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{out\_\-packets}]{\setlength{\rightskip}{0pt plus 5cm}deque$<$ {\bf HighLevelPacket} $>$ {\bf GenericTPGVcs::out\_\-packets}\hspace{0.3cm}{\tt  [private]}}\label{classGenericTPGVcs_a5f042a5072722319dbd3377a7d58be4}
+
+
+
+
+Definition at line 31 of file genericTPGVcs.h.\index{GenericTPGVcs@{GenericTPGVcs}!packets@{packets}}
+\index{packets@{packets}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{packets}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf GenericTPGVcs::packets}}\label{classGenericTPGVcs_e0d03e0d74b34c0ee45a2f356691f12c}
+
+
+
+
+Definition at line 51 of file genericTPGVcs.h.
+
+Referenced by handle\_\-out\_\-pull\_\-event(), print\_\-stats(), and setup().\index{GenericTPGVcs@{GenericTPGVcs}!packets\_\-in@{packets\_\-in}}
+\index{packets\_\-in@{packets\_\-in}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{packets\_\-in}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf GenericTPGVcs::packets\_\-in}}\label{classGenericTPGVcs_baeb25e9cee2fbaa5ac67d9ce85836d1}
+
+
+
+
+Definition at line 52 of file genericTPGVcs.h.
+
+Referenced by handle\_\-new\_\-packet\_\-event(), print\_\-stats(), and setup().\index{GenericTPGVcs@{GenericTPGVcs}!ready@{ready}}
+\index{ready@{ready}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{ready}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ bool $>$ {\bf GenericTPGVcs::ready}}\label{classGenericTPGVcs_14f62c744cb5d46576c8ac1b9e16f048}
+
+
+
+
+Definition at line 64 of file genericTPGVcs.h.
+
+Referenced by handle\_\-out\_\-pull\_\-event(), handle\_\-ready\_\-event(), setup(), and toString().\index{GenericTPGVcs@{GenericTPGVcs}!roundTripLat@{roundTripLat}}
+\index{roundTripLat@{roundTripLat}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{roundTripLat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ullint} {\bf GenericTPGVcs::roundTripLat}}\label{classGenericTPGVcs_f7c114a7d0c13a314f4f4f82fd3e38bf}
+
+
+
+
+Definition at line 56 of file genericTPGVcs.h.
+
+Referenced by print\_\-stats(), and setup().\index{GenericTPGVcs@{GenericTPGVcs}!sending@{sending}}
+\index{sending@{sending}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{sending}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf GenericTPGVcs::sending}}\label{classGenericTPGVcs_32bf135dd4fe93e70fb7e12bcd707818}
+
+
+
+
+Definition at line 65 of file genericTPGVcs.h.
+
+Referenced by GenericTPGVcs(), handle\_\-out\_\-pull\_\-event(), and handle\_\-ready\_\-event().\index{GenericTPGVcs@{GenericTPGVcs}!sent\_\-packets@{sent\_\-packets}}
+\index{sent\_\-packets@{sent\_\-packets}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{sent\_\-packets}]{\setlength{\rightskip}{0pt plus 5cm}deque$<$ {\bf HighLevelPacket} $>$ {\bf GenericTPGVcs::sent\_\-packets}\hspace{0.3cm}{\tt  [private]}}\label{classGenericTPGVcs_2964b77f858b609a2980097d1757dff9}
+
+
+
+
+Definition at line 32 of file genericTPGVcs.h.\index{GenericTPGVcs@{GenericTPGVcs}!stat\_\-round\_\-trip\_\-hop\_\-count@{stat\_\-round\_\-trip\_\-hop\_\-count}}
+\index{stat\_\-round\_\-trip\_\-hop\_\-count@{stat\_\-round\_\-trip\_\-hop\_\-count}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{stat\_\-round\_\-trip\_\-hop\_\-count}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ullint} {\bf GenericTPGVcs::stat\_\-round\_\-trip\_\-hop\_\-count}}\label{classGenericTPGVcs_73ab5b13c2e4b5478bda61c9a64466e8}
+
+
+
+
+Definition at line 59 of file genericTPGVcs.h.
+
+Referenced by handle\_\-new\_\-packet\_\-event(), print\_\-stats(), and setup().\index{GenericTPGVcs@{GenericTPGVcs}!stat\_\-round\_\-trip\_\-memory\_\-latency@{stat\_\-round\_\-trip\_\-memory\_\-latency}}
+\index{stat\_\-round\_\-trip\_\-memory\_\-latency@{stat\_\-round\_\-trip\_\-memory\_\-latency}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{stat\_\-round\_\-trip\_\-memory\_\-latency}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ullint} {\bf GenericTPGVcs::stat\_\-round\_\-trip\_\-memory\_\-latency}}\label{classGenericTPGVcs_a36e0978cc57cbb9377f4ea97b423519}
+
+
+
+
+Definition at line 60 of file genericTPGVcs.h.
+
+Referenced by handle\_\-new\_\-packet\_\-event(), print\_\-stats(), and setup().\index{GenericTPGVcs@{GenericTPGVcs}!stat\_\-round\_\-trip\_\-network\_\-latency@{stat\_\-round\_\-trip\_\-network\_\-latency}}
+\index{stat\_\-round\_\-trip\_\-network\_\-latency@{stat\_\-round\_\-trip\_\-network\_\-latency}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{stat\_\-round\_\-trip\_\-network\_\-latency}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ullint} {\bf GenericTPGVcs::stat\_\-round\_\-trip\_\-network\_\-latency}}\label{classGenericTPGVcs_6c06d7fa222df57187e0f72a944b6e02}
+
+
+
+
+Definition at line 58 of file genericTPGVcs.h.
+
+Referenced by handle\_\-new\_\-packet\_\-event(), print\_\-stats(), and setup().\index{GenericTPGVcs@{GenericTPGVcs}!stat\_\-waiting\_\-in\_\-ni@{stat\_\-waiting\_\-in\_\-ni}}
+\index{stat\_\-waiting\_\-in\_\-ni@{stat\_\-waiting\_\-in\_\-ni}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{stat\_\-waiting\_\-in\_\-ni}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ullint} {\bf GenericTPGVcs::stat\_\-waiting\_\-in\_\-ni}}\label{classGenericTPGVcs_77630bb945940ab982026361cf6e2085}
+
+
+
+
+Definition at line 61 of file genericTPGVcs.h.
+
+Referenced by handle\_\-new\_\-packet\_\-event(), print\_\-stats(), and setup().\index{GenericTPGVcs@{GenericTPGVcs}!TotalBLP@{TotalBLP}}
+\index{TotalBLP@{TotalBLP}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{TotalBLP}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ullint} {\bf GenericTPGVcs::TotalBLP}}\label{classGenericTPGVcs_d4f33d7795d259b242e6513f3378261d}
+
+
+
+
+Definition at line 57 of file genericTPGVcs.h.
+
+Referenced by print\_\-stats(), and setup().\index{GenericTPGVcs@{GenericTPGVcs}!trace\_\-filename@{trace\_\-filename}}
+\index{trace\_\-filename@{trace\_\-filename}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{trace\_\-filename}]{\setlength{\rightskip}{0pt plus 5cm}ifstream$\ast$ {\bf GenericTPGVcs::trace\_\-filename}\hspace{0.3cm}{\tt  [private]}}\label{classGenericTPGVcs_8da09554a67670950a072ee6950fdc62}
+
+
+
+
+Definition at line 36 of file genericTPGVcs.h.
+
+Referenced by finish(), GetNextRequest(), and setup().\index{GenericTPGVcs@{GenericTPGVcs}!trace\_\-name@{trace\_\-name}}
+\index{trace\_\-name@{trace\_\-name}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{trace\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}string {\bf GenericTPGVcs::trace\_\-name}\hspace{0.3cm}{\tt  [private]}}\label{classGenericTPGVcs_e40f1e9b11306dde508ddaef7ec77115}
+
+
+
+
+Definition at line 34 of file genericTPGVcs.h.
+
+Referenced by set\_\-trace\_\-filename(), setup(), and toString().\index{GenericTPGVcs@{GenericTPGVcs}!vcs@{vcs}}
+\index{vcs@{vcs}!GenericTPGVcs@{GenericTPGVcs}}
+\subsubsection[{vcs}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf GenericTPGVcs::vcs}\hspace{0.3cm}{\tt  [private]}}\label{classGenericTPGVcs_e9768eb23b243f0ce77c1f2fbfdeb3b5}
+
+
+
+
+Definition at line 27 of file genericTPGVcs.h.
+
+Referenced by handle\_\-out\_\-pull\_\-event(), handle\_\-ready\_\-event(), set\_\-no\_\-vcs(), and setup().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf genericTPGVcs.h}\item 
+{\bf genericTPGVcs.cc}\end{CompactItemize}

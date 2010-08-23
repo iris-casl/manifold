@@ -1,0 +1,320 @@
+\section{zesto-uncore.cpp File Reference}
+\label{zesto-uncore_8cpp}\index{zesto-uncore.cpp@{zesto-uncore.cpp}}
+{\tt \#include $<$limits.h$>$}\par
+{\tt \#include \char`\"{}thread.h\char`\"{}}\par
+{\tt \#include \char`\"{}stats.h\char`\"{}}\par
+{\tt \#include \char`\"{}options.h\char`\"{}}\par
+{\tt \#include \char`\"{}zesto-core.h\char`\"{}}\par
+{\tt \#include \char`\"{}zesto-opts.h\char`\"{}}\par
+{\tt \#include \char`\"{}zesto-cache.h\char`\"{}}\par
+{\tt \#include \char`\"{}zesto-prefetch.h\char`\"{}}\par
+{\tt \#include \char`\"{}zesto-uncore.h\char`\"{}}\par
+{\tt \#include \char`\"{}sim.h\char`\"{}}\par
+
+
+Include dependency graph for zesto-uncore.cpp:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{zesto-uncore_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define {\bf USE\_\-PIN\_\-TRACES}
+\item 
+\#define {\bf GEN\_\-APP\_\-TRACES}
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void {\bf uncore\_\-reg\_\-options} (struct {\bf opt\_\-odb\_\-t} $\ast$const odb)
+\item 
+{\bf md\_\-paddr\_\-t} {\bf GlobalAddrMap} ({\bf md\_\-paddr\_\-t} addr, unsigned int threadId)
+\item 
+{\bf md\_\-paddr\_\-t} {\bf GlobalAddrRip} ({\bf md\_\-paddr\_\-t} addr, unsigned int threadId)
+\item 
+short int {\bf get\_\-mcNo} ({\bf md\_\-paddr\_\-t} req\_\-addr)
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+static char $\ast$ {\bf LLC\_\-opt\_\-str} = (char $\ast$)\char`\"{}LLC:4096:16:64:16:64:9:L:W:B:8:1:8:C\char`\"{}
+\item 
+static int {\bf LLC\_\-bus\_\-ratio} = 1
+\item 
+static int {\bf LLC\_\-access\_\-rate} = 1
+\item 
+static char $\ast$ {\bf LLC\_\-MSHR\_\-cmd} = (char $\ast$)\char`\"{}RPWB\char`\"{}
+\item 
+static char $\ast$ {\bf LLC\_\-PF\_\-opt\_\-str} [MAX\_\-PREFETCHERS]
+\item 
+static int {\bf LLC\_\-num\_\-PF} = 0
+\item 
+static int {\bf LLC\_\-PFFsize} = 8
+\item 
+static int {\bf LLC\_\-PFthresh} = 2
+\item 
+static int {\bf LLC\_\-PFmax} = 1
+\item 
+static int {\bf LLC\_\-PF\_\-buffer\_\-size} = 0
+\item 
+static int {\bf LLC\_\-PF\_\-filter\_\-size} = 0
+\item 
+static int {\bf LLC\_\-PF\_\-filter\_\-reset} = 0
+\item 
+static int {\bf LLC\_\-WMinterval} = 10000
+\item 
+static bool {\bf LLC\_\-PF\_\-on\_\-miss} = false
+\item 
+static double {\bf LLC\_\-low\_\-watermark} = 0.1
+\item 
+static double {\bf LLC\_\-high\_\-watermark} = 0.3
+\item 
+unsigned int {\bf THREAD\_\-BITS\_\-POSITION}
+\end{CompactItemize}
+
+
+\subsection{Define Documentation}
+\index{zesto-uncore.cpp@{zesto-uncore.cpp}!GEN\_\-APP\_\-TRACES@{GEN\_\-APP\_\-TRACES}}
+\index{GEN\_\-APP\_\-TRACES@{GEN\_\-APP\_\-TRACES}!zesto-uncore.cpp@{zesto-uncore.cpp}}
+\subsubsection[{GEN\_\-APP\_\-TRACES}]{\setlength{\rightskip}{0pt plus 5cm}\#define GEN\_\-APP\_\-TRACES}\label{zesto-uncore_8cpp_994e221525e6fd9c7f6efa9974888e8e}
+
+
+
+
+Definition at line 90 of file zesto-uncore.cpp.\index{zesto-uncore.cpp@{zesto-uncore.cpp}!USE\_\-PIN\_\-TRACES@{USE\_\-PIN\_\-TRACES}}
+\index{USE\_\-PIN\_\-TRACES@{USE\_\-PIN\_\-TRACES}!zesto-uncore.cpp@{zesto-uncore.cpp}}
+\subsubsection[{USE\_\-PIN\_\-TRACES}]{\setlength{\rightskip}{0pt plus 5cm}\#define USE\_\-PIN\_\-TRACES}\label{zesto-uncore_8cpp_3ad9043475baaed1a4a792d3b563c60d}
+
+
+
+
+Definition at line 89 of file zesto-uncore.cpp.
+
+\subsection{Function Documentation}
+\index{zesto-uncore.cpp@{zesto-uncore.cpp}!get\_\-mcNo@{get\_\-mcNo}}
+\index{get\_\-mcNo@{get\_\-mcNo}!zesto-uncore.cpp@{zesto-uncore.cpp}}
+\subsubsection[{get\_\-mcNo}]{\setlength{\rightskip}{0pt plus 5cm}short int get\_\-mcNo ({\bf md\_\-paddr\_\-t} {\em req\_\-addr})}\label{zesto-uncore_8cpp_29be9784ed7c6ed7c09f7dd9a505ebaf}
+
+
+
+
+Definition at line 591 of file zesto-uncore.cpp.
+
+References MC\_\-ADDR\_\-BITS, no\_\-mcs, and NO\_\-OF\_\-THREADS.
+
+Referenced by uncore\_\-t::enqueue().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=185pt]{zesto-uncore_8cpp_29be9784ed7c6ed7c09f7dd9a505ebaf_icgraph}
+\end{center}
+\end{figure}
+\index{zesto-uncore.cpp@{zesto-uncore.cpp}!GlobalAddrMap@{GlobalAddrMap}}
+\index{GlobalAddrMap@{GlobalAddrMap}!zesto-uncore.cpp@{zesto-uncore.cpp}}
+\subsubsection[{GlobalAddrMap}]{\setlength{\rightskip}{0pt plus 5cm}{\bf md\_\-paddr\_\-t} GlobalAddrMap ({\bf md\_\-paddr\_\-t} {\em addr}, \/  unsigned int {\em threadId})}\label{zesto-uncore_8cpp_01cc740447ec53a2bbde0097114061b6}
+
+
+
+
+Definition at line 542 of file zesto-uncore.cpp.
+
+References NO\_\-OF\_\-THREADS.
+
+Referenced by uncore\_\-t::enqueue().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=197pt]{zesto-uncore_8cpp_01cc740447ec53a2bbde0097114061b6_icgraph}
+\end{center}
+\end{figure}
+\index{zesto-uncore.cpp@{zesto-uncore.cpp}!GlobalAddrRip@{GlobalAddrRip}}
+\index{GlobalAddrRip@{GlobalAddrRip}!zesto-uncore.cpp@{zesto-uncore.cpp}}
+\subsubsection[{GlobalAddrRip}]{\setlength{\rightskip}{0pt plus 5cm}{\bf md\_\-paddr\_\-t} GlobalAddrRip ({\bf md\_\-paddr\_\-t} {\em addr}, \/  unsigned int {\em threadId})}\label{zesto-uncore_8cpp_3d080069c9391941da4853decf075b0b}
+
+
+
+
+Definition at line 559 of file zesto-uncore.cpp.
+
+References NO\_\-OF\_\-THREADS, and sim\_\-cycle.
+
+Referenced by uncore\_\-t::handle\_\-new\_\-packet\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{zesto-uncore_8cpp_3d080069c9391941da4853decf075b0b_icgraph}
+\end{center}
+\end{figure}
+\index{zesto-uncore.cpp@{zesto-uncore.cpp}!uncore\_\-reg\_\-options@{uncore\_\-reg\_\-options}}
+\index{uncore\_\-reg\_\-options@{uncore\_\-reg\_\-options}!zesto-uncore.cpp@{zesto-uncore.cpp}}
+\subsubsection[{uncore\_\-reg\_\-options}]{\setlength{\rightskip}{0pt plus 5cm}void uncore\_\-reg\_\-options (struct {\bf opt\_\-odb\_\-t} $\ast$const  {\em odb})}\label{zesto-uncore_8cpp_1c33c2be874ac3de83db43002cde412e}
+
+
+
+
+Definition at line 266 of file zesto-uncore.cpp.
+
+References cpu\_\-speed, LLC\_\-access\_\-rate, LLC\_\-bus\_\-ratio, LLC\_\-high\_\-watermark, LLC\_\-low\_\-watermark, LLC\_\-MSHR\_\-cmd, LLC\_\-num\_\-PF, LLC\_\-opt\_\-str, LLC\_\-PF\_\-buffer\_\-size, LLC\_\-PF\_\-filter\_\-reset, LLC\_\-PF\_\-filter\_\-size, LLC\_\-PF\_\-on\_\-miss, LLC\_\-PF\_\-opt\_\-str, LLC\_\-PFFsize, LLC\_\-PFmax, LLC\_\-PFthresh, LLC\_\-WMinterval, MAX\_\-PREFETCHERS, opt\_\-reg\_\-double(), opt\_\-reg\_\-flag(), opt\_\-reg\_\-int(), opt\_\-reg\_\-string(), and opt\_\-reg\_\-string\_\-list().
+
+\subsection{Variable Documentation}
+\index{zesto-uncore.cpp@{zesto-uncore.cpp}!LLC\_\-access\_\-rate@{LLC\_\-access\_\-rate}}
+\index{LLC\_\-access\_\-rate@{LLC\_\-access\_\-rate}!zesto-uncore.cpp@{zesto-uncore.cpp}}
+\subsubsection[{LLC\_\-access\_\-rate}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf LLC\_\-access\_\-rate} = 1\hspace{0.3cm}{\tt  [static]}}\label{zesto-uncore_8cpp_da74c477fcd91525690b3e4da33f8f18}
+
+
+
+
+Definition at line 97 of file zesto-uncore.cpp.
+
+Referenced by uncore\_\-reg\_\-options(), and uncore\_\-t::uncore\_\-t().\index{zesto-uncore.cpp@{zesto-uncore.cpp}!LLC\_\-bus\_\-ratio@{LLC\_\-bus\_\-ratio}}
+\index{LLC\_\-bus\_\-ratio@{LLC\_\-bus\_\-ratio}!zesto-uncore.cpp@{zesto-uncore.cpp}}
+\subsubsection[{LLC\_\-bus\_\-ratio}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf LLC\_\-bus\_\-ratio} = 1\hspace{0.3cm}{\tt  [static]}}\label{zesto-uncore_8cpp_792d5ffd2dbfc36a67a2d5e49f178148}
+
+
+
+
+Definition at line 96 of file zesto-uncore.cpp.
+
+Referenced by uncore\_\-reg\_\-options(), and uncore\_\-t::uncore\_\-t().\index{zesto-uncore.cpp@{zesto-uncore.cpp}!LLC\_\-high\_\-watermark@{LLC\_\-high\_\-watermark}}
+\index{LLC\_\-high\_\-watermark@{LLC\_\-high\_\-watermark}!zesto-uncore.cpp@{zesto-uncore.cpp}}
+\subsubsection[{LLC\_\-high\_\-watermark}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf LLC\_\-high\_\-watermark} = 0.3\hspace{0.3cm}{\tt  [static]}}\label{zesto-uncore_8cpp_25603ec42346b788ee4c32c248b1118a}
+
+
+
+
+Definition at line 112 of file zesto-uncore.cpp.
+
+Referenced by uncore\_\-reg\_\-options(), and uncore\_\-t::uncore\_\-t().\index{zesto-uncore.cpp@{zesto-uncore.cpp}!LLC\_\-low\_\-watermark@{LLC\_\-low\_\-watermark}}
+\index{LLC\_\-low\_\-watermark@{LLC\_\-low\_\-watermark}!zesto-uncore.cpp@{zesto-uncore.cpp}}
+\subsubsection[{LLC\_\-low\_\-watermark}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf LLC\_\-low\_\-watermark} = 0.1\hspace{0.3cm}{\tt  [static]}}\label{zesto-uncore_8cpp_21836c73e56781bb1ebc088cc2c99f1a}
+
+
+
+
+Definition at line 111 of file zesto-uncore.cpp.
+
+Referenced by uncore\_\-reg\_\-options(), and uncore\_\-t::uncore\_\-t().\index{zesto-uncore.cpp@{zesto-uncore.cpp}!LLC\_\-MSHR\_\-cmd@{LLC\_\-MSHR\_\-cmd}}
+\index{LLC\_\-MSHR\_\-cmd@{LLC\_\-MSHR\_\-cmd}!zesto-uncore.cpp@{zesto-uncore.cpp}}
+\subsubsection[{LLC\_\-MSHR\_\-cmd}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf LLC\_\-MSHR\_\-cmd} = (char $\ast$)\char`\"{}RPWB\char`\"{}\hspace{0.3cm}{\tt  [static]}}\label{zesto-uncore_8cpp_fa5d0eeccfac4a1248ca4b3666cc7768}
+
+
+
+
+Definition at line 98 of file zesto-uncore.cpp.
+
+Referenced by uncore\_\-reg\_\-options(), and uncore\_\-t::uncore\_\-t().\index{zesto-uncore.cpp@{zesto-uncore.cpp}!LLC\_\-num\_\-PF@{LLC\_\-num\_\-PF}}
+\index{LLC\_\-num\_\-PF@{LLC\_\-num\_\-PF}!zesto-uncore.cpp@{zesto-uncore.cpp}}
+\subsubsection[{LLC\_\-num\_\-PF}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf LLC\_\-num\_\-PF} = 0\hspace{0.3cm}{\tt  [static]}}\label{zesto-uncore_8cpp_979546f7e0178df32c8ac226a01a506c}
+
+
+
+
+Definition at line 102 of file zesto-uncore.cpp.
+
+Referenced by uncore\_\-reg\_\-options(), and uncore\_\-t::uncore\_\-t().\index{zesto-uncore.cpp@{zesto-uncore.cpp}!LLC\_\-opt\_\-str@{LLC\_\-opt\_\-str}}
+\index{LLC\_\-opt\_\-str@{LLC\_\-opt\_\-str}!zesto-uncore.cpp@{zesto-uncore.cpp}}
+\subsubsection[{LLC\_\-opt\_\-str}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf LLC\_\-opt\_\-str} = (char $\ast$)\char`\"{}LLC:4096:16:64:16:64:9:L:W:B:8:1:8:C\char`\"{}\hspace{0.3cm}{\tt  [static]}}\label{zesto-uncore_8cpp_a1db39c91dac04a498eec73722919831}
+
+
+
+
+Definition at line 95 of file zesto-uncore.cpp.
+
+Referenced by uncore\_\-reg\_\-options(), and uncore\_\-t::uncore\_\-t().\index{zesto-uncore.cpp@{zesto-uncore.cpp}!LLC\_\-PF\_\-buffer\_\-size@{LLC\_\-PF\_\-buffer\_\-size}}
+\index{LLC\_\-PF\_\-buffer\_\-size@{LLC\_\-PF\_\-buffer\_\-size}!zesto-uncore.cpp@{zesto-uncore.cpp}}
+\subsubsection[{LLC\_\-PF\_\-buffer\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf LLC\_\-PF\_\-buffer\_\-size} = 0\hspace{0.3cm}{\tt  [static]}}\label{zesto-uncore_8cpp_8c6d473b0c0ada4a4a615f9cee4122aa}
+
+
+
+
+Definition at line 106 of file zesto-uncore.cpp.
+
+Referenced by uncore\_\-reg\_\-options(), and uncore\_\-t::uncore\_\-t().\index{zesto-uncore.cpp@{zesto-uncore.cpp}!LLC\_\-PF\_\-filter\_\-reset@{LLC\_\-PF\_\-filter\_\-reset}}
+\index{LLC\_\-PF\_\-filter\_\-reset@{LLC\_\-PF\_\-filter\_\-reset}!zesto-uncore.cpp@{zesto-uncore.cpp}}
+\subsubsection[{LLC\_\-PF\_\-filter\_\-reset}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf LLC\_\-PF\_\-filter\_\-reset} = 0\hspace{0.3cm}{\tt  [static]}}\label{zesto-uncore_8cpp_900853094dc4770f852e12b10f3a2c09}
+
+
+
+
+Definition at line 108 of file zesto-uncore.cpp.
+
+Referenced by uncore\_\-reg\_\-options(), and uncore\_\-t::uncore\_\-t().\index{zesto-uncore.cpp@{zesto-uncore.cpp}!LLC\_\-PF\_\-filter\_\-size@{LLC\_\-PF\_\-filter\_\-size}}
+\index{LLC\_\-PF\_\-filter\_\-size@{LLC\_\-PF\_\-filter\_\-size}!zesto-uncore.cpp@{zesto-uncore.cpp}}
+\subsubsection[{LLC\_\-PF\_\-filter\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf LLC\_\-PF\_\-filter\_\-size} = 0\hspace{0.3cm}{\tt  [static]}}\label{zesto-uncore_8cpp_23fbb17815b47d0a6c20eb7674447294}
+
+
+
+
+Definition at line 107 of file zesto-uncore.cpp.
+
+Referenced by uncore\_\-reg\_\-options(), and uncore\_\-t::uncore\_\-t().\index{zesto-uncore.cpp@{zesto-uncore.cpp}!LLC\_\-PF\_\-on\_\-miss@{LLC\_\-PF\_\-on\_\-miss}}
+\index{LLC\_\-PF\_\-on\_\-miss@{LLC\_\-PF\_\-on\_\-miss}!zesto-uncore.cpp@{zesto-uncore.cpp}}
+\subsubsection[{LLC\_\-PF\_\-on\_\-miss}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf LLC\_\-PF\_\-on\_\-miss} = false\hspace{0.3cm}{\tt  [static]}}\label{zesto-uncore_8cpp_c38dcc4648bb23ccb79b22d025d911c1}
+
+
+
+
+Definition at line 110 of file zesto-uncore.cpp.
+
+Referenced by uncore\_\-reg\_\-options().\index{zesto-uncore.cpp@{zesto-uncore.cpp}!LLC\_\-PF\_\-opt\_\-str@{LLC\_\-PF\_\-opt\_\-str}}
+\index{LLC\_\-PF\_\-opt\_\-str@{LLC\_\-PF\_\-opt\_\-str}!zesto-uncore.cpp@{zesto-uncore.cpp}}
+\subsubsection[{LLC\_\-PF\_\-opt\_\-str}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf LLC\_\-PF\_\-opt\_\-str}[MAX\_\-PREFETCHERS]\hspace{0.3cm}{\tt  [static]}}\label{zesto-uncore_8cpp_4ec8f11182f269716d68587feef47bcf}
+
+
+
+
+Definition at line 101 of file zesto-uncore.cpp.
+
+Referenced by uncore\_\-reg\_\-options(), and uncore\_\-t::uncore\_\-t().\index{zesto-uncore.cpp@{zesto-uncore.cpp}!LLC\_\-PFFsize@{LLC\_\-PFFsize}}
+\index{LLC\_\-PFFsize@{LLC\_\-PFFsize}!zesto-uncore.cpp@{zesto-uncore.cpp}}
+\subsubsection[{LLC\_\-PFFsize}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf LLC\_\-PFFsize} = 8\hspace{0.3cm}{\tt  [static]}}\label{zesto-uncore_8cpp_7eca2c34ae7d882c361e9f8919108336}
+
+
+
+
+Definition at line 103 of file zesto-uncore.cpp.
+
+Referenced by uncore\_\-reg\_\-options(), and uncore\_\-t::uncore\_\-t().\index{zesto-uncore.cpp@{zesto-uncore.cpp}!LLC\_\-PFmax@{LLC\_\-PFmax}}
+\index{LLC\_\-PFmax@{LLC\_\-PFmax}!zesto-uncore.cpp@{zesto-uncore.cpp}}
+\subsubsection[{LLC\_\-PFmax}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf LLC\_\-PFmax} = 1\hspace{0.3cm}{\tt  [static]}}\label{zesto-uncore_8cpp_8d3bf45134d0d8836fc902b84408d1d5}
+
+
+
+
+Definition at line 105 of file zesto-uncore.cpp.
+
+Referenced by uncore\_\-reg\_\-options(), and uncore\_\-t::uncore\_\-t().\index{zesto-uncore.cpp@{zesto-uncore.cpp}!LLC\_\-PFthresh@{LLC\_\-PFthresh}}
+\index{LLC\_\-PFthresh@{LLC\_\-PFthresh}!zesto-uncore.cpp@{zesto-uncore.cpp}}
+\subsubsection[{LLC\_\-PFthresh}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf LLC\_\-PFthresh} = 2\hspace{0.3cm}{\tt  [static]}}\label{zesto-uncore_8cpp_5629708ad2ac6661509c6efa5ab3d61e}
+
+
+
+
+Definition at line 104 of file zesto-uncore.cpp.
+
+Referenced by uncore\_\-reg\_\-options(), and uncore\_\-t::uncore\_\-t().\index{zesto-uncore.cpp@{zesto-uncore.cpp}!LLC\_\-WMinterval@{LLC\_\-WMinterval}}
+\index{LLC\_\-WMinterval@{LLC\_\-WMinterval}!zesto-uncore.cpp@{zesto-uncore.cpp}}
+\subsubsection[{LLC\_\-WMinterval}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf LLC\_\-WMinterval} = 10000\hspace{0.3cm}{\tt  [static]}}\label{zesto-uncore_8cpp_06d07595aba3e8c43653e36469238db5}
+
+
+
+
+Definition at line 109 of file zesto-uncore.cpp.
+
+Referenced by uncore\_\-reg\_\-options(), and uncore\_\-t::uncore\_\-t().\index{zesto-uncore.cpp@{zesto-uncore.cpp}!THREAD\_\-BITS\_\-POSITION@{THREAD\_\-BITS\_\-POSITION}}
+\index{THREAD\_\-BITS\_\-POSITION@{THREAD\_\-BITS\_\-POSITION}!zesto-uncore.cpp@{zesto-uncore.cpp}}
+\subsubsection[{THREAD\_\-BITS\_\-POSITION}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf THREAD\_\-BITS\_\-POSITION}}\label{zesto-uncore_8cpp_581f0c063e972c5f202149f2e3ce7452}
+
+
+
+
+Definition at line 36 of file config\_\-constants.h.

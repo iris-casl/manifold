@@ -1,0 +1,411 @@
+\section{Request Class Reference}
+\label{classRequest}\index{Request@{Request}}
+The main data structure for each memory operation that flows in the memory controller.  
+
+
+{\tt \#include $<$request.h$>$}
+
+Collaboration diagram for Request:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classRequest__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Request} ()
+\begin{CompactList}\small\item\em constructor \item\end{CompactList}\item 
+{\bf $\sim$Request} ()
+\begin{CompactList}\small\item\em deconstructor \item\end{CompactList}\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+{\bf UInt} {\bf mcNo}
+\begin{CompactList}\small\item\em Id of \doxyref{MC}{p.}{classMC} which the request belongs to. \item\end{CompactList}\item 
+{\bf UInt} {\bf channelNo}
+\item 
+{\bf UInt} {\bf dimmNo}
+\item 
+{\bf UInt} {\bf rankNo}
+\item 
+{\bf UInt} {\bf bankNo}
+\item 
+{\bf UInt} {\bf columnNo}
+\item 
+{\bf UInt} {\bf rowNo}
+\item 
+{\bf UInt} {\bf lowerBits}
+\begin{CompactList}\small\item\em The lower bits of the address which constitutes address within a cache block. \item\end{CompactList}\item 
+{\bf cache\_\-command} {\bf cmdType}
+\begin{CompactList}\small\item\em The type of cmd (read(load), write(store), writeback, prefetch) coming from the cache. \item\end{CompactList}\item 
+{\bf UInt} {\bf threadId}
+\begin{CompactList}\small\item\em Core Id from where the request came. \item\end{CompactList}\item 
+{\bf Addr\_\-t} {\bf address}
+\begin{CompactList}\small\item\em Requesting memory operation's address. \item\end{CompactList}\item 
+{\bf Data} {\bf data}
+\item 
+bool {\bf mark}
+\begin{CompactList}\small\item\em Signal to indicate that the request belongs to a batch or not. Used in PAR-BS. \item\end{CompactList}\item 
+bool {\bf local}
+\item 
+bool {\bf scheduledInMSHR}
+\item 
+{\bf CStatus} {\bf status}
+\begin{CompactList}\small\item\em Signal to indicate the request is a hit or conflict. \item\end{CompactList}\item 
+int {\bf tag}
+\begin{CompactList}\small\item\em Unique tag of the request in Mem Ctrl. \item\end{CompactList}\item 
+bool {\bf serviced}
+\item 
+{\bf Request} $\ast$ {\bf child\_\-req}
+\begin{CompactList}\small\item\em Pointer of the child req in MSHR clubbed. \item\end{CompactList}\item 
+{\bf Request} $\ast$ {\bf mother\_\-req}
+\begin{CompactList}\small\item\em Pointer of the mother req in MSHR clubbed. \item\end{CompactList}\item 
+{\bf Time} {\bf startTime}
+\item 
+{\bf Time} {\bf arrivalTime}
+\item 
+{\bf Time} {\bf scheduleTime}
+\item 
+{\bf Time} {\bf retireTime}
+\item 
+{\bf Time} {\bf busInsertionTime}
+\item 
+{\bf Time} {\bf rbufferInsertionTime}
+\item 
+{\bf Time} {\bf cbufferInsertionTime}
+\item 
+{\bf uint} {\bf hop\_\-count}
+\item 
+double {\bf avg\_\-network\_\-latency}
+\item 
+{\bf Time} {\bf throttleTime}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+The main data structure for each memory operation that flows in the memory controller. 
+
+Description: This data structure flows through almost all the phases of the Mem Ctrl. A high level packet is converted to \doxyref{Request}{p.}{classRequest} in \doxyref{NI}{p.}{classNI}. On return path, this request with corresponding stats updated will be converted back to high level packet which is sent to the network. All memory operations are converted to this data structure 
+
+Definition at line 57 of file request.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Request@{Request}!Request@{Request}}
+\index{Request@{Request}!Request@{Request}}
+\subsubsection[{Request}]{\setlength{\rightskip}{0pt plus 5cm}Request::Request ()}\label{classRequest_faf8d8928de7ffff8a3767589489bd33}
+
+
+constructor 
+
+
+
+Definition at line 28 of file request.cc.
+
+References address, arrivalTime, avg\_\-network\_\-latency, bankNo, busInsertionTime, cbufferInsertionTime, channelNo, child\_\-req, columnNo, dimmNo, hop\_\-count, local, lowerBits, mark, mcNo, mother\_\-req, NO\_\-OF\_\-BANKS, NO\_\-OF\_\-CHANNELS, NO\_\-OF\_\-COLUMNS, NO\_\-OF\_\-RANKS, NO\_\-OF\_\-ROWS, rankNo, rbufferInsertionTime, retireTime, rowNo, scheduledInMSHR, serviced, startTime, tag, and threadId.\index{Request@{Request}!$\sim$Request@{$\sim$Request}}
+\index{$\sim$Request@{$\sim$Request}!Request@{Request}}
+\subsubsection[{$\sim$Request}]{\setlength{\rightskip}{0pt plus 5cm}Request::$\sim$Request ()}\label{classRequest_4d57c725686701f773eb3630630a7ea2}
+
+
+deconstructor 
+
+
+
+Definition at line 68 of file request.cc.
+
+\subsection{Member Data Documentation}
+\index{Request@{Request}!address@{address}}
+\index{address@{address}!Request@{Request}}
+\subsubsection[{address}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Addr\_\-t} {\bf Request::address}}\label{classRequest_0fd64e90be9318a9d1e81f7a70a6eefb}
+
+
+Requesting memory operation's address. 
+
+
+
+Definition at line 72 of file request.h.
+
+Referenced by NI::add\_\-mc\_\-bits(), Statistic::CollectStatsPerRequest(), uncore\_\-t::convertFromBitStream(), NI::convertFromBitStream(), GenericTPGVcs::convertFromBitStream(), GenericTPG::convertFromBitStream(), GenericFlatMc::convertFromBitStream(), uncore\_\-t::convertToBitStream(), NI::convertToBitStream(), GenericTPGVcs::convertToBitStream(), GenericTPG::convertToBitStream(), MSHR\_\-SA\_\-H::DeleteInMSHR(), MSHR\_\-H::DeleteInMSHR(), uncore\_\-t::enqueue(), GenericTPGVcs::GetNextRequest(), GenericTPG::GetNextRequest(), GenericTPGVcs::handle\_\-new\_\-packet\_\-event(), GenericTPG::handle\_\-new\_\-packet\_\-event(), NI::handle\_\-out\_\-pull\_\-event(), GenericTPGVcs::handle\_\-out\_\-pull\_\-event(), GenericTPG::handle\_\-out\_\-pull\_\-event(), MSHR\_\-H::local\_\-map\_\-addr(), main(), AddrMap::map\_\-addr(), ResponseHandler::process\_\-event(), RequestHandler::process\_\-event(), MSHR\_\-SA\_\-H::process\_\-event(), MSHR\_\-H::process\_\-event(), DRAMChannel::process\_\-event(), CmdIssuer::process\_\-event(), BankHandler::process\_\-event(), AddrMap::process\_\-event(), Request(), GenericTPGVcs::setup(), GenericTPG::setup(), and NI::strip\_\-mc\_\-bits().\index{Request@{Request}!arrivalTime@{arrivalTime}}
+\index{arrivalTime@{arrivalTime}!Request@{Request}}
+\subsubsection[{arrivalTime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} {\bf Request::arrivalTime}}\label{classRequest_9f6f38ad1672f894e403201fff2d43dc}
+
+
+Time at which it enters the Mem Ctrl 
+
+Definition at line 87 of file request.h.
+
+Referenced by Statistic::CollectStatsPerRequest(), uncore\_\-t::convertToBitStream(), GenericTPGVcs::convertToBitStream(), GenericTPG::convertToBitStream(), uncore\_\-t::enqueue(), GenericTPGVcs::GetNextRequest(), GenericTPG::GetNextRequest(), NI::handle\_\-new\_\-packet\_\-event(), NI::handle\_\-out\_\-pull\_\-event(), GenericTPGVcs::handle\_\-out\_\-pull\_\-event(), GenericTPG::handle\_\-out\_\-pull\_\-event(), main(), ResponseHandler::process\_\-event(), MSHR\_\-SA\_\-H::process\_\-event(), MSHR\_\-H::process\_\-event(), DRAMChannel::process\_\-event(), Request(), GenericTPGVcs::setup(), and GenericTPG::setup().\index{Request@{Request}!avg\_\-network\_\-latency@{avg\_\-network\_\-latency}}
+\index{avg\_\-network\_\-latency@{avg\_\-network\_\-latency}!Request@{Request}}
+\subsubsection[{avg\_\-network\_\-latency}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf Request::avg\_\-network\_\-latency}}\label{classRequest_fe5ccdc8f8adce078485182b3889e137}
+
+
+Total memory latency of this memory operation until now 
+
+Definition at line 94 of file request.h.
+
+Referenced by NI::handle\_\-new\_\-packet\_\-event(), NI::handle\_\-out\_\-pull\_\-event(), and Request().\index{Request@{Request}!bankNo@{bankNo}}
+\index{bankNo@{bankNo}!Request@{Request}}
+\subsubsection[{bankNo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UInt} {\bf Request::bankNo}}\label{classRequest_703b9a601c28bf6c8f77793c886de6ef}
+
+
+
+
+Definition at line 66 of file request.h.
+
+Referenced by CmdIssuer::BankNotBusy(), CmdIssuer::BanksFirstReq(), CmdIssuer::CanSchedule(), Statistic::CollectStatsPerRequest(), BankHandler::HighestRankedFirst(), MSHR\_\-H::local\_\-map\_\-addr(), AddrMap::map\_\-addr(), BankHandler::OldestFirst(), DRAMChannel::process\_\-event(), DataBusHandler::process\_\-event(), CmdIssuer::process\_\-event(), BankHandler::process\_\-event(), AddrMap::process\_\-event(), BankHandler::ReadsFirst(), Request(), BankHandler::RowHitFirst(), BankHandler::ScheduleUnmarked(), and CmdIssuer::SetPrevState().\index{Request@{Request}!busInsertionTime@{busInsertionTime}}
+\index{busInsertionTime@{busInsertionTime}!Request@{Request}}
+\subsubsection[{busInsertionTime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} {\bf Request::busInsertionTime}}\label{classRequest_790c6c4a837cddd75b9903b00a735c46}
+
+
+Time when it is inserted into the bus 
+
+Definition at line 90 of file request.h.
+
+Referenced by Statistic::CollectStatsPerRequest(), ResponseHandler::process\_\-event(), CmdIssuer::process\_\-event(), and Request().\index{Request@{Request}!cbufferInsertionTime@{cbufferInsertionTime}}
+\index{cbufferInsertionTime@{cbufferInsertionTime}!Request@{Request}}
+\subsubsection[{cbufferInsertionTime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} {\bf Request::cbufferInsertionTime}}\label{classRequest_ae648cd70fd1beb4158405c572698abe}
+
+
+Time when it is inserted into the cmd buffer 
+
+Definition at line 92 of file request.h.
+
+Referenced by Statistic::CollectStatsPerRequest(), BankHandler::process\_\-event(), and Request().\index{Request@{Request}!channelNo@{channelNo}}
+\index{channelNo@{channelNo}!Request@{Request}}
+\subsubsection[{channelNo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UInt} {\bf Request::channelNo}}\label{classRequest_08d39ad8a398f52881062f2adf382b54}
+
+
+
+
+Definition at line 63 of file request.h.
+
+Referenced by MSHR\_\-H::local\_\-map\_\-addr(), BusHandler::LowLevelCmdGen(), AddrMap::map\_\-addr(), CmdIssuer::process\_\-event(), BankHandler::process\_\-event(), AddrMap::process\_\-event(), and Request().\index{Request@{Request}!child\_\-req@{child\_\-req}}
+\index{child\_\-req@{child\_\-req}!Request@{Request}}
+\subsubsection[{child\_\-req}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Request}$\ast$ {\bf Request::child\_\-req}}\label{classRequest_7110cbf0830424659cdd08816d72b44f}
+
+
+Pointer of the child req in MSHR clubbed. 
+
+
+
+Definition at line 81 of file request.h.
+
+Referenced by Request().\index{Request@{Request}!cmdType@{cmdType}}
+\index{cmdType@{cmdType}!Request@{Request}}
+\subsubsection[{cmdType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf cache\_\-command} {\bf Request::cmdType}}\label{classRequest_35b354c58fc167256a37d5e553fcbda9}
+
+
+The type of cmd (read(load), write(store), writeback, prefetch) coming from the cache. 
+
+
+
+Definition at line 70 of file request.h.
+
+Referenced by uncore\_\-t::convertFromBitStream(), NI::convertFromBitStream(), GenericTPGVcs::convertFromBitStream(), GenericTPG::convertFromBitStream(), GenericFlatMc::convertFromBitStream(), uncore\_\-t::convertToBitStream(), NI::convertToBitStream(), GenericTPGVcs::convertToBitStream(), GenericTPG::convertToBitStream(), uncore\_\-t::enqueue(), GenericTPGVcs::GetNextRequest(), GenericTPG::GetNextRequest(), GenericFlatMc::handle\_\-new\_\-packet\_\-event(), BankHandler::HighestRankedFirst(), BusHandler::LowLevelCmdGen(), main(), BankHandler::OldestFirst(), ResponseHandler::process\_\-event(), RefreshMgr::process\_\-event(), MSHR\_\-SA\_\-H::process\_\-event(), MSHR\_\-H::process\_\-event(), BankHandler::process\_\-event(), BankHandler::ReadsFirst(), BankHandler::RowHitFirst(), BankHandler::ScheduleUnmarked(), GenericTPGVcs::setup(), and GenericTPG::setup().\index{Request@{Request}!columnNo@{columnNo}}
+\index{columnNo@{columnNo}!Request@{Request}}
+\subsubsection[{columnNo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UInt} {\bf Request::columnNo}}\label{classRequest_ea33fdb59b3e5316550b7099960d6853}
+
+
+
+
+Definition at line 67 of file request.h.
+
+Referenced by MSHR\_\-H::local\_\-map\_\-addr(), AddrMap::map\_\-addr(), AddrMap::process\_\-event(), and Request().\index{Request@{Request}!data@{data}}
+\index{data@{data}!Request@{Request}}
+\subsubsection[{data}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Data} {\bf Request::data}}\label{classRequest_3959d503ec310ffa3782619c71de7218}
+
+
+\doxyref{Data}{p.}{structData} field to store the actual value of the request. Not used currently. 
+
+Definition at line 73 of file request.h.
+
+Referenced by uncore\_\-t::convertFromBitStream(), GenericTPGVcs::convertFromBitStream(), GenericTPG::convertFromBitStream(), DataBusHandler::process\_\-event(), and DRAMCmdState::set().\index{Request@{Request}!dimmNo@{dimmNo}}
+\index{dimmNo@{dimmNo}!Request@{Request}}
+\subsubsection[{dimmNo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UInt} {\bf Request::dimmNo}}\label{classRequest_a6ed35e2f31c770e83522693588d14e6}
+
+
+
+
+Definition at line 64 of file request.h.
+
+Referenced by Request().\index{Request@{Request}!hop\_\-count@{hop\_\-count}}
+\index{hop\_\-count@{hop\_\-count}!Request@{Request}}
+\subsubsection[{hop\_\-count}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf Request::hop\_\-count}}\label{classRequest_c705d4dd88496509b3ef0043c1671664}
+
+
+Network hop count of this memory operation until now 
+
+Definition at line 93 of file request.h.
+
+Referenced by NI::handle\_\-new\_\-packet\_\-event(), NI::handle\_\-out\_\-pull\_\-event(), and Request().\index{Request@{Request}!local@{local}}
+\index{local@{local}!Request@{Request}}
+\subsubsection[{local}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Request::local}}\label{classRequest_acec648b31680354c6968feae321f875}
+
+
+
+
+Definition at line 75 of file request.h.
+
+Referenced by Request().\index{Request@{Request}!lowerBits@{lowerBits}}
+\index{lowerBits@{lowerBits}!Request@{Request}}
+\subsubsection[{lowerBits}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UInt} {\bf Request::lowerBits}}\label{classRequest_0683eee4a8f605c07ba72e213f112fe5}
+
+
+The lower bits of the address which constitutes address within a cache block. 
+
+
+
+Definition at line 69 of file request.h.
+
+Referenced by MSHR\_\-H::local\_\-map\_\-addr(), AddrMap::map\_\-addr(), and Request().\index{Request@{Request}!mark@{mark}}
+\index{mark@{mark}!Request@{Request}}
+\subsubsection[{mark}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Request::mark}}\label{classRequest_dc0aa0901f3ce0be6a749f54508460c5}
+
+
+Signal to indicate that the request belongs to a batch or not. Used in PAR-BS. 
+
+
+
+Definition at line 74 of file request.h.
+
+Referenced by Request().\index{Request@{Request}!mcNo@{mcNo}}
+\index{mcNo@{mcNo}!Request@{Request}}
+\subsubsection[{mcNo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UInt} {\bf Request::mcNo}}\label{classRequest_1c554a90f262827c195eeb3233681f34}
+
+
+Id of \doxyref{MC}{p.}{classMC} which the request belongs to. 
+
+
+
+Definition at line 62 of file request.h.
+
+Referenced by uncore\_\-t::convertFromBitStream(), GenericTPGVcs::convertFromBitStream(), GenericTPG::convertFromBitStream(), MSHR\_\-H::DeleteInMSHR(), uncore\_\-t::enqueue(), GenericTPGVcs::handle\_\-out\_\-pull\_\-event(), GenericTPG::handle\_\-out\_\-pull\_\-event(), MSHR\_\-H::process\_\-event(), and Request().\index{Request@{Request}!mother\_\-req@{mother\_\-req}}
+\index{mother\_\-req@{mother\_\-req}!Request@{Request}}
+\subsubsection[{mother\_\-req}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Request}$\ast$ {\bf Request::mother\_\-req}}\label{classRequest_aa79c29784b2c6da8c63402ea18d7b18}
+
+
+Pointer of the mother req in MSHR clubbed. 
+
+
+
+Definition at line 82 of file request.h.
+
+Referenced by Request().\index{Request@{Request}!rankNo@{rankNo}}
+\index{rankNo@{rankNo}!Request@{Request}}
+\subsubsection[{rankNo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UInt} {\bf Request::rankNo}}\label{classRequest_bddc8747193b271e09d39ccb25b92eab}
+
+
+
+
+Definition at line 65 of file request.h.
+
+Referenced by CmdIssuer::BankNotBusy(), CmdIssuer::CanSchedule(), MSHR\_\-H::local\_\-map\_\-addr(), AddrMap::map\_\-addr(), RefreshMgr::process\_\-event(), DRAMChannel::process\_\-event(), DataBusHandler::process\_\-event(), CmdIssuer::process\_\-event(), AddrMap::process\_\-event(), Request(), and CmdIssuer::SetPrevState().\index{Request@{Request}!rbufferInsertionTime@{rbufferInsertionTime}}
+\index{rbufferInsertionTime@{rbufferInsertionTime}!Request@{Request}}
+\subsubsection[{rbufferInsertionTime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} {\bf Request::rbufferInsertionTime}}\label{classRequest_76fbaa9a2675b4a66460d8596f92e5af}
+
+
+$<$ Time when it is inserted into request buffer 
+
+Definition at line 91 of file request.h.
+
+Referenced by Statistic::CollectStatsPerRequest(), AddrMap::process\_\-event(), and Request().\index{Request@{Request}!retireTime@{retireTime}}
+\index{retireTime@{retireTime}!Request@{Request}}
+\subsubsection[{retireTime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} {\bf Request::retireTime}}\label{classRequest_93a4e7aa5109ed4e89dac4d8a02822eb}
+
+
+Time at which it retires from the \doxyref{MC}{p.}{classMC} 
+
+Definition at line 89 of file request.h.
+
+Referenced by Statistic::CollectStatsPerRequest(), NI::handle\_\-out\_\-pull\_\-event(), ResponseHandler::process\_\-event(), DRAMChannel::process\_\-event(), and Request().\index{Request@{Request}!rowNo@{rowNo}}
+\index{rowNo@{rowNo}!Request@{Request}}
+\subsubsection[{rowNo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UInt} {\bf Request::rowNo}}\label{classRequest_b0efa75eb0e590f70511a47e22e0c3a6}
+
+
+
+
+Definition at line 68 of file request.h.
+
+Referenced by BankHandler::HighestRankedFirst(), MSHR\_\-H::local\_\-map\_\-addr(), AddrMap::map\_\-addr(), BankHandler::OldestFirst(), RefreshMgr::process\_\-event(), BankHandler::process\_\-event(), AddrMap::process\_\-event(), BankHandler::ReadsFirst(), Request(), BankHandler::RowHitFirst(), BankHandler::ScheduleUnmarked(), and CmdIssuer::SetPrevState().\index{Request@{Request}!scheduledInMSHR@{scheduledInMSHR}}
+\index{scheduledInMSHR@{scheduledInMSHR}!Request@{Request}}
+\subsubsection[{scheduledInMSHR}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Request::scheduledInMSHR}}\label{classRequest_d309e1cf8926ed4237677adf5ed7549a}
+
+
+
+
+Definition at line 76 of file request.h.
+
+Referenced by Request().\index{Request@{Request}!scheduleTime@{scheduleTime}}
+\index{scheduleTime@{scheduleTime}!Request@{Request}}
+\subsubsection[{scheduleTime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} {\bf Request::scheduleTime}}\label{classRequest_8ea8c7539391e87cb49451cd71b03b62}
+
+
+Time at which it is sent out to the network 
+
+Definition at line 88 of file request.h.\index{Request@{Request}!serviced@{serviced}}
+\index{serviced@{serviced}!Request@{Request}}
+\subsubsection[{serviced}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Request::serviced}}\label{classRequest_3ea3ef5117c584c7b3c4787fc42c7799}
+
+
+
+
+Definition at line 79 of file request.h.
+
+Referenced by Request().\index{Request@{Request}!startTime@{startTime}}
+\index{startTime@{startTime}!Request@{Request}}
+\subsubsection[{startTime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} {\bf Request::startTime}}\label{classRequest_8a73904960bf2ee61a3f3e7af7b1d1c1}
+
+
+Time at which it enters the MSHR 
+
+Definition at line 86 of file request.h.
+
+Referenced by MSHR\_\-H::DeleteInMSHR(), NI::handle\_\-new\_\-packet\_\-event(), GenericTPGVcs::handle\_\-new\_\-packet\_\-event(), GenericTPG::handle\_\-new\_\-packet\_\-event(), NI::handle\_\-out\_\-pull\_\-event(), GenericTPGVcs::handle\_\-out\_\-pull\_\-event(), GenericTPG::handle\_\-out\_\-pull\_\-event(), MSHR\_\-SA\_\-H::process\_\-event(), MSHR\_\-H::process\_\-event(), and Request().\index{Request@{Request}!status@{status}}
+\index{status@{status}!Request@{Request}}
+\subsubsection[{status}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CStatus} {\bf Request::status}}\label{classRequest_48599e50c349bc0a36d886a24a7e578e}
+
+
+Signal to indicate the request is a hit or conflict. 
+
+
+
+Definition at line 77 of file request.h.
+
+Referenced by Statistic::CollectStatsPerRequest(), BankHandler::HighestRankedFirst(), BusHandler::LowLevelCmdGen(), BankHandler::OldestFirst(), BankHandler::ReadsFirst(), BankHandler::RowHitFirst(), and BankHandler::ScheduleUnmarked().\index{Request@{Request}!tag@{tag}}
+\index{tag@{tag}!Request@{Request}}
+\subsubsection[{tag}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Request::tag}}\label{classRequest_49202d5503dd1922eacac0c589f766a9}
+
+
+Unique tag of the request in Mem Ctrl. 
+
+
+
+Definition at line 78 of file request.h.
+
+Referenced by ResponseHandler::process\_\-event(), BankHandler::process\_\-event(), Request(), and ResponseHandler::SearchBuffer().\index{Request@{Request}!threadId@{threadId}}
+\index{threadId@{threadId}!Request@{Request}}
+\subsubsection[{threadId}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UInt} {\bf Request::threadId}}\label{classRequest_a828a07438920f87df95ab6b795f39fa}
+
+
+Core Id from where the request came. 
+
+
+
+Definition at line 71 of file request.h.
+
+Referenced by Statistic::CollectStatsPerRequest(), NI::convertFromBitStream(), GenericFlatMc::convertFromBitStream(), uncore\_\-t::convertToBitStream(), GenericTPGVcs::convertToBitStream(), GenericTPG::convertToBitStream(), uncore\_\-t::enqueue(), GenericTPGVcs::GetNextRequest(), GenericTPG::GetNextRequest(), NI::handle\_\-out\_\-pull\_\-event(), BankHandler::HighestRankedFirst(), main(), ResponseHandler::process\_\-event(), MSHR\_\-SA\_\-H::process\_\-event(), MSHR\_\-H::process\_\-event(), Request(), GenericTPGVcs::setup(), and GenericTPG::setup().\index{Request@{Request}!throttleTime@{throttleTime}}
+\index{throttleTime@{throttleTime}!Request@{Request}}
+\subsubsection[{throttleTime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} {\bf Request::throttleTime}}\label{classRequest_b66790d5edd3ae296f3fedf98390fb94}
+
+
+
+
+Definition at line 95 of file request.h.
+
+Referenced by Statistic::CollectStatsPerRequest().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf request.h}\item 
+{\bf request.cc}\end{CompactItemize}

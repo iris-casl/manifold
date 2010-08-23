@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>LCOV - iris.info - MemCtrl/data_bus_handler.cc</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LTP GCOV extension - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+        <tr>
+          <td class="headerItem" width="20%">Current&nbsp;view:</td>
+          <td class="headerValue" width="80%" colspan=4><a href="../index.html">directory</a> - <a href="index.html">MemCtrl</a> - data_bus_handler.cc</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Test:</td>
+          <td class="headerValue" width="80%" colspan=4>iris.info</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Date:</td>
+          <td class="headerValue" width="20%">2010-05-24</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Instrumented&nbsp;lines:</td>
+          <td class="headerValue" width="20%">35</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Code&nbsp;covered:</td>
+          <td class="headerValue" width="20%">82.9 %</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Executed&nbsp;lines:</td>
+          <td class="headerValue" width="20%">29</td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><pre class="source">
+<span class="lineNum">       1 </span>                : /*
+<span class="lineNum">       2 </span>                :  * =====================================================================================
+<span class="lineNum">       3 </span>                :  *
+<span class="lineNum">       4 </span>                :  *       Filename:  data_bus_handler.cc
+<span class="lineNum">       5 </span>                :  *
+<span class="lineNum">       6 </span>                :  *    Description:  
+<span class="lineNum">       7 </span>                :  *
+<span class="lineNum">       8 </span>                :  *        Version:  1.0
+<span class="lineNum">       9 </span>                :  *        Created:  02/23/2010 07:05:47 PM
+<span class="lineNum">      10 </span>                :  *       Revision:  none
+<span class="lineNum">      11 </span>                :  *       Compiler:  gcc
+<span class="lineNum">      12 </span>                :  *
+<span class="lineNum">      13 </span>                :  *         Author:  SYED MINHAJ HASSAN
+<span class="lineNum">      14 </span>                :  *        Company:  Georgia Institute of Technology
+<span class="lineNum">      15 </span>                :  *
+<span class="lineNum">      16 </span>                :  * =====================================================================================
+<span class="lineNum">      17 </span>                :  */
+<span class="lineNum">      18 </span>                : 
+<span class="lineNum">      19 </span>                : #include &lt;math.h&gt;
+<span class="lineNum">      20 </span>                : #include &quot;data_bus_handler.h&quot;
+<span class="lineNum">      21 </span>                : #include &quot;../MemCtrl/cmd_issuer.h&quot;
+<span class="lineNum">      22 </span>                : #include &quot;../MemCtrl/response_handler.h&quot;
+<span class="lineNum">      23 </span>                : 
+<span class="lineNum">      24 </span>                : using namespace std;
+<span class="lineNum">      25 </span>                : 
+<span class="lineNum">      26 </span>                : /*
+<span class="lineNum">      27 </span>                :  *--------------------------------------------------------------------------------------
+<span class="lineNum">      28 </span>                :  *       Class:  DataBusHandler
+<span class="lineNum">      29 </span>                :  *      Method:  DataBusHandler
+<span class="lineNum">      30 </span>                :  * Description:  constructor
+<span class="lineNum">      31 </span>                :  *--------------------------------------------------------------------------------------
+<span class="lineNum">      32 </span>                :  */
+<span class="lineNum">      33 </span>                : 
+<span class="lineNum">      34 </span><span class="lineCov">              8 : DataBusHandler::DataBusHandler()</span>
+<span class="lineNum">      35 </span>                : {
+<span class="lineNum">      36 </span><span class="lineCov">              8 :    prevTime = 0; </span>
+<span class="lineNum">      37 </span><span class="lineCov">              8 :    busBusyTime = 0;</span>
+<span class="lineNum">      38 </span><span class="lineCov">              8 : }</span>
+<span class="lineNum">      39 </span>                : 
+<span class="lineNum">      40 </span>                : /*
+<span class="lineNum">      41 </span>                :  *--------------------------------------------------------------------------------------
+<span class="lineNum">      42 </span>                :  *       Class:  DataBusHandler
+<span class="lineNum">      43 </span>                :  *      Method:  ~DataBusHandler
+<span class="lineNum">      44 </span>                :  * Description:  destructor
+<span class="lineNum">      45 </span>                :  *--------------------------------------------------------------------------------------
+<span class="lineNum">      46 </span>                :  */
+<span class="lineNum">      47 </span><span class="lineNoCov">              0 : DataBusHandler::~DataBusHandler()</span>
+<span class="lineNum">      48 </span>                : {
+<span class="lineNum">      49 </span>                : 
+<span class="lineNum">      50 </span><span class="lineNoCov">              0 : }</span>
+<span class="lineNum">      51 </span>                : 
+<span class="lineNum">      52 </span>                : /*
+<span class="lineNum">      53 </span>                :  *--------------------------------------------------------------------------------------
+<span class="lineNum">      54 </span>                :  *       Class:  DataBusHandler
+<span class="lineNum">      55 </span>                :  *      Method:  process_event
+<span class="lineNum">      56 </span>                :  * Description:  
+<span class="lineNum">      57 </span>                :  *--------------------------------------------------------------------------------------
+<span class="lineNum">      58 </span>                :  */
+<span class="lineNum">      59 </span><span class="lineCov">         153027 : void DataBusHandler::process_event(IrisEvent* e)</span>
+<span class="lineNum">      60 </span>                : {
+<span class="lineNum">      61 </span>                :   //  DRAMCmdState *cmd = new DRAMCmdState();
+<span class="lineNum">      62 </span><span class="lineCov">         153027 :     IrisEvent *event = new IrisEvent();</span>
+<span class="lineNum">      63 </span><span class="lineCov">         153027 :     DRAMCmdState* cmd = ((DRAMCmdState*)e-&gt;event_data.at(0));        //TODO needs to set this through manifold kernel's links        </span>
+<span class="lineNum">      64 </span><span class="lineCov">         153027 :     int burstDelay=0;                               </span>
+<span class="lineNum">      65 </span>                :     
+<span class="lineNum">      66 </span><span class="lineCov">         153027 :     switch (e-&gt;type)</span>
+<span class="lineNum">      67 </span>                :     {   
+<span class="lineNum">      68 </span>                :         case START_READ:
+<span class="lineNum">      69 </span><span class="lineCov">         148794 :              burstDelay = ceil(ceil(cmd-&gt;req.data.size*1.0/DDR_BUS_WIDTH)*BUS_CYCLE);</span>
+<span class="lineNum">      70 </span><span class="lineCov">         148794 :              event-&gt;src = (Component*)this;</span>
+<span class="lineNum">      71 </span><span class="lineCov">         148794 :              event-&gt;dst = (Component*)child2;                // towards response handler</span>
+<span class="lineNum">      72 </span><span class="lineCov">         148794 :              event-&gt;type = REPLY;    </span>
+<span class="lineNum">      73 </span><span class="lineCov">         148794 :              event-&gt;event_data.push_back((void*)cmd);        //TODO needs to set this through manifold kernel's links</span>
+<span class="lineNum">      74 </span>                : #ifdef DEEP_DEBUG
+<span class="lineNum">      75 </span>                :              cout &lt;&lt; dec &lt;&lt; Simulator::Now() &lt;&lt; &quot;: &quot; &lt;&lt; hex &lt;&lt; cmd-&gt;req.address &lt;&lt; &quot;: DataBus!! Receiving data from DRAM. Will take cycles = &quot; &lt;&lt; dec &lt;&lt; burstDelay &lt;&lt; endl;
+<span class="lineNum">      76 </span>                : #endif  
+<span class="lineNum">      77 </span><span class="lineCov">         148794 :              busBusyTime += burstDelay;</span>
+<span class="lineNum">      78 </span><span class="lineCov">         148794 :              Simulator::Schedule(Simulator::Now()+burstDelay+1, &amp;ResponseHandler::process_event, (ResponseHandler*)event-&gt;dst, event); </span>
+<span class="lineNum">      79 </span><span class="lineCov">         148794 :              break;</span>
+<span class="lineNum">      80 </span>                : 
+<span class="lineNum">      81 </span>                :         case START_WRITE:               
+<span class="lineNum">      82 </span><span class="lineCov">           4233 :              burstDelay = ceil(ceil(cmd-&gt;req.data.size*1.0/DDR_BUS_WIDTH)*BUS_CYCLE);        </span>
+<span class="lineNum">      83 </span><span class="lineCov">           4233 :              event-&gt;src = (Component*)this;</span>
+<span class="lineNum">      84 </span><span class="lineCov">           4233 :              event-&gt;dst = (Component*)child1;                // towards DRAM handler</span>
+<span class="lineNum">      85 </span><span class="lineCov">           4233 :              event-&gt;type = START_WRITE;      </span>
+<span class="lineNum">      86 </span><span class="lineCov">           4233 :              event-&gt;event_data.push_back((void*)cmd);        //TODO needs to set this through manifold kernel's links</span>
+<span class="lineNum">      87 </span>                : #ifdef DEEP_DEBUG
+<span class="lineNum">      88 </span>                :              cout &lt;&lt; dec &lt;&lt; Simulator::Now() &lt;&lt; &quot;: &quot; &lt;&lt; hex &lt;&lt; cmd-&gt;req.address &lt;&lt; &quot;: DataBus!! Sending data to be written to DRAM. Will take cycles = &quot; &lt;&lt; dec &lt;&lt; burstDelay &lt;&lt; endl;     
+<span class="lineNum">      89 </span>                : #endif
+<span class="lineNum">      90 </span><span class="lineCov">           4233 :              busBusyTime += burstDelay;</span>
+<span class="lineNum">      91 </span><span class="lineCov">           4233 :              Simulator::Schedule(Simulator::Now()+burstDelay+1, &amp;DRAMChannel::process_event, (DRAMChannel*)event-&gt;dst, event); </span>
+<span class="lineNum">      92 </span><span class="lineCov">           4233 :              break;</span>
+<span class="lineNum">      93 </span>                :         default:
+<span class="lineNum">      94 </span><span class="lineNoCov">              0 :                 delete cmd;</span>
+<span class="lineNum">      95 </span><span class="lineNoCov">              0 :                 delete event;</span>
+<span class="lineNum">      96 </span><span class="lineNoCov">              0 :                 cout &lt;&lt; Simulator::Now() &lt;&lt; &quot;: I should not come to default of process event in data bus\n&quot;;</span>
+<span class="lineNum">      97 </span>                :     }
+<span class="lineNum">      98 </span><span class="lineCov">         153027 :    if (prevTime + burstDelay &gt; Simulator::Now())</span>
+<span class="lineNum">      99 </span><span class="lineNoCov">              0 :    {    cerr &lt;&lt; &quot;Error in databus&quot; &lt;&lt; endl;</span>
+<span class="lineNum">     100 </span>                : //      exit(1);
+<span class="lineNum">     101 </span>                :    }
+<span class="lineNum">     102 </span><span class="lineCov">         153027 :    prevTime = Simulator::Now();</span>
+<span class="lineNum">     103 </span>                : 
+<span class="lineNum">     104 </span>                :  //  delete (DRAMCmdState*)e-&gt;event_data.at(0);
+<span class="lineNum">     105 </span><span class="lineCov">         153027 :    delete e;</span>
+<span class="lineNum">     106 </span><span class="lineCov">         153029 : }</span>
+<span class="lineNum">     107 </span>                : 
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+  <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LTP GCOV extension version 1.6</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

@@ -1,0 +1,780 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>LCOV - iris.info - MemCtrl/cmd_issuer.cc</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LTP GCOV extension - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+        <tr>
+          <td class="headerItem" width="20%">Current&nbsp;view:</td>
+          <td class="headerValue" width="80%" colspan=4><a href="../index.html">directory</a> - <a href="index.html">MemCtrl</a> - cmd_issuer.cc</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Test:</td>
+          <td class="headerValue" width="80%" colspan=4>iris.info</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Date:</td>
+          <td class="headerValue" width="20%">2010-05-24</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Instrumented&nbsp;lines:</td>
+          <td class="headerValue" width="20%">243</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Code&nbsp;covered:</td>
+          <td class="headerValue" width="20%">86.8 %</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Executed&nbsp;lines:</td>
+          <td class="headerValue" width="20%">211</td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><pre class="source">
+<span class="lineNum">       1 </span>                : /*
+<span class="lineNum">       2 </span>                :  * =====================================================================================
+<span class="lineNum">       3 </span>                :  *
+<span class="lineNum">       4 </span>                :  *       Filename:  cmd_issuer.cc
+<span class="lineNum">       5 </span>                :  *
+<span class="lineNum">       6 </span>                :  *    Description:  
+<span class="lineNum">       7 </span>                :  *
+<span class="lineNum">       8 </span>                :  *        Version:  1.0
+<span class="lineNum">       9 </span>                :  *        Created:  02/21/2010 07:21:03 PM
+<span class="lineNum">      10 </span>                :  *       Revision:  none
+<span class="lineNum">      11 </span>                :  *       Compiler:  gcc
+<span class="lineNum">      12 </span>                :  *
+<span class="lineNum">      13 </span>                :  *         Author:  SYED MINHAJ HASSAN
+<span class="lineNum">      14 </span>                :  *        Company:  Georgia Institute of Technology
+<span class="lineNum">      15 </span>                :  *
+<span class="lineNum">      16 </span>                :  * =====================================================================================
+<span class="lineNum">      17 </span>                :  */
+<span class="lineNum">      18 </span>                : 
+<span class="lineNum">      19 </span>                : #ifndef  cmd_iss_h_INC
+<span class="lineNum">      20 </span>                : #define  cmd_iss_h_INC
+<span class="lineNum">      21 </span>                : 
+<span class="lineNum">      22 </span>                : #include &quot;cmd_issuer.h&quot;
+<span class="lineNum">      23 </span>                : #include &quot;bus_handler.h&quot;
+<span class="lineNum">      24 </span>                : #include &quot;../components/impl/genericEvents.h&quot;
+<span class="lineNum">      25 </span>                : 
+<span class="lineNum">      26 </span>                : using namespace std;
+<span class="lineNum">      27 </span>                : 
+<span class="lineNum">      28 </span><span class="lineCov">              8 : CmdIssuer::CmdIssuer()</span>
+<span class="lineNum">      29 </span>                : {
+<span class="lineNum">      30 </span><span class="lineCov">              8 :     Request *req = new Request();</span>
+<span class="lineNum">      31 </span><span class="lineCov">              8 :     prevState.prevCmdTime = 0;</span>
+<span class="lineNum">      32 </span><span class="lineCov">              8 :     prevState.prevCmdRank = NO_OF_RANKS+1;</span>
+<span class="lineNum">      33 </span><span class="lineCov">              8 :     prevState.prevCmdBank = NO_OF_BANKS+1;</span>
+<span class="lineNum">      34 </span><span class="lineCov">              8 :     prevState.cmd.set(PRECHARGE,NORMAL,*req);    </span>
+<span class="lineNum">      35 </span><span class="lineCov">              8 :     busBusy = 0;</span>
+<span class="lineNum">      36 </span><span class="lineCov">              8 :     generated_start_event = false;</span>
+<span class="lineNum">      37 </span><span class="lineCov">              8 :     delete req;                 </span>
+<span class="lineNum">      38 </span><span class="lineNoCov">              0 : }</span>
+<span class="lineNum">      39 </span>                : 
+<span class="lineNum">      40 </span>                : /*
+<span class="lineNum">      41 </span>                :  *--------------------------------------------------------------------------------------
+<span class="lineNum">      42 </span>                :  *       Class:  CmdIssuer
+<span class="lineNum">      43 </span>                :  *      Method:  ~CmdIssuer
+<span class="lineNum">      44 </span>                :  * Description:  destructor
+<span class="lineNum">      45 </span>                :  *--------------------------------------------------------------------------------------
+<span class="lineNum">      46 </span>                :  */
+<span class="lineNum">      47 </span><span class="lineNoCov">              0 : CmdIssuer::~CmdIssuer()</span>
+<span class="lineNum">      48 </span>                : {
+<span class="lineNum">      49 </span>                : 
+<span class="lineNum">      50 </span><span class="lineNoCov">              0 : }</span>
+<span class="lineNum">      51 </span>                : 
+<span class="lineNum">      52 </span>                : /*
+<span class="lineNum">      53 </span>                :  *--------------------------------------------------------------------------------------
+<span class="lineNum">      54 </span>                :  *       Class:  CmdIssuer
+<span class="lineNum">      55 </span>                :  *      Method:  process_event
+<span class="lineNum">      56 </span>                :  * Description:  constructor
+<span class="lineNum">      57 </span>                :  *--------------------------------------------------------------------------------------
+<span class="lineNum">      58 </span>                :  */
+<span class="lineNum">      59 </span><span class="lineCov">        6315336 : void CmdIssuer::process_event(IrisEvent* e)</span>
+<span class="lineNum">      60 </span>                : {   
+<span class="lineNum">      61 </span><span class="lineCov">        6315336 :     bool isWrite = false;</span>
+<span class="lineNum">      62 </span><span class="lineCov">        6315336 :     switch (e-&gt;type)</span>
+<span class="lineNum">      63 </span>                :     {
+<span class="lineNum">      64 </span>                :         case START:
+<span class="lineNum">      65 </span>                :             
+<span class="lineNum">      66 </span><span class="lineCov">        6315336 :             ((BusHandler*)parent)-&gt;SetIfFull();</span>
+<span class="lineNum">      67 </span><span class="lineCov">        6315336 :             ((BusHandler*)parent)-&gt;linkBusy[Id] = false;     </span>
+<span class="lineNum">      68 </span><span class="lineCov">        6315336 :             generated_start_event = false;</span>
+<span class="lineNum">      69 </span><span class="lineCov">        6315336 :             if (HasWork())</span>
+<span class="lineNum">      70 </span>                :             {
+<span class="lineNum">      71 </span><span class="lineCov">        6282504 :                 DRAMCmdState *cmd = new DRAMCmdState();</span>
+<span class="lineNum">      72 </span><span class="lineCov">        6282504 :                 if (IssueCmd(&amp;isWrite,cmd)) </span>
+<span class="lineNum">      73 </span>                :                 {
+<span class="lineNum">      74 </span>                : #ifdef DEEP_DEBUG
+<span class="lineNum">      75 </span>                :                     cout &lt;&lt; dec &lt;&lt; Simulator::Now() &lt;&lt; &quot;: &quot; &lt;&lt; hex &lt;&lt; cmd-&gt;req.address &lt;&lt; &quot;: Issuing &quot; &lt;&lt; dec &lt;&lt; cmd-&gt;cmd &lt;&lt; &quot; with following isWrite signal &quot; &lt;&lt; isWrite &lt;&lt; endl;        
+<span class="lineNum">      76 </span>                : #endif  
+<span class="lineNum">      77 </span><span class="lineCov">         331804 :                     if (cmd-&gt;cmd == READ || cmd-&gt;cmd == WRITE)</span>
+<span class="lineNum">      78 </span>                :                     {   
+<span class="lineNum">      79 </span><span class="lineCov">         153032 :                         cmd-&gt;req.busInsertionTime = Simulator::Now()+1;      </span>
+<span class="lineNum">      80 </span>                :                     }
+<span class="lineNum">      81 </span>                : 
+<span class="lineNum">      82 </span>                : #ifdef OPEN_PAGE_POLICY
+<span class="lineNum">      83 </span><span class="lineCov">         331804 :                     if (cmd-&gt;cmd == READ || cmd-&gt;cmd == WRITE)</span>
+<span class="lineNum">      84 </span>                :                     {
+<span class="lineNum">      85 </span><span class="lineCov">         153032 :                         ((BusHandler*)parent)-&gt;oneReq[cmd-&gt;req.channelNo][cmd-&gt;req.rankNo][cmd-&gt;req.bankNo] = false;</span>
+<span class="lineNum">      86 </span>                :                     }
+<span class="lineNum">      87 </span>                : #endif
+<span class="lineNum">      88 </span>                :                 
+<span class="lineNum">      89 </span>                : #ifdef CLOSE_PAGE_POLICY
+<span class="lineNum">      90 </span>                :                     if (cmd-&gt;cmd == PRECHARGE)
+<span class="lineNum">      91 </span>                :                     {
+<span class="lineNum">      92 </span>                :                         ((BusHandler*)parent)-&gt;oneReq[cmd-&gt;req.channelNo][cmd-&gt;req.rankNo][cmd-&gt;req.bankNo] = false;
+<span class="lineNum">      93 </span>                :                     }
+<span class="lineNum">      94 </span>                : #endif
+<span class="lineNum">      95 </span><span class="lineCov">         331804 :                     IrisEvent *event = new IrisEvent();</span>
+<span class="lineNum">      96 </span><span class="lineCov">         331804 :                     event-&gt;src = (Component*)this;</span>
+<span class="lineNum">      97 </span><span class="lineCov">         331804 :                     event-&gt;dst = (Component*)cmdBus;</span>
+<span class="lineNum">      98 </span><span class="lineCov">         331804 :                     event-&gt;event_data.push_back((void*)cmd); //TODO needs to set this through manifold kernel's links</span>
+<span class="lineNum">      99 </span><span class="lineCov">         331804 :                     event-&gt;type = START;</span>
+<span class="lineNum">     100 </span><span class="lineCov">         331804 :                     Simulator::Schedule(Simulator::Now()+1, &amp;CmdBusHandler::process_event, (CmdBusHandler*)event-&gt;dst, event);</span>
+<span class="lineNum">     101 </span>                :                 }
+<span class="lineNum">     102 </span>                :                 else 
+<span class="lineNum">     103 </span><span class="lineCov">       11901400 :                    delete cmd;</span>
+<span class="lineNum">     104 </span>                :                 
+<span class="lineNum">     105 </span><span class="lineCov">        6282504 :                 if (isWrite)</span>
+<span class="lineNum">     106 </span>                :                 {
+<span class="lineNum">     107 </span><span class="lineCov">           4233 :                     DRAMCmdState *cmd2 = new DRAMCmdState();</span>
+<span class="lineNum">     108 </span><span class="lineCov">           4233 :                     *cmd2 = *cmd;       </span>
+<span class="lineNum">     109 </span><span class="lineCov">           4233 :                     IrisEvent *event3 = new IrisEvent();</span>
+<span class="lineNum">     110 </span><span class="lineCov">           4233 :                     Time delay = CalculateDataDelay(*cmd2);</span>
+<span class="lineNum">     111 </span><span class="lineCov">           4233 :                     event3-&gt;src = (Component*)this;</span>
+<span class="lineNum">     112 </span><span class="lineCov">           4233 :                     event3-&gt;dst = (Component*)dataBus;</span>
+<span class="lineNum">     113 </span><span class="lineCov">           4233 :                     event3-&gt;event_data.push_back((void*)cmd2);       //TODO needs to set this through manifold kernel's links</span>
+<span class="lineNum">     114 </span><span class="lineCov">           4233 :                     event3-&gt;type = START_WRITE;</span>
+<span class="lineNum">     115 </span><span class="lineCov">           4233 :                     Simulator::Schedule(Simulator::Now()+delay+1, &amp;DataBusHandler::process_event, (DataBusHandler*)event3-&gt;dst, event3);</span>
+<span class="lineNum">     116 </span>                :                     // issue Data Bus Command as well if write
+<span class="lineNum">     117 </span>                :                 }
+<span class="lineNum">     118 </span>                :                 
+<span class="lineNum">     119 </span>                :         //      if (HasWork())
+<span class="lineNum">     120 </span><span class="lineCov">        6282504 :             if( !generated_start_event)</span>
+<span class="lineNum">     121 </span>                :                 {
+<span class="lineNum">     122 </span><span class="lineCov">        6282504 :                     generated_start_event = true;</span>
+<span class="lineNum">     123 </span><span class="lineCov">        6282504 :                 IrisEvent *event2 = new IrisEvent();</span>
+<span class="lineNum">     124 </span><span class="lineCov">        6282504 :                 event2-&gt;src = (Component*)this;</span>
+<span class="lineNum">     125 </span><span class="lineCov">        6282504 :                 event2-&gt;dst = (Component*)this;      </span>
+<span class="lineNum">     126 </span><span class="lineCov">        6282504 :                 event2-&gt;type = START;</span>
+<span class="lineNum">     127 </span><span class="lineCov">        6282504 :                 Simulator::Schedule(Simulator::Now()+1, &amp;CmdIssuer::process_event, (CmdIssuer*)event2-&gt;dst, event2);</span>
+<span class="lineNum">     128 </span>                :                 }
+<span class="lineNum">     129 </span>                :         //      else
+<span class="lineNum">     130 </span>                :         //          ((BusHandler*)parent)-&gt;SetIfFull();      
+<span class="lineNum">     131 </span>                :             }      
+<span class="lineNum">     132 </span>                :             break;      
+<span class="lineNum">     133 </span>                : 
+<span class="lineNum">     134 </span>                :         default:
+<span class="lineNum">     135 </span>                :                  //cerr &lt;&lt;  &quot;CmdIssuer There should be no default case as such but OK /n&quot;;
+<span class="lineNum">     136 </span>                :         break;
+<span class="lineNum">     137 </span>                :     }
+<span class="lineNum">     138 </span><span class="lineCov">        6315336 :     delete e;</span>
+<span class="lineNum">     139 </span><span class="lineCov">        6315336 : }</span>
+<span class="lineNum">     140 </span>                : 
+<span class="lineNum">     141 </span><span class="lineNoCov">              0 : bool CmdIssuer::HasWork()</span>
+<span class="lineNum">     142 </span>                : {
+<span class="lineNum">     143 </span><span class="lineCov">       12630672 :     return (!((BusHandler*)parent)-&gt;cmdQueue[bufferId].empty());</span>
+<span class="lineNum">     144 </span>                : }
+<span class="lineNum">     145 </span>                : 
+<span class="lineNum">     146 </span><span class="lineNoCov">              0 : std::string CmdIssuer::toString()</span>
+<span class="lineNum">     147 </span>                : {
+<span class="lineNum">     148 </span><span class="lineNoCov">              0 :         return &quot;CmdIssuer&quot;;</span>
+<span class="lineNum">     149 </span>                : }
+<span class="lineNum">     150 </span>                : 
+<span class="lineNum">     151 </span><span class="lineCov">        6282504 : bool CmdIssuer::IssueCmd(bool *isWrite, DRAMCmdState *scheduledCmd)</span>
+<span class="lineNum">     152 </span>                : {
+<span class="lineNum">     153 </span><span class="lineCov">        6282504 :         DRAMCmdState prevCmd;</span>
+<span class="lineNum">     154 </span><span class="lineCov">        6282504 :         bool temp = false;</span>
+<span class="lineNum">     155 </span><span class="lineCov">        6282504 :         vector&lt;DRAMCmdState&gt;::iterator bufferIndex = ((BusHandler*)parent)-&gt;cmdQueue[bufferId].begin();</span>
+<span class="lineNum">     156 </span><span class="lineCov">        6282504 :         BusHandler * parent2 = ((BusHandler*)parent);</span>
+<span class="lineNum">     157 </span><span class="lineCov">        6282504 :         *isWrite = false;</span>
+<span class="lineNum">     158 </span><span class="lineCov">        6282504 :         prevCmd = prevState.cmd;</span>
+<span class="lineNum">     159 </span>                : 
+<span class="lineNum">     160 </span><span class="lineCov">       51222020 :         for (unsigned int i=0; i&lt;parent2-&gt;cmdQueue[bufferId].size(); i++)</span>
+<span class="lineNum">     161 </span>                :         {       
+<span class="lineNum">     162 </span><span class="lineCov">       58980930 :             if (!BusNotBusy(parent2-&gt;cmdQueue[bufferId][i]) )//&amp;&amp;            // Check whether Data Bus is busy only for Read &amp; Write cmds</span>
+<span class="lineNum">     163 </span>                :             {   bufferIndex++;
+<span class="lineNum">     164 </span>                :                 continue;
+<span class="lineNum">     165 </span>                :             }
+<span class="lineNum">     166 </span><span class="lineCov">       29277296 :             if (!BanksFirstReq(parent2-&gt;cmdQueue[bufferId][i],i)     )//&amp;&amp;   // Low Level cmds within a bank has to be serialized</span>
+<span class="lineNum">     167 </span>                :             {   bufferIndex++;
+<span class="lineNum">     168 </span>                :                 continue;
+<span class="lineNum">     169 </span>                :             }
+<span class="lineNum">     170 </span><span class="lineCov">       15421737 :             if (BankNotBusy(parent2-&gt;cmdQueue[bufferId][i]) )                // Check whether the bank is busy or not</span>
+<span class="lineNum">     171 </span>                :             {           
+<span class="lineNum">     172 </span><span class="lineCov">        3630120 :                 if (CanSchedule(parent2-&gt;cmdQueue[bufferId][i],prevCmd))</span>
+<span class="lineNum">     173 </span>                :                 {       // Check the timing constraints with last cmd   
+<span class="lineNum">     174 </span><span class="lineCov">         663608 :                     *scheduledCmd = parent2-&gt;cmdQueue[bufferId][i];  // issue command to command bus</span>
+<span class="lineNum">     175 </span><span class="lineCov">         663608 :                     if (parent2-&gt;cmdQueue[bufferId][i].cmd==WRITE)</span>
+<span class="lineNum">     176 </span><span class="lineCov">           4233 :                         *isWrite = true;</span>
+<span class="lineNum">     177 </span><span class="lineCov">         663608 :                     SetPrevState(parent2-&gt;cmdQueue[bufferId][i]);</span>
+<span class="lineNum">     178 </span><span class="lineCov">         331804 :                     SetBusBusyTime(*scheduledCmd);              </span>
+<span class="lineNum">     179 </span><span class="lineCov">         331804 :                     parent2-&gt;cmdQueue[bufferId].erase(bufferIndex);  // erase the scheduled command;</span>
+<span class="lineNum">     180 </span><span class="lineCov">         331804 :                     temp = true;</span>
+<span class="lineNum">     181 </span><span class="lineCov">         331804 :                     break;</span>
+<span class="lineNum">     182 </span>                :                  }      
+<span class="lineNum">     183 </span>                :              }
+<span class="lineNum">     184 </span>                :              bufferIndex++;
+<span class="lineNum">     185 </span>                :         }
+<span class="lineNum">     186 </span><span class="lineCov">        6282504 :         return temp;    </span>
+<span class="lineNum">     187 </span>                : }
+<span class="lineNum">     188 </span>                : 
+<span class="lineNum">     189 </span><span class="lineCov">       19660310 : bool CmdIssuer::BusNotBusy(DRAMCmdState currentCmd)</span>
+<span class="lineNum">     190 </span>                : {
+<span class="lineNum">     191 </span><span class="lineCov">       19660310 :     if (currentCmd.cmd == READ || currentCmd.cmd == WRITE)</span>
+<span class="lineNum">     192 </span>                :     {
+<span class="lineNum">     193 </span><span class="lineCov">       15003783 :         if (busBusy&lt;Simulator::Now())</span>
+<span class="lineNum">     194 </span><span class="lineCov">        2662797 :             return true;</span>
+<span class="lineNum">     195 </span>                :         else 
+<span class="lineNum">     196 </span><span class="lineCov">       12340986 :             return false;</span>
+<span class="lineNum">     197 </span>                :     }
+<span class="lineNum">     198 </span>                :     else 
+<span class="lineNum">     199 </span><span class="lineCov">        4656527 :         return true;    </span>
+<span class="lineNum">     200 </span>                :                         
+<span class="lineNum">     201 </span>                : }
+<span class="lineNum">     202 </span>                : 
+<span class="lineNum">     203 </span><span class="lineCov">         331804 : void CmdIssuer::SetBusBusyTime(DRAMCmdState currentCmd)</span>
+<span class="lineNum">     204 </span>                : {
+<span class="lineNum">     205 </span><span class="lineCov">         331804 :     if (currentCmd.cmd == WRITE)           </span>
+<span class="lineNum">     206 </span><span class="lineCov">           8466 :         busBusy = Simulator::Now()+t_CMD+CalculateBurstL(currentCmd);</span>
+<span class="lineNum">     207 </span><span class="lineCov">         327571 :     else if (currentCmd.cmd == READ)       </span>
+<span class="lineNum">     208 </span><span class="lineCov">         297598 :         busBusy = Simulator::Now()+t_CMD+CalculateBurstL(currentCmd);</span>
+<span class="lineNum">     209 </span><span class="lineCov">         331804 : }</span>
+<span class="lineNum">     210 </span>                : 
+<span class="lineNum">     211 </span><span class="lineNoCov">              0 : bool CmdIssuer::BanksFirstReq(DRAMCmdState currentCmd, unsigned int index)</span>
+<span class="lineNum">     212 </span>                : {
+<span class="lineNum">     213 </span><span class="lineCov">        7319324 :     BusHandler * parent2 = ((BusHandler*)parent);       </span>
+<span class="lineNum">     214 </span><span class="lineCov">       16182370 :     for (unsigned int i=0; i&lt;index; i++)</span>
+<span class="lineNum">     215 </span>                :     {
+<span class="lineNum">     216 </span><span class="lineCov">       22083582 :         if (parent2-&gt;cmdQueue[bufferId][i].req.bankNo == currentCmd.req.bankNo)</span>
+<span class="lineNum">     217 </span><span class="lineCov">        2178745 :             return false;       </span>
+<span class="lineNum">     218 </span>                :     }
+<span class="lineNum">     219 </span><span class="lineCov">        5140579 :     return true;         </span>
+<span class="lineNum">     220 </span>                : }
+<span class="lineNum">     221 </span>                : 
+<span class="lineNum">     222 </span><span class="lineCov">        5140579 : bool CmdIssuer::BankNotBusy(DRAMCmdState currentCmd)</span>
+<span class="lineNum">     223 </span>                : {
+<span class="lineNum">     224 </span><span class="lineCov">        5140579 :    if (currentCmd.cmd == ALL_BANK_REFRESH /*&amp;&amp; currentCmd.req.rankNo == prevState.prevCmdRank*/)</span>
+<span class="lineNum">     225 </span>                :    {
+<span class="lineNum">     226 </span><span class="lineCov">        2277609 :         for (unsigned int i=0; i&lt;NO_OF_BANKS; i++)</span>
+<span class="lineNum">     227 </span>                :         {
+<span class="lineNum">     228 </span><span class="lineCov">        2276596 :             Time prevTime = prevState.rank[currentCmd.req.rankNo].bank[i].prevCmdTime;</span>
+<span class="lineNum">     229 </span><span class="lineCov">        2276596 :             DRAMCmd prevCmd = prevState.rank[currentCmd.req.rankNo].bank[i].prevCmd;</span>
+<span class="lineNum">     230 </span>                :     
+<span class="lineNum">     231 </span><span class="lineCov">        4553192 :             Time prevBurstL = CalculateBurstL(prevState.cmd);   </span>
+<span class="lineNum">     232 </span><span class="lineCov">        2276596 :             Time busyTime = CalculateBusyTime(currentCmd.cmd, prevCmd, SAME, SAME, prevBurstL);</span>
+<span class="lineNum">     233 </span>                : 
+<span class="lineNum">     234 </span><span class="lineCov">        2276596 :         if (prevTime+busyTime&gt;Simulator::Now()) </span>
+<span class="lineNum">     235 </span><span class="lineCov">         929533 :             return false;</span>
+<span class="lineNum">     236 </span>                :         }
+<span class="lineNum">     237 </span><span class="lineCov">           1013 :         return true;</span>
+<span class="lineNum">     238 </span>                :    }
+<span class="lineNum">     239 </span>                :    else
+<span class="lineNum">     240 </span>                : //      if (currentCmd.req.rankNo == prevState.prevCmdRank &amp;&amp; currentCmd.req.bankNo == prevState.prevCmdBank)
+<span class="lineNum">     241 </span>                :     {           
+<span class="lineNum">     242 </span><span class="lineCov">        4210033 :         Time prevTime = prevState.rank[currentCmd.req.rankNo].bank[currentCmd.req.bankNo].prevCmdTime;</span>
+<span class="lineNum">     243 </span><span class="lineCov">        4210033 :         DRAMCmd prevCmd = prevState.rank[currentCmd.req.rankNo].bank[currentCmd.req.bankNo].prevCmd;</span>
+<span class="lineNum">     244 </span>                : //      if (prevTime+CmdDelay(prevCmd)&lt;=Simulator::Now())
+<span class="lineNum">     245 </span>                : //          return true;
+<span class="lineNum">     246 </span>                : //      else
+<span class="lineNum">     247 </span>                : //          return false;       
+<span class="lineNum">     248 </span>                :     
+<span class="lineNum">     249 </span><span class="lineCov">        8420066 :         Time prevBurstL = CalculateBurstL(prevState.cmd);       </span>
+<span class="lineNum">     250 </span><span class="lineCov">        4210033 :         Time busyTime = CalculateBusyTime(currentCmd.cmd, prevCmd, SAME, SAME, prevBurstL);</span>
+<span class="lineNum">     251 </span>                : 
+<span class="lineNum">     252 </span><span class="lineCov">        4210033 :         if (prevTime+busyTime&lt;=Simulator::Now()) </span>
+<span class="lineNum">     253 </span><span class="lineCov">        1209027 :             return true;</span>
+<span class="lineNum">     254 </span>                :         else
+<span class="lineNum">     255 </span><span class="lineCov">        3001006 :             return false;</span>
+<span class="lineNum">     256 </span>                :    }
+<span class="lineNum">     257 </span>                : }
+<span class="lineNum">     258 </span>                : 
+<span class="lineNum">     259 </span><span class="lineNoCov">              0 : Time CmdIssuer::CmdDelay(DRAMCmd cmd)</span>
+<span class="lineNum">     260 </span>                : {
+<span class="lineNum">     261 </span><span class="lineNoCov">              0 :     Time cmdTime = 0;</span>
+<span class="lineNum">     262 </span>                :         //// TODO ///////
+<span class="lineNum">     263 </span><span class="lineNoCov">              0 :     if (cmd == ACTIVATE)</span>
+<span class="lineNum">     264 </span><span class="lineNoCov">              0 :         cmdTime = t_RCD;</span>
+<span class="lineNum">     265 </span><span class="lineNoCov">              0 :     else if (cmd == PRECHARGE)</span>
+<span class="lineNum">     266 </span><span class="lineNoCov">              0 :         cmdTime = t_RP;</span>
+<span class="lineNum">     267 </span><span class="lineNoCov">              0 :     else if (cmd == READ || cmd == WRITE)</span>
+<span class="lineNum">     268 </span><span class="lineNoCov">              0 :         cmdTime = t_CAS;</span>
+<span class="lineNum">     269 </span><span class="lineNoCov">              0 :     else if (cmd == ALL_BANK_REFRESH)</span>
+<span class="lineNum">     270 </span><span class="lineNoCov">              0 :         cmdTime = t_RFC;</span>
+<span class="lineNum">     271 </span>                :                 
+<span class="lineNum">     272 </span><span class="lineNoCov">              0 :     return cmdTime;</span>
+<span class="lineNum">     273 </span>                : }
+<span class="lineNum">     274 </span>                : 
+<span class="lineNum">     275 </span><span class="lineCov">           4233 : Time CmdIssuer::CalculateDataDelay(DRAMCmdState cmdS)</span>
+<span class="lineNum">     276 </span>                : {
+<span class="lineNum">     277 </span><span class="lineCov">           4233 :     Time delay = 0; </span>
+<span class="lineNum">     278 </span><span class="lineCov">           4233 :     if (cmdS.cmd == WRITE)</span>
+<span class="lineNum">     279 </span>                :     {
+<span class="lineNum">     280 </span><span class="lineCov">           4233 :         delay = t_CWD+t_CMD;</span>
+<span class="lineNum">     281 </span>                :     }
+<span class="lineNum">     282 </span>                :     else
+<span class="lineNum">     283 </span><span class="lineNoCov">              0 :         cout &lt;&lt; &quot;Error: calculating data bus delay for non write cmd\n&quot;;</span>
+<span class="lineNum">     284 </span><span class="lineCov">           4233 :     return delay;       </span>
+<span class="lineNum">     285 </span>                : }
+<span class="lineNum">     286 </span>                : 
+<span class="lineNum">     287 </span><span class="lineCov">        1210040 : bool CmdIssuer::CanSchedule(DRAMCmdState currentCmd, DRAMCmdState prevCmd)</span>
+<span class="lineNum">     288 </span>                : {
+<span class="lineNum">     289 </span>                :     RankBankComb rankC;
+<span class="lineNum">     290 </span>                :     RankBankComb bankC;
+<span class="lineNum">     291 </span><span class="lineCov">        1210040 :     Time prevTime = prevState.prevCmdTime;              </span>
+<span class="lineNum">     292 </span>                : 
+<span class="lineNum">     293 </span><span class="lineCov">        1210040 :     if (currentCmd.req.rankNo==prevCmd.req.rankNo)</span>
+<span class="lineNum">     294 </span><span class="lineCov">        1204724 :         rankC = SAME;</span>
+<span class="lineNum">     295 </span>                :     else 
+<span class="lineNum">     296 </span><span class="lineCov">           5316 :         rankC = DIFF;</span>
+<span class="lineNum">     297 </span>                :         
+<span class="lineNum">     298 </span><span class="lineCov">        1210040 :     if (currentCmd.req.bankNo==prevCmd.req.bankNo)</span>
+<span class="lineNum">     299 </span><span class="lineCov">         129038 :         bankC = SAME;</span>
+<span class="lineNum">     300 </span>                :     else 
+<span class="lineNum">     301 </span><span class="lineCov">        1081002 :         bankC = DIFF;</span>
+<span class="lineNum">     302 </span>                : 
+<span class="lineNum">     303 </span><span class="lineCov">        2420080 :     Time prevBurstL = CalculateBurstL(prevCmd); </span>
+<span class="lineNum">     304 </span><span class="lineCov">        1210040 :     Time busyTime = CalculateBusyTime(currentCmd.cmd, prevCmd.cmd, rankC, bankC, prevBurstL);</span>
+<span class="lineNum">     305 </span>                : 
+<span class="lineNum">     306 </span><span class="lineCov">        1210040 :     if (prevTime+busyTime&lt;=Simulator::Now()) </span>
+<span class="lineNum">     307 </span><span class="lineCov">         331804 :         return true;</span>
+<span class="lineNum">     308 </span>                :     else
+<span class="lineNum">     309 </span><span class="lineCov">         878236 :         return false;</span>
+<span class="lineNum">     310 </span>                : }
+<span class="lineNum">     311 </span>                : 
+<span class="lineNum">     312 </span><span class="lineNoCov">              0 : Time CmdIssuer::CalculateBurstL(DRAMCmdState prevCmd)</span>
+<span class="lineNum">     313 </span>                : {
+<span class="lineNum">     314 </span><span class="lineCov">        7849701 :     Time t_Burst = 0;   </span>
+<span class="lineNum">     315 </span><span class="lineCov">        7849701 :     switch (prevCmd.burst)</span>
+<span class="lineNum">     316 </span>                :     {
+<span class="lineNum">     317 </span>                :         case READL:
+<span class="lineNum">     318 </span><span class="lineCov">        1615277 :             t_Burst = ceil(ceil(READ_SIZE/DDR_BUS_WIDTH)*BUS_CYCLE); </span>
+<span class="lineNum">     319 </span><span class="lineNoCov">              0 :             break;</span>
+<span class="lineNum">     320 </span>                :         case WRITEL:
+<span class="lineNum">     321 </span><span class="lineCov">         577783 :             t_Burst = ceil(ceil(WRITE_SIZE/DDR_BUS_WIDTH)*BUS_CYCLE);   </span>
+<span class="lineNum">     322 </span><span class="lineNoCov">              0 :             break;</span>
+<span class="lineNum">     323 </span>                :         case PREFETCHL:
+<span class="lineNum">     324 </span><span class="lineCov">         989192 :             t_Burst = ceil(ceil(PREFETCH_SIZE/DDR_BUS_WIDTH)*BUS_CYCLE);        </span>
+<span class="lineNum">     325 </span><span class="lineNoCov">              0 :             break;</span>
+<span class="lineNum">     326 </span>                :         case WRITEBACKL:
+<span class="lineNum">     327 </span><span class="lineCov">         742363 :             t_Burst = ceil(ceil(WRITEBACK_SIZE/DDR_BUS_WIDTH)*BUS_CYCLE); </span>
+<span class="lineNum">     328 </span>                :             break; 
+<span class="lineNum">     329 </span>                :          default:
+<span class="lineNum">     330 </span>                :              break;
+<span class="lineNum">     331 </span>                :     }
+<span class="lineNum">     332 </span><span class="lineCov">        7849701 :     return t_Burst;</span>
+<span class="lineNum">     333 </span>                : }
+<span class="lineNum">     334 </span>                : 
+<span class="lineNum">     335 </span><span class="lineCov">        7696669 : Time CmdIssuer::CalculateBusyTime(DRAMCmd curCmd, DRAMCmd prevCmd, RankBankComb rankC, RankBankComb bankC, Time prevBurstL)</span>
+<span class="lineNum">     336 </span>                : {
+<span class="lineNum">     337 </span><span class="lineCov">        7696669 :     Time busyTime=0;</span>
+<span class="lineNum">     338 </span><span class="lineCov">        7696669 :     Time t_Burst = prevBurstL;</span>
+<span class="lineNum">     339 </span><span class="lineCov">        7696669 :     busyTime += t_CMD;  </span>
+<span class="lineNum">     340 </span>                : 
+<span class="lineNum">     341 </span><span class="lineCov">        7696669 :     switch (prevCmd)</span>
+<span class="lineNum">     342 </span>                :     {
+<span class="lineNum">     343 </span>                :         case ACTIVATE:
+<span class="lineNum">     344 </span><span class="lineCov">        2558785 :             switch(curCmd)</span>
+<span class="lineNum">     345 </span>                :             {
+<span class="lineNum">     346 </span>                :                 case ACTIVATE:
+<span class="lineNum">     347 </span><span class="lineCov">           3880 :                     switch(rankC)</span>
+<span class="lineNum">     348 </span>                :                     {
+<span class="lineNum">     349 </span>                :                         case SAME:
+<span class="lineNum">     350 </span><span class="lineCov">           3850 :                             switch(bankC)</span>
+<span class="lineNum">     351 </span>                :                             {   
+<span class="lineNum">     352 </span>                :                                 case SAME:
+<span class="lineNum">     353 </span><span class="lineNoCov">              0 :                                       busyTime = 999999; // infinity    </span>
+<span class="lineNum">     354 </span>                :                                    //   cout &lt;&lt; &quot;Should not do activate and activate again to same bank\n&quot;;//busyTime = t_RC;
+<span class="lineNum">     355 </span><span class="lineNoCov">              0 :                                 break;</span>
+<span class="lineNum">     356 </span>                :                                 case DIFF:
+<span class="lineNum">     357 </span><span class="lineCov">           3850 :                                       busyTime = t_RRD;  </span>
+<span class="lineNum">     358 </span>                :                                 break;  
+<span class="lineNum">     359 </span>                :                                 default:
+<span class="lineNum">     360 </span>                :                                 break; 
+<span class="lineNum">     361 </span>                :                             }                       
+<span class="lineNum">     362 </span>                :                         break;
+<span class="lineNum">     363 </span>                :                         default:
+<span class="lineNum">     364 </span>                :                         break;
+<span class="lineNum">     365 </span>                :                     }
+<span class="lineNum">     366 </span>                :                 break;
+<span class="lineNum">     367 </span>                :                 case PRECHARGE:
+<span class="lineNum">     368 </span><span class="lineCov">          84881 :                     switch(rankC)</span>
+<span class="lineNum">     369 </span>                :                     {
+<span class="lineNum">     370 </span>                :                         case SAME:
+<span class="lineNum">     371 </span><span class="lineCov">          84393 :                             switch(bankC)</span>
+<span class="lineNum">     372 </span>                :                             {   
+<span class="lineNum">     373 </span>                :                                 case SAME:
+<span class="lineNum">     374 </span><span class="lineNoCov">              0 :                                       busyTime = t_RAS;</span>
+<span class="lineNum">     375 </span>                :                                 break;
+<span class="lineNum">     376 </span>                :                                 default:
+<span class="lineNum">     377 </span>                :                                 break; 
+<span class="lineNum">     378 </span>                :                             }
+<span class="lineNum">     379 </span>                :                         break;
+<span class="lineNum">     380 </span>                :                         default:
+<span class="lineNum">     381 </span>                :                         break;
+<span class="lineNum">     382 </span>                :                     }
+<span class="lineNum">     383 </span>                :                 break;
+<span class="lineNum">     384 </span>                :                 case READ:
+<span class="lineNum">     385 </span><span class="lineCov">        1869980 :                     switch(rankC)</span>
+<span class="lineNum">     386 </span>                :                     {
+<span class="lineNum">     387 </span>                :                         case SAME:
+<span class="lineNum">     388 </span><span class="lineCov">        1869597 :                             switch(bankC)</span>
+<span class="lineNum">     389 </span>                :                             {   
+<span class="lineNum">     390 </span>                :                                 case SAME:
+<span class="lineNum">     391 </span><span class="lineCov">        1819648 :                                       busyTime = t_RCD-t_AL;</span>
+<span class="lineNum">     392 </span>                :                                 break;
+<span class="lineNum">     393 </span>                :                                 default:
+<span class="lineNum">     394 </span>                :                                 break; 
+<span class="lineNum">     395 </span>                :                             }
+<span class="lineNum">     396 </span>                :                         break;
+<span class="lineNum">     397 </span>                :                         default:
+<span class="lineNum">     398 </span>                :                         break;
+<span class="lineNum">     399 </span>                :                     }
+<span class="lineNum">     400 </span>                : 
+<span class="lineNum">     401 </span>                :                 break;
+<span class="lineNum">     402 </span>                :                 case WRITE:
+<span class="lineNum">     403 </span><span class="lineCov">          97242 :                     switch(rankC)</span>
+<span class="lineNum">     404 </span>                :                     {
+<span class="lineNum">     405 </span>                :                         case SAME:
+<span class="lineNum">     406 </span><span class="lineCov">          97188 :                             switch(bankC)</span>
+<span class="lineNum">     407 </span>                :                             {   
+<span class="lineNum">     408 </span>                :                                 case SAME:
+<span class="lineNum">     409 </span><span class="lineCov">          95922 :                                       busyTime = t_RCD-t_AL;</span>
+<span class="lineNum">     410 </span>                :                                 break;
+<span class="lineNum">     411 </span>                :                                 default:
+<span class="lineNum">     412 </span>                :                                 break; 
+<span class="lineNum">     413 </span>                :                             }
+<span class="lineNum">     414 </span>                :                         break;
+<span class="lineNum">     415 </span>                :                         default:
+<span class="lineNum">     416 </span>                :                         break;
+<span class="lineNum">     417 </span>                :                     }
+<span class="lineNum">     418 </span>                :                 break;
+<span class="lineNum">     419 </span>                :                 case ALL_BANK_REFRESH:
+<span class="lineNum">     420 </span><span class="lineCov">         502802 :                     switch(rankC)</span>
+<span class="lineNum">     421 </span>                :                     {
+<span class="lineNum">     422 </span>                :                         case SAME:
+<span class="lineNum">     423 </span><span class="lineCov">         502586 :                              busyTime = t_RAS;</span>
+<span class="lineNum">     424 </span>                :                         break;
+<span class="lineNum">     425 </span>                :                         default:
+<span class="lineNum">     426 </span>                :                         break;
+<span class="lineNum">     427 </span>                :                     }
+<span class="lineNum">     428 </span>                :                 break;
+<span class="lineNum">     429 </span>                :                 default:
+<span class="lineNum">     430 </span>                :                 break;  
+<span class="lineNum">     431 </span>                :             }
+<span class="lineNum">     432 </span>                :         break;
+<span class="lineNum">     433 </span>                :         case PRECHARGE:
+<span class="lineNum">     434 </span><span class="lineCov">         550386 :             switch(curCmd)</span>
+<span class="lineNum">     435 </span>                :             {
+<span class="lineNum">     436 </span>                :                 case ACTIVATE:
+<span class="lineNum">     437 </span><span class="lineCov">         467469 :                     switch(rankC)</span>
+<span class="lineNum">     438 </span>                :                     {
+<span class="lineNum">     439 </span>                :                         case SAME:
+<span class="lineNum">     440 </span><span class="lineCov">         467454 :                              switch(bankC)</span>
+<span class="lineNum">     441 </span>                :                              {  
+<span class="lineNum">     442 </span>                :                                 case DIFF:      
+<span class="lineNum">     443 </span><span class="lineCov">            649 :                                      busyTime = t_RP;</span>
+<span class="lineNum">     444 </span>                :                                 break;
+<span class="lineNum">     445 </span>                :                                 default:
+<span class="lineNum">     446 </span>                :                                 break;
+<span class="lineNum">     447 </span>                :                              }     
+<span class="lineNum">     448 </span>                :                         break;
+<span class="lineNum">     449 </span>                :                         default:
+<span class="lineNum">     450 </span>                :                         break;
+<span class="lineNum">     451 </span>                :                     }
+<span class="lineNum">     452 </span>                :                 break;
+<span class="lineNum">     453 </span>                :                 case PRECHARGE:
+<span class="lineNum">     454 </span><span class="lineCov">          32368 :                     switch(rankC)</span>
+<span class="lineNum">     455 </span>                :                     {
+<span class="lineNum">     456 </span>                :                         case SAME:
+<span class="lineNum">     457 </span><span class="lineCov">          32201 :                              switch(bankC)</span>
+<span class="lineNum">     458 </span>                :                              {  
+<span class="lineNum">     459 </span>                :                                 case SAME:      
+<span class="lineNum">     460 </span><span class="lineNoCov">              0 :                                      busyTime = t_RP;</span>
+<span class="lineNum">     461 </span>                :                                 break;
+<span class="lineNum">     462 </span>                :                                 default:
+<span class="lineNum">     463 </span>                :                                 break;
+<span class="lineNum">     464 </span>                :                              }
+<span class="lineNum">     465 </span>                :                         case DIFF:
+<span class="lineNum">     466 </span><span class="lineCov">          32368 :                               busyTime = t_RTRS;</span>
+<span class="lineNum">     467 </span>                :                         break;
+<span class="lineNum">     468 </span>                :                         default:
+<span class="lineNum">     469 </span>                :                         break;
+<span class="lineNum">     470 </span>                :                     }
+<span class="lineNum">     471 </span>                :                 break;
+<span class="lineNum">     472 </span>                :                 case READ:
+<span class="lineNum">     473 </span><span class="lineCov">          12613 :                     switch(rankC)</span>
+<span class="lineNum">     474 </span>                :                     {
+<span class="lineNum">     475 </span>                :                         case SAME:
+<span class="lineNum">     476 </span><span class="lineCov">          12540 :                              switch(bankC)</span>
+<span class="lineNum">     477 </span>                :                              {  
+<span class="lineNum">     478 </span>                :                                 case SAME:
+<span class="lineNum">     479 </span><span class="lineNoCov">              0 :                                       busyTime = 999999; // infinity</span>
+<span class="lineNum">     480 </span>                :                                   //    cout &lt;&lt; &quot;cannot directly do READ: after precharge\n&quot;;
+<span class="lineNum">     481 </span>                :                                 break;
+<span class="lineNum">     482 </span>                :                                 default:
+<span class="lineNum">     483 </span>                :                                 break; 
+<span class="lineNum">     484 </span>                :                             }
+<span class="lineNum">     485 </span>                :                         break;
+<span class="lineNum">     486 </span>                :                         default:
+<span class="lineNum">     487 </span>                :                         break;
+<span class="lineNum">     488 </span>                :                     }
+<span class="lineNum">     489 </span>                :                 break;
+<span class="lineNum">     490 </span>                :                 case WRITE:
+<span class="lineNum">     491 </span><span class="lineCov">            219 :                     switch(rankC)</span>
+<span class="lineNum">     492 </span>                :                     {
+<span class="lineNum">     493 </span>                :                         case SAME:
+<span class="lineNum">     494 </span><span class="lineCov">            203 :                             switch(bankC)</span>
+<span class="lineNum">     495 </span>                :                             {   
+<span class="lineNum">     496 </span>                :                                 case SAME:
+<span class="lineNum">     497 </span><span class="lineNoCov">              0 :                                       busyTime = 999999; // infinity    </span>
+<span class="lineNum">     498 </span>                :                                       //cout &lt;&lt; &quot;cannot directly do WRITE: after precharge\n&quot;;
+<span class="lineNum">     499 </span>                :                                 break;
+<span class="lineNum">     500 </span>                :                                 default:
+<span class="lineNum">     501 </span>                :                                 break; 
+<span class="lineNum">     502 </span>                :                             }
+<span class="lineNum">     503 </span>                :                         break;
+<span class="lineNum">     504 </span>                :                         default:
+<span class="lineNum">     505 </span>                :                         break;
+<span class="lineNum">     506 </span>                :                     }
+<span class="lineNum">     507 </span>                :                 break;
+<span class="lineNum">     508 </span>                :                 case ALL_BANK_REFRESH:
+<span class="lineNum">     509 </span><span class="lineCov">          37717 :                     switch(rankC)</span>
+<span class="lineNum">     510 </span>                :                     {
+<span class="lineNum">     511 </span>                :                         case SAME:
+<span class="lineNum">     512 </span><span class="lineCov">          37642 :                               busyTime = t_RP;</span>
+<span class="lineNum">     513 </span><span class="lineCov">          37642 :                         break;</span>
+<span class="lineNum">     514 </span>                :                         case DIFF:
+<span class="lineNum">     515 </span><span class="lineCov">             75 :                               busyTime = t_RTRS;</span>
+<span class="lineNum">     516 </span>                :                         break;
+<span class="lineNum">     517 </span>                :                         default:
+<span class="lineNum">     518 </span>                :                         break;
+<span class="lineNum">     519 </span>                :                     }
+<span class="lineNum">     520 </span>                :                 break;
+<span class="lineNum">     521 </span>                :                 default:
+<span class="lineNum">     522 </span>                :                 break;  
+<span class="lineNum">     523 </span>                :             }
+<span class="lineNum">     524 </span>                :         break;
+<span class="lineNum">     525 </span>                :         case READ:
+<span class="lineNum">     526 </span><span class="lineCov">        3684872 :             switch(curCmd)</span>
+<span class="lineNum">     527 </span>                :             {
+<span class="lineNum">     528 </span>                :                 case ACTIVATE:
+<span class="lineNum">     529 </span><span class="lineCov">          12678 :                     switch(rankC)</span>
+<span class="lineNum">     530 </span>                :                     {
+<span class="lineNum">     531 </span>                :                         case SAME:
+<span class="lineNum">     532 </span><span class="lineCov">          12515 :                             switch(bankC)</span>
+<span class="lineNum">     533 </span>                :                             {   
+<span class="lineNum">     534 </span>                :                                 case SAME:
+<span class="lineNum">     535 </span><span class="lineNoCov">              0 :                                       busyTime = 999999; // infinity    </span>
+<span class="lineNum">     536 </span>                :                                       //cout &lt;&lt; &quot;ACTIVATE: after READ: to the same bank: cannot happen\n&quot;;
+<span class="lineNum">     537 </span>                :                                 break;
+<span class="lineNum">     538 </span>                :                                 default:
+<span class="lineNum">     539 </span>                :                                 break; 
+<span class="lineNum">     540 </span>                :                             }
+<span class="lineNum">     541 </span>                :                         break;
+<span class="lineNum">     542 </span>                :                         default:
+<span class="lineNum">     543 </span>                :                         break;
+<span class="lineNum">     544 </span>                :                     }
+<span class="lineNum">     545 </span>                :                 break;
+<span class="lineNum">     546 </span>                :                 case PRECHARGE:
+<span class="lineNum">     547 </span><span class="lineCov">        1654658 :                     switch(rankC)</span>
+<span class="lineNum">     548 </span>                :                     {
+<span class="lineNum">     549 </span>                :                         case SAME:
+<span class="lineNum">     550 </span><span class="lineCov">        1653695 :                             switch(bankC)</span>
+<span class="lineNum">     551 </span>                :                             {   
+<span class="lineNum">     552 </span>                :                                 case SAME:
+<span class="lineNum">     553 </span><span class="lineCov">        1528944 :                                       busyTime = (t_AL + t_Burst + t_RTP - t_CCD); </span>
+<span class="lineNum">     554 </span>                :                                 break;
+<span class="lineNum">     555 </span>                :                                 default:
+<span class="lineNum">     556 </span>                :                                 break; 
+<span class="lineNum">     557 </span>                :                             }
+<span class="lineNum">     558 </span>                :                         break;
+<span class="lineNum">     559 </span>                :                         default:
+<span class="lineNum">     560 </span>                :                         break;
+<span class="lineNum">     561 </span>                :                     }
+<span class="lineNum">     562 </span>                :                 break;
+<span class="lineNum">     563 </span>                :                 case READ:
+<span class="lineNum">     564 </span><span class="lineCov">         349131 :                     switch(rankC)</span>
+<span class="lineNum">     565 </span>                :                     {
+<span class="lineNum">     566 </span>                :                         case SAME:
+<span class="lineNum">     567 </span><span class="lineCov">         348161 :                               busyTime = Max(t_Burst,t_CCD);</span>
+<span class="lineNum">     568 </span><span class="lineCov">         348161 :                         break;</span>
+<span class="lineNum">     569 </span>                :                         case DIFF:
+<span class="lineNum">     570 </span><span class="lineCov">            970 :                             busyTime = Max(t_Burst,t_CCD) + t_RTRS; </span>
+<span class="lineNum">     571 </span>                :                         break;
+<span class="lineNum">     572 </span>                :                         default:
+<span class="lineNum">     573 </span>                :                         break;
+<span class="lineNum">     574 </span>                :                     }
+<span class="lineNum">     575 </span>                :                 break;
+<span class="lineNum">     576 </span>                :                 case WRITE:
+<span class="lineNum">     577 </span><span class="lineCov">           1650 :                       busyTime = t_CAS + t_Burst + t_RTRS - t_CWD; </span>
+<span class="lineNum">     578 </span><span class="lineCov">           1650 :                 break;</span>
+<span class="lineNum">     579 </span>                :                 case ALL_BANK_REFRESH:
+<span class="lineNum">     580 </span><span class="lineCov">        1666755 :                     switch(rankC)</span>
+<span class="lineNum">     581 </span>                :                     {
+<span class="lineNum">     582 </span>                :                         case SAME:
+<span class="lineNum">     583 </span><span class="lineCov">        1666429 :                               busyTime = (t_AL + t_Burst + t_RTP - t_CCD); </span>
+<span class="lineNum">     584 </span>                :                         break;
+<span class="lineNum">     585 </span>                :                         default:
+<span class="lineNum">     586 </span>                :                         break;
+<span class="lineNum">     587 </span>                :                     }
+<span class="lineNum">     588 </span>                :                 break;
+<span class="lineNum">     589 </span>                :                 default:
+<span class="lineNum">     590 </span>                :                 break;  
+<span class="lineNum">     591 </span>                :             }
+<span class="lineNum">     592 </span>                :         break;
+<span class="lineNum">     593 </span>                :         case WRITE:
+<span class="lineNum">     594 </span><span class="lineCov">         488894 :             switch(curCmd)</span>
+<span class="lineNum">     595 </span>                :             {
+<span class="lineNum">     596 </span>                :                 case ACTIVATE:
+<span class="lineNum">     597 </span><span class="lineCov">            339 :                     switch(rankC)</span>
+<span class="lineNum">     598 </span>                :                     {
+<span class="lineNum">     599 </span>                :                         case SAME:
+<span class="lineNum">     600 </span><span class="lineCov">            315 :                             switch(bankC)</span>
+<span class="lineNum">     601 </span>                :                             {   
+<span class="lineNum">     602 </span>                :                                 case SAME:
+<span class="lineNum">     603 </span><span class="lineNoCov">              0 :                                       busyTime = 999999; // infinity</span>
+<span class="lineNum">     604 </span>                :                                       //cout &lt;&lt; &quot;Activate After WRITE: to the same bank cannot happen\n&quot;;
+<span class="lineNum">     605 </span>                :                                 break;
+<span class="lineNum">     606 </span>                :                                 default:
+<span class="lineNum">     607 </span>                :                                 break; 
+<span class="lineNum">     608 </span>                :                             }
+<span class="lineNum">     609 </span>                :                         break;
+<span class="lineNum">     610 </span>                :                         default:
+<span class="lineNum">     611 </span>                :                         break;
+<span class="lineNum">     612 </span>                :                     }
+<span class="lineNum">     613 </span>                :                 break;
+<span class="lineNum">     614 </span>                :                 case PRECHARGE:
+<span class="lineNum">     615 </span><span class="lineCov">         151301 :                     switch(rankC)</span>
+<span class="lineNum">     616 </span>                :                     {
+<span class="lineNum">     617 </span>                :                         case SAME:
+<span class="lineNum">     618 </span><span class="lineCov">         151098 :                             switch(bankC)</span>
+<span class="lineNum">     619 </span>                :                             {   
+<span class="lineNum">     620 </span>                :                                 case SAME:
+<span class="lineNum">     621 </span><span class="lineCov">         147725 :                                       busyTime = t_AL + t_Burst + t_CWD + t_WR;</span>
+<span class="lineNum">     622 </span>                :                                 break;  
+<span class="lineNum">     623 </span>                :                                 default:
+<span class="lineNum">     624 </span>                :                                 break; 
+<span class="lineNum">     625 </span>                :                             }
+<span class="lineNum">     626 </span>                :                         break;
+<span class="lineNum">     627 </span>                :                         default:
+<span class="lineNum">     628 </span>                :                         break;
+<span class="lineNum">     629 </span>                :                     }
+<span class="lineNum">     630 </span>                :                 break;
+<span class="lineNum">     631 </span>                :                 case READ:
+<span class="lineNum">     632 </span><span class="lineCov">         280851 :                     switch(rankC)</span>
+<span class="lineNum">     633 </span>                :                     {
+<span class="lineNum">     634 </span>                :                         case SAME:
+<span class="lineNum">     635 </span><span class="lineCov">         280750 :                               busyTime = t_CWD + t_Burst + t_WTR;</span>
+<span class="lineNum">     636 </span><span class="lineCov">         280750 :                         break;</span>
+<span class="lineNum">     637 </span>                :                         case DIFF:
+<span class="lineNum">     638 </span><span class="lineCov">            101 :                               busyTime = t_CWD + t_Burst + t_RTRS - t_CAS;</span>
+<span class="lineNum">     639 </span>                :                         break;
+<span class="lineNum">     640 </span>                :                         default:
+<span class="lineNum">     641 </span>                :                         break;
+<span class="lineNum">     642 </span>                :                     }
+<span class="lineNum">     643 </span>                :                 break;
+<span class="lineNum">     644 </span>                :                 case WRITE:
+<span class="lineNum">     645 </span><span class="lineCov">            245 :                     switch(rankC)</span>
+<span class="lineNum">     646 </span>                :                     {
+<span class="lineNum">     647 </span>                :                         case SAME:
+<span class="lineNum">     648 </span><span class="lineCov">            237 :                               busyTime = Max(t_Burst, t_CCD);</span>
+<span class="lineNum">     649 </span><span class="lineCov">            237 :                         break;</span>
+<span class="lineNum">     650 </span>                :                         case DIFF:
+<span class="lineNum">     651 </span><span class="lineCov">              8 :                               busyTime = Max(t_Burst, t_CCD) + t_OST;</span>
+<span class="lineNum">     652 </span>                :                         break;
+<span class="lineNum">     653 </span>                :                         default:
+<span class="lineNum">     654 </span>                :                         break;
+<span class="lineNum">     655 </span>                :                     }
+<span class="lineNum">     656 </span>                :                 break;
+<span class="lineNum">     657 </span>                :                 case ALL_BANK_REFRESH:
+<span class="lineNum">     658 </span><span class="lineCov">          56158 :                     switch(rankC)</span>
+<span class="lineNum">     659 </span>                :                     {
+<span class="lineNum">     660 </span>                :                         case SAME:
+<span class="lineNum">     661 </span><span class="lineCov">          56131 :                              busyTime = t_AL + t_Burst + t_CWD + t_WR;</span>
+<span class="lineNum">     662 </span>                :                         break;
+<span class="lineNum">     663 </span>                :                         default:
+<span class="lineNum">     664 </span>                :                         break;
+<span class="lineNum">     665 </span>                :                     }
+<span class="lineNum">     666 </span>                :                 break;
+<span class="lineNum">     667 </span>                :                 default:
+<span class="lineNum">     668 </span>                :                 break;  
+<span class="lineNum">     669 </span>                :             }
+<span class="lineNum">     670 </span>                :         break;
+<span class="lineNum">     671 </span>                :         case ALL_BANK_REFRESH:
+<span class="lineNum">     672 </span><span class="lineCov">         413732 :             switch(rankC)</span>
+<span class="lineNum">     673 </span>                :             {
+<span class="lineNum">     674 </span>                :                 case DIFF:
+<span class="lineNum">     675 </span><span class="lineCov">            944 :                       busyTime = t_RTRS;</span>
+<span class="lineNum">     676 </span><span class="lineCov">            944 :                 break;</span>
+<span class="lineNum">     677 </span>                :                 case SAME:
+<span class="lineNum">     678 </span>                : #ifdef OPEN_PAGE_POLICY
+<span class="lineNum">     679 </span><span class="lineCov">         412788 :                       busyTime = t_RP + t_RFC + t_RCD;  // First precharge the active row and then refresh and then activate the row again</span>
+<span class="lineNum">     680 </span>                : #else
+<span class="lineNum">     681 </span>                :                        busyTime = t_RFC;        
+<span class="lineNum">     682 </span>                : #endif
+<span class="lineNum">     683 </span>                :                 default:
+<span class="lineNum">     684 </span>                :                 break;
+<span class="lineNum">     685 </span>                :             }   
+<span class="lineNum">     686 </span>                :         break;
+<span class="lineNum">     687 </span>                :         default:
+<span class="lineNum">     688 </span>                :         break;
+<span class="lineNum">     689 </span>                :     }   
+<span class="lineNum">     690 </span><span class="lineCov">        7696669 :     return busyTime;</span>
+<span class="lineNum">     691 </span>                : }
+<span class="lineNum">     692 </span>                : 
+<span class="lineNum">     693 </span><span class="lineCov">         331804 : void CmdIssuer::SetPrevState(DRAMCmdState currentCmd)</span>
+<span class="lineNum">     694 </span>                : {
+<span class="lineNum">     695 </span><span class="lineCov">         331804 :     prevState.prevCmdRank = currentCmd.req.rankNo;</span>
+<span class="lineNum">     696 </span><span class="lineCov">         331804 :     prevState.prevCmdBank = currentCmd.req.bankNo;</span>
+<span class="lineNum">     697 </span><span class="lineCov">         331804 :     prevState.prevCmdTime = Simulator::Now();</span>
+<span class="lineNum">     698 </span><span class="lineCov">         331804 :     prevState.cmd = currentCmd;</span>
+<span class="lineNum">     699 </span>                : 
+<span class="lineNum">     700 </span><span class="lineCov">         331804 :     prevState.rank[currentCmd.req.rankNo].bank[currentCmd.req.bankNo].prevRow = currentCmd.req.rowNo;</span>
+<span class="lineNum">     701 </span><span class="lineCov">         331804 :     prevState.rank[currentCmd.req.rankNo].bank[currentCmd.req.bankNo].prevCmd = currentCmd.cmd;</span>
+<span class="lineNum">     702 </span><span class="lineCov">         331804 :     prevState.rank[currentCmd.req.rankNo].bank[currentCmd.req.bankNo].prevCmdTime = Simulator::Now(); </span>
+<span class="lineNum">     703 </span><span class="lineCov">         331804 : }</span>
+<span class="lineNum">     704 </span>                : 
+<span class="lineNum">     705 </span><span class="lineNoCov">              0 : Time CmdIssuer::Max(Time t1, Time t2)</span>
+<span class="lineNum">     706 </span>                : {
+<span class="lineNum">     707 </span><span class="lineCov">         349376 :     if (t1&gt;=t2)</span>
+<span class="lineNum">     708 </span><span class="lineCov">         260217 :         return t1;</span>
+<span class="lineNum">     709 </span>                :     else 
+<span class="lineNum">     710 </span><span class="lineCov">          89159 :         return t2;</span>
+<span class="lineNum">     711 </span><span class="lineCov">              2 : }</span>
+<span class="lineNum">     712 </span>                : 
+<span class="lineNum">     713 </span>                : #endif
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+  <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LTP GCOV extension version 1.6</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

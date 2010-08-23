@@ -1,0 +1,436 @@
+\section{MSHR\_\-H\_\-clubbed Class Reference}
+\label{classMSHR__H__clubbed}\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}}
+{\tt \#include $<$mshr\_\-clubbed.h$>$}
+
+Inheritance diagram for MSHR\_\-H\_\-clubbed:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classMSHR__H__clubbed__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for MSHR\_\-H\_\-clubbed:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classMSHR__H__clubbed__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf MSHR\_\-H\_\-clubbed} ()
+\item 
+{\bf $\sim$MSHR\_\-H\_\-clubbed} ()
+\item 
+{\bf Addr\_\-t} {\bf GlobalAddrMap} ({\bf Addr\_\-t} addr, {\bf UInt} threadId)
+\item 
+void {\bf process\_\-event} ({\bf IrisEvent} $\ast$e)
+\item 
+void {\bf DeleteInMSHR} ({\bf Request} $\ast$req)
+\item 
+short int {\bf map\_\-addr} (unsigned long long int $\ast$addr)
+\item 
+void {\bf local\_\-map\_\-addr} ({\bf Request} $\ast$req)
+\item 
+void {\bf demap\_\-addr} ({\bf Addr\_\-t} oldAddress, {\bf Addr\_\-t} newAddress)
+\item 
+unsigned int {\bf countBLP} ()
+\item 
+std::string {\bf toString} ()
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+{\bf Time} {\bf unsink}
+\item 
+{\bf Time} {\bf lastFinishTime}
+\item 
+{\bf Time} {\bf globalUnSink}
+\item 
+bool {\bf done}
+\item 
+vector$<$ {\bf Request} $\ast$ $>$ {\bf mshr}
+\item 
+vector$<$ {\bf Request} $\ast$ $>$ {\bf writeQueue}
+\item 
+ifstream {\bf trace\_\-filename}
+\item 
+char $\ast$ {\bf filename}
+\item 
+unsigned int {\bf id}
+\item 
+unsigned int {\bf lastScheduledIndex}
+\item 
+{\bf Component} $\ast$ {\bf parent}
+\item 
+{\bf Component} $\ast$ {\bf child}
+\item 
+bool {\bf waiting}
+\item 
+{\bf Request} {\bf waitingForMSHR}
+\item 
+{\bf Request} {\bf nextReq}
+\item 
+{\bf Time} {\bf lastFullTime}
+\item 
+bool {\bf countOnce} [NO\_\-OF\_\-THREADS][NO\_\-OF\_\-BANKS]
+\item 
+{\bf Time} {\bf lastBLPCheck}
+\item 
+unsigned long long int {\bf TotalBLP}
+\item 
+{\bf Time} {\bf nonEmptyCycles}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 51 of file mshr\_\-clubbed.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}}
+\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{MSHR\_\-H\_\-clubbed}]{\setlength{\rightskip}{0pt plus 5cm}MSHR\_\-H\_\-clubbed::MSHR\_\-H\_\-clubbed ()}\label{classMSHR__H__clubbed_a90a06803560504f29ed336d2dc12132}
+
+
+
+
+Definition at line 34 of file mshr\_\-clubbed.cc.
+
+References countOnce, done, globalUnSink, lastBLPCheck, lastFinishTime, lastFullTime, lastScheduledIndex, mshr, NO\_\-OF\_\-BANKS, NO\_\-OF\_\-THREADS, nonEmptyCycles, TotalBLP, unsink, waiting, and writeQueue.\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!$\sim$MSHR\_\-H\_\-clubbed@{$\sim$MSHR\_\-H\_\-clubbed}}
+\index{$\sim$MSHR\_\-H\_\-clubbed@{$\sim$MSHR\_\-H\_\-clubbed}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{$\sim$MSHR\_\-H\_\-clubbed}]{\setlength{\rightskip}{0pt plus 5cm}MSHR\_\-H\_\-clubbed::$\sim$MSHR\_\-H\_\-clubbed ()}\label{classMSHR__H__clubbed_4bb4e9dabfe56ca99ec4ab135f72b4f3}
+
+
+
+
+Definition at line 61 of file mshr\_\-clubbed.cc.
+
+References mshr, and writeQueue.
+
+\subsection{Member Function Documentation}
+\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!countBLP@{countBLP}}
+\index{countBLP@{countBLP}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{countBLP}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int MSHR\_\-H\_\-clubbed::countBLP ()}\label{classMSHR__H__clubbed_5e701790953e4734db8a4a5fffa66492}
+
+
+
+
+Definition at line 301 of file mshr\_\-clubbed.cc.
+
+References countOnce, lastScheduledIndex, mshr, no\_\-mcs, NO\_\-OF\_\-BANKS, and parent.
+
+Referenced by DeleteInMSHR(), and process\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classMSHR__H__clubbed_5e701790953e4734db8a4a5fffa66492_icgraph}
+\end{center}
+\end{figure}
+\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!DeleteInMSHR@{DeleteInMSHR}}
+\index{DeleteInMSHR@{DeleteInMSHR}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{DeleteInMSHR}]{\setlength{\rightskip}{0pt plus 5cm}void MSHR\_\-H\_\-clubbed::DeleteInMSHR ({\bf Request} $\ast$ {\em req})}\label{classMSHR__H__clubbed_d23a7a64d13e006d3e51f8e24d0b5e50}
+
+
+
+
+Definition at line 277 of file mshr\_\-clubbed.cc.
+
+References Request::address, countBLP(), lastBLPCheck, Request::mcNo, mshr, nonEmptyCycles, Simulator::Now(), parent, Request::startTime, and TotalBLP.
+
+Referenced by process\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classMSHR__H__clubbed_d23a7a64d13e006d3e51f8e24d0b5e50_icgraph}
+\end{center}
+\end{figure}
+\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!demap\_\-addr@{demap\_\-addr}}
+\index{demap\_\-addr@{demap\_\-addr}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{demap\_\-addr}]{\setlength{\rightskip}{0pt plus 5cm}void MSHR\_\-H\_\-clubbed::demap\_\-addr ({\bf Addr\_\-t} {\em oldAddress}, \/  {\bf Addr\_\-t} {\em newAddress})}\label{classMSHR__H__clubbed_341b5a42b1143748f3e737fe30618259}
+
+
+
+
+Definition at line 324 of file mshr\_\-clubbed.cc.
+
+References MCComponent::address, mshr, and Simulator::Now().\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!GlobalAddrMap@{GlobalAddrMap}}
+\index{GlobalAddrMap@{GlobalAddrMap}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{GlobalAddrMap}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Addr\_\-t} MSHR\_\-H\_\-clubbed::GlobalAddrMap ({\bf Addr\_\-t} {\em addr}, \/  {\bf UInt} {\em threadId})}\label{classMSHR__H__clubbed_3a30c502a1e5e00ebd54281e9647ae00}
+
+
+
+
+Definition at line 262 of file mshr\_\-clubbed.cc.
+
+References NO\_\-OF\_\-THREADS, and THREAD\_\-BITS\_\-POSITION.
+
+Referenced by GenericTPG\_\-clubbed::GetNextRequest(), process\_\-event(), and GenericTPG\_\-clubbed::setup().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classMSHR__H__clubbed_3a30c502a1e5e00ebd54281e9647ae00_icgraph}
+\end{center}
+\end{figure}
+\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!local\_\-map\_\-addr@{local\_\-map\_\-addr}}
+\index{local\_\-map\_\-addr@{local\_\-map\_\-addr}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{local\_\-map\_\-addr}]{\setlength{\rightskip}{0pt plus 5cm}void MSHR\_\-H\_\-clubbed::local\_\-map\_\-addr ({\bf Request} $\ast$ {\em req})}\label{classMSHR__H__clubbed_cdaecc4366cff2024e966a6832fc0925}
+
+
+
+
+Definition at line 364 of file mshr\_\-clubbed.cc.
+
+References Request::address, Request::bankNo, BLOCKS\_\-PER\_\-ROW, CACHE\_\-BLOCK\_\-SIZE, Request::channelNo, COLUMN\_\-SIZE, Request::columnNo, DRAM\_\-SIZE, Request::lowerBits, NO\_\-OF\_\-BANKS, NO\_\-OF\_\-CHANNELS, NO\_\-OF\_\-COLUMNS, NO\_\-OF\_\-RANKS, NO\_\-OF\_\-ROWS, Request::rankNo, ROW\_\-SIZE, Request::rowNo, and TAG\_\-BITS.
+
+Referenced by process\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classMSHR__H__clubbed_cdaecc4366cff2024e966a6832fc0925_icgraph}
+\end{center}
+\end{figure}
+\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!map\_\-addr@{map\_\-addr}}
+\index{map\_\-addr@{map\_\-addr}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{map\_\-addr}]{\setlength{\rightskip}{0pt plus 5cm}short int MSHR\_\-H\_\-clubbed::map\_\-addr (unsigned long long int $\ast$ {\em addr})}\label{classMSHR__H__clubbed_a462c52ef34ce3f351fb4f5fe6c8464d}
+
+
+
+
+Definition at line 343 of file mshr\_\-clubbed.cc.
+
+References MC\_\-ADDR\_\-BITS, no\_\-mcs, and NO\_\-OF\_\-THREADS.
+
+Referenced by process\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classMSHR__H__clubbed_a462c52ef34ce3f351fb4f5fe6c8464d_icgraph}
+\end{center}
+\end{figure}
+\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!process\_\-event@{process\_\-event}}
+\index{process\_\-event@{process\_\-event}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{process\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void MSHR\_\-H\_\-clubbed::process\_\-event ({\bf IrisEvent} $\ast$ {\em e})\hspace{0.3cm}{\tt  [virtual]}}\label{classMSHR__H__clubbed_4eee96d2c741e035591de6de2a999e4d}
+
+
+
+
+Reimplemented from {\bf MCComponent} \doxyref{}{p.}{classMCComponent_1c46eaf7e9fd073ad8425adfbcae9bd2}.
+
+Definition at line 74 of file mshr\_\-clubbed.cc.
+
+References Request::address, Request::arrivalTime, Request::bankNo, CACHE\_\-WRITEBACK, Request::cmdType, countBLP(), DeleteInMSHR(), done, IrisEvent::dst, IrisEvent::event\_\-data, filename, GlobalAddrMap(), globalUnSink, id, lastBLPCheck, lastFinishTime, lastFullTime, local\_\-map\_\-addr(), map\_\-addr(), max\_\-sim\_\-time, Request::mcNo, Request::mother\_\-req, mshr, MSHR\_\-DELETE, MSHR\_\-SIZE, nextReq, nonEmptyCycles, Simulator::Now(), OUT\_\-PULL\_\-EVENT, parent, GenericTPG\_\-clubbed::process\_\-event(), Simulator::Schedule(), Request::scheduleTime, IrisEvent::src, STALL\_\-TIME, Request::startTime, Request::threadId, TotalBLP, trace\_\-filename, IrisEvent::type, unsink, waiting, waitingForMSHR, and writeQueue.
+
+Referenced by GenericTPG\_\-clubbed::handle\_\-new\_\-packet\_\-event(), and GenericTPG\_\-clubbed::setup().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{classMSHR__H__clubbed_4eee96d2c741e035591de6de2a999e4d_icgraph}
+\end{center}
+\end{figure}
+\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!toString@{toString}}
+\index{toString@{toString}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{toString}]{\setlength{\rightskip}{0pt plus 5cm}std::string MSHR\_\-H\_\-clubbed::toString ()}\label{classMSHR__H__clubbed_ed516541731a2e36641a1cb4b11ac04f}
+
+
+
+
+\subsection{Member Data Documentation}
+\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!child@{child}}
+\index{child@{child}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{child}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Component}$\ast$ {\bf MSHR\_\-H\_\-clubbed::child}}\label{classMSHR__H__clubbed_8c935a9b3c5bf60c23d59bf0ea924aac}
+
+
+
+
+Definition at line 67 of file mshr\_\-clubbed.h.\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!countOnce@{countOnce}}
+\index{countOnce@{countOnce}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{countOnce}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf MSHR\_\-H\_\-clubbed::countOnce}[NO\_\-OF\_\-THREADS][NO\_\-OF\_\-BANKS]}\label{classMSHR__H__clubbed_ee6e17265d1837d5f060ee534289ae0c}
+
+
+
+
+Definition at line 81 of file mshr\_\-clubbed.h.
+
+Referenced by countBLP(), and MSHR\_\-H\_\-clubbed().\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!done@{done}}
+\index{done@{done}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{done}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf MSHR\_\-H\_\-clubbed::done}}\label{classMSHR__H__clubbed_b6696e28582cc25e686e09bb1cb93429}
+
+
+
+
+Definition at line 59 of file mshr\_\-clubbed.h.
+
+Referenced by MSHR\_\-H\_\-clubbed(), and process\_\-event().\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!filename@{filename}}
+\index{filename@{filename}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{filename}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf MSHR\_\-H\_\-clubbed::filename}}\label{classMSHR__H__clubbed_67450becfd3d61090e241557b64b7cd4}
+
+
+
+
+Definition at line 63 of file mshr\_\-clubbed.h.
+
+Referenced by process\_\-event(), and GenericTPG\_\-clubbed::setup().\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!globalUnSink@{globalUnSink}}
+\index{globalUnSink@{globalUnSink}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{globalUnSink}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} {\bf MSHR\_\-H\_\-clubbed::globalUnSink}}\label{classMSHR__H__clubbed_354bfcbda05063c240fd6c5a9ecf789f}
+
+
+
+
+Definition at line 58 of file mshr\_\-clubbed.h.
+
+Referenced by MSHR\_\-H\_\-clubbed(), and process\_\-event().\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!id@{id}}
+\index{id@{id}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{id}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf MSHR\_\-H\_\-clubbed::id}}\label{classMSHR__H__clubbed_b2139abf52cecc314fe501d164672eec}
+
+
+
+
+Definition at line 64 of file mshr\_\-clubbed.h.
+
+Referenced by process\_\-event(), and GenericTPG\_\-clubbed::setup().\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!lastBLPCheck@{lastBLPCheck}}
+\index{lastBLPCheck@{lastBLPCheck}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{lastBLPCheck}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} {\bf MSHR\_\-H\_\-clubbed::lastBLPCheck}}\label{classMSHR__H__clubbed_d86fad71450a2418bfc4615e9c03d05a}
+
+
+
+
+Definition at line 82 of file mshr\_\-clubbed.h.
+
+Referenced by DeleteInMSHR(), MSHR\_\-H\_\-clubbed(), and process\_\-event().\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!lastFinishTime@{lastFinishTime}}
+\index{lastFinishTime@{lastFinishTime}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{lastFinishTime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} {\bf MSHR\_\-H\_\-clubbed::lastFinishTime}}\label{classMSHR__H__clubbed_705863af19889169968378e5939bba41}
+
+
+
+
+Definition at line 57 of file mshr\_\-clubbed.h.
+
+Referenced by MSHR\_\-H\_\-clubbed(), and process\_\-event().\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!lastFullTime@{lastFullTime}}
+\index{lastFullTime@{lastFullTime}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{lastFullTime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} {\bf MSHR\_\-H\_\-clubbed::lastFullTime}}\label{classMSHR__H__clubbed_599739fd8d2bc630192c143cff4942a2}
+
+
+
+
+Definition at line 78 of file mshr\_\-clubbed.h.
+
+Referenced by MSHR\_\-H\_\-clubbed(), and process\_\-event().\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!lastScheduledIndex@{lastScheduledIndex}}
+\index{lastScheduledIndex@{lastScheduledIndex}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{lastScheduledIndex}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf MSHR\_\-H\_\-clubbed::lastScheduledIndex}}\label{classMSHR__H__clubbed_9af377799f4d161e3dc40d970c8944c3}
+
+
+
+
+Definition at line 65 of file mshr\_\-clubbed.h.
+
+Referenced by countBLP(), and MSHR\_\-H\_\-clubbed().\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!mshr@{mshr}}
+\index{mshr@{mshr}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{mshr}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf Request}$\ast$$>$ {\bf MSHR\_\-H\_\-clubbed::mshr}}\label{classMSHR__H__clubbed_b3fdd522f2e5e420133d16bff5c8495d}
+
+
+
+
+Definition at line 60 of file mshr\_\-clubbed.h.
+
+Referenced by countBLP(), DeleteInMSHR(), demap\_\-addr(), GenericTPG\_\-clubbed::GetNewRequest(), MSHR\_\-H\_\-clubbed(), process\_\-event(), GenericTPG\_\-clubbed::$\sim$GenericTPG\_\-clubbed(), and $\sim$MSHR\_\-H\_\-clubbed().\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!nextReq@{nextReq}}
+\index{nextReq@{nextReq}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{nextReq}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Request} {\bf MSHR\_\-H\_\-clubbed::nextReq}}\label{classMSHR__H__clubbed_2d409ce70edba569f7a6dd0063b71a92}
+
+
+
+
+Definition at line 77 of file mshr\_\-clubbed.h.
+
+Referenced by process\_\-event().\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!nonEmptyCycles@{nonEmptyCycles}}
+\index{nonEmptyCycles@{nonEmptyCycles}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{nonEmptyCycles}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} {\bf MSHR\_\-H\_\-clubbed::nonEmptyCycles}}\label{classMSHR__H__clubbed_179be63ee4f225d698049a069aa0d512}
+
+
+
+
+Definition at line 84 of file mshr\_\-clubbed.h.
+
+Referenced by DeleteInMSHR(), MSHR\_\-H\_\-clubbed(), GenericTPG\_\-clubbed::print\_\-stats(), and process\_\-event().\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!parent@{parent}}
+\index{parent@{parent}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Component}$\ast$ {\bf MSHR\_\-H\_\-clubbed::parent}}\label{classMSHR__H__clubbed_a1b8eb81938aa8b8aa80d0b8cd556723}
+
+
+
+
+Definition at line 66 of file mshr\_\-clubbed.h.
+
+Referenced by countBLP(), DeleteInMSHR(), process\_\-event(), and GenericTPG\_\-clubbed::setup().\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!TotalBLP@{TotalBLP}}
+\index{TotalBLP@{TotalBLP}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{TotalBLP}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long long int {\bf MSHR\_\-H\_\-clubbed::TotalBLP}}\label{classMSHR__H__clubbed_80c4ff337ebe6bca6b623d0d5bb82a1f}
+
+
+
+
+Definition at line 83 of file mshr\_\-clubbed.h.
+
+Referenced by DeleteInMSHR(), MSHR\_\-H\_\-clubbed(), GenericTPG\_\-clubbed::print\_\-stats(), and process\_\-event().\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!trace\_\-filename@{trace\_\-filename}}
+\index{trace\_\-filename@{trace\_\-filename}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{trace\_\-filename}]{\setlength{\rightskip}{0pt plus 5cm}ifstream {\bf MSHR\_\-H\_\-clubbed::trace\_\-filename}}\label{classMSHR__H__clubbed_421a94f68997e4aa088fade2d1ac428b}
+
+
+
+
+Definition at line 62 of file mshr\_\-clubbed.h.
+
+Referenced by process\_\-event(), GenericTPG\_\-clubbed::setup(), and GenericTPG\_\-clubbed::$\sim$GenericTPG\_\-clubbed().\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!unsink@{unsink}}
+\index{unsink@{unsink}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{unsink}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} {\bf MSHR\_\-H\_\-clubbed::unsink}}\label{classMSHR__H__clubbed_92058c7ceb4e5a26f4120f36bdad586e}
+
+
+
+
+Definition at line 56 of file mshr\_\-clubbed.h.
+
+Referenced by MSHR\_\-H\_\-clubbed(), GenericTPG\_\-clubbed::print\_\-stats(), and process\_\-event().\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!waiting@{waiting}}
+\index{waiting@{waiting}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{waiting}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf MSHR\_\-H\_\-clubbed::waiting}}\label{classMSHR__H__clubbed_1548b0dc0766aed40f093b5b81123c1d}
+
+
+
+
+Definition at line 75 of file mshr\_\-clubbed.h.
+
+Referenced by MSHR\_\-H\_\-clubbed(), and process\_\-event().\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!waitingForMSHR@{waitingForMSHR}}
+\index{waitingForMSHR@{waitingForMSHR}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{waitingForMSHR}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Request} {\bf MSHR\_\-H\_\-clubbed::waitingForMSHR}}\label{classMSHR__H__clubbed_63f21b3aff4be0bc9365adf2ab92e3e2}
+
+
+
+
+Definition at line 76 of file mshr\_\-clubbed.h.
+
+Referenced by process\_\-event().\index{MSHR\_\-H\_\-clubbed@{MSHR\_\-H\_\-clubbed}!writeQueue@{writeQueue}}
+\index{writeQueue@{writeQueue}!MSHR_H_clubbed@{MSHR\_\-H\_\-clubbed}}
+\subsubsection[{writeQueue}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf Request}$\ast$$>$ {\bf MSHR\_\-H\_\-clubbed::writeQueue}}\label{classMSHR__H__clubbed_ae7a4abcbc0149aab5b5eaa366ba8267}
+
+
+
+
+Definition at line 61 of file mshr\_\-clubbed.h.
+
+Referenced by GenericTPG\_\-clubbed::GetNewRequest(), MSHR\_\-H\_\-clubbed(), process\_\-event(), and $\sim$MSHR\_\-H\_\-clubbed().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf mshr\_\-clubbed.h}\item 
+{\bf mshr\_\-clubbed.cc}\end{CompactItemize}

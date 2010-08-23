@@ -1,0 +1,114 @@
+\section{zesto-dram.h File Reference}
+\label{zesto-dram_8h}\index{zesto-dram.h@{zesto-dram.h}}
+{\tt \#include \char`\"{}zesto-cache.h\char`\"{}}\par
+
+
+Include dependency graph for zesto-dram.h:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=61pt]{zesto-dram_8h__incl}
+\end{center}
+\end{figure}
+
+
+This graph shows which files directly or indirectly include this file:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{zesto-dram_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class {\bf dram\_\-t}
+\end{CompactItemize}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define {\bf dram\_\-fatal}(msg, retval)
+\item 
+\#define {\bf dram\_\-assert}(cond, retval)
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void {\bf dram\_\-reg\_\-options} (struct {\bf opt\_\-odb\_\-t} $\ast$const odb)
+\item 
+void {\bf dram\_\-create} (void)
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+class {\bf dram\_\-t} $\ast$ {\bf dram}
+\end{CompactItemize}
+
+
+\subsection{Define Documentation}
+\index{zesto-dram.h@{zesto-dram.h}!dram\_\-assert@{dram\_\-assert}}
+\index{dram\_\-assert@{dram\_\-assert}!zesto-dram.h@{zesto-dram.h}}
+\subsubsection[{dram\_\-assert}]{\setlength{\rightskip}{0pt plus 5cm}\#define dram\_\-assert(cond, \/  retval)}\label{zesto-dram_8h_91e35a4fcf5f7aa1a31d5883efc0fc8e}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}{ \
+  if(!(cond)) { \
+    fprintf(stderr,"fatal (%s,%d:DRAM): ",__FILE__,__LINE__); \
+    fprintf(stderr,"%s\n",#cond); \
+    return (retval); \
+  } \
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 123 of file zesto-dram.h.\index{zesto-dram.h@{zesto-dram.h}!dram\_\-fatal@{dram\_\-fatal}}
+\index{dram\_\-fatal@{dram\_\-fatal}!zesto-dram.h@{zesto-dram.h}}
+\subsubsection[{dram\_\-fatal}]{\setlength{\rightskip}{0pt plus 5cm}\#define dram\_\-fatal(msg, \/  retval)}\label{zesto-dram_8h_a901b0ec81388be39a5d166eba7bf944}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}{ \
+  fprintf(stderr,"fatal (%s,%d:DRAM): ",__FILE__,__LINE__); \
+  fprintf(stderr,"%s\n",msg); \
+  return (retval); \
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 111 of file zesto-dram.h.
+
+\subsection{Function Documentation}
+\index{zesto-dram.h@{zesto-dram.h}!dram\_\-create@{dram\_\-create}}
+\index{dram\_\-create@{dram\_\-create}!zesto-dram.h@{zesto-dram.h}}
+\subsubsection[{dram\_\-create}]{\setlength{\rightskip}{0pt plus 5cm}void dram\_\-create (void)}\label{zesto-dram_8h_213d02d3a2f53f24d8ac9e8956b64f13}
+
+
+
+
+Definition at line 165 of file zesto-dram.cpp.
+
+References dram\_\-from\_\-string(), and dram\_\-opt\_\-string.\index{zesto-dram.h@{zesto-dram.h}!dram\_\-reg\_\-options@{dram\_\-reg\_\-options}}
+\index{dram\_\-reg\_\-options@{dram\_\-reg\_\-options}!zesto-dram.h@{zesto-dram.h}}
+\subsubsection[{dram\_\-reg\_\-options}]{\setlength{\rightskip}{0pt plus 5cm}void dram\_\-reg\_\-options (struct {\bf opt\_\-odb\_\-t} $\ast$const  {\em odb})}\label{zesto-dram_8h_ed0771b152d1f5deb1a8b7e4955f71a7}
+
+
+
+
+Definition at line 94 of file zesto-dram.cpp.
+
+References dram\_\-opt\_\-string, and opt\_\-reg\_\-string().
+
+\subsection{Variable Documentation}
+\index{zesto-dram.h@{zesto-dram.h}!dram@{dram}}
+\index{dram@{dram}!zesto-dram.h@{zesto-dram.h}}
+\subsubsection[{dram}]{\setlength{\rightskip}{0pt plus 5cm}class {\bf dram\_\-t}$\ast$ {\bf dram}}\label{zesto-dram_8h_a8026313a138e58afe2d5bff2f34dcfe}
+
+
+
+
+Definition at line 89 of file zesto-dram.cpp.

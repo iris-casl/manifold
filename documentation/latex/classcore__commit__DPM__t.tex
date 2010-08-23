@@ -1,0 +1,350 @@
+\section{core\_\-commit\_\-DPM\_\-t Class Reference}
+\label{classcore__commit__DPM__t}\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}}
+Inheritance diagram for core\_\-commit\_\-DPM\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classcore__commit__DPM__t__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for core\_\-commit\_\-DPM\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classcore__commit__DPM__t__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf core\_\-commit\_\-DPM\_\-t} (struct {\bf core\_\-t} $\ast$const {\bf core})
+\item 
+virtual void {\bf reg\_\-stats} (struct {\bf stat\_\-sdb\_\-t} $\ast$const sdb)
+\item 
+virtual void {\bf update\_\-occupancy} (void)
+\item 
+virtual void {\bf step} (void)
+\item 
+virtual void {\bf recover} (const struct {\bf Mop\_\-t} $\ast$const Mop)
+\item 
+virtual void {\bf recover} (void)
+\item 
+virtual bool {\bf ROB\_\-available} (void)
+\item 
+virtual bool {\bf ROB\_\-empty} (void)
+\item 
+virtual void {\bf ROB\_\-insert} (struct {\bf uop\_\-t} $\ast$const uop)
+\item 
+virtual void {\bf ROB\_\-fuse\_\-insert} (struct {\bf uop\_\-t} $\ast$const uop)
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+struct {\bf uop\_\-t} $\ast$$\ast$ {\bf ROB}
+\item 
+int {\bf ROB\_\-head}
+\item 
+int {\bf ROB\_\-tail}
+\item 
+int {\bf ROB\_\-num}
+\item 
+int {\bf ROB\_\-eff\_\-num}
+\item 
+{\bf tick\_\-t} {\bf when\_\-rep\_\-fetch\_\-started}
+\item 
+{\bf tick\_\-t} {\bf when\_\-rep\_\-fetched}
+\item 
+{\bf tick\_\-t} {\bf when\_\-rep\_\-decode\_\-started}
+\item 
+{\bf tick\_\-t} {\bf when\_\-rep\_\-commit\_\-started}
+\end{CompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{CompactItemize}
+\item 
+static const char $\ast$ {\bf commit\_\-stall\_\-str} [CSTALL\_\-num]
+\end{CompactItemize}
+\subsection*{Private Types}
+\begin{CompactItemize}
+\item 
+enum {\bf commit\_\-stall\_\-t} \{ \par
+{\bf CSTALL\_\-NONE}, 
+{\bf CSTALL\_\-NOT\_\-READY}, 
+{\bf CSTALL\_\-PARTIAL}, 
+{\bf CSTALL\_\-EMPTY}, 
+\par
+{\bf CSTALL\_\-JECLEAR\_\-INFLIGHT}, 
+{\bf CSTALL\_\-MAX\_\-BRANCHES}, 
+{\bf CSTALL\_\-num}
+ \}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 11 of file commit-DPM.cpp.
+
+\subsection{Member Enumeration Documentation}
+\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!commit\_\-stall\_\-t@{commit\_\-stall\_\-t}}
+\index{commit\_\-stall\_\-t@{commit\_\-stall\_\-t}!core_commit_DPM_t@{core\_\-commit\_\-DPM\_\-t}}
+\subsubsection[{commit\_\-stall\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf core\_\-commit\_\-DPM\_\-t::commit\_\-stall\_\-t}\hspace{0.3cm}{\tt  [private]}}\label{classcore__commit__DPM__t_2e788743b94674175ffd1e5522b75bb7}
+
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{CSTALL\_\-NONE@{CSTALL\_\-NONE}!core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}}\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!CSTALL\_\-NONE@{CSTALL\_\-NONE}}\item[{\em 
+CSTALL\_\-NONE\label{classcore__commit__DPM__t_2e788743b94674175ffd1e5522b75bb7a9ca1359e0e2c3557c8c9ac77439a9c2}
+}]\index{CSTALL\_\-NOT\_\-READY@{CSTALL\_\-NOT\_\-READY}!core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}}\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!CSTALL\_\-NOT\_\-READY@{CSTALL\_\-NOT\_\-READY}}\item[{\em 
+CSTALL\_\-NOT\_\-READY\label{classcore__commit__DPM__t_2e788743b94674175ffd1e5522b75bb729cde678fb551ee86b8a506daa600cbb}
+}]\index{CSTALL\_\-PARTIAL@{CSTALL\_\-PARTIAL}!core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}}\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!CSTALL\_\-PARTIAL@{CSTALL\_\-PARTIAL}}\item[{\em 
+CSTALL\_\-PARTIAL\label{classcore__commit__DPM__t_2e788743b94674175ffd1e5522b75bb7b33cb6d430a0f2a4841d42ba1fdcbc42}
+}]\index{CSTALL\_\-EMPTY@{CSTALL\_\-EMPTY}!core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}}\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!CSTALL\_\-EMPTY@{CSTALL\_\-EMPTY}}\item[{\em 
+CSTALL\_\-EMPTY\label{classcore__commit__DPM__t_2e788743b94674175ffd1e5522b75bb72432ee6a04f56d4f6288569a152deb63}
+}]\index{CSTALL\_\-JECLEAR\_\-INFLIGHT@{CSTALL\_\-JECLEAR\_\-INFLIGHT}!core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}}\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!CSTALL\_\-JECLEAR\_\-INFLIGHT@{CSTALL\_\-JECLEAR\_\-INFLIGHT}}\item[{\em 
+CSTALL\_\-JECLEAR\_\-INFLIGHT\label{classcore__commit__DPM__t_2e788743b94674175ffd1e5522b75bb7a7048d33b9b811882574ca343c75ed23}
+}]\index{CSTALL\_\-MAX\_\-BRANCHES@{CSTALL\_\-MAX\_\-BRANCHES}!core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}}\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!CSTALL\_\-MAX\_\-BRANCHES@{CSTALL\_\-MAX\_\-BRANCHES}}\item[{\em 
+CSTALL\_\-MAX\_\-BRANCHES\label{classcore__commit__DPM__t_2e788743b94674175ffd1e5522b75bb758fe5cdefc2980e6e0881c54736130dd}
+}]\index{CSTALL\_\-num@{CSTALL\_\-num}!core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}}\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!CSTALL\_\-num@{CSTALL\_\-num}}\item[{\em 
+CSTALL\_\-num\label{classcore__commit__DPM__t_2e788743b94674175ffd1e5522b75bb75e89ab30f628ead28a1eeb733ffe0cd1}
+}]\end{description}
+\end{Desc}
+
+
+
+Reimplemented from {\bf core\_\-commit\_\-t} \doxyref{}{p.}{classcore__commit__t_cf283124880a10ce01e0fb68f2aa69ce}.
+
+Definition at line 13 of file commit-DPM.cpp.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}}
+\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!core_commit_DPM_t@{core\_\-commit\_\-DPM\_\-t}}
+\subsubsection[{core\_\-commit\_\-DPM\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}core\_\-commit\_\-DPM\_\-t::core\_\-commit\_\-DPM\_\-t (struct {\bf core\_\-t} $\ast$const  {\em core})}\label{classcore__commit__DPM__t_0917603da00e97ab8572aac3671ee675}
+
+
+
+
+Definition at line 72 of file commit-DPM.cpp.
+
+References core\_\-knobs\_\-t::commit, core\_\-commit\_\-t::core, fatal(), core\_\-t::knobs, knobs, ROB, and core\_\-knobs\_\-t::ROB\_\-size.
+
+\subsection{Member Function Documentation}
+\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!recover@{recover}}
+\index{recover@{recover}!core_commit_DPM_t@{core\_\-commit\_\-DPM\_\-t}}
+\subsubsection[{recover}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-commit\_\-DPM\_\-t::recover (void)\hspace{0.3cm}{\tt  [virtual]}}\label{classcore__commit__DPM__t_b0ca7c01d6c22c55f529bd9cec7a809b}
+
+
+
+
+Implements {\bf core\_\-commit\_\-t} \doxyref{}{p.}{classcore__commit__t_d6d68409490205282d1188b82084d8de}.
+
+Definition at line 817 of file commit-DPM.cpp.
+
+References uop\_\-t::action\_\-id, core\_\-t::alloc, uop\_\-t::alloc, core\_\-knobs\_\-t::commit, core\_\-commit\_\-t::core, uop\_\-t::decode, core\_\-t::exec, uop\_\-t::exec, uop\_\-t::fusion\_\-head, uop\_\-t::fusion\_\-next, uop\_\-t::idep\_\-uop, uop\_\-t::in\_\-fusion, uop\_\-t::is\_\-fusion\_\-head, uop\_\-t::is\_\-load, uop\_\-t::is\_\-sta, uop\_\-t::is\_\-std, core\_\-t::knobs, knobs, core\_\-exec\_\-t::LDQ\_\-squash(), MAX\_\-IDEPS, moddec(), core\_\-t::new\_\-action\_\-id(), odep\_\-t::next, uop\_\-t::odep\_\-uop, odep\_\-t::op\_\-num, uop\_\-t::port\_\-assignment, core\_\-exec\_\-t::recover\_\-check\_\-assertions(), core\_\-t::return\_\-odep\_\-link(), ROB, ROB\_\-eff\_\-num, ROB\_\-num, core\_\-knobs\_\-t::ROB\_\-size, ROB\_\-tail, core\_\-exec\_\-t::RS\_\-deallocate(), core\_\-alloc\_\-t::RS\_\-deallocate(), uop\_\-t::RS\_\-index, core\_\-exec\_\-t::STQ\_\-squash\_\-senior(), core\_\-exec\_\-t::STQ\_\-squash\_\-sta(), core\_\-exec\_\-t::STQ\_\-squash\_\-std(), TICK\_\-T\_\-MAX, uop\_\-t::timing, odep\_\-t::uop, uop\_\-t::when\_\-allocated, uop\_\-t::when\_\-exec, and zesto\_\-assert.
+
+Referenced by step().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=179pt]{classcore__commit__DPM__t_b0ca7c01d6c22c55f529bd9cec7a809b_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!recover@{recover}}
+\index{recover@{recover}!core_commit_DPM_t@{core\_\-commit\_\-DPM\_\-t}}
+\subsubsection[{recover}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-commit\_\-DPM\_\-t::recover (const struct {\bf Mop\_\-t} $\ast$const  {\em Mop})\hspace{0.3cm}{\tt  [virtual]}}\label{classcore__commit__DPM__t_15b00a68dd968c3fbfa365c85ec1b3d5}
+
+
+
+
+Implements {\bf core\_\-commit\_\-t} \doxyref{}{p.}{classcore__commit__t_93b5aa051280bff8ca2a57bf00fd3f87}.
+
+Definition at line 687 of file commit-DPM.cpp.
+
+References uop\_\-t::action\_\-id, uop\_\-t::alloc, core\_\-t::alloc, core\_\-knobs\_\-t::alloc, core\_\-knobs\_\-t::commit, core\_\-commit\_\-t::core, uop\_\-t::decode, core\_\-knobs\_\-t::drain\_\-flush, core\_\-t::exec, uop\_\-t::exec, uop\_\-t::fusion\_\-head, uop\_\-t::fusion\_\-next, uop\_\-t::idep\_\-uop, uop\_\-t::in\_\-fusion, uop\_\-t::is\_\-fusion\_\-head, uop\_\-t::is\_\-load, uop\_\-t::is\_\-sta, uop\_\-t::is\_\-std, core\_\-t::knobs, knobs, core\_\-exec\_\-t::LDQ\_\-squash(), MAX\_\-IDEPS, moddec(), uop\_\-t::Mop, core\_\-t::new\_\-action\_\-id(), odep\_\-t::next, uop\_\-t::odep\_\-uop, odep\_\-t::op\_\-num, uop\_\-t::port\_\-assignment, core\_\-t::return\_\-odep\_\-link(), ROB, ROB\_\-eff\_\-num, ROB\_\-num, core\_\-knobs\_\-t::ROB\_\-size, ROB\_\-tail, core\_\-exec\_\-t::RS\_\-deallocate(), core\_\-alloc\_\-t::RS\_\-deallocate(), uop\_\-t::RS\_\-index, core\_\-alloc\_\-t::start\_\-drain(), core\_\-exec\_\-t::STQ\_\-squash\_\-sta(), core\_\-exec\_\-t::STQ\_\-squash\_\-std(), TICK\_\-T\_\-MAX, uop\_\-t::timing, odep\_\-t::uop, uop\_\-t::when\_\-allocated, uop\_\-t::when\_\-exec, and zesto\_\-assert.\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!reg\_\-stats@{reg\_\-stats}}
+\index{reg\_\-stats@{reg\_\-stats}!core_commit_DPM_t@{core\_\-commit\_\-DPM\_\-t}}
+\subsubsection[{reg\_\-stats}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-commit\_\-DPM\_\-t::reg\_\-stats (struct {\bf stat\_\-sdb\_\-t} $\ast$const  {\em sdb})\hspace{0.3cm}{\tt  [virtual]}}\label{classcore__commit__DPM__t_c0dabf4754fda813064a450ee55584c5}
+
+
+
+
+Implements {\bf core\_\-commit\_\-t} \doxyref{}{p.}{classcore__commit__t_888b9454a85e90f5aa156ce6e2edabb3}.
+
+Definition at line 85 of file commit-DPM.cpp.
+
+References core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-branches, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-bytes, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-deadlock\_\-flushes, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-eff\_\-uops, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-fusions, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-insn, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-loads, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-refs, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-rep\_\-insn, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-rep\_\-iterations, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-rep\_\-uops, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-stall, commit\_\-stall\_\-str, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-traps, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-uops, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-UROM\_\-eff\_\-uops, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-UROM\_\-insn, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-UROM\_\-uops, core\_\-commit\_\-t::core, CSTALL\_\-num, core\_\-t::current\_\-thread, core\_\-t::core\_\-t::core\_\-stat\_\-t::DL1\_\-store\_\-split\_\-accesses, core\_\-t::core\_\-t::core\_\-stat\_\-t::eff\_\-flow\_\-histo, core\_\-t::core\_\-t::core\_\-stat\_\-t::final\_\-sim\_\-cycle, core\_\-t::core\_\-t::core\_\-stat\_\-t::flow\_\-histo, FLOW\_\-HISTO\_\-SIZE, thread\_\-t::id, core\_\-t::core\_\-t::core\_\-stat\_\-t::Mop\_\-commit\_\-slip, core\_\-t::core\_\-t::core\_\-stat\_\-t::Mop\_\-decode2commit\_\-slip, core\_\-t::core\_\-t::core\_\-stat\_\-t::Mop\_\-decode\_\-slip, core\_\-t::core\_\-t::core\_\-stat\_\-t::Mop\_\-fetch2decode\_\-slip, core\_\-t::core\_\-t::core\_\-stat\_\-t::Mop\_\-fetch\_\-slip, PF\_\-COUNT, PF\_\-PDF, core\_\-t::core\_\-t::core\_\-stat\_\-t::ROB\_\-eff\_\-occupancy, core\_\-t::core\_\-t::core\_\-stat\_\-t::ROB\_\-empty\_\-cycles, core\_\-t::core\_\-t::core\_\-stat\_\-t::ROB\_\-full\_\-cycles, core\_\-t::core\_\-t::core\_\-stat\_\-t::ROB\_\-occupancy, core\_\-t::stat, stat\_\-reg\_\-counter, stat\_\-reg\_\-dist(), stat\_\-reg\_\-formula(), stat\_\-reg\_\-note(), stat\_\-reg\_\-qword(), core\_\-t::core\_\-t::core\_\-stat\_\-t::uop\_\-alloc2ready\_\-slip, core\_\-t::core\_\-t::core\_\-stat\_\-t::uop\_\-complete2commit\_\-slip, core\_\-t::core\_\-t::core\_\-stat\_\-t::uop\_\-decode2alloc\_\-slip, core\_\-t::core\_\-t::core\_\-stat\_\-t::uop\_\-exec2complete\_\-slip, core\_\-t::core\_\-t::core\_\-stat\_\-t::uop\_\-issue2exec\_\-slip, and core\_\-t::core\_\-t::core\_\-stat\_\-t::uop\_\-ready2issue\_\-slip.\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!ROB\_\-available@{ROB\_\-available}}
+\index{ROB\_\-available@{ROB\_\-available}!core_commit_DPM_t@{core\_\-commit\_\-DPM\_\-t}}
+\subsubsection[{ROB\_\-available}]{\setlength{\rightskip}{0pt plus 5cm}bool core\_\-commit\_\-DPM\_\-t::ROB\_\-available (void)\hspace{0.3cm}{\tt  [virtual]}}\label{classcore__commit__DPM__t_eba764df3f73e22de74685b52976bd14}
+
+
+
+
+Implements {\bf core\_\-commit\_\-t} \doxyref{}{p.}{classcore__commit__t_0b890a3d68d0bbcbd05256e8af3d2286}.
+
+Definition at line 948 of file commit-DPM.cpp.
+
+References core\_\-knobs\_\-t::commit, core\_\-commit\_\-t::core, core\_\-t::knobs, knobs, ROB\_\-num, and core\_\-knobs\_\-t::ROB\_\-size.\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!ROB\_\-empty@{ROB\_\-empty}}
+\index{ROB\_\-empty@{ROB\_\-empty}!core_commit_DPM_t@{core\_\-commit\_\-DPM\_\-t}}
+\subsubsection[{ROB\_\-empty}]{\setlength{\rightskip}{0pt plus 5cm}bool core\_\-commit\_\-DPM\_\-t::ROB\_\-empty (void)\hspace{0.3cm}{\tt  [virtual]}}\label{classcore__commit__DPM__t_42a6e65fd798bfb75b5a036efd9e4ae1}
+
+
+
+
+Implements {\bf core\_\-commit\_\-t} \doxyref{}{p.}{classcore__commit__t_22bbecb454d5a44d355fce588a42c1de}.
+
+Definition at line 954 of file commit-DPM.cpp.
+
+References ROB\_\-num.\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!ROB\_\-fuse\_\-insert@{ROB\_\-fuse\_\-insert}}
+\index{ROB\_\-fuse\_\-insert@{ROB\_\-fuse\_\-insert}!core_commit_DPM_t@{core\_\-commit\_\-DPM\_\-t}}
+\subsubsection[{ROB\_\-fuse\_\-insert}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-commit\_\-DPM\_\-t::ROB\_\-fuse\_\-insert (struct {\bf uop\_\-t} $\ast$const  {\em uop})\hspace{0.3cm}{\tt  [virtual]}}\label{classcore__commit__DPM__t_a8e1a57946e18f029d405718664a4b54}
+
+
+
+
+Implements {\bf core\_\-commit\_\-t} \doxyref{}{p.}{classcore__commit__t_ca348c07e73a3cdb5cff795aff72e378}.
+
+Definition at line 969 of file commit-DPM.cpp.
+
+References uop\_\-t::alloc, uop\_\-t::decode, uop\_\-t::fusion\_\-head, ROB\_\-eff\_\-num, and uop\_\-t::ROB\_\-index.\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!ROB\_\-insert@{ROB\_\-insert}}
+\index{ROB\_\-insert@{ROB\_\-insert}!core_commit_DPM_t@{core\_\-commit\_\-DPM\_\-t}}
+\subsubsection[{ROB\_\-insert}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-commit\_\-DPM\_\-t::ROB\_\-insert (struct {\bf uop\_\-t} $\ast$const  {\em uop})\hspace{0.3cm}{\tt  [virtual]}}\label{classcore__commit__DPM__t_0bce05d30731b67e31f691bf95f87851}
+
+
+
+
+Implements {\bf core\_\-commit\_\-t} \doxyref{}{p.}{classcore__commit__t_f086fcde1c43f2778c83c2655253f8b4}.
+
+Definition at line 959 of file commit-DPM.cpp.
+
+References uop\_\-t::alloc, core\_\-knobs\_\-t::commit, core\_\-commit\_\-t::core, core\_\-t::knobs, knobs, modinc(), ROB, ROB\_\-eff\_\-num, uop\_\-t::ROB\_\-index, ROB\_\-num, core\_\-knobs\_\-t::ROB\_\-size, and ROB\_\-tail.\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!step@{step}}
+\index{step@{step}!core_commit_DPM_t@{core\_\-commit\_\-DPM\_\-t}}
+\subsubsection[{step}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-commit\_\-DPM\_\-t::step (void)\hspace{0.3cm}{\tt  [virtual]}}\label{classcore__commit__DPM__t_b3b35af5a3e6aa82d61761a07da5642a}
+
+
+
+
+Implements {\bf core\_\-commit\_\-t} \doxyref{}{p.}{classcore__commit__t_b927103f32dba915797418aa515c0165}.
+
+Definition at line 328 of file commit-DPM.cpp.
+
+References uop\_\-t::action\_\-id, thread\_\-t::active, uop\_\-t::alloc, core\_\-t::alloc, uop\_\-t::BOM, core\_\-fetch\_\-t::bpred, Mop\_\-t::bpred\_\-update, core\_\-knobs\_\-t::branch\_\-limit, cache\_\-freeze\_\-stats(), core\_\-oracle\_\-t::commit(), Mop\_\-t::commit, core\_\-knobs\_\-t::commit, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-branches, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-bytes, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-deadlock\_\-flushes, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-eff\_\-uops, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-fusions, Mop\_\-t::commit\_\-index, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-insn, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-loads, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-refs, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-rep\_\-insn, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-rep\_\-iterations, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-rep\_\-uops, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-stall, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-traps, core\_\-oracle\_\-t::commit\_\-uop(), core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-uops, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-UROM\_\-eff\_\-uops, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-UROM\_\-insn, core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-UROM\_\-uops, core\_\-oracle\_\-t::complete\_\-flush(), Mop\_\-t::complete\_\-index, core\_\-commit\_\-t::core, CSTALL\_\-EMPTY, CSTALL\_\-JECLEAR\_\-INFLIGHT, CSTALL\_\-MAX\_\-BRANCHES, CSTALL\_\-NONE, CSTALL\_\-NOT\_\-READY, CSTALL\_\-PARTIAL, core\_\-t::current\_\-thread, core\_\-commit\_\-t::deadlock\_\-threshold, core\_\-knobs\_\-t::decode, uop\_\-t::decode, Mop\_\-t::decode, core\_\-t::decode, core\_\-t::core\_\-t::core\_\-stat\_\-t::eff\_\-flow\_\-count, core\_\-t::core\_\-t::core\_\-stat\_\-t::eff\_\-flow\_\-histo, core\_\-t::core\_\-t::core\_\-stat\_\-t::eio\_\-commit\_\-insn, uop\_\-t::EOM, uop\_\-t::exec, core\_\-t::exec, core\_\-t::fetch, Mop\_\-t::fetch, core\_\-t::core\_\-t::core\_\-stat\_\-t::final\_\-sim\_\-cycle, core\_\-t::core\_\-t::core\_\-stat\_\-t::flow\_\-count, core\_\-t::core\_\-t::core\_\-stat\_\-t::flow\_\-histo, Mop\_\-t::flow\_\-length, core\_\-exec\_\-t::freeze\_\-stats(), bpred\_\-t::freeze\_\-stats(), uop\_\-t::fusion\_\-next, uop\_\-t::has\_\-imm, thread\_\-t::id, uop\_\-t::in\_\-fusion, Mop\_\-t::inst, Mop\_\-t::is\_\-ctrl, uop\_\-t::is\_\-load, uop\_\-t::is\_\-sta, uop\_\-t::is\_\-std, Mop\_\-t::is\_\-trap, Mop\_\-t::jeclear\_\-in\_\-flight, core\_\-t::knobs, knobs, core\_\-exec\_\-t::last\_\-completed, core\_\-exec\_\-t::last\_\-completed\_\-count, Mop\_\-t::last\_\-uop\_\-index, core\_\-exec\_\-t::LDQ\_\-deallocate(), md\_\-inst\_\-t::len, max\_\-cycles, max\_\-insts, max\_\-uops, core\_\-knobs\_\-t::max\_\-uops, modinc(), uop\_\-t::Mop, core\_\-t::core\_\-t::core\_\-stat\_\-t::Mop\_\-commit\_\-slip, core\_\-t::core\_\-t::core\_\-stat\_\-t::Mop\_\-decode2commit\_\-slip, core\_\-t::core\_\-t::core\_\-stat\_\-t::Mop\_\-decode\_\-slip, core\_\-t::core\_\-t::core\_\-stat\_\-t::Mop\_\-fetch2decode\_\-slip, core\_\-t::core\_\-t::core\_\-stat\_\-t::Mop\_\-fetch\_\-slip, core\_\-t::new\_\-action\_\-id(), Mop\_\-t::NextPC, Mop\_\-t::num\_\-branches, Mop\_\-t::num\_\-eff\_\-uops, Mop\_\-t::num\_\-loads, Mop\_\-t::num\_\-refs, Mop\_\-t::num\_\-uops, Mop\_\-t::opflags, Mop\_\-t::oracle, core\_\-t::oracle, Mop\_\-t::PC, md\_\-inst\_\-t::qemu\_\-len, core\_\-fetch\_\-t::recover(), core\_\-decode\_\-t::recover(), core\_\-alloc\_\-t::recover(), core\_\-exec\_\-t::recover(), recover(), thread\_\-t::regs, regs\_\-t::regs\_\-NPC, md\_\-inst\_\-t::rep, core\_\-oracle\_\-t::reset\_\-execution(), bpred\_\-t::return\_\-state\_\-cache(), ROB, ROB\_\-eff\_\-num, ROB\_\-head, uop\_\-t::ROB\_\-index, ROB\_\-num, core\_\-knobs\_\-t::ROB\_\-size, sim\_\-cycle, sim\_\-exit\_\-buf, simulated\_\-processes\_\-remaining, Mop\_\-t::spec\_\-mode, Mop\_\-t::stat, core\_\-t::stat, stat\_\-add\_\-sample(), core\_\-exec\_\-t::STQ\_\-deallocate\_\-senior(), core\_\-exec\_\-t::STQ\_\-deallocate\_\-sta(), core\_\-exec\_\-t::STQ\_\-deallocate\_\-std(), Mop\_\-t::targetPC, TICK\_\-T\_\-MAX, Mop\_\-t::timing, uop\_\-t::timing, total\_\-commit\_\-eff\_\-uops, total\_\-commit\_\-insn, total\_\-commit\_\-uops, trace\_\-limit, Mop\_\-t::uop, core\_\-t::core\_\-t::core\_\-stat\_\-t::uop\_\-alloc2ready\_\-slip, core\_\-t::core\_\-t::core\_\-stat\_\-t::uop\_\-complete2commit\_\-slip, core\_\-t::core\_\-t::core\_\-stat\_\-t::uop\_\-decode2alloc\_\-slip, core\_\-t::core\_\-t::core\_\-stat\_\-t::uop\_\-exec2complete\_\-slip, core\_\-t::core\_\-t::core\_\-stat\_\-t::uop\_\-issue2exec\_\-slip, core\_\-t::core\_\-t::core\_\-stat\_\-t::uop\_\-ready2issue\_\-slip, bpred\_\-t::update(), warn(), uop\_\-t::when\_\-allocated, Mop\_\-t::when\_\-commit\_\-finished, Mop\_\-t::when\_\-commit\_\-started, uop\_\-t::when\_\-completed, Mop\_\-t::when\_\-decode\_\-finished, Mop\_\-t::when\_\-decode\_\-started, uop\_\-t::when\_\-decoded, uop\_\-t::when\_\-exec, Mop\_\-t::when\_\-fetch\_\-started, Mop\_\-t::when\_\-fetched, uop\_\-t::when\_\-issued, uop\_\-t::when\_\-ready, when\_\-rep\_\-commit\_\-started, when\_\-rep\_\-decode\_\-started, when\_\-rep\_\-fetch\_\-started, when\_\-rep\_\-fetched, core\_\-knobs\_\-t::width, Mop\_\-t::zero\_\-rep, zesto\_\-assert, zesto\_\-fatal, and ZESTO\_\-STAT.\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!update\_\-occupancy@{update\_\-occupancy}}
+\index{update\_\-occupancy@{update\_\-occupancy}!core_commit_DPM_t@{core\_\-commit\_\-DPM\_\-t}}
+\subsubsection[{update\_\-occupancy}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-commit\_\-DPM\_\-t::update\_\-occupancy (void)\hspace{0.3cm}{\tt  [virtual]}}\label{classcore__commit__DPM__t_14bc2b8a134d2a8fd46e598149e08f46}
+
+
+
+
+Implements {\bf core\_\-commit\_\-t} \doxyref{}{p.}{classcore__commit__t_59efb1aa4022d49eaa63280fdd0df0d9}.
+
+Definition at line 310 of file commit-DPM.cpp.
+
+References core\_\-knobs\_\-t::commit, core\_\-commit\_\-t::core, core\_\-t::knobs, ROB\_\-eff\_\-num, core\_\-t::core\_\-t::core\_\-stat\_\-t::ROB\_\-eff\_\-occupancy, core\_\-t::core\_\-t::core\_\-stat\_\-t::ROB\_\-empty\_\-cycles, core\_\-t::core\_\-t::core\_\-stat\_\-t::ROB\_\-full\_\-cycles, ROB\_\-num, core\_\-t::core\_\-t::core\_\-stat\_\-t::ROB\_\-occupancy, core\_\-knobs\_\-t::ROB\_\-size, and core\_\-t::stat.
+
+\subsection{Member Data Documentation}
+\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!commit\_\-stall\_\-str@{commit\_\-stall\_\-str}}
+\index{commit\_\-stall\_\-str@{commit\_\-stall\_\-str}!core_commit_DPM_t@{core\_\-commit\_\-DPM\_\-t}}
+\subsubsection[{commit\_\-stall\_\-str}]{\setlength{\rightskip}{0pt plus 5cm}const char $\ast$ {\bf core\_\-commit\_\-DPM\_\-t::commit\_\-stall\_\-str}\hspace{0.3cm}{\tt  [static, protected]}}\label{classcore__commit__DPM__t_43a64e6d323f15ad135b52bc55313dbd}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim} {
+  "no stall                   ",
+  "oldest inst not done       ",
+  "oldest inst partially done ",
+  "ROB is empty               ",
+  "Mop done, jeclear in flight",
+  "branch commit limit        "
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 45 of file commit-DPM.cpp.
+
+Referenced by reg\_\-stats().\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!ROB@{ROB}}
+\index{ROB@{ROB}!core_commit_DPM_t@{core\_\-commit\_\-DPM\_\-t}}
+\subsubsection[{ROB}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf uop\_\-t}$\ast$$\ast$ {\bf core\_\-commit\_\-DPM\_\-t::ROB}\hspace{0.3cm}{\tt  [read, protected]}}\label{classcore__commit__DPM__t_278cf60521965a4d7c8461e150923171}
+
+
+
+
+Definition at line 39 of file commit-DPM.cpp.
+
+Referenced by core\_\-commit\_\-DPM\_\-t(), recover(), ROB\_\-insert(), and step().\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!ROB\_\-eff\_\-num@{ROB\_\-eff\_\-num}}
+\index{ROB\_\-eff\_\-num@{ROB\_\-eff\_\-num}!core_commit_DPM_t@{core\_\-commit\_\-DPM\_\-t}}
+\subsubsection[{ROB\_\-eff\_\-num}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf core\_\-commit\_\-DPM\_\-t::ROB\_\-eff\_\-num}\hspace{0.3cm}{\tt  [protected]}}\label{classcore__commit__DPM__t_7271d8dd3aae01ff5d72811b1da2300e}
+
+
+
+
+Definition at line 43 of file commit-DPM.cpp.
+
+Referenced by recover(), ROB\_\-fuse\_\-insert(), ROB\_\-insert(), step(), and update\_\-occupancy().\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!ROB\_\-head@{ROB\_\-head}}
+\index{ROB\_\-head@{ROB\_\-head}!core_commit_DPM_t@{core\_\-commit\_\-DPM\_\-t}}
+\subsubsection[{ROB\_\-head}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf core\_\-commit\_\-DPM\_\-t::ROB\_\-head}\hspace{0.3cm}{\tt  [protected]}}\label{classcore__commit__DPM__t_472b312fa89b38b447adcad1f2e1093c}
+
+
+
+
+Definition at line 40 of file commit-DPM.cpp.
+
+Referenced by step().\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!ROB\_\-num@{ROB\_\-num}}
+\index{ROB\_\-num@{ROB\_\-num}!core_commit_DPM_t@{core\_\-commit\_\-DPM\_\-t}}
+\subsubsection[{ROB\_\-num}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf core\_\-commit\_\-DPM\_\-t::ROB\_\-num}\hspace{0.3cm}{\tt  [protected]}}\label{classcore__commit__DPM__t_424e7e3d0aae69fe63ea78d62ab8de3b}
+
+
+
+
+Definition at line 42 of file commit-DPM.cpp.
+
+Referenced by recover(), ROB\_\-available(), ROB\_\-empty(), ROB\_\-insert(), step(), and update\_\-occupancy().\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!ROB\_\-tail@{ROB\_\-tail}}
+\index{ROB\_\-tail@{ROB\_\-tail}!core_commit_DPM_t@{core\_\-commit\_\-DPM\_\-t}}
+\subsubsection[{ROB\_\-tail}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf core\_\-commit\_\-DPM\_\-t::ROB\_\-tail}\hspace{0.3cm}{\tt  [protected]}}\label{classcore__commit__DPM__t_f5a7e2b1bc8484d728128bbc83fbe340}
+
+
+
+
+Definition at line 41 of file commit-DPM.cpp.
+
+Referenced by recover(), and ROB\_\-insert().\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!when\_\-rep\_\-commit\_\-started@{when\_\-rep\_\-commit\_\-started}}
+\index{when\_\-rep\_\-commit\_\-started@{when\_\-rep\_\-commit\_\-started}!core_commit_DPM_t@{core\_\-commit\_\-DPM\_\-t}}
+\subsubsection[{when\_\-rep\_\-commit\_\-started}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} {\bf core\_\-commit\_\-DPM\_\-t::when\_\-rep\_\-commit\_\-started}\hspace{0.3cm}{\tt  [protected]}}\label{classcore__commit__DPM__t_41fa0a9ac8cb5a538d42c9a48fc1b4b2}
+
+
+
+
+Definition at line 51 of file commit-DPM.cpp.
+
+Referenced by step().\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!when\_\-rep\_\-decode\_\-started@{when\_\-rep\_\-decode\_\-started}}
+\index{when\_\-rep\_\-decode\_\-started@{when\_\-rep\_\-decode\_\-started}!core_commit_DPM_t@{core\_\-commit\_\-DPM\_\-t}}
+\subsubsection[{when\_\-rep\_\-decode\_\-started}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} {\bf core\_\-commit\_\-DPM\_\-t::when\_\-rep\_\-decode\_\-started}\hspace{0.3cm}{\tt  [protected]}}\label{classcore__commit__DPM__t_010d8926bef914213586b5f07e01fa57}
+
+
+
+
+Definition at line 50 of file commit-DPM.cpp.
+
+Referenced by step().\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!when\_\-rep\_\-fetch\_\-started@{when\_\-rep\_\-fetch\_\-started}}
+\index{when\_\-rep\_\-fetch\_\-started@{when\_\-rep\_\-fetch\_\-started}!core_commit_DPM_t@{core\_\-commit\_\-DPM\_\-t}}
+\subsubsection[{when\_\-rep\_\-fetch\_\-started}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} {\bf core\_\-commit\_\-DPM\_\-t::when\_\-rep\_\-fetch\_\-started}\hspace{0.3cm}{\tt  [protected]}}\label{classcore__commit__DPM__t_072fde6e7911be1d94a2e5ef7ad1220e}
+
+
+
+
+Definition at line 48 of file commit-DPM.cpp.
+
+Referenced by step().\index{core\_\-commit\_\-DPM\_\-t@{core\_\-commit\_\-DPM\_\-t}!when\_\-rep\_\-fetched@{when\_\-rep\_\-fetched}}
+\index{when\_\-rep\_\-fetched@{when\_\-rep\_\-fetched}!core_commit_DPM_t@{core\_\-commit\_\-DPM\_\-t}}
+\subsubsection[{when\_\-rep\_\-fetched}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} {\bf core\_\-commit\_\-DPM\_\-t::when\_\-rep\_\-fetched}\hspace{0.3cm}{\tt  [protected]}}\label{classcore__commit__DPM__t_01091807e59a8234ae1e226f6c84b84c}
+
+
+
+
+Definition at line 49 of file commit-DPM.cpp.
+
+Referenced by step().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf commit-DPM.cpp}\end{CompactItemize}

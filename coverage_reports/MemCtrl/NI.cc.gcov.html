@@ -1,0 +1,485 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>LCOV - iris.info - MemCtrl/NI.cc</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LTP GCOV extension - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+        <tr>
+          <td class="headerItem" width="20%">Current&nbsp;view:</td>
+          <td class="headerValue" width="80%" colspan=4><a href="../index.html">directory</a> - <a href="index.html">MemCtrl</a> - NI.cc</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Test:</td>
+          <td class="headerValue" width="80%" colspan=4>iris.info</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Date:</td>
+          <td class="headerValue" width="20%">2010-05-24</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Instrumented&nbsp;lines:</td>
+          <td class="headerValue" width="20%">177</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Code&nbsp;covered:</td>
+          <td class="headerValue" width="20%">91.5 %</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Executed&nbsp;lines:</td>
+          <td class="headerValue" width="20%">162</td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><pre class="source">
+<span class="lineNum">       1 </span>                : /*
+<span class="lineNum">       2 </span>                :  * =====================================================================================
+<span class="lineNum">       3 </span>                :  *
+<span class="lineNum">       4 </span>                :  *       Filename:  packetSource.cc
+<span class="lineNum">       5 </span>                :  *
+<span class="lineNum">       6 </span>                :  *    Description:  
+<span class="lineNum">       7 </span>                :  *
+<span class="lineNum">       8 </span>                :  *        Version:  1.0
+<span class="lineNum">       9 </span>                :  *        Created:  03/11/2010 05:12:58 PM
+<span class="lineNum">      10 </span>                :  *       Revision:  none
+<span class="lineNum">      11 </span>                :  *       Compiler:  gcc
+<span class="lineNum">      12 </span>                :  *
+<span class="lineNum">      13 </span>                :  *         Author:  Mitchelle Rasquinha (), mitchelle.rasquinha@gatech.edu
+<span class="lineNum">      14 </span>                :  *        Company:  Georgia Institute of Technology
+<span class="lineNum">      15 </span>                :  *
+<span class="lineNum">      16 </span>                :  * =====================================================================================
+<span class="lineNum">      17 </span>                :  */
+<span class="lineNum">      18 </span>                : #ifndef  _packetsource_cc_INC
+<span class="lineNum">      19 </span>                : #define  _packetsource_cc_INC
+<span class="lineNum">      20 </span>                : 
+<span class="lineNum">      21 </span>                : #include        &quot;NI.h&quot;
+<span class="lineNum">      22 </span>                : #include        &quot;MC.h&quot;
+<span class="lineNum">      23 </span>                : #include        &quot;response_handler.h&quot;  
+<span class="lineNum">      24 </span>                : //#define SEND_ONE_PACKET 1
+<span class="lineNum">      25 </span>                : using namespace std;
+<span class="lineNum">      26 </span>                : 
+<span class="lineNum">      27 </span><span class="lineCov">             48 : NI::NI()</span>
+<span class="lineNum">      28 </span>                : {
+<span class="lineNum">      29 </span><span class="lineCov">              8 :     name = &quot;NI&quot;;</span>
+<span class="lineNum">      30 </span><span class="lineCov">              8 :     interface_connections.resize(1);</span>
+<span class="lineNum">      31 </span><span class="lineCov">              8 :     mc = (Component*)(new MC());</span>
+<span class="lineNum">      32 </span><span class="lineCov">              8 :     ((MC*)mc)-&gt;parent = this;</span>
+<span class="lineNum">      33 </span><span class="lineCov">              8 :     ((MC*)mc)-&gt;ni = this; </span>
+<span class="lineNum">      34 </span><span class="lineCov">              8 :     ((MC*)mc)-&gt;Init();       </span>
+<span class="lineNum">      35 </span><span class="lineNoCov">              0 : }</span>
+<span class="lineNum">      36 </span>                : 
+<span class="lineNum">      37 </span><span class="lineCov">              8 : NI::~NI()</span>
+<span class="lineNum">      38 </span>                : {
+<span class="lineNum">      39 </span><span class="lineCov">              8 : }</span>
+<span class="lineNum">      40 </span>                : 
+<span class="lineNum">      41 </span>                : void
+<span class="lineNum">      42 </span><span class="lineNoCov">              0 : NI::set_no_vcs ( uint v)</span>
+<span class="lineNum">      43 </span>                : {
+<span class="lineNum">      44 </span><span class="lineNoCov">              0 :     vcs = v;</span>
+<span class="lineNum">      45 </span><span class="lineNoCov">              0 : }</span>
+<span class="lineNum">      46 </span>                : 
+<span class="lineNum">      47 </span>                : void
+<span class="lineNum">      48 </span><span class="lineCov">              8 : NI::setup(uint n, uint v, uint time)</span>
+<span class="lineNum">      49 </span>                : {
+<span class="lineNum">      50 </span>                : 
+<span class="lineNum">      51 </span><span class="lineCov">              8 :     vcs =v;</span>
+<span class="lineNum">      52 </span><span class="lineCov">              8 :     max_sim_time = time;</span>
+<span class="lineNum">      53 </span><span class="lineCov">              8 :     no_nodes = n;</span>
+<span class="lineNum">      54 </span><span class="lineCov">              8 :     packets = 0;</span>
+<span class="lineNum">      55 </span><span class="lineCov">              8 :     total_missed_time = 0;</span>
+<span class="lineNum">      56 </span><span class="lineCov">              8 :     packets_out = 0;</span>
+<span class="lineNum">      57 </span><span class="lineCov">              8 :     total_backward_time = 0;</span>
+<span class="lineNum">      58 </span><span class="lineCov">              8 :     missed_time = 0;</span>
+<span class="lineNum">      59 </span><span class="lineCov">             16 :     address = myId();</span>
+<span class="lineNum">      60 </span><span class="lineCov">              8 :     node_ip = address/3;</span>
+<span class="lineNum">      61 </span><span class="lineCov">              8 :     ((MC*)mc)-&gt;id = node_ip;    </span>
+<span class="lineNum">      62 </span><span class="lineCov">              8 :     ready.resize( vcs );</span>
+<span class="lineNum">      63 </span><span class="lineCov">             24 :     ready.insert( ready.begin(), ready.size(), false );</span>
+<span class="lineNum">      64 </span><span class="lineCov">             48 :     for(unsigned int i = 0; i &lt; ready.size(); i++)</span>
+<span class="lineNum">      65 </span><span class="lineCov">             16 :         ready[i] = false;</span>
+<span class="lineNum">      66 </span>                : 
+<span class="lineNum">      67 </span>                : 
+<span class="lineNum">      68 </span>                :    //  send ready events for each virtual channel
+<span class="lineNum">      69 </span><span class="lineCov">             16 :     for( unsigned int i = 0; i &lt; vcs; i++ )</span>
+<span class="lineNum">      70 </span>                :     {
+<span class="lineNum">      71 </span><span class="lineCov">              8 :         VirtualChannelDescription* vc = new VirtualChannelDescription();</span>
+<span class="lineNum">      72 </span><span class="lineCov">              8 :         vc-&gt;vc = i;</span>
+<span class="lineNum">      73 </span>                : 
+<span class="lineNum">      74 </span><span class="lineCov">              8 :         IrisEvent* event = new IrisEvent();</span>
+<span class="lineNum">      75 </span><span class="lineCov">              8 :         event-&gt;type = READY_EVENT;</span>
+<span class="lineNum">      76 </span><span class="lineCov">              8 :         event-&gt;vc = i;</span>
+<span class="lineNum">      77 </span><span class="lineCov">              8 :         event-&gt;event_data.push_back(vc);</span>
+<span class="lineNum">      78 </span><span class="lineCov">              8 :         Simulator::Schedule(Simulator::Now()+1, &amp;NetworkComponent::process_event,this, event);</span>
+<span class="lineNum">      79 </span>                : // interface_connections[0], event);
+<span class="lineNum">      80 </span>                :     }
+<span class="lineNum">      81 </span>                : 
+<span class="lineNum">      82 </span>                :     return ;
+<span class="lineNum">      83 </span>                : } /* ----- end of function GenericTPG::setup ----- */
+<span class="lineNum">      84 </span>                : 
+<span class="lineNum">      85 </span>                : void
+<span class="lineNum">      86 </span><span class="lineCov">              8 : NI::set_output_path( string name)</span>
+<span class="lineNum">      87 </span>                : {
+<span class="lineNum">      88 </span>                :     // open the output trace file
+<span class="lineNum">      89 </span><span class="lineCov">              8 :     stringstream str;</span>
+<span class="lineNum">      90 </span><span class="lineCov">             16 :     str &lt;&lt; name &lt;&lt; &quot;/ni_&quot; &lt;&lt; node_ip &lt;&lt; &quot;_trace_out.tr&quot;;</span>
+<span class="lineNum">      91 </span><span class="lineCov">             16 :     out_filename = str.str();</span>
+<span class="lineNum">      92 </span><span class="lineCov">             16 :     out_file.open(out_filename.c_str());</span>
+<span class="lineNum">      93 </span><span class="lineCov">             16 :     if( !out_file.is_open() )</span>
+<span class="lineNum">      94 </span>                :     {
+<span class="lineNum">      95 </span><span class="lineNoCov">              0 :         stringstream stream;</span>
+<span class="lineNum">      96 </span><span class="lineNoCov">              0 :         stream &lt;&lt; &quot;Could not open output trace file &quot; &lt;&lt; out_filename &lt;&lt; &quot;.\n&quot;;</span>
+<span class="lineNum">      97 </span><span class="lineNoCov">              0 :         timed_cout(stream.str());</span>
+<span class="lineNum">      98 </span><span class="lineNoCov">              0 :     }</span>
+<span class="lineNum">      99 </span><span class="lineCov">              8 : }</span>
+<span class="lineNum">     100 </span>                : 
+<span class="lineNum">     101 </span>                : void
+<span class="lineNum">     102 </span><span class="lineNoCov">              0 : NI::finish()</span>
+<span class="lineNum">     103 </span>                : {
+<span class="lineNum">     104 </span><span class="lineNoCov">              0 :     out_file.close();</span>
+<span class="lineNum">     105 </span><span class="lineNoCov">              0 : }</span>
+<span class="lineNum">     106 </span>                : 
+<span class="lineNum">     107 </span>                : 
+<span class="lineNum">     108 </span>                : void 
+<span class="lineNum">     109 </span><span class="lineCov">         614644 : NI::process_event(IrisEvent* e)</span>
+<span class="lineNum">     110 </span>                : {
+<span class="lineNum">     111 </span><span class="lineCov">         614644 :     switch(e-&gt;type)</span>
+<span class="lineNum">     112 </span>                :     {
+<span class="lineNum">     113 </span>                :         case NEW_PACKET_EVENT:
+<span class="lineNum">     114 </span><span class="lineCov">         168676 :             handle_new_packet_event(e);</span>
+<span class="lineNum">     115 </span><span class="lineCov">         168676 :             break;</span>
+<span class="lineNum">     116 </span>                : 
+<span class="lineNum">     117 </span>                :             /* 
+<span class="lineNum">     118 </span>                :         case OLD_PACKET_EVENT:
+<span class="lineNum">     119 </span>                :             handle_old_packet_event(e);
+<span class="lineNum">     120 </span>                :             break;
+<span class="lineNum">     121 </span>                :              * */
+<span class="lineNum">     122 </span>                : 
+<span class="lineNum">     123 </span>                :         case OUT_PULL_EVENT:
+<span class="lineNum">     124 </span><span class="lineCov">         297312 :             handle_out_pull_event(e);</span>
+<span class="lineNum">     125 </span><span class="lineCov">         297312 :             break;</span>
+<span class="lineNum">     126 </span>                : 
+<span class="lineNum">     127 </span>                :         case READY_EVENT:
+<span class="lineNum">     128 </span><span class="lineCov">         148656 :             handle_ready_event(e);</span>
+<span class="lineNum">     129 </span><span class="lineCov">         148656 :             break;</span>
+<span class="lineNum">     130 </span>                : 
+<span class="lineNum">     131 </span>                :         default:
+<span class="lineNum">     132 </span><span class="lineNoCov">              0 :             cout &lt;&lt; &quot;NI:: Unk event exception&quot; &lt;&lt; endl;</span>
+<span class="lineNum">     133 </span>                :             break;
+<span class="lineNum">     134 </span>                :     }
+<span class="lineNum">     135 </span>                :     return ;
+<span class="lineNum">     136 </span>                : } /* ----- end of function GenericTPG::process_event ----- */
+<span class="lineNum">     137 </span>                : 
+<span class="lineNum">     138 </span>                : void 
+<span class="lineNum">     139 </span><span class="lineCov">         168676 : NI::handle_new_packet_event(IrisEvent* e)</span>
+<span class="lineNum">     140 </span>                : {
+<span class="lineNum">     141 </span>                : #ifdef _DEBUG
+<span class="lineNum">     142 </span>                :     _DBG_NOARG(&quot; handle_new_packet_event &quot;);
+<span class="lineNum">     143 </span>                : #endif
+<span class="lineNum">     144 </span>                :         HighLevelPacket* hlp;
+<span class="lineNum">     145 </span><span class="lineCov">         337352 :         if(e-&gt;src_id == interface_connections[0]-&gt;address)</span>
+<span class="lineNum">     146 </span><span class="lineCov">         153051 :             hlp = static_cast&lt;HighLevelPacket*&gt;(e-&gt;event_data.at(0));</span>
+<span class="lineNum">     147 </span>                :         else
+<span class="lineNum">     148 </span><span class="lineCov">          15625 :             hlp = outstanding_hlp;</span>
+<span class="lineNum">     149 </span><span class="lineCov">         321726 :     if (!((MC*)mc)-&gt;reqH-&gt;oneBufferFull &amp;&amp; hlp)</span>
+<span class="lineNum">     150 </span>                :     {
+<span class="lineNum">     151 </span><span class="lineCov">         153050 :         Request* req = new Request();</span>
+<span class="lineNum">     152 </span><span class="lineCov">         153050 :         convertFromBitStream(req, hlp);</span>
+<span class="lineNum">     153 </span><span class="lineCov">         153050 :         req-&gt;arrivalTime = Simulator::Now(); //hlp-&gt;recv_time-missed_time;        </span>
+<span class="lineNum">     154 </span><span class="lineCov">         153050 :         total_missed_time += (Simulator::Now() - hlp-&gt;recv_time);</span>
+<span class="lineNum">     155 </span><span class="lineCov">         153050 :         packets++;</span>
+<span class="lineNum">     156 </span><span class="lineCov">         153050 :         last_pkt_out_cycle = Simulator::Now();</span>
+<span class="lineNum">     157 </span>                : 
+<span class="lineNum">     158 </span><span class="lineCov">         153050 :         IrisEvent *e2 = new IrisEvent();</span>
+<span class="lineNum">     159 </span><span class="lineCov">         153050 :         e2-&gt;src = this;</span>
+<span class="lineNum">     160 </span><span class="lineCov">         153050 :         e2-&gt;dst = ((MC*)mc)-&gt;reqH;</span>
+<span class="lineNum">     161 </span><span class="lineCov">         153050 :         e2-&gt;event_data.push_back((void*)req);</span>
+<span class="lineNum">     162 </span><span class="lineCov">         153050 :         e2-&gt;type = START;    </span>
+<span class="lineNum">     163 </span><span class="lineCov">         153050 :         Simulator::Schedule(Simulator::Now()+1, &amp;RequestHandler::process_event, (RequestHandler*)e2-&gt;dst, e2);   </span>
+<span class="lineNum">     164 </span><span class="lineCov">         153050 :         missed_time = 0;</span>
+<span class="lineNum">     165 </span>                : 
+<span class="lineNum">     166 </span>                :          // send back a ready event
+<span class="lineNum">     167 </span><span class="lineCov">         153050 :         IrisEvent* event = new IrisEvent();</span>
+<span class="lineNum">     168 </span><span class="lineCov">         153050 :         event-&gt;type = READY_EVENT;</span>
+<span class="lineNum">     169 </span><span class="lineCov">         153050 :         event-&gt;vc = 0;       </span>
+<span class="lineNum">     170 </span><span class="lineCov">         306100 :         Simulator::Schedule( Simulator::Now()+1, &amp;NetworkComponent::process_event, interface_connections[0], event);        </span>
+<span class="lineNum">     171 </span><span class="lineCov">         153050 :         delete hlp;</span>
+<span class="lineNum">     172 </span><span class="lineCov">         153050 :         outstanding_hlp = NULL;</span>
+<span class="lineNum">     173 </span>                :     }
+<span class="lineNum">     174 </span>                :     else
+<span class="lineNum">     175 </span>                :     {
+<span class="lineNum">     176 </span><span class="lineCov">          15626 :         if(hlp)</span>
+<span class="lineNum">     177 </span><span class="lineCov">          15275 :             outstanding_hlp = hlp; //static_cast&lt;HighLevelPacket*&gt;(e-&gt;event_data.at(0));</span>
+<span class="lineNum">     178 </span>                :         else
+<span class="lineNum">     179 </span><span class="lineCov">            351 :             outstanding_hlp = NULL;</span>
+<span class="lineNum">     180 </span>                : 
+<span class="lineNum">     181 </span>                :     }
+<span class="lineNum">     182 </span>                : /* 
+<span class="lineNum">     183 </span>                :     else
+<span class="lineNum">     184 </span>                :     {
+<span class="lineNum">     185 </span>                :         missed_time++;
+<span class="lineNum">     186 </span>                :         IrisEvent* e2 = new IrisEvent();
+<span class="lineNum">     187 </span>                :         e2-&gt;type = NEW_PACKET_EVENT;
+<span class="lineNum">     188 </span>                :         e2-&gt;event_data.push_back(hlp);
+<span class="lineNum">     189 </span>                :         Simulator::Schedule(Simulator::Now()+1, &amp;NetworkComponent::process_event, this, e2);
+<span class="lineNum">     190 </span>                :     }
+<span class="lineNum">     191 </span>                : */
+<span class="lineNum">     192 </span>                : 
+<span class="lineNum">     193 </span><span class="lineCov">         168676 :     delete e;</span>
+<span class="lineNum">     194 </span>                :     return ;
+<span class="lineNum">     195 </span>                : }
+<span class="lineNum">     196 </span>                : 
+<span class="lineNum">     197 </span>                : void 
+<span class="lineNum">     198 </span><span class="lineCov">         297312 : NI::handle_out_pull_event(IrisEvent* e)</span>
+<span class="lineNum">     199 </span>                : {
+<span class="lineNum">     200 </span>                :     MTRand mtrand1;
+<span class="lineNum">     201 </span><span class="lineCov">         297312 :         Request* req = new Request();</span>
+<span class="lineNum">     202 </span><span class="lineCov">         847108 :     if (ready[0] &amp;&amp; GetFromNIQueue(req))</span>
+<span class="lineNum">     203 </span>                :     {
+<span class="lineNum">     204 </span>                :             //  Send a high level packet now 
+<span class="lineNum">     205 </span><span class="lineCov">         148653 :             vector&lt;Request&gt;::iterator queueIndex = niQueue.begin();       </span>
+<span class="lineNum">     206 </span><span class="lineCov">         148653 :             IrisEvent* event = new IrisEvent();</span>
+<span class="lineNum">     207 </span><span class="lineCov">         148653 :             HighLevelPacket* hlp = new HighLevelPacket();</span>
+<span class="lineNum">     208 </span><span class="lineCov">         148653 :             event-&gt;type = NEW_PACKET_EVENT;</span>
+<span class="lineNum">     209 </span><span class="lineCov">         148653 :             hlp-&gt;virtual_channel = 0;</span>
+<span class="lineNum">     210 </span><span class="lineCov">         148653 :             hlp-&gt;source = address;</span>
+<span class="lineNum">     211 </span><span class="lineCov">         148653 :             hlp-&gt;recv_time = Simulator::Now();       </span>
+<span class="lineNum">     212 </span><span class="lineCov">         148653 :             hlp-&gt;addr = req-&gt;address;</span>
+<span class="lineNum">     213 </span><span class="lineCov">         148653 :             hlp-&gt;destination = req-&gt;threadId;</span>
+<span class="lineNum">     214 </span><span class="lineCov">         148653 :             hlp-&gt;transaction_id = mtrand1.randInt(1000);</span>
+<span class="lineNum">     215 </span><span class="lineCov">         148653 :             hlp-&gt;msg_class = RESPONSE_PKT;</span>
+<span class="lineNum">     216 </span>                :         
+<span class="lineNum">     217 </span><span class="lineCov">         148653 :             convertToBitStream(req, hlp);      </span>
+<span class="lineNum">     218 </span><span class="lineCov">         148653 :             hlp-&gt;sent_time = Simulator::Now();</span>
+<span class="lineNum">     219 </span><span class="lineCov">         148653 :             total_backward_time += (Simulator::Now() - req-&gt;retireTime);</span>
+<span class="lineNum">     220 </span><span class="lineCov">         148653 :             packets_out++;</span>
+<span class="lineNum">     221 </span>                : 
+<span class="lineNum">     222 </span><span class="lineCov">         148653 :             event-&gt;event_data.push_back(hlp);</span>
+<span class="lineNum">     223 </span><span class="lineCov">         297306 :             Simulator::Schedule(Simulator::Now()+1, &amp;NetworkComponent::process_event,interface_connections[0], event);</span>
+<span class="lineNum">     224 </span>                : 
+<span class="lineNum">     225 </span><span class="lineCov">         148653 :             ready[0] = false;</span>
+<span class="lineNum">     226 </span><span class="lineCov">         148653 :             niQueue.erase(queueIndex);</span>
+<span class="lineNum">     227 </span>                :             
+<span class="lineNum">     228 </span><span class="lineCov">         148653 :         IrisEvent* event3 = new IrisEvent();</span>
+<span class="lineNum">     229 </span><span class="lineCov">         148653 :         event3-&gt;type = SEND_TO_NI; //ask response handler for more</span>
+<span class="lineNum">     230 </span><span class="lineCov">         148653 :         event3-&gt;dst = ((MC*)mc)-&gt;responseH; //e-&gt;vc;</span>
+<span class="lineNum">     231 </span><span class="lineCov">         148653 :         Simulator::Schedule(Simulator::Now()+1, &amp;ResponseHandler::process_event, (ResponseHandler*)event3-&gt;dst, event3);</span>
+<span class="lineNum">     232 </span>                : 
+<span class="lineNum">     233 </span>                :     }
+<span class="lineNum">     234 </span>                :      
+<span class="lineNum">     235 </span>                :     /* 
+<span class="lineNum">     236 </span>                :      else if (!ready[0] &amp;&amp; GetFromNIQueue(req))
+<span class="lineNum">     237 </span>                :     {
+<span class="lineNum">     238 </span>                :         IrisEvent* event2 = new IrisEvent();
+<span class="lineNum">     239 </span>                :         event2-&gt;type = OUT_PULL_EVENT;
+<span class="lineNum">     240 </span>                :         event2-&gt;vc = 0; //e-&gt;vc;
+<span class="lineNum">     241 </span>                :         Simulator::Schedule(Simulator::Now()+1, &amp;NetworkComponent::process_event, this, event2);
+<span class="lineNum">     242 </span>                :         sending = true;
+<span class="lineNum">     243 </span>                :      }          
+<span class="lineNum">     244 </span>                :      */
+<span class="lineNum">     245 </span>                :     else
+<span class="lineNum">     246 </span><span class="lineCov">         148659 :         sending = false;</span>
+<span class="lineNum">     247 </span>                : 
+<span class="lineNum">     248 </span><span class="lineCov">         297312 :     delete req; </span>
+<span class="lineNum">     249 </span><span class="lineCov">         297312 :     delete e;</span>
+<span class="lineNum">     250 </span><span class="lineCov">         297312 : }</span>
+<span class="lineNum">     251 </span>                : 
+<span class="lineNum">     252 </span>                : void 
+<span class="lineNum">     253 </span><span class="lineCov">         148656 : NI::handle_ready_event(IrisEvent* e)</span>
+<span class="lineNum">     254 </span>                : {
+<span class="lineNum">     255 </span><span class="lineCov">         148656 :     ready[0] = true;</span>
+<span class="lineNum">     256 </span><span class="lineCov">         148656 :     if( Simulator::Now() &lt; max_sim_time )</span>
+<span class="lineNum">     257 </span>                :     {
+<span class="lineNum">     258 </span><span class="lineCov">         148656 :         IrisEvent* event = new IrisEvent();</span>
+<span class="lineNum">     259 </span><span class="lineCov">         148656 :         event-&gt;type = OUT_PULL_EVENT;</span>
+<span class="lineNum">     260 </span><span class="lineCov">         148656 :         event-&gt;vc = 0; //e-&gt;vc;</span>
+<span class="lineNum">     261 </span><span class="lineCov">         148656 :         Simulator::Schedule(Simulator::Now()+1, &amp;NetworkComponent::process_event, this, event);</span>
+<span class="lineNum">     262 </span><span class="lineCov">         148656 :         sending = true;</span>
+<span class="lineNum">     263 </span>                :     }
+<span class="lineNum">     264 </span><span class="lineCov">         148656 :     delete e;</span>
+<span class="lineNum">     265 </span><span class="lineCov">         148656 : }</span>
+<span class="lineNum">     266 </span>                : 
+<span class="lineNum">     267 </span>                : 
+<span class="lineNum">     268 </span>                :  /* 
+<span class="lineNum">     269 </span>                : void 
+<span class="lineNum">     270 </span>                : NI::handle_old_packet_event(IrisEvent* e)
+<span class="lineNum">     271 </span>                : {
+<span class="lineNum">     272 </span>                : #ifdef _DEBUG
+<span class="lineNum">     273 </span>                :     stringstream str;
+<span class="lineNum">     274 </span>                :     str &lt;&lt; &quot;NI &quot; &lt;&lt; address &lt;&lt; &quot; handle_old_packet_event &quot; &lt;&lt; e-&gt;vc ;
+<span class="lineNum">     275 </span>                :     timed_cout( str.str());
+<span class="lineNum">     276 </span>                : #endif
+<span class="lineNum">     277 </span>                :     
+<span class="lineNum">     278 </span>                :     if (!((MC*)mc)-&gt;reqH-&gt;oneBufferFull)
+<span class="lineNum">     279 </span>                :     {
+<span class="lineNum">     280 </span>                :         HighLevelPacket* hlp = static_cast&lt;HighLevelPacket*&gt;(e-&gt;event_data.at(0));
+<span class="lineNum">     281 </span>                :         Request* req = new Request();
+<span class="lineNum">     282 </span>                :         convertFromBitStream(req, hlp);
+<span class="lineNum">     283 </span>                :         req-&gt;arrivalTime = hlp-&gt;recv_time; 
+<span class="lineNum">     284 </span>                :         IrisEvent *e2 = new IrisEvent();
+<span class="lineNum">     285 </span>                :         e2-&gt;src = this;
+<span class="lineNum">     286 </span>                :         e2-&gt;dst = (Component*)((MC*)mc)-&gt;reqH;
+<span class="lineNum">     287 </span>                :         e2-&gt;event_data.push_back((void*)req);
+<span class="lineNum">     288 </span>                :         e2-&gt;type = START;    
+<span class="lineNum">     289 </span>                :         Simulator::Schedule(Simulator::Now()+1, &amp;RequestHandler::process_event, (RequestHandler*)e2-&gt;dst, e2);
+<span class="lineNum">     290 </span>                : 
+<span class="lineNum">     291 </span>                :     IrisEvent* event = new IrisEvent();
+<span class="lineNum">     292 </span>                :     event-&gt;type = READY_EVENT;
+<span class="lineNum">     293 </span>                :     VirtualChannelDescription* vc = new VirtualChannelDescription();
+<span class="lineNum">     294 </span>                :     event-&gt;vc = 0;
+<span class="lineNum">     295 </span>                :     event-&gt;event_data.push_back(vc);
+<span class="lineNum">     296 </span>                :     Simulator::Schedule(Simulator::Now()+1, &amp;NetworkComponent::process_event, interface_connections[0], event);
+<span class="lineNum">     297 </span>                :             delete hlp;
+<span class="lineNum">     298 </span>                :     }
+<span class="lineNum">     299 </span>                :     else
+<span class="lineNum">     300 </span>                :     {
+<span class="lineNum">     301 </span>                :         IrisEvent* event2 = new IrisEvent();
+<span class="lineNum">     302 </span>                :         event2-&gt;type = OLD_PACKET_EVENT;
+<span class="lineNum">     303 </span>                :         event2-&gt;event_data.push_back(e-&gt;event_data.at(0));
+<span class="lineNum">     304 </span>                :         Simulator::Schedule(Simulator::Now()+1, &amp;NetworkComponent::process_event, this, event2);
+<span class="lineNum">     305 </span>                :     }
+<span class="lineNum">     306 </span>                :         
+<span class="lineNum">     307 </span>                :     // Send ready event back 
+<span class="lineNum">     308 </span>                :     delete e;
+<span class="lineNum">     309 </span>                : }
+<span class="lineNum">     310 </span>                :   * */
+<span class="lineNum">     311 </span>                : 
+<span class="lineNum">     312 </span>                : string 
+<span class="lineNum">     313 </span><span class="lineCov">              8 : NI::toString() const</span>
+<span class="lineNum">     314 </span>                : {
+<span class="lineNum">     315 </span><span class="lineCov">              8 :     stringstream str;</span>
+<span class="lineNum">     316 </span>                :     str &lt;&lt; &quot;NI&quot;
+<span class="lineNum">     317 </span>                :         &lt;&lt; &quot;\t addr: &quot; &lt;&lt; address
+<span class="lineNum">     318 </span><span class="lineCov">             16 :         &lt;&lt; &quot;\tOutput File= &quot; &lt;&lt; out_filename;</span>
+<span class="lineNum">     319 </span><span class="lineCov">              8 :     return str.str();</span>
+<span class="lineNum">     320 </span>                : }
+<span class="lineNum">     321 </span>                : 
+<span class="lineNum">     322 </span>                : bool
+<span class="lineNum">     323 </span><span class="lineNoCov">              0 : NI::GetFromNIQueue(Request* req)</span>
+<span class="lineNum">     324 </span>                : {
+<span class="lineNum">     325 </span>                : //    vector&lt;Request&gt;::iterator queueIndex = niQueue.begin();
+<span class="lineNum">     326 </span><span class="lineCov">         504968 :     if (!niQueue.empty())</span>
+<span class="lineNum">     327 </span>                :     {   
+<span class="lineNum">     328 </span><span class="lineCov">         297306 :         *req = niQueue[0];</span>
+<span class="lineNum">     329 </span>                : //        niQueue.erase(queueIndex);
+<span class="lineNum">     330 </span><span class="lineCov">         148653 :         return true;</span>
+<span class="lineNum">     331 </span>                :     }
+<span class="lineNum">     332 </span>                :     else
+<span class="lineNum">     333 </span><span class="lineCov">         103831 :         return false;</span>
+<span class="lineNum">     334 </span>                : }
+<span class="lineNum">     335 </span>                : 
+<span class="lineNum">     336 </span>                : void 
+<span class="lineNum">     337 </span><span class="lineCov">         148653 : NI::convertToBitStream(Request* req, HighLevelPacket *hlp)</span>
+<span class="lineNum">     338 </span>                : {
+<span class="lineNum">     339 </span><span class="lineCov">        4905549 :     for ( uint i=0 ; i &lt; NETWORK_ADDRESS_BITS ; i++ )</span>
+<span class="lineNum">     340 </span>                :     {
+<span class="lineNum">     341 </span><span class="lineCov">        4756896 :         bool bit = (bool)((req-&gt;address &gt;&gt; i) &amp; 0x1); </span>
+<span class="lineNum">     342 </span><span class="lineCov">        4756896 :         hlp-&gt;data.push_back(bit);</span>
+<span class="lineNum">     343 </span>                :     }
+<span class="lineNum">     344 </span>                : /*    for ( uint i=0 ; i &lt; NETWORK_COMMAND_BITS ; i++ )
+<span class="lineNum">     345 </span>                :     {
+<span class="lineNum">     346 </span>                :         bool bit = (bool)((req-&gt;cmdType &gt;&gt; i) &amp; 0x1); 
+<span class="lineNum">     347 </span>                :         hlp-&gt;data.push_back(bit);
+<span class="lineNum">     348 </span>                :     }
+<span class="lineNum">     349 </span>                :     for ( uint i=0 ; i &lt; NETWORK_THREADID_BITS ; i++ )
+<span class="lineNum">     350 </span>                :     {
+<span class="lineNum">     351 </span>                :         bool bit = (bool)((req-&gt;threadId &gt;&gt; i) &amp; 0x1); 
+<span class="lineNum">     352 </span>                :         hlp-&gt;data.push_back(bit);
+<span class="lineNum">     353 </span>                :     }
+<span class="lineNum">     354 </span><span class="lineCov">         148653 : */    if (req-&gt;cmdType == CACHE_READ || req-&gt;cmdType == CACHE_WRITE || req-&gt;cmdType == CACHE_PREFETCH)</span>
+<span class="lineNum">     355 </span><span class="lineCov">       33595578 :         for ( uint i=hlp-&gt;data.size(); i &lt; 1*max_phy_link_bits; i++ )</span>
+<span class="lineNum">     356 </span>                :         {
+<span class="lineNum">     357 </span><span class="lineCov">       33298272 :             bool bit = false;   // sending 0's as data </span>
+<span class="lineNum">     358 </span><span class="lineCov">       33298272 :             hlp-&gt;data.push_back(bit);</span>
+<span class="lineNum">     359 </span>                :         }
+<span class="lineNum">     360 </span>                :                 
+<span class="lineNum">     361 </span><span class="lineCov">         297306 :     hlp-&gt;data_payload_length = ceil(hlp-&gt;data.size() *1.0 / max_phy_link_bits);</span>
+<span class="lineNum">     362 </span><span class="lineCov">         148653 :     hlp-&gt;data_payload_length = hlp-&gt;data_payload_length * max_phy_link_bits;</span>
+<span class="lineNum">     363 </span>                :         
+<span class="lineNum">     364 </span><span class="lineCov">         297306 :     for ( uint i=hlp-&gt;data.size(); i &lt; hlp-&gt;data_payload_length; i++ )</span>
+<span class="lineNum">     365 </span>                :     {
+<span class="lineNum">     366 </span><span class="lineNoCov">              0 :         bool bit = false; </span>
+<span class="lineNum">     367 </span><span class="lineNoCov">              0 :         hlp-&gt;data.push_back(bit);</span>
+<span class="lineNum">     368 </span>                :     } 
+<span class="lineNum">     369 </span><span class="lineCov">         148653 : }</span>
+<span class="lineNum">     370 </span>                : 
+<span class="lineNum">     371 </span>                : void 
+<span class="lineNum">     372 </span><span class="lineCov">         153050 : NI::convertFromBitStream(Request* req, HighLevelPacket *hlp)</span>
+<span class="lineNum">     373 </span>                : {
+<span class="lineNum">     374 </span><span class="lineCov">         153050 :     req-&gt;address = 0;        </span>
+<span class="lineNum">     375 </span><span class="lineCov">        5050650 :     for (unsigned int i=0; i &lt; NETWORK_ADDRESS_BITS; i++)</span>
+<span class="lineNum">     376 </span>                :     {
+<span class="lineNum">     377 </span><span class="lineCov">        9795200 :         req-&gt;address = req-&gt;address | (hlp-&gt;data[i] &lt;&lt; i);</span>
+<span class="lineNum">     378 </span>                :     }
+<span class="lineNum">     379 </span><span class="lineCov">         153050 :     unsigned int temp = 0;</span>
+<span class="lineNum">     380 </span><span class="lineCov">         612200 :     for (unsigned int i = 0; i &lt; NETWORK_COMMAND_BITS; i++)</span>
+<span class="lineNum">     381 </span>                :     {
+<span class="lineNum">     382 </span><span class="lineCov">         918300 :         temp = temp | (hlp-&gt;data[i+NETWORK_ADDRESS_BITS] &lt;&lt; i);</span>
+<span class="lineNum">     383 </span>                :     }
+<span class="lineNum">     384 </span><span class="lineCov">         153050 :     req-&gt;cmdType = (Command_t)temp;</span>
+<span class="lineNum">     385 </span>                : 
+<span class="lineNum">     386 </span><span class="lineCov">         153050 :     req-&gt;threadId = 0;</span>
+<span class="lineNum">     387 </span><span class="lineCov">        1071350 :     for (unsigned int i=0; i &lt; NETWORK_THREADID_BITS; i++)</span>
+<span class="lineNum">     388 </span>                :     {
+<span class="lineNum">     389 </span><span class="lineCov">        1836600 :         req-&gt;threadId = req-&gt;threadId | (hlp-&gt;data[i+NETWORK_ADDRESS_BITS+NETWORK_COMMAND_BITS] &lt;&lt; i);</span>
+<span class="lineNum">     390 </span>                :     }
+<span class="lineNum">     391 </span>                : /*     req-&gt;data.value = 0;
+<span class="lineNum">     392 </span>                :     if (req-&gt;cmdType == CACHE_WRITEBACK)
+<span class="lineNum">     393 </span>                :         for ( uint i=0 ; i &lt; 8*WRITEBACK_SIZE ; i++ )
+<span class="lineNum">     394 </span>                :         {
+<span class="lineNum">     395 </span>                :             req-&gt;data.value = req-&gt;data.value | (hlp-&gt;data[i+NETWORK_ADDRESS_BITS+NETWORK_COMMAND_BITS+NETWORK_THREADID_BITS] &lt;&lt; i);
+<span class="lineNum">     396 </span>                :             req-&gt;data.size = WRITEBACK_SIZE;
+<span class="lineNum">     397 </span>                :         }*/
+<span class="lineNum">     398 </span><span class="lineCov">         153050 : }</span>
+<span class="lineNum">     399 </span>                : 
+<span class="lineNum">     400 </span>                : string
+<span class="lineNum">     401 </span><span class="lineCov">              8 : NI::print_stats() const</span>
+<span class="lineNum">     402 </span>                : {
+<span class="lineNum">     403 </span><span class="lineCov">              8 :     stringstream str;</span>
+<span class="lineNum">     404 </span><span class="lineCov">              8 :     str &lt;&lt; &quot;\n NI addr: &quot; &lt;&lt; address &lt;&lt;endl;</span>
+<span class="lineNum">     405 </span><span class="lineCov">              8 :     ((MC*)mc)-&gt;stats-&gt;CalculateAggregateStats();</span>
+<span class="lineNum">     406 </span><span class="lineCov">              8 :     str &lt;&lt; ((MC*)mc)-&gt;stats-&gt;PrintAggregateStats(node_ip);</span>
+<span class="lineNum">     407 </span><span class="lineCov">             16 :     str &lt;&lt; &quot;NI [&quot; &lt;&lt; node_ip &lt;&lt; &quot;] &quot; &lt;&lt; &quot;last_pkt_out_cycle: &quot; &lt;&lt; last_pkt_out_cycle &lt;&lt; endl;</span>
+<span class="lineNum">     408 </span><span class="lineCov">             16 :     str &lt;&lt; &quot;NI [&quot; &lt;&lt; node_ip &lt;&lt; &quot;] &quot; &lt;&lt; &quot;total_missed_time: &quot; &lt;&lt; total_missed_time&lt;&lt; endl;</span>
+<span class="lineNum">     409 </span><span class="lineCov">             16 :     str &lt;&lt; &quot;NI [&quot; &lt;&lt; node_ip &lt;&lt; &quot;] &quot; &lt;&lt; &quot;packets: &quot; &lt;&lt; packets &lt;&lt; endl;</span>
+<span class="lineNum">     410 </span><span class="lineCov">             16 :     str &lt;&lt; &quot;NI [&quot; &lt;&lt; node_ip &lt;&lt; &quot;] &quot; &lt;&lt; &quot;packets_out: &quot; &lt;&lt; packets_out &lt;&lt; endl;</span>
+<span class="lineNum">     411 </span><span class="lineCov">             16 :     str &lt;&lt; &quot;NI [&quot; &lt;&lt; node_ip &lt;&lt; &quot;] &quot; &lt;&lt; &quot;total_backward_time: &quot; &lt;&lt; total_backward_time &lt;&lt; endl;</span>
+<span class="lineNum">     412 </span><span class="lineCov">             16 :     str &lt;&lt; &quot;NI [&quot; &lt;&lt; node_ip &lt;&lt; &quot;] &quot; &lt;&lt; &quot;Avg Latency waiting in NI (fwd path): &quot; &lt;&lt; (total_missed_time+0.0)/packets &lt;&lt; endl;</span>
+<span class="lineNum">     413 </span><span class="lineCov">             16 :     str &lt;&lt; &quot;NI [&quot; &lt;&lt; node_ip &lt;&lt; &quot;] &quot; &lt;&lt; &quot;Avg Latency waiting in NI (bwd path): &quot; &lt;&lt; (total_backward_time+0.0)/packets_out &lt;&lt; endl;</span>
+<span class="lineNum">     414 </span>                :     
+<span class="lineNum">     415 </span><span class="lineCov">              8 :     return str.str();</span>
+<span class="lineNum">     416 </span><span class="lineCov">              2 : }</span>
+<span class="lineNum">     417 </span>                : 
+<span class="lineNum">     418 </span>                : #endif   /* ----- #ifndef _NI_cc_INC  ----- */
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+  <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LTP GCOV extension version 1.6</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>LCOV - iris.info - MemCtrl/rank_handler.cc</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LTP GCOV extension - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+        <tr>
+          <td class="headerItem" width="20%">Current&nbsp;view:</td>
+          <td class="headerValue" width="80%" colspan=4><a href="../index.html">directory</a> - <a href="index.html">MemCtrl</a> - rank_handler.cc</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Test:</td>
+          <td class="headerValue" width="80%" colspan=4>iris.info</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Date:</td>
+          <td class="headerValue" width="20%">2010-05-24</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Instrumented&nbsp;lines:</td>
+          <td class="headerValue" width="20%">6</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Code&nbsp;covered:</td>
+          <td class="headerValue" width="20%">83.3 %</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Executed&nbsp;lines:</td>
+          <td class="headerValue" width="20%">5</td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><pre class="source">
+<span class="lineNum">       1 </span>                : /*
+<span class="lineNum">       2 </span>                :  * =====================================================================================
+<span class="lineNum">       3 </span>                :  *
+<span class="lineNum">       4 </span>                :  *       Filename:  rank_handler.cc
+<span class="lineNum">       5 </span>                :  *
+<span class="lineNum">       6 </span>                :  *    Description:  
+<span class="lineNum">       7 </span>                :  *
+<span class="lineNum">       8 </span>                :  *        Version:  1.0
+<span class="lineNum">       9 </span>                :  *        Created:  02/13/2010 05:33:10 PM
+<span class="lineNum">      10 </span>                :  *       Revision:  none
+<span class="lineNum">      11 </span>                :  *       Compiler:  gcc
+<span class="lineNum">      12 </span>                :  *
+<span class="lineNum">      13 </span>                :  *         Author:  SYED MINHAJ HASSAN
+<span class="lineNum">      14 </span>                :  *        Company:  Georgia Institute of Technology
+<span class="lineNum">      15 </span>                :  *
+<span class="lineNum">      16 </span>                :  * =====================================================================================
+<span class="lineNum">      17 </span>                :  */
+<span class="lineNum">      18 </span>                : 
+<span class="lineNum">      19 </span>                : /*
+<span class="lineNum">      20 </span>                :  *--------------------------------------------------------------------------------------
+<span class="lineNum">      21 </span>                :  *       Class:  RankHandler
+<span class="lineNum">      22 </span>                :  *      Method:  RankHandler
+<span class="lineNum">      23 </span>                :  * Description:  constructor
+<span class="lineNum">      24 </span>                :  *--------------------------------------------------------------------------------------
+<span class="lineNum">      25 </span>                :  */
+<span class="lineNum">      26 </span>                : 
+<span class="lineNum">      27 </span>                : #include &lt;math.h&gt;
+<span class="lineNum">      28 </span>                : #include &quot;rank_handler.h&quot;
+<span class="lineNum">      29 </span>                : 
+<span class="lineNum">      30 </span>                : using namespace std;
+<span class="lineNum">      31 </span>                : 
+<span class="lineNum">      32 </span><span class="lineCov">            144 : RankHandler::RankHandler()</span>
+<span class="lineNum">      33 </span>                : {
+<span class="lineNum">      34 </span><span class="lineCov">             16 :     readsOWrite = 0;</span>
+<span class="lineNum">      35 </span><span class="lineCov">             16 :     prevReadsOWrite = 0;</span>
+<span class="lineNum">      36 </span><span class="lineCov">             16 : }</span>
+<span class="lineNum">      37 </span>                : 
+<span class="lineNum">      38 </span>                : /*
+<span class="lineNum">      39 </span>                :  *--------------------------------------------------------------------------------------
+<span class="lineNum">      40 </span>                :  *       Class:  RankHandler
+<span class="lineNum">      41 </span>                :  *      Method:  ~RankHandler
+<span class="lineNum">      42 </span>                :  * Description:  destructor
+<span class="lineNum">      43 </span>                :  *--------------------------------------------------------------------------------------
+<span class="lineNum">      44 </span>                :  */
+<span class="lineNum">      45 </span><span class="lineNoCov">              0 : RankHandler::~RankHandler()</span>
+<span class="lineNum">      46 </span>                : {
+<span class="lineNum">      47 </span>                :         
+<span class="lineNum">      48 </span><span class="lineCov">              2 : }</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+  <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LTP GCOV extension version 1.6</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

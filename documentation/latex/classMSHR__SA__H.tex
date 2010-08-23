@@ -1,0 +1,322 @@
+\section{MSHR\_\-SA\_\-H Class Reference}
+\label{classMSHR__SA__H}\index{MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}}
+{\tt \#include $<$mshr\_\-standalone.h$>$}
+
+Inheritance diagram for MSHR\_\-SA\_\-H:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classMSHR__SA__H__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for MSHR\_\-SA\_\-H:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classMSHR__SA__H__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf MSHR\_\-SA\_\-H} ()
+\item 
+{\bf $\sim$MSHR\_\-SA\_\-H} ()
+\item 
+{\bf Addr\_\-t} {\bf GlobalAddrMap} ({\bf Addr\_\-t} addr, {\bf uint} threadId)
+\item 
+void {\bf process\_\-event} ({\bf IrisEvent} $\ast$e)
+\item 
+void {\bf DeleteInMSHR} ({\bf Request} $\ast$req)
+\item 
+void {\bf demap\_\-addr} ({\bf Addr\_\-t} oldAddress, {\bf Addr\_\-t} newAddress)
+\item 
+std::string {\bf toString} ()
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+{\bf Time} {\bf unsink}
+\item 
+{\bf Time} {\bf lastFinishTime}
+\item 
+{\bf Time} {\bf globalUnSink}
+\item 
+bool {\bf done}
+\item 
+vector$<$ {\bf Request} $>$ {\bf mshr}
+\item 
+vector$<$ {\bf Request} $>$ {\bf writeQueue}
+\item 
+ifstream {\bf trace\_\-filename}
+\item 
+char $\ast$ {\bf filename}
+\item 
+unsigned int {\bf id}
+\item 
+unsigned int {\bf lastScheduledIndex}
+\item 
+{\bf Component} $\ast$ {\bf parent}
+\item 
+{\bf Component} $\ast$ {\bf child}
+\item 
+bool {\bf waiting}
+\item 
+{\bf Request} {\bf waitingForMSHR}
+\item 
+{\bf Request} {\bf nextReq}
+\item 
+{\bf Time} {\bf lastFullTime}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 45 of file mshr\_\-standalone.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}!MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}}
+\index{MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}!MSHR_SA_H@{MSHR\_\-SA\_\-H}}
+\subsubsection[{MSHR\_\-SA\_\-H}]{\setlength{\rightskip}{0pt plus 5cm}MSHR\_\-SA\_\-H::MSHR\_\-SA\_\-H ()}\label{classMSHR__SA__H_0d022c40990c1c0cefd958abb45699e7}
+
+
+
+
+Definition at line 36 of file mshr\_\-standalone.cc.
+
+References done, globalUnSink, lastFinishTime, lastFullTime, lastScheduledIndex, mshr, unsink, waiting, and writeQueue.\index{MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}!$\sim$MSHR\_\-SA\_\-H@{$\sim$MSHR\_\-SA\_\-H}}
+\index{$\sim$MSHR\_\-SA\_\-H@{$\sim$MSHR\_\-SA\_\-H}!MSHR_SA_H@{MSHR\_\-SA\_\-H}}
+\subsubsection[{$\sim$MSHR\_\-SA\_\-H}]{\setlength{\rightskip}{0pt plus 5cm}MSHR\_\-SA\_\-H::$\sim$MSHR\_\-SA\_\-H ()}\label{classMSHR__SA__H_cad9ecf446acda5560f5e05522725d14}
+
+
+
+
+Definition at line 56 of file mshr\_\-standalone.cc.
+
+References mshr, and writeQueue.
+
+\subsection{Member Function Documentation}
+\index{MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}!DeleteInMSHR@{DeleteInMSHR}}
+\index{DeleteInMSHR@{DeleteInMSHR}!MSHR_SA_H@{MSHR\_\-SA\_\-H}}
+\subsubsection[{DeleteInMSHR}]{\setlength{\rightskip}{0pt plus 5cm}void MSHR\_\-SA\_\-H::DeleteInMSHR ({\bf Request} $\ast$ {\em req})}\label{classMSHR__SA__H_99c549f30ac6d47e184f9d5514b30c55}
+
+
+
+
+Definition at line 227 of file mshr\_\-standalone.cc.
+
+References Request::address, lastScheduledIndex, mshr, and Simulator::Now().
+
+Referenced by process\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classMSHR__SA__H_99c549f30ac6d47e184f9d5514b30c55_icgraph}
+\end{center}
+\end{figure}
+\index{MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}!demap\_\-addr@{demap\_\-addr}}
+\index{demap\_\-addr@{demap\_\-addr}!MSHR_SA_H@{MSHR\_\-SA\_\-H}}
+\subsubsection[{demap\_\-addr}]{\setlength{\rightskip}{0pt plus 5cm}void MSHR\_\-SA\_\-H::demap\_\-addr ({\bf Addr\_\-t} {\em oldAddress}, \/  {\bf Addr\_\-t} {\em newAddress})}\label{classMSHR__SA__H_0723147a99bd7d6b1ee9b9cbd91cfffa}
+
+
+
+
+Definition at line 246 of file mshr\_\-standalone.cc.
+
+References mshr, and Simulator::Now().\index{MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}!GlobalAddrMap@{GlobalAddrMap}}
+\index{GlobalAddrMap@{GlobalAddrMap}!MSHR_SA_H@{MSHR\_\-SA\_\-H}}
+\subsubsection[{GlobalAddrMap}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Addr\_\-t} MSHR\_\-SA\_\-H::GlobalAddrMap ({\bf Addr\_\-t} {\em addr}, \/  {\bf uint} {\em threadId})}\label{classMSHR__SA__H_8dd530f7cdabd9a4198082f5538e902a}
+
+
+
+
+Definition at line 212 of file mshr\_\-standalone.cc.
+
+References NO\_\-OF\_\-THREADS, and THREAD\_\-BITS\_\-POSITION.
+
+Referenced by process\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classMSHR__SA__H_8dd530f7cdabd9a4198082f5538e902a_icgraph}
+\end{center}
+\end{figure}
+\index{MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}!process\_\-event@{process\_\-event}}
+\index{process\_\-event@{process\_\-event}!MSHR_SA_H@{MSHR\_\-SA\_\-H}}
+\subsubsection[{process\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void MSHR\_\-SA\_\-H::process\_\-event ({\bf IrisEvent} $\ast$ {\em e})}\label{classMSHR__SA__H_7258ebdeaf1a298f05ec66556233f16a}
+
+
+
+
+Definition at line 69 of file mshr\_\-standalone.cc.
+
+References Request::address, Request::arrivalTime, CACHE\_\-WRITEBACK, Request::cmdType, DeleteInMSHR(), done, IrisEvent::event\_\-data, filename, GlobalAddrMap(), globalUnSink, id, lastFinishTime, lastFullTime, mshr, MSHR\_\-DELETE, MSHR\_\-SIZE, nextReq, Simulator::Now(), Simulator::Schedule(), Request::startTime, Request::threadId, trace\_\-filename, IrisEvent::type, unsink, waiting, waitingForMSHR, and writeQueue.
+
+Referenced by main(), and ResponseHandler::process\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classMSHR__SA__H_7258ebdeaf1a298f05ec66556233f16a_icgraph}
+\end{center}
+\end{figure}
+\index{MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}!toString@{toString}}
+\index{toString@{toString}!MSHR_SA_H@{MSHR\_\-SA\_\-H}}
+\subsubsection[{toString}]{\setlength{\rightskip}{0pt plus 5cm}std::string MSHR\_\-SA\_\-H::toString ()}\label{classMSHR__SA__H_d4dd958add3f62a1636f1f7d3be1e928}
+
+
+
+
+\subsection{Member Data Documentation}
+\index{MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}!child@{child}}
+\index{child@{child}!MSHR_SA_H@{MSHR\_\-SA\_\-H}}
+\subsubsection[{child}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Component}$\ast$ {\bf MSHR\_\-SA\_\-H::child}}\label{classMSHR__SA__H_83132f931ecc75f677f503097acf25d5}
+
+
+
+
+Definition at line 61 of file mshr\_\-standalone.h.\index{MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}!done@{done}}
+\index{done@{done}!MSHR_SA_H@{MSHR\_\-SA\_\-H}}
+\subsubsection[{done}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf MSHR\_\-SA\_\-H::done}}\label{classMSHR__SA__H_6d7fec251ceaf2600dcff5f3ae44e314}
+
+
+
+
+Definition at line 53 of file mshr\_\-standalone.h.
+
+Referenced by MSHR\_\-SA\_\-H(), and process\_\-event().\index{MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}!filename@{filename}}
+\index{filename@{filename}!MSHR_SA_H@{MSHR\_\-SA\_\-H}}
+\subsubsection[{filename}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf MSHR\_\-SA\_\-H::filename}}\label{classMSHR__SA__H_5457724c10446a03b152adba2571e825}
+
+
+
+
+Definition at line 57 of file mshr\_\-standalone.h.
+
+Referenced by process\_\-event().\index{MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}!globalUnSink@{globalUnSink}}
+\index{globalUnSink@{globalUnSink}!MSHR_SA_H@{MSHR\_\-SA\_\-H}}
+\subsubsection[{globalUnSink}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} {\bf MSHR\_\-SA\_\-H::globalUnSink}}\label{classMSHR__SA__H_eb20acb11d6f3fab9eba96a9c89b6067}
+
+
+
+
+Definition at line 52 of file mshr\_\-standalone.h.
+
+Referenced by MSHR\_\-SA\_\-H(), and process\_\-event().\index{MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}!id@{id}}
+\index{id@{id}!MSHR_SA_H@{MSHR\_\-SA\_\-H}}
+\subsubsection[{id}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf MSHR\_\-SA\_\-H::id}}\label{classMSHR__SA__H_05a9c1e47dbfe7cb388a3dd5515ff2ed}
+
+
+
+
+Definition at line 58 of file mshr\_\-standalone.h.
+
+Referenced by process\_\-event().\index{MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}!lastFinishTime@{lastFinishTime}}
+\index{lastFinishTime@{lastFinishTime}!MSHR_SA_H@{MSHR\_\-SA\_\-H}}
+\subsubsection[{lastFinishTime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} {\bf MSHR\_\-SA\_\-H::lastFinishTime}}\label{classMSHR__SA__H_ad74703cf078680815bd71f18e0d3682}
+
+
+
+
+Definition at line 51 of file mshr\_\-standalone.h.
+
+Referenced by MSHR\_\-SA\_\-H(), and process\_\-event().\index{MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}!lastFullTime@{lastFullTime}}
+\index{lastFullTime@{lastFullTime}!MSHR_SA_H@{MSHR\_\-SA\_\-H}}
+\subsubsection[{lastFullTime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} {\bf MSHR\_\-SA\_\-H::lastFullTime}}\label{classMSHR__SA__H_fd25220bddfe99fd3285eafcd0991dc1}
+
+
+
+
+Definition at line 69 of file mshr\_\-standalone.h.
+
+Referenced by MSHR\_\-SA\_\-H(), and process\_\-event().\index{MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}!lastScheduledIndex@{lastScheduledIndex}}
+\index{lastScheduledIndex@{lastScheduledIndex}!MSHR_SA_H@{MSHR\_\-SA\_\-H}}
+\subsubsection[{lastScheduledIndex}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf MSHR\_\-SA\_\-H::lastScheduledIndex}}\label{classMSHR__SA__H_510b4fd98e266c76623a63a21c1f7b0b}
+
+
+
+
+Definition at line 59 of file mshr\_\-standalone.h.
+
+Referenced by DeleteInMSHR(), and MSHR\_\-SA\_\-H().\index{MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}!mshr@{mshr}}
+\index{mshr@{mshr}!MSHR_SA_H@{MSHR\_\-SA\_\-H}}
+\subsubsection[{mshr}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf Request}$>$ {\bf MSHR\_\-SA\_\-H::mshr}}\label{classMSHR__SA__H_e12cce92dbec085527bffd35fbebdcd0}
+
+
+
+
+Definition at line 54 of file mshr\_\-standalone.h.
+
+Referenced by DeleteInMSHR(), demap\_\-addr(), MSHR\_\-SA\_\-H(), process\_\-event(), and $\sim$MSHR\_\-SA\_\-H().\index{MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}!nextReq@{nextReq}}
+\index{nextReq@{nextReq}!MSHR_SA_H@{MSHR\_\-SA\_\-H}}
+\subsubsection[{nextReq}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Request} {\bf MSHR\_\-SA\_\-H::nextReq}}\label{classMSHR__SA__H_6f76022d9e5ab27d951bcadc2389f4d1}
+
+
+
+
+Definition at line 68 of file mshr\_\-standalone.h.
+
+Referenced by process\_\-event().\index{MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}!parent@{parent}}
+\index{parent@{parent}!MSHR_SA_H@{MSHR\_\-SA\_\-H}}
+\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Component}$\ast$ {\bf MSHR\_\-SA\_\-H::parent}}\label{classMSHR__SA__H_be5f47f63e0bc44f2efeba2424169ca2}
+
+
+
+
+Definition at line 60 of file mshr\_\-standalone.h.\index{MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}!trace\_\-filename@{trace\_\-filename}}
+\index{trace\_\-filename@{trace\_\-filename}!MSHR_SA_H@{MSHR\_\-SA\_\-H}}
+\subsubsection[{trace\_\-filename}]{\setlength{\rightskip}{0pt plus 5cm}ifstream {\bf MSHR\_\-SA\_\-H::trace\_\-filename}}\label{classMSHR__SA__H_83dbc17d0d0ba75fcc856e9b3292e366}
+
+
+
+
+Definition at line 56 of file mshr\_\-standalone.h.
+
+Referenced by process\_\-event().\index{MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}!unsink@{unsink}}
+\index{unsink@{unsink}!MSHR_SA_H@{MSHR\_\-SA\_\-H}}
+\subsubsection[{unsink}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} {\bf MSHR\_\-SA\_\-H::unsink}}\label{classMSHR__SA__H_3576bfb9e179c55426f0458568c1925c}
+
+
+
+
+Definition at line 50 of file mshr\_\-standalone.h.
+
+Referenced by MSHR\_\-SA\_\-H(), and process\_\-event().\index{MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}!waiting@{waiting}}
+\index{waiting@{waiting}!MSHR_SA_H@{MSHR\_\-SA\_\-H}}
+\subsubsection[{waiting}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf MSHR\_\-SA\_\-H::waiting}}\label{classMSHR__SA__H_bc29d3736d9cb17fa5497be38be49625}
+
+
+
+
+Definition at line 66 of file mshr\_\-standalone.h.
+
+Referenced by MSHR\_\-SA\_\-H(), and process\_\-event().\index{MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}!waitingForMSHR@{waitingForMSHR}}
+\index{waitingForMSHR@{waitingForMSHR}!MSHR_SA_H@{MSHR\_\-SA\_\-H}}
+\subsubsection[{waitingForMSHR}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Request} {\bf MSHR\_\-SA\_\-H::waitingForMSHR}}\label{classMSHR__SA__H_6a54d36bf4148ab5e0a38382ab1027b9}
+
+
+
+
+Definition at line 67 of file mshr\_\-standalone.h.
+
+Referenced by process\_\-event().\index{MSHR\_\-SA\_\-H@{MSHR\_\-SA\_\-H}!writeQueue@{writeQueue}}
+\index{writeQueue@{writeQueue}!MSHR_SA_H@{MSHR\_\-SA\_\-H}}
+\subsubsection[{writeQueue}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf Request}$>$ {\bf MSHR\_\-SA\_\-H::writeQueue}}\label{classMSHR__SA__H_6cc5861bf1966cfd1026b358cfaa08ce}
+
+
+
+
+Definition at line 55 of file mshr\_\-standalone.h.
+
+Referenced by MSHR\_\-SA\_\-H(), process\_\-event(), and $\sim$MSHR\_\-SA\_\-H().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf mshr\_\-standalone.h}\item 
+{\bf mshr\_\-standalone.cc}\end{CompactItemize}

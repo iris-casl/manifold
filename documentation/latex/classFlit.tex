@@ -1,0 +1,143 @@
+\section{Flit Class Reference}
+\label{classFlit}\index{Flit@{Flit}}
+{\tt \#include $<$flit.h$>$}
+
+Inheritance diagram for Flit:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classFlit__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for Flit:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classFlit__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Flit} ()
+\item 
+{\bf $\sim$Flit} ()
+\item 
+void {\bf populate\_\-phit\_\-data} (vector$<$ bool $>$ $\ast$c)
+\item 
+string {\bf toString} () const 
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+vector$<$ {\bf Phit} $\ast$ $>$ {\bf phits}
+\item 
+{\bf flit\_\-type} {\bf type}
+\item 
+{\bf uint} {\bf vc}
+\item 
+bool {\bf is\_\-single\_\-flit\_\-pkt}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 61 of file flit.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Flit@{Flit}!Flit@{Flit}}
+\index{Flit@{Flit}!Flit@{Flit}}
+\subsubsection[{Flit}]{\setlength{\rightskip}{0pt plus 5cm}Flit::Flit ()}\label{classFlit_feebd85e6d981855d5405e163cb64f63}
+
+
+
+
+Definition at line 52 of file flit.cc.
+
+References is\_\-single\_\-flit\_\-pkt.\index{Flit@{Flit}!$\sim$Flit@{$\sim$Flit}}
+\index{$\sim$Flit@{$\sim$Flit}!Flit@{Flit}}
+\subsubsection[{$\sim$Flit}]{\setlength{\rightskip}{0pt plus 5cm}Flit::$\sim$Flit ()}\label{classFlit_6c188313705a19f7fa7dffabb6591ceb}
+
+
+
+
+Definition at line 72 of file flit.cc.
+
+\subsection{Member Function Documentation}
+\index{Flit@{Flit}!populate\_\-phit\_\-data@{populate\_\-phit\_\-data}}
+\index{populate\_\-phit\_\-data@{populate\_\-phit\_\-data}!Flit@{Flit}}
+\subsubsection[{populate\_\-phit\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}void Flit::populate\_\-phit\_\-data (vector$<$ bool $>$ $\ast$ {\em c})}\label{classFlit_c290470e490b600742672da65d4b42f0}
+
+
+
+
+Definition at line 58 of file flit.cc.
+
+References max\_\-phy\_\-link\_\-bits, and phits.
+
+Referenced by BodyFlit::populate\_\-body\_\-flit(), HeadFlit::populate\_\-head\_\-flit(), and TailFlit::populate\_\-tail\_\-flit().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classFlit_c290470e490b600742672da65d4b42f0_icgraph}
+\end{center}
+\end{figure}
+\index{Flit@{Flit}!toString@{toString}}
+\index{toString@{toString}!Flit@{Flit}}
+\subsubsection[{toString}]{\setlength{\rightskip}{0pt plus 5cm}string Flit::toString () const}\label{classFlit_ffc6c729a005389b51818aac59710dab}
+
+
+
+
+Reimplemented in {\bf HeadFlit} \doxyref{}{p.}{classHeadFlit_4d22ac839cad2ac7ef0aedfeb54c9421}, {\bf BodyFlit} \doxyref{}{p.}{classBodyFlit_408f02aae1a229c761ff0f3537675cde}, and {\bf TailFlit} \doxyref{}{p.}{classTailFlit_fb1c83457c5d834a8a859269154e3c4d}.
+
+Definition at line 80 of file flit.cc.
+
+References phits, and type.
+
+\subsection{Member Data Documentation}
+\index{Flit@{Flit}!is\_\-single\_\-flit\_\-pkt@{is\_\-single\_\-flit\_\-pkt}}
+\index{is\_\-single\_\-flit\_\-pkt@{is\_\-single\_\-flit\_\-pkt}!Flit@{Flit}}
+\subsubsection[{is\_\-single\_\-flit\_\-pkt}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Flit::is\_\-single\_\-flit\_\-pkt}}\label{classFlit_5c1d75b4d31c53cfa86d0c387c5862bc}
+
+
+
+
+Definition at line 72 of file flit.h.
+
+Referenced by GenericRouterVct::do\_\-switch\_\-traversal(), GenericRouterVcs::do\_\-switch\_\-traversal(), GenericRouterNoVcs::do\_\-switch\_\-traversal(), GenericRouterAdaptive::do\_\-switch\_\-traversal(), Flit(), GenericInterface::handle\_\-link\_\-arrival(), GenericRouterVct::handle\_\-link\_\-arrival\_\-event(), GenericRouterVcs::handle\_\-link\_\-arrival\_\-event(), GenericRouterNoVcs::handle\_\-link\_\-arrival\_\-event(), GenericRouterAdaptive::handle\_\-link\_\-arrival\_\-event\_\-multiple\_\-flit\_\-in\_\-buffer(), GenericRouterAdaptive::handle\_\-link\_\-arrival\_\-event\_\-one\_\-msg\_\-per\_\-buffer(), GenericInterface::handle\_\-tick\_\-event(), and HighLevelPacket::to\_\-low\_\-level\_\-packet().\index{Flit@{Flit}!phits@{phits}}
+\index{phits@{phits}!Flit@{Flit}}
+\subsubsection[{phits}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf Phit}$\ast$$>$ {\bf Flit::phits}}\label{classFlit_3c4c9cf84f0ae0b0d8d583ff7d833865}
+
+
+
+
+Definition at line 67 of file flit.h.
+
+Referenced by populate\_\-phit\_\-data(), TailFlit::toString(), BodyFlit::toString(), HeadFlit::toString(), toString(), BodyFlit::$\sim$BodyFlit(), HeadFlit::$\sim$HeadFlit(), and TailFlit::$\sim$TailFlit().\index{Flit@{Flit}!type@{type}}
+\index{type@{type}!Flit@{Flit}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf flit\_\-type} {\bf Flit::type}}\label{classFlit_1a9a073876b8ac18b92e2b1b0eff33d7}
+
+
+
+
+Definition at line 70 of file flit.h.
+
+Referenced by LowLevelPacket::add(), BodyFlit::BodyFlit(), GenericRouterVct::do\_\-switch\_\-traversal(), GenericRouterVcs::do\_\-switch\_\-traversal(), GenericRouterNoVcs::do\_\-switch\_\-traversal(), GenericRouterAdaptive::do\_\-switch\_\-traversal(), GenericInterfaceVcs::handle\_\-link\_\-arrival(), GenericInterface::handle\_\-link\_\-arrival(), GenericRouterVct::handle\_\-link\_\-arrival\_\-event(), GenericRouterVcs::handle\_\-link\_\-arrival\_\-event(), GenericRouterNoVcs::handle\_\-link\_\-arrival\_\-event(), GenericRouterAdaptive::handle\_\-link\_\-arrival\_\-event\_\-multiple\_\-flit\_\-in\_\-buffer(), GenericRouterAdaptive::handle\_\-link\_\-arrival\_\-event\_\-one\_\-msg\_\-per\_\-buffer(), GenericRouterAdaptive::handle\_\-tick\_\-event(), GenericInterfaceVcs::handle\_\-tick\_\-event(), GenericInterface::handle\_\-tick\_\-event(), HeadFlit::HeadFlit(), GenericRC::push(), TailFlit::TailFlit(), TailFlit::toString(), BodyFlit::toString(), and toString().\index{Flit@{Flit}!vc@{vc}}
+\index{vc@{vc}!Flit@{Flit}}
+\subsubsection[{vc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf Flit::vc}}\label{classFlit_784536ac677ec8b4f2924bd91fbfa4c2}
+
+
+
+
+Definition at line 71 of file flit.h.
+
+Referenced by LowLevelPacket::add(), GenericRouterVcs::do\_\-switch\_\-traversal(), GenericInterfaceVcs::handle\_\-link\_\-arrival(), GenericInterfaceVcs::handle\_\-tick\_\-event(), GenericRC::push(), HighLevelPacket::to\_\-low\_\-level\_\-packet(), and HeadFlit::toString().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf flit.h}\item 
+{\bf flit.cc}\end{CompactItemize}

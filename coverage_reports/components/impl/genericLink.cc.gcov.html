@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>LCOV - iris.info - components/impl/genericLink.cc</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LTP GCOV extension - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+        <tr>
+          <td class="headerItem" width="20%">Current&nbsp;view:</td>
+          <td class="headerValue" width="80%" colspan=4><a href="../../index.html">directory</a> - <a href="index.html">components/impl</a> - genericLink.cc</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Test:</td>
+          <td class="headerValue" width="80%" colspan=4>iris.info</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Date:</td>
+          <td class="headerValue" width="20%">2010-05-24</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Instrumented&nbsp;lines:</td>
+          <td class="headerValue" width="20%">33</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Code&nbsp;covered:</td>
+          <td class="headerValue" width="20%">60.6 %</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Executed&nbsp;lines:</td>
+          <td class="headerValue" width="20%">20</td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><pre class="source">
+<span class="lineNum">       1 </span>                : /*
+<span class="lineNum">       2 </span>                :  * =====================================================================================
+<span class="lineNum">       3 </span>                :  *
+<span class="lineNum">       4 </span>                :  *       Filename:  genericLink.cc
+<span class="lineNum">       5 </span>                :  *
+<span class="lineNum">       6 </span>                :  *    Description:  
+<span class="lineNum">       7 </span>                :  *
+<span class="lineNum">       8 </span>                :  *        Version:  1.0
+<span class="lineNum">       9 </span>                :  *        Created:  02/27/2010 11:48:46 PM
+<span class="lineNum">      10 </span>                :  *       Revision:  none
+<span class="lineNum">      11 </span>                :  *       Compiler:  gcc
+<span class="lineNum">      12 </span>                :  *
+<span class="lineNum">      13 </span>                :  *         Author:  Mitchelle Rasquinha (), mitchelle.rasquinha@gatech.edu
+<span class="lineNum">      14 </span>                :  *        Company:  Georgia Institute of Technology
+<span class="lineNum">      15 </span>                :  *
+<span class="lineNum">      16 </span>                :  * =====================================================================================
+<span class="lineNum">      17 </span>                :  */
+<span class="lineNum">      18 </span>                : 
+<span class="lineNum">      19 </span>                : #ifndef  _genericlink_cc_INC
+<span class="lineNum">      20 </span>                : #define  _genericlink_cc_INC
+<span class="lineNum">      21 </span>                : 
+<span class="lineNum">      22 </span>                : #include        &quot;genericLink.h&quot;
+<span class="lineNum">      23 </span>                : 
+<span class="lineNum">      24 </span>                : void
+<span class="lineNum">      25 </span><span class="lineCov">            832 : GenericLink::setup()</span>
+<span class="lineNum">      26 </span>                : {
+<span class="lineNum">      27 </span><span class="lineCov">            832 :     name = &quot;link&quot;;</span>
+<span class="lineNum">      28 </span><span class="lineCov">           1664 :     address = myId();</span>
+<span class="lineNum">      29 </span><span class="lineCov">            832 :     node_ip = 0;</span>
+<span class="lineNum">      30 </span><span class="lineCov">            832 :     flits_passed= 0;</span>
+<span class="lineNum">      31 </span><span class="lineCov">            832 :     credits_passed=0;</span>
+<span class="lineNum">      32 </span><span class="lineCov">            832 : }</span>
+<span class="lineNum">      33 </span>                : 
+<span class="lineNum">      34 </span>                : void
+<span class="lineNum">      35 </span><span class="lineNoCov">              0 : GenericLink::process_event ( IrisEvent* e )</span>
+<span class="lineNum">      36 </span>                : {
+<span class="lineNum">      37 </span><span class="lineNoCov">              0 :     switch(e-&gt;type)</span>
+<span class="lineNum">      38 </span>                :     {
+<span class="lineNum">      39 </span>                :         case LINK_ARRIVAL_EVENT:
+<span class="lineNum">      40 </span><span class="lineNoCov">              0 :             handle_link_arrival_event(e);</span>
+<span class="lineNum">      41 </span><span class="lineNoCov">              0 :             break;</span>
+<span class="lineNum">      42 </span>                :         default:
+<span class="lineNum">      43 </span><span class="lineNoCov">              0 :             cout &lt;&lt; &quot; Unk event type at link &quot; &lt;&lt; endl;</span>
+<span class="lineNum">      44 </span>                :             break;
+<span class="lineNum">      45 </span>                :     }
+<span class="lineNum">      46 </span>                : 
+<span class="lineNum">      47 </span>                :     return ;
+<span class="lineNum">      48 </span>                : }               /* -----  end of function GenericLink::process_event  ----- */
+<span class="lineNum">      49 </span>                : 
+<span class="lineNum">      50 </span>                : void
+<span class="lineNum">      51 </span><span class="lineNoCov">              0 : GenericLink::handle_link_arrival_event( IrisEvent* e)</span>
+<span class="lineNum">      52 </span>                : {
+<span class="lineNum">      53 </span><span class="lineNoCov">              0 :     LinkArrivalData* data = static_cast&lt;LinkArrivalData*&gt;(e-&gt;event_data.at(0));</span>
+<span class="lineNum">      54 </span>                : 
+<span class="lineNum">      55 </span>                : #ifdef _DEBUG
+<span class="lineNum">      56 </span>                :     _DBG(&quot;handle_link_arrival_event vc: %d src_id: %d dest: %d, data type: %d&quot;, data-&gt;vc, e-&gt;src_id, e-&gt;dst_id, data-&gt;type);
+<span class="lineNum">      57 </span>                : #endif
+<span class="lineNum">      58 </span>                : 
+<span class="lineNum">      59 </span><span class="lineNoCov">              0 :     if(e-&gt;src_id == input_connection-&gt;address)</span>
+<span class="lineNum">      60 </span>                :     {
+<span class="lineNum">      61 </span>                :         /* Update stats */
+<span class="lineNum">      62 </span><span class="lineNoCov">              0 :         flits_passed++;</span>
+<span class="lineNum">      63 </span>                : 
+<span class="lineNum">      64 </span><span class="lineNoCov">              0 :         EventId uid = Simulator::Schedule( Simulator::Now()+ 0.75, &amp;NetworkComponent::process_event, output_connection, e);</span>
+<span class="lineNum">      65 </span>                : //        cout &lt;&lt; &quot; inseid link: &quot; &lt;&lt; uid.time &lt;&lt; &quot; &quot; &lt;&lt; uid.uid &lt;&lt; &quot; &quot; &lt;&lt; uid.nextUID;
+<span class="lineNum">      66 </span>                :     }
+<span class="lineNum">      67 </span>                :     else
+<span class="lineNum">      68 </span>                :     {
+<span class="lineNum">      69 </span>                :         /* Update stats */
+<span class="lineNum">      70 </span><span class="lineNoCov">              0 :         credits_passed++;</span>
+<span class="lineNum">      71 </span><span class="lineNoCov">              0 :         Simulator::Schedule( Simulator::Now()+ 0.75, &amp;NetworkComponent::process_event, input_connection, e);</span>
+<span class="lineNum">      72 </span>                :     }
+<span class="lineNum">      73 </span><span class="lineNoCov">              0 : }</span>
+<span class="lineNum">      74 </span>                : 
+<span class="lineNum">      75 </span>                : string
+<span class="lineNum">      76 </span><span class="lineCov">            832 : GenericLink::toString () const</span>
+<span class="lineNum">      77 </span>                : {
+<span class="lineNum">      78 </span><span class="lineCov">            832 :     stringstream str;</span>
+<span class="lineNum">      79 </span>                :     str &lt;&lt; &quot;GenericLink: &quot;
+<span class="lineNum">      80 </span><span class="lineCov">            832 :         &lt;&lt; &quot;\taddress: &quot; &lt;&lt; address;</span>
+<span class="lineNum">      81 </span><span class="lineCov">            832 :     if(input_connection)</span>
+<span class="lineNum">      82 </span><span class="lineCov">            768 :         str &lt;&lt; &quot;\tinput_connection: &quot; &lt;&lt; static_cast&lt;NetworkComponent*&gt;(input_connection)-&gt;address;</span>
+<span class="lineNum">      83 </span><span class="lineCov">            832 :     if(output_connection)</span>
+<span class="lineNum">      84 </span><span class="lineCov">            768 :         str &lt;&lt; &quot;\toutput_connection: &quot; &lt;&lt; static_cast&lt;NetworkComponent*&gt;(output_connection)-&gt;address;</span>
+<span class="lineNum">      85 </span>                :     
+<span class="lineNum">      86 </span><span class="lineCov">            832 :     return str.str();</span>
+<span class="lineNum">      87 </span>                : }               /* -----  end of function GenericLink::toString  ----- */
+<span class="lineNum">      88 </span>                : 
+<span class="lineNum">      89 </span>                : string
+<span class="lineNum">      90 </span><span class="lineCov">            416 : GenericLink::print_stats() const</span>
+<span class="lineNum">      91 </span>                : {
+<span class="lineNum">      92 </span><span class="lineCov">            416 :     stringstream str;</span>
+<span class="lineNum">      93 </span>                :     str &lt;&lt; endl &lt;&lt; toString()
+<span class="lineNum">      94 </span>                :         &lt;&lt; &quot;\n link[&quot; &lt;&lt; address &lt;&lt; &quot;] flits_passed: &quot; &lt;&lt; flits_passed 
+<span class="lineNum">      95 </span>                :         &lt;&lt; &quot;\n link[&quot; &lt;&lt; address &lt;&lt; &quot;] credits_passed: &quot; &lt;&lt; credits_passed
+<span class="lineNum">      96 </span><span class="lineCov">           2912 :         &lt;&lt; &quot;. &quot; &lt;&lt; endl;</span>
+<span class="lineNum">      97 </span>                : 
+<span class="lineNum">      98 </span><span class="lineCov">            416 :     return str.str();</span>
+<span class="lineNum">      99 </span><span class="lineCov">              2 : }</span>
+<span class="lineNum">     100 </span>                : 
+<span class="lineNum">     101 </span>                : 
+<span class="lineNum">     102 </span>                : #endif   /* ----- #ifndef _genericlink_cc_INC  ----- */
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+  <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LTP GCOV extension version 1.6</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

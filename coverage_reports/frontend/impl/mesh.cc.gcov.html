@@ -1,0 +1,337 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>LCOV - iris.info - frontend/impl/mesh.cc</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LTP GCOV extension - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+        <tr>
+          <td class="headerItem" width="20%">Current&nbsp;view:</td>
+          <td class="headerValue" width="80%" colspan=4><a href="../../index.html">directory</a> - <a href="index.html">frontend/impl</a> - mesh.cc</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Test:</td>
+          <td class="headerValue" width="80%" colspan=4>iris.info</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Date:</td>
+          <td class="headerValue" width="20%">2010-05-24</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Instrumented&nbsp;lines:</td>
+          <td class="headerValue" width="20%">131</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Code&nbsp;covered:</td>
+          <td class="headerValue" width="20%">98.5 %</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Executed&nbsp;lines:</td>
+          <td class="headerValue" width="20%">129</td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><pre class="source">
+<span class="lineNum">       1 </span>                : /*
+<span class="lineNum">       2 </span>                :  * =====================================================================================
+<span class="lineNum">       3 </span>                :  *
+<span class="lineNum">       4 </span>                :  *       Filename:  mesh.cc
+<span class="lineNum">       5 </span>                :  *
+<span class="lineNum">       6 </span>                :  *    Description:  
+<span class="lineNum">       7 </span>                :  *
+<span class="lineNum">       8 </span>                :  *        Version:  1.0
+<span class="lineNum">       9 </span>                :  *        Created:  05/05/2010 12:37:47 AM
+<span class="lineNum">      10 </span>                :  *       Revision:  none
+<span class="lineNum">      11 </span>                :  *       Compiler:  gcc
+<span class="lineNum">      12 </span>                :  *
+<span class="lineNum">      13 </span>                :  *         Author:  Mitchelle Rasquinha (), mitchelle.rasquinha@gatech.edu
+<span class="lineNum">      14 </span>                :  *        Company:  Georgia Institute of Technology
+<span class="lineNum">      15 </span>                :  *
+<span class="lineNum">      16 </span>                :  * =====================================================================================
+<span class="lineNum">      17 </span>                :  */
+<span class="lineNum">      18 </span>                : #ifndef  _mesh_cc_INC
+<span class="lineNum">      19 </span>                : #define  _mesh_cc_INC
+<span class="lineNum">      20 </span>                : 
+<span class="lineNum">      21 </span>                : #include        &quot;mesh.h&quot;
+<span class="lineNum">      22 </span>                : 
+<span class="lineNum">      23 </span><span class="lineCov">              5 : Mesh::Mesh()</span>
+<span class="lineNum">      24 </span>                : {
+<span class="lineNum">      25 </span>                : 
+<span class="lineNum">      26 </span><span class="lineCov">              1 : }</span>
+<span class="lineNum">      27 </span>                : 
+<span class="lineNum">      28 </span><span class="lineCov">              1 : Mesh::~Mesh()</span>
+<span class="lineNum">      29 </span>                : {
+<span class="lineNum">      30 </span><span class="lineCov">             65 :     for ( uint i=0 ; i&lt;no_nodes; i++ )</span>
+<span class="lineNum">      31 </span>                :     {
+<span class="lineNum">      32 </span><span class="lineCov">            128 :         delete processors[i];</span>
+<span class="lineNum">      33 </span><span class="lineCov">            128 :         delete interfaces[i];</span>
+<span class="lineNum">      34 </span><span class="lineCov">            128 :         delete routers[i];</span>
+<span class="lineNum">      35 </span>                :     }
+<span class="lineNum">      36 </span>                : 
+<span class="lineNum">      37 </span><span class="lineCov">            209 :     for ( uint i=0 ; i&lt;links; i++ )</span>
+<span class="lineNum">      38 </span>                :     {
+<span class="lineNum">      39 </span><span class="lineCov">            416 :         delete link_a[i];</span>
+<span class="lineNum">      40 </span><span class="lineCov">            416 :         delete link_b[i];</span>
+<span class="lineNum">      41 </span>                :     }
+<span class="lineNum">      42 </span>                : 
+<span class="lineNum">      43 </span><span class="lineCov">              6 : }</span>
+<span class="lineNum">      44 </span>                : 
+<span class="lineNum">      45 </span>                : void
+<span class="lineNum">      46 </span><span class="lineCov">              1 : Mesh::init(uint p, uint v, uint c, uint bs, uint n, uint k, uint l)</span>
+<span class="lineNum">      47 </span>                : {
+<span class="lineNum">      48 </span><span class="lineCov">              1 :     ports = p;</span>
+<span class="lineNum">      49 </span><span class="lineCov">              1 :     vcs = v;</span>
+<span class="lineNum">      50 </span><span class="lineCov">              1 :     credits  = c;</span>
+<span class="lineNum">      51 </span><span class="lineCov">              1 :     buffer_size = bs;</span>
+<span class="lineNum">      52 </span><span class="lineCov">              1 :     no_nodes = n;</span>
+<span class="lineNum">      53 </span><span class="lineCov">              1 :     grid_size = k;</span>
+<span class="lineNum">      54 </span><span class="lineCov">              1 :     links = l;</span>
+<span class="lineNum">      55 </span><span class="lineCov">              1 : }</span>
+<span class="lineNum">      56 </span>                : 
+<span class="lineNum">      57 </span>                : string
+<span class="lineNum">      58 </span><span class="lineCov">              1 : Mesh::print_stats()</span>
+<span class="lineNum">      59 </span>                : {
+<span class="lineNum">      60 </span><span class="lineCov">              1 :     stringstream str;</span>
+<span class="lineNum">      61 </span><span class="lineCov">             65 :     for ( uint i=0 ; i&lt;no_nodes ; i++ )</span>
+<span class="lineNum">      62 </span>                :     {
+<span class="lineNum">      63 </span><span class="lineCov">            192 :         str &lt;&lt; routers[i]-&gt;print_stats()&lt;&lt; endl;</span>
+<span class="lineNum">      64 </span><span class="lineCov">            192 :         str &lt;&lt; interfaces[i]-&gt;print_stats()&lt;&lt; endl;</span>
+<span class="lineNum">      65 </span><span class="lineCov">            192 :         str &lt;&lt; processors[i]-&gt;print_stats()&lt;&lt; endl;</span>
+<span class="lineNum">      66 </span>                :     }
+<span class="lineNum">      67 </span>                : 
+<span class="lineNum">      68 </span><span class="lineCov">            209 :     for ( uint i=0 ; i&lt;links ; i++ )</span>
+<span class="lineNum">      69 </span>                :     {
+<span class="lineNum">      70 </span><span class="lineCov">            624 :         str &lt;&lt; link_a[i]-&gt;print_stats()&lt;&lt; endl;</span>
+<span class="lineNum">      71 </span><span class="lineCov">            624 :         str &lt;&lt; link_b[i]-&gt;print_stats()&lt;&lt; endl;</span>
+<span class="lineNum">      72 </span>                :     }
+<span class="lineNum">      73 </span>                : 
+<span class="lineNum">      74 </span><span class="lineCov">              1 :     return str.str();</span>
+<span class="lineNum">      75 </span>                : }
+<span class="lineNum">      76 </span>                : 
+<span class="lineNum">      77 </span>                : void
+<span class="lineNum">      78 </span><span class="lineCov">              1 : Mesh::connect_interface_processor()</span>
+<span class="lineNum">      79 </span>                : {
+<span class="lineNum">      80 </span>                :     /* Connect the interfaces and the processors. And set the links for the
+<span class="lineNum">      81 </span>                :      * interfaces */
+<span class="lineNum">      82 </span><span class="lineCov">             65 :     for ( uint i=0 ; i&lt;no_nodes; i++ )</span>
+<span class="lineNum">      83 </span>                :     {
+<span class="lineNum">      84 </span><span class="lineCov">            256 :         processors[i]-&gt;interface_connections[0] = interfaces[i];</span>
+<span class="lineNum">      85 </span><span class="lineCov">            192 :         interfaces[i]-&gt;processor_connection = static_cast&lt;NetworkComponent*&gt;(processors[i]);</span>
+<span class="lineNum">      86 </span><span class="lineCov">            192 :         interfaces[i]-&gt;input_connection = link_b[i];</span>
+<span class="lineNum">      87 </span><span class="lineCov">            192 :         interfaces[i]-&gt;output_connection = link_a[i];</span>
+<span class="lineNum">      88 </span>                :     }
+<span class="lineNum">      89 </span>                : 
+<span class="lineNum">      90 </span>                :     return;
+<span class="lineNum">      91 </span>                : }
+<span class="lineNum">      92 </span>                : 
+<span class="lineNum">      93 </span>                : void
+<span class="lineNum">      94 </span><span class="lineCov">              1 : Mesh::connect_interface_routers()</span>
+<span class="lineNum">      95 </span>                : {
+<span class="lineNum">      96 </span>                :     // Input and output link connections
+<span class="lineNum">      97 </span><span class="lineCov">             65 :     for ( uint i=0 ; i&lt;no_nodes ; i++ )</span>
+<span class="lineNum">      98 </span>                :     {
+<span class="lineNum">      99 </span><span class="lineCov">            192 :         link_a[i]-&gt;input_connection = interfaces[i];</span>
+<span class="lineNum">     100 </span><span class="lineCov">            192 :         link_a[i]-&gt;output_connection = routers[i];</span>
+<span class="lineNum">     101 </span><span class="lineCov">            192 :         link_b[i]-&gt;input_connection = routers[i];</span>
+<span class="lineNum">     102 </span><span class="lineCov">            192 :         link_b[i]-&gt;output_connection = interfaces[i];</span>
+<span class="lineNum">     103 </span><span class="lineCov">            192 :         routers[i]-&gt;input_connections.push_back(link_a[i]);</span>
+<span class="lineNum">     104 </span><span class="lineCov">            192 :         routers[i]-&gt;output_connections.push_back(link_b[i]);</span>
+<span class="lineNum">     105 </span>                :     }
+<span class="lineNum">     106 </span>                :     return;
+<span class="lineNum">     107 </span>                : }
+<span class="lineNum">     108 </span>                : 
+<span class="lineNum">     109 </span>                : void
+<span class="lineNum">     110 </span><span class="lineCov">              1 : Mesh::connect_routers()</span>
+<span class="lineNum">     111 </span>                : {
+<span class="lineNum">     112 </span>                :     //  Router input and output connections
+<span class="lineNum">     113 </span>                :     map&lt; uint , uint &gt; east_links;
+<span class="lineNum">     114 </span>                :     map&lt; uint , uint &gt; west_links;
+<span class="lineNum">     115 </span>                :     /* ------------- Configure east links for the router ----------- */
+<span class="lineNum">     116 </span><span class="lineCov">              1 :     uint last_link_id = no_nodes;</span>
+<span class="lineNum">     117 </span><span class="lineCov">             65 :     for ( uint router_no=0 ; router_no&lt;no_nodes; router_no++ )</span>
+<span class="lineNum">     118 </span>                :     {
+<span class="lineNum">     119 </span><span class="lineCov">             64 :         if( (router_no%grid_size) == 0 ) /* Left side end node */</span>
+<span class="lineNum">     120 </span>                :         {
+<span class="lineNum">     121 </span><span class="lineCov">             16 :             link_a[last_link_id]-&gt;input_connection = NULL;</span>
+<span class="lineNum">     122 </span><span class="lineCov">             24 :             link_a[last_link_id]-&gt;output_connection = routers[router_no];</span>
+<span class="lineNum">     123 </span><span class="lineCov">             24 :             link_b[last_link_id]-&gt;input_connection = routers[router_no];</span>
+<span class="lineNum">     124 </span><span class="lineCov">             16 :             link_b[last_link_id]-&gt;output_connection = NULL;</span>
+<span class="lineNum">     125 </span><span class="lineCov">             16 :             east_links.insert(make_pair(router_no, last_link_id));</span>
+<span class="lineNum">     126 </span><span class="lineCov">              8 :             last_link_id++;</span>
+<span class="lineNum">     127 </span>                :         }
+<span class="lineNum">     128 </span>                :         else
+<span class="lineNum">     129 </span>                :         {
+<span class="lineNum">     130 </span><span class="lineCov">            168 :             link_a[last_link_id]-&gt;input_connection = routers[router_no-1];</span>
+<span class="lineNum">     131 </span><span class="lineCov">            168 :             link_a[last_link_id]-&gt;output_connection = routers[router_no];</span>
+<span class="lineNum">     132 </span><span class="lineCov">            168 :             link_b[last_link_id]-&gt;input_connection = routers[router_no];</span>
+<span class="lineNum">     133 </span><span class="lineCov">            168 :             link_b[last_link_id]-&gt;output_connection = routers[router_no-1];</span>
+<span class="lineNum">     134 </span><span class="lineCov">            112 :             east_links.insert(make_pair(router_no, last_link_id));</span>
+<span class="lineNum">     135 </span><span class="lineCov">            112 :             west_links.insert(make_pair(router_no-1, last_link_id));</span>
+<span class="lineNum">     136 </span><span class="lineCov">             56 :             last_link_id++;</span>
+<span class="lineNum">     137 </span>                :         }
+<span class="lineNum">     138 </span>                :     }
+<span class="lineNum">     139 </span>                : 
+<span class="lineNum">     140 </span><span class="lineCov">             65 :     for ( uint i=0 ; i&lt;no_nodes; i++ )</span>
+<span class="lineNum">     141 </span>                :     {
+<span class="lineNum">     142 </span><span class="lineCov">             64 :         map&lt;uint,uint&gt;::iterator link_id = east_links.find(i);</span>
+<span class="lineNum">     143 </span><span class="lineCov">            192 :         routers[i]-&gt;input_connections.push_back(link_a[link_id-&gt;second]);</span>
+<span class="lineNum">     144 </span><span class="lineCov">            192 :         routers[i]-&gt;output_connections.push_back(link_b[link_id-&gt;second]);</span>
+<span class="lineNum">     145 </span>                :     }
+<span class="lineNum">     146 </span><span class="lineCov">              1 :     cout &lt;&lt; &quot;\n End East links &quot; &lt;&lt; last_link_id &lt;&lt; endl;</span>
+<span class="lineNum">     147 </span>                : /* ------------ End East links --------------------- */
+<span class="lineNum">     148 </span>                : 
+<span class="lineNum">     149 </span>                : /* ------------ Begin West links --------------------- */
+<span class="lineNum">     150 </span><span class="lineCov">             65 :     for ( uint router_no=0 ; router_no&lt;no_nodes; router_no++ )</span>
+<span class="lineNum">     151 </span>                :     {
+<span class="lineNum">     152 </span><span class="lineCov">             64 :         if ( (router_no%grid_size) == (grid_size-1))</span>
+<span class="lineNum">     153 </span>                :         {
+<span class="lineNum">     154 </span><span class="lineCov">             24 :             link_a[last_link_id]-&gt;input_connection = routers[router_no];</span>
+<span class="lineNum">     155 </span><span class="lineCov">             16 :             link_a[last_link_id]-&gt;output_connection = NULL;</span>
+<span class="lineNum">     156 </span><span class="lineCov">             16 :             link_b[last_link_id]-&gt;input_connection = NULL;</span>
+<span class="lineNum">     157 </span><span class="lineCov">             24 :             link_b[last_link_id]-&gt;output_connection = routers[router_no];</span>
+<span class="lineNum">     158 </span><span class="lineCov">             16 :             west_links.insert(make_pair(router_no, last_link_id));</span>
+<span class="lineNum">     159 </span><span class="lineCov">              8 :             last_link_id++;</span>
+<span class="lineNum">     160 </span>                :         }
+<span class="lineNum">     161 </span>                :     }
+<span class="lineNum">     162 </span>                : 
+<span class="lineNum">     163 </span><span class="lineCov">             65 :     for ( uint i=0 ; i&lt;no_nodes; i++ )</span>
+<span class="lineNum">     164 </span>                :     {
+<span class="lineNum">     165 </span><span class="lineCov">             64 :         map&lt;uint,uint&gt;::iterator link_id = west_links.find(i);</span>
+<span class="lineNum">     166 </span><span class="lineCov">            192 :         routers[i]-&gt;input_connections.push_back(link_b[link_id-&gt;second]);</span>
+<span class="lineNum">     167 </span><span class="lineCov">            192 :         routers[i]-&gt;output_connections.push_back(link_a[link_id-&gt;second]);</span>
+<span class="lineNum">     168 </span>                :     }
+<span class="lineNum">     169 </span><span class="lineCov">              1 :     cout &lt;&lt; &quot;\n End West links &quot; &lt;&lt; last_link_id &lt;&lt; endl;</span>
+<span class="lineNum">     170 </span>                : /* ------------ End West links --------------------- */
+<span class="lineNum">     171 </span>                : 
+<span class="lineNum">     172 </span>                : /* ------------ Begin North links --------------------- */
+<span class="lineNum">     173 </span>                :     map&lt; uint , uint &gt; north_links;
+<span class="lineNum">     174 </span>                :     map&lt; uint , uint &gt; south_links;
+<span class="lineNum">     175 </span>                :     map &lt; uint, uint &gt; col_major_ordering;
+<span class="lineNum">     176 </span><span class="lineCov">              9 :     for ( uint i=0; i&lt;grid_size; i++)</span>
+<span class="lineNum">     177 </span><span class="lineCov">             72 :         for ( uint j=0; j&lt;grid_size; j++)</span>
+<span class="lineNum">     178 </span><span class="lineCov">            128 :             col_major_ordering.insert(make_pair(i*grid_size+j, j*grid_size+i));</span>
+<span class="lineNum">     179 </span>                : 
+<span class="lineNum">     180 </span><span class="lineCov">             65 :     for ( uint router_no=0 ; router_no&lt;no_nodes; router_no++ )</span>
+<span class="lineNum">     181 </span>                :     {
+<span class="lineNum">     182 </span><span class="lineCov">             64 :         map&lt;uint,uint&gt;::iterator iter = col_major_ordering.find(router_no);</span>
+<span class="lineNum">     183 </span><span class="lineCov">             64 :         uint col_major_router_no = iter-&gt;second;</span>
+<span class="lineNum">     184 </span><span class="lineCov">             64 :         if( (col_major_router_no%grid_size) == 0 ) /* Top end node */</span>
+<span class="lineNum">     185 </span>                :         {
+<span class="lineNum">     186 </span><span class="lineCov">             16 :             link_a[last_link_id]-&gt;input_connection = NULL ;</span>
+<span class="lineNum">     187 </span><span class="lineCov">             24 :             link_a[last_link_id]-&gt;output_connection = routers[router_no];</span>
+<span class="lineNum">     188 </span><span class="lineCov">             24 :             link_b[last_link_id]-&gt;input_connection = routers[router_no];</span>
+<span class="lineNum">     189 </span><span class="lineCov">             16 :             link_b[last_link_id]-&gt;output_connection = NULL ;</span>
+<span class="lineNum">     190 </span><span class="lineCov">             16 :             north_links.insert(make_pair(router_no, last_link_id));</span>
+<span class="lineNum">     191 </span><span class="lineCov">              8 :             last_link_id++;</span>
+<span class="lineNum">     192 </span>                :         }
+<span class="lineNum">     193 </span>                :         else
+<span class="lineNum">     194 </span>                :         {
+<span class="lineNum">     195 </span><span class="lineCov">            168 :             link_a[last_link_id]-&gt;input_connection = routers[router_no - grid_size];</span>
+<span class="lineNum">     196 </span><span class="lineCov">            168 :             link_a[last_link_id]-&gt;output_connection = routers[router_no];</span>
+<span class="lineNum">     197 </span><span class="lineCov">            168 :             link_b[last_link_id]-&gt;input_connection = routers[router_no];</span>
+<span class="lineNum">     198 </span><span class="lineCov">            168 :             link_b[last_link_id]-&gt;output_connection = routers[router_no - grid_size];</span>
+<span class="lineNum">     199 </span><span class="lineCov">            112 :             north_links.insert(make_pair(router_no, last_link_id));</span>
+<span class="lineNum">     200 </span><span class="lineCov">            112 :             south_links.insert(make_pair(router_no - grid_size, last_link_id));</span>
+<span class="lineNum">     201 </span><span class="lineCov">             56 :             last_link_id++;</span>
+<span class="lineNum">     202 </span>                :         }
+<span class="lineNum">     203 </span>                :     }
+<span class="lineNum">     204 </span>                : 
+<span class="lineNum">     205 </span><span class="lineCov">             65 :     for ( uint i=0 ; i&lt;no_nodes; i++ )</span>
+<span class="lineNum">     206 </span>                :     {
+<span class="lineNum">     207 </span><span class="lineCov">             64 :         map&lt;uint,uint&gt;::iterator link_id = north_links.find(i);</span>
+<span class="lineNum">     208 </span><span class="lineCov">            192 :         routers[i]-&gt;input_connections.push_back(link_a[link_id-&gt;second]);</span>
+<span class="lineNum">     209 </span><span class="lineCov">            192 :         routers[i]-&gt;output_connections.push_back(link_b[link_id-&gt;second]);</span>
+<span class="lineNum">     210 </span>                :     }
+<span class="lineNum">     211 </span><span class="lineCov">              1 :     cout &lt;&lt; &quot;\n End North links &quot; &lt;&lt; last_link_id &lt;&lt; endl;</span>
+<span class="lineNum">     212 </span>                : /* ------------ End North links --------------------- */
+<span class="lineNum">     213 </span>                : 
+<span class="lineNum">     214 </span>                : /* ------------ Begin South links --------------------- */
+<span class="lineNum">     215 </span>                : 
+<span class="lineNum">     216 </span><span class="lineCov">             65 :     for ( uint router_no=0 ; router_no&lt;no_nodes; router_no++ )</span>
+<span class="lineNum">     217 </span>                :     {
+<span class="lineNum">     218 </span><span class="lineCov">             64 :         map&lt;uint,uint&gt;::iterator iter = col_major_ordering.find(router_no);</span>
+<span class="lineNum">     219 </span><span class="lineCov">             64 :         uint col_major_router_no = iter-&gt;second;</span>
+<span class="lineNum">     220 </span><span class="lineCov">             64 :         if ( (col_major_router_no%grid_size) == (grid_size-1))</span>
+<span class="lineNum">     221 </span>                :         {
+<span class="lineNum">     222 </span><span class="lineCov">             24 :             link_a[last_link_id]-&gt;input_connection = routers[router_no];</span>
+<span class="lineNum">     223 </span><span class="lineCov">             16 :             link_a[last_link_id]-&gt;output_connection = NULL;</span>
+<span class="lineNum">     224 </span><span class="lineCov">             16 :             link_b[last_link_id]-&gt;input_connection = NULL;</span>
+<span class="lineNum">     225 </span><span class="lineCov">             24 :             link_b[last_link_id]-&gt;output_connection = routers[router_no];</span>
+<span class="lineNum">     226 </span><span class="lineCov">             16 :             south_links.insert(make_pair(router_no, last_link_id));</span>
+<span class="lineNum">     227 </span><span class="lineCov">              8 :             last_link_id++;</span>
+<span class="lineNum">     228 </span>                :         }
+<span class="lineNum">     229 </span>                :     }
+<span class="lineNum">     230 </span>                : 
+<span class="lineNum">     231 </span><span class="lineCov">             65 :     for ( uint i=0 ; i&lt;no_nodes; i++ )</span>
+<span class="lineNum">     232 </span>                :     {
+<span class="lineNum">     233 </span><span class="lineCov">             64 :         map&lt;uint,uint&gt;::iterator link_id = south_links.find(i);</span>
+<span class="lineNum">     234 </span><span class="lineCov">            192 :         routers[i]-&gt;input_connections.push_back(link_b[link_id-&gt;second]);</span>
+<span class="lineNum">     235 </span><span class="lineCov">            192 :         routers[i]-&gt;output_connections.push_back(link_a[link_id-&gt;second]);</span>
+<span class="lineNum">     236 </span>                :     }
+<span class="lineNum">     237 </span><span class="lineCov">              1 :     cout &lt;&lt; &quot;\n End North links &quot; &lt;&lt; last_link_id &lt;&lt; endl;</span>
+<span class="lineNum">     238 </span>                : 
+<span class="lineNum">     239 </span><span class="lineCov">              1 :     if(last_link_id &gt; links )</span>
+<span class="lineNum">     240 </span>                :     {
+<span class="lineNum">     241 </span><span class="lineNoCov">              0 :         cout &lt;&lt; &quot;ERROR : incorrect topology last_link_id: &quot; &lt;&lt; last_link_id &lt;&lt; &quot; links: &quot; &lt;&lt; links &lt;&lt;endl;</span>
+<span class="lineNum">     242 </span><span class="lineNoCov">              0 :         exit(1);</span>
+<span class="lineNum">     243 </span>                :     }
+<span class="lineNum">     244 </span>                :     north_links.clear();
+<span class="lineNum">     245 </span>                :     south_links.clear();
+<span class="lineNum">     246 </span>                : /* ------------ End South links --------------------- */
+<span class="lineNum">     247 </span>                : 
+<span class="lineNum">     248 </span>                :     return;
+<span class="lineNum">     249 </span>                : }
+<span class="lineNum">     250 </span>                : 
+<span class="lineNum">     251 </span>                : void
+<span class="lineNum">     252 </span><span class="lineCov">              1 : Mesh::setup()</span>
+<span class="lineNum">     253 </span>                : {
+<span class="lineNum">     254 </span>                :     /* Call setup on all components */
+<span class="lineNum">     255 </span><span class="lineCov">             65 :     for ( uint i=0 ; i&lt;no_nodes ; i++ )</span>
+<span class="lineNum">     256 </span>                :     {
+<span class="lineNum">     257 </span><span class="lineCov">            128 :         processors[i]-&gt;setup( no_nodes, vcs, max_sim_time);</span>
+<span class="lineNum">     258 </span><span class="lineCov">            128 :         interfaces[i]-&gt;setup(vcs, credits);</span>
+<span class="lineNum">     259 </span><span class="lineCov">            128 :         routers[i]-&gt;init(ports, vcs, credits, buffer_size);</span>
+<span class="lineNum">     260 </span>                :     }
+<span class="lineNum">     261 </span>                : 
+<span class="lineNum">     262 </span><span class="lineCov">            209 :     for ( uint i=0 ; i&lt;links; i++ )</span>
+<span class="lineNum">     263 </span>                :     {
+<span class="lineNum">     264 </span><span class="lineCov">            416 :         link_a[i]-&gt;setup();</span>
+<span class="lineNum">     265 </span><span class="lineCov">            416 :         link_b[i]-&gt;setup();</span>
+<span class="lineNum">     266 </span>                :     }
+<span class="lineNum">     267 </span>                :     return;
+<span class="lineNum">     268 </span><span class="lineCov">              2 : }</span>
+<span class="lineNum">     269 </span>                : #endif   /* ----- #ifndef _mesh_cc_INC  ----- */
+<span class="lineNum">     270 </span>                : 
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+  <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LTP GCOV extension version 1.6</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

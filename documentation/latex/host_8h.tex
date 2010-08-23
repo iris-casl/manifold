@@ -1,0 +1,170 @@
+\section{host.h File Reference}
+\label{host_8h}\index{host.h@{host.h}}
+
+
+This graph shows which files directly or indirectly include this file:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{host_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define {\bf INLINE}
+\item 
+\#define {\bf SYMCAT}(X, Y)~X\#\#Y
+\item 
+\#define {\bf ANSI\_\-SYMCAT}
+\item 
+\#define {\bf TICK\_\-T\_\-MAX}~DBL\_\-MAX
+\end{CompactItemize}
+\subsection*{Typedefs}
+\begin{CompactItemize}
+\item 
+typedef int {\bf bool\_\-t}
+\item 
+typedef unsigned char {\bf byte\_\-t}
+\item 
+typedef signed char {\bf sbyte\_\-t}
+\item 
+typedef unsigned short {\bf word\_\-t}
+\item 
+typedef signed short {\bf sword\_\-t}
+\item 
+typedef unsigned int {\bf dword\_\-t}
+\item 
+typedef signed int {\bf sdword\_\-t}
+\item 
+typedef float {\bf sfloat\_\-t}
+\item 
+typedef double {\bf dfloat\_\-t}
+\item 
+typedef long double {\bf efloat\_\-t}
+\item 
+typedef {\bf dfloat\_\-t} {\bf counter\_\-t}
+\item 
+typedef {\bf dfloat\_\-t} {\bf tick\_\-t}
+\end{CompactItemize}
+
+
+\subsection{Define Documentation}
+\index{host.h@{host.h}!ANSI\_\-SYMCAT@{ANSI\_\-SYMCAT}}
+\index{ANSI\_\-SYMCAT@{ANSI\_\-SYMCAT}!host.h@{host.h}}
+\subsubsection[{ANSI\_\-SYMCAT}]{\setlength{\rightskip}{0pt plus 5cm}\#define ANSI\_\-SYMCAT}\label{host_8h_3b379d477bda2d3e8802152a4745f7a1}
+
+
+
+
+Definition at line 87 of file host.h.\index{host.h@{host.h}!INLINE@{INLINE}}
+\index{INLINE@{INLINE}!host.h@{host.h}}
+\subsubsection[{INLINE}]{\setlength{\rightskip}{0pt plus 5cm}\#define INLINE}\label{host_8h_2eb6f9e0395b47b8d5e3eeae4fe0c116}
+
+
+
+
+Definition at line 64 of file host.h.\index{host.h@{host.h}!SYMCAT@{SYMCAT}}
+\index{SYMCAT@{SYMCAT}!host.h@{host.h}}
+\subsubsection[{SYMCAT}]{\setlength{\rightskip}{0pt plus 5cm}\#define SYMCAT(X, \/  Y)~X\#\#Y}\label{host_8h_8beb413c9494d7b451c75f743c749c40}
+
+
+
+
+Definition at line 84 of file host.h.\index{host.h@{host.h}!TICK\_\-T\_\-MAX@{TICK\_\-T\_\-MAX}}
+\index{TICK\_\-T\_\-MAX@{TICK\_\-T\_\-MAX}!host.h@{host.h}}
+\subsubsection[{TICK\_\-T\_\-MAX}]{\setlength{\rightskip}{0pt plus 5cm}\#define TICK\_\-T\_\-MAX~DBL\_\-MAX}\label{host_8h_d6479e80718c30aee08a7e9cc5cf9668}
+
+
+
+
+Definition at line 144 of file host.h.
+
+Referenced by core\_\-exec\_\-STM\_\-t::ALU\_\-exec(), core\_\-exec\_\-DPM\_\-t::ALU\_\-exec(), core\_\-exec\_\-STM\_\-t::ALU\_\-heap\_\-remove(), core\_\-fetch\_\-STM\_\-t::byteQ\_\-request(), core\_\-fetch\_\-DPM\_\-t::byteQ\_\-request(), cache\_\-enqueue(), cache\_\-enqueue\_\-llc(), cache\_\-heap\_\-remove(), cache\_\-process(), cache\_\-process\_\-llc(), core\_\-exec\_\-DPM\_\-t::check\_\-load\_\-issue\_\-conditions(), core\_\-exec\_\-STM\_\-t::DL1\_\-callback(), core\_\-exec\_\-STM\_\-t::DTLB\_\-callback(), core\_\-exec\_\-DPM\_\-t::DTLB\_\-callback(), core\_\-oracle\_\-t::exec(), fill\_\-arrived(), fill\_\-heap\_\-remove(), core\_\-exec\_\-STM\_\-t::insert\_\-ready\_\-uop(), core\_\-exec\_\-DPM\_\-t::insert\_\-ready\_\-uop(), core\_\-exec\_\-STM\_\-t::LDQ\_\-insert(), core\_\-exec\_\-DPM\_\-t::LDQ\_\-insert(), core\_\-exec\_\-STM\_\-t::LDQ\_\-schedule(), core\_\-exec\_\-DPM\_\-t::LDQ\_\-schedule(), core\_\-exec\_\-STM\_\-t::LDST\_\-exec(), core\_\-exec\_\-DPM\_\-t::LDST\_\-exec(), core\_\-exec\_\-DPM\_\-t::load\_\-miss\_\-reschedule(), core\_\-exec\_\-STM\_\-t::load\_\-writeback(), core\_\-exec\_\-DPM\_\-t::load\_\-writeback(), core\_\-fetch\_\-STM\_\-t::Mop\_\-available(), core\_\-fetch\_\-STM\_\-t::Mop\_\-consume(), MSHR\_\-allocate(), core\_\-fetch\_\-STM\_\-t::recover(), core\_\-fetch\_\-DPM\_\-t::recover(), core\_\-commit\_\-STM\_\-t::recover(), core\_\-commit\_\-DPM\_\-t::recover(), core\_\-exec\_\-DPM\_\-t::RS\_\-deallocate(), core\_\-exec\_\-DPM\_\-t::RS\_\-schedule(), core\_\-exec\_\-DPM\_\-t::snatch\_\-back(), core\_\-fetch\_\-STM\_\-t::step(), core\_\-fetch\_\-DPM\_\-t::step(), core\_\-decode\_\-DPM\_\-t::step(), core\_\-commit\_\-STM\_\-t::step(), core\_\-commit\_\-DPM\_\-t::step(), core\_\-alloc\_\-STM\_\-t::step(), core\_\-alloc\_\-DPM\_\-t::step(), and core\_\-t::uop\_\-init().
+
+\subsection{Typedef Documentation}
+\index{host.h@{host.h}!bool\_\-t@{bool\_\-t}}
+\index{bool\_\-t@{bool\_\-t}!host.h@{host.h}}
+\subsubsection[{bool\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef int {\bf bool\_\-t}}\label{host_8h_812d16e5494522586b3784e55d479912}
+
+
+
+
+Definition at line 92 of file host.h.\index{host.h@{host.h}!byte\_\-t@{byte\_\-t}}
+\index{byte\_\-t@{byte\_\-t}!host.h@{host.h}}
+\subsubsection[{byte\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef unsigned char {\bf byte\_\-t}}\label{host_8h_780bd50362a995b802eb8e00f4b0c200}
+
+
+
+
+Definition at line 93 of file host.h.\index{host.h@{host.h}!counter\_\-t@{counter\_\-t}}
+\index{counter\_\-t@{counter\_\-t}!host.h@{host.h}}
+\subsubsection[{counter\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf dfloat\_\-t} {\bf counter\_\-t}}\label{host_8h_14de020ee0096509154b24721dbc901a}
+
+
+
+
+Definition at line 142 of file host.h.\index{host.h@{host.h}!dfloat\_\-t@{dfloat\_\-t}}
+\index{dfloat\_\-t@{dfloat\_\-t}!host.h@{host.h}}
+\subsubsection[{dfloat\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef double {\bf dfloat\_\-t}}\label{host_8h_a868c96e84b68199876fe544fd0b5a7c}
+
+
+
+
+Definition at line 100 of file host.h.\index{host.h@{host.h}!dword\_\-t@{dword\_\-t}}
+\index{dword\_\-t@{dword\_\-t}!host.h@{host.h}}
+\subsubsection[{dword\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef unsigned int {\bf dword\_\-t}}\label{host_8h_064e4defdc308749258f722d81981cac}
+
+
+
+
+Definition at line 97 of file host.h.\index{host.h@{host.h}!efloat\_\-t@{efloat\_\-t}}
+\index{efloat\_\-t@{efloat\_\-t}!host.h@{host.h}}
+\subsubsection[{efloat\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef long double {\bf efloat\_\-t}}\label{host_8h_b7f65588dca2a9db3fd4ca155fb41ae1}
+
+
+
+
+Definition at line 101 of file host.h.\index{host.h@{host.h}!sbyte\_\-t@{sbyte\_\-t}}
+\index{sbyte\_\-t@{sbyte\_\-t}!host.h@{host.h}}
+\subsubsection[{sbyte\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef signed char {\bf sbyte\_\-t}}\label{host_8h_ea23fce331954f4c75f8651983440b33}
+
+
+
+
+Definition at line 94 of file host.h.\index{host.h@{host.h}!sdword\_\-t@{sdword\_\-t}}
+\index{sdword\_\-t@{sdword\_\-t}!host.h@{host.h}}
+\subsubsection[{sdword\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef signed int {\bf sdword\_\-t}}\label{host_8h_4ddfb9d4cf465282a95376d27686b9c7}
+
+
+
+
+Definition at line 98 of file host.h.\index{host.h@{host.h}!sfloat\_\-t@{sfloat\_\-t}}
+\index{sfloat\_\-t@{sfloat\_\-t}!host.h@{host.h}}
+\subsubsection[{sfloat\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef float {\bf sfloat\_\-t}}\label{host_8h_bdcfc9d69ad77c2f1ca15b3afe31471b}
+
+
+
+
+Definition at line 99 of file host.h.\index{host.h@{host.h}!sword\_\-t@{sword\_\-t}}
+\index{sword\_\-t@{sword\_\-t}!host.h@{host.h}}
+\subsubsection[{sword\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef signed short {\bf sword\_\-t}}\label{host_8h_f34f4258ed53975c4188dc251c368e3d}
+
+
+
+
+Definition at line 96 of file host.h.\index{host.h@{host.h}!tick\_\-t@{tick\_\-t}}
+\index{tick\_\-t@{tick\_\-t}!host.h@{host.h}}
+\subsubsection[{tick\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf dfloat\_\-t} {\bf tick\_\-t}}\label{host_8h_72c250924ea62bad7fee5d58765cdc86}
+
+
+
+
+Definition at line 143 of file host.h.\index{host.h@{host.h}!word\_\-t@{word\_\-t}}
+\index{word\_\-t@{word\_\-t}!host.h@{host.h}}
+\subsubsection[{word\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef unsigned short {\bf word\_\-t}}\label{host_8h_c28e484253fd62d727019f0d361996a0}
+
+
+
+
+Definition at line 95 of file host.h.

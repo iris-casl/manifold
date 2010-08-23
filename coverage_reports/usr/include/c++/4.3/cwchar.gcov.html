@@ -1,0 +1,366 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>LCOV - iris.info - /usr/include/c++/4.3/cwchar</title>
+  <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LTP GCOV extension - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+        <tr>
+          <td class="headerItem" width="20%">Current&nbsp;view:</td>
+          <td class="headerValue" width="80%" colspan=4><a href="../../../../index.html">directory</a> - <a href="index.html">usr/include/c++/4.3</a> - cwchar</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Test:</td>
+          <td class="headerValue" width="80%" colspan=4>iris.info</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Date:</td>
+          <td class="headerValue" width="20%">2010-05-24</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Instrumented&nbsp;lines:</td>
+          <td class="headerValue" width="20%">10</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Code&nbsp;covered:</td>
+          <td class="headerValue" width="20%">0.0 %</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Executed&nbsp;lines:</td>
+          <td class="headerValue" width="20%">0</td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><pre class="source">
+<span class="lineNum">       1 </span>                : // -*- C++ -*- forwarding header.
+<span class="lineNum">       2 </span>                : 
+<span class="lineNum">       3 </span>                : // Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005,
+<span class="lineNum">       4 </span>                : // 2006, 2007, 2008
+<span class="lineNum">       5 </span>                : // Free Software Foundation, Inc.
+<span class="lineNum">       6 </span>                : //
+<span class="lineNum">       7 </span>                : // This file is part of the GNU ISO C++ Library.  This library is free
+<span class="lineNum">       8 </span>                : // software; you can redistribute it and/or modify it under the
+<span class="lineNum">       9 </span>                : // terms of the GNU General Public License as published by the
+<span class="lineNum">      10 </span>                : // Free Software Foundation; either version 2, or (at your option)
+<span class="lineNum">      11 </span>                : // any later version.
+<span class="lineNum">      12 </span>                : 
+<span class="lineNum">      13 </span>                : // This library is distributed in the hope that it will be useful,
+<span class="lineNum">      14 </span>                : // but WITHOUT ANY WARRANTY; without even the implied warranty of
+<span class="lineNum">      15 </span>                : // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+<span class="lineNum">      16 </span>                : // GNU General Public License for more details.
+<span class="lineNum">      17 </span>                : 
+<span class="lineNum">      18 </span>                : // You should have received a copy of the GNU General Public License
+<span class="lineNum">      19 </span>                : // along with this library; see the file COPYING.  If not, write to
+<span class="lineNum">      20 </span>                : // the Free Software Foundation, 51 Franklin Street, Fifth Floor,
+<span class="lineNum">      21 </span>                : // Boston, MA 02110-1301, USA.
+<span class="lineNum">      22 </span>                : 
+<span class="lineNum">      23 </span>                : // As a special exception, you may use this file as part of a free software
+<span class="lineNum">      24 </span>                : // library without restriction.  Specifically, if other files instantiate
+<span class="lineNum">      25 </span>                : // templates or use macros or inline functions from this file, or you compile
+<span class="lineNum">      26 </span>                : // this file and link it with other files to produce an executable, this
+<span class="lineNum">      27 </span>                : // file does not by itself cause the resulting executable to be covered by
+<span class="lineNum">      28 </span>                : // the GNU General Public License.  This exception does not however
+<span class="lineNum">      29 </span>                : // invalidate any other reasons why the executable file might be covered by
+<span class="lineNum">      30 </span>                : // the GNU General Public License.
+<span class="lineNum">      31 </span>                : 
+<span class="lineNum">      32 </span>                : /** @file include/cwchar
+<span class="lineNum">      33 </span>                :  *  This is a Standard C++ Library file.  You should @c #include this file
+<span class="lineNum">      34 </span>                :  *  in your programs, rather than any of the &quot;*.h&quot; implementation files.
+<span class="lineNum">      35 </span>                :  *
+<span class="lineNum">      36 </span>                :  *  This is the C++ version of the Standard C Library header @c wchar.h,
+<span class="lineNum">      37 </span>                :  *  and its contents are (mostly) the same as that header, but are all
+<span class="lineNum">      38 </span>                :  *  contained in the namespace @c std (except for names which are defined
+<span class="lineNum">      39 </span>                :  *  as macros in C).
+<span class="lineNum">      40 </span>                :  */
+<span class="lineNum">      41 </span>                : 
+<span class="lineNum">      42 </span>                : //
+<span class="lineNum">      43 </span>                : // ISO C++ 14882: 21.4
+<span class="lineNum">      44 </span>                : //
+<span class="lineNum">      45 </span>                : 
+<span class="lineNum">      46 </span>                : #pragma GCC system_header
+<span class="lineNum">      47 </span>                : 
+<span class="lineNum">      48 </span>                : #include &lt;bits/c++config.h&gt;
+<span class="lineNum">      49 </span>                : #include &lt;cstddef&gt;
+<span class="lineNum">      50 </span>                : 
+<span class="lineNum">      51 </span>                : #if _GLIBCXX_HAVE_WCHAR_H
+<span class="lineNum">      52 </span>                : #include &lt;wchar.h&gt;
+<span class="lineNum">      53 </span>                : #endif
+<span class="lineNum">      54 </span>                : 
+<span class="lineNum">      55 </span>                : #ifndef _GLIBCXX_CWCHAR
+<span class="lineNum">      56 </span>                : #define _GLIBCXX_CWCHAR 1
+<span class="lineNum">      57 </span>                : 
+<span class="lineNum">      58 </span>                : // Need to do a bit of trickery here with mbstate_t as char_traits
+<span class="lineNum">      59 </span>                : // assumes it is in wchar.h, regardless of wchar_t specializations.
+<span class="lineNum">      60 </span>                : #ifndef _GLIBCXX_HAVE_MBSTATE_T
+<span class="lineNum">      61 </span>                : extern &quot;C&quot;
+<span class="lineNum">      62 </span>                : {
+<span class="lineNum">      63 </span>                :   typedef struct
+<span class="lineNum">      64 </span>                :   {
+<span class="lineNum">      65 </span>                :     int __fill[6];
+<span class="lineNum">      66 </span>                :   } mbstate_t;
+<span class="lineNum">      67 </span>                : }
+<span class="lineNum">      68 </span>                : #endif
+<span class="lineNum">      69 </span>                : 
+<span class="lineNum">      70 </span>                : _GLIBCXX_BEGIN_NAMESPACE(std)
+<span class="lineNum">      71 </span>                : 
+<span class="lineNum">      72 </span>                :   using ::mbstate_t;
+<span class="lineNum">      73 </span>                : 
+<span class="lineNum">      74 </span>                : _GLIBCXX_END_NAMESPACE
+<span class="lineNum">      75 </span>                : 
+<span class="lineNum">      76 </span>                : // Get rid of those macros defined in &lt;wchar.h&gt; in lieu of real functions.
+<span class="lineNum">      77 </span>                : #undef btowc
+<span class="lineNum">      78 </span>                : #undef fgetwc
+<span class="lineNum">      79 </span>                : #undef fgetws
+<span class="lineNum">      80 </span>                : #undef fputwc
+<span class="lineNum">      81 </span>                : #undef fputws
+<span class="lineNum">      82 </span>                : #undef fwide
+<span class="lineNum">      83 </span>                : #undef fwprintf
+<span class="lineNum">      84 </span>                : #undef fwscanf
+<span class="lineNum">      85 </span>                : #undef getwc
+<span class="lineNum">      86 </span>                : #undef getwchar
+<span class="lineNum">      87 </span>                : #undef mbrlen
+<span class="lineNum">      88 </span>                : #undef mbrtowc
+<span class="lineNum">      89 </span>                : #undef mbsinit
+<span class="lineNum">      90 </span>                : #undef mbsrtowcs
+<span class="lineNum">      91 </span>                : #undef putwc
+<span class="lineNum">      92 </span>                : #undef putwchar
+<span class="lineNum">      93 </span>                : #undef swprintf
+<span class="lineNum">      94 </span>                : #undef swscanf
+<span class="lineNum">      95 </span>                : #undef ungetwc
+<span class="lineNum">      96 </span>                : #undef vfwprintf
+<span class="lineNum">      97 </span>                : #if _GLIBCXX_HAVE_VFWSCANF
+<span class="lineNum">      98 </span>                : # undef vfwscanf
+<span class="lineNum">      99 </span>                : #endif
+<span class="lineNum">     100 </span>                : #undef vswprintf
+<span class="lineNum">     101 </span>                : #if _GLIBCXX_HAVE_VSWSCANF
+<span class="lineNum">     102 </span>                : # undef vswscanf
+<span class="lineNum">     103 </span>                : #endif
+<span class="lineNum">     104 </span>                : #undef vwprintf
+<span class="lineNum">     105 </span>                : #if _GLIBCXX_HAVE_VWSCANF
+<span class="lineNum">     106 </span>                : # undef vwscanf
+<span class="lineNum">     107 </span>                : #endif
+<span class="lineNum">     108 </span>                : #undef wcrtomb
+<span class="lineNum">     109 </span>                : #undef wcscat
+<span class="lineNum">     110 </span>                : #undef wcschr
+<span class="lineNum">     111 </span>                : #undef wcscmp
+<span class="lineNum">     112 </span>                : #undef wcscoll
+<span class="lineNum">     113 </span>                : #undef wcscpy
+<span class="lineNum">     114 </span>                : #undef wcscspn
+<span class="lineNum">     115 </span>                : #undef wcsftime
+<span class="lineNum">     116 </span>                : #undef wcslen
+<span class="lineNum">     117 </span>                : #undef wcsncat
+<span class="lineNum">     118 </span>                : #undef wcsncmp
+<span class="lineNum">     119 </span>                : #undef wcsncpy
+<span class="lineNum">     120 </span>                : #undef wcspbrk
+<span class="lineNum">     121 </span>                : #undef wcsrchr
+<span class="lineNum">     122 </span>                : #undef wcsrtombs
+<span class="lineNum">     123 </span>                : #undef wcsspn
+<span class="lineNum">     124 </span>                : #undef wcsstr
+<span class="lineNum">     125 </span>                : #undef wcstod
+<span class="lineNum">     126 </span>                : #if _GLIBCXX_HAVE_WCSTOF
+<span class="lineNum">     127 </span>                : # undef wcstof
+<span class="lineNum">     128 </span>                : #endif
+<span class="lineNum">     129 </span>                : #undef wcstok
+<span class="lineNum">     130 </span>                : #undef wcstol
+<span class="lineNum">     131 </span>                : #undef wcstoul
+<span class="lineNum">     132 </span>                : #undef wcsxfrm
+<span class="lineNum">     133 </span>                : #undef wctob
+<span class="lineNum">     134 </span>                : #undef wmemchr
+<span class="lineNum">     135 </span>                : #undef wmemcmp
+<span class="lineNum">     136 </span>                : #undef wmemcpy
+<span class="lineNum">     137 </span>                : #undef wmemmove
+<span class="lineNum">     138 </span>                : #undef wmemset
+<span class="lineNum">     139 </span>                : #undef wprintf
+<span class="lineNum">     140 </span>                : #undef wscanf
+<span class="lineNum">     141 </span>                : 
+<span class="lineNum">     142 </span>                : #if _GLIBCXX_USE_WCHAR_T
+<span class="lineNum">     143 </span>                : 
+<span class="lineNum">     144 </span>                : _GLIBCXX_BEGIN_NAMESPACE(std)
+<span class="lineNum">     145 </span>                : 
+<span class="lineNum">     146 </span>                :   using ::wint_t;
+<span class="lineNum">     147 </span>                : 
+<span class="lineNum">     148 </span>                :   using ::btowc;
+<span class="lineNum">     149 </span>                :   using ::fgetwc;
+<span class="lineNum">     150 </span>                :   using ::fgetws;
+<span class="lineNum">     151 </span>                :   using ::fputwc;
+<span class="lineNum">     152 </span>                :   using ::fputws;
+<span class="lineNum">     153 </span>                :   using ::fwide;
+<span class="lineNum">     154 </span>                :   using ::fwprintf;
+<span class="lineNum">     155 </span>                :   using ::fwscanf;
+<span class="lineNum">     156 </span>                :   using ::getwc;
+<span class="lineNum">     157 </span>                :   using ::getwchar;
+<span class="lineNum">     158 </span>                :   using ::mbrlen;
+<span class="lineNum">     159 </span>                :   using ::mbrtowc;
+<span class="lineNum">     160 </span>                :   using ::mbsinit;
+<span class="lineNum">     161 </span>                :   using ::mbsrtowcs;
+<span class="lineNum">     162 </span>                :   using ::putwc;
+<span class="lineNum">     163 </span>                :   using ::putwchar;
+<span class="lineNum">     164 </span>                :   using ::swprintf;
+<span class="lineNum">     165 </span>                :   using ::swscanf;
+<span class="lineNum">     166 </span>                :   using ::ungetwc;
+<span class="lineNum">     167 </span>                :   using ::vfwprintf;
+<span class="lineNum">     168 </span>                : #if _GLIBCXX_HAVE_VFWSCANF
+<span class="lineNum">     169 </span>                :   using ::vfwscanf;
+<span class="lineNum">     170 </span>                : #endif
+<span class="lineNum">     171 </span>                :   using ::vswprintf;
+<span class="lineNum">     172 </span>                : #if _GLIBCXX_HAVE_VSWSCANF
+<span class="lineNum">     173 </span>                :   using ::vswscanf;
+<span class="lineNum">     174 </span>                : #endif
+<span class="lineNum">     175 </span>                :   using ::vwprintf;
+<span class="lineNum">     176 </span>                : #if _GLIBCXX_HAVE_VWSCANF
+<span class="lineNum">     177 </span>                :   using ::vwscanf;
+<span class="lineNum">     178 </span>                : #endif
+<span class="lineNum">     179 </span>                :   using ::wcrtomb;
+<span class="lineNum">     180 </span>                :   using ::wcscat;
+<span class="lineNum">     181 </span>                :   using ::wcscmp;
+<span class="lineNum">     182 </span>                :   using ::wcscoll;
+<span class="lineNum">     183 </span>                :   using ::wcscpy;
+<span class="lineNum">     184 </span>                :   using ::wcscspn;
+<span class="lineNum">     185 </span>                :   using ::wcsftime;
+<span class="lineNum">     186 </span>                :   using ::wcslen;
+<span class="lineNum">     187 </span>                :   using ::wcsncat;
+<span class="lineNum">     188 </span>                :   using ::wcsncmp;
+<span class="lineNum">     189 </span>                :   using ::wcsncpy;
+<span class="lineNum">     190 </span>                :   using ::wcsrtombs;
+<span class="lineNum">     191 </span>                :   using ::wcsspn;
+<span class="lineNum">     192 </span>                :   using ::wcstod;
+<span class="lineNum">     193 </span>                : #if _GLIBCXX_HAVE_WCSTOF
+<span class="lineNum">     194 </span>                :   using ::wcstof;
+<span class="lineNum">     195 </span>                : #endif
+<span class="lineNum">     196 </span>                :   using ::wcstok;
+<span class="lineNum">     197 </span>                :   using ::wcstol;
+<span class="lineNum">     198 </span>                :   using ::wcstoul;
+<span class="lineNum">     199 </span>                :   using ::wcsxfrm;
+<span class="lineNum">     200 </span>                :   using ::wctob;
+<span class="lineNum">     201 </span>                :   using ::wmemcmp;
+<span class="lineNum">     202 </span>                :   using ::wmemcpy;
+<span class="lineNum">     203 </span>                :   using ::wmemmove;
+<span class="lineNum">     204 </span>                :   using ::wmemset;
+<span class="lineNum">     205 </span>                :   using ::wprintf;
+<span class="lineNum">     206 </span>                :   using ::wscanf;
+<span class="lineNum">     207 </span>                : 
+<span class="lineNum">     208 </span>                :   using ::wcschr;
+<span class="lineNum">     209 </span>                : 
+<span class="lineNum">     210 </span>                :   inline wchar_t*
+<span class="lineNum">     211 </span><span class="lineNoCov">              0 :   wcschr(wchar_t* __p, wchar_t __c)</span>
+<span class="lineNum">     212 </span><span class="lineNoCov">              0 :   { return wcschr(const_cast&lt;const wchar_t*&gt;(__p), __c); }</span>
+<span class="lineNum">     213 </span>                : 
+<span class="lineNum">     214 </span>                :   using ::wcspbrk;
+<span class="lineNum">     215 </span>                : 
+<span class="lineNum">     216 </span>                :   inline wchar_t*
+<span class="lineNum">     217 </span><span class="lineNoCov">              0 :   wcspbrk(wchar_t* __s1, const wchar_t* __s2)</span>
+<span class="lineNum">     218 </span><span class="lineNoCov">              0 :   { return wcspbrk(const_cast&lt;const wchar_t*&gt;(__s1), __s2); }</span>
+<span class="lineNum">     219 </span>                : 
+<span class="lineNum">     220 </span>                :   using ::wcsrchr;
+<span class="lineNum">     221 </span>                : 
+<span class="lineNum">     222 </span>                :   inline wchar_t*
+<span class="lineNum">     223 </span><span class="lineNoCov">              0 :   wcsrchr(wchar_t* __p, wchar_t __c)</span>
+<span class="lineNum">     224 </span><span class="lineNoCov">              0 :   { return wcsrchr(const_cast&lt;const wchar_t*&gt;(__p), __c); }</span>
+<span class="lineNum">     225 </span>                : 
+<span class="lineNum">     226 </span>                :   using ::wcsstr;
+<span class="lineNum">     227 </span>                : 
+<span class="lineNum">     228 </span>                :   inline wchar_t*
+<span class="lineNum">     229 </span><span class="lineNoCov">              0 :   wcsstr(wchar_t* __s1, const wchar_t* __s2)</span>
+<span class="lineNum">     230 </span><span class="lineNoCov">              0 :   { return wcsstr(const_cast&lt;const wchar_t*&gt;(__s1), __s2); }</span>
+<span class="lineNum">     231 </span>                : 
+<span class="lineNum">     232 </span>                :   using ::wmemchr;
+<span class="lineNum">     233 </span>                : 
+<span class="lineNum">     234 </span>                :   inline wchar_t*
+<span class="lineNum">     235 </span><span class="lineNoCov">              0 :   wmemchr(wchar_t* __p, wchar_t __c, size_t __n)</span>
+<span class="lineNum">     236 </span><span class="lineNoCov">              0 :   { return wmemchr(const_cast&lt;const wchar_t*&gt;(__p), __c, __n); }</span>
+<span class="lineNum">     237 </span>                : 
+<span class="lineNum">     238 </span>                : _GLIBCXX_END_NAMESPACE
+<span class="lineNum">     239 </span>                : 
+<span class="lineNum">     240 </span>                : #if _GLIBCXX_USE_C99
+<span class="lineNum">     241 </span>                : 
+<span class="lineNum">     242 </span>                : #undef wcstold
+<span class="lineNum">     243 </span>                : #undef wcstoll
+<span class="lineNum">     244 </span>                : #undef wcstoull
+<span class="lineNum">     245 </span>                : 
+<span class="lineNum">     246 </span>                : _GLIBCXX_BEGIN_NAMESPACE(__gnu_cxx)
+<span class="lineNum">     247 </span>                : 
+<span class="lineNum">     248 </span>                : #if _GLIBCXX_USE_C99_CHECK || _GLIBCXX_USE_C99_DYNAMIC
+<span class="lineNum">     249 </span>                :   extern &quot;C&quot; long double
+<span class="lineNum">     250 </span>                :     (wcstold)(const wchar_t * restrict, wchar_t ** restrict);
+<span class="lineNum">     251 </span>                : #endif
+<span class="lineNum">     252 </span>                : #if !_GLIBCXX_USE_C99_DYNAMIC
+<span class="lineNum">     253 </span>                :   using ::wcstold;
+<span class="lineNum">     254 </span>                : #endif
+<span class="lineNum">     255 </span>                : #if _GLIBCXX_USE_C99_LONG_LONG_CHECK || _GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
+<span class="lineNum">     256 </span>                :   extern &quot;C&quot; long long int
+<span class="lineNum">     257 </span>                :     (wcstoll)(const wchar_t * restrict, wchar_t ** restrict, int);
+<span class="lineNum">     258 </span>                :   extern &quot;C&quot; unsigned long long int
+<span class="lineNum">     259 </span>                :     (wcstoull)(const wchar_t * restrict, wchar_t ** restrict, int);
+<span class="lineNum">     260 </span>                : #endif
+<span class="lineNum">     261 </span>                : #if !_GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
+<span class="lineNum">     262 </span>                :   using ::wcstoll;
+<span class="lineNum">     263 </span>                :   using ::wcstoull;
+<span class="lineNum">     264 </span>                : #endif
+<span class="lineNum">     265 </span>                : 
+<span class="lineNum">     266 </span>                : _GLIBCXX_END_NAMESPACE
+<span class="lineNum">     267 </span>                : 
+<span class="lineNum">     268 </span>                : _GLIBCXX_BEGIN_NAMESPACE(std)
+<span class="lineNum">     269 </span>                : 
+<span class="lineNum">     270 </span>                :   using ::__gnu_cxx::wcstold;
+<span class="lineNum">     271 </span>                :   using ::__gnu_cxx::wcstoll;
+<span class="lineNum">     272 </span>                :   using ::__gnu_cxx::wcstoull;
+<span class="lineNum">     273 </span>                : 
+<span class="lineNum">     274 </span>                : _GLIBCXX_END_NAMESPACE
+<span class="lineNum">     275 </span>                : 
+<span class="lineNum">     276 </span>                : #endif
+<span class="lineNum">     277 </span>                : 
+<span class="lineNum">     278 </span>                : #endif //_GLIBCXX_USE_WCHAR_T
+<span class="lineNum">     279 </span>                : 
+<span class="lineNum">     280 </span>                : #ifdef __GXX_EXPERIMENTAL_CXX0X__
+<span class="lineNum">     281 </span>                : #  if defined(_GLIBCXX_INCLUDE_AS_TR1)
+<span class="lineNum">     282 </span>                : #    error C++0x header cannot be included from TR1 header
+<span class="lineNum">     283 </span>                : #  endif
+<span class="lineNum">     284 </span>                : #  if defined(_GLIBCXX_INCLUDE_AS_CXX0X)
+<span class="lineNum">     285 </span>                : #    include &lt;tr1_impl/cwchar&gt;
+<span class="lineNum">     286 </span>                : #  else
+<span class="lineNum">     287 </span>                : #    define _GLIBCXX_INCLUDE_AS_CXX0X
+<span class="lineNum">     288 </span>                : #    define _GLIBCXX_BEGIN_NAMESPACE_TR1
+<span class="lineNum">     289 </span>                : #    define _GLIBCXX_END_NAMESPACE_TR1
+<span class="lineNum">     290 </span>                : #    define _GLIBCXX_TR1
+<span class="lineNum">     291 </span>                : #    include &lt;tr1_impl/cwchar&gt;
+<span class="lineNum">     292 </span>                : #    undef _GLIBCXX_TR1
+<span class="lineNum">     293 </span>                : #    undef _GLIBCXX_END_NAMESPACE_TR1
+<span class="lineNum">     294 </span>                : #    undef _GLIBCXX_BEGIN_NAMESPACE_TR1
+<span class="lineNum">     295 </span>                : #    undef _GLIBCXX_INCLUDE_AS_CXX0X
+<span class="lineNum">     296 </span>                : #  endif
+<span class="lineNum">     297 </span>                : #endif
+<span class="lineNum">     298 </span>                : 
+<span class="lineNum">     299 </span>                : #endif
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+  <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+  <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LTP GCOV extension version 1.6</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

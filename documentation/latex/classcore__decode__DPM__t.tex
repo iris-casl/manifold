@@ -1,0 +1,428 @@
+\section{core\_\-decode\_\-DPM\_\-t Class Reference}
+\label{classcore__decode__DPM__t}\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}}
+Inheritance diagram for core\_\-decode\_\-DPM\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classcore__decode__DPM__t__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for core\_\-decode\_\-DPM\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classcore__decode__DPM__t__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf core\_\-decode\_\-DPM\_\-t} (struct {\bf core\_\-t} $\ast$const {\bf core})
+\item 
+virtual void {\bf reg\_\-stats} (struct {\bf stat\_\-sdb\_\-t} $\ast$const sdb)
+\item 
+virtual void {\bf update\_\-occupancy} (void)
+\item 
+virtual void {\bf step} (void)
+\item 
+virtual void {\bf recover} (void)
+\item 
+virtual void {\bf recover} (struct {\bf Mop\_\-t} $\ast$const Mop)
+\item 
+virtual bool {\bf uop\_\-available} (void)
+\item 
+virtual struct {\bf uop\_\-t} $\ast$ {\bf uop\_\-peek} (void)
+\item 
+virtual void {\bf uop\_\-consume} (void)
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+enum {\bf decode\_\-stall\_\-t} {\bf check\_\-target} (struct {\bf Mop\_\-t} $\ast$const Mop)
+\item 
+bool {\bf check\_\-flush} (const int stage, const int idx)
+\item 
+void {\bf recover\_\-decode\_\-pipe} (const struct {\bf Mop\_\-t} $\ast$const Mop)
+\item 
+void {\bf recover\_\-decode\_\-pipe} (void)
+\item 
+void {\bf recover\_\-uopQ} (const struct {\bf Mop\_\-t} $\ast$const Mop)
+\item 
+void {\bf recover\_\-uopQ} (void)
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+struct {\bf Mop\_\-t} $\ast$$\ast$$\ast$ {\bf pipe}
+\item 
+int $\ast$ {\bf occupancy}
+\item 
+struct {\bf uop\_\-t} $\ast$$\ast$ {\bf uopQ}
+\item 
+int {\bf uopQ\_\-head}
+\item 
+int {\bf uopQ\_\-tail}
+\item 
+int {\bf uopQ\_\-num}
+\item 
+int {\bf uopQ\_\-eff\_\-num}
+\end{CompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{CompactItemize}
+\item 
+static const char $\ast$ {\bf decode\_\-stall\_\-str} [DSTALL\_\-num]
+\end{CompactItemize}
+\subsection*{Private Types}
+\begin{CompactItemize}
+\item 
+enum {\bf decode\_\-stall\_\-t} \{ \par
+{\bf DSTALL\_\-NONE}, 
+{\bf DSTALL\_\-FULL}, 
+{\bf DSTALL\_\-REP}, 
+{\bf DSTALL\_\-UROM}, 
+\par
+{\bf DSTALL\_\-SMALL}, 
+{\bf DSTALL\_\-EMPTY}, 
+{\bf DSTALL\_\-PHANTOM}, 
+{\bf DSTALL\_\-TARGET}, 
+\par
+{\bf DSTALL\_\-MAX\_\-BRANCHES}, 
+{\bf DSTALL\_\-num}
+ \}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 11 of file decode-DPM.cpp.
+
+\subsection{Member Enumeration Documentation}
+\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!decode\_\-stall\_\-t@{decode\_\-stall\_\-t}}
+\index{decode\_\-stall\_\-t@{decode\_\-stall\_\-t}!core_decode_DPM_t@{core\_\-decode\_\-DPM\_\-t}}
+\subsubsection[{decode\_\-stall\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf core\_\-decode\_\-DPM\_\-t::decode\_\-stall\_\-t}\hspace{0.3cm}{\tt  [private]}}\label{classcore__decode__DPM__t_84996eb530f98d700c3b509c3b512480}
+
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{DSTALL\_\-NONE@{DSTALL\_\-NONE}!core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}}\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!DSTALL\_\-NONE@{DSTALL\_\-NONE}}\item[{\em 
+DSTALL\_\-NONE\label{classcore__decode__DPM__t_84996eb530f98d700c3b509c3b512480e901bfd8b6a13fd7283be90e921c353c}
+}]\index{DSTALL\_\-FULL@{DSTALL\_\-FULL}!core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}}\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!DSTALL\_\-FULL@{DSTALL\_\-FULL}}\item[{\em 
+DSTALL\_\-FULL\label{classcore__decode__DPM__t_84996eb530f98d700c3b509c3b5124807485de37120889bd5c7e48fee65af2e3}
+}]\index{DSTALL\_\-REP@{DSTALL\_\-REP}!core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}}\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!DSTALL\_\-REP@{DSTALL\_\-REP}}\item[{\em 
+DSTALL\_\-REP\label{classcore__decode__DPM__t_84996eb530f98d700c3b509c3b512480c945903e082e0646c44b0ada40ec1910}
+}]\index{DSTALL\_\-UROM@{DSTALL\_\-UROM}!core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}}\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!DSTALL\_\-UROM@{DSTALL\_\-UROM}}\item[{\em 
+DSTALL\_\-UROM\label{classcore__decode__DPM__t_84996eb530f98d700c3b509c3b5124801db59c691700a1f6f3642355673b667a}
+}]\index{DSTALL\_\-SMALL@{DSTALL\_\-SMALL}!core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}}\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!DSTALL\_\-SMALL@{DSTALL\_\-SMALL}}\item[{\em 
+DSTALL\_\-SMALL\label{classcore__decode__DPM__t_84996eb530f98d700c3b509c3b51248037d9051646b86884ef14b8e0933c716d}
+}]\index{DSTALL\_\-EMPTY@{DSTALL\_\-EMPTY}!core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}}\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!DSTALL\_\-EMPTY@{DSTALL\_\-EMPTY}}\item[{\em 
+DSTALL\_\-EMPTY\label{classcore__decode__DPM__t_84996eb530f98d700c3b509c3b5124807a5c73a8f54d22101b6b09550b718bb6}
+}]\index{DSTALL\_\-PHANTOM@{DSTALL\_\-PHANTOM}!core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}}\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!DSTALL\_\-PHANTOM@{DSTALL\_\-PHANTOM}}\item[{\em 
+DSTALL\_\-PHANTOM\label{classcore__decode__DPM__t_84996eb530f98d700c3b509c3b5124809512a8f49921239617d9eee9ad3094ea}
+}]\index{DSTALL\_\-TARGET@{DSTALL\_\-TARGET}!core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}}\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!DSTALL\_\-TARGET@{DSTALL\_\-TARGET}}\item[{\em 
+DSTALL\_\-TARGET\label{classcore__decode__DPM__t_84996eb530f98d700c3b509c3b512480aae1bf3ffb2a3f44b962ce74279a975f}
+}]\index{DSTALL\_\-MAX\_\-BRANCHES@{DSTALL\_\-MAX\_\-BRANCHES}!core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}}\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!DSTALL\_\-MAX\_\-BRANCHES@{DSTALL\_\-MAX\_\-BRANCHES}}\item[{\em 
+DSTALL\_\-MAX\_\-BRANCHES\label{classcore__decode__DPM__t_84996eb530f98d700c3b509c3b51248070cb93672bb14180e90be4ec6f374e29}
+}]\index{DSTALL\_\-num@{DSTALL\_\-num}!core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}}\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!DSTALL\_\-num@{DSTALL\_\-num}}\item[{\em 
+DSTALL\_\-num\label{classcore__decode__DPM__t_84996eb530f98d700c3b509c3b512480f966d27f32f6cb9d54220a085ddad4e8}
+}]\end{description}
+\end{Desc}
+
+
+
+Definition at line 13 of file decode-DPM.cpp.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}}
+\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!core_decode_DPM_t@{core\_\-decode\_\-DPM\_\-t}}
+\subsubsection[{core\_\-decode\_\-DPM\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}core\_\-decode\_\-DPM\_\-t::core\_\-decode\_\-DPM\_\-t (struct {\bf core\_\-t} $\ast$const  {\em core})}\label{classcore__decode__DPM__t_92eaf89846181626f28db65271de6265}
+
+
+
+
+Definition at line 74 of file decode-DPM.cpp.
+
+References core\_\-decode\_\-t::core, core\_\-knobs\_\-t::decode, core\_\-knobs\_\-t::decoders, core\_\-knobs\_\-t::depth, fatal(), core\_\-knobs\_\-t::fusion\_\-all, FUSION\_\-LOAD\_\-OP, core\_\-knobs\_\-t::fusion\_\-load\_\-op, core\_\-knobs\_\-t::fusion\_\-mode, FUSION\_\-NONE, core\_\-knobs\_\-t::fusion\_\-none, FUSION\_\-PARTIAL, core\_\-knobs\_\-t::fusion\_\-partial, FUSION\_\-STA\_\-STD, core\_\-knobs\_\-t::fusion\_\-sta\_\-std, core\_\-t::knobs, knobs, MAX\_\-DECODE\_\-WIDTH, core\_\-knobs\_\-t::max\_\-uops, core\_\-knobs\_\-t::num\_\-decoder\_\-specs, occupancy, pipe, core\_\-knobs\_\-t::target\_\-stage, uopQ, core\_\-knobs\_\-t::uopQ\_\-size, and core\_\-knobs\_\-t::width.
+
+\subsection{Member Function Documentation}
+\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!check\_\-flush@{check\_\-flush}}
+\index{check\_\-flush@{check\_\-flush}!core_decode_DPM_t@{core\_\-decode\_\-DPM\_\-t}}
+\subsubsection[{check\_\-flush}]{\setlength{\rightskip}{0pt plus 5cm}bool core\_\-decode\_\-DPM\_\-t::check\_\-flush (const int {\em stage}, \/  const int {\em idx})\hspace{0.3cm}{\tt  [protected]}}\label{classcore__decode__DPM__t_0530ed274d5a254a4ea9fc8756cf926f}
+
+
+
+
+Definition at line 254 of file decode-DPM.cpp.
+
+References check\_\-target(), core\_\-decode\_\-t::core, core\_\-knobs\_\-t::decode, core\_\-t::core\_\-t::core\_\-stat\_\-t::decode\_\-stall, core\_\-t::knobs, knobs, occupancy, pipe, core\_\-t::stat, stat\_\-add\_\-sample(), core\_\-knobs\_\-t::target\_\-stage, core\_\-knobs\_\-t::width, zesto\_\-assert, and ZESTO\_\-STAT.
+
+Referenced by step().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=189pt]{classcore__decode__DPM__t_0530ed274d5a254a4ea9fc8756cf926f_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!check\_\-target@{check\_\-target}}
+\index{check\_\-target@{check\_\-target}!core_decode_DPM_t@{core\_\-decode\_\-DPM\_\-t}}
+\subsubsection[{check\_\-target}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf core\_\-decode\_\-DPM\_\-t::decode\_\-stall\_\-t} core\_\-decode\_\-DPM\_\-t::check\_\-target (struct {\bf Mop\_\-t} $\ast$const  {\em Mop})\hspace{0.3cm}{\tt  [protected]}}\label{classcore__decode__DPM__t_c9b4b51bfe96647c83c7c03f7cc93c66}
+
+
+
+
+Definition at line 215 of file decode-DPM.cpp.
+
+References core\_\-fetch\_\-t::bpred, Mop\_\-t::bpred\_\-update, core\_\-decode\_\-t::core, Mop\_\-t::decode, DSTALL\_\-NONE, DSTALL\_\-PHANTOM, DSTALL\_\-TARGET, F\_\-UNCOND, core\_\-t::fetch, Mop\_\-t::fetch, Mop\_\-t::inst, Mop\_\-t::is\_\-ctrl, md\_\-inst\_\-t::len, Mop\_\-t::opflags, core\_\-t::oracle, Mop\_\-t::PC, core\_\-t::core\_\-t::core\_\-stat\_\-t::phantom\_\-resteers, Mop\_\-t::pred\_\-NPC, bpred\_\-t::recover(), core\_\-fetch\_\-t::recover(), core\_\-oracle\_\-t::recover(), recover\_\-decode\_\-pipe(), core\_\-t::stat, core\_\-t::core\_\-t::core\_\-stat\_\-t::target\_\-resteers, Mop\_\-t::targetPC, and ZESTO\_\-STAT.
+
+Referenced by check\_\-flush().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{classcore__decode__DPM__t_c9b4b51bfe96647c83c7c03f7cc93c66_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!recover@{recover}}
+\index{recover@{recover}!core_decode_DPM_t@{core\_\-decode\_\-DPM\_\-t}}
+\subsubsection[{recover}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-decode\_\-DPM\_\-t::recover (struct {\bf Mop\_\-t} $\ast$const  {\em Mop})\hspace{0.3cm}{\tt  [virtual]}}\label{classcore__decode__DPM__t_969a7b52a324d71a7bdd9692a08609f2}
+
+
+
+
+Implements {\bf core\_\-decode\_\-t} \doxyref{}{p.}{classcore__decode__t_00a62f329077c6881606c9c6be959e43}.
+
+Definition at line 474 of file decode-DPM.cpp.
+
+References core\_\-decode\_\-t::core, core\_\-knobs\_\-t::decode, core\_\-knobs\_\-t::depth, core\_\-t::knobs, knobs, occupancy, pipe, recover\_\-uopQ(), core\_\-knobs\_\-t::width, and zesto\_\-assert.\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!recover@{recover}}
+\index{recover@{recover}!core_decode_DPM_t@{core\_\-decode\_\-DPM\_\-t}}
+\subsubsection[{recover}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-decode\_\-DPM\_\-t::recover (void)\hspace{0.3cm}{\tt  [virtual]}}\label{classcore__decode__DPM__t_eddb90f67cfa03df8bb13aa2c3373b05}
+
+
+
+
+Implements {\bf core\_\-decode\_\-t} \doxyref{}{p.}{classcore__decode__t_4cc12f3baa24ee5764ae57d87b759743}.
+
+Definition at line 467 of file decode-DPM.cpp.
+
+References recover\_\-decode\_\-pipe(), and recover\_\-uopQ().\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!recover\_\-decode\_\-pipe@{recover\_\-decode\_\-pipe}}
+\index{recover\_\-decode\_\-pipe@{recover\_\-decode\_\-pipe}!core_decode_DPM_t@{core\_\-decode\_\-DPM\_\-t}}
+\subsubsection[{recover\_\-decode\_\-pipe}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-decode\_\-DPM\_\-t::recover\_\-decode\_\-pipe (void)\hspace{0.3cm}{\tt  [protected]}}\label{classcore__decode__DPM__t_aa375652b570418794a87c1e3ef09fd6}
+
+
+
+
+Definition at line 572 of file decode-DPM.cpp.
+
+References core\_\-decode\_\-t::core, core\_\-knobs\_\-t::decode, core\_\-knobs\_\-t::depth, core\_\-t::knobs, knobs, occupancy, pipe, core\_\-knobs\_\-t::width, and zesto\_\-assert.
+
+Referenced by check\_\-target(), and recover().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=413pt]{classcore__decode__DPM__t_aa375652b570418794a87c1e3ef09fd6_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!recover\_\-decode\_\-pipe@{recover\_\-decode\_\-pipe}}
+\index{recover\_\-decode\_\-pipe@{recover\_\-decode\_\-pipe}!core_decode_DPM_t@{core\_\-decode\_\-DPM\_\-t}}
+\subsubsection[{recover\_\-decode\_\-pipe}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-decode\_\-DPM\_\-t::recover\_\-decode\_\-pipe (const struct {\bf Mop\_\-t} $\ast$const  {\em Mop})\hspace{0.3cm}{\tt  [protected]}}\label{classcore__decode__DPM__t_b7c59a8e0dc4523e683663af84c44b5d}
+
+
+
+
+Definition at line 545 of file decode-DPM.cpp.
+
+References core\_\-decode\_\-t::core, core\_\-knobs\_\-t::decode, core\_\-knobs\_\-t::depth, core\_\-t::knobs, knobs, occupancy, pipe, core\_\-knobs\_\-t::width, and zesto\_\-assert.\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!recover\_\-uopQ@{recover\_\-uopQ}}
+\index{recover\_\-uopQ@{recover\_\-uopQ}!core_decode_DPM_t@{core\_\-decode\_\-DPM\_\-t}}
+\subsubsection[{recover\_\-uopQ}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-decode\_\-DPM\_\-t::recover\_\-uopQ (void)\hspace{0.3cm}{\tt  [protected]}}\label{classcore__decode__DPM__t_eb5d439942ee81d939a5066e2ec40745}
+
+
+
+
+Definition at line 524 of file decode-DPM.cpp.
+
+References core\_\-decode\_\-t::core, core\_\-knobs\_\-t::decode, core\_\-t::knobs, knobs, memzero(), uopQ, uopQ\_\-eff\_\-num, uopQ\_\-head, uopQ\_\-num, core\_\-knobs\_\-t::uopQ\_\-size, and uopQ\_\-tail.
+
+Referenced by recover().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{classcore__decode__DPM__t_eb5d439942ee81d939a5066e2ec40745_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!recover\_\-uopQ@{recover\_\-uopQ}}
+\index{recover\_\-uopQ@{recover\_\-uopQ}!core_decode_DPM_t@{core\_\-decode\_\-DPM\_\-t}}
+\subsubsection[{recover\_\-uopQ}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-decode\_\-DPM\_\-t::recover\_\-uopQ (const struct {\bf Mop\_\-t} $\ast$const  {\em Mop})\hspace{0.3cm}{\tt  [protected]}}\label{classcore__decode__DPM__t_0bc2b61f9d8f6f511aaaba7717786b2f}
+
+
+
+
+Definition at line 502 of file decode-DPM.cpp.
+
+References core\_\-decode\_\-t::core, uop\_\-t::decode, core\_\-knobs\_\-t::decode, uop\_\-t::fusion\_\-size, core\_\-t::knobs, knobs, moddec(), uopQ, uopQ\_\-eff\_\-num, uopQ\_\-num, core\_\-knobs\_\-t::uopQ\_\-size, and uopQ\_\-tail.\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!reg\_\-stats@{reg\_\-stats}}
+\index{reg\_\-stats@{reg\_\-stats}!core_decode_DPM_t@{core\_\-decode\_\-DPM\_\-t}}
+\subsubsection[{reg\_\-stats}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-decode\_\-DPM\_\-t::reg\_\-stats (struct {\bf stat\_\-sdb\_\-t} $\ast$const  {\em sdb})\hspace{0.3cm}{\tt  [virtual]}}\label{classcore__decode__DPM__t_e381f13e08c18aa6a3e2c6830ddb9fe8}
+
+
+
+
+Implements {\bf core\_\-decode\_\-t} \doxyref{}{p.}{classcore__decode__t_7b2ace43652fb0a9b83f379ca88c75a2}.
+
+Definition at line 134 of file decode-DPM.cpp.
+
+References core\_\-decode\_\-t::core, core\_\-t::current\_\-thread, core\_\-t::core\_\-t::core\_\-stat\_\-t::decode\_\-eff\_\-uops, core\_\-t::core\_\-t::core\_\-stat\_\-t::decode\_\-insn, core\_\-t::core\_\-t::core\_\-stat\_\-t::decode\_\-stall, decode\_\-stall\_\-str, core\_\-t::core\_\-t::core\_\-stat\_\-t::decode\_\-uops, DSTALL\_\-num, thread\_\-t::id, PF\_\-COUNT, PF\_\-PDF, core\_\-t::core\_\-t::core\_\-stat\_\-t::phantom\_\-resteers, core\_\-t::stat, stat\_\-reg\_\-counter, stat\_\-reg\_\-dist(), stat\_\-reg\_\-formula(), stat\_\-reg\_\-note(), core\_\-t::core\_\-t::core\_\-stat\_\-t::target\_\-resteers, core\_\-t::core\_\-t::core\_\-stat\_\-t::uopQ\_\-eff\_\-occupancy, core\_\-t::core\_\-t::core\_\-stat\_\-t::uopQ\_\-empty\_\-cycles, core\_\-t::core\_\-t::core\_\-stat\_\-t::uopQ\_\-full\_\-cycles, and core\_\-t::core\_\-t::core\_\-stat\_\-t::uopQ\_\-occupancy.\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!step@{step}}
+\index{step@{step}!core_decode_DPM_t@{core\_\-decode\_\-DPM\_\-t}}
+\subsubsection[{step}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-decode\_\-DPM\_\-t::step (void)\hspace{0.3cm}{\tt  [virtual]}}\label{classcore__decode__DPM__t_49fb30b42b4e7d1a058534397eea92fb}
+
+
+
+
+Implements {\bf core\_\-decode\_\-t} \doxyref{}{p.}{classcore__decode__t_a691c55d76a9ca96271d5277ed359350}.
+
+Definition at line 290 of file decode-DPM.cpp.
+
+References uop\_\-t::BOM, core\_\-knobs\_\-t::branch\_\-decode\_\-limit, check\_\-flush(), core\_\-decode\_\-t::core, uop\_\-t::decode, Mop\_\-t::decode, core\_\-knobs\_\-t::decode, core\_\-t::core\_\-t::core\_\-stat\_\-t::decode\_\-eff\_\-uops, core\_\-t::core\_\-t::core\_\-stat\_\-t::decode\_\-insn, core\_\-t::core\_\-t::core\_\-stat\_\-t::decode\_\-stall, core\_\-t::core\_\-t::core\_\-stat\_\-t::decode\_\-uops, core\_\-knobs\_\-t::depth, DSTALL\_\-EMPTY, DSTALL\_\-FULL, DSTALL\_\-MAX\_\-BRANCHES, DSTALL\_\-NONE, DSTALL\_\-REP, DSTALL\_\-SMALL, DSTALL\_\-UROM, uop\_\-t::EOM, F\_\-LOAD, F\_\-STORE, Mop\_\-t::fetch, core\_\-t::fetch, Mop\_\-t::flow\_\-length, uop\_\-t::fusion\_\-size, uop\_\-t::has\_\-imm, uop\_\-t::in\_\-fusion, Mop\_\-t::inst, Mop\_\-t::is\_\-ctrl, uop\_\-t::is\_\-fusion\_\-head, uop\_\-t::is\_\-load, uop\_\-t::is\_\-std, core\_\-t::knobs, knobs, Mop\_\-t::last\_\-stage\_\-index, Mop\_\-t::last\_\-uop\_\-index, core\_\-knobs\_\-t::max\_\-uops, modinc(), uop\_\-t::Mop, core\_\-fetch\_\-t::Mop\_\-available(), core\_\-fetch\_\-t::Mop\_\-consume(), core\_\-fetch\_\-t::Mop\_\-peek(), core\_\-knobs\_\-t::MS\_\-latency, Mop\_\-t::num\_\-uops, occupancy, uop\_\-t::opflags, pipe, md\_\-inst\_\-t::rep, sim\_\-cycle, Mop\_\-t::stat, core\_\-t::stat, stat\_\-add\_\-sample(), TICK\_\-T\_\-MAX, Mop\_\-t::timing, uop\_\-t::timing, Mop\_\-t::uop, uopQ, uopQ\_\-eff\_\-num, uopQ\_\-num, core\_\-knobs\_\-t::uopQ\_\-size, uopQ\_\-tail, Mop\_\-t::when\_\-decode\_\-finished, Mop\_\-t::when\_\-decode\_\-started, uop\_\-t::when\_\-decoded, Mop\_\-t::when\_\-MS\_\-started, core\_\-knobs\_\-t::width, zesto\_\-assert, and ZESTO\_\-STAT.\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!uop\_\-available@{uop\_\-available}}
+\index{uop\_\-available@{uop\_\-available}!core_decode_DPM_t@{core\_\-decode\_\-DPM\_\-t}}
+\subsubsection[{uop\_\-available}]{\setlength{\rightskip}{0pt plus 5cm}bool core\_\-decode\_\-DPM\_\-t::uop\_\-available (void)\hspace{0.3cm}{\tt  [virtual]}}\label{classcore__decode__DPM__t_27f29ea38b3a58af58cb0c77b77f5a53}
+
+
+
+
+Implements {\bf core\_\-decode\_\-t} \doxyref{}{p.}{classcore__decode__t_b19db26937a0c8ab6dfa5e41ef755568}.
+
+Definition at line 591 of file decode-DPM.cpp.
+
+References uopQ\_\-num.\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!uop\_\-consume@{uop\_\-consume}}
+\index{uop\_\-consume@{uop\_\-consume}!core_decode_DPM_t@{core\_\-decode\_\-DPM\_\-t}}
+\subsubsection[{uop\_\-consume}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-decode\_\-DPM\_\-t::uop\_\-consume (void)\hspace{0.3cm}{\tt  [virtual]}}\label{classcore__decode__DPM__t_2343f465aabc6dac5713ae12d9bde905}
+
+
+
+
+Implements {\bf core\_\-decode\_\-t} \doxyref{}{p.}{classcore__decode__t_cc9ab3638ba7b630f7c41fa9027be7bb}.
+
+Definition at line 601 of file decode-DPM.cpp.
+
+References core\_\-decode\_\-t::core, core\_\-knobs\_\-t::decode, uop\_\-t::decode, uop\_\-t::fusion\_\-size, uop\_\-t::is\_\-fusion\_\-head, core\_\-t::knobs, knobs, modinc(), uopQ, uopQ\_\-eff\_\-num, uopQ\_\-head, uopQ\_\-num, and core\_\-knobs\_\-t::uopQ\_\-size.\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!uop\_\-peek@{uop\_\-peek}}
+\index{uop\_\-peek@{uop\_\-peek}!core_decode_DPM_t@{core\_\-decode\_\-DPM\_\-t}}
+\subsubsection[{uop\_\-peek}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf uop\_\-t} $\ast$ core\_\-decode\_\-DPM\_\-t::uop\_\-peek (void)\hspace{0.3cm}{\tt  [read, virtual]}}\label{classcore__decode__DPM__t_99eabbd65b67e5ad05e5c4244ffde18d}
+
+
+
+
+Implements {\bf core\_\-decode\_\-t} \doxyref{}{p.}{classcore__decode__t_06cbd6f0b72af8ed79fa90d05a4fc8d9}.
+
+Definition at line 596 of file decode-DPM.cpp.
+
+References uopQ, and uopQ\_\-head.\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!update\_\-occupancy@{update\_\-occupancy}}
+\index{update\_\-occupancy@{update\_\-occupancy}!core_decode_DPM_t@{core\_\-decode\_\-DPM\_\-t}}
+\subsubsection[{update\_\-occupancy}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-decode\_\-DPM\_\-t::update\_\-occupancy (void)\hspace{0.3cm}{\tt  [virtual]}}\label{classcore__decode__DPM__t_a6992c4e826ceef28de65d899f8e232d}
+
+
+
+
+Implements {\bf core\_\-decode\_\-t} \doxyref{}{p.}{classcore__decode__t_da1d9ea2eab3e615fce9da8a41bf18d0}.
+
+Definition at line 194 of file decode-DPM.cpp.
+
+References core\_\-decode\_\-t::core, core\_\-knobs\_\-t::decode, core\_\-t::knobs, core\_\-t::stat, uopQ\_\-eff\_\-num, core\_\-t::core\_\-t::core\_\-stat\_\-t::uopQ\_\-eff\_\-occupancy, core\_\-t::core\_\-t::core\_\-stat\_\-t::uopQ\_\-empty\_\-cycles, core\_\-t::core\_\-t::core\_\-stat\_\-t::uopQ\_\-full\_\-cycles, uopQ\_\-num, core\_\-t::core\_\-t::core\_\-stat\_\-t::uopQ\_\-occupancy, and core\_\-knobs\_\-t::uopQ\_\-size.
+
+\subsection{Member Data Documentation}
+\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!decode\_\-stall\_\-str@{decode\_\-stall\_\-str}}
+\index{decode\_\-stall\_\-str@{decode\_\-stall\_\-str}!core_decode_DPM_t@{core\_\-decode\_\-DPM\_\-t}}
+\subsubsection[{decode\_\-stall\_\-str}]{\setlength{\rightskip}{0pt plus 5cm}const char $\ast$ {\bf core\_\-decode\_\-DPM\_\-t::decode\_\-stall\_\-str}\hspace{0.3cm}{\tt  [static, protected]}}\label{classcore__decode__DPM__t_7611e1fa155c8116da568ddf25501422}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim} {
+  "no stall                   ",
+  "next decode stage is full  ",
+  "REP inst waiting for MS    ",
+  "long flow waiting for UROM ",
+  "available decoder too small",
+  "no insts to decode         ",
+  "phantom taken branch       ",
+  "target correction          ",
+  "branch decode limit        ",
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 52 of file decode-DPM.cpp.
+
+Referenced by reg\_\-stats().\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!occupancy@{occupancy}}
+\index{occupancy@{occupancy}!core_decode_DPM_t@{core\_\-decode\_\-DPM\_\-t}}
+\subsubsection[{occupancy}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ {\bf core\_\-decode\_\-DPM\_\-t::occupancy}\hspace{0.3cm}{\tt  [protected]}}\label{classcore__decode__DPM__t_8789ecc727198dacc92a8b87d1377b4d}
+
+
+
+
+Definition at line 44 of file decode-DPM.cpp.
+
+Referenced by check\_\-flush(), core\_\-decode\_\-DPM\_\-t(), recover(), recover\_\-decode\_\-pipe(), and step().\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!pipe@{pipe}}
+\index{pipe@{pipe}!core_decode_DPM_t@{core\_\-decode\_\-DPM\_\-t}}
+\subsubsection[{pipe}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf Mop\_\-t}$\ast$$\ast$$\ast$ {\bf core\_\-decode\_\-DPM\_\-t::pipe}\hspace{0.3cm}{\tt  [read, protected]}}\label{classcore__decode__DPM__t_9cfb3a062de46d5cb80375524d894e41}
+
+
+
+
+Definition at line 43 of file decode-DPM.cpp.
+
+Referenced by check\_\-flush(), core\_\-decode\_\-DPM\_\-t(), recover(), recover\_\-decode\_\-pipe(), and step().\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!uopQ@{uopQ}}
+\index{uopQ@{uopQ}!core_decode_DPM_t@{core\_\-decode\_\-DPM\_\-t}}
+\subsubsection[{uopQ}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf uop\_\-t}$\ast$$\ast$ {\bf core\_\-decode\_\-DPM\_\-t::uopQ}\hspace{0.3cm}{\tt  [read, protected]}}\label{classcore__decode__DPM__t_ae319d27305d1234e172cb1a48045c9b}
+
+
+
+
+Definition at line 46 of file decode-DPM.cpp.
+
+Referenced by core\_\-decode\_\-DPM\_\-t(), recover\_\-uopQ(), step(), uop\_\-consume(), and uop\_\-peek().\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!uopQ\_\-eff\_\-num@{uopQ\_\-eff\_\-num}}
+\index{uopQ\_\-eff\_\-num@{uopQ\_\-eff\_\-num}!core_decode_DPM_t@{core\_\-decode\_\-DPM\_\-t}}
+\subsubsection[{uopQ\_\-eff\_\-num}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf core\_\-decode\_\-DPM\_\-t::uopQ\_\-eff\_\-num}\hspace{0.3cm}{\tt  [protected]}}\label{classcore__decode__DPM__t_b288da50b1b62b8aa548d9ec7e967244}
+
+
+
+
+Definition at line 50 of file decode-DPM.cpp.
+
+Referenced by recover\_\-uopQ(), step(), uop\_\-consume(), and update\_\-occupancy().\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!uopQ\_\-head@{uopQ\_\-head}}
+\index{uopQ\_\-head@{uopQ\_\-head}!core_decode_DPM_t@{core\_\-decode\_\-DPM\_\-t}}
+\subsubsection[{uopQ\_\-head}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf core\_\-decode\_\-DPM\_\-t::uopQ\_\-head}\hspace{0.3cm}{\tt  [protected]}}\label{classcore__decode__DPM__t_906e4a6db3eac274e7f4dc1ad8d3c1b5}
+
+
+
+
+Definition at line 47 of file decode-DPM.cpp.
+
+Referenced by recover\_\-uopQ(), uop\_\-consume(), and uop\_\-peek().\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!uopQ\_\-num@{uopQ\_\-num}}
+\index{uopQ\_\-num@{uopQ\_\-num}!core_decode_DPM_t@{core\_\-decode\_\-DPM\_\-t}}
+\subsubsection[{uopQ\_\-num}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf core\_\-decode\_\-DPM\_\-t::uopQ\_\-num}\hspace{0.3cm}{\tt  [protected]}}\label{classcore__decode__DPM__t_f316560e84666d4139383357128d7b45}
+
+
+
+
+Definition at line 49 of file decode-DPM.cpp.
+
+Referenced by recover\_\-uopQ(), step(), uop\_\-available(), uop\_\-consume(), and update\_\-occupancy().\index{core\_\-decode\_\-DPM\_\-t@{core\_\-decode\_\-DPM\_\-t}!uopQ\_\-tail@{uopQ\_\-tail}}
+\index{uopQ\_\-tail@{uopQ\_\-tail}!core_decode_DPM_t@{core\_\-decode\_\-DPM\_\-t}}
+\subsubsection[{uopQ\_\-tail}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf core\_\-decode\_\-DPM\_\-t::uopQ\_\-tail}\hspace{0.3cm}{\tt  [protected]}}\label{classcore__decode__DPM__t_d06968b01b00b9f08bcbc67af4b999c0}
+
+
+
+
+Definition at line 48 of file decode-DPM.cpp.
+
+Referenced by recover\_\-uopQ(), and step().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf decode-DPM.cpp}\end{CompactItemize}

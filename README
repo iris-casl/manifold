@@ -1,0 +1,31 @@
+How to compile and run the simulator
+------------------------------------
+1. Follow the given steps to compile Iris
+    ./configure
+    make
+
+2. Run the simulator
+There are three different binaries 
+    - manifold_simMC: 
+        this runs a standalone version of the memory controller simulator and takes as many traces as the number of the threads.
+        ./manifold_simMC <trace1> <trace2>
+        ./manifold_simMC traces/perl_3254.tr traces/perl_3254.tr
+
+   - manifold_simIris: 
+        this runs an integrated network and memory model with currently the mesh topology.
+        ./manifold_simIris config/generic.cfg
+
+   - manifold_fullSim: 
+        this runs the full system with zesto->network->MC. Currently only supports meshes of small sizes.
+        - TODO: DHRUV FILL IN SAMPLE
+
+The following switches are supported at the command line in the current version
+    --thread_id_bits, --mc_bits --early_credit
+
+Environment details
+-------------------
+    The current version has been tested with
+1. gcc version 4.3.3 (Ubuntu 4.3.3-5ubuntu4)
+    Linux 2.6.28-18-generic #60-Ubuntu SMP i686 GNU/Linux
+2. gcc version 4.2.4 (Ubuntu 4.2.4-1ubuntu4)
+    Linux 2.6.24-23-generic #1 SMP i686 GNU/Linux

@@ -1,0 +1,708 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>LCOV - iris.info - MemCtrl/bank_handler.cc</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LTP GCOV extension - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+        <tr>
+          <td class="headerItem" width="20%">Current&nbsp;view:</td>
+          <td class="headerValue" width="80%" colspan=4><a href="../index.html">directory</a> - <a href="index.html">MemCtrl</a> - bank_handler.cc</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Test:</td>
+          <td class="headerValue" width="80%" colspan=4>iris.info</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Date:</td>
+          <td class="headerValue" width="20%">2010-05-24</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Instrumented&nbsp;lines:</td>
+          <td class="headerValue" width="20%">333</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Code&nbsp;covered:</td>
+          <td class="headerValue" width="20%">61.3 %</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Executed&nbsp;lines:</td>
+          <td class="headerValue" width="20%">204</td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><pre class="source">
+<span class="lineNum">       1 </span>                : /*
+<span class="lineNum">       2 </span>                :  * =====================================================================================
+<span class="lineNum">       3 </span>                :  *
+<span class="lineNum">       4 </span>                :  *       Filename:  bank_handler.cc
+<span class="lineNum">       5 </span>                :  *
+<span class="lineNum">       6 </span>                :  *    Description:  
+<span class="lineNum">       7 </span>                :  *
+<span class="lineNum">       8 </span>                :  *        Version:  1.0
+<span class="lineNum">       9 </span>                :  *        Created:  02/13/2010 06:49:47 PM
+<span class="lineNum">      10 </span>                :  *       Revision:  none
+<span class="lineNum">      11 </span>                :  *       Compiler:  gcc
+<span class="lineNum">      12 </span>                :  *
+<span class="lineNum">      13 </span>                :  *         Author:  SYED MINHAJ HASSAN
+<span class="lineNum">      14 </span>                :  *        Company:  Georgia Institute of Technology
+<span class="lineNum">      15 </span>                :  *
+<span class="lineNum">      16 </span>                :  * =====================================================================================
+<span class="lineNum">      17 </span>                :  */
+<span class="lineNum">      18 </span>                : 
+<span class="lineNum">      19 </span>                : #include &lt;math.h&gt;
+<span class="lineNum">      20 </span>                : #include &quot;bank_handler.h&quot;
+<span class="lineNum">      21 </span>                : #include &quot;../MemCtrl/rank_handler.h&quot;
+<span class="lineNum">      22 </span>                : #include &quot;../MemCtrl/request_handler.h&quot;
+<span class="lineNum">      23 </span>                : #include &quot;../MemCtrl/cmd_issuer.h&quot;
+<span class="lineNum">      24 </span>                : #include &quot;../MemCtrl/response_handler.h&quot;
+<span class="lineNum">      25 </span>                : #include        &quot;../tests/MersenneTwister.h&quot;
+<span class="lineNum">      26 </span>                : #include &lt;time.h&gt;
+<span class="lineNum">      27 </span>                : 
+<span class="lineNum">      28 </span>                : using namespace std;
+<span class="lineNum">      29 </span>                : 
+<span class="lineNum">      30 </span><span class="lineCov">            128 : BankHandler::BankHandler()</span>
+<span class="lineNum">      31 </span>                : {       
+<span class="lineNum">      32 </span>                :     MTRand mtrand1;
+<span class="lineNum">      33 </span><span class="lineCov">            128 :     address = mtrand1.randInt(100000);</span>
+<span class="lineNum">      34 </span><span class="lineCov">            128 :     stoppedUpper = false;</span>
+<span class="lineNum">      35 </span><span class="lineCov">            128 :     stopSignal = false;</span>
+<span class="lineNum">      36 </span><span class="lineCov">            128 :     rowBufferIndex = 0;</span>
+<span class="lineNum">      37 </span><span class="lineCov">            128 :     rowOpen = false;</span>
+<span class="lineNum">      38 </span><span class="lineCov">            128 :     bufferFull = false; </span>
+<span class="lineNum">      39 </span><span class="lineCov">            128 :     bypassReq = 0;</span>
+<span class="lineNum">      40 </span><span class="lineCov">            128 :     prevBypassReq = 0;  </span>
+<span class="lineNum">      41 </span><span class="lineCov">            128 :     prevBufferIndex = 0;</span>
+<span class="lineNum">      42 </span><span class="lineCov">            128 :     prevRowOpen = false;</span>
+<span class="lineNum">      43 </span><span class="lineCov">            128 :     generated = false;</span>
+<span class="lineNum">      44 </span><span class="lineCov">            128 :     bufferOccupancy = 0;</span>
+<span class="lineNum">      45 </span><span class="lineCov">            128 :     bufferSize = 0;</span>
+<span class="lineNum">      46 </span><span class="lineCov">            128 :     bufferFullCounter = 0;</span>
+<span class="lineNum">      47 </span>                :  //   bankTag = 0;      
+<span class="lineNum">      48 </span><span class="lineCov">            128 : }</span>
+<span class="lineNum">      49 </span>                : 
+<span class="lineNum">      50 </span>                : /*
+<span class="lineNum">      51 </span>                :  *--------------------------------------------------------------------------------------
+<span class="lineNum">      52 </span>                :  *       Class:  BankHandler
+<span class="lineNum">      53 </span>                :  *      Method:  ~BankHandler
+<span class="lineNum">      54 </span>                :  * Description:  destructor
+<span class="lineNum">      55 </span>                :  *--------------------------------------------------------------------------------------
+<span class="lineNum">      56 </span>                :  */
+<span class="lineNum">      57 </span><span class="lineNoCov">              0 : BankHandler::~BankHandler()</span>
+<span class="lineNum">      58 </span>                : {
+<span class="lineNum">      59 </span>                : 
+<span class="lineNum">      60 </span><span class="lineNoCov">              0 : }</span>
+<span class="lineNum">      61 </span>                : 
+<span class="lineNum">      62 </span>                : /*
+<span class="lineNum">      63 </span>                :  *--------------------------------------------------------------------------------------
+<span class="lineNum">      64 </span>                :  *       Class:  BankHandler
+<span class="lineNum">      65 </span>                :  *      Method:  process_event
+<span class="lineNum">      66 </span>                :  * Description:  constructor
+<span class="lineNum">      67 </span>                :  *--------------------------------------------------------------------------------------
+<span class="lineNum">      68 </span>                :  */
+<span class="lineNum">      69 </span><span class="lineCov">        5355869 : void BankHandler::process_event(IrisEvent* e)</span>
+<span class="lineNum">      70 </span>                : {  
+<span class="lineNum">      71 </span><span class="lineCov">        5355869 :     switch (e-&gt;type)</span>
+<span class="lineNum">      72 </span>                :     {
+<span class="lineNum">      73 </span>                :         case START:                     
+<span class="lineNum">      74 </span><span class="lineCov">         153049 :             if (HasWork())</span>
+<span class="lineNum">      75 </span>                :             {
+<span class="lineNum">      76 </span><span class="lineCov">         153049 :                 Request *req = new Request();   </span>
+<span class="lineNum">      77 </span><span class="lineCov">         153049 :                 int index=0;</span>
+<span class="lineNum">      78 </span><span class="lineCov">         153049 :                 bufferOccupancy++;</span>
+<span class="lineNum">      79 </span><span class="lineCov">         306098 :                 bufferSize += ((RankHandler*)myRank)-&gt;rbuffer[bankId].size();</span>
+<span class="lineNum">      80 </span><span class="lineCov">         153049 :                 if (IsBufferFull())</span>
+<span class="lineNum">      81 </span><span class="lineCov">          15593 :                     bufferFullCounter++;</span>
+<span class="lineNum">      82 </span>                : 
+<span class="lineNum">      83 </span><span class="lineCov">         153049 :                 if ( !((RequestHandler*)parent)-&gt;busHandler-&gt;IsFull(myChannel) &amp;&amp;</span>
+<span class="lineNum">      84 </span>                :                      (((RequestHandler*)parent)-&gt;busHandler-&gt;linkBusy[myChannel] == false) &amp;&amp;
+<span class="lineNum">      85 </span>                :                      !((ResponseHandler*)((RequestHandler*)parent)-&gt;resPtr)-&gt;IsBufferFull() &amp;&amp;
+<span class="lineNum">      86 </span>                :                       ((RequestHandler*)parent)-&gt;busHandler-&gt;BankRankFree(bankId,((RankHandler*)myRank)-&gt;rankId,myChannel) )
+<span class="lineNum">      87 </span>                :                 {               
+<span class="lineNum">      88 </span><span class="lineCov">          71957 :                     if(MainScheduler(req,&amp;index))  </span>
+<span class="lineNum">      89 </span>                :                     {
+<span class="lineNum">      90 </span><span class="lineCov">          71957 :                         vector&lt;Request&gt;::iterator bufferIndex = ((RankHandler*)myRank)-&gt;rbuffer[bankId].begin() + index;</span>
+<span class="lineNum">      91 </span><span class="lineCov">          71957 :                         req-&gt;tag = ((RequestHandler*)parent)-&gt;reqTag;</span>
+<span class="lineNum">      92 </span><span class="lineCov">          71957 :                         req-&gt;cbufferInsertionTime = Simulator::Now()+1;</span>
+<span class="lineNum">      93 </span><span class="lineCov">          71957 :                         ((RequestHandler*)parent)-&gt;busHandler-&gt;LowLevelCmdGen(req);</span>
+<span class="lineNum">      94 </span><span class="lineCov">          71957 :                         ((RequestHandler*)parent)-&gt;busHandler-&gt;linkBusy[req-&gt;channelNo] = true;                </span>
+<span class="lineNum">      95 </span><span class="lineCov">          71957 :                         ((RequestHandler*)parent)-&gt;busHandler-&gt;oneReq[myChannel][((RankHandler*)myRank)-&gt;rankId][bankId] = true;</span>
+<span class="lineNum">      96 </span><span class="lineCov">          71957 :                         ((RankHandler*)myRank)-&gt;rbuffer[bankId].erase(bufferIndex);</span>
+<span class="lineNum">      97 </span>                : #ifdef DEEP_DEBUG
+<span class="lineNum">      98 </span>                : cout &lt;&lt; dec &lt;&lt; Simulator::Now() &lt;&lt; &quot;: &quot; &lt;&lt; hex &lt;&lt; req-&gt;address &lt;&lt; &quot;: Now I am in start with bank &quot; &lt;&lt; dec &lt;&lt; req-&gt;bankNo &lt;&lt; &quot;, row &quot; &lt;&lt; req-&gt;rowNo &lt;&lt;&quot; of BankHandler &quot; &lt;&lt; bankId &lt;&lt; &quot;\n&quot;;     
+<span class="lineNum">      99 </span>                : #endif                  
+<span class="lineNum">     100 </span><span class="lineCov">          71957 :                 if(!((RequestHandler*)parent)-&gt;busHandler-&gt;cmdIssuer[req-&gt;channelNo].generated_start_event)</span>
+<span class="lineNum">     101 </span>                :                 {
+<span class="lineNum">     102 </span><span class="lineCov">          30169 :                         ((RequestHandler*)parent)-&gt;busHandler-&gt;cmdIssuer[req-&gt;channelNo].generated_start_event = true;</span>
+<span class="lineNum">     103 </span><span class="lineCov">          30169 :                         IrisEvent *event = new IrisEvent();</span>
+<span class="lineNum">     104 </span><span class="lineCov">          30169 :                         event-&gt;src = (Component*)this;</span>
+<span class="lineNum">     105 </span><span class="lineCov">          30169 :                         event-&gt;dst = (Component*)(&amp;((RequestHandler*)parent)-&gt;busHandler-&gt;cmdIssuer[req-&gt;channelNo]);   </span>
+<span class="lineNum">     106 </span><span class="lineCov">          30169 :                         event-&gt;type = START;</span>
+<span class="lineNum">     107 </span><span class="lineCov">          30169 :                         Simulator::Schedule(Simulator::Now()+1, &amp;CmdIssuer::process_event, (CmdIssuer*)event-&gt;dst, event);</span>
+<span class="lineNum">     108 </span>                :                 }       
+<span class="lineNum">     109 </span><span class="lineCov">          71957 :                         if (req-&gt;cmdType == CACHE_READ || req-&gt;cmdType == CACHE_PREFETCH || req-&gt;cmdType == CACHE_WRITE)</span>
+<span class="lineNum">     110 </span>                :                         {
+<span class="lineNum">     111 </span><span class="lineCov">          68596 :                             IrisEvent *event10 = new IrisEvent();                       </span>
+<span class="lineNum">     112 </span><span class="lineCov">          68596 :                             event10-&gt;src = (Component*)this;</span>
+<span class="lineNum">     113 </span><span class="lineCov">          68596 :                             event10-&gt;dst = (Component*)((RequestHandler*)parent)-&gt;resPtr;</span>
+<span class="lineNum">     114 </span>                : #ifdef DEEP_DEBUG
+<span class="lineNum">     115 </span>                :                             cout &lt;&lt; Simulator::Now() &lt;&lt; &quot;: &quot; &lt;&lt; hex &lt;&lt; req-&gt;address &lt;&lt; &quot;: I will be sending request of bank &quot; &lt;&lt; dec &lt;&lt; req-&gt;bankNo &lt;&lt; &quot;, row &quot; &lt;&lt; req-&gt;rowNo &lt;&lt;&quot; to ResponseHandler\n&quot;; 
+<span class="lineNum">     116 </span>                : #endif          
+<span class="lineNum">     117 </span><span class="lineCov">          68596 :                             event10-&gt;event_data.push_back((void*)req);</span>
+<span class="lineNum">     118 </span><span class="lineCov">          68596 :                             event10-&gt;type = PUSH_BUFFER;</span>
+<span class="lineNum">     119 </span><span class="lineCov">          68596 :                             Simulator::Schedule(Simulator::Now()+1, &amp;ResponseHandler::process_event, (ResponseHandler*)event10-&gt;dst, event10);</span>
+<span class="lineNum">     120 </span><span class="lineCov">          68596 :                             ((RequestHandler*)parent)-&gt;reqTag = (((RequestHandler*)parent)-&gt;reqTag+1) % (RESPONSE_BUFFER_SIZE*2); </span>
+<span class="lineNum">     121 </span>                :                         }
+<span class="lineNum">     122 </span>                :                         else 
+<span class="lineNum">     123 </span><span class="lineCov">           3361 :                             delete req;</span>
+<span class="lineNum">     124 </span>                :                     }
+<span class="lineNum">     125 </span>                :                     else
+<span class="lineNum">     126 </span>                :                     {
+<span class="lineNum">     127 </span>                :                 //      RestorePrevState();     
+<span class="lineNum">     128 </span><span class="lineNoCov">              0 :                         delete req;</span>
+<span class="lineNum">     129 </span>                :                     }   
+<span class="lineNum">     130 </span>                :                 }
+<span class="lineNum">     131 </span>                :                 else
+<span class="lineNum">     132 </span><span class="lineCov">          81092 :                     delete req; </span>
+<span class="lineNum">     133 </span><span class="lineCov">         153049 :                 if (!generated)</span>
+<span class="lineNum">     134 </span>                :                 {
+<span class="lineNum">     135 </span><span class="lineCov">         103253 :                 generated = true;</span>
+<span class="lineNum">     136 </span><span class="lineCov">         103253 :                 IrisEvent *event2 = new IrisEvent();</span>
+<span class="lineNum">     137 </span><span class="lineCov">         103253 :                 event2-&gt;src = (Component*)this;</span>
+<span class="lineNum">     138 </span><span class="lineCov">         103253 :                 event2-&gt;dst = (Component*)this;      </span>
+<span class="lineNum">     139 </span><span class="lineCov">         103253 :                 event2-&gt;type = CONTINUE;</span>
+<span class="lineNum">     140 </span><span class="lineCov">         103253 :                 Simulator::Schedule(Simulator::Now()+1, &amp;BankHandler::process_event, (BankHandler*)event2-&gt;dst, event2);</span>
+<span class="lineNum">     141 </span>                :                 }
+<span class="lineNum">     142 </span>                :             }
+<span class="lineNum">     143 </span>                :             break;              
+<span class="lineNum">     144 </span>                : 
+<span class="lineNum">     145 </span>                :         case STOP:
+<span class="lineNum">     146 </span><span class="lineNoCov">              0 :             cout &lt;&lt; Simulator::Now() &lt;&lt; &quot; received stop signal. Should not move forward\n&quot;;       </span>
+<span class="lineNum">     147 </span><span class="lineNoCov">              0 :             stopSignal = true;</span>
+<span class="lineNum">     148 </span><span class="lineNoCov">              0 :             break;</span>
+<span class="lineNum">     149 </span>                :         
+<span class="lineNum">     150 </span>                :         case CONTINUE: 
+<span class="lineNum">     151 </span>                :             
+<span class="lineNum">     152 </span><span class="lineCov">        5202820 :                 generated = false; </span>
+<span class="lineNum">     153 </span><span class="lineCov">        5202820 :             if (bufferFull &amp;&amp; !IsBufferFull())</span>
+<span class="lineNum">     154 </span>                :             {
+<span class="lineNum">     155 </span><span class="lineCov">          15625 :                 bufferFull = false;</span>
+<span class="lineNum">     156 </span><span class="lineCov">          15625 :                 IrisEvent *event = new IrisEvent();</span>
+<span class="lineNum">     157 </span><span class="lineCov">          15625 :                 event-&gt;src = (Component*)this;</span>
+<span class="lineNum">     158 </span><span class="lineCov">          15625 :                 event-&gt;dst = (Component*)parent;</span>
+<span class="lineNum">     159 </span><span class="lineCov">          15625 :                 event-&gt;type = CONTINUE;</span>
+<span class="lineNum">     160 </span><span class="lineCov">          15625 :                 Simulator::Schedule(Simulator::Now()+1, &amp;RequestHandler::process_event, (RequestHandler*)event-&gt;dst, event);</span>
+<span class="lineNum">     161 </span>                :             } 
+<span class="lineNum">     162 </span>                : 
+<span class="lineNum">     163 </span><span class="lineCov">        5202820 :             if (IsBufferFull())</span>
+<span class="lineNum">     164 </span><span class="lineCov">         910380 :                 bufferFullCounter++;</span>
+<span class="lineNum">     165 </span>                : 
+<span class="lineNum">     166 </span><span class="lineCov">        5202820 :             if (HasWork())</span>
+<span class="lineNum">     167 </span>                :             {
+<span class="lineNum">     168 </span><span class="lineCov">        5099569 :                 Request *req = new Request();</span>
+<span class="lineNum">     169 </span><span class="lineCov">        5099569 :                 int index=0;</span>
+<span class="lineNum">     170 </span><span class="lineCov">        5099569 :                 bufferOccupancy++;</span>
+<span class="lineNum">     171 </span><span class="lineCov">       10199138 :                 bufferSize += ((RankHandler*)myRank)-&gt;rbuffer[bankId].size();</span>
+<span class="lineNum">     172 </span>                : 
+<span class="lineNum">     173 </span><span class="lineCov">        5099569 :                 if ( !((RequestHandler*)parent)-&gt;busHandler-&gt;IsFull(myChannel) &amp;&amp;</span>
+<span class="lineNum">     174 </span>                :                      (((RequestHandler*)parent)-&gt;busHandler-&gt;linkBusy[myChannel] == false) &amp;&amp;
+<span class="lineNum">     175 </span>                :                      !((ResponseHandler*)((RequestHandler*)parent)-&gt;resPtr)-&gt;IsBufferFull() &amp;&amp;
+<span class="lineNum">     176 </span>                :                       ((RequestHandler*)parent)-&gt;busHandler-&gt;BankRankFree(bankId,((RankHandler*)myRank)-&gt;rankId,myChannel) )
+<span class="lineNum">     177 </span>                :                 {       
+<span class="lineNum">     178 </span><span class="lineCov">          81082 :                     if(MainScheduler(req,&amp;index)) </span>
+<span class="lineNum">     179 </span>                :                     {
+<span class="lineNum">     180 </span><span class="lineCov">          81082 :                         vector&lt;Request&gt;::iterator bufferIndex = ((RankHandler*)myRank)-&gt;rbuffer[bankId].begin() + index;</span>
+<span class="lineNum">     181 </span><span class="lineCov">          81082 :                         req-&gt;tag = ((RequestHandler*)parent)-&gt;reqTag;</span>
+<span class="lineNum">     182 </span><span class="lineCov">          81082 :                         req-&gt;cbufferInsertionTime = Simulator::Now()+1;</span>
+<span class="lineNum">     183 </span><span class="lineCov">          81082 :                         ((RequestHandler*)parent)-&gt;busHandler-&gt;LowLevelCmdGen(req);</span>
+<span class="lineNum">     184 </span><span class="lineCov">          81082 :                         ((RequestHandler*)parent)-&gt;busHandler-&gt;linkBusy[req-&gt;channelNo] = true;                                </span>
+<span class="lineNum">     185 </span><span class="lineCov">          81082 :                         ((RequestHandler*)parent)-&gt;busHandler-&gt;oneReq[myChannel][((RankHandler*)myRank)-&gt;rankId][bankId] = true;</span>
+<span class="lineNum">     186 </span><span class="lineCov">          81082 :                         ((RankHandler*)myRank)-&gt;rbuffer[bankId].erase(bufferIndex);          </span>
+<span class="lineNum">     187 </span>                : #ifdef DEEP_DEBUG
+<span class="lineNum">     188 </span>                : cout &lt;&lt; dec &lt;&lt; Simulator::Now() &lt;&lt; &quot;: &quot; &lt;&lt; hex &lt;&lt; req-&gt;address &lt;&lt; &quot;: Now I am in continue with bank &quot; &lt;&lt; dec &lt;&lt; req-&gt;bankNo &lt;&lt; &quot;, row &quot; &lt;&lt; req-&gt;rowNo &lt;&lt;&quot; of BankHandler &quot; &lt;&lt; bankId &lt;&lt; &quot;\n&quot;;          
+<span class="lineNum">     189 </span>                : #endif                  
+<span class="lineNum">     190 </span><span class="lineCov">          81082 :                 if(!((RequestHandler*)parent)-&gt;busHandler-&gt;cmdIssuer[req-&gt;channelNo].generated_start_event)</span>
+<span class="lineNum">     191 </span>                :                 {
+<span class="lineNum">     192 </span><span class="lineCov">           1990 :                         ((RequestHandler*)parent)-&gt;busHandler-&gt;cmdIssuer[req-&gt;channelNo].generated_start_event = true;</span>
+<span class="lineNum">     193 </span><span class="lineCov">           1990 :                         IrisEvent *event = new IrisEvent();</span>
+<span class="lineNum">     194 </span><span class="lineCov">           1990 :                         event-&gt;src = (Component*)this;</span>
+<span class="lineNum">     195 </span><span class="lineCov">           1990 :                         event-&gt;dst = (Component*)(&amp;((RequestHandler*)parent)-&gt;busHandler-&gt;cmdIssuer[req-&gt;channelNo]);   </span>
+<span class="lineNum">     196 </span><span class="lineCov">           1990 :                         event-&gt;type = START;</span>
+<span class="lineNum">     197 </span><span class="lineCov">           1990 :                         Simulator::Schedule(Simulator::Now()+1, &amp;CmdIssuer::process_event, (CmdIssuer*)event-&gt;dst, event);</span>
+<span class="lineNum">     198 </span>                :                 }       
+<span class="lineNum">     199 </span>                :                         
+<span class="lineNum">     200 </span><span class="lineCov">          81082 :                         if (req-&gt;cmdType == CACHE_READ || req-&gt;cmdType == CACHE_PREFETCH || req-&gt;cmdType == CACHE_WRITE)</span>
+<span class="lineNum">     201 </span>                :                         {
+<span class="lineNum">     202 </span><span class="lineCov">          80210 :                             IrisEvent *event10 = new IrisEvent();                       </span>
+<span class="lineNum">     203 </span><span class="lineCov">          80210 :                             event10-&gt;src = (Component*)this;</span>
+<span class="lineNum">     204 </span><span class="lineCov">          80210 :                             event10-&gt;dst = (Component*)((RequestHandler*)parent)-&gt;resPtr;</span>
+<span class="lineNum">     205 </span>                : #ifdef DEEP_DEBUG
+<span class="lineNum">     206 </span>                :                             cout &lt;&lt; Simulator::Now() &lt;&lt; &quot;: &quot; &lt;&lt; hex &lt;&lt; req-&gt;address &lt;&lt; &quot;: I will be sending request of bank &quot; &lt;&lt; dec &lt;&lt; req-&gt;bankNo &lt;&lt; &quot;, row &quot; &lt;&lt; req-&gt;rowNo &lt;&lt;&quot; to ResponseHandler\n&quot;;   
+<span class="lineNum">     207 </span>                : #endif  
+<span class="lineNum">     208 </span><span class="lineCov">          80210 :                             event10-&gt;event_data.push_back((void*)req);</span>
+<span class="lineNum">     209 </span><span class="lineCov">          80210 :                             event10-&gt;type = PUSH_BUFFER;</span>
+<span class="lineNum">     210 </span><span class="lineCov">          80210 :                             Simulator::Schedule(Simulator::Now()+1, &amp;ResponseHandler::process_event, (ResponseHandler*)event10-&gt;dst, event10);</span>
+<span class="lineNum">     211 </span><span class="lineCov">          80210 :                             ((RequestHandler*)parent)-&gt;reqTag = (((RequestHandler*)parent)-&gt;reqTag+1) % (RESPONSE_BUFFER_SIZE*2); </span>
+<span class="lineNum">     212 </span>                :                         }
+<span class="lineNum">     213 </span>                :                         else 
+<span class="lineNum">     214 </span><span class="lineCov">            872 :                             delete req;</span>
+<span class="lineNum">     215 </span>                :                     }
+<span class="lineNum">     216 </span>                :                     else
+<span class="lineNum">     217 </span>                :                     {   
+<span class="lineNum">     218 </span>                :                 //      RestorePrevState(); 
+<span class="lineNum">     219 </span><span class="lineNoCov">              0 :                         delete req;</span>
+<span class="lineNum">     220 </span>                :                     }           
+<span class="lineNum">     221 </span>                :                 }       
+<span class="lineNum">     222 </span>                :                 else
+<span class="lineNum">     223 </span><span class="lineCov">        5018487 :                     delete req; </span>
+<span class="lineNum">     224 </span>                :                 
+<span class="lineNum">     225 </span><span class="lineCov">        5099569 :                 if (!generated)</span>
+<span class="lineNum">     226 </span>                :                 {
+<span class="lineNum">     227 </span><span class="lineCov">        5099569 :                 generated = true;</span>
+<span class="lineNum">     228 </span><span class="lineCov">        5099569 :                 IrisEvent *event2 = new IrisEvent();</span>
+<span class="lineNum">     229 </span><span class="lineCov">        5099569 :                 event2-&gt;src = (Component*)this;</span>
+<span class="lineNum">     230 </span><span class="lineCov">        5099569 :                 event2-&gt;dst = (Component*)this;      </span>
+<span class="lineNum">     231 </span><span class="lineCov">        5099569 :                 event2-&gt;type = CONTINUE;</span>
+<span class="lineNum">     232 </span><span class="lineCov">        5099569 :                 Simulator::Schedule(Simulator::Now()+1, &amp;BankHandler::process_event, (BankHandler*)event2-&gt;dst, event2);</span>
+<span class="lineNum">     233 </span>                :                 }
+<span class="lineNum">     234 </span>                :             }   
+<span class="lineNum">     235 </span>                :             break;
+<span class="lineNum">     236 </span>                : 
+<span class="lineNum">     237 </span>                :         default:
+<span class="lineNum">     238 </span>                :                  //cerr &lt;&lt;  &quot;BankHandler There should be no default case as such but OK /n&quot;;
+<span class="lineNum">     239 </span>                :             break;
+<span class="lineNum">     240 </span>                : 
+<span class="lineNum">     241 </span>                :     }
+<span class="lineNum">     242 </span><span class="lineCov">        5355869 :     delete e;</span>
+<span class="lineNum">     243 </span><span class="lineCov">        5355869 : }</span>
+<span class="lineNum">     244 </span>                : 
+<span class="lineNum">     245 </span><span class="lineNoCov">              0 : bool BankHandler::HasWork()</span>
+<span class="lineNum">     246 </span>                : {
+<span class="lineNum">     247 </span><span class="lineCov">       10711738 :     if (((RankHandler*)myRank)-&gt;rbuffer[bankId].empty())</span>
+<span class="lineNum">     248 </span><span class="lineCov">         103251 :         return false;</span>
+<span class="lineNum">     249 </span>                :     else 
+<span class="lineNum">     250 </span><span class="lineCov">        5252618 :         return true;</span>
+<span class="lineNum">     251 </span>                : }
+<span class="lineNum">     252 </span>                : 
+<span class="lineNum">     253 </span><span class="lineNoCov">              0 : bool BankHandler::StopUpper()</span>
+<span class="lineNum">     254 </span>                : {
+<span class="lineNum">     255 </span><span class="lineNoCov">              0 :     return IsBufferFull();</span>
+<span class="lineNum">     256 </span>                : }
+<span class="lineNum">     257 </span>                : 
+<span class="lineNum">     258 </span><span class="lineNoCov">              0 : bool BankHandler::CanUpperStart()</span>
+<span class="lineNum">     259 </span>                : {
+<span class="lineNum">     260 </span><span class="lineNoCov">              0 :     if (((RankHandler*)myRank)-&gt;rbuffer[bankId].size() &lt;= (0.75*MAX_BUFFER_SIZE))</span>
+<span class="lineNum">     261 </span><span class="lineNoCov">              0 :         return true;</span>
+<span class="lineNum">     262 </span>                :     else 
+<span class="lineNum">     263 </span><span class="lineNoCov">              0 :         return false;</span>
+<span class="lineNum">     264 </span>                : }
+<span class="lineNum">     265 </span>                : 
+<span class="lineNum">     266 </span><span class="lineCov">        6434923 : bool BankHandler::IsBufferFull()</span>
+<span class="lineNum">     267 </span>                : {
+<span class="lineNum">     268 </span><span class="lineCov">       12869846 :     if (((RankHandler*)myRank)-&gt;rbuffer[bufferId].size() &gt;= MAX_BUFFER_SIZE)</span>
+<span class="lineNum">     269 </span>                :     {
+<span class="lineNum">     270 </span><span class="lineCov">        1851979 :         bufferFull = true;      </span>
+<span class="lineNum">     271 </span><span class="lineCov">        1851979 :         return true;</span>
+<span class="lineNum">     272 </span>                :     }
+<span class="lineNum">     273 </span>                :     else 
+<span class="lineNum">     274 </span><span class="lineCov">        4582944 :         return false;</span>
+<span class="lineNum">     275 </span>                : }
+<span class="lineNum">     276 </span>                : 
+<span class="lineNum">     277 </span><span class="lineNoCov">              0 : std::string BankHandler::toString()</span>
+<span class="lineNum">     278 </span>                : {
+<span class="lineNum">     279 </span><span class="lineNoCov">              0 :         return &quot;BankHandler&quot;;</span>
+<span class="lineNum">     280 </span>                : }
+<span class="lineNum">     281 </span>                : 
+<span class="lineNum">     282 </span><span class="lineNoCov">              0 : bool BankHandler::MainScheduler(Request *req, int* index) </span>
+<span class="lineNum">     283 </span>                : {
+<span class="lineNum">     284 </span>                : #ifdef PAR_BS
+<span class="lineNum">     285 </span>                :         return PARBS(req,index);
+<span class="lineNum">     286 </span>                : #endif
+<span class="lineNum">     287 </span>                : #ifdef FR_FCFS
+<span class="lineNum">     288 </span><span class="lineCov">         153039 :         return FRFCFS(req,index);</span>
+<span class="lineNum">     289 </span>                : #endif
+<span class="lineNum">     290 </span>                : #ifdef FC_FS
+<span class="lineNum">     291 </span>                :         return FCFS(req,index);
+<span class="lineNum">     292 </span>                : #endif
+<span class="lineNum">     293 </span>                : }
+<span class="lineNum">     294 </span>                : 
+<span class="lineNum">     295 </span><span class="lineNoCov">              0 : bool BankHandler::PARBS(Request *req, int* index)</span>
+<span class="lineNum">     296 </span>                : {
+<span class="lineNum">     297 </span><span class="lineNoCov">              0 :     UInt highest = FindHighest(); </span>
+<span class="lineNum">     298 </span><span class="lineNoCov">              0 :     RankHandler * tempRank = ((RankHandler*)myRank);                    </span>
+<span class="lineNum">     299 </span><span class="lineNoCov">              0 :     if (!tempRank-&gt;rbuffer[bufferId].empty())</span>
+<span class="lineNum">     300 </span>                :     {
+<span class="lineNum">     301 </span><span class="lineNoCov">              0 :         if (RowHitFirst(req,index))</span>
+<span class="lineNum">     302 </span><span class="lineNoCov">              0 :            return true;</span>
+<span class="lineNum">     303 </span><span class="lineNoCov">              0 :         else if (ReadsFirst(req,index))</span>
+<span class="lineNum">     304 </span><span class="lineNoCov">              0 :            return true; </span>
+<span class="lineNum">     305 </span><span class="lineNoCov">              0 :         else if (HighestRankedFirst(req, highest,index))</span>
+<span class="lineNum">     306 </span><span class="lineNoCov">              0 :            return true;</span>
+<span class="lineNum">     307 </span><span class="lineNoCov">              0 :         else if (OldestFirst(req,index))</span>
+<span class="lineNum">     308 </span><span class="lineNoCov">              0 :             return true;</span>
+<span class="lineNum">     309 </span><span class="lineNoCov">              0 :         else if (!tempRank-&gt;rbuffer[bufferId].empty())</span>
+<span class="lineNum">     310 </span>                :         {
+<span class="lineNum">     311 </span><span class="lineNoCov">              0 :             if(ScheduleUnmarked(req,index))</span>
+<span class="lineNum">     312 </span><span class="lineNoCov">              0 :                 return true;</span>
+<span class="lineNum">     313 </span>                :         }
+<span class="lineNum">     314 </span>                :         else 
+<span class="lineNum">     315 </span><span class="lineNoCov">              0 :             return false;</span>
+<span class="lineNum">     316 </span>                :     }
+<span class="lineNum">     317 </span><span class="lineNoCov">              0 :     return false;               </span>
+<span class="lineNum">     318 </span>                : } 
+<span class="lineNum">     319 </span>                : 
+<span class="lineNum">     320 </span><span class="lineCov">         153039 : bool BankHandler::FRFCFS(Request *req, int* index)</span>
+<span class="lineNum">     321 </span>                : {
+<span class="lineNum">     322 </span>                :  //   unsigned int i;
+<span class="lineNum">     323 </span><span class="lineCov">         153039 :     RankHandler * tempRank = ((RankHandler*)myRank);    </span>
+<span class="lineNum">     324 </span><span class="lineCov">         306078 :     if (!tempRank-&gt;rbuffer[bufferId].empty())</span>
+<span class="lineNum">     325 </span>                :     {
+<span class="lineNum">     326 </span><span class="lineCov">         153039 :         if (RowHitFirst(req,index))</span>
+<span class="lineNum">     327 </span><span class="lineCov">          63934 :            return true;</span>
+<span class="lineNum">     328 </span><span class="lineCov">          89105 :         else if (ReadsFirst(req,index))</span>
+<span class="lineNum">     329 </span><span class="lineCov">          16569 :            return true; </span>
+<span class="lineNum">     330 </span><span class="lineCov">          72536 :         else if (OldestFirst(req,index))</span>
+<span class="lineNum">     331 </span><span class="lineCov">          72536 :             return true;</span>
+<span class="lineNum">     332 </span>                :         else 
+<span class="lineNum">     333 </span><span class="lineNoCov">              0 :             return false;</span>
+<span class="lineNum">     334 </span>                :     }
+<span class="lineNum">     335 </span><span class="lineNoCov">              0 :     return false;</span>
+<span class="lineNum">     336 </span>                : }
+<span class="lineNum">     337 </span>                : 
+<span class="lineNum">     338 </span><span class="lineNoCov">              0 : bool BankHandler::FCFS(Request *req, int* index)</span>
+<span class="lineNum">     339 </span>                : {
+<span class="lineNum">     340 </span>                :    // unsigned int i;
+<span class="lineNum">     341 </span><span class="lineNoCov">              0 :     RankHandler * tempRank = ((RankHandler*)myRank);</span>
+<span class="lineNum">     342 </span><span class="lineNoCov">              0 :     if (!tempRank-&gt;rbuffer[bufferId].empty())</span>
+<span class="lineNum">     343 </span>                :     {
+<span class="lineNum">     344 </span>                : //      if (ReadsFirst(req,index))
+<span class="lineNum">     345 </span>                : //           return true;   
+<span class="lineNum">     346 </span>                : //      else 
+<span class="lineNum">     347 </span><span class="lineNoCov">              0 :         if (OldestFirst(req,index))</span>
+<span class="lineNum">     348 </span><span class="lineNoCov">              0 :             return true;</span>
+<span class="lineNum">     349 </span>                :         else
+<span class="lineNum">     350 </span><span class="lineNoCov">              0 :             return false;</span>
+<span class="lineNum">     351 </span>                :     }
+<span class="lineNum">     352 </span><span class="lineNoCov">              0 :     return false;</span>
+<span class="lineNum">     353 </span>                : } 
+<span class="lineNum">     354 </span>                : 
+<span class="lineNum">     355 </span><span class="lineCov">          72536 : bool BankHandler::OldestFirst(Request* req, int* index)</span>
+<span class="lineNum">     356 </span>                : {
+<span class="lineNum">     357 </span>                :     unsigned int i;
+<span class="lineNum">     358 </span><span class="lineCov">          72536 :     bool temp = false;</span>
+<span class="lineNum">     359 </span><span class="lineCov">          72536 :     RankHandler * tempRank = ((RankHandler*)myRank);    </span>
+<span class="lineNum">     360 </span>                :    // RankHandler * tempRank = (RankHandler*)myRank;
+<span class="lineNum">     361 </span><span class="lineCov">         145072 :     for (i=0; i&lt;tempRank-&gt;rbuffer[bufferId].size(); i++)  </span>
+<span class="lineNum">     362 </span>                :     {
+<span class="lineNum">     363 </span><span class="lineCov">         145072 :         if (!tempRank-&gt;rbuffer[bufferId][i].mark)</span>
+<span class="lineNum">     364 </span><span class="lineNoCov">              0 :             continue;</span>
+<span class="lineNum">     365 </span>                : 
+<span class="lineNum">     366 </span><span class="lineCov">         145072 :         *req = tempRank-&gt;rbuffer[bufferId][i];</span>
+<span class="lineNum">     367 </span><span class="lineCov">          72536 :         if (req-&gt;bankNo==bankId)</span>
+<span class="lineNum">     368 </span>                :         {
+<span class="lineNum">     369 </span><span class="lineCov">          72536 :             if (req-&gt;rowNo==rowBufferIndex &amp;&amp; rowOpen)</span>
+<span class="lineNum">     370 </span><span class="lineNoCov">              0 :                  req-&gt;status = OPEN;</span>
+<span class="lineNum">     371 </span><span class="lineCov">          72536 :             else if (rowOpen)</span>
+<span class="lineNum">     372 </span><span class="lineCov">          72471 :                 req-&gt;status = CONFLICT;      </span>
+<span class="lineNum">     373 </span>                :             else
+<span class="lineNum">     374 </span><span class="lineCov">             65 :                 req-&gt;status = CLOSED;</span>
+<span class="lineNum">     375 </span>                :         //    req-&gt;indexWhenScheduled = i;
+<span class="lineNum">     376 </span>                :             SetPrevState();
+<span class="lineNum">     377 </span><span class="lineCov">          72536 :             SetReadsOWrite(OLDEST_FIRST,req-&gt;cmdType); </span>
+<span class="lineNum">     378 </span><span class="lineCov">          72536 :             *index = i;</span>
+<span class="lineNum">     379 </span><span class="lineCov">          72536 :             rowBufferIndex = req-&gt;rowNo;</span>
+<span class="lineNum">     380 </span><span class="lineCov">          72536 :             rowOpen = true;     </span>
+<span class="lineNum">     381 </span><span class="lineCov">          72536 :             temp = true;</span>
+<span class="lineNum">     382 </span><span class="lineCov">          72536 :             break;</span>
+<span class="lineNum">     383 </span>                :         }
+<span class="lineNum">     384 </span>                :     }
+<span class="lineNum">     385 </span>                : //    if (temp) cout &lt;&lt; &quot;Oldest &quot; &lt;&lt; req-&gt;status &lt;&lt; endl;                                
+<span class="lineNum">     386 </span><span class="lineCov">          72536 :     return temp;</span>
+<span class="lineNum">     387 </span>                : }
+<span class="lineNum">     388 </span>                : 
+<span class="lineNum">     389 </span><span class="lineCov">         153039 : bool BankHandler::RowHitFirst(Request* req, int* index)</span>
+<span class="lineNum">     390 </span>                : {
+<span class="lineNum">     391 </span>                :     unsigned int i;
+<span class="lineNum">     392 </span><span class="lineCov">         153039 :     bool temp = false;</span>
+<span class="lineNum">     393 </span><span class="lineCov">         153039 :     RankHandler * tempRank = ((RankHandler*)myRank);</span>
+<span class="lineNum">     394 </span><span class="lineCov">         692082 :     for (i=0; i&lt;tempRank-&gt;rbuffer[bufferId].size(); i++)  </span>
+<span class="lineNum">     395 </span>                :     {
+<span class="lineNum">     396 </span><span class="lineCov">         513872 :         if (!tempRank-&gt;rbuffer[bufferId][i].mark)</span>
+<span class="lineNum">     397 </span><span class="lineNoCov">              0 :             continue;</span>
+<span class="lineNum">     398 </span>                : 
+<span class="lineNum">     399 </span><span class="lineCov">         513872 :         *req = tempRank-&gt;rbuffer[bufferId][i]; </span>
+<span class="lineNum">     400 </span><span class="lineCov">         256936 :         if ( (req-&gt;bankNo==bankId) &amp;&amp; (req-&gt;rowNo==rowBufferIndex) &amp;&amp; rowOpen )</span>
+<span class="lineNum">     401 </span>                :         {
+<span class="lineNum">     402 </span>                :             
+<span class="lineNum">     403 </span><span class="lineCov">         127868 :             if (req-&gt;rowNo==rowBufferIndex &amp;&amp; rowOpen)</span>
+<span class="lineNum">     404 </span><span class="lineCov">          63934 :                  req-&gt;status = OPEN;</span>
+<span class="lineNum">     405 </span><span class="lineNoCov">              0 :             else if (rowOpen)</span>
+<span class="lineNum">     406 </span><span class="lineNoCov">              0 :                 req-&gt;status = CONFLICT;      </span>
+<span class="lineNum">     407 </span>                :             else
+<span class="lineNum">     408 </span><span class="lineNoCov">              0 :                 req-&gt;status = CLOSED;        </span>
+<span class="lineNum">     409 </span>                :         //    req-&gt;indexWhenScheduled = i; 
+<span class="lineNum">     410 </span>                :             SetPrevState();
+<span class="lineNum">     411 </span><span class="lineCov">          63934 :             SetBypasses(i);</span>
+<span class="lineNum">     412 </span><span class="lineCov">          63934 :             SetReadsOWrite(HIT_FIRST,req-&gt;cmdType);</span>
+<span class="lineNum">     413 </span><span class="lineCov">          63934 :             *index = i;</span>
+<span class="lineNum">     414 </span><span class="lineCov">          63934 :             rowBufferIndex = req-&gt;rowNo;</span>
+<span class="lineNum">     415 </span><span class="lineCov">          63934 :             rowOpen = true;     </span>
+<span class="lineNum">     416 </span><span class="lineCov">          63934 :             temp = true;        </span>
+<span class="lineNum">     417 </span><span class="lineCov">          63934 :             break;</span>
+<span class="lineNum">     418 </span>                :         }
+<span class="lineNum">     419 </span>                :     }   
+<span class="lineNum">     420 </span>                : //    if (temp) cout &lt;&lt; &quot;Hit &quot; &lt;&lt; req-&gt;status &lt;&lt; endl;                   
+<span class="lineNum">     421 </span><span class="lineCov">         153039 :     return temp;        </span>
+<span class="lineNum">     422 </span>                : }
+<span class="lineNum">     423 </span>                : 
+<span class="lineNum">     424 </span><span class="lineCov">          89105 : bool BankHandler::ReadsFirst(Request* req, int* index)</span>
+<span class="lineNum">     425 </span>                : {
+<span class="lineNum">     426 </span>                :     unsigned int i;
+<span class="lineNum">     427 </span><span class="lineCov">          89105 :     bool temp = false;</span>
+<span class="lineNum">     428 </span><span class="lineCov">          89105 :     RankHandler * tempRank = ((RankHandler*)myRank);</span>
+<span class="lineNum">     429 </span><span class="lineCov">         434664 :     for (i=0; i&lt;tempRank-&gt;rbuffer[bufferId].size(); i++)  </span>
+<span class="lineNum">     430 </span>                :     {
+<span class="lineNum">     431 </span><span class="lineCov">         289592 :         if (!tempRank-&gt;rbuffer[bufferId][i].mark)</span>
+<span class="lineNum">     432 </span><span class="lineNoCov">              0 :             continue;</span>
+<span class="lineNum">     433 </span>                : 
+<span class="lineNum">     434 </span><span class="lineCov">         289592 :         *req = tempRank-&gt;rbuffer[bufferId][i];</span>
+<span class="lineNum">     435 </span><span class="lineCov">         144796 :         if ( (req-&gt;bankNo==bankId) &amp;&amp; </span>
+<span class="lineNum">     436 </span>                :              (req-&gt;cmdType == CACHE_READ || req-&gt;cmdType == CACHE_PREFETCH || req-&gt;cmdType == CACHE_WRITE) &amp;&amp; 
+<span class="lineNum">     437 </span>                :              (tempRank-&gt;readsOWrite&lt;MAX_READ_OV_WRITE) )
+<span class="lineNum">     438 </span>                :         {
+<span class="lineNum">     439 </span><span class="lineCov">          16569 :             if (req-&gt;rowNo==rowBufferIndex &amp;&amp; rowOpen)</span>
+<span class="lineNum">     440 </span><span class="lineNoCov">              0 :                  req-&gt;status = OPEN;</span>
+<span class="lineNum">     441 </span><span class="lineCov">          16569 :             else if (rowOpen)</span>
+<span class="lineNum">     442 </span><span class="lineCov">          16520 :                 req-&gt;status = CONFLICT;      </span>
+<span class="lineNum">     443 </span>                :             else
+<span class="lineNum">     444 </span><span class="lineCov">             49 :                 req-&gt;status = CLOSED;        </span>
+<span class="lineNum">     445 </span>                :         //    req-&gt;indexWhenScheduled = i;
+<span class="lineNum">     446 </span>                :             SetPrevState();
+<span class="lineNum">     447 </span><span class="lineCov">          16569 :             SetBypasses(i); </span>
+<span class="lineNum">     448 </span><span class="lineCov">          16569 :             SetReadsOWrite(READS_FIRST,req-&gt;cmdType);        </span>
+<span class="lineNum">     449 </span><span class="lineCov">          16569 :             *index = i;</span>
+<span class="lineNum">     450 </span><span class="lineCov">          16569 :             rowBufferIndex = req-&gt;rowNo;</span>
+<span class="lineNum">     451 </span><span class="lineCov">          16569 :             rowOpen = true;</span>
+<span class="lineNum">     452 </span><span class="lineCov">          16569 :             temp = true;</span>
+<span class="lineNum">     453 </span><span class="lineCov">          16569 :             break;</span>
+<span class="lineNum">     454 </span>                :         }
+<span class="lineNum">     455 </span>                :     }   
+<span class="lineNum">     456 </span>                : //    if (temp) cout &lt;&lt; &quot;Reads &quot; &lt;&lt; req-&gt;status &lt;&lt; endl;                         
+<span class="lineNum">     457 </span><span class="lineCov">          89105 :     return temp;        </span>
+<span class="lineNum">     458 </span>                : }
+<span class="lineNum">     459 </span>                : 
+<span class="lineNum">     460 </span><span class="lineNoCov">              0 : bool BankHandler::ScheduleUnmarked(Request *req, int* index)</span>
+<span class="lineNum">     461 </span>                : {
+<span class="lineNum">     462 </span>                : //    cout &lt;&lt; &quot;Maybe here I came&quot; &lt;&lt; endl;        
+<span class="lineNum">     463 </span>                :     unsigned int i;
+<span class="lineNum">     464 </span><span class="lineNoCov">              0 :     bool temp = false;</span>
+<span class="lineNum">     465 </span><span class="lineNoCov">              0 :     RankHandler * tempRank = ((RankHandler*)myRank);</span>
+<span class="lineNum">     466 </span><span class="lineNoCov">              0 :     for (i=0; i&lt;tempRank-&gt;rbuffer[bufferId].size(); i++)  </span>
+<span class="lineNum">     467 </span>                :     {
+<span class="lineNum">     468 </span><span class="lineNoCov">              0 :         *req = tempRank-&gt;rbuffer[bufferId][i];</span>
+<span class="lineNum">     469 </span><span class="lineNoCov">              0 :         if ( req-&gt;bankNo==bankId )</span>
+<span class="lineNum">     470 </span>                :         {
+<span class="lineNum">     471 </span><span class="lineNoCov">              0 :             if (req-&gt;rowNo==rowBufferIndex &amp;&amp; rowOpen)</span>
+<span class="lineNum">     472 </span><span class="lineNoCov">              0 :                  req-&gt;status = OPEN;</span>
+<span class="lineNum">     473 </span><span class="lineNoCov">              0 :             else if (rowOpen)</span>
+<span class="lineNum">     474 </span><span class="lineNoCov">              0 :                 req-&gt;status = CONFLICT;      </span>
+<span class="lineNum">     475 </span>                :             else
+<span class="lineNum">     476 </span><span class="lineNoCov">              0 :                 req-&gt;status = CLOSED;        </span>
+<span class="lineNum">     477 </span>                :         //    req-&gt;indexWhenScheduled = i;
+<span class="lineNum">     478 </span>                :             SetPrevState();
+<span class="lineNum">     479 </span><span class="lineNoCov">              0 :             SetReadsOWrite(UNMARKED_FIRST,req-&gt;cmdType); </span>
+<span class="lineNum">     480 </span><span class="lineNoCov">              0 :             *index = i;</span>
+<span class="lineNum">     481 </span><span class="lineNoCov">              0 :             rowBufferIndex = req-&gt;rowNo;</span>
+<span class="lineNum">     482 </span><span class="lineNoCov">              0 :             rowOpen = true;</span>
+<span class="lineNum">     483 </span><span class="lineNoCov">              0 :             temp = true;</span>
+<span class="lineNum">     484 </span><span class="lineNoCov">              0 :             break;</span>
+<span class="lineNum">     485 </span>                :         }
+<span class="lineNum">     486 </span>                :     }
+<span class="lineNum">     487 </span>                : //    if (temp) cout &lt;&lt; &quot;Unmarked &quot; &lt;&lt; req-&gt;status &lt;&lt; endl;                                              
+<span class="lineNum">     488 </span><span class="lineNoCov">              0 :     return temp;        </span>
+<span class="lineNum">     489 </span>                : }       
+<span class="lineNum">     490 </span>                : 
+<span class="lineNum">     491 </span><span class="lineNoCov">              0 : bool BankHandler::HighestRankedFirst(Request *req, UInt highest, int* index)</span>
+<span class="lineNum">     492 </span>                : {
+<span class="lineNum">     493 </span>                :     unsigned int i;
+<span class="lineNum">     494 </span><span class="lineNoCov">              0 :     bool temp = false;</span>
+<span class="lineNum">     495 </span><span class="lineNoCov">              0 :     RankHandler * tempRank = ((RankHandler*)myRank);</span>
+<span class="lineNum">     496 </span><span class="lineNoCov">              0 :     for (i=0; i&lt;tempRank-&gt;rbuffer[bufferId].size(); i++)  </span>
+<span class="lineNum">     497 </span>                :     {
+<span class="lineNum">     498 </span><span class="lineNoCov">              0 :         if (!tempRank-&gt;rbuffer[bufferId][i].mark)</span>
+<span class="lineNum">     499 </span><span class="lineNoCov">              0 :             continue;</span>
+<span class="lineNum">     500 </span>                : 
+<span class="lineNum">     501 </span><span class="lineNoCov">              0 :         *req = tempRank-&gt;rbuffer[bufferId][i];</span>
+<span class="lineNum">     502 </span><span class="lineNoCov">              0 :         if (req-&gt;bankNo==bankId &amp;&amp; (req-&gt;threadId==highest) )</span>
+<span class="lineNum">     503 </span>                :         {
+<span class="lineNum">     504 </span><span class="lineNoCov">              0 :             if (req-&gt;rowNo==rowBufferIndex &amp;&amp; rowOpen)</span>
+<span class="lineNum">     505 </span><span class="lineNoCov">              0 :                  req-&gt;status = OPEN;</span>
+<span class="lineNum">     506 </span><span class="lineNoCov">              0 :             else if (rowOpen)</span>
+<span class="lineNum">     507 </span><span class="lineNoCov">              0 :                 req-&gt;status = CONFLICT;      </span>
+<span class="lineNum">     508 </span>                :             else
+<span class="lineNum">     509 </span><span class="lineNoCov">              0 :                 req-&gt;status = CLOSED;</span>
+<span class="lineNum">     510 </span>                :         //    req-&gt;indexWhenScheduled = i;
+<span class="lineNum">     511 </span>                :             SetPrevState();
+<span class="lineNum">     512 </span><span class="lineNoCov">              0 :             SetBypasses(i);     </span>
+<span class="lineNum">     513 </span><span class="lineNoCov">              0 :             SetReadsOWrite(HIGHEST_RANKED_FIRST,req-&gt;cmdType); </span>
+<span class="lineNum">     514 </span><span class="lineNoCov">              0 :             *index = i;</span>
+<span class="lineNum">     515 </span><span class="lineNoCov">              0 :             rowBufferIndex = req-&gt;rowNo;</span>
+<span class="lineNum">     516 </span><span class="lineNoCov">              0 :             rowOpen = true;</span>
+<span class="lineNum">     517 </span><span class="lineNoCov">              0 :             temp = true;</span>
+<span class="lineNum">     518 </span>                : //          cout &lt;&lt; Simulator::Now() &lt;&lt; &quot;: I came here&quot; &lt;&lt; endl;    
+<span class="lineNum">     519 </span><span class="lineNoCov">              0 :             break;</span>
+<span class="lineNum">     520 </span>                :         }
+<span class="lineNum">     521 </span>                :     }   
+<span class="lineNum">     522 </span>                : //    if (temp) cout &lt;&lt; &quot;Highest Ranked &quot; &lt;&lt; req-&gt;status &lt;&lt; endl;                
+<span class="lineNum">     523 </span><span class="lineNoCov">              0 :     return temp;        </span>
+<span class="lineNum">     524 </span>                : }
+<span class="lineNum">     525 </span>                : 
+<span class="lineNum">     526 </span><span class="lineNoCov">              0 : UInt BankHandler::FindHighest()</span>
+<span class="lineNum">     527 </span>                : {
+<span class="lineNum">     528 </span>                :     unsigned int i,j,k;
+<span class="lineNum">     529 </span>                :     int maxBankLoad[NO_OF_THREADS];     
+<span class="lineNum">     530 </span>                :     int totalLoad[NO_OF_THREADS];
+<span class="lineNum">     531 </span>                :  //   bool flag=0;
+<span class="lineNum">     532 </span><span class="lineNoCov">              0 :     RankHandler * tempRank = ((RankHandler*)myRank);    </span>
+<span class="lineNum">     533 </span>                : 
+<span class="lineNum">     534 </span><span class="lineNoCov">              0 :     for (k=0; k&lt;NO_OF_THREADS;k++)           // For Each Thread</span>
+<span class="lineNum">     535 </span>                :     {   
+<span class="lineNum">     536 </span><span class="lineNoCov">              0 :         maxBankLoad[k]=0;                       // Assign maxBankLoad &amp; totalLoad to 0</span>
+<span class="lineNum">     537 </span><span class="lineNoCov">              0 :         totalLoad[k]=0;                         </span>
+<span class="lineNum">     538 </span><span class="lineNoCov">              0 :         for (i=0;i&lt;NO_OF_BUFFERS;i++)                // for each Bank</span>
+<span class="lineNum">     539 </span>                :         {
+<span class="lineNum">     540 </span><span class="lineNoCov">              0 :             int bankLoad=0;</span>
+<span class="lineNum">     541 </span><span class="lineNoCov">              0 :             for (j=0; j&lt;tempRank-&gt;rbuffer[i].size(); j++) </span>
+<span class="lineNum">     542 </span>                :             {   
+<span class="lineNum">     543 </span><span class="lineNoCov">              0 :                 if (tempRank-&gt;rbuffer[i][j].mark==true &amp;&amp; tempRank-&gt;rbuffer[i][j].threadId==k)</span>
+<span class="lineNum">     544 </span>                :                 {       
+<span class="lineNum">     545 </span><span class="lineNoCov">              0 :                     bankLoad++;</span>
+<span class="lineNum">     546 </span><span class="lineNoCov">              0 :                     totalLoad[k]++;                     // Set Total Load of a Thread k here as well</span>
+<span class="lineNum">     547 </span>                :                 }
+<span class="lineNum">     548 </span>                :             }
+<span class="lineNum">     549 </span>                : //                      cout &lt;&lt; bankLoad &lt;&lt; endl;
+<span class="lineNum">     550 </span>                : //                      cout &lt;&lt; endl;
+<span class="lineNum">     551 </span><span class="lineNoCov">              0 :             if (maxBankLoad[k]&lt;bankLoad)             // if maxBankLoad is less than bankload</span>
+<span class="lineNum">     552 </span><span class="lineNoCov">              0 :                maxBankLoad[k]=bankLoad;                 // set this bank's load to maxBankLoad</span>
+<span class="lineNum">     553 </span>                :         }
+<span class="lineNum">     554 </span>                :     }
+<span class="lineNum">     555 </span>                :         
+<span class="lineNum">     556 </span><span class="lineNoCov">              0 :     for (j=0;j&lt;NO_OF_THREADS;j++)                    // if maxBankLoad is 0, </span>
+<span class="lineNum">     557 </span><span class="lineNoCov">              0 :         if (maxBankLoad[j]==0)                          // set it to high value so that</span>
+<span class="lineNum">     558 </span><span class="lineNoCov">              0 :             maxBankLoad[j]=MAX_BUFFER_SIZE+1;           // its priority is the least</span>
+<span class="lineNum">     559 </span>                :     
+<span class="lineNum">     560 </span><span class="lineNoCov">              0 :     for (j=0;j&lt;NO_OF_THREADS;j++)                            </span>
+<span class="lineNum">     561 </span><span class="lineNoCov">              0 :         if (totalLoad[j]==0)                            // Similar for Total Load</span>
+<span class="lineNum">     562 </span><span class="lineNoCov">              0 :             totalLoad[j]=MAX_BUFFER_SIZE+1;</span>
+<span class="lineNum">     563 </span>                :         
+<span class="lineNum">     564 </span><span class="lineNoCov">              0 :     UInt highest=0;</span>
+<span class="lineNum">     565 </span><span class="lineNoCov">              0 :     for (j=0;j&lt;NO_OF_THREADS;j++)                            // find the thread with highest bank load</span>
+<span class="lineNum">     566 </span><span class="lineNoCov">              0 :         if (maxBankLoad[j]&gt;maxBankLoad[highest])</span>
+<span class="lineNum">     567 </span><span class="lineNoCov">              0 :             highest = j;</span>
+<span class="lineNum">     568 </span><span class="lineNoCov">              0 :         else if (maxBankLoad[j]==maxBankLoad[highest] &amp;&amp; totalLoad[j]&gt;totalLoad[highest])</span>
+<span class="lineNum">     569 </span><span class="lineNoCov">              0 :             highest = j;</span>
+<span class="lineNum">     570 </span>                : 
+<span class="lineNum">     571 </span>                : //      cout &lt;&lt; highest &lt;&lt; endl;
+<span class="lineNum">     572 </span><span class="lineNoCov">              0 :     return highest;</span>
+<span class="lineNum">     573 </span>                : 
+<span class="lineNum">     574 </span>                : }
+<span class="lineNum">     575 </span>                : 
+<span class="lineNum">     576 </span><span class="lineCov">         153039 : void BankHandler::SetReadsOWrite(CallerType caller, Command_t cmdType)</span>
+<span class="lineNum">     577 </span>                : {
+<span class="lineNum">     578 </span><span class="lineCov">         153039 :     RankHandler * tempRank = ((RankHandler*)myRank);</span>
+<span class="lineNum">     579 </span><span class="lineCov">         153039 :     if (cmdType == CACHE_READ || cmdType == CACHE_PREFETCH || cmdType == CACHE_WRITE)</span>
+<span class="lineNum">     580 </span><span class="lineCov">         148806 :         tempRank-&gt;readsOWrite++;</span>
+<span class="lineNum">     581 </span>                :         
+<span class="lineNum">     582 </span><span class="lineCov">         153039 :     switch (caller)</span>
+<span class="lineNum">     583 </span>                :     {
+<span class="lineNum">     584 </span>                :         case HIT_FIRST:
+<span class="lineNum">     585 </span>                : //           if (cmdType != CACHE_READ &amp;&amp; cmdType != CACHE_PREFETCH &amp;&amp; cmdType != CACHE_WRITE)  
+<span class="lineNum">     586 </span>                : //              tempRank-&gt;readsOWrite = 0;   
+<span class="lineNum">     587 </span>                :         break;
+<span class="lineNum">     588 </span>                :         case OLDEST_FIRST:
+<span class="lineNum">     589 </span><span class="lineCov">          72536 :              if (cmdType != CACHE_READ &amp;&amp; cmdType != CACHE_PREFETCH &amp;&amp; cmdType != CACHE_WRITE)  </span>
+<span class="lineNum">     590 </span><span class="lineCov">           4111 :                 tempRank-&gt;readsOWrite = 0;   </span>
+<span class="lineNum">     591 </span>                :         break;
+<span class="lineNum">     592 </span>                :         case UNMARKED_FIRST:
+<span class="lineNum">     593 </span><span class="lineNoCov">              0 :              if (cmdType != CACHE_READ &amp;&amp; cmdType != CACHE_PREFETCH &amp;&amp; cmdType != CACHE_WRITE)  </span>
+<span class="lineNum">     594 </span><span class="lineNoCov">              0 :                 tempRank-&gt;readsOWrite = 0;   </span>
+<span class="lineNum">     595 </span>                :         break;
+<span class="lineNum">     596 </span>                :         case HIGHEST_RANKED_FIRST:
+<span class="lineNum">     597 </span><span class="lineNoCov">              0 :              if (cmdType != CACHE_READ &amp;&amp; cmdType != CACHE_PREFETCH &amp;&amp; cmdType != CACHE_WRITE)  </span>
+<span class="lineNum">     598 </span><span class="lineNoCov">              0 :                 tempRank-&gt;readsOWrite = 0;</span>
+<span class="lineNum">     599 </span>                :         break;
+<span class="lineNum">     600 </span>                :         default:
+<span class="lineNum">     601 </span>                :         break;
+<span class="lineNum">     602 </span>                :     }
+<span class="lineNum">     603 </span>                :  //      cout &lt;&lt; dec &lt;&lt; tempRank-&gt;readsOWrite &lt;&lt; endl;     
+<span class="lineNum">     604 </span><span class="lineCov">         153039 : }</span>
+<span class="lineNum">     605 </span>                : 
+<span class="lineNum">     606 </span><span class="lineCov">          80503 : void BankHandler::SetBypasses(unsigned int index)</span>
+<span class="lineNum">     607 </span>                : {
+<span class="lineNum">     608 </span>                :     unsigned int i;
+<span class="lineNum">     609 </span><span class="lineCov">          80503 :     RankHandler * tempRank = ((RankHandler*)myRank);</span>
+<span class="lineNum">     610 </span>                :         
+<span class="lineNum">     611 </span><span class="lineCov">         161006 :     for (i=0; i&lt;tempRank-&gt;rbuffer[bufferId].size(); i++)  </span>
+<span class="lineNum">     612 </span>                :     {
+<span class="lineNum">     613 </span><span class="lineCov">         161006 :         if (tempRank-&gt;rbuffer[bufferId][i].bankNo == bankId)</span>
+<span class="lineNum">     614 </span><span class="lineCov">          80503 :             break;</span>
+<span class="lineNum">     615 </span>                :     }
+<span class="lineNum">     616 </span>                : 
+<span class="lineNum">     617 </span><span class="lineCov">          80503 :     if (index == i)</span>
+<span class="lineNum">     618 </span><span class="lineCov">          63894 :         bypassReq = 0;</span>
+<span class="lineNum">     619 </span><span class="lineCov">          16609 :     else if (index &gt; i)</span>
+<span class="lineNum">     620 </span><span class="lineCov">          16609 :         bypassReq++;</span>
+<span class="lineNum">     621 </span>                :     else
+<span class="lineNum">     622 </span><span class="lineNoCov">              0 :         cout &lt;&lt; &quot;Error: Bypasses got less than 1st req in the bank. Should not come here&quot; &lt;&lt; endl;                        </span>
+<span class="lineNum">     623 </span><span class="lineCov">          80503 : }</span>
+<span class="lineNum">     624 </span>                : 
+<span class="lineNum">     625 </span><span class="lineNoCov">              0 : void BankHandler::SetPrevState()</span>
+<span class="lineNum">     626 </span>                : {
+<span class="lineNum">     627 </span><span class="lineCov">         153039 :     RankHandler * tempRank = ((RankHandler*)myRank);</span>
+<span class="lineNum">     628 </span><span class="lineCov">         153039 :     prevBufferIndex = rowBufferIndex;</span>
+<span class="lineNum">     629 </span><span class="lineCov">         153039 :     prevRowOpen = rowOpen;</span>
+<span class="lineNum">     630 </span><span class="lineCov">         153039 :     prevBypassReq = bypassReq;</span>
+<span class="lineNum">     631 </span><span class="lineCov">         153039 :     tempRank-&gt;prevReadsOWrite = tempRank-&gt;readsOWrite;            </span>
+<span class="lineNum">     632 </span><span class="lineNoCov">              0 : }</span>
+<span class="lineNum">     633 </span>                : 
+<span class="lineNum">     634 </span><span class="lineNoCov">              0 : void BankHandler::RestorePrevState()</span>
+<span class="lineNum">     635 </span>                : {
+<span class="lineNum">     636 </span><span class="lineNoCov">              0 :     RankHandler * tempRank = ((RankHandler*)myRank);</span>
+<span class="lineNum">     637 </span><span class="lineNoCov">              0 :     rowBufferIndex = prevBufferIndex;</span>
+<span class="lineNum">     638 </span><span class="lineNoCov">              0 :     rowOpen = prevRowOpen;</span>
+<span class="lineNum">     639 </span><span class="lineNoCov">              0 :     bypassReq = prevBypassReq;</span>
+<span class="lineNum">     640 </span><span class="lineNoCov">              0 :     tempRank-&gt;readsOWrite = tempRank-&gt;prevReadsOWrite;    </span>
+<span class="lineNum">     641 </span><span class="lineCov">              2 : }</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+  <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LTP GCOV extension version 1.6</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

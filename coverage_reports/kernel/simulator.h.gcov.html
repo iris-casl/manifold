@@ -1,0 +1,483 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>LCOV - iris.info - kernel/simulator.h</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LTP GCOV extension - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+        <tr>
+          <td class="headerItem" width="20%">Current&nbsp;view:</td>
+          <td class="headerValue" width="80%" colspan=4><a href="../index.html">directory</a> - <a href="index.html">kernel</a> - simulator.h</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Test:</td>
+          <td class="headerValue" width="80%" colspan=4>iris.info</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Date:</td>
+          <td class="headerValue" width="20%">2010-05-24</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Instrumented&nbsp;lines:</td>
+          <td class="headerValue" width="20%">27</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Code&nbsp;covered:</td>
+          <td class="headerValue" width="20%">74.1 %</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Executed&nbsp;lines:</td>
+          <td class="headerValue" width="20%">20</td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><pre class="source">
+<span class="lineNum">       1 </span>                : // Define the event scheduler for IAASim
+<span class="lineNum">       2 </span>                : // George F. Riley, Georgia Tech, Summer 2009
+<span class="lineNum">       3 </span>                : 
+<span class="lineNum">       4 </span>                : // This scheduler is loosely based on the event scheduler found in ns-3.
+<span class="lineNum">       5 </span>                : // The design is such that any function, either a global static function
+<span class="lineNum">       6 </span>                : // or a member function on an object can be the event handler. Further
+<span class="lineNum">       7 </span>                : // the handler function can have arbitrary parameter types.  This implementation
+<span class="lineNum">       8 </span>                : // defines functions with up to four arguments.  Should the need arise
+<span class="lineNum">       9 </span>                : // it is easy to add longer argument lists.
+<span class="lineNum">      10 </span>                : 
+<span class="lineNum">      11 </span>                : #ifndef __SIMULATOR_H__
+<span class="lineNum">      12 </span>                : #define __SIMULATOR_H__
+<span class="lineNum">      13 </span>                : 
+<span class="lineNum">      14 </span>                : #include &lt;set&gt;
+<span class="lineNum">      15 </span>                : #include &lt;map&gt;
+<span class="lineNum">      16 </span>                : #include &quot;component.h&quot;
+<span class="lineNum">      17 </span>                : 
+<span class="lineNum">      18 </span>                : class Component;
+<span class="lineNum">      19 </span>                : 
+<span class="lineNum">      20 </span>                : // First define the base class Event, then the events with up
+<span class="lineNum">      21 </span>                : // to four templated parameters.
+<span class="lineNum">      22 </span>                : 
+<span class="lineNum">      23 </span>                : // Define the base event class
+<span class="lineNum">      24 </span>                : class EventBase 
+<span class="lineNum">      25 </span><span class="lineNoCov">              0 : {</span>
+<span class="lineNum">      26 </span>                :  public:
+<span class="lineNum">      27 </span><span class="lineCov">       43851377 :   EventBase(double t) : time(t), uid(nextUID++) {}</span>
+<span class="lineNum">      28 </span><span class="lineCov">       43851377 :     EventBase(double t, int u) : time(t), uid(u) {}</span>
+<span class="lineNum">      29 </span>                :       virtual void CallHandler() = 0;  // All subclasses must implement CallHandler
+<span class="lineNum">      30 </span>                :  public:
+<span class="lineNum">      31 </span>                :       double time;   // Timestamp for the event
+<span class="lineNum">      32 </span>                :       int    uid;    // Each event has a unique identifier to break timestamp ties
+<span class="lineNum">      33 </span>                :       static int nextUID;
+<span class="lineNum">      34 </span>                :  private:
+<span class="lineNum">      35 </span>                : };
+<span class="lineNum">      36 </span>                : 
+<span class="lineNum">      37 </span>                : // Define an EventID class that is the return type from all schedule
+<span class="lineNum">      38 </span>                : // functions.  This is used to cancel the event
+<span class="lineNum">      39 </span>                : class EventId : public EventBase
+<span class="lineNum">      40 </span><span class="lineNoCov">              0 : {</span>
+<span class="lineNum">      41 </span>                : public:
+<span class="lineNum">      42 </span><span class="lineCov">       87702754 :   EventId(double t, int u) : EventBase(t, u) {}</span>
+<span class="lineNum">      43 </span><span class="lineNoCov">              0 :   void CallHandler() {}</span>
+<span class="lineNum">      44 </span>                : };
+<span class="lineNum">      45 </span>                : 
+<span class="lineNum">      46 </span>                : // Define the variable parameter list Event objects  
+<span class="lineNum">      47 </span>                : template&lt;typename T, typename OBJ&gt;
+<span class="lineNum">      48 </span>                : class Event0 : public EventBase
+<span class="lineNum">      49 </span>                : {
+<span class="lineNum">      50 </span>                : public:
+<span class="lineNum">      51 </span>                :   Event0(double t, void (T::*f)(void), OBJ* obj0)
+<span class="lineNum">      52 </span>                :     : EventBase(t), handler(f), obj(obj0){}
+<span class="lineNum">      53 </span>                :   void (T::*handler)(void);
+<span class="lineNum">      54 </span>                :   OBJ*      obj;
+<span class="lineNum">      55 </span>                : public:
+<span class="lineNum">      56 </span>                :   void CallHandler();
+<span class="lineNum">      57 </span>                : };
+<span class="lineNum">      58 </span>                : 
+<span class="lineNum">      59 </span>                : template &lt;typename T, typename OBJ&gt;
+<span class="lineNum">      60 </span>                : void Event0&lt;T, OBJ&gt;::CallHandler()
+<span class="lineNum">      61 </span>                : {
+<span class="lineNum">      62 </span>                :   (obj-&gt;*handler)();
+<span class="lineNum">      63 </span>                : }
+<span class="lineNum">      64 </span>                : 
+<span class="lineNum">      65 </span>                : template&lt;typename T, typename OBJ, typename U1, typename T1&gt;
+<span class="lineNum">      66 </span>                : class Event1 : public EventBase
+<span class="lineNum">      67 </span>                : {
+<span class="lineNum">      68 </span>                : public:
+<span class="lineNum">      69 </span><span class="lineNoCov">              0 :   Event1(double t, void (T::*f)(U1), OBJ* obj0, T1 t1_0)</span>
+<span class="lineNum">      70 </span><span class="lineCov">       87702752 :     : EventBase(t), handler(f), obj(obj0), t1(t1_0){}</span>
+<span class="lineNum">      71 </span>                :   void (T::*handler)(U1);
+<span class="lineNum">      72 </span>                :   OBJ*      obj;
+<span class="lineNum">      73 </span>                :   T1        t1;
+<span class="lineNum">      74 </span>                : public:
+<span class="lineNum">      75 </span>                :   void CallHandler();
+<span class="lineNum">      76 </span>                : };
+<span class="lineNum">      77 </span>                : 
+<span class="lineNum">      78 </span>                : template &lt;typename T, typename OBJ, typename U1, typename T1&gt;
+<span class="lineNum">      79 </span><span class="lineCov">       43851285 : void Event1&lt;T, OBJ, U1, T1&gt;::CallHandler()</span>
+<span class="lineNum">      80 </span>                : {
+<span class="lineNum">      81 </span><span class="lineCov">       43851285 :   (obj-&gt;*handler)(t1);</span>
+<span class="lineNum">      82 </span><span class="lineCov">       43851285 : }</span>
+<span class="lineNum">      83 </span>                : 
+<span class="lineNum">      84 </span>                : template&lt;typename T, typename OBJ,
+<span class="lineNum">      85 </span>                :          typename U1, typename T1, 
+<span class="lineNum">      86 </span>                :          typename U2, typename T2&gt;
+<span class="lineNum">      87 </span>                : class Event2 : public EventBase
+<span class="lineNum">      88 </span>                : {
+<span class="lineNum">      89 </span>                : public:
+<span class="lineNum">      90 </span>                :   Event2(double t, void (T::*f)(U1, U2), OBJ* obj0, T1 t1_0, T2 t2_0)
+<span class="lineNum">      91 </span>                :     : EventBase(t), handler(f), obj(obj0), t1(t1_0), t2(t2_0) {}
+<span class="lineNum">      92 </span>                :   void (T::*handler)(U1, U2);
+<span class="lineNum">      93 </span>                :   OBJ*      obj;
+<span class="lineNum">      94 </span>                :   T1        t1;
+<span class="lineNum">      95 </span>                :   T2        t2;
+<span class="lineNum">      96 </span>                : public:
+<span class="lineNum">      97 </span>                :   void CallHandler();
+<span class="lineNum">      98 </span>                : };
+<span class="lineNum">      99 </span>                : 
+<span class="lineNum">     100 </span>                : template &lt;typename T, typename OBJ, 
+<span class="lineNum">     101 </span>                :           typename U1, typename T1,
+<span class="lineNum">     102 </span>                :           typename U2, typename T2&gt;
+<span class="lineNum">     103 </span>                : void Event2&lt;T, OBJ, U1, T1, U2, T2&gt;::CallHandler()
+<span class="lineNum">     104 </span>                : {
+<span class="lineNum">     105 </span>                :   (obj-&gt;*handler)(t1, t2);
+<span class="lineNum">     106 </span>                : }
+<span class="lineNum">     107 </span>                : 
+<span class="lineNum">     108 </span>                : template &lt;typename T,  typename OBJ,
+<span class="lineNum">     109 </span>                :           typename U1, typename T1,
+<span class="lineNum">     110 </span>                :           typename U2, typename T2,
+<span class="lineNum">     111 </span>                :           typename U3, typename T3&gt;
+<span class="lineNum">     112 </span>                : class Event3 : public EventBase {
+<span class="lineNum">     113 </span>                : public:
+<span class="lineNum">     114 </span>                :    Event3(double t, void (T::*f)(U1, U2, U3), OBJ *obj0, T1 t1_0, T2 t2_0, T3 t3_0)  
+<span class="lineNum">     115 </span>                :      : EventBase(t), handler(f), obj(obj0), t1(t1_0), t2(t2_0), t3(t3_0) {}
+<span class="lineNum">     116 </span>                :    void (T::*handler)(U1, U2, U3);
+<span class="lineNum">     117 </span>                :    OBJ* obj;
+<span class="lineNum">     118 </span>                :    T1 t1;
+<span class="lineNum">     119 </span>                :    T2 t2;
+<span class="lineNum">     120 </span>                :    T3 t3;
+<span class="lineNum">     121 </span>                :    
+<span class="lineNum">     122 </span>                : public:
+<span class="lineNum">     123 </span>                :    void CallHandler();
+<span class="lineNum">     124 </span>                : };
+<span class="lineNum">     125 </span>                : 
+<span class="lineNum">     126 </span>                : template &lt;typename T,  typename OBJ,
+<span class="lineNum">     127 </span>                :           typename U1, typename T1,
+<span class="lineNum">     128 </span>                :           typename U2, typename T2,
+<span class="lineNum">     129 </span>                :           typename U3, typename T3&gt; 
+<span class="lineNum">     130 </span>                : void Event3&lt;T,OBJ,U1,T1,U2,T2,U3,T3&gt;::CallHandler() {
+<span class="lineNum">     131 </span>                :      (obj-&gt;*handler)(t1,t2,t3);
+<span class="lineNum">     132 </span>                : }
+<span class="lineNum">     133 </span>                : 
+<span class="lineNum">     134 </span>                : template &lt;typename T,  typename OBJ,
+<span class="lineNum">     135 </span>                :           typename U1, typename T1,
+<span class="lineNum">     136 </span>                :           typename U2, typename T2,
+<span class="lineNum">     137 </span>                :           typename U3, typename T3,
+<span class="lineNum">     138 </span>                :           typename U4, typename T4&gt;
+<span class="lineNum">     139 </span>                : class Event4 : public EventBase {
+<span class="lineNum">     140 </span>                : public:
+<span class="lineNum">     141 </span>                :    Event4(double t, void (T::*f)(U1, U2, U3, U4), OBJ *obj0, T1 t1_0, T2 t2_0, T3 t3_0, T4 t4_0)  
+<span class="lineNum">     142 </span>                :      : EventBase(t), handler(f), obj(obj0), t1(t1_0), t2(t2_0), t3(t3_0), t4(t4_0){}
+<span class="lineNum">     143 </span>                :    void (T::*handler)(U1, U2, U3, U4);
+<span class="lineNum">     144 </span>                :    OBJ* obj;
+<span class="lineNum">     145 </span>                :    T1 t1;
+<span class="lineNum">     146 </span>                :    T2 t2;
+<span class="lineNum">     147 </span>                :    T3 t3;
+<span class="lineNum">     148 </span>                :    T4 t4;
+<span class="lineNum">     149 </span>                :    
+<span class="lineNum">     150 </span>                : public:
+<span class="lineNum">     151 </span>                :    void CallHandler();
+<span class="lineNum">     152 </span>                : };
+<span class="lineNum">     153 </span>                : 
+<span class="lineNum">     154 </span>                : template &lt;typename T,  typename OBJ,
+<span class="lineNum">     155 </span>                :           typename U1, typename T1,
+<span class="lineNum">     156 </span>                :           typename U2, typename T2,
+<span class="lineNum">     157 </span>                :           typename U3, typename T3,
+<span class="lineNum">     158 </span>                :           typename U4, typename T4&gt; 
+<span class="lineNum">     159 </span>                : void Event4&lt;T,OBJ,U1,T1,U2,T2,U3,T3,U4,T4&gt;::CallHandler() {
+<span class="lineNum">     160 </span>                :      (obj-&gt;*handler)(t1,t2,t3,t4);
+<span class="lineNum">     161 </span>                : }
+<span class="lineNum">     162 </span>                : 
+<span class="lineNum">     163 </span>                : 
+<span class="lineNum">     164 </span>                : // Create events that call static functions rather then
+<span class="lineNum">     165 </span>                : // rather than object member functions
+<span class="lineNum">     166 </span>                : // Also need a variant of the Event0 that calls a static function,
+<span class="lineNum">     167 </span>                : // not a member function.
+<span class="lineNum">     168 </span>                : class Event0Stat : public EventBase
+<span class="lineNum">     169 </span>                : {
+<span class="lineNum">     170 </span>                : public:
+<span class="lineNum">     171 </span><span class="lineNoCov">              0 :   Event0Stat(double t, void (*f)(void))</span>
+<span class="lineNum">     172 </span><span class="lineCov">              2 :     : EventBase(t), handler(f){}</span>
+<span class="lineNum">     173 </span>                :   void (*handler)(void);
+<span class="lineNum">     174 </span>                : public:
+<span class="lineNum">     175 </span>                :   void CallHandler();
+<span class="lineNum">     176 </span>                : };
+<span class="lineNum">     177 </span>                : 
+<span class="lineNum">     178 </span>                : template&lt;typename U1, typename T1&gt;
+<span class="lineNum">     179 </span>                : class Event1Stat : public EventBase
+<span class="lineNum">     180 </span>                : {
+<span class="lineNum">     181 </span>                : public:
+<span class="lineNum">     182 </span>                :   Event1Stat(double t, void (*f)(U1), T1 t1_0)
+<span class="lineNum">     183 </span>                :     : EventBase(t), handler(f), t1(t1_0){}
+<span class="lineNum">     184 </span>                :   void (*handler)(U1);
+<span class="lineNum">     185 </span>                :   T1        t1;
+<span class="lineNum">     186 </span>                : public:
+<span class="lineNum">     187 </span>                :   void CallHandler();
+<span class="lineNum">     188 </span>                : };
+<span class="lineNum">     189 </span>                : 
+<span class="lineNum">     190 </span>                : template &lt;typename U1, typename T1&gt;
+<span class="lineNum">     191 </span>                : void Event1Stat&lt;U1, T1&gt;::CallHandler()
+<span class="lineNum">     192 </span>                : {
+<span class="lineNum">     193 </span>                :   handler(t1);
+<span class="lineNum">     194 </span>                : }
+<span class="lineNum">     195 </span>                : 
+<span class="lineNum">     196 </span>                : 
+<span class="lineNum">     197 </span>                : template&lt;typename U1, typename T1, 
+<span class="lineNum">     198 </span>                :          typename U2, typename T2&gt;
+<span class="lineNum">     199 </span>                : class Event2Stat : public EventBase
+<span class="lineNum">     200 </span>                : {
+<span class="lineNum">     201 </span>                : public:
+<span class="lineNum">     202 </span>                :   Event2Stat(double t, void (*f)(U1, U2), T1 t1_0, T2 t2_0)
+<span class="lineNum">     203 </span>                :     : EventBase(t), handler(f), t1(t1_0), t2(t2_0) {}
+<span class="lineNum">     204 </span>                :   void (*handler)(U1, U2);
+<span class="lineNum">     205 </span>                :   T1        t1;
+<span class="lineNum">     206 </span>                :   T2        t2;
+<span class="lineNum">     207 </span>                : public:
+<span class="lineNum">     208 </span>                :   void CallHandler();
+<span class="lineNum">     209 </span>                : };
+<span class="lineNum">     210 </span>                : 
+<span class="lineNum">     211 </span>                : template &lt;typename U1, typename T1,
+<span class="lineNum">     212 </span>                :           typename U2, typename T2&gt;
+<span class="lineNum">     213 </span>                : void Event2Stat&lt;U1, T1, U2, T2&gt;::CallHandler()
+<span class="lineNum">     214 </span>                : {
+<span class="lineNum">     215 </span>                :   handler(t1, t2);
+<span class="lineNum">     216 </span>                : }
+<span class="lineNum">     217 </span>                : 
+<span class="lineNum">     218 </span>                : template &lt;typename U1, typename T1,
+<span class="lineNum">     219 </span>                :           typename U2, typename T2,
+<span class="lineNum">     220 </span>                :           typename U3, typename T3&gt;
+<span class="lineNum">     221 </span>                : class Event3Stat : public EventBase {
+<span class="lineNum">     222 </span>                : public:
+<span class="lineNum">     223 </span>                :    Event3Stat(double t, void (*f)(U1, U2, U3), T1 t1_0, T2 t2_0, T3 t3_0)  
+<span class="lineNum">     224 </span>                :      : EventBase(t), handler(f), t1(t1_0), t2(t2_0), t3(t3_0) {}
+<span class="lineNum">     225 </span>                :    void (*handler)(U1, U2, U3);
+<span class="lineNum">     226 </span>                :    T1 t1;
+<span class="lineNum">     227 </span>                :    T2 t2;
+<span class="lineNum">     228 </span>                :    T3 t3;
+<span class="lineNum">     229 </span>                :    
+<span class="lineNum">     230 </span>                : public:
+<span class="lineNum">     231 </span>                :    void CallHandler();
+<span class="lineNum">     232 </span>                : };
+<span class="lineNum">     233 </span>                : 
+<span class="lineNum">     234 </span>                : template &lt;typename U1, typename T1,
+<span class="lineNum">     235 </span>                :           typename U2, typename T2,
+<span class="lineNum">     236 </span>                :           typename U3, typename T3&gt; 
+<span class="lineNum">     237 </span>                : void Event3Stat&lt;U1,T1,U2,T2,U3,T3&gt;::CallHandler()
+<span class="lineNum">     238 </span>                : {
+<span class="lineNum">     239 </span>                :   handler(t1,t2,t3);
+<span class="lineNum">     240 </span>                : }
+<span class="lineNum">     241 </span>                : 
+<span class="lineNum">     242 </span>                : template &lt;typename U1, typename T1,
+<span class="lineNum">     243 </span>                :           typename U2, typename T2,
+<span class="lineNum">     244 </span>                :           typename U3, typename T3,
+<span class="lineNum">     245 </span>                :           typename U4, typename T4&gt;
+<span class="lineNum">     246 </span>                : class Event4Stat : public EventBase {
+<span class="lineNum">     247 </span>                : public:
+<span class="lineNum">     248 </span>                :    Event4Stat(double t, void (*f)(U1, U2, U3, U4), T1 t1_0, T2 t2_0, T3 t3_0, T4 t4_0)  
+<span class="lineNum">     249 </span>                :      : EventBase(t), handler(f), t1(t1_0), t2(t2_0), t3(t3_0), t4(t4_0){}
+<span class="lineNum">     250 </span>                :    void (*handler)(U1, U2, U3, U4);
+<span class="lineNum">     251 </span>                :    T1 t1;
+<span class="lineNum">     252 </span>                :    T2 t2;
+<span class="lineNum">     253 </span>                :    T3 t3;
+<span class="lineNum">     254 </span>                :    T4 t4;
+<span class="lineNum">     255 </span>                :    
+<span class="lineNum">     256 </span>                : public:
+<span class="lineNum">     257 </span>                :    void CallHandler();
+<span class="lineNum">     258 </span>                : };
+<span class="lineNum">     259 </span>                : 
+<span class="lineNum">     260 </span>                : template &lt;typename U1, typename T1,
+<span class="lineNum">     261 </span>                :           typename U2, typename T2,
+<span class="lineNum">     262 </span>                :           typename U3, typename T3,
+<span class="lineNum">     263 </span>                :           typename U4, typename T4&gt; 
+<span class="lineNum">     264 </span>                : void Event4Stat&lt;U1,T1,U2,T2,U3,T3,U4,T4&gt;::CallHandler() {
+<span class="lineNum">     265 </span>                :      handler(t1,t2,t3,t4);
+<span class="lineNum">     266 </span>                : }
+<span class="lineNum">     267 </span>                : 
+<span class="lineNum">     268 </span>                : // Now define the sorted set of events and the event comparator
+<span class="lineNum">     269 </span>                : class event_less
+<span class="lineNum">     270 </span>                : {
+<span class="lineNum">     271 </span>                : public:
+<span class="lineNum">     272 </span><span class="lineNoCov">              0 :   event_less() { }</span>
+<span class="lineNum">     273 </span><span class="lineNoCov">              0 :   inline bool operator()(EventBase* const &amp; l, const EventBase* const &amp; r) const {</span>
+<span class="lineNum">     274 </span><span class="lineCov">      477074204 :     if(l-&gt;time &lt; r-&gt;time) return true;</span>
+<span class="lineNum">     275 </span><span class="lineCov">      332875779 :     if (l-&gt;time == r-&gt;time) return l-&gt;uid &lt; r-&gt;uid;</span>
+<span class="lineNum">     276 </span><span class="lineCov">       55151689 :     return false;</span>
+<span class="lineNum">     277 </span>                :   }
+<span class="lineNum">     278 </span>                : };
+<span class="lineNum">     279 </span>                : 
+<span class="lineNum">     280 </span>                : // Define the type for the sorted event list
+<span class="lineNum">     281 </span>                : typedef std::set&lt;EventBase*, event_less&gt; EventSet_t;
+<span class="lineNum">     282 </span>                : 
+<span class="lineNum">     283 </span>                : 
+<span class="lineNum">     284 </span>                : class ComponentDescription
+<span class="lineNum">     285 </span>                : {
+<span class="lineNum">     286 </span>                :  public:
+<span class="lineNum">     287 </span><span class="lineCov">            872 :   ComponentDescription(int lp, Component* obj):lpId(lp), ptr(obj){}</span>
+<span class="lineNum">     288 </span>                :   int lpId;
+<span class="lineNum">     289 </span>                :   Component* ptr;
+<span class="lineNum">     290 </span>                : };
+<span class="lineNum">     291 </span>                : 
+<span class="lineNum">     292 </span>                : //Define the type for the map of component IDs to LPs/pointers
+<span class="lineNum">     293 </span>                : typedef std::map&lt;int, ComponentDescription*&gt; ComponentMap_t;
+<span class="lineNum">     294 </span>                : 
+<span class="lineNum">     295 </span>                : // Define the simulator class.  It is implemented with only static functions
+<span class="lineNum">     296 </span>                : class Simulator 
+<span class="lineNum">     297 </span>                : {
+<span class="lineNum">     298 </span>                : public:
+<span class="lineNum">     299 </span>                :   static void    Run();                 // Run the simulation
+<span class="lineNum">     300 </span>                :   static void    Stop();                // Stop the simulation
+<span class="lineNum">     301 </span>                :   static void    StopAt(double);        // Stop at the specified time
+<span class="lineNum">     302 </span>                :   static double  Now();                 // Return the current simulation time
+<span class="lineNum">     303 </span>                :   static bool    Cancel(EventId&amp;);      // Cancel previously scheduled event
+<span class="lineNum">     304 </span>                :   static EventId Peek();                // Peek (don't remove) earliest event
+<span class="lineNum">     305 </span>                :   static EventBase* GetEarliestEvent(); // Remove and return earliest event
+<span class="lineNum">     306 </span>                :   static int     MyRank();              // Return rank number (0 if serial)
+<span class="lineNum">     307 </span>                :   // Define the templated schedule functions
+<span class="lineNum">     308 </span>                :   template &lt;typename T, typename OBJ&gt;
+<span class="lineNum">     309 </span>                :     static EventId Schedule(double t, void(T::*handler)(void), OBJ* obj)
+<span class="lineNum">     310 </span>                :   {
+<span class="lineNum">     311 </span>                :     EventBase* ev = new Event0&lt;T, OBJ&gt;(t, handler, obj);
+<span class="lineNum">     312 </span>                :     events.insert(ev);
+<span class="lineNum">     313 </span>                :     return EventId(t, ev-&gt;uid);
+<span class="lineNum">     314 </span>                :   }
+<span class="lineNum">     315 </span>                : 
+<span class="lineNum">     316 </span>                :   template &lt;typename T, typename OBJ,
+<span class="lineNum">     317 </span>                :     typename U1, typename T1&gt;
+<span class="lineNum">     318 </span><span class="lineCov">       43851376 :     static EventId Schedule(double t, void(T::*handler)(U1), OBJ* obj, T1 t1)</span>
+<span class="lineNum">     319 </span>                :   {
+<span class="lineNum">     320 </span><span class="lineCov">       87702752 :     EventBase* ev = new Event1&lt;T, OBJ, U1, T1&gt;(t, handler, obj, t1);</span>
+<span class="lineNum">     321 </span><span class="lineCov">       43851376 :     events.insert(ev);</span>
+<span class="lineNum">     322 </span><span class="lineCov">       43851376 :     return EventId(t, ev-&gt;uid);</span>
+<span class="lineNum">     323 </span>                :   }
+<span class="lineNum">     324 </span>                : 
+<span class="lineNum">     325 </span>                :   template &lt;typename T, typename OBJ,
+<span class="lineNum">     326 </span>                :     typename U1, typename T1,
+<span class="lineNum">     327 </span>                :     typename U2, typename T2&gt;
+<span class="lineNum">     328 </span>                :     static EventId Schedule(double t, void(T::*handler)(U1, U2), OBJ* obj, T1 t1, T2 t2)
+<span class="lineNum">     329 </span>                :   {
+<span class="lineNum">     330 </span>                :     EventBase* ev = new Event2&lt;T, OBJ, U1, T1, U2, T2&gt;(t, handler, obj, t1, t2);
+<span class="lineNum">     331 </span>                :     events.insert(ev);
+<span class="lineNum">     332 </span>                :     return EventId(t, ev-&gt;uid);
+<span class="lineNum">     333 </span>                :   }
+<span class="lineNum">     334 </span>                : 
+<span class="lineNum">     335 </span>                :   template &lt;typename T, typename OBJ,
+<span class="lineNum">     336 </span>                :     typename U1, typename T1,
+<span class="lineNum">     337 </span>                :     typename U2, typename T2,
+<span class="lineNum">     338 </span>                :     typename U3, typename T3&gt;
+<span class="lineNum">     339 </span>                :     static EventId Schedule(double t, void(T::*handler)(U1, U2, U3), OBJ* obj, T1 t1, T2 t2, T3 t3)
+<span class="lineNum">     340 </span>                :   {
+<span class="lineNum">     341 </span>                :     EventBase* ev = new Event3&lt;T, OBJ, U1, T1, U2, T2, U3, T3&gt;(t, handler, obj, t1, t2, t3);
+<span class="lineNum">     342 </span>                :     events.insert(ev);
+<span class="lineNum">     343 </span>                :     return EventId(t, ev-&gt;uid);
+<span class="lineNum">     344 </span>                :   }
+<span class="lineNum">     345 </span>                : 
+<span class="lineNum">     346 </span>                :   template &lt;typename T, typename OBJ,
+<span class="lineNum">     347 </span>                :     typename U1, typename T1,
+<span class="lineNum">     348 </span>                :     typename U2, typename T2,
+<span class="lineNum">     349 </span>                :     typename U3, typename T3,
+<span class="lineNum">     350 </span>                :     typename U4, typename T4&gt;
+<span class="lineNum">     351 </span>                :     static EventId Schedule(double t, void(T::*handler)(U1, U2, U3, U4), OBJ* obj, T1 t1, T2 t2, T3 t3, T4 t4)
+<span class="lineNum">     352 </span>                :   {
+<span class="lineNum">     353 </span>                :     EventBase* ev = new Event4&lt;T, OBJ, U1, T1, U2, T2, U3, T3, U4, T4&gt;(t, handler, obj, t1, t2, t3, t4);
+<span class="lineNum">     354 </span>                :     events.insert(ev);
+<span class="lineNum">     355 </span>                :     return EventId(t, ev-&gt;uid);
+<span class="lineNum">     356 </span>                :   }
+<span class="lineNum">     357 </span>                : 
+<span class="lineNum">     358 </span>                :   // Schedulers for static callback functions
+<span class="lineNum">     359 </span><span class="lineCov">              1 :   static EventId Schedule(double t, void(*handler)(void))</span>
+<span class="lineNum">     360 </span>                :   {
+<span class="lineNum">     361 </span><span class="lineCov">              2 :     EventBase* ev = new Event0Stat(t, handler);</span>
+<span class="lineNum">     362 </span><span class="lineCov">              1 :     events.insert(ev);</span>
+<span class="lineNum">     363 </span><span class="lineCov">              1 :     return EventId(t, ev-&gt;uid);</span>
+<span class="lineNum">     364 </span>                :   }
+<span class="lineNum">     365 </span>                : 
+<span class="lineNum">     366 </span>                :   template &lt;typename U1, typename T1&gt;
+<span class="lineNum">     367 </span>                :     static EventId Schedule(double t, void(*handler)(U1), T1 t1)
+<span class="lineNum">     368 </span>                :   {
+<span class="lineNum">     369 </span>                :     EventBase* ev = new Event1Stat&lt;U1, T1&gt;(t, handler, t1);
+<span class="lineNum">     370 </span>                :     events.insert(ev);
+<span class="lineNum">     371 </span>                :     return EventId(t, ev-&gt;uid);
+<span class="lineNum">     372 </span>                :   }
+<span class="lineNum">     373 </span>                : 
+<span class="lineNum">     374 </span>                :   template &lt;typename U1, typename T1,
+<span class="lineNum">     375 </span>                :             typename U2, typename T2&gt;
+<span class="lineNum">     376 </span>                :     static EventId Schedule(double t, void(*handler)(U1, U2), T1 t1, T2 t2)
+<span class="lineNum">     377 </span>                :   {
+<span class="lineNum">     378 </span>                :     EventBase* ev = new Event2Stat&lt;U1, T1, U2, T2&gt;(t, handler, t1, t2);
+<span class="lineNum">     379 </span>                :     events.insert(ev);
+<span class="lineNum">     380 </span>                :     return EventId(t, ev-&gt;uid);
+<span class="lineNum">     381 </span>                :   }
+<span class="lineNum">     382 </span>                : 
+<span class="lineNum">     383 </span>                :   template &lt;typename U1, typename T1,
+<span class="lineNum">     384 </span>                :             typename U2, typename T2,
+<span class="lineNum">     385 </span>                :             typename U3, typename T3&gt;
+<span class="lineNum">     386 </span>                :     static EventId Schedule(double t, void(*handler)(U1, U2, U3), T1 t1, T2 t2, T3 t3)
+<span class="lineNum">     387 </span>                :   {
+<span class="lineNum">     388 </span>                :     EventBase* ev = new Event3Stat&lt;U1, T1, U2, T2, U3, T3&gt;(t, handler, t1, t2, t3);
+<span class="lineNum">     389 </span>                :     events.insert(ev);
+<span class="lineNum">     390 </span>                :     return EventId(t, ev-&gt;uid);
+<span class="lineNum">     391 </span>                :   }
+<span class="lineNum">     392 </span>                : 
+<span class="lineNum">     393 </span>                :   template &lt;typename U1, typename T1,
+<span class="lineNum">     394 </span>                :             typename U2, typename T2,
+<span class="lineNum">     395 </span>                :             typename U3, typename T3,
+<span class="lineNum">     396 </span>                :             typename U4, typename T4&gt;
+<span class="lineNum">     397 </span>                :     static EventId Schedule(double t, void(*handler)(U1, U2, U3, U4), T1 t1, T2 t2, T3 t3, T4 t4)
+<span class="lineNum">     398 </span>                :   {
+<span class="lineNum">     399 </span>                :     EventBase* ev = new Event4Stat&lt;U1, T1, U2, T2, U3, T3, U4, T4&gt;(t, handler, t1, t2, t3, t4);
+<span class="lineNum">     400 </span>                :     events.insert(ev);
+<span class="lineNum">     401 </span>                :     return EventId(t, ev-&gt;uid);
+<span class="lineNum">     402 </span>                :   }
+<span class="lineNum">     403 </span>                : 
+<span class="lineNum">     404 </span>                :   static void registerComponent(Component* obj, int lp);
+<span class="lineNum">     405 </span>                :   static ComponentDescription* getComponentDesc(int);
+<span class="lineNum">     406 </span>                : 
+<span class="lineNum">     407 </span>                : private:
+<span class="lineNum">     408 </span>                :   static EventSet_t events;
+<span class="lineNum">     409 </span>                :   static bool       halted;
+<span class="lineNum">     410 </span>                :   static double     simTime;
+<span class="lineNum">     411 </span>                :   static ComponentMap_t components;
+<span class="lineNum">     412 </span>                :   static int nextComponentID;
+<span class="lineNum">     413 </span>                :   static int rank;
+<span class="lineNum">     414 </span>                : };
+<span class="lineNum">     415 </span>                : 
+<span class="lineNum">     416 </span>                : #endif
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+  <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LTP GCOV extension version 1.6</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

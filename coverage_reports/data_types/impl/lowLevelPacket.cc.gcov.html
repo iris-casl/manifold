@@ -1,0 +1,246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>LCOV - iris.info - data_types/impl/lowLevelPacket.cc</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LTP GCOV extension - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+        <tr>
+          <td class="headerItem" width="20%">Current&nbsp;view:</td>
+          <td class="headerValue" width="80%" colspan=4><a href="../../index.html">directory</a> - <a href="index.html">data_types/impl</a> - lowLevelPacket.cc</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Test:</td>
+          <td class="headerValue" width="80%" colspan=4>iris.info</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Date:</td>
+          <td class="headerValue" width="20%">2010-05-24</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Instrumented&nbsp;lines:</td>
+          <td class="headerValue" width="20%">72</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Code&nbsp;covered:</td>
+          <td class="headerValue" width="20%">59.7 %</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Executed&nbsp;lines:</td>
+          <td class="headerValue" width="20%">43</td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><pre class="source">
+<span class="lineNum">       1 </span>                : /*
+<span class="lineNum">       2 </span>                :  * =====================================================================================
+<span class="lineNum">       3 </span>                :  *
+<span class="lineNum">       4 </span>                :  *       Filename:  LowLevelPacket.cc
+<span class="lineNum">       5 </span>                :  *
+<span class="lineNum">       6 </span>                :  *    Description:  
+<span class="lineNum">       7 </span>                :  *
+<span class="lineNum">       8 </span>                :  *        Version:  1.0
+<span class="lineNum">       9 </span>                :  *        Created:  02/09/2010 08:56:45 PM
+<span class="lineNum">      10 </span>                :  *       Revision:  none
+<span class="lineNum">      11 </span>                :  *       Compiler:  gcc
+<span class="lineNum">      12 </span>                :  *
+<span class="lineNum">      13 </span>                :  *         Author:  Mitchelle Rasquinha (), mitchelle.rasquinha@gatech.edu
+<span class="lineNum">      14 </span>                :  *        Company:  Georgia Institute of Technology
+<span class="lineNum">      15 </span>                :  *
+<span class="lineNum">      16 </span>                :  * =====================================================================================
+<span class="lineNum">      17 </span>                :  */
+<span class="lineNum">      18 </span>                : 
+<span class="lineNum">      19 </span>                : #ifndef  _lowlevelpacket_cc_INC
+<span class="lineNum">      20 </span>                : #define  _lowlevelpacket_cc_INC
+<span class="lineNum">      21 </span>                : 
+<span class="lineNum">      22 </span>                : #include        &quot;lowLevelPacket.h&quot;
+<span class="lineNum">      23 </span>                : 
+<span class="lineNum">      24 </span>                : using namespace std;
+<span class="lineNum">      25 </span>                : 
+<span class="lineNum">      26 </span>                : /* LowLevelPacket Class Impl */
+<span class="lineNum">      27 </span><span class="lineCov">            384 : LowLevelPacket::LowLevelPacket()</span>
+<span class="lineNum">      28 </span>                : {
+<span class="lineNum">      29 </span><span class="lineCov">            128 :     source = -1;</span>
+<span class="lineNum">      30 </span><span class="lineCov">            128 :     destination = -1;</span>
+<span class="lineNum">      31 </span><span class="lineCov">            128 :     transaction_id = -1;</span>
+<span class="lineNum">      32 </span><span class="lineCov">            128 :     virtual_channel = 0;</span>
+<span class="lineNum">      33 </span><span class="lineCov">            128 :     sent_time = 0;</span>
+<span class="lineNum">      34 </span><span class="lineCov">            128 :     length = 0;</span>
+<span class="lineNum">      35 </span>                : 
+<span class="lineNum">      36 </span><span class="lineCov">            128 : }</span>
+<span class="lineNum">      37 </span>                : 
+<span class="lineNum">      38 </span><span class="lineCov">            256 : LowLevelPacket::~LowLevelPacket()</span>
+<span class="lineNum">      39 </span>                : {
+<span class="lineNum">      40 </span><span class="lineCov">            256 :     flits.clear();</span>
+<span class="lineNum">      41 </span><span class="lineCov">            256 :     control_bits.clear();</span>
+<span class="lineNum">      42 </span><span class="lineCov">            256 :     payload.clear();</span>
+<span class="lineNum">      43 </span><span class="lineCov">            512 : }               /* -----  end of function LowLevelPacket::~LowLevelPacket()  ----- */</span>
+<span class="lineNum">      44 </span>                : 
+<span class="lineNum">      45 </span><span class="lineNoCov">              0 : void LowLevelPacket::operator=( const LowLevelPacket* p )</span>
+<span class="lineNum">      46 </span>                : {
+<span class="lineNum">      47 </span><span class="lineNoCov">              0 :     source = p-&gt;source;</span>
+<span class="lineNum">      48 </span><span class="lineNoCov">              0 :     destination = p-&gt;destination;</span>
+<span class="lineNum">      49 </span><span class="lineNoCov">              0 :     transaction_id = p-&gt;transaction_id;</span>
+<span class="lineNum">      50 </span><span class="lineNoCov">              0 :     virtual_channel = p-&gt;virtual_channel;</span>
+<span class="lineNum">      51 </span><span class="lineNoCov">              0 :     sent_time = p-&gt;sent_time;</span>
+<span class="lineNum">      52 </span><span class="lineNoCov">              0 :     msg_class = p-&gt;msg_class;</span>
+<span class="lineNum">      53 </span><span class="lineNoCov">              0 :     length = p-&gt;length;</span>
+<span class="lineNum">      54 </span><span class="lineNoCov">              0 :     for ( uint i=0; i&lt;control_bits.size(); i++)</span>
+<span class="lineNum">      55 </span><span class="lineNoCov">              0 :         this-&gt;control_bits.push_back(p-&gt;control_bits[i]); </span>
+<span class="lineNum">      56 </span>                : 
+<span class="lineNum">      57 </span><span class="lineNoCov">              0 :     for ( uint i=0; i&lt;payload.size(); i++)</span>
+<span class="lineNum">      58 </span><span class="lineNoCov">              0 :         this-&gt;payload.push_back(p-&gt;payload[i]); </span>
+<span class="lineNum">      59 </span><span class="lineNoCov">              0 : }</span>
+<span class="lineNum">      60 </span>                : 
+<span class="lineNum">      61 </span>                : string
+<span class="lineNum">      62 </span><span class="lineNoCov">              0 : LowLevelPacket::toString () const</span>
+<span class="lineNum">      63 </span>                : {
+<span class="lineNum">      64 </span><span class="lineNoCov">              0 :     stringstream str;</span>
+<span class="lineNum">      65 </span><span class="lineNoCov">              0 :     str &lt;&lt; &quot;LowLevelPacket: &quot; &lt;&lt; endl;</span>
+<span class="lineNum">      66 </span>                :     str &lt;&lt; &quot;\t Source: &quot; &lt;&lt; source 
+<span class="lineNum">      67 </span>                :         &lt;&lt; &quot;\t Destination: &quot; &lt;&lt; destination
+<span class="lineNum">      68 </span>                :         &lt;&lt; &quot;\t virtual_channel: &quot; &lt;&lt; virtual_channel 
+<span class="lineNum">      69 </span>                :         &lt;&lt; &quot;\t sent time: &quot; &lt;&lt; sent_time
+<span class="lineNum">      70 </span>                :         &lt;&lt; &quot;\t No of flits: &quot; &lt;&lt; flits.size()
+<span class="lineNum">      71 </span>                :         &lt;&lt; &quot;\t length: &quot; &lt;&lt; length
+<span class="lineNum">      72 </span>                :         &lt;&lt; &quot;\t msg_class: &quot; &lt;&lt; msg_class
+<span class="lineNum">      73 </span>                :         &lt;&lt; &quot;\t addr: &quot; &lt;&lt; hex &lt;&lt; addr &lt;&lt; dec
+<span class="lineNum">      74 </span><span class="lineNoCov">              0 :         &lt;&lt; endl;</span>
+<span class="lineNum">      75 </span>                : /* 
+<span class="lineNum">      76 </span>                :     for ( uint i=0 ; i&lt;flits.size() ; i++ )
+<span class="lineNum">      77 </span>                :         if( flits[i]-&gt;type == HEAD)
+<span class="lineNum">      78 </span>                :             str &lt;&lt; static_cast&lt;HeadFlit*&gt;(flits[i])-&gt;toString();
+<span class="lineNum">      79 </span>                :         else if( flits[i]-&gt;type == BODY)
+<span class="lineNum">      80 </span>                :             str &lt;&lt; static_cast&lt;BodyFlit*&gt;(flits[i])-&gt;toString();
+<span class="lineNum">      81 </span>                :         else if( flits[i]-&gt;type == TAIL)
+<span class="lineNum">      82 </span>                :             str &lt;&lt; static_cast&lt;TailFlit*&gt;(flits[i])-&gt;toString();
+<span class="lineNum">      83 </span>                :         else
+<span class="lineNum">      84 </span>                :             str &lt;&lt; &quot; Error unk flit type&quot; ;
+<span class="lineNum">      85 </span>                :  * */
+<span class="lineNum">      86 </span><span class="lineNoCov">              0 :     return str.str();</span>
+<span class="lineNum">      87 </span>                : }               /* -----  end of function LoeLevelPacket::toString  ----- */
+<span class="lineNum">      88 </span>                : 
+<span class="lineNum">      89 </span>                : bool
+<span class="lineNum">      90 </span><span class="lineNoCov">              0 : LowLevelPacket::valid_packet ()</span>
+<span class="lineNum">      91 </span>                : {
+<span class="lineNum">      92 </span><span class="lineNoCov">              0 :     if( flits.size())</span>
+<span class="lineNum">      93 </span><span class="lineNoCov">              0 :         return (flits.size() == static_cast&lt;HeadFlit*&gt;(flits[0])-&gt;length);</span>
+<span class="lineNum">      94 </span>                :     else
+<span class="lineNum">      95 </span><span class="lineNoCov">              0 :         return false;</span>
+<span class="lineNum">      96 </span>                : 
+<span class="lineNum">      97 </span>                : }               /* -----  end of function LowLevelPacket::valid_packet  ----- */
+<span class="lineNum">      98 </span>                : 
+<span class="lineNum">      99 </span>                : void
+<span class="lineNum">     100 </span><span class="lineCov">         607459 : LowLevelPacket::add ( Flit* ptr )</span>
+<span class="lineNum">     101 </span>                : {
+<span class="lineNum">     102 </span><span class="lineCov">         607459 :     switch (ptr-&gt;type)</span>
+<span class="lineNum">     103 </span>                :     {
+<span class="lineNum">     104 </span>                :         case HEAD:
+<span class="lineNum">     105 </span>                :             {
+<span class="lineNum">     106 </span><span class="lineCov">         301699 :                 HeadFlit* ptr2 = static_cast &lt; HeadFlit*&gt; (ptr);</span>
+<span class="lineNum">     107 </span>                : //                flits.push_back(ptr2);
+<span class="lineNum">     108 </span><span class="lineCov">         301699 :                 this-&gt;source = ptr2-&gt;src_address;</span>
+<span class="lineNum">     109 </span><span class="lineCov">         301699 :                 this-&gt;destination = ptr2-&gt;dst_address;</span>
+<span class="lineNum">     110 </span><span class="lineCov">         301699 :                 this-&gt;transaction_id = ptr2-&gt;transaction_id;</span>
+<span class="lineNum">     111 </span><span class="lineCov">         301699 :                 this-&gt;virtual_channel = ptr2-&gt;vc;</span>
+<span class="lineNum">     112 </span><span class="lineCov">         301699 :                 this-&gt;length = ptr2-&gt;length;</span>
+<span class="lineNum">     113 </span><span class="lineCov">         301699 :                 this-&gt;msg_class = ptr2-&gt;msg_class;</span>
+<span class="lineNum">     114 </span><span class="lineCov">         301699 :                 this-&gt;sent_time = ptr2-&gt;packet_originated_time;</span>
+<span class="lineNum">     115 </span><span class="lineCov">         301699 :                 this-&gt;addr = ptr2-&gt;addr;</span>
+<span class="lineNum">     116 </span><span class="lineCov">       10257766 :     for ( uint i=0; i&lt;ptr2-&gt;control_bits.size(); i++)</span>
+<span class="lineNum">     117 </span><span class="lineCov">        9654368 :         this-&gt;control_bits.push_back(ptr2-&gt;control_bits[i]); </span>
+<span class="lineNum">     118 </span>                : 
+<span class="lineNum">     119 </span><span class="lineCov">       76798726 :     for ( uint i=0; i&lt;ptr2-&gt;payload.size(); i++)</span>
+<span class="lineNum">     120 </span><span class="lineCov">       76195328 :         this-&gt;payload.push_back(ptr2-&gt;payload[i]); </span>
+<span class="lineNum">     121 </span>                : 
+<span class="lineNum">     122 </span><span class="lineCov">         301699 :                 delete ptr2;</span>
+<span class="lineNum">     123 </span>                :                 break;
+<span class="lineNum">     124 </span>                :             }
+<span class="lineNum">     125 </span>                :         case BODY:
+<span class="lineNum">     126 </span>                :             {
+<span class="lineNum">     127 </span><span class="lineCov">         152880 :                 BodyFlit* bf = static_cast&lt;BodyFlit*&gt; (ptr);</span>
+<span class="lineNum">     128 </span><span class="lineCov">       78580320 :     for ( uint i=0; i&lt;bf-&gt;bf_data.size(); i++)</span>
+<span class="lineNum">     129 </span><span class="lineCov">       78274560 :         this-&gt;payload.push_back(bf-&gt;bf_data[i]); </span>
+<span class="lineNum">     130 </span>                : //                flits.push_back(bf);
+<span class="lineNum">     131 </span><span class="lineCov">         152880 :                 delete bf;</span>
+<span class="lineNum">     132 </span>                :                 break;
+<span class="lineNum">     133 </span>                :             }
+<span class="lineNum">     134 </span>                :         case TAIL:
+<span class="lineNum">     135 </span>                :             {
+<span class="lineNum">     136 </span><span class="lineCov">         152880 :                 TailFlit* tf = static_cast&lt;TailFlit*&gt; (ptr);</span>
+<span class="lineNum">     137 </span>                : //                flits.push_back(tf);
+<span class="lineNum">     138 </span><span class="lineCov">         152880 :                 this-&gt;sent_time = tf-&gt;packet_originated_time;</span>
+<span class="lineNum">     139 </span><span class="lineCov">         152880 :                 delete tf;</span>
+<span class="lineNum">     140 </span>                :                 break;
+<span class="lineNum">     141 </span>                :             }
+<span class="lineNum">     142 </span>                :         default:
+<span class="lineNum">     143 </span><span class="lineNoCov">              0 :             fprintf(stdout,&quot;ERROR Unk flit type&quot;);</span>
+<span class="lineNum">     144 </span>                :             break;
+<span class="lineNum">     145 </span>                :     }
+<span class="lineNum">     146 </span>                :     return ;
+<span class="lineNum">     147 </span>                : }               /* -----  end of function LowLevelPacket::add  ----- */
+<span class="lineNum">     148 </span>                : 
+<span class="lineNum">     149 </span><span class="lineNoCov">              0 : Flit* LowLevelPacket::at(unsigned int index)</span>
+<span class="lineNum">     150 </span>                : {
+<span class="lineNum">     151 </span><span class="lineNoCov">              0 :     if(index &gt; flits.size())</span>
+<span class="lineNum">     152 </span><span class="lineNoCov">              0 :         fprintf(stdout,&quot; Error Index out of bounds in lowlevelpacket&quot;);</span>
+<span class="lineNum">     153 </span>                : 
+<span class="lineNum">     154 </span><span class="lineNoCov">              0 :     return flits.at(index);</span>
+<span class="lineNum">     155 </span>                : }
+<span class="lineNum">     156 </span>                : 
+<span class="lineNum">     157 </span><span class="lineCov">         607508 : Flit* LowLevelPacket::get_next_flit()</span>
+<span class="lineNum">     158 </span>                : {
+<span class="lineNum">     159 </span>                :     Flit *ptr;
+<span class="lineNum">     160 </span><span class="lineCov">        1215016 :     ptr = flits.front();</span>
+<span class="lineNum">     161 </span><span class="lineCov">         607508 :     flits.pop_front();</span>
+<span class="lineNum">     162 </span><span class="lineCov">         607508 :     return ptr;</span>
+<span class="lineNum">     163 </span>                : }
+<span class="lineNum">     164 </span>                : 
+<span class="lineNum">     165 </span>                : void
+<span class="lineNum">     166 </span><span class="lineNoCov">              0 : LowLevelPacket::clear ()</span>
+<span class="lineNum">     167 </span>                : {
+<span class="lineNum">     168 </span><span class="lineNoCov">              0 :     flits.clear();</span>
+<span class="lineNum">     169 </span>                :     return;
+<span class="lineNum">     170 </span>                : }               /* -----  end of function LowLevelPacket::clear  ----- */
+<span class="lineNum">     171 </span>                : 
+<span class="lineNum">     172 </span>                : uint
+<span class="lineNum">     173 </span><span class="lineCov">        4181885 : LowLevelPacket::size ()</span>
+<span class="lineNum">     174 </span>                : {
+<span class="lineNum">     175 </span><span class="lineCov">        4181885 :     return flits.size();</span>
+<span class="lineNum">     176 </span><span class="lineCov">              2 : }               /* -----  end of function LowLevelPacket::size  ----- */</span>
+<span class="lineNum">     177 </span>                : 
+<span class="lineNum">     178 </span>                : #endif   /* ----- #ifndef _lowlevelpacket_cc_INC  ----- */
+<span class="lineNum">     179 </span>                : 
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+  <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LTP GCOV extension version 1.6</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

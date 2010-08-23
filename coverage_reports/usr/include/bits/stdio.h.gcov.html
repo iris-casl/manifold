@@ -1,0 +1,258 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>LCOV - iris.info - /usr/include/bits/stdio.h</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LTP GCOV extension - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+        <tr>
+          <td class="headerItem" width="20%">Current&nbsp;view:</td>
+          <td class="headerValue" width="80%" colspan=4><a href="../../../index.html">directory</a> - <a href="index.html">usr/include/bits</a> - stdio.h</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Test:</td>
+          <td class="headerValue" width="80%" colspan=4>iris.info</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Date:</td>
+          <td class="headerValue" width="20%">2010-05-24</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Instrumented&nbsp;lines:</td>
+          <td class="headerValue" width="20%">22</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Code&nbsp;covered:</td>
+          <td class="headerValue" width="20%">0.0 %</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Executed&nbsp;lines:</td>
+          <td class="headerValue" width="20%">0</td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><pre class="source">
+<span class="lineNum">       1 </span>                : /* Optimizing macros and inline functions for stdio functions.
+<span class="lineNum">       2 </span>                :    Copyright (C) 1998, 2000, 2001, 2004, 2007 Free Software Foundation, Inc.
+<span class="lineNum">       3 </span>                :    This file is part of the GNU C Library.
+<span class="lineNum">       4 </span>                : 
+<span class="lineNum">       5 </span>                :    The GNU C Library is free software; you can redistribute it and/or
+<span class="lineNum">       6 </span>                :    modify it under the terms of the GNU Lesser General Public
+<span class="lineNum">       7 </span>                :    License as published by the Free Software Foundation; either
+<span class="lineNum">       8 </span>                :    version 2.1 of the License, or (at your option) any later version.
+<span class="lineNum">       9 </span>                : 
+<span class="lineNum">      10 </span>                :    The GNU C Library is distributed in the hope that it will be useful,
+<span class="lineNum">      11 </span>                :    but WITHOUT ANY WARRANTY; without even the implied warranty of
+<span class="lineNum">      12 </span>                :    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+<span class="lineNum">      13 </span>                :    Lesser General Public License for more details.
+<span class="lineNum">      14 </span>                : 
+<span class="lineNum">      15 </span>                :    You should have received a copy of the GNU Lesser General Public
+<span class="lineNum">      16 </span>                :    License along with the GNU C Library; if not, write to the Free
+<span class="lineNum">      17 </span>                :    Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
+<span class="lineNum">      18 </span>                :    02111-1307 USA.  */
+<span class="lineNum">      19 </span>                : 
+<span class="lineNum">      20 </span>                : #ifndef _STDIO_H
+<span class="lineNum">      21 </span>                : # error &quot;Never include &lt;bits/stdio.h&gt; directly; use &lt;stdio.h&gt; instead.&quot;
+<span class="lineNum">      22 </span>                : #endif
+<span class="lineNum">      23 </span>                : 
+<span class="lineNum">      24 </span>                : #ifndef __extern_inline
+<span class="lineNum">      25 </span>                : # define __STDIO_INLINE inline
+<span class="lineNum">      26 </span>                : #else
+<span class="lineNum">      27 </span>                : # define __STDIO_INLINE __extern_inline
+<span class="lineNum">      28 </span>                : #endif
+<span class="lineNum">      29 </span>                : 
+<span class="lineNum">      30 </span>                : 
+<span class="lineNum">      31 </span>                : #ifdef __USE_EXTERN_INLINES
+<span class="lineNum">      32 </span>                : /* For -D_FORTIFY_SOURCE{,=2} bits/stdio2.h will define a different
+<span class="lineNum">      33 </span>                :    inline.  */
+<span class="lineNum">      34 </span>                : # if !(__USE_FORTIFY_LEVEL &gt; 0 &amp;&amp; defined __extern_always_inline)
+<span class="lineNum">      35 </span>                : /* Write formatted output to stdout from argument list ARG.  */
+<span class="lineNum">      36 </span>                : __STDIO_INLINE int
+<span class="lineNum">      37 </span>                : vprintf (__const char *__restrict __fmt, _G_va_list __arg)
+<span class="lineNum">      38 </span>                : {
+<span class="lineNum">      39 </span>                :   return vfprintf (stdout, __fmt, __arg);
+<span class="lineNum">      40 </span>                : }
+<span class="lineNum">      41 </span>                : # endif
+<span class="lineNum">      42 </span>                : 
+<span class="lineNum">      43 </span>                : /* Read a character from stdin.  */
+<span class="lineNum">      44 </span>                : __STDIO_INLINE int
+<span class="lineNum">      45 </span><span class="lineNoCov">              0 : getchar (void)</span>
+<span class="lineNum">      46 </span>                : {
+<span class="lineNum">      47 </span><span class="lineNoCov">              0 :   return _IO_getc (stdin);</span>
+<span class="lineNum">      48 </span>                : }
+<span class="lineNum">      49 </span>                : 
+<span class="lineNum">      50 </span>                : 
+<span class="lineNum">      51 </span>                : # ifdef __USE_MISC
+<span class="lineNum">      52 </span>                : /* Faster version when locking is not necessary.  */
+<span class="lineNum">      53 </span>                : __STDIO_INLINE int
+<span class="lineNum">      54 </span><span class="lineNoCov">              0 : fgetc_unlocked (FILE *__fp)</span>
+<span class="lineNum">      55 </span>                : {
+<span class="lineNum">      56 </span><span class="lineNoCov">              0 :   return _IO_getc_unlocked (__fp);</span>
+<span class="lineNum">      57 </span>                : }
+<span class="lineNum">      58 </span>                : # endif /* misc */
+<span class="lineNum">      59 </span>                : 
+<span class="lineNum">      60 </span>                : 
+<span class="lineNum">      61 </span>                : # if defined __USE_POSIX || defined __USE_MISC
+<span class="lineNum">      62 </span>                : /* This is defined in POSIX.1:1996.  */
+<span class="lineNum">      63 </span>                : __STDIO_INLINE int
+<span class="lineNum">      64 </span><span class="lineNoCov">              0 : getc_unlocked (FILE *__fp)</span>
+<span class="lineNum">      65 </span>                : {
+<span class="lineNum">      66 </span><span class="lineNoCov">              0 :   return _IO_getc_unlocked (__fp);</span>
+<span class="lineNum">      67 </span>                : }
+<span class="lineNum">      68 </span>                : 
+<span class="lineNum">      69 </span>                : /* This is defined in POSIX.1:1996.  */
+<span class="lineNum">      70 </span>                : __STDIO_INLINE int
+<span class="lineNum">      71 </span><span class="lineNoCov">              0 : getchar_unlocked (void)</span>
+<span class="lineNum">      72 </span>                : {
+<span class="lineNum">      73 </span><span class="lineNoCov">              0 :   return _IO_getc_unlocked (stdin);</span>
+<span class="lineNum">      74 </span>                : }
+<span class="lineNum">      75 </span>                : # endif /* POSIX || misc */
+<span class="lineNum">      76 </span>                : 
+<span class="lineNum">      77 </span>                : 
+<span class="lineNum">      78 </span>                : /* Write a character to stdout.  */
+<span class="lineNum">      79 </span>                : __STDIO_INLINE int
+<span class="lineNum">      80 </span><span class="lineNoCov">              0 : putchar (int __c)</span>
+<span class="lineNum">      81 </span>                : {
+<span class="lineNum">      82 </span><span class="lineNoCov">              0 :   return _IO_putc (__c, stdout);</span>
+<span class="lineNum">      83 </span>                : }
+<span class="lineNum">      84 </span>                : 
+<span class="lineNum">      85 </span>                : 
+<span class="lineNum">      86 </span>                : # ifdef __USE_MISC
+<span class="lineNum">      87 </span>                : /* Faster version when locking is not necessary.  */
+<span class="lineNum">      88 </span>                : __STDIO_INLINE int
+<span class="lineNum">      89 </span><span class="lineNoCov">              0 : fputc_unlocked (int __c, FILE *__stream)</span>
+<span class="lineNum">      90 </span>                : {
+<span class="lineNum">      91 </span><span class="lineNoCov">              0 :   return _IO_putc_unlocked (__c, __stream);</span>
+<span class="lineNum">      92 </span>                : }
+<span class="lineNum">      93 </span>                : # endif /* misc */
+<span class="lineNum">      94 </span>                : 
+<span class="lineNum">      95 </span>                : 
+<span class="lineNum">      96 </span>                : # if defined __USE_POSIX || defined __USE_MISC
+<span class="lineNum">      97 </span>                : /* This is defined in POSIX.1:1996.  */
+<span class="lineNum">      98 </span>                : __STDIO_INLINE int
+<span class="lineNum">      99 </span><span class="lineNoCov">              0 : putc_unlocked (int __c, FILE *__stream)</span>
+<span class="lineNum">     100 </span>                : {
+<span class="lineNum">     101 </span><span class="lineNoCov">              0 :   return _IO_putc_unlocked (__c, __stream);</span>
+<span class="lineNum">     102 </span>                : }
+<span class="lineNum">     103 </span>                : 
+<span class="lineNum">     104 </span>                : /* This is defined in POSIX.1:1996.  */
+<span class="lineNum">     105 </span>                : __STDIO_INLINE int
+<span class="lineNum">     106 </span><span class="lineNoCov">              0 : putchar_unlocked (int __c)</span>
+<span class="lineNum">     107 </span>                : {
+<span class="lineNum">     108 </span><span class="lineNoCov">              0 :   return _IO_putc_unlocked (__c, stdout);</span>
+<span class="lineNum">     109 </span>                : }
+<span class="lineNum">     110 </span>                : # endif /* POSIX || misc */
+<span class="lineNum">     111 </span>                : 
+<span class="lineNum">     112 </span>                : 
+<span class="lineNum">     113 </span>                : # ifdef __USE_GNU
+<span class="lineNum">     114 </span>                : /* Like `getdelim', but reads up to a newline.  */
+<span class="lineNum">     115 </span>                : __STDIO_INLINE _IO_ssize_t
+<span class="lineNum">     116 </span><span class="lineNoCov">              0 : getline (char **__lineptr, size_t *__n, FILE *__stream)</span>
+<span class="lineNum">     117 </span>                : {
+<span class="lineNum">     118 </span><span class="lineNoCov">              0 :   return __getdelim (__lineptr, __n, '\n', __stream);</span>
+<span class="lineNum">     119 </span>                : }
+<span class="lineNum">     120 </span>                : # endif /* GNU */
+<span class="lineNum">     121 </span>                : 
+<span class="lineNum">     122 </span>                : 
+<span class="lineNum">     123 </span>                : # ifdef __USE_MISC
+<span class="lineNum">     124 </span>                : /* Faster versions when locking is not required.  */
+<span class="lineNum">     125 </span>                : __STDIO_INLINE int
+<span class="lineNum">     126 </span><span class="lineNoCov">              0 : __NTH (feof_unlocked (FILE *__stream))</span>
+<span class="lineNum">     127 </span>                : {
+<span class="lineNum">     128 </span><span class="lineNoCov">              0 :   return _IO_feof_unlocked (__stream);</span>
+<span class="lineNum">     129 </span>                : }
+<span class="lineNum">     130 </span>                : 
+<span class="lineNum">     131 </span>                : /* Faster versions when locking is not required.  */
+<span class="lineNum">     132 </span>                : __STDIO_INLINE int
+<span class="lineNum">     133 </span><span class="lineNoCov">              0 : __NTH (ferror_unlocked (FILE *__stream))</span>
+<span class="lineNum">     134 </span>                : {
+<span class="lineNum">     135 </span><span class="lineNoCov">              0 :   return _IO_ferror_unlocked (__stream);</span>
+<span class="lineNum">     136 </span>                : }
+<span class="lineNum">     137 </span>                : # endif /* misc */
+<span class="lineNum">     138 </span>                : 
+<span class="lineNum">     139 </span>                : #endif /* Use extern inlines.  */
+<span class="lineNum">     140 </span>                : 
+<span class="lineNum">     141 </span>                : 
+<span class="lineNum">     142 </span>                : #if defined __USE_MISC &amp;&amp; defined __GNUC__ &amp;&amp; defined __OPTIMIZE__ \
+<span class="lineNum">     143 </span>                :     &amp;&amp; !defined __cplusplus
+<span class="lineNum">     144 </span>                : /* Perform some simple optimizations.  */
+<span class="lineNum">     145 </span>                : # define fread_unlocked(ptr, size, n, stream) \
+<span class="lineNum">     146 </span>                :   (__extension__ ((__builtin_constant_p (size) &amp;&amp; __builtin_constant_p (n)    \
+<span class="lineNum">     147 </span>                :                    &amp;&amp; (size_t) (size) * (size_t) (n) &lt;= 8                  \
+<span class="lineNum">     148 </span>                :                    &amp;&amp; (size_t) (size) != 0)                                   \
+<span class="lineNum">     149 </span>                :                   ? ({ char *__ptr = (char *) (ptr);                          \
+<span class="lineNum">     150 </span>                :                        FILE *__stream = (stream);                             \
+<span class="lineNum">     151 </span>                :                        size_t __cnt;                                          \
+<span class="lineNum">     152 </span>                :                        for (__cnt = (size_t) (size) * (size_t) (n);           \
+<span class="lineNum">     153 </span>                :                             __cnt &gt; 0; --__cnt)                                    \
+<span class="lineNum">     154 </span>                :                          {                                                    \
+<span class="lineNum">     155 </span>                :                            int __c = _IO_getc_unlocked (__stream);            \
+<span class="lineNum">     156 </span>                :                            if (__c == EOF)                                    \
+<span class="lineNum">     157 </span>                :                              break;                                           \
+<span class="lineNum">     158 </span>                :                            *__ptr++ = __c;                                    \
+<span class="lineNum">     159 </span>                :                          }                                                    \
+<span class="lineNum">     160 </span>                :                        ((size_t) (size) * (size_t) (n) - __cnt)               \
+<span class="lineNum">     161 </span>                :                         / (size_t) (size); })                                 \
+<span class="lineNum">     162 </span>                :                   : (((__builtin_constant_p (size) &amp;&amp; (size_t) (size) == 0)   \
+<span class="lineNum">     163 </span>                :                       || (__builtin_constant_p (n) &amp;&amp; (size_t) (n) == 0))     \
+<span class="lineNum">     164 </span>                :                         /* Evaluate all parameters once.  */                  \
+<span class="lineNum">     165 </span>                :                      ? ((void) (ptr), (void) (stream), (void) (size),         \
+<span class="lineNum">     166 </span>                :                         (void) (n), (size_t) 0)                               \
+<span class="lineNum">     167 </span>                :                      : fread_unlocked (ptr, size, n, stream))))
+<span class="lineNum">     168 </span>                : 
+<span class="lineNum">     169 </span>                : # define fwrite_unlocked(ptr, size, n, stream) \
+<span class="lineNum">     170 </span>                :   (__extension__ ((__builtin_constant_p (size) &amp;&amp; __builtin_constant_p (n)    \
+<span class="lineNum">     171 </span>                :                    &amp;&amp; (size_t) (size) * (size_t) (n) &lt;= 8                  \
+<span class="lineNum">     172 </span>                :                    &amp;&amp; (size_t) (size) != 0)                                   \
+<span class="lineNum">     173 </span>                :                   ? ({ const char *__ptr = (const char *) (ptr);              \
+<span class="lineNum">     174 </span>                :                        FILE *__stream = (stream);                             \
+<span class="lineNum">     175 </span>                :                        size_t __cnt;                                          \
+<span class="lineNum">     176 </span>                :                        for (__cnt = (size_t) (size) * (size_t) (n);           \
+<span class="lineNum">     177 </span>                :                             __cnt &gt; 0; --__cnt)                                    \
+<span class="lineNum">     178 </span>                :                          if (_IO_putc_unlocked (*__ptr++, __stream) == EOF)   \
+<span class="lineNum">     179 </span>                :                            break;                                             \
+<span class="lineNum">     180 </span>                :                        ((size_t) (size) * (size_t) (n) - __cnt)               \
+<span class="lineNum">     181 </span>                :                         / (size_t) (size); })                                 \
+<span class="lineNum">     182 </span>                :                   : (((__builtin_constant_p (size) &amp;&amp; (size_t) (size) == 0)   \
+<span class="lineNum">     183 </span>                :                       || (__builtin_constant_p (n) &amp;&amp; (size_t) (n) == 0))     \
+<span class="lineNum">     184 </span>                :                         /* Evaluate all parameters once.  */                  \
+<span class="lineNum">     185 </span>                :                      ? ((void) (ptr), (void) (stream), (void) (size),         \
+<span class="lineNum">     186 </span>                :                         (void) (n), (size_t) 0)                               \
+<span class="lineNum">     187 </span>                :                      : fwrite_unlocked (ptr, size, n, stream))))
+<span class="lineNum">     188 </span>                : #endif
+<span class="lineNum">     189 </span>                : 
+<span class="lineNum">     190 </span>                : /* Define helper macro.  */
+<span class="lineNum">     191 </span>                : #undef __STDIO_INLINE
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+  <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LTP GCOV extension version 1.6</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

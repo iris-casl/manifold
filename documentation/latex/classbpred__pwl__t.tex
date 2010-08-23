@@ -1,0 +1,241 @@
+\section{bpred\_\-pwl\_\-t Class Reference}
+\label{classbpred__pwl__t}\index{bpred\_\-pwl\_\-t@{bpred\_\-pwl\_\-t}}
+Inheritance diagram for bpred\_\-pwl\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classbpred__pwl__t__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for bpred\_\-pwl\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classbpred__pwl__t__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class {\bf bpred\_\-pwl\_\-sc\_\-t}
+\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf bpred\_\-pwl\_\-t} (char $\ast$const arg\_\-name, const int arg\_\-bht\_\-size, const int arg\_\-history\_\-length, const int arg\_\-top\_\-size, const int arg\_\-pc\_\-bits)
+\item 
+{\bf $\sim$bpred\_\-pwl\_\-t} ()
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+int {\bf pc\_\-bits}
+\item 
+int {\bf pc\_\-mask}
+\item 
+int {\bf bht\_\-size}
+\item 
+int {\bf bht\_\-mask}
+\item 
+qword\_\-t $\ast$ {\bf bht}
+\item 
+int {\bf top\_\-size}
+\item 
+int {\bf top\_\-mask}
+\item 
+short $\ast$$\ast$ {\bf top}
+\item 
+int {\bf weight\_\-width}
+\item 
+int {\bf weight\_\-max}
+\item 
+int {\bf weight\_\-min}
+\item 
+int {\bf theta}
+\item 
+{\bf md\_\-addr\_\-t} {\bf path} [MAX\_\-PATHNEURAL\_\-PATH]
+\item 
+int {\bf path\_\-head}
+\item 
+int {\bf history\_\-length}
+\item 
+qword\_\-t {\bf history\_\-mask}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 24 of file bpred-pwl.cpp.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{bpred\_\-pwl\_\-t@{bpred\_\-pwl\_\-t}!bpred\_\-pwl\_\-t@{bpred\_\-pwl\_\-t}}
+\index{bpred\_\-pwl\_\-t@{bpred\_\-pwl\_\-t}!bpred_pwl_t@{bpred\_\-pwl\_\-t}}
+\subsubsection[{bpred\_\-pwl\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}bpred\_\-pwl\_\-t::bpred\_\-pwl\_\-t (char $\ast$const  {\em arg\_\-name}, \/  const int {\em arg\_\-bht\_\-size}, \/  const int {\em arg\_\-history\_\-length}, \/  const int {\em arg\_\-top\_\-size}, \/  const int {\em arg\_\-pc\_\-bits})\hspace{0.3cm}{\tt  [inline]}}\label{classbpred__pwl__t_169a553dbedb4e57fcc558c731463185}
+
+
+
+
+Definition at line 66 of file bpred-pwl.cpp.
+
+References bht, bht\_\-mask, bht\_\-size, bpred\_\-dir\_\-t::bits, CHECK\_\-NNEG, CHECK\_\-PPOW2, COMPONENT\_\-NAME, fatal(), history\_\-length, history\_\-mask, bpred\_\-dir\_\-t::init(), log\_\-base2(), MAX\_\-PATHNEURAL\_\-PATH, bpred\_\-dir\_\-t::name, path, path\_\-head, pc\_\-bits, pc\_\-mask, theta, top, top\_\-mask, top\_\-size, bpred\_\-dir\_\-t::type, weight\_\-max, weight\_\-min, and weight\_\-width.\index{bpred\_\-pwl\_\-t@{bpred\_\-pwl\_\-t}!$\sim$bpred\_\-pwl\_\-t@{$\sim$bpred\_\-pwl\_\-t}}
+\index{$\sim$bpred\_\-pwl\_\-t@{$\sim$bpred\_\-pwl\_\-t}!bpred_pwl_t@{bpred\_\-pwl\_\-t}}
+\subsubsection[{$\sim$bpred\_\-pwl\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}bpred\_\-pwl\_\-t::$\sim$bpred\_\-pwl\_\-t ()\hspace{0.3cm}{\tt  [inline]}}\label{classbpred__pwl__t_a8af41a3de283894717d23b1211613fc}
+
+
+
+
+Definition at line 133 of file bpred-pwl.cpp.
+
+References bht, top, and top\_\-size.
+
+\subsection{Member Data Documentation}
+\index{bpred\_\-pwl\_\-t@{bpred\_\-pwl\_\-t}!bht@{bht}}
+\index{bht@{bht}!bpred_pwl_t@{bpred\_\-pwl\_\-t}}
+\subsubsection[{bht}]{\setlength{\rightskip}{0pt plus 5cm}qword\_\-t$\ast$ {\bf bpred\_\-pwl\_\-t::bht}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pwl__t_7cd945c0c5034e09ff65f1b602d70c8b}
+
+
+
+
+Definition at line 48 of file bpred-pwl.cpp.
+
+Referenced by bpred\_\-pwl\_\-t(), and $\sim$bpred\_\-pwl\_\-t().\index{bpred\_\-pwl\_\-t@{bpred\_\-pwl\_\-t}!bht\_\-mask@{bht\_\-mask}}
+\index{bht\_\-mask@{bht\_\-mask}!bpred_pwl_t@{bpred\_\-pwl\_\-t}}
+\subsubsection[{bht\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-pwl\_\-t::bht\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pwl__t_5e4a06b19d7a490f05aeaac3caef91f9}
+
+
+
+
+Definition at line 47 of file bpred-pwl.cpp.
+
+Referenced by bpred\_\-pwl\_\-t().\index{bpred\_\-pwl\_\-t@{bpred\_\-pwl\_\-t}!bht\_\-size@{bht\_\-size}}
+\index{bht\_\-size@{bht\_\-size}!bpred_pwl_t@{bpred\_\-pwl\_\-t}}
+\subsubsection[{bht\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-pwl\_\-t::bht\_\-size}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pwl__t_708682e0901ebd4d6433367c741e933f}
+
+
+
+
+Definition at line 46 of file bpred-pwl.cpp.
+
+Referenced by bpred\_\-pwl\_\-t().\index{bpred\_\-pwl\_\-t@{bpred\_\-pwl\_\-t}!history\_\-length@{history\_\-length}}
+\index{history\_\-length@{history\_\-length}!bpred_pwl_t@{bpred\_\-pwl\_\-t}}
+\subsubsection[{history\_\-length}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-pwl\_\-t::history\_\-length}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pwl__t_dadeb4229d73084659bc2ecba3952094}
+
+
+
+
+Definition at line 60 of file bpred-pwl.cpp.
+
+Referenced by bpred\_\-pwl\_\-t().\index{bpred\_\-pwl\_\-t@{bpred\_\-pwl\_\-t}!history\_\-mask@{history\_\-mask}}
+\index{history\_\-mask@{history\_\-mask}!bpred_pwl_t@{bpred\_\-pwl\_\-t}}
+\subsubsection[{history\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}qword\_\-t {\bf bpred\_\-pwl\_\-t::history\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pwl__t_08e24933aa268534fa5369cb119e138f}
+
+
+
+
+Definition at line 61 of file bpred-pwl.cpp.
+
+Referenced by bpred\_\-pwl\_\-t().\index{bpred\_\-pwl\_\-t@{bpred\_\-pwl\_\-t}!path@{path}}
+\index{path@{path}!bpred_pwl_t@{bpred\_\-pwl\_\-t}}
+\subsubsection[{path}]{\setlength{\rightskip}{0pt plus 5cm}{\bf md\_\-addr\_\-t} {\bf bpred\_\-pwl\_\-t::path}[MAX\_\-PATHNEURAL\_\-PATH]\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pwl__t_252614443b2d97a574153dedd7f2ec71}
+
+
+
+
+Definition at line 57 of file bpred-pwl.cpp.
+
+Referenced by bpred\_\-pwl\_\-t().\index{bpred\_\-pwl\_\-t@{bpred\_\-pwl\_\-t}!path\_\-head@{path\_\-head}}
+\index{path\_\-head@{path\_\-head}!bpred_pwl_t@{bpred\_\-pwl\_\-t}}
+\subsubsection[{path\_\-head}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-pwl\_\-t::path\_\-head}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pwl__t_62b4d523d885300aa7b5d9e944dd4d7f}
+
+
+
+
+Definition at line 58 of file bpred-pwl.cpp.
+
+Referenced by bpred\_\-pwl\_\-t().\index{bpred\_\-pwl\_\-t@{bpred\_\-pwl\_\-t}!pc\_\-bits@{pc\_\-bits}}
+\index{pc\_\-bits@{pc\_\-bits}!bpred_pwl_t@{bpred\_\-pwl\_\-t}}
+\subsubsection[{pc\_\-bits}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-pwl\_\-t::pc\_\-bits}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pwl__t_5109178c5d0a673face4a88ea44d7fca}
+
+
+
+
+Definition at line 43 of file bpred-pwl.cpp.
+
+Referenced by bpred\_\-pwl\_\-t().\index{bpred\_\-pwl\_\-t@{bpred\_\-pwl\_\-t}!pc\_\-mask@{pc\_\-mask}}
+\index{pc\_\-mask@{pc\_\-mask}!bpred_pwl_t@{bpred\_\-pwl\_\-t}}
+\subsubsection[{pc\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-pwl\_\-t::pc\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pwl__t_57e3437e075a3f0444cf16a88995183b}
+
+
+
+
+Definition at line 44 of file bpred-pwl.cpp.
+
+Referenced by bpred\_\-pwl\_\-t().\index{bpred\_\-pwl\_\-t@{bpred\_\-pwl\_\-t}!theta@{theta}}
+\index{theta@{theta}!bpred_pwl_t@{bpred\_\-pwl\_\-t}}
+\subsubsection[{theta}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-pwl\_\-t::theta}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pwl__t_9813738942864cc854c51f17a04e2711}
+
+
+
+
+Definition at line 55 of file bpred-pwl.cpp.
+
+Referenced by bpred\_\-pwl\_\-t().\index{bpred\_\-pwl\_\-t@{bpred\_\-pwl\_\-t}!top@{top}}
+\index{top@{top}!bpred_pwl_t@{bpred\_\-pwl\_\-t}}
+\subsubsection[{top}]{\setlength{\rightskip}{0pt plus 5cm}short$\ast$$\ast$ {\bf bpred\_\-pwl\_\-t::top}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pwl__t_bfb9b90d407efc7d245b7195f618add5}
+
+
+
+
+Definition at line 51 of file bpred-pwl.cpp.
+
+Referenced by bpred\_\-pwl\_\-t(), and $\sim$bpred\_\-pwl\_\-t().\index{bpred\_\-pwl\_\-t@{bpred\_\-pwl\_\-t}!top\_\-mask@{top\_\-mask}}
+\index{top\_\-mask@{top\_\-mask}!bpred_pwl_t@{bpred\_\-pwl\_\-t}}
+\subsubsection[{top\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-pwl\_\-t::top\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pwl__t_fda8e6872beed41ece358fe9b1df3743}
+
+
+
+
+Definition at line 50 of file bpred-pwl.cpp.
+
+Referenced by bpred\_\-pwl\_\-t().\index{bpred\_\-pwl\_\-t@{bpred\_\-pwl\_\-t}!top\_\-size@{top\_\-size}}
+\index{top\_\-size@{top\_\-size}!bpred_pwl_t@{bpred\_\-pwl\_\-t}}
+\subsubsection[{top\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-pwl\_\-t::top\_\-size}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pwl__t_8c546c567fc645bc3ff4bb9b728ba920}
+
+
+
+
+Definition at line 49 of file bpred-pwl.cpp.
+
+Referenced by bpred\_\-pwl\_\-t(), and $\sim$bpred\_\-pwl\_\-t().\index{bpred\_\-pwl\_\-t@{bpred\_\-pwl\_\-t}!weight\_\-max@{weight\_\-max}}
+\index{weight\_\-max@{weight\_\-max}!bpred_pwl_t@{bpred\_\-pwl\_\-t}}
+\subsubsection[{weight\_\-max}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-pwl\_\-t::weight\_\-max}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pwl__t_5fcb694facf46118e00d5d2cbc7a78c9}
+
+
+
+
+Definition at line 53 of file bpred-pwl.cpp.
+
+Referenced by bpred\_\-pwl\_\-t().\index{bpred\_\-pwl\_\-t@{bpred\_\-pwl\_\-t}!weight\_\-min@{weight\_\-min}}
+\index{weight\_\-min@{weight\_\-min}!bpred_pwl_t@{bpred\_\-pwl\_\-t}}
+\subsubsection[{weight\_\-min}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-pwl\_\-t::weight\_\-min}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pwl__t_364073802837aeecbe895a5bc95c1747}
+
+
+
+
+Definition at line 54 of file bpred-pwl.cpp.
+
+Referenced by bpred\_\-pwl\_\-t().\index{bpred\_\-pwl\_\-t@{bpred\_\-pwl\_\-t}!weight\_\-width@{weight\_\-width}}
+\index{weight\_\-width@{weight\_\-width}!bpred_pwl_t@{bpred\_\-pwl\_\-t}}
+\subsubsection[{weight\_\-width}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-pwl\_\-t::weight\_\-width}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pwl__t_27efd9866d95d093da339bacb4af1676}
+
+
+
+
+Definition at line 52 of file bpred-pwl.cpp.
+
+Referenced by bpred\_\-pwl\_\-t().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf bpred-pwl.cpp}\end{CompactItemize}

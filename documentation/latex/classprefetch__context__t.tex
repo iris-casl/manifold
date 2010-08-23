@@ -1,0 +1,195 @@
+\section{prefetch\_\-context\_\-t Class Reference}
+\label{classprefetch__context__t}\index{prefetch\_\-context\_\-t@{prefetch\_\-context\_\-t}}
+Inheritance diagram for prefetch\_\-context\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classprefetch__context__t__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for prefetch\_\-context\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classprefetch__context__t__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+struct {\bf prefetch\_\-context\_\-table\_\-t}
+\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf prefetch\_\-context\_\-t} (struct {\bf cache\_\-t} $\ast$arg\_\-cp, int arg\_\-num\_\-entries, int arg\_\-tag\_\-bits, int arg\_\-next\_\-bits, int arg\_\-conf\_\-bits, int arg\_\-u\_\-bits)
+\item 
+{\bf $\sim$prefetch\_\-context\_\-t} ()
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+int {\bf num\_\-entries}
+\item 
+int {\bf mask}
+\item 
+int {\bf tag\_\-bits}
+\item 
+int {\bf next\_\-bits}
+\item 
+int {\bf conf\_\-bits}
+\item 
+int {\bf u\_\-bits}
+\item 
+{\bf md\_\-paddr\_\-t} {\bf tag\_\-mask}
+\item 
+{\bf md\_\-paddr\_\-t} {\bf next\_\-mask}
+\item 
+int {\bf conf\_\-max}
+\item 
+int {\bf u\_\-max}
+\item 
+struct {\bf prefetch\_\-context\_\-t::prefetch\_\-context\_\-table\_\-t} $\ast$ {\bf table}
+\item 
+{\bf md\_\-paddr\_\-t} {\bf last\_\-paddr}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 22 of file prefetch-context.cpp.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{prefetch\_\-context\_\-t@{prefetch\_\-context\_\-t}!prefetch\_\-context\_\-t@{prefetch\_\-context\_\-t}}
+\index{prefetch\_\-context\_\-t@{prefetch\_\-context\_\-t}!prefetch_context_t@{prefetch\_\-context\_\-t}}
+\subsubsection[{prefetch\_\-context\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}prefetch\_\-context\_\-t::prefetch\_\-context\_\-t (struct {\bf cache\_\-t} $\ast$ {\em arg\_\-cp}, \/  int {\em arg\_\-num\_\-entries}, \/  int {\em arg\_\-tag\_\-bits}, \/  int {\em arg\_\-next\_\-bits}, \/  int {\em arg\_\-conf\_\-bits}, \/  int {\em arg\_\-u\_\-bits})\hspace{0.3cm}{\tt  [inline]}}\label{classprefetch__context__t_02c961d12e2907c5d83e9db53ec8c51e}
+
+
+
+
+Definition at line 50 of file prefetch-context.cpp.
+
+References prefetch\_\-t::bits, CHECK\_\-PPOW2, conf\_\-bits, conf\_\-max, prefetch\_\-t::cp, fatal(), prefetch\_\-t::init(), last\_\-paddr, log\_\-base2(), mask, cache\_\-t::name, next\_\-bits, next\_\-mask, num\_\-entries, table, tag\_\-bits, tag\_\-mask, prefetch\_\-t::type, u\_\-bits, and u\_\-max.\index{prefetch\_\-context\_\-t@{prefetch\_\-context\_\-t}!$\sim$prefetch\_\-context\_\-t@{$\sim$prefetch\_\-context\_\-t}}
+\index{$\sim$prefetch\_\-context\_\-t@{$\sim$prefetch\_\-context\_\-t}!prefetch_context_t@{prefetch\_\-context\_\-t}}
+\subsubsection[{$\sim$prefetch\_\-context\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}prefetch\_\-context\_\-t::$\sim$prefetch\_\-context\_\-t ()\hspace{0.3cm}{\tt  [inline]}}\label{classprefetch__context__t_a09d2e4abb8821736d764c2f8bcabeaf}
+
+
+
+
+Definition at line 91 of file prefetch-context.cpp.
+
+References table.
+
+\subsection{Member Data Documentation}
+\index{prefetch\_\-context\_\-t@{prefetch\_\-context\_\-t}!conf\_\-bits@{conf\_\-bits}}
+\index{conf\_\-bits@{conf\_\-bits}!prefetch_context_t@{prefetch\_\-context\_\-t}}
+\subsubsection[{conf\_\-bits}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf prefetch\_\-context\_\-t::conf\_\-bits}\hspace{0.3cm}{\tt  [protected]}}\label{classprefetch__context__t_4ab2a40424f7bf711d2e02c66632ed5e}
+
+
+
+
+Definition at line 30 of file prefetch-context.cpp.
+
+Referenced by prefetch\_\-context\_\-t().\index{prefetch\_\-context\_\-t@{prefetch\_\-context\_\-t}!conf\_\-max@{conf\_\-max}}
+\index{conf\_\-max@{conf\_\-max}!prefetch_context_t@{prefetch\_\-context\_\-t}}
+\subsubsection[{conf\_\-max}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf prefetch\_\-context\_\-t::conf\_\-max}\hspace{0.3cm}{\tt  [protected]}}\label{classprefetch__context__t_e8834f83c7052d436a5878c3ffc39b9e}
+
+
+
+
+Definition at line 35 of file prefetch-context.cpp.
+
+Referenced by prefetch\_\-context\_\-t().\index{prefetch\_\-context\_\-t@{prefetch\_\-context\_\-t}!last\_\-paddr@{last\_\-paddr}}
+\index{last\_\-paddr@{last\_\-paddr}!prefetch_context_t@{prefetch\_\-context\_\-t}}
+\subsubsection[{last\_\-paddr}]{\setlength{\rightskip}{0pt plus 5cm}{\bf md\_\-paddr\_\-t} {\bf prefetch\_\-context\_\-t::last\_\-paddr}\hspace{0.3cm}{\tt  [protected]}}\label{classprefetch__context__t_cd0c9105eec8027fc27bd283c7d64953}
+
+
+
+
+Definition at line 45 of file prefetch-context.cpp.
+
+Referenced by prefetch\_\-context\_\-t().\index{prefetch\_\-context\_\-t@{prefetch\_\-context\_\-t}!mask@{mask}}
+\index{mask@{mask}!prefetch_context_t@{prefetch\_\-context\_\-t}}
+\subsubsection[{mask}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf prefetch\_\-context\_\-t::mask}\hspace{0.3cm}{\tt  [protected]}}\label{classprefetch__context__t_9b6c85cc052324ac0cec9083ae56a9c9}
+
+
+
+
+Definition at line 26 of file prefetch-context.cpp.
+
+Referenced by prefetch\_\-context\_\-t().\index{prefetch\_\-context\_\-t@{prefetch\_\-context\_\-t}!next\_\-bits@{next\_\-bits}}
+\index{next\_\-bits@{next\_\-bits}!prefetch_context_t@{prefetch\_\-context\_\-t}}
+\subsubsection[{next\_\-bits}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf prefetch\_\-context\_\-t::next\_\-bits}\hspace{0.3cm}{\tt  [protected]}}\label{classprefetch__context__t_bf51d0aad1f7cf1a844c307ddc2f5681}
+
+
+
+
+Definition at line 29 of file prefetch-context.cpp.
+
+Referenced by prefetch\_\-context\_\-t().\index{prefetch\_\-context\_\-t@{prefetch\_\-context\_\-t}!next\_\-mask@{next\_\-mask}}
+\index{next\_\-mask@{next\_\-mask}!prefetch_context_t@{prefetch\_\-context\_\-t}}
+\subsubsection[{next\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}{\bf md\_\-paddr\_\-t} {\bf prefetch\_\-context\_\-t::next\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classprefetch__context__t_0a7b9c67ba7033dc80d823a6a51840b9}
+
+
+
+
+Definition at line 34 of file prefetch-context.cpp.
+
+Referenced by prefetch\_\-context\_\-t().\index{prefetch\_\-context\_\-t@{prefetch\_\-context\_\-t}!num\_\-entries@{num\_\-entries}}
+\index{num\_\-entries@{num\_\-entries}!prefetch_context_t@{prefetch\_\-context\_\-t}}
+\subsubsection[{num\_\-entries}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf prefetch\_\-context\_\-t::num\_\-entries}\hspace{0.3cm}{\tt  [protected]}}\label{classprefetch__context__t_95910d7d84b697a5e2ed6a7fcf03f3e5}
+
+
+
+
+Definition at line 25 of file prefetch-context.cpp.
+
+Referenced by prefetch\_\-context\_\-t().\index{prefetch\_\-context\_\-t@{prefetch\_\-context\_\-t}!table@{table}}
+\index{table@{table}!prefetch_context_t@{prefetch\_\-context\_\-t}}
+\subsubsection[{table}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf prefetch\_\-context\_\-t::prefetch\_\-context\_\-table\_\-t} $\ast$  {\bf prefetch\_\-context\_\-t::table}\hspace{0.3cm}{\tt  [protected]}}\label{classprefetch__context__t_1aaf08df91883c1208a7ffc3f83b8f12}
+
+
+
+
+Referenced by prefetch\_\-context\_\-t(), and $\sim$prefetch\_\-context\_\-t().\index{prefetch\_\-context\_\-t@{prefetch\_\-context\_\-t}!tag\_\-bits@{tag\_\-bits}}
+\index{tag\_\-bits@{tag\_\-bits}!prefetch_context_t@{prefetch\_\-context\_\-t}}
+\subsubsection[{tag\_\-bits}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf prefetch\_\-context\_\-t::tag\_\-bits}\hspace{0.3cm}{\tt  [protected]}}\label{classprefetch__context__t_d6488174643788fb51b5646439ab3a3d}
+
+
+
+
+Definition at line 28 of file prefetch-context.cpp.
+
+Referenced by prefetch\_\-context\_\-t().\index{prefetch\_\-context\_\-t@{prefetch\_\-context\_\-t}!tag\_\-mask@{tag\_\-mask}}
+\index{tag\_\-mask@{tag\_\-mask}!prefetch_context_t@{prefetch\_\-context\_\-t}}
+\subsubsection[{tag\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}{\bf md\_\-paddr\_\-t} {\bf prefetch\_\-context\_\-t::tag\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classprefetch__context__t_89712d3e4c262bd51439c85f18f58a89}
+
+
+
+
+Definition at line 33 of file prefetch-context.cpp.
+
+Referenced by prefetch\_\-context\_\-t().\index{prefetch\_\-context\_\-t@{prefetch\_\-context\_\-t}!u\_\-bits@{u\_\-bits}}
+\index{u\_\-bits@{u\_\-bits}!prefetch_context_t@{prefetch\_\-context\_\-t}}
+\subsubsection[{u\_\-bits}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf prefetch\_\-context\_\-t::u\_\-bits}\hspace{0.3cm}{\tt  [protected]}}\label{classprefetch__context__t_79119d8d7adde560772d8eb31777a182}
+
+
+
+
+Definition at line 31 of file prefetch-context.cpp.
+
+Referenced by prefetch\_\-context\_\-t().\index{prefetch\_\-context\_\-t@{prefetch\_\-context\_\-t}!u\_\-max@{u\_\-max}}
+\index{u\_\-max@{u\_\-max}!prefetch_context_t@{prefetch\_\-context\_\-t}}
+\subsubsection[{u\_\-max}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf prefetch\_\-context\_\-t::u\_\-max}\hspace{0.3cm}{\tt  [protected]}}\label{classprefetch__context__t_53c9e5fbdbb7768eb0e106c00e2285b9}
+
+
+
+
+Definition at line 36 of file prefetch-context.cpp.
+
+Referenced by prefetch\_\-context\_\-t().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf prefetch-context.cpp}\end{CompactItemize}

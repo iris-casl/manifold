@@ -1,0 +1,261 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>LCOV - iris.info - MemCtrl/addr_map.cc</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LTP GCOV extension - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+        <tr>
+          <td class="headerItem" width="20%">Current&nbsp;view:</td>
+          <td class="headerValue" width="80%" colspan=4><a href="../index.html">directory</a> - <a href="index.html">MemCtrl</a> - addr_map.cc</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Test:</td>
+          <td class="headerValue" width="80%" colspan=4>iris.info</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Date:</td>
+          <td class="headerValue" width="20%">2010-05-24</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Instrumented&nbsp;lines:</td>
+          <td class="headerValue" width="20%">30</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Code&nbsp;covered:</td>
+          <td class="headerValue" width="20%">86.7 %</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Executed&nbsp;lines:</td>
+          <td class="headerValue" width="20%">26</td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><pre class="source">
+<span class="lineNum">       1 </span>                : /*
+<span class="lineNum">       2 </span>                :  * =====================================================================================
+<span class="lineNum">       3 </span>                :  *
+<span class="lineNum">       4 </span>                :  *       Filename:  addr_map.cc
+<span class="lineNum">       5 </span>                :  *
+<span class="lineNum">       6 </span>                :  *    Description:  
+<span class="lineNum">       7 </span>                :  *
+<span class="lineNum">       8 </span>                :  *        Version:  1.0
+<span class="lineNum">       9 </span>                :  *        Created:  02/13/2010 03:01:17 PM
+<span class="lineNum">      10 </span>                :  *       Revision:  none
+<span class="lineNum">      11 </span>                :  *       Compiler:  gcc
+<span class="lineNum">      12 </span>                :  *
+<span class="lineNum">      13 </span>                :  *         Author:  SYED MINHAJ HASSAN
+<span class="lineNum">      14 </span>                :  *        Company:  Georgia Institute of Technology
+<span class="lineNum">      15 </span>                :  *
+<span class="lineNum">      16 </span>                :  * =====================================================================================
+<span class="lineNum">      17 </span>                :  */
+<span class="lineNum">      18 </span>                : 
+<span class="lineNum">      19 </span>                : #include &lt;math.h&gt;
+<span class="lineNum">      20 </span>                : #include &quot;addr_map.h&quot;
+<span class="lineNum">      21 </span>                : #include &quot;request_handler.h&quot;
+<span class="lineNum">      22 </span>                : 
+<span class="lineNum">      23 </span>                : using namespace std;
+<span class="lineNum">      24 </span>                : 
+<span class="lineNum">      25 </span>                : /*
+<span class="lineNum">      26 </span>                :  *--------------------------------------------------------------------------------------
+<span class="lineNum">      27 </span>                :  *       Class:  AddrMap
+<span class="lineNum">      28 </span>                :  *      Method:  AddrMap
+<span class="lineNum">      29 </span>                :  * Description:  constructor
+<span class="lineNum">      30 </span>                :  *--------------------------------------------------------------------------------------
+<span class="lineNum">      31 </span>                :  */
+<span class="lineNum">      32 </span>                : 
+<span class="lineNum">      33 </span><span class="lineCov">              8 : AddrMap::AddrMap()</span>
+<span class="lineNum">      34 </span>                : {
+<span class="lineNum">      35 </span>                :     
+<span class="lineNum">      36 </span><span class="lineCov">              8 : }</span>
+<span class="lineNum">      37 </span>                : 
+<span class="lineNum">      38 </span>                : /*
+<span class="lineNum">      39 </span>                :  *--------------------------------------------------------------------------------------
+<span class="lineNum">      40 </span>                :  *       Class:  AddrMap
+<span class="lineNum">      41 </span>                :  *      Method:  ~AddrMap
+<span class="lineNum">      42 </span>                :  * Description:  destructor
+<span class="lineNum">      43 </span>                :  *--------------------------------------------------------------------------------------
+<span class="lineNum">      44 </span>                :  */
+<span class="lineNum">      45 </span><span class="lineNoCov">              0 : AddrMap::~AddrMap()</span>
+<span class="lineNum">      46 </span>                : {
+<span class="lineNum">      47 </span>                : 
+<span class="lineNum">      48 </span><span class="lineNoCov">              0 : }</span>
+<span class="lineNum">      49 </span>                : 
+<span class="lineNum">      50 </span>                : /*
+<span class="lineNum">      51 </span>                :  *--------------------------------------------------------------------------------------
+<span class="lineNum">      52 </span>                :  *       Class:  AddrMap
+<span class="lineNum">      53 </span>                :  *      Method:  process_event‘RankHandler
+<span class="lineNum">      54 </span>                :  * Description:  
+<span class="lineNum">      55 </span>                :  *--------------------------------------------------------------------------------------
+<span class="lineNum">      56 </span>                :  */
+<span class="lineNum">      57 </span><span class="lineCov">         153049 : void AddrMap::process_event(IrisEvent* e)</span>
+<span class="lineNum">      58 </span>                : {       
+<span class="lineNum">      59 </span><span class="lineCov">         153049 :     Request *req = new Request();</span>
+<span class="lineNum">      60 </span><span class="lineCov">         153049 :     IrisEvent *event = new IrisEvent();</span>
+<span class="lineNum">      61 </span><span class="lineCov">         153049 :     *req = ((RequestHandler*)parent)-&gt;pipeline;</span>
+<span class="lineNum">      62 </span><span class="lineCov">         153049 :     map_addr(req);      </span>
+<span class="lineNum">      63 </span><span class="lineCov">         153049 :     int bufferId = ((RequestHandler*)parent)-&gt;chan[req-&gt;channelNo].rank[req-&gt;rankNo].bank[req-&gt;bankNo].bufferId;</span>
+<span class="lineNum">      64 </span><span class="lineCov">         153049 :     req-&gt;rbufferInsertionTime = Simulator::Now()+1;</span>
+<span class="lineNum">      65 </span><span class="lineCov">         153049 :     ((RequestHandler*)parent)-&gt;chan[req-&gt;channelNo].rank[req-&gt;rankNo].rbuffer[bufferId].push_back(*req);</span>
+<span class="lineNum">      66 </span><span class="lineCov">         153049 :     event-&gt;src = (Component*)this;</span>
+<span class="lineNum">      67 </span><span class="lineCov">         153049 :     event-&gt;dst = (Component*)(&amp;((RequestHandler*)parent)-&gt;chan[req-&gt;channelNo].rank[req-&gt;rankNo].bank[req-&gt;bankNo]);</span>
+<span class="lineNum">      68 </span><span class="lineCov">         153049 :     event-&gt;type = START;</span>
+<span class="lineNum">      69 </span>                : #ifdef DEEP_DEBUG
+<span class="lineNum">      70 </span>                : cout &lt;&lt; dec &lt;&lt; Simulator::Now() &lt;&lt; &quot;: &quot; &lt;&lt; hex &lt;&lt; req-&gt;address &lt;&lt; &quot;: Now I am in addrMap with channel &quot; &lt;&lt; dec &lt;&lt; req-&gt;channelNo &lt;&lt; &quot;, rank &quot; &lt;&lt; req-&gt;rankNo &lt;&lt; &quot;, bank &quot; &lt;&lt; req-&gt;bankNo &lt;&lt; &quot;, row &quot; &lt;&lt; req-&gt;rowNo &lt;&lt; &quot;, column &quot; &lt;&lt; req-&gt;columnNo &lt;&lt; endl;
+<span class="lineNum">      71 </span>                : #endif
+<span class="lineNum">      72 </span>                : 
+<span class="lineNum">      73 </span><span class="lineCov">         153049 :     Simulator::Schedule(Simulator::Now()+1, &amp;BankHandler::process_event, (BankHandler*)event-&gt;dst, event);       </span>
+<span class="lineNum">      74 </span>                :     
+<span class="lineNum">      75 </span>                :  //   cout &lt;&lt; ((RequestHandler*)parent)-&gt;chan[req-&gt;channelNo].rank[req-&gt;rankNo].rbuffer[req-&gt;bankNo].size() &lt;&lt; endl;
+<span class="lineNum">      76 </span><span class="lineCov">         153049 :     if (((RequestHandler*)parent)-&gt;chan[req-&gt;channelNo].rank[req-&gt;rankNo].bank[req-&gt;bankNo].IsBufferFull())</span>
+<span class="lineNum">      77 </span>                :     {
+<span class="lineNum">      78 </span><span class="lineCov">          15626 :         ((RequestHandler*)parent)-&gt;oneBufferFull = true;</span>
+<span class="lineNum">      79 </span>                : #ifdef DEEP_DEBUG
+<span class="lineNum">      80 </span>                :         cout &lt;&lt; &quot;Now the buffer is full&quot; &lt;&lt; endl;
+<span class="lineNum">      81 </span>                : #endif  
+<span class="lineNum">      82 </span>                :     }   
+<span class="lineNum">      83 </span><span class="lineCov">         153049 :     delete req; </span>
+<span class="lineNum">      84 </span><span class="lineCov">         153049 :     delete e;</span>
+<span class="lineNum">      85 </span><span class="lineCov">         153049 : }</span>
+<span class="lineNum">      86 </span>                : 
+<span class="lineNum">      87 </span><span class="lineNoCov">              0 : std::string AddrMap::toString()</span>
+<span class="lineNum">      88 </span>                : {
+<span class="lineNum">      89 </span><span class="lineNoCov">              0 :         return &quot;AddrMap&quot;;</span>
+<span class="lineNum">      90 </span>                : }
+<span class="lineNum">      91 </span>                : 
+<span class="lineNum">      92 </span><span class="lineCov">         153049 : void AddrMap::map_addr(Request* req)</span>
+<span class="lineNum">      93 </span>                : {
+<span class="lineNum">      94 </span>                : //      unsigned long long int temp;
+<span class="lineNum">      95 </span>                : //      unsigned long long int temp2;                                                                           
+<span class="lineNum">      96 </span>                : 
+<span class="lineNum">      97 </span>                :         //TODO needs to set this
+<span class="lineNum">      98 </span><span class="lineCov">         153049 :         req-&gt;channelNo = ( req-&gt;address &gt;&gt; ((Addr_t)log2(DRAM_SIZE)-(Addr_t)log2(NO_OF_CHANNELS)) ) &amp; (NO_OF_CHANNELS-1);       </span>
+<span class="lineNum">      99 </span>                :                                                                                         // Masking higher bits to find channel No;
+<span class="lineNum">     100 </span>                : //      req-&gt;rankNo = ( req-&gt;address &gt;&gt; ((int)log2(DRAM_SIZE)-(int)log2(NO_OF_RANKS)) ) &amp; (NO_OF_RANKS-1);      
+<span class="lineNum">     101 </span>                :                                                                                         // Masking higher bits to find Rank No.
+<span class="lineNum">     102 </span>                : 
+<span class="lineNum">     103 </span>                : #ifdef PAGE_INTERLEAVING                // equivalent to l:r:b:c:v      As defined by Bruce Jacob's book.   c:v = n:z
+<span class="lineNum">     104 </span>                : 
+<span class="lineNum">     105 </span><span class="lineCov">         153049 :         req-&gt;columnNo = (req-&gt;address &gt;&gt; (Addr_t)log2(COLUMN_SIZE)) &amp; (NO_OF_COLUMNS-1);// Masking lower bits to find Column No.</span>
+<span class="lineNum">     106 </span><span class="lineCov">         153049 :         req-&gt;bankNo = (req-&gt;address &gt;&gt; (Addr_t)log2(ROW_SIZE)) &amp; (NO_OF_BANKS-1);       // Masking the next b bits after page bits</span>
+<span class="lineNum">     107 </span><span class="lineCov">         153049 :         req-&gt;rowNo = ( req-&gt;address &gt;&gt; ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)) ) &amp; (NO_OF_ROWS-1);// Masking the next r bits  </span>
+<span class="lineNum">     108 </span><span class="lineCov">         153049 :         req-&gt;rankNo = ( req-&gt;address &gt;&gt; ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)+(Addr_t)log2(NO_OF_ROWS)) ) &amp; (NO_OF_RANKS-1);  </span>
+<span class="lineNum">     109 </span>                :                                                                                                         // Masking next l bits  
+<span class="lineNum">     110 </span>                : #endif
+<span class="lineNum">     111 </span>                : 
+<span class="lineNum">     112 </span>                : #ifdef PERMUTATION                      // equivalent to l:r:(b xor tlower):c:v
+<span class="lineNum">     113 </span>                : 
+<span class="lineNum">     114 </span>                :         Addr_t temp;
+<span class="lineNum">     115 </span>                :         Addr_t temp2;   
+<span class="lineNum">     116 </span>                :         req-&gt;columnNo = (req-&gt;address &gt;&gt; (Addr_t)log2(COLUMN_SIZE)) &amp; (NO_OF_COLUMNS-1);// Masking lower bits to find Column No.
+<span class="lineNum">     117 </span>                :         temp = (req-&gt;address &gt;&gt; (Addr_t)log2(ROW_SIZE)) &amp; (NO_OF_BANKS-1);                 // Masking the next b bits after page bits
+<span class="lineNum">     118 </span>                :         temp2 = (req-&gt;address &gt;&gt; ((Addr_t)log2(DRAM_SIZE)-TAG_BITS)) &amp; (NO_OF_BANKS-1); // Masking lower b bits of the tag
+<span class="lineNum">     119 </span>                :         req-&gt;bankNo = temp ^ temp2;  
+<span class="lineNum">     120 </span>                :         req-&gt;rowNo = ( req-&gt;address &gt;&gt; ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)) ) &amp; (NO_OF_ROWS-1);// Masking the next r bits  
+<span class="lineNum">     121 </span>                :         req-&gt;rankNo = ( req-&gt;address &gt;&gt; ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)+(Addr_t)log2(NO_OF_ROWS)) ) &amp; (NO_OF_RANKS-1);  
+<span class="lineNum">     122 </span>                :                                                                                                         // Masking next l bits  
+<span class="lineNum">     123 </span>                : #endif
+<span class="lineNum">     124 </span>                : 
+<span class="lineNum">     125 </span>                : #ifdef CACHELINE_INTERLEAVING           // equivalent to l:r:n:b:z      
+<span class="lineNum">     126 </span>                :         
+<span class="lineNum">     127 </span>                :         Addr_t temp;
+<span class="lineNum">     128 </span>                :         Addr_t temp2;   
+<span class="lineNum">     129 </span>                :         temp = (req-&gt;address &amp; (CACHE_BLOCK_SIZE-1)) &gt;&gt; (Addr_t)log2(COLUMN_SIZE);// Masking upper z bits only and leaving bits of the col
+<span class="lineNum">     130 </span>                :         req-&gt;bankNo = (req-&gt;address &gt;&gt; (Addr_t)log2(CACHE_BLOCK_SIZE)) &amp; (NO_OF_BANKS-1); // Masking the next b bits after cache block bits
+<span class="lineNum">     131 </span>                :         temp2 = ( req-&gt;address &gt;&gt; ((Addr_t)log2(CACHE_BLOCK_SIZE)+(Addr_t)log2(NO_OF_BANKS)) ) &amp; (BLOCKS_PER_ROW-1);// Masking next n bits 
+<span class="lineNum">     132 </span>                : //TODO I think this line is incorrect should be temp2 &lt;&lt; ((int)log2(CACHE_BLOCK_SIZE-1)-log2(COLUMN_SIZE)) | temp;
+<span class="lineNum">     133 </span>                :         req-&gt;columnNo = (temp2 &lt;&lt; ((Addr_t)log2(CACHE_BLOCK_SIZE)-(Addr_t)log2(COLUMN_SIZE))) | temp;
+<span class="lineNum">     134 </span>                : //      req-&gt;columnNo = (temp2 &gt;&gt; (CACHE_BLOCK_SIZE-1) ) | temp;
+<span class="lineNum">     135 </span>                :         req-&gt;rowNo = ( req-&gt;address &gt;&gt; ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)) ) &amp; (NO_OF_ROWS-1);// Masking the next r bits  
+<span class="lineNum">     136 </span>                :         req-&gt;rankNo = ( req-&gt;address &gt;&gt; ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)+(Addr_t)log2(NO_OF_ROWS)) ) &amp; (NO_OF_RANKS-1);  
+<span class="lineNum">     137 </span>                :                                                                                                         // Masking next l bits
+<span class="lineNum">     138 </span>                : #endif
+<span class="lineNum">     139 </span>                : 
+<span class="lineNum">     140 </span>                : #ifdef SWAPPING                                 // equivalent to l:(rupper:n:rlower):b:(rmiddle):z //(v+clower) n is put in lower tag bits
+<span class="lineNum">     141 </span>                :         
+<span class="lineNum">     142 </span>                :         unsigned short n = log2(BLOCKS_PER_ROW);                // n is a design parameter, should be changed to explore 
+<span class="lineNum">     143 </span>                :         Addr_t nMask = BLOCKS_PER_ROW-1;
+<span class="lineNum">     144 </span>                :         Addr_t colMask;
+<span class="lineNum">     145 </span>                :         Addr_t rowMask;
+<span class="lineNum">     146 </span>                :         Addr_t temp;
+<span class="lineNum">     147 </span>                :         Addr_t temp2;
+<span class="lineNum">     148 </span>                :         req-&gt;columnNo = (req-&gt;address &gt;&gt; (Addr_t)log2(COLUMN_SIZE)) &amp; (NO_OF_COLUMNS-1);        // Masking lower bits to find req-&gt;columnNo temporarily
+<span class="lineNum">     149 </span>                :         req-&gt;bankNo = (req-&gt;address &gt;&gt; (Addr_t)log2(ROW_SIZE)) &amp; (NO_OF_BANKS-1);       // Masking the next b bits after page bits
+<span class="lineNum">     150 </span>                :         req-&gt;rowNo = ( req-&gt;address &gt;&gt; ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)) ) &amp; (NO_OF_ROWS-1);  
+<span class="lineNum">     151 </span>                :                                                                         // Masking the next r bits to find req-&gt;rowNo temporarily
+<span class="lineNum">     152 </span>                :         //// Very ugly logic but it works ///////////
+<span class="lineNum">     153 </span>                :         temp = ((req-&gt;address &gt;&gt; ((Addr_t)log2(ROW_SIZE)-n)) &amp; nMask) &lt;&lt; ((Addr_t)log2(DRAM_SIZE)-TAG_BITS-(Addr_t)log2(ROW_SIZE)-(Addr_t)log2(NO_OF_BANKS));
+<span class="lineNum">     154 </span>                :         temp2 = ((req-&gt;address &gt;&gt; ((Addr_t)log2(DRAM_SIZE)-TAG_BITS)) &amp; nMask) &lt;&lt; ((Addr_t)log2(ROW_SIZE)-n); 
+<span class="lineNum">     155 </span>                :                                                                                 // Rip the required bits out from req-&gt;address
+<span class="lineNum">     156 </span>                :         cout &lt;&lt; hex &lt;&lt; temp &lt;&lt; &quot;        &quot; &lt;&lt; temp2 &lt;&lt; &quot;    &quot; &lt;&lt; req-&gt;rowNo &lt;&lt; &quot;   &quot; &lt;&lt; req-&gt;columnNo &lt;&lt; endl;
+<span class="lineNum">     157 </span>                :         colMask = nMask &lt;&lt; ((Addr_t)log2(ROW_SIZE)-n);            // Shift the mask to required bit position
+<span class="lineNum">     158 </span>                :         rowMask = nMask &lt;&lt; ((Addr_t)log2(DRAM_SIZE)-TAG_BITS-(Addr_t)log2(ROW_SIZE)-(Addr_t)log2(NO_OF_BANKS));   
+<span class="lineNum">     159 </span>                :         cout &lt;&lt; colMask &lt;&lt; &quot;  &quot; &lt;&lt;  rowMask &lt;&lt; endl;
+<span class="lineNum">     160 </span>                :         req-&gt;columnNo = (req-&gt;columnNo &amp; (~colMask)) | temp2; // Make the required bit position of column zero &amp; or with temp2
+<span class="lineNum">     161 </span>                :         req-&gt;columnNo = req-&gt;columnNo &gt;&gt; (Addr_t)log2(COLUMN_SIZE); // Remove the lower z bits from column no       
+<span class="lineNum">     162 </span>                :         req-&gt;rowNo = (req-&gt;rowNo &amp; (~rowMask)) | temp;
+<span class="lineNum">     163 </span>                :         req-&gt;rankNo = ( req-&gt;address &gt;&gt; ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)+(Addr_t)log2(NO_OF_ROWS)) ) &amp; (NO_OF_RANKS-1);  
+<span class="lineNum">     164 </span>                :                                                                                                         // Masking next l bits
+<span class="lineNum">     165 </span>                : #endif  
+<span class="lineNum">     166 </span>                : 
+<span class="lineNum">     167 </span>                : #ifdef GENERIC          // l:r:b:c:v    User should swap these around to find a good result
+<span class="lineNum">     168 </span>                : 
+<span class="lineNum">     169 </span>                : ///////////////////////////////// This is just to demonstrate how a mask should be created ////////////////////////////////////////
+<span class="lineNum">     170 </span>                :         Addr_t zbits = (req-&gt;address &amp; (CACHE_BLOCK_SIZE-1)); //&gt;&gt; (int)log2(COLUMN_SIZE); 
+<span class="lineNum">     171 </span>                :         Addr_t nbits = ( (req-&gt;address &gt;&gt; (Addr_t)log2(CACHE_BLOCK_SIZE)) &amp; (BLOCKS_PER_ROW-1) ) &lt;&lt; (Addr_t)log2(CACHE_BLOCK_SIZE);
+<span class="lineNum">     172 </span>                :         Addr_t bbits = ( (req-&gt;address &gt;&gt; (Addr_t)log2(ROW_SIZE)) &amp; (NO_OF_BANKS-1) ) &lt;&lt; (Addr_t)log2(ROW_SIZE);
+<span class="lineNum">     173 </span>                :         Addr_t rbits = ( (req-&gt;address &gt;&gt; ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS))) &amp; (NO_OF_ROWS-1) ) 
+<span class="lineNum">     174 </span>                :                                     &lt;&lt; ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS));
+<span class="lineNum">     175 </span>                :         Addr_t lbits = ( (req-&gt;address &gt;&gt; ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)+(Addr_t)log2(NO_OF_ROWS)) ) &amp; (NO_OF_RANKS-1) )
+<span class="lineNum">     176 </span>                :                                     &lt;&lt;  ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)+(Addr_t)log2(NO_OF_ROWS));// Masking next l bits
+<span class="lineNum">     177 </span>                : /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+<span class="lineNum">     178 </span>                : //      cout &lt;&lt; zbits &lt;&lt; &quot; &quot; &lt;&lt; nbits &lt;&lt; endl; 
+<span class="lineNum">     179 </span>                :         req-&gt;columnNo = (zbits | nbits) &gt;&gt; (Addr_t)log2(COLUMN_SIZE);  // Oring lower and removing column bits to find Column No
+<span class="lineNum">     180 </span>                :         req-&gt;bankNo = bbits &gt;&gt; (Addr_t)log2(ROW_SIZE);         // Taking bbits shifting to LSBs
+<span class="lineNum">     181 </span>                :         req-&gt;rowNo = rbits &gt;&gt; ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)); // Taking rbits and shifting to LSBs
+<span class="lineNum">     182 </span>                :         req-&gt;rankNo = lbits &gt;&gt; ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)+(Addr_t)log2(NO_OF_ROWS)); // Taking lbits and shifting to LSBs
+<span class="lineNum">     183 </span>                : #endif
+<span class="lineNum">     184 </span>                : 
+<span class="lineNum">     185 </span>                : #ifdef NO_SCHEME                                // no scheme   equivalent to l:b:r:c:v
+<span class="lineNum">     186 </span>                : 
+<span class="lineNum">     187 </span>                :         req-&gt;columnNo = (req-&gt;address &gt;&gt; (Addr_t)log2(COLUMN_SIZE)) &amp; (NO_OF_COLUMNS-1);// Masking lower bits to find Column No.
+<span class="lineNum">     188 </span>                :         req-&gt;rowNo = (req-&gt;address &gt;&gt; (Addr_t)log2(ROW_SIZE)) &amp; (NO_OF_ROWS-1);         // Masking the next r bits       
+<span class="lineNum">     189 </span>                :         req-&gt;bankNo = ( req-&gt;address &gt;&gt; ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_ROWS)) ) &amp; (NO_OF_BANKS-1);  // Masking the next b bits
+<span class="lineNum">     190 </span>                :         req-&gt;rankNo = ( req-&gt;address &gt;&gt; ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)+(Addr_t)log2(NO_OF_ROWS)) ) &amp; (NO_OF_RANKS-1);  
+<span class="lineNum">     191 </span>                :                                                                                                         // Masking next l bits 
+<span class="lineNum">     192 </span>                : #endif
+<span class="lineNum">     193 </span><span class="lineCov">         153051 : }</span>
+<span class="lineNum">     194 </span>                : 
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+  <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LTP GCOV extension version 1.6</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

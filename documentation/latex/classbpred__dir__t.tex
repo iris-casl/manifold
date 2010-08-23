@@ -1,0 +1,296 @@
+\section{bpred\_\-dir\_\-t Class Reference}
+\label{classbpred__dir__t}\index{bpred\_\-dir\_\-t@{bpred\_\-dir\_\-t}}
+{\tt \#include $<$zesto-bpred.h$>$}
+
+Inheritance diagram for bpred\_\-dir\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classbpred__dir__t__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf bpred\_\-dir\_\-t} ()
+\item 
+virtual {\bf $\sim$bpred\_\-dir\_\-t} ()
+\item 
+virtual bool {\bf lookup} (class {\bf bpred\_\-sc\_\-t} $\ast$const scvp, const {\bf md\_\-addr\_\-t} PC, const {\bf md\_\-addr\_\-t} tPC, const {\bf md\_\-addr\_\-t} oPC, const bool outcome)=0
+\item 
+virtual void {\bf update} (class {\bf bpred\_\-sc\_\-t} $\ast$const scvp, const {\bf md\_\-addr\_\-t} PC, const {\bf md\_\-addr\_\-t} tPC, const {\bf md\_\-addr\_\-t} oPC, const bool outcome, const bool our\_\-pred)
+\item 
+virtual void {\bf spec\_\-update} (class {\bf bpred\_\-sc\_\-t} $\ast$const scvp, const {\bf md\_\-addr\_\-t} PC, const {\bf md\_\-addr\_\-t} tPC, const {\bf md\_\-addr\_\-t} oPC, const bool outcome, const bool our\_\-pred)
+\item 
+virtual void {\bf recover} (class {\bf bpred\_\-sc\_\-t} $\ast$const scvp, const bool outcome)
+\item 
+virtual void {\bf flush} (class {\bf bpred\_\-sc\_\-t} $\ast$const scvp)
+\item 
+virtual void {\bf reg\_\-stats} (struct {\bf stat\_\-sdb\_\-t} $\ast$const sdb, struct {\bf core\_\-t} $\ast$const core)
+\item 
+virtual void {\bf reset\_\-stats} (void)
+\item 
+virtual class {\bf bpred\_\-sc\_\-t} $\ast$ {\bf get\_\-cache} (void)
+\item 
+virtual void {\bf ret\_\-cache} (class {\bf bpred\_\-sc\_\-t} $\ast$const scvp)
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf init} (void)
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+char $\ast$ {\bf name}
+\item 
+char $\ast$ {\bf type}
+\item 
+int {\bf bits}
+\item 
+{\bf counter\_\-t} {\bf num\_\-hits}
+\item 
+{\bf counter\_\-t} {\bf lookups}
+\item 
+{\bf counter\_\-t} {\bf updates}
+\item 
+{\bf counter\_\-t} {\bf spec\_\-updates}
+\item 
+bool {\bf frozen}
+\end{CompactItemize}
+\subsection*{Friends}
+\begin{CompactItemize}
+\item 
+class {\bf bpred\_\-t}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 186 of file zesto-bpred.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{bpred\_\-dir\_\-t@{bpred\_\-dir\_\-t}!bpred\_\-dir\_\-t@{bpred\_\-dir\_\-t}}
+\index{bpred\_\-dir\_\-t@{bpred\_\-dir\_\-t}!bpred_dir_t@{bpred\_\-dir\_\-t}}
+\subsubsection[{bpred\_\-dir\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}bpred\_\-dir\_\-t::bpred\_\-dir\_\-t (void)}\label{classbpred__dir__t_d966ab44f9a56a8c75f94da4df9ca01f}
+
+
+
+
+Definition at line 161 of file zesto-bpred.cpp.\index{bpred\_\-dir\_\-t@{bpred\_\-dir\_\-t}!$\sim$bpred\_\-dir\_\-t@{$\sim$bpred\_\-dir\_\-t}}
+\index{$\sim$bpred\_\-dir\_\-t@{$\sim$bpred\_\-dir\_\-t}!bpred_dir_t@{bpred\_\-dir\_\-t}}
+\subsubsection[{$\sim$bpred\_\-dir\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}bpred\_\-dir\_\-t::$\sim$bpred\_\-dir\_\-t ()\hspace{0.3cm}{\tt  [virtual]}}\label{classbpred__dir__t_20e50d4272da7ce52cc2574610762be0}
+
+
+
+
+Definition at line 165 of file zesto-bpred.cpp.
+
+References name, and type.
+
+\subsection{Member Function Documentation}
+\index{bpred\_\-dir\_\-t@{bpred\_\-dir\_\-t}!flush@{flush}}
+\index{flush@{flush}!bpred_dir_t@{bpred\_\-dir\_\-t}}
+\subsubsection[{flush}]{\setlength{\rightskip}{0pt plus 5cm}void bpred\_\-dir\_\-t::flush (class {\bf bpred\_\-sc\_\-t} $\ast$const  {\em scvp})\hspace{0.3cm}{\tt  [virtual]}}\label{classbpred__dir__t_7ab8f00f12623bef37493663d2626954}
+
+
+
+
+Definition at line 216 of file zesto-bpred.cpp.\index{bpred\_\-dir\_\-t@{bpred\_\-dir\_\-t}!get\_\-cache@{get\_\-cache}}
+\index{get\_\-cache@{get\_\-cache}!bpred_dir_t@{bpred\_\-dir\_\-t}}
+\subsubsection[{get\_\-cache}]{\setlength{\rightskip}{0pt plus 5cm}class {\bf bpred\_\-sc\_\-t} $\ast$ bpred\_\-dir\_\-t::get\_\-cache (void)\hspace{0.3cm}{\tt  [virtual]}}\label{classbpred__dir__t_0b63c3ce792598d30615dc412dfec66c}
+
+
+
+
+Definition at line 273 of file zesto-bpred.cpp.
+
+References bpred\_\-sc\_\-t::bpred\_\-sc\_\-t(), and fatal().
+
+Referenced by bpred\_\-t::get\_\-state\_\-cache().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{classbpred__dir__t_0b63c3ce792598d30615dc412dfec66c_icgraph}
+\end{center}
+\end{figure}
+\index{bpred\_\-dir\_\-t@{bpred\_\-dir\_\-t}!init@{init}}
+\index{init@{init}!bpred_dir_t@{bpred\_\-dir\_\-t}}
+\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}void bpred\_\-dir\_\-t::init (void)\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__dir__t_d705e0919d6c44fbecbb22d0cb9b4472}
+
+
+
+
+Definition at line 171 of file zesto-bpred.cpp.
+
+References frozen, lookups, name, num\_\-hits, spec\_\-updates, type, and updates.
+
+Referenced by bpred\_\-2bC\_\-t::bpred\_\-2bC\_\-t(), bpred\_\-2lev\_\-t::bpred\_\-2lev\_\-t(), bpred\_\-alloyedperceptron\_\-t::bpred\_\-alloyedperceptron\_\-t(), bpred\_\-bimode\_\-t::bpred\_\-bimode\_\-t(), bpred\_\-blg\_\-t::bpred\_\-blg\_\-t(), bpred\_\-btfnt\_\-t::bpred\_\-btfnt\_\-t(), bpred\_\-nottaken\_\-t::bpred\_\-nottaken\_\-t(), bpred\_\-pathneural\_\-t::bpred\_\-pathneural\_\-t(), bpred\_\-perceptron\_\-t::bpred\_\-perceptron\_\-t(), bpred\_\-perfect\_\-t::bpred\_\-perfect\_\-t(), bpred\_\-pwl\_\-t::bpred\_\-pwl\_\-t(), bpred\_\-random\_\-t::bpred\_\-random\_\-t(), bpred\_\-skewed\_\-t::bpred\_\-skewed\_\-t(), bpred\_\-tage\_\-t::bpred\_\-tage\_\-t(), bpred\_\-taken\_\-t::bpred\_\-taken\_\-t(), and bpred\_\-yags\_\-t::bpred\_\-yags\_\-t().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{classbpred__dir__t_d705e0919d6c44fbecbb22d0cb9b4472_icgraph}
+\end{center}
+\end{figure}
+\index{bpred\_\-dir\_\-t@{bpred\_\-dir\_\-t}!lookup@{lookup}}
+\index{lookup@{lookup}!bpred_dir_t@{bpred\_\-dir\_\-t}}
+\subsubsection[{lookup}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool bpred\_\-dir\_\-t::lookup (class {\bf bpred\_\-sc\_\-t} $\ast$const  {\em scvp}, \/  const {\bf md\_\-addr\_\-t} {\em PC}, \/  const {\bf md\_\-addr\_\-t} {\em tPC}, \/  const {\bf md\_\-addr\_\-t} {\em oPC}, \/  const bool {\em outcome})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classbpred__dir__t_dba28e61c7848e2fd5b9e66a6a1436c4}
+
+
+
+
+Referenced by bpred\_\-t::lookup().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=295pt]{classbpred__dir__t_dba28e61c7848e2fd5b9e66a6a1436c4_icgraph}
+\end{center}
+\end{figure}
+\index{bpred\_\-dir\_\-t@{bpred\_\-dir\_\-t}!recover@{recover}}
+\index{recover@{recover}!bpred_dir_t@{bpred\_\-dir\_\-t}}
+\subsubsection[{recover}]{\setlength{\rightskip}{0pt plus 5cm}void bpred\_\-dir\_\-t::recover (class {\bf bpred\_\-sc\_\-t} $\ast$const  {\em scvp}, \/  const bool {\em outcome})\hspace{0.3cm}{\tt  [virtual]}}\label{classbpred__dir__t_129ea8908118df7d544af134f418f051}
+
+
+
+
+Definition at line 209 of file zesto-bpred.cpp.\index{bpred\_\-dir\_\-t@{bpred\_\-dir\_\-t}!reg\_\-stats@{reg\_\-stats}}
+\index{reg\_\-stats@{reg\_\-stats}!bpred_dir_t@{bpred\_\-dir\_\-t}}
+\subsubsection[{reg\_\-stats}]{\setlength{\rightskip}{0pt plus 5cm}void bpred\_\-dir\_\-t::reg\_\-stats (struct {\bf stat\_\-sdb\_\-t} $\ast$const  {\em sdb}, \/  struct {\bf core\_\-t} $\ast$const  {\em core})\hspace{0.3cm}{\tt  [virtual]}}\label{classbpred__dir__t_319dc721621dfdd5024c3aa7efd966dd}
+
+
+
+
+Definition at line 221 of file zesto-bpred.cpp.
+
+References bits, core\_\-t::current\_\-thread, thread\_\-t::id, lookups, name, num\_\-hits, spec\_\-updates, stat\_\-reg\_\-counter, stat\_\-reg\_\-formula(), stat\_\-reg\_\-int(), stat\_\-reg\_\-string(), type, and updates.\index{bpred\_\-dir\_\-t@{bpred\_\-dir\_\-t}!reset\_\-stats@{reset\_\-stats}}
+\index{reset\_\-stats@{reset\_\-stats}!bpred_dir_t@{bpred\_\-dir\_\-t}}
+\subsubsection[{reset\_\-stats}]{\setlength{\rightskip}{0pt plus 5cm}void bpred\_\-dir\_\-t::reset\_\-stats (void)\hspace{0.3cm}{\tt  [virtual]}}\label{classbpred__dir__t_3de25d231524346cf152a56110b962db}
+
+
+
+
+Definition at line 265 of file zesto-bpred.cpp.
+
+References lookups, num\_\-hits, spec\_\-updates, and updates.\index{bpred\_\-dir\_\-t@{bpred\_\-dir\_\-t}!ret\_\-cache@{ret\_\-cache}}
+\index{ret\_\-cache@{ret\_\-cache}!bpred_dir_t@{bpred\_\-dir\_\-t}}
+\subsubsection[{ret\_\-cache}]{\setlength{\rightskip}{0pt plus 5cm}void bpred\_\-dir\_\-t::ret\_\-cache (class {\bf bpred\_\-sc\_\-t} $\ast$const  {\em scvp})\hspace{0.3cm}{\tt  [virtual]}}\label{classbpred__dir__t_f3515ecca72f2b35a35f53168beda0e3}
+
+
+
+
+Definition at line 281 of file zesto-bpred.cpp.\index{bpred\_\-dir\_\-t@{bpred\_\-dir\_\-t}!spec\_\-update@{spec\_\-update}}
+\index{spec\_\-update@{spec\_\-update}!bpred_dir_t@{bpred\_\-dir\_\-t}}
+\subsubsection[{spec\_\-update}]{\setlength{\rightskip}{0pt plus 5cm}void bpred\_\-dir\_\-t::spec\_\-update (class {\bf bpred\_\-sc\_\-t} $\ast$const  {\em scvp}, \/  const {\bf md\_\-addr\_\-t} {\em PC}, \/  const {\bf md\_\-addr\_\-t} {\em tPC}, \/  const {\bf md\_\-addr\_\-t} {\em oPC}, \/  const bool {\em outcome}, \/  const bool {\em our\_\-pred})\hspace{0.3cm}{\tt  [virtual]}}\label{classbpred__dir__t_5cc6a00701056ccfac14645b8f7d8d42}
+
+
+
+
+Definition at line 198 of file zesto-bpred.cpp.
+
+References BPRED\_\-STAT, and spec\_\-updates.\index{bpred\_\-dir\_\-t@{bpred\_\-dir\_\-t}!update@{update}}
+\index{update@{update}!bpred_dir_t@{bpred\_\-dir\_\-t}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void bpred\_\-dir\_\-t::update (class {\bf bpred\_\-sc\_\-t} $\ast$const  {\em scvp}, \/  const {\bf md\_\-addr\_\-t} {\em PC}, \/  const {\bf md\_\-addr\_\-t} {\em tPC}, \/  const {\bf md\_\-addr\_\-t} {\em oPC}, \/  const bool {\em outcome}, \/  const bool {\em our\_\-pred})\hspace{0.3cm}{\tt  [virtual]}}\label{classbpred__dir__t_97de6b26c27583e4b50d6589239a6a70}
+
+
+
+
+Definition at line 182 of file zesto-bpred.cpp.
+
+References BPRED\_\-STAT, num\_\-hits, bpred\_\-sc\_\-t::updated, and updates.
+
+\subsection{Friends And Related Function Documentation}
+\index{bpred\_\-dir\_\-t@{bpred\_\-dir\_\-t}!bpred\_\-t@{bpred\_\-t}}
+\index{bpred\_\-t@{bpred\_\-t}!bpred_dir_t@{bpred\_\-dir\_\-t}}
+\subsubsection[{bpred\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf bpred\_\-t}\hspace{0.3cm}{\tt  [friend]}}\label{classbpred__dir__t_44319d3cf67079457eb46e2c6fcfeb49}
+
+
+
+
+Definition at line 188 of file zesto-bpred.h.
+
+\subsection{Member Data Documentation}
+\index{bpred\_\-dir\_\-t@{bpred\_\-dir\_\-t}!bits@{bits}}
+\index{bits@{bits}!bpred_dir_t@{bpred\_\-dir\_\-t}}
+\subsubsection[{bits}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-dir\_\-t::bits}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__dir__t_43d45896b2fa5c0aa4cbc20239785981}
+
+
+
+
+Definition at line 193 of file zesto-bpred.h.
+
+Referenced by bpred\_\-2bC\_\-t::bpred\_\-2bC\_\-t(), bpred\_\-2lev\_\-t::bpred\_\-2lev\_\-t(), bpred\_\-alloyedperceptron\_\-t::bpred\_\-alloyedperceptron\_\-t(), bpred\_\-bimode\_\-t::bpred\_\-bimode\_\-t(), bpred\_\-blg\_\-t::bpred\_\-blg\_\-t(), bpred\_\-btfnt\_\-t::bpred\_\-btfnt\_\-t(), bpred\_\-nottaken\_\-t::bpred\_\-nottaken\_\-t(), bpred\_\-pathneural\_\-t::bpred\_\-pathneural\_\-t(), bpred\_\-perceptron\_\-t::bpred\_\-perceptron\_\-t(), bpred\_\-perfect\_\-t::bpred\_\-perfect\_\-t(), bpred\_\-pwl\_\-t::bpred\_\-pwl\_\-t(), bpred\_\-random\_\-t::bpred\_\-random\_\-t(), bpred\_\-skewed\_\-t::bpred\_\-skewed\_\-t(), bpred\_\-tage\_\-t::bpred\_\-tage\_\-t(), bpred\_\-taken\_\-t::bpred\_\-taken\_\-t(), bpred\_\-yags\_\-t::bpred\_\-yags\_\-t(), and reg\_\-stats().\index{bpred\_\-dir\_\-t@{bpred\_\-dir\_\-t}!frozen@{frozen}}
+\index{frozen@{frozen}!bpred_dir_t@{bpred\_\-dir\_\-t}}
+\subsubsection[{frozen}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf bpred\_\-dir\_\-t::frozen}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__dir__t_976eb78d60d0956a4cc13018b110c102}
+
+
+
+
+Definition at line 201 of file zesto-bpred.h.
+
+Referenced by init().\index{bpred\_\-dir\_\-t@{bpred\_\-dir\_\-t}!lookups@{lookups}}
+\index{lookups@{lookups}!bpred_dir_t@{bpred\_\-dir\_\-t}}
+\subsubsection[{lookups}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf bpred\_\-dir\_\-t::lookups}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__dir__t_ecc5eb77ad09556f9aa4508bf97b22bc}
+
+
+
+
+Definition at line 198 of file zesto-bpred.h.
+
+Referenced by init(), reg\_\-stats(), and reset\_\-stats().\index{bpred\_\-dir\_\-t@{bpred\_\-dir\_\-t}!name@{name}}
+\index{name@{name}!bpred_dir_t@{bpred\_\-dir\_\-t}}
+\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf bpred\_\-dir\_\-t::name}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__dir__t_9013be37a8f9cbcc52cc01fc1f8aafa9}
+
+
+
+
+Definition at line 191 of file zesto-bpred.h.
+
+Referenced by bpred\_\-2bC\_\-t::bpred\_\-2bC\_\-t(), bpred\_\-2lev\_\-t::bpred\_\-2lev\_\-t(), bpred\_\-alloyedperceptron\_\-t::bpred\_\-alloyedperceptron\_\-t(), bpred\_\-bimode\_\-t::bpred\_\-bimode\_\-t(), bpred\_\-blg\_\-t::bpred\_\-blg\_\-t(), bpred\_\-btfnt\_\-t::bpred\_\-btfnt\_\-t(), bpred\_\-from\_\-string(), bpred\_\-nottaken\_\-t::bpred\_\-nottaken\_\-t(), bpred\_\-pathneural\_\-t::bpred\_\-pathneural\_\-t(), bpred\_\-perceptron\_\-t::bpred\_\-perceptron\_\-t(), bpred\_\-perfect\_\-t::bpred\_\-perfect\_\-t(), bpred\_\-pwl\_\-t::bpred\_\-pwl\_\-t(), bpred\_\-random\_\-t::bpred\_\-random\_\-t(), bpred\_\-skewed\_\-t::bpred\_\-skewed\_\-t(), bpred\_\-tage\_\-t::bpred\_\-tage\_\-t(), bpred\_\-taken\_\-t::bpred\_\-taken\_\-t(), bpred\_\-yags\_\-t::bpred\_\-yags\_\-t(), init(), reg\_\-stats(), and $\sim$bpred\_\-dir\_\-t().\index{bpred\_\-dir\_\-t@{bpred\_\-dir\_\-t}!num\_\-hits@{num\_\-hits}}
+\index{num\_\-hits@{num\_\-hits}!bpred_dir_t@{bpred\_\-dir\_\-t}}
+\subsubsection[{num\_\-hits}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf bpred\_\-dir\_\-t::num\_\-hits}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__dir__t_d06da5a7f4a14c4fc9aaeccfe372d670}
+
+
+
+
+Definition at line 197 of file zesto-bpred.h.
+
+Referenced by init(), reg\_\-stats(), reset\_\-stats(), and update().\index{bpred\_\-dir\_\-t@{bpred\_\-dir\_\-t}!spec\_\-updates@{spec\_\-updates}}
+\index{spec\_\-updates@{spec\_\-updates}!bpred_dir_t@{bpred\_\-dir\_\-t}}
+\subsubsection[{spec\_\-updates}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf bpred\_\-dir\_\-t::spec\_\-updates}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__dir__t_4c97447b42a0b9e1d79dd6e4df8f1430}
+
+
+
+
+Definition at line 200 of file zesto-bpred.h.
+
+Referenced by init(), reg\_\-stats(), reset\_\-stats(), and spec\_\-update().\index{bpred\_\-dir\_\-t@{bpred\_\-dir\_\-t}!type@{type}}
+\index{type@{type}!bpred_dir_t@{bpred\_\-dir\_\-t}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf bpred\_\-dir\_\-t::type}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__dir__t_af2aa983e49e8feae174ab4fb5e1449c}
+
+
+
+
+Definition at line 192 of file zesto-bpred.h.
+
+Referenced by bpred\_\-2bC\_\-t::bpred\_\-2bC\_\-t(), bpred\_\-2lev\_\-t::bpred\_\-2lev\_\-t(), bpred\_\-alloyedperceptron\_\-t::bpred\_\-alloyedperceptron\_\-t(), bpred\_\-bimode\_\-t::bpred\_\-bimode\_\-t(), bpred\_\-blg\_\-t::bpred\_\-blg\_\-t(), bpred\_\-btfnt\_\-t::bpred\_\-btfnt\_\-t(), bpred\_\-from\_\-string(), bpred\_\-nottaken\_\-t::bpred\_\-nottaken\_\-t(), bpred\_\-pathneural\_\-t::bpred\_\-pathneural\_\-t(), bpred\_\-perceptron\_\-t::bpred\_\-perceptron\_\-t(), bpred\_\-perfect\_\-t::bpred\_\-perfect\_\-t(), bpred\_\-pwl\_\-t::bpred\_\-pwl\_\-t(), bpred\_\-random\_\-t::bpred\_\-random\_\-t(), bpred\_\-skewed\_\-t::bpred\_\-skewed\_\-t(), bpred\_\-tage\_\-t::bpred\_\-tage\_\-t(), bpred\_\-taken\_\-t::bpred\_\-taken\_\-t(), bpred\_\-yags\_\-t::bpred\_\-yags\_\-t(), init(), reg\_\-stats(), and $\sim$bpred\_\-dir\_\-t().\index{bpred\_\-dir\_\-t@{bpred\_\-dir\_\-t}!updates@{updates}}
+\index{updates@{updates}!bpred_dir_t@{bpred\_\-dir\_\-t}}
+\subsubsection[{updates}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf bpred\_\-dir\_\-t::updates}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__dir__t_4d16ce2c6b4483b91ded994c32c5be0b}
+
+
+
+
+Definition at line 199 of file zesto-bpred.h.
+
+Referenced by init(), reg\_\-stats(), reset\_\-stats(), and update().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf zesto-bpred.h}\item 
+{\bf zesto-bpred.cpp}\end{CompactItemize}

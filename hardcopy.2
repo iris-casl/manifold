@@ -1,0 +1,31 @@
+      destination = llp->destination;
+      transaction_id = llp->transaction_id;
+      data_payload_length = llp->length;
+      sent_time = llp->sent_time;
+      virtual_channel = llp->virtual_channel;
+
+      assert( llp->flits.size()>0);
+
+      HeadFlit* hf = static_cast<HeadFlit*>(llp->flits[0]);
+      uint mask = 0;
+      for (uint i=0; i<llp->control_bits.size(); i++)
+          mask = (mask<<1) | llp->control_bits[i];
+
+      cout << "\n ^^ Recv control bits ^^" << llp->control_bits.size() << endl;
+      for ( uint ii=0; ii<llp->control_bits.size(); ii++);
+          cout << " " << llp->control_bits[ii];
+
+      cout << "\n *** recv mask: " << hex << mask << dec << endl;
+      /*  Need to check this mask propagation: The VC aint right */
+      //virtual_channel = (mask & 0x00c0)>>6;
+      switch ((mask & 0x000c) >> 2)
+      {
+          case 0:
+              vn = VN0;
+              break;
+          case 1:
+              vn = VN1;
+              break;
+          default:
+workspace/iris/source/data_types/impl/highLevelPacket.cc                                                 173,43         79%
+

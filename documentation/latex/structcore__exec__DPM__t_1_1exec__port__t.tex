@@ -1,0 +1,102 @@
+\section{core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t Struct Reference}
+\label{structcore__exec__DPM__t_1_1exec__port__t}\index{core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t@{core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t}}
+Collaboration diagram for core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{structcore__exec__DPM__t_1_1exec__port__t__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+struct {\bf uop\_\-action\_\-t} $\ast$ {\bf payload\_\-pipe}
+\item 
+int {\bf occupancy}
+\item 
+struct {\bf ALU\_\-t} $\ast$ {\bf FU} [NUM\_\-FU\_\-CLASSES]
+\item 
+struct {\bf readyQ\_\-node\_\-t} $\ast$ {\bf readyQ}
+\item 
+struct {\bf ALU\_\-t} $\ast$ {\bf STQ}
+\item 
+{\bf tick\_\-t} {\bf when\_\-bypass\_\-used}
+\item 
+int {\bf num\_\-FU\_\-types}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 142 of file exec-DPM.cpp.
+
+\subsection{Member Data Documentation}
+\index{core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t@{core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t}!FU@{FU}}
+\index{FU@{FU}!core_exec_DPM_t::exec_port_t@{core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t}}
+\subsubsection[{FU}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf ALU\_\-t}$\ast$ core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t::FU[NUM\_\-FU\_\-CLASSES]\hspace{0.3cm}{\tt  [read]}}\label{structcore__exec__DPM__t_1_1exec__port__t_010d4af24d4fc5e753676432cc29180c}
+
+
+
+
+Definition at line 145 of file exec-DPM.cpp.
+
+Referenced by core\_\-exec\_\-DPM\_\-t::ALU\_\-exec(), core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t(), and core\_\-exec\_\-DPM\_\-t::RS\_\-schedule().\index{core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t@{core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t}!num\_\-FU\_\-types@{num\_\-FU\_\-types}}
+\index{num\_\-FU\_\-types@{num\_\-FU\_\-types}!core_exec_DPM_t::exec_port_t@{core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t}}
+\subsubsection[{num\_\-FU\_\-types}]{\setlength{\rightskip}{0pt plus 5cm}int core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t::num\_\-FU\_\-types}\label{structcore__exec__DPM__t_1_1exec__port__t_2447d80ac9daa272dc0d2c5af375cf8e}
+
+
+
+
+Definition at line 150 of file exec-DPM.cpp.
+
+Referenced by core\_\-exec\_\-DPM\_\-t::ALU\_\-exec(), and core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t().\index{core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t@{core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t}!occupancy@{occupancy}}
+\index{occupancy@{occupancy}!core_exec_DPM_t::exec_port_t@{core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t}}
+\subsubsection[{occupancy}]{\setlength{\rightskip}{0pt plus 5cm}int core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t::occupancy}\label{structcore__exec__DPM__t_1_1exec__port__t_aa00af896d341748fc352988cb528ce7}
+
+
+
+
+Definition at line 144 of file exec-DPM.cpp.
+
+Referenced by core\_\-exec\_\-DPM\_\-t::ALU\_\-exec(), core\_\-exec\_\-DPM\_\-t::RS\_\-schedule(), and core\_\-exec\_\-DPM\_\-t::snatch\_\-back().\index{core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t@{core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t}!payload\_\-pipe@{payload\_\-pipe}}
+\index{payload\_\-pipe@{payload\_\-pipe}!core_exec_DPM_t::exec_port_t@{core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t}}
+\subsubsection[{payload\_\-pipe}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf uop\_\-action\_\-t}$\ast$ core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t::payload\_\-pipe\hspace{0.3cm}{\tt  [read]}}\label{structcore__exec__DPM__t_1_1exec__port__t_dfdef9ad8a9874cfbb1f99abb1cf203e}
+
+
+
+
+Definition at line 143 of file exec-DPM.cpp.
+
+Referenced by core\_\-exec\_\-DPM\_\-t::ALU\_\-exec(), core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t(), core\_\-exec\_\-DPM\_\-t::RS\_\-schedule(), and core\_\-exec\_\-DPM\_\-t::snatch\_\-back().\index{core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t@{core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t}!readyQ@{readyQ}}
+\index{readyQ@{readyQ}!core_exec_DPM_t::exec_port_t@{core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t}}
+\subsubsection[{readyQ}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf readyQ\_\-node\_\-t}$\ast$ core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t::readyQ\hspace{0.3cm}{\tt  [read]}}\label{structcore__exec__DPM__t_1_1exec__port__t_46f43b948280321c354268669a523565}
+
+
+
+
+Definition at line 146 of file exec-DPM.cpp.
+
+Referenced by core\_\-exec\_\-DPM\_\-t::insert\_\-ready\_\-uop(), and core\_\-exec\_\-DPM\_\-t::RS\_\-schedule().\index{core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t@{core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t}!STQ@{STQ}}
+\index{STQ@{STQ}!core_exec_DPM_t::exec_port_t@{core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t}}
+\subsubsection[{STQ}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf ALU\_\-t}$\ast$ core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t::STQ\hspace{0.3cm}{\tt  [read]}}\label{structcore__exec__DPM__t_1_1exec__port__t_fc1d32ea7cc73c119f2354b07303027c}
+
+
+
+
+Definition at line 147 of file exec-DPM.cpp.
+
+Referenced by core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t(), core\_\-exec\_\-DPM\_\-t::LDQ\_\-schedule(), and core\_\-exec\_\-DPM\_\-t::LDST\_\-exec().\index{core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t@{core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t}!when\_\-bypass\_\-used@{when\_\-bypass\_\-used}}
+\index{when\_\-bypass\_\-used@{when\_\-bypass\_\-used}!core_exec_DPM_t::exec_port_t@{core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t}}
+\subsubsection[{when\_\-bypass\_\-used}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t::exec\_\-port\_\-t::when\_\-bypass\_\-used}\label{structcore__exec__DPM__t_1_1exec__port__t_7b2f7ee0f5ef4e237188bbbbf6c48459}
+
+
+
+
+Definition at line 148 of file exec-DPM.cpp.
+
+Referenced by core\_\-exec\_\-DPM\_\-t::ALU\_\-exec(), and core\_\-exec\_\-DPM\_\-t::load\_\-writeback().
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf exec-DPM.cpp}\end{CompactItemize}

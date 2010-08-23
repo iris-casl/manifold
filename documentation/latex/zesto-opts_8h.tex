@@ -1,0 +1,169 @@
+\section{zesto-opts.h File Reference}
+\label{zesto-opts_8h}\index{zesto-opts.h@{zesto-opts.h}}
+{\tt \#include \char`\"{}options.h\char`\"{}}\par
+{\tt \#include \char`\"{}stats.h\char`\"{}}\par
+
+
+Include dependency graph for zesto-opts.h:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{zesto-opts_8h__incl}
+\end{center}
+\end{figure}
+
+
+This graph shows which files directly or indirectly include this file:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{zesto-opts_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define {\bf ZESTO\_\-STAT}(x)~\{if(core $\rightarrow$ current\_\-thread $\rightarrow$ active) \{x\}\}
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void {\bf sim\_\-reg\_\-options} (struct {\bf opt\_\-odb\_\-t} $\ast$odb)
+\item 
+void {\bf sim\_\-check\_\-options} (struct {\bf opt\_\-odb\_\-t} $\ast$odb, int argc, char $\ast$$\ast$argv)
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+long long {\bf fastfwd}
+\item 
+long long {\bf trace\_\-limit}
+\item 
+long long {\bf max\_\-insts}
+\item 
+long long {\bf max\_\-uops}
+\item 
+long long {\bf max\_\-cycles}
+\item 
+int {\bf heartbeat\_\-frequency}
+\item 
+{\bf counter\_\-t} {\bf total\_\-commit\_\-insn}
+\item 
+{\bf counter\_\-t} {\bf total\_\-commit\_\-uops}
+\item 
+{\bf counter\_\-t} {\bf total\_\-commit\_\-eff\_\-uops}
+\item 
+int {\bf sim\_\-elapsed\_\-time}
+\item 
+{\bf tick\_\-t} {\bf sim\_\-cycle}
+\end{CompactItemize}
+
+
+\subsection{Define Documentation}
+\index{zesto-opts.h@{zesto-opts.h}!ZESTO\_\-STAT@{ZESTO\_\-STAT}}
+\index{ZESTO\_\-STAT@{ZESTO\_\-STAT}!zesto-opts.h@{zesto-opts.h}}
+\subsubsection[{ZESTO\_\-STAT}]{\setlength{\rightskip}{0pt plus 5cm}\#define ZESTO\_\-STAT(x)~\{if(core $\rightarrow$ current\_\-thread $\rightarrow$ active) \{x\}\}}\label{zesto-opts_8h_225a9a02a0c5a33775f2743a37dfd8d8}
+
+
+
+
+Definition at line 86 of file zesto-opts.h.
+
+Referenced by core\_\-exec\_\-STM\_\-t::ALU\_\-exec(), core\_\-exec\_\-DPM\_\-t::ALU\_\-exec(), core\_\-decode\_\-STM\_\-t::check\_\-flush(), core\_\-decode\_\-DPM\_\-t::check\_\-flush(), core\_\-decode\_\-STM\_\-t::check\_\-target(), core\_\-decode\_\-DPM\_\-t::check\_\-target(), core\_\-oracle\_\-t::exec(), core\_\-exec\_\-DPM\_\-t::LDQ\_\-schedule(), core\_\-exec\_\-STM\_\-t::LDST\_\-exec(), core\_\-exec\_\-DPM\_\-t::LDST\_\-exec(), core\_\-exec\_\-STM\_\-t::load\_\-writeback(), core\_\-exec\_\-DPM\_\-t::load\_\-writeback(), core\_\-fetch\_\-STM\_\-t::Mop\_\-consume(), core\_\-exec\_\-STM\_\-t::RS\_\-schedule(), core\_\-exec\_\-DPM\_\-t::RS\_\-schedule(), core\_\-exec\_\-DPM\_\-t::snatch\_\-back(), core\_\-fetch\_\-STM\_\-t::step(), core\_\-fetch\_\-DPM\_\-t::step(), core\_\-decode\_\-STM\_\-t::step(), core\_\-decode\_\-DPM\_\-t::step(), core\_\-commit\_\-STM\_\-t::step(), core\_\-commit\_\-DPM\_\-t::step(), core\_\-alloc\_\-STM\_\-t::step(), core\_\-alloc\_\-DPM\_\-t::step(), core\_\-exec\_\-DPM\_\-t::STQ\_\-deallocate\_\-std(), core\_\-oracle\_\-t::undo(), and core\_\-decode\_\-STM\_\-t::uop\_\-consume().
+
+\subsection{Function Documentation}
+\index{zesto-opts.h@{zesto-opts.h}!sim\_\-check\_\-options@{sim\_\-check\_\-options}}
+\index{sim\_\-check\_\-options@{sim\_\-check\_\-options}!zesto-opts.h@{zesto-opts.h}}
+\subsubsection[{sim\_\-check\_\-options}]{\setlength{\rightskip}{0pt plus 5cm}void sim\_\-check\_\-options (struct {\bf opt\_\-odb\_\-t} $\ast$ {\em odb}, \/  int {\em argc}, \/  char $\ast$$\ast$ {\em argv})}\label{zesto-opts_8h_d6c7eccd0fa4b587be632b532e3b3e04}
+
+
+\index{zesto-opts.h@{zesto-opts.h}!sim\_\-reg\_\-options@{sim\_\-reg\_\-options}}
+\index{sim\_\-reg\_\-options@{sim\_\-reg\_\-options}!zesto-opts.h@{zesto-opts.h}}
+\subsubsection[{sim\_\-reg\_\-options}]{\setlength{\rightskip}{0pt plus 5cm}void sim\_\-reg\_\-options (struct {\bf opt\_\-odb\_\-t} $\ast$ {\em odb})}\label{zesto-opts_8h_4452f31e857cb0adc1cd9ecc3be5f2ee}
+
+
+
+
+\subsection{Variable Documentation}
+\index{zesto-opts.h@{zesto-opts.h}!fastfwd@{fastfwd}}
+\index{fastfwd@{fastfwd}!zesto-opts.h@{zesto-opts.h}}
+\subsubsection[{fastfwd}]{\setlength{\rightskip}{0pt plus 5cm}long long {\bf fastfwd}}\label{zesto-opts_8h_c6fb0e6cfd61969cdb6ca3e23bde14bf}
+
+
+
+
+Referenced by sim\_\-main().\index{zesto-opts.h@{zesto-opts.h}!heartbeat\_\-frequency@{heartbeat\_\-frequency}}
+\index{heartbeat\_\-frequency@{heartbeat\_\-frequency}!zesto-opts.h@{zesto-opts.h}}
+\subsubsection[{heartbeat\_\-frequency}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf heartbeat\_\-frequency}}\label{zesto-opts_8h_fce466a6befaf9dce381d6568d734383}
+
+
+
+
+Referenced by zesto\_\-component::downtick\_\-handler().\index{zesto-opts.h@{zesto-opts.h}!max\_\-cycles@{max\_\-cycles}}
+\index{max\_\-cycles@{max\_\-cycles}!zesto-opts.h@{zesto-opts.h}}
+\subsubsection[{max\_\-cycles}]{\setlength{\rightskip}{0pt plus 5cm}long long {\bf max\_\-cycles}}\label{zesto-opts_8h_6035d8c1e668819da7877cd4a7563686}
+
+
+
+
+Referenced by core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{zesto-opts.h@{zesto-opts.h}!max\_\-insts@{max\_\-insts}}
+\index{max\_\-insts@{max\_\-insts}!zesto-opts.h@{zesto-opts.h}}
+\subsubsection[{max\_\-insts}]{\setlength{\rightskip}{0pt plus 5cm}long long {\bf max\_\-insts}}\label{zesto-opts_8h_1d6aa8acff6f54b92087f434a3a2b7a9}
+
+
+
+
+Referenced by core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{zesto-opts.h@{zesto-opts.h}!max\_\-uops@{max\_\-uops}}
+\index{max\_\-uops@{max\_\-uops}!zesto-opts.h@{zesto-opts.h}}
+\subsubsection[{max\_\-uops}]{\setlength{\rightskip}{0pt plus 5cm}long long {\bf max\_\-uops}}\label{zesto-opts_8h_1c19194f53ec4ac28fd2ceb40ea00ef7}
+
+
+
+
+Referenced by core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{zesto-opts.h@{zesto-opts.h}!sim\_\-cycle@{sim\_\-cycle}}
+\index{sim\_\-cycle@{sim\_\-cycle}!zesto-opts.h@{zesto-opts.h}}
+\subsubsection[{sim\_\-cycle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} {\bf sim\_\-cycle}}\label{zesto-opts_8h_d93be82106e505ae03e3a443a62d7238}
+
+
+
+
+Definition at line 189 of file sim-zesto.cpp.
+
+Referenced by core\_\-exec\_\-STM\_\-t::ALU\_\-exec(), core\_\-exec\_\-DPM\_\-t::ALU\_\-exec(), bus\_\-free(), bus\_\-use(), cache\_\-enqueue(), cache\_\-enqueue\_\-llc(), cache\_\-fill(), cache\_\-fill\_\-llc(), cache\_\-process(), cache\_\-process\_\-llc(), core\_\-exec\_\-STM\_\-t::DL1\_\-callback(), core\_\-exec\_\-DPM\_\-t::DL1\_\-callback(), core\_\-exec\_\-DPM\_\-t::DL1\_\-split\_\-callback(), zesto\_\-component::downtick\_\-handler(), core\_\-exec\_\-STM\_\-t::DTLB\_\-callback(), core\_\-exec\_\-DPM\_\-t::DTLB\_\-callback(), uncore\_\-t::enqueue(), fill\_\-arrived(), fill\_\-arrived\_\-llc(), core\_\-exec\_\-STM\_\-t::get\_\-readyQ\_\-node(), core\_\-exec\_\-DPM\_\-t::get\_\-readyQ\_\-node(), GlobalAddrRip(), core\_\-fetch\_\-STM\_\-t::IL1\_\-callback(), core\_\-fetch\_\-DPM\_\-t::IL1\_\-callback(), core\_\-fetch\_\-STM\_\-t::ITLB\_\-callback(), core\_\-fetch\_\-DPM\_\-t::ITLB\_\-callback(), core\_\-exec\_\-STM\_\-t::LDQ\_\-schedule(), core\_\-exec\_\-DPM\_\-t::LDQ\_\-schedule(), core\_\-exec\_\-STM\_\-t::LDST\_\-exec(), core\_\-exec\_\-DPM\_\-t::LDST\_\-exec(), core\_\-exec\_\-DPM\_\-t::load\_\-miss\_\-reschedule(), core\_\-exec\_\-STM\_\-t::load\_\-writeback(), core\_\-exec\_\-DPM\_\-t::load\_\-writeback(), core\_\-fetch\_\-STM\_\-t::Mop\_\-consume(), my\_\-SIGSEGV\_\-handler(), prefetch\_\-controller\_\-update(), prefetch\_\-controller\_\-update\_\-llc(), prefetch\_\-filter\_\-lookup(), prefetch\_\-filter\_\-update(), core\_\-exec\_\-STM\_\-t::RS\_\-schedule(), core\_\-exec\_\-DPM\_\-t::RS\_\-schedule(), core\_\-fetch\_\-STM\_\-t::step(), core\_\-fetch\_\-DPM\_\-t::step(), core\_\-decode\_\-DPM\_\-t::step(), core\_\-commit\_\-STM\_\-t::step(), core\_\-commit\_\-DPM\_\-t::step(), core\_\-alloc\_\-STM\_\-t::step(), core\_\-alloc\_\-DPM\_\-t::step(), core\_\-fetch\_\-STM\_\-t::translated\_\-callback(), core\_\-fetch\_\-DPM\_\-t::translated\_\-callback(), core\_\-exec\_\-STM\_\-t::translated\_\-callback(), core\_\-exec\_\-DPM\_\-t::translated\_\-callback(), and core\_\-decode\_\-STM\_\-t::uop\_\-consume().\index{zesto-opts.h@{zesto-opts.h}!sim\_\-elapsed\_\-time@{sim\_\-elapsed\_\-time}}
+\index{sim\_\-elapsed\_\-time@{sim\_\-elapsed\_\-time}!zesto-opts.h@{zesto-opts.h}}
+\subsubsection[{sim\_\-elapsed\_\-time}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf sim\_\-elapsed\_\-time}}\label{zesto-opts_8h_84462569a8ea1951d2547b98eaa30f25}
+
+
+
+
+Definition at line 78 of file manifold\_\-fullsim.cc.
+
+Referenced by sim\_\-print\_\-stats().\index{zesto-opts.h@{zesto-opts.h}!total\_\-commit\_\-eff\_\-uops@{total\_\-commit\_\-eff\_\-uops}}
+\index{total\_\-commit\_\-eff\_\-uops@{total\_\-commit\_\-eff\_\-uops}!zesto-opts.h@{zesto-opts.h}}
+\subsubsection[{total\_\-commit\_\-eff\_\-uops}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf total\_\-commit\_\-eff\_\-uops}}\label{zesto-opts_8h_bab3d62fd7bff25cd7429ee135d4dc3d}
+
+
+
+
+Referenced by core\_\-commit\_\-DPM\_\-t::step().\index{zesto-opts.h@{zesto-opts.h}!total\_\-commit\_\-insn@{total\_\-commit\_\-insn}}
+\index{total\_\-commit\_\-insn@{total\_\-commit\_\-insn}!zesto-opts.h@{zesto-opts.h}}
+\subsubsection[{total\_\-commit\_\-insn}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf total\_\-commit\_\-insn}}\label{zesto-opts_8h_171eaf944329f4e388ce310836b483e9}
+
+
+
+
+Referenced by core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{zesto-opts.h@{zesto-opts.h}!total\_\-commit\_\-uops@{total\_\-commit\_\-uops}}
+\index{total\_\-commit\_\-uops@{total\_\-commit\_\-uops}!zesto-opts.h@{zesto-opts.h}}
+\subsubsection[{total\_\-commit\_\-uops}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf total\_\-commit\_\-uops}}\label{zesto-opts_8h_6c3a3c20b2532043566ce7c55105a880}
+
+
+
+
+Referenced by core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{zesto-opts.h@{zesto-opts.h}!trace\_\-limit@{trace\_\-limit}}
+\index{trace\_\-limit@{trace\_\-limit}!zesto-opts.h@{zesto-opts.h}}
+\subsubsection[{trace\_\-limit}]{\setlength{\rightskip}{0pt plus 5cm}long long {\bf trace\_\-limit}}\label{zesto-opts_8h_7f085ab1f80062bcfa4b9086e934c007}
+
+
+
+
+Referenced by core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().

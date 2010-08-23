@@ -1,0 +1,671 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>LCOV - iris.info - randomNumbers/impl/RngStream.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LTP GCOV extension - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+        <tr>
+          <td class="headerItem" width="20%">Current&nbsp;view:</td>
+          <td class="headerValue" width="80%" colspan=4><a href="../../index.html">directory</a> - <a href="index.html">randomNumbers/impl</a> - RngStream.cpp</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Test:</td>
+          <td class="headerValue" width="80%" colspan=4>iris.info</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Date:</td>
+          <td class="headerValue" width="20%">2010-05-24</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Instrumented&nbsp;lines:</td>
+          <td class="headerValue" width="20%">143</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Code&nbsp;covered:</td>
+          <td class="headerValue" width="20%">0.7 %</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Executed&nbsp;lines:</td>
+          <td class="headerValue" width="20%">1</td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><pre class="source">
+<span class="lineNum">       1 </span>                : // GENERAL PUBLIC LICENSE AGREEMENT
+<span class="lineNum">       2 </span>                : // 
+<span class="lineNum">       3 </span>                : // PLEASE READ THIS DOCUMENT CAREFULLY BEFORE UTILIZING THE PROGRAM
+<span class="lineNum">       4 </span>                : // 
+<span class="lineNum">       5 </span>                : // BY UTILIZING THIS PROGRAM, YOU AGREE TO BECOME BOUND BY THE TERMS OF
+<span class="lineNum">       6 </span>                : // THIS LICENSE.  IF YOU DO NOT AGREE TO THE TERMS OF THIS LICENSE, DO
+<span class="lineNum">       7 </span>                : // NOT USE THIS PROGRAM OR ANY PORTION THEREOF IN ANY FORM OR MANNER.
+<span class="lineNum">       8 </span>                : // 
+<span class="lineNum">       9 </span>                : // This Program is licensed, not sold to you by GEORGIA TECH RESEARCH
+<span class="lineNum">      10 </span>                : // CORPORATION (&quot;GTRC&quot;), owner of all code and accompanying documentation
+<span class="lineNum">      11 </span>                : // (hereinafter &quot;Program&quot;), for use only under the terms of this License,
+<span class="lineNum">      12 </span>                : // and GTRC reserves any rights not expressly granted to you.
+<span class="lineNum">      13 </span>                : // 
+<span class="lineNum">      14 </span>                : // 1.  This License allows you to:
+<span class="lineNum">      15 </span>                : // 
+<span class="lineNum">      16 </span>                : // (a) make copies and distribute copies of the Program's source code
+<span class="lineNum">      17 </span>                : // provide that any such copy clearly displays any and all appropriate
+<span class="lineNum">      18 </span>                : // copyright notices and disclaimer of warranty as set forth in Article 5
+<span class="lineNum">      19 </span>                : // and 6 of this License.  All notices that refer to this License and to
+<span class="lineNum">      20 </span>                : // the absence of any warranty must be kept intact at all times.  A copy
+<span class="lineNum">      21 </span>                : // of this License must accompany any and all copies of the Program
+<span class="lineNum">      22 </span>                : // distributed to third parties.
+<span class="lineNum">      23 </span>                : // 
+<span class="lineNum">      24 </span>                : // A fee may be charged to cover the cost associated with the physical
+<span class="lineNum">      25 </span>                : // act of transferring a copy to a third party.  At no time shall the
+<span class="lineNum">      26 </span>                : // program be sold for commercial gain either alone or incorporated with
+<span class="lineNum">      27 </span>                : // other program(s) without entering into a separate agreement with GTRC.
+<span class="lineNum">      28 </span>                : //  
+<span class="lineNum">      29 </span>                : // 
+<span class="lineNum">      30 </span>                : // (b) modify the original copy or copies of the Program or any portion
+<span class="lineNum">      31 </span>                : // thereof (&quot;Modification(s)&quot;).  Modifications may be copied and
+<span class="lineNum">      32 </span>                : // distributed under the terms and conditions as set forth above,
+<span class="lineNum">      33 </span>                : // provided the following conditions are met:
+<span class="lineNum">      34 </span>                : // 
+<span class="lineNum">      35 </span>                : //     i) any and all modified files must be affixed with prominent
+<span class="lineNum">      36 </span>                : // notices that you have changed the files and the date that the changes
+<span class="lineNum">      37 </span>                : // occurred.
+<span class="lineNum">      38 </span>                : //              
+<span class="lineNum">      39 </span>                : //     ii) any work that you distribute, publish, or make available, that
+<span class="lineNum">      40 </span>                : // in whole or in part contains portions of the Program or derivative
+<span class="lineNum">      41 </span>                : // work thereof, must be licensed at no charge to all third parties under
+<span class="lineNum">      42 </span>                : // the terms of this License.
+<span class="lineNum">      43 </span>                : // 
+<span class="lineNum">      44 </span>                : //    iii) if the modified program normally reads commands interactively
+<span class="lineNum">      45 </span>                : // when run, you must cause it, when started running for such interactive
+<span class="lineNum">      46 </span>                : // use in the most ordinary way, to display and/or print an announcement
+<span class="lineNum">      47 </span>                : // with all appropriate copyright notices and disclaimer of warranty as
+<span class="lineNum">      48 </span>                : // set forth in Article 5 and 6 of this License to be clearly displayed.
+<span class="lineNum">      49 </span>                : // In addition, you must provide reasonable access to this License to the
+<span class="lineNum">      50 </span>                : // user.
+<span class="lineNum">      51 </span>                : // 
+<span class="lineNum">      52 </span>                : // Any portion of a Modification that can be reasonably considered
+<span class="lineNum">      53 </span>                : // independent of the Program and separate work in and of itself is not
+<span class="lineNum">      54 </span>                : // subject to the terms and conditions set forth in this License as long
+<span class="lineNum">      55 </span>                : // as it is not distributed with the Program or any portion thereof.
+<span class="lineNum">      56 </span>                : // 
+<span class="lineNum">      57 </span>                : // 
+<span class="lineNum">      58 </span>                : // 2. This License further allows you to copy and distribute the Program
+<span class="lineNum">      59 </span>                : //    or a work based on it, as set forth in Article 1 Section b in
+<span class="lineNum">      60 </span>                : //    object code or executable form under the terms of Article 1 above
+<span class="lineNum">      61 </span>                : //    provided that you also either:
+<span class="lineNum">      62 </span>                : // 
+<span class="lineNum">      63 </span>                : //    i) accompany it with complete corresponding machine-readable source
+<span class="lineNum">      64 </span>                : // code, which must be distributed under the terms of Article 1, on a
+<span class="lineNum">      65 </span>                : // medium customarily used for software interchange; or,
+<span class="lineNum">      66 </span>                : // 
+<span class="lineNum">      67 </span>                : //   ii) accompany it with a written offer, valid for no less than three
+<span class="lineNum">      68 </span>                : // (3) years from the time of distribution, to give any third party, for
+<span class="lineNum">      69 </span>                : // no consideration greater than the cost of physical transfer, a
+<span class="lineNum">      70 </span>                : // complete machine-readable copy of the corresponding source code, to be
+<span class="lineNum">      71 </span>                : // distributed under the terms of Article 1 on a medium customarily used
+<span class="lineNum">      72 </span>                : // for software interchange; or,
+<span class="lineNum">      73 </span>                : // 
+<span class="lineNum">      74 </span>                : // 
+<span class="lineNum">      75 </span>                : // 3.  Export Law Assurance.
+<span class="lineNum">      76 </span>                : // 
+<span class="lineNum">      77 </span>                : // You agree that the Software will not be shipped, transferred or
+<span class="lineNum">      78 </span>                : // exported, directly into any country prohibited by the United States
+<span class="lineNum">      79 </span>                : // Export Administration Act and the regulations thereunder nor will be
+<span class="lineNum">      80 </span>                : // used for any purpose prohibited by the Act.
+<span class="lineNum">      81 </span>                : //  
+<span class="lineNum">      82 </span>                : // 4.  Termination.
+<span class="lineNum">      83 </span>                : // 
+<span class="lineNum">      84 </span>                : // If at anytime you are unable to comply with any portion of this
+<span class="lineNum">      85 </span>                : // License you must immediately cease use of the Program and all
+<span class="lineNum">      86 </span>                : // distribution activities involving the Program or any portion thereof.
+<span class="lineNum">      87 </span>                : // 
+<span class="lineNum">      88 </span>                : // 
+<span class="lineNum">      89 </span>                : // 5.  Disclaimer of Warranties and Limitation on Liability.
+<span class="lineNum">      90 </span>                : // 
+<span class="lineNum">      91 </span>                : // YOU ACCEPT THE PROGRAM ON AN &quot;AS IS&quot; BASIS.  GTRC MAKES NO WARRANTY
+<span class="lineNum">      92 </span>                : // THAT ALL ERRORS CAN BE OR HAVE BEEN ELIMINATED FROM PROGRAM.  GTRC
+<span class="lineNum">      93 </span>                : // SHALL NOT BE RESPONSIBLE FOR LOSSES OF ANY KIND RESULTING FROM THE USE
+<span class="lineNum">      94 </span>                : // OF PROGRAM AND ITS ACCOMPANYING DOCUMENT(S), AND CAN IN NO WAY PROVIDE
+<span class="lineNum">      95 </span>                : // COMPENSATION FOR ANY LOSSES SUSTAINED, INCLUDING BUT NOT LIMITED TO
+<span class="lineNum">      96 </span>                : // ANY OBLIGATION, LIABILITY, RIGHT, CLAIM OR REMEDY FOR TORT, OR FOR ANY
+<span class="lineNum">      97 </span>                : // ACTUAL OR ALLEGED INFRINGEMENT OF PATENTS, COPYRIGHTS, TRADE SECRETS,
+<span class="lineNum">      98 </span>                : // OR SIMILAR RIGHTS OF THIRD PARTIES, NOR ANY BUSINESS EXPENSE, MACHINE
+<span class="lineNum">      99 </span>                : // DOWNTIME OR DAMAGES CAUSED TO YOU BY ANY DEFICIENCY, DEFECT OR ERROR
+<span class="lineNum">     100 </span>                : // IN PROGRAM OR MALFUNCTION THEREOF, NOR ANY INCIDENTAL OR CONSEQUENTIAL
+<span class="lineNum">     101 </span>                : // DAMAGES, HOWEVER CAUSED.  GTRC DISCLAIMS ALL WARRANTIES, BOTH EXPRESS
+<span class="lineNum">     102 </span>                : // AND IMPLIED RESPECTING THE USE AND OPERATION OF PROGRAM AND ITS
+<span class="lineNum">     103 </span>                : // ACCOMPANYING DOCUMENTATION, INCLUDING ALL IMPLIED WARRANTIES OF
+<span class="lineNum">     104 </span>                : // MERCHANTABILITY AND FITNESS FOR PARTICULAR PURPOSE AND ANY IMPLIED
+<span class="lineNum">     105 </span>                : // WARRANTY ARISING FROM COURSE OF PERFORMANCE, COURSE OF DEALING OR
+<span class="lineNum">     106 </span>                : // USAGE OF TRADE.  GTRC MAKES NO WARRANTY THAT PROGRAM IS ADEQUATELY OR
+<span class="lineNum">     107 </span>                : // COMPLETELY DESCRIBED IN, OR BEHAVES IN ACCORDANCE WITH ANY
+<span class="lineNum">     108 </span>                : // ACCOMPANYING DOCUMENTATION.  THE USER OF PROGRAM IS EXPECTED TO MAKE
+<span class="lineNum">     109 </span>                : // THE FINAL EVALUATION OF PROGRAM'S USEFULNESS IN USER'S OWN
+<span class="lineNum">     110 </span>                : // ENVIRONMENT.
+<span class="lineNum">     111 </span>                : // 
+<span class="lineNum">     112 </span>                : // GTRC represents that, to the best of its knowledge, the software
+<span class="lineNum">     113 </span>                : // furnished hereunder does not infringe any copyright or patent.
+<span class="lineNum">     114 </span>                : // 
+<span class="lineNum">     115 </span>                : // GTRC shall have no obligation for support or maintenance of Program.
+<span class="lineNum">     116 </span>                : // 
+<span class="lineNum">     117 </span>                : // 6.  Copyright Notice.
+<span class="lineNum">     118 </span>                : // 
+<span class="lineNum">     119 </span>                : // THE SOFTWARE AND ACCOMPANYING DOCUMENTATION ARE COPYRIGHTED WITH ALL
+<span class="lineNum">     120 </span>                : // RIGHTS RESERVED BY GTRC.  UNDER UNITED STATES COPYRIGHT LAWS, THE
+<span class="lineNum">     121 </span>                : // SOFTWARE AND ITS ACCOMPANYING DOCUMENTATION MAY NOT BE COPIED EXCEPT
+<span class="lineNum">     122 </span>                : // AS GRANTED HEREIN.
+<span class="lineNum">     123 </span>                : // 
+<span class="lineNum">     124 </span>                : // You acknowledge that GTRC is the sole owner of Program, including all
+<span class="lineNum">     125 </span>                : // copyrights subsisting therein.  Any and all copies or partial copies
+<span class="lineNum">     126 </span>                : // of Program made by you shall bear the copyright notice set forth below
+<span class="lineNum">     127 </span>                : // and affixed to the original version or such other notice as GTRC shall
+<span class="lineNum">     128 </span>                : // designate.  Such notice shall also be affixed to all improvements or
+<span class="lineNum">     129 </span>                : // enhancements of Program made by you or portions thereof in such a
+<span class="lineNum">     130 </span>                : // manner and location as to give reasonable notice of GTRC's copyright
+<span class="lineNum">     131 </span>                : // as set forth in Article 1.
+<span class="lineNum">     132 </span>                : // 
+<span class="lineNum">     133 </span>                : // Said copyright notice shall read as follows:
+<span class="lineNum">     134 </span>                : // 
+<span class="lineNum">     135 </span>                : // Copyright 2004
+<span class="lineNum">     136 </span>                : // Dr. George F. Riley
+<span class="lineNum">     137 </span>                : // Georgia Tech Research Corporation
+<span class="lineNum">     138 </span>                : // Atlanta, Georgia 30332-0415
+<span class="lineNum">     139 </span>                : // All Rights Reserved
+<span class="lineNum">     140 </span>                : //
+<span class="lineNum">     141 </span>                : // $Id: RngStream.cc,v 1.6 2006/08/14 15:31:24 dheeraj Exp $
+<span class="lineNum">     142 </span>                : 
+<span class="lineNum">     143 </span>                : 
+<span class="lineNum">     144 </span>                : 
+<span class="lineNum">     145 </span>                : /***********************************************************************\
+<span class="lineNum">     146 </span>                :  *
+<span class="lineNum">     147 </span>                :  * File:           RngStream.cpp for multiple streams of Random Numbers
+<span class="lineNum">     148 </span>                :  * Language:       ISO-C++
+<span class="lineNum">     149 </span>                :  * Copyright:      Pierre L'Ecuyer, University of Montreal
+<span class="lineNum">     150 </span>                :  * Notice:         This code can be used freely for personnal, academic,
+<span class="lineNum">     151 </span>                :  *                 or non-commercial purposes. For commercial purposes, 
+<span class="lineNum">     152 </span>                :  *                 please contact P. L'Ecuyer at: lecuyer@iro.umontreal.ca
+<span class="lineNum">     153 </span>                :  * Date:           14 August 2001
+<span class="lineNum">     154 </span>                :  *
+<span class="lineNum">     155 </span>                : \***********************************************************************/
+<span class="lineNum">     156 </span>                : 
+<span class="lineNum">     157 </span>                : 
+<span class="lineNum">     158 </span>                : #include &lt;cstdlib&gt;
+<span class="lineNum">     159 </span>                : #include &lt;iostream&gt;
+<span class="lineNum">     160 </span>                : #include &quot;RngStream.hpp&quot;
+<span class="lineNum">     161 </span>                : using namespace std;
+<span class="lineNum">     162 </span>                : 
+<span class="lineNum">     163 </span>                : namespace
+<span class="lineNum">     164 </span>                : {
+<span class="lineNum">     165 </span>                : const double m1   =       4294967087.0;
+<span class="lineNum">     166 </span>                : const double m2   =       4294944443.0;
+<span class="lineNum">     167 </span>                : const double norm =       1.0 / (m1 + 1.0);
+<span class="lineNum">     168 </span>                : const double a12  =       1403580.0;
+<span class="lineNum">     169 </span>                : const double a13n =       810728.0;
+<span class="lineNum">     170 </span>                : const double a21  =       527612.0;
+<span class="lineNum">     171 </span>                : const double a23n =       1370589.0;
+<span class="lineNum">     172 </span>                : const double two17 =      131072.0;
+<span class="lineNum">     173 </span>                : const double two53 =      9007199254740992.0;
+<span class="lineNum">     174 </span>                : const double fact =       5.9604644775390625e-8;     /* 1 / 2^24  */
+<span class="lineNum">     175 </span>                : 
+<span class="lineNum">     176 </span>                : // The following are the transition matrices of the two MRG components
+<span class="lineNum">     177 </span>                : // (in matrix form), raised to the powers -1, 1, 2^76, and 2^127, resp.
+<span class="lineNum">     178 </span>                : 
+<span class="lineNum">     179 </span>                : const double InvA1[3][3] = {          // Inverse of A1p0
+<span class="lineNum">     180 </span>                :        { 184888585.0,   0.0,  1945170933.0 },
+<span class="lineNum">     181 </span>                :        {         1.0,   0.0,           0.0 },
+<span class="lineNum">     182 </span>                :        {         0.0,   1.0,           0.0 }
+<span class="lineNum">     183 </span>                :        };
+<span class="lineNum">     184 </span>                : 
+<span class="lineNum">     185 </span>                : const double InvA2[3][3] = {          // Inverse of A2p0
+<span class="lineNum">     186 </span>                :        {      0.0,  360363334.0,  4225571728.0 },
+<span class="lineNum">     187 </span>                :        {      1.0,          0.0,           0.0 },
+<span class="lineNum">     188 </span>                :        {      0.0,          1.0,           0.0 }
+<span class="lineNum">     189 </span>                :        };
+<span class="lineNum">     190 </span>                : 
+<span class="lineNum">     191 </span>                : const double A1p0[3][3] = {
+<span class="lineNum">     192 </span>                :        {       0.0,        1.0,       0.0 },
+<span class="lineNum">     193 </span>                :        {       0.0,        0.0,       1.0 },
+<span class="lineNum">     194 </span>                :        { -810728.0,  1403580.0,       0.0 }
+<span class="lineNum">     195 </span>                :        };
+<span class="lineNum">     196 </span>                : 
+<span class="lineNum">     197 </span>                : const double A2p0[3][3] = {
+<span class="lineNum">     198 </span>                :        {        0.0,        1.0,       0.0 },
+<span class="lineNum">     199 </span>                :        {        0.0,        0.0,       1.0 },
+<span class="lineNum">     200 </span>                :        { -1370589.0,        0.0,  527612.0 }
+<span class="lineNum">     201 </span>                :        };
+<span class="lineNum">     202 </span>                : 
+<span class="lineNum">     203 </span>                : const double A1p76[3][3] = {
+<span class="lineNum">     204 </span>                :        {      82758667.0, 1871391091.0, 4127413238.0 },
+<span class="lineNum">     205 </span>                :        {    3672831523.0,   69195019.0, 1871391091.0 },
+<span class="lineNum">     206 </span>                :        {    3672091415.0, 3528743235.0,   69195019.0 }
+<span class="lineNum">     207 </span>                :        };
+<span class="lineNum">     208 </span>                : 
+<span class="lineNum">     209 </span>                : const double A2p76[3][3] = {
+<span class="lineNum">     210 </span>                :        {    1511326704.0, 3759209742.0, 1610795712.0 },
+<span class="lineNum">     211 </span>                :        {    4292754251.0, 1511326704.0, 3889917532.0 },
+<span class="lineNum">     212 </span>                :        {    3859662829.0, 4292754251.0, 3708466080.0 }
+<span class="lineNum">     213 </span>                :        };
+<span class="lineNum">     214 </span>                : 
+<span class="lineNum">     215 </span>                : const double A1p127[3][3] = {
+<span class="lineNum">     216 </span>                :        {    2427906178.0, 3580155704.0,  949770784.0 },
+<span class="lineNum">     217 </span>                :        {     226153695.0, 1230515664.0, 3580155704.0 },
+<span class="lineNum">     218 </span>                :        {    1988835001.0,  986791581.0, 1230515664.0 }
+<span class="lineNum">     219 </span>                :        };
+<span class="lineNum">     220 </span>                : 
+<span class="lineNum">     221 </span>                : const double A2p127[3][3] = {
+<span class="lineNum">     222 </span>                :        {    1464411153.0,  277697599.0, 1610723613.0 },
+<span class="lineNum">     223 </span>                :        {      32183930.0, 1464411153.0, 1022607788.0 },
+<span class="lineNum">     224 </span>                :        {    2824425944.0,   32183930.0, 2093834863.0 }
+<span class="lineNum">     225 </span>                :        };
+<span class="lineNum">     226 </span>                : 
+<span class="lineNum">     227 </span>                : 
+<span class="lineNum">     228 </span>                : 
+<span class="lineNum">     229 </span>                : //-------------------------------------------------------------------------
+<span class="lineNum">     230 </span>                : // Return (a*s + c) MOD m; a, s, c and m must be &lt; 2^35
+<span class="lineNum">     231 </span>                : //
+<span class="lineNum">     232 </span><span class="lineNoCov">              0 : double MultModM (double a, double s, double c, double m)</span>
+<span class="lineNum">     233 </span>                : {
+<span class="lineNum">     234 </span>                :     double v;
+<span class="lineNum">     235 </span>                :     long a1;
+<span class="lineNum">     236 </span>                : 
+<span class="lineNum">     237 </span><span class="lineNoCov">              0 :     v = a * s + c;</span>
+<span class="lineNum">     238 </span>                : 
+<span class="lineNum">     239 </span><span class="lineNoCov">              0 :     if (v &gt;= two53 || v &lt;= -two53) {</span>
+<span class="lineNum">     240 </span><span class="lineNoCov">              0 :         a1 = static_cast&lt;long&gt; (a / two17);    a -= a1 * two17;</span>
+<span class="lineNum">     241 </span><span class="lineNoCov">              0 :         v  = a1 * s;</span>
+<span class="lineNum">     242 </span><span class="lineNoCov">              0 :         a1 = static_cast&lt;long&gt; (v / m);     v -= a1 * m;</span>
+<span class="lineNum">     243 </span><span class="lineNoCov">              0 :         v = v * two17 + a * s + c;</span>
+<span class="lineNum">     244 </span>                :     }
+<span class="lineNum">     245 </span>                : 
+<span class="lineNum">     246 </span><span class="lineNoCov">              0 :     a1 = static_cast&lt;long&gt; (v / m);</span>
+<span class="lineNum">     247 </span>                :     /* in case v &lt; 0)*/
+<span class="lineNum">     248 </span><span class="lineNoCov">              0 :     if ((v -= a1 * m) &lt; 0.0) return v += m;   else return v;</span>
+<span class="lineNum">     249 </span>                : }
+<span class="lineNum">     250 </span>                : 
+<span class="lineNum">     251 </span>                : 
+<span class="lineNum">     252 </span>                : //-------------------------------------------------------------------------
+<span class="lineNum">     253 </span>                : // Compute the vector v = A*s MOD m. Assume that -m &lt; s[i] &lt; m.
+<span class="lineNum">     254 </span>                : // Works also when v = s.
+<span class="lineNum">     255 </span>                : //
+<span class="lineNum">     256 </span>                : void MatVecModM (const double A[3][3], const double s[3], double v[3],
+<span class="lineNum">     257 </span><span class="lineNoCov">              0 :                  double m)</span>
+<span class="lineNum">     258 </span>                : {
+<span class="lineNum">     259 </span>                :     int i;
+<span class="lineNum">     260 </span>                :     double x[3];               // Necessary if v = s
+<span class="lineNum">     261 </span>                : 
+<span class="lineNum">     262 </span><span class="lineNoCov">              0 :     for (i = 0; i &lt; 3; ++i) {</span>
+<span class="lineNum">     263 </span><span class="lineNoCov">              0 :         x[i] = MultModM (A[i][0], s[0], 0.0, m);</span>
+<span class="lineNum">     264 </span><span class="lineNoCov">              0 :         x[i] = MultModM (A[i][1], s[1], x[i], m);</span>
+<span class="lineNum">     265 </span><span class="lineNoCov">              0 :         x[i] = MultModM (A[i][2], s[2], x[i], m);</span>
+<span class="lineNum">     266 </span>                :     }
+<span class="lineNum">     267 </span><span class="lineNoCov">              0 :     for (i = 0; i &lt; 3; ++i)</span>
+<span class="lineNum">     268 </span><span class="lineNoCov">              0 :         v[i] = x[i];</span>
+<span class="lineNum">     269 </span><span class="lineNoCov">              0 : }</span>
+<span class="lineNum">     270 </span>                : 
+<span class="lineNum">     271 </span>                : 
+<span class="lineNum">     272 </span>                : //-------------------------------------------------------------------------
+<span class="lineNum">     273 </span>                : // Compute the matrix C = A*B MOD m. Assume that -m &lt; s[i] &lt; m.
+<span class="lineNum">     274 </span>                : // Note: works also if A = C or B = C or A = B = C.
+<span class="lineNum">     275 </span>                : //
+<span class="lineNum">     276 </span>                : void MatMatModM (const double A[3][3], const double B[3][3],
+<span class="lineNum">     277 </span><span class="lineNoCov">              0 :                  double C[3][3], double m)</span>
+<span class="lineNum">     278 </span>                : {
+<span class="lineNum">     279 </span>                :     int i, j;
+<span class="lineNum">     280 </span>                :     double V[3], W[3][3];
+<span class="lineNum">     281 </span>                : 
+<span class="lineNum">     282 </span><span class="lineNoCov">              0 :     for (i = 0; i &lt; 3; ++i) {</span>
+<span class="lineNum">     283 </span><span class="lineNoCov">              0 :         for (j = 0; j &lt; 3; ++j)</span>
+<span class="lineNum">     284 </span><span class="lineNoCov">              0 :             V[j] = B[j][i];</span>
+<span class="lineNum">     285 </span><span class="lineNoCov">              0 :         MatVecModM (A, V, V, m);</span>
+<span class="lineNum">     286 </span><span class="lineNoCov">              0 :         for (j = 0; j &lt; 3; ++j)</span>
+<span class="lineNum">     287 </span><span class="lineNoCov">              0 :             W[j][i] = V[j];</span>
+<span class="lineNum">     288 </span>                :     }
+<span class="lineNum">     289 </span><span class="lineNoCov">              0 :     for (i = 0; i &lt; 3; ++i)</span>
+<span class="lineNum">     290 </span><span class="lineNoCov">              0 :         for (j = 0; j &lt; 3; ++j)</span>
+<span class="lineNum">     291 </span><span class="lineNoCov">              0 :             C[i][j] = W[i][j];</span>
+<span class="lineNum">     292 </span><span class="lineNoCov">              0 : }</span>
+<span class="lineNum">     293 </span>                : 
+<span class="lineNum">     294 </span>                : 
+<span class="lineNum">     295 </span>                : //-------------------------------------------------------------------------
+<span class="lineNum">     296 </span>                : // Compute the matrix B = (A^(2^e) Mod m);  works also if A = B. 
+<span class="lineNum">     297 </span>                : //
+<span class="lineNum">     298 </span><span class="lineNoCov">              0 : void MatTwoPowModM (const double A[3][3], double B[3][3], double m, long e)</span>
+<span class="lineNum">     299 </span>                : {
+<span class="lineNum">     300 </span>                :    int i, j;
+<span class="lineNum">     301 </span>                : 
+<span class="lineNum">     302 </span>                :    /* initialize: B = A */
+<span class="lineNum">     303 </span><span class="lineNoCov">              0 :    if (A != B) {</span>
+<span class="lineNum">     304 </span><span class="lineNoCov">              0 :       for (i = 0; i &lt; 3; ++i)</span>
+<span class="lineNum">     305 </span><span class="lineNoCov">              0 :          for (j = 0; j &lt; 3; ++j)</span>
+<span class="lineNum">     306 </span><span class="lineNoCov">              0 :             B[i][j] = A[i][j];</span>
+<span class="lineNum">     307 </span>                :    }
+<span class="lineNum">     308 </span>                :    /* Compute B = A^(2^e) mod m */
+<span class="lineNum">     309 </span><span class="lineNoCov">              0 :    for (i = 0; i &lt; e; i++)</span>
+<span class="lineNum">     310 </span><span class="lineNoCov">              0 :       MatMatModM (B, B, B, m);</span>
+<span class="lineNum">     311 </span><span class="lineNoCov">              0 : }</span>
+<span class="lineNum">     312 </span>                : 
+<span class="lineNum">     313 </span>                : 
+<span class="lineNum">     314 </span>                : //-------------------------------------------------------------------------
+<span class="lineNum">     315 </span>                : // Compute the matrix B = (A^n Mod m);  works even if A = B.
+<span class="lineNum">     316 </span>                : //
+<span class="lineNum">     317 </span><span class="lineNoCov">              0 : void MatPowModM (const double A[3][3], double B[3][3], double m, long n)</span>
+<span class="lineNum">     318 </span>                : {
+<span class="lineNum">     319 </span>                :     int i, j;
+<span class="lineNum">     320 </span>                :     double W[3][3];
+<span class="lineNum">     321 </span>                : 
+<span class="lineNum">     322 </span>                :     /* initialize: W = A; B = I */
+<span class="lineNum">     323 </span><span class="lineNoCov">              0 :     for (i = 0; i &lt; 3; ++i)</span>
+<span class="lineNum">     324 </span><span class="lineNoCov">              0 :         for (j = 0; j &lt; 3; ++j) {</span>
+<span class="lineNum">     325 </span><span class="lineNoCov">              0 :             W[i][j] = A[i][j];</span>
+<span class="lineNum">     326 </span><span class="lineNoCov">              0 :             B[i][j] = 0.0;</span>
+<span class="lineNum">     327 </span>                :         }
+<span class="lineNum">     328 </span><span class="lineNoCov">              0 :     for (j = 0; j &lt; 3; ++j)</span>
+<span class="lineNum">     329 </span><span class="lineNoCov">              0 :         B[j][j] = 1.0;</span>
+<span class="lineNum">     330 </span>                : 
+<span class="lineNum">     331 </span>                :     /* Compute B = A^n mod m using the binary decomposition of n */
+<span class="lineNum">     332 </span><span class="lineNoCov">              0 :     while (n &gt; 0) {</span>
+<span class="lineNum">     333 </span><span class="lineNoCov">              0 :         if (n % 2) MatMatModM (W, B, B, m);</span>
+<span class="lineNum">     334 </span><span class="lineNoCov">              0 :         MatMatModM (W, W, W, m);</span>
+<span class="lineNum">     335 </span><span class="lineNoCov">              0 :         n /= 2;</span>
+<span class="lineNum">     336 </span>                :     }
+<span class="lineNum">     337 </span><span class="lineNoCov">              0 : }</span>
+<span class="lineNum">     338 </span>                : } // end of anonymous namespace
+<span class="lineNum">     339 </span>                : 
+<span class="lineNum">     340 </span>                : 
+<span class="lineNum">     341 </span>                : //-------------------------------------------------------------------------
+<span class="lineNum">     342 </span>                : // Check that the seeds are legitimate values. Returns true if legal seeds,
+<span class="lineNum">     343 </span>                : // false otherwise.
+<span class="lineNum">     344 </span>                : //
+<span class="lineNum">     345 </span><span class="lineNoCov">              0 : bool RngStream::CheckSeed (const unsigned long seed[6])</span>
+<span class="lineNum">     346 </span>                : {
+<span class="lineNum">     347 </span>                :     int i;
+<span class="lineNum">     348 </span>                : 
+<span class="lineNum">     349 </span><span class="lineNoCov">              0 :     for (i = 0; i &lt; 3; ++i) {</span>
+<span class="lineNum">     350 </span><span class="lineNoCov">              0 :         if (seed[i] &gt;= m1) {</span>
+<span class="lineNum">     351 </span>                :             cerr &lt;&lt; &quot;****************************************\n\n&quot;
+<span class="lineNum">     352 </span>                :                  &lt;&lt; &quot;ERROR: Seed[&quot; &lt;&lt; i &lt;&lt; &quot;] &gt;= 4294967087, Seed is not set.&quot;
+<span class="lineNum">     353 </span><span class="lineNoCov">              0 :                  &lt;&lt; &quot;\n\n****************************************\n\n&quot;;</span>
+<span class="lineNum">     354 </span><span class="lineNoCov">              0 :             return (false);</span>
+<span class="lineNum">     355 </span>                :         }
+<span class="lineNum">     356 </span>                :     }
+<span class="lineNum">     357 </span><span class="lineNoCov">              0 :     for (i = 3; i &lt; 6; ++i) {</span>
+<span class="lineNum">     358 </span><span class="lineNoCov">              0 :         if (seed[i] &gt;= m2) {</span>
+<span class="lineNum">     359 </span><span class="lineNoCov">              0 :           cout &lt;&lt; &quot;Seed[&quot; &lt;&lt; i &lt;&lt; &quot;] = &quot; &lt;&lt; seed[i] &lt;&lt; endl; </span>
+<span class="lineNum">     360 </span>                :             cerr &lt;&lt; &quot;*****************************************\n\n&quot;
+<span class="lineNum">     361 </span>                :                  &lt;&lt; &quot;ERROR: Seed[&quot; &lt;&lt; i &lt;&lt; &quot;] &gt;= 4294944443, Seed is not set.&quot;
+<span class="lineNum">     362 </span><span class="lineNoCov">              0 :                  &lt;&lt; &quot;\n\n*****************************************\n\n&quot;;</span>
+<span class="lineNum">     363 </span><span class="lineNoCov">              0 :             return (false);</span>
+<span class="lineNum">     364 </span>                :         }
+<span class="lineNum">     365 </span>                :     }
+<span class="lineNum">     366 </span><span class="lineNoCov">              0 :     if (seed[0] == 0 &amp;&amp; seed[1] == 0 &amp;&amp; seed[2] == 0) {</span>
+<span class="lineNum">     367 </span>                :          cerr &lt;&lt; &quot;****************************\n\n&quot;
+<span class="lineNum">     368 </span>                :               &lt;&lt; &quot;ERROR: First 3 seeds = 0.\n\n&quot;
+<span class="lineNum">     369 </span><span class="lineNoCov">              0 :               &lt;&lt; &quot;****************************\n\n&quot;;</span>
+<span class="lineNum">     370 </span><span class="lineNoCov">              0 :          return (false);</span>
+<span class="lineNum">     371 </span>                :     }
+<span class="lineNum">     372 </span><span class="lineNoCov">              0 :     if (seed[3] == 0 &amp;&amp; seed[4] == 0 &amp;&amp; seed[5] == 0) {</span>
+<span class="lineNum">     373 </span>                :          cerr &lt;&lt; &quot;****************************\n\n&quot;
+<span class="lineNum">     374 </span>                :               &lt;&lt; &quot;ERROR: Last 3 seeds = 0.\n\n&quot;
+<span class="lineNum">     375 </span><span class="lineNoCov">              0 :               &lt;&lt; &quot;****************************\n\n&quot;;</span>
+<span class="lineNum">     376 </span><span class="lineNoCov">              0 :          return (false);</span>
+<span class="lineNum">     377 </span>                :     }
+<span class="lineNum">     378 </span><span class="lineNoCov">              0 :     return true;</span>
+<span class="lineNum">     379 </span>                : }
+<span class="lineNum">     380 </span>                : 
+<span class="lineNum">     381 </span>                : 
+<span class="lineNum">     382 </span>                : 
+<span class="lineNum">     383 </span>                : 
+<span class="lineNum">     384 </span>                : //-------------------------------------------------------------------------
+<span class="lineNum">     385 </span>                : // Generate the next random number.
+<span class="lineNum">     386 </span>                : //
+<span class="lineNum">     387 </span><span class="lineNoCov">              0 : double RngStream::U01 ()</span>
+<span class="lineNum">     388 </span>                : {
+<span class="lineNum">     389 </span>                :     long k;
+<span class="lineNum">     390 </span>                :     double p1, p2, u;
+<span class="lineNum">     391 </span>                : 
+<span class="lineNum">     392 </span>                :     /* Component 1 */
+<span class="lineNum">     393 </span><span class="lineNoCov">              0 :     p1 = a12 * Cg[1] - a13n * Cg[0];</span>
+<span class="lineNum">     394 </span><span class="lineNoCov">              0 :     k = static_cast&lt;long&gt; (p1 / m1);</span>
+<span class="lineNum">     395 </span><span class="lineNoCov">              0 :     p1 -= k * m1;</span>
+<span class="lineNum">     396 </span><span class="lineNoCov">              0 :     if (p1 &lt; 0.0) p1 += m1;</span>
+<span class="lineNum">     397 </span><span class="lineNoCov">              0 :     Cg[0] = Cg[1]; Cg[1] = Cg[2]; Cg[2] = p1;</span>
+<span class="lineNum">     398 </span>                : 
+<span class="lineNum">     399 </span>                :     /* Component 2 */
+<span class="lineNum">     400 </span><span class="lineNoCov">              0 :     p2 = a21 * Cg[5] - a23n * Cg[3];</span>
+<span class="lineNum">     401 </span><span class="lineNoCov">              0 :     k = static_cast&lt;long&gt; (p2 / m2);</span>
+<span class="lineNum">     402 </span><span class="lineNoCov">              0 :     p2 -= k * m2;</span>
+<span class="lineNum">     403 </span><span class="lineNoCov">              0 :     if (p2 &lt; 0.0) p2 += m2;</span>
+<span class="lineNum">     404 </span><span class="lineNoCov">              0 :     Cg[3] = Cg[4]; Cg[4] = Cg[5]; Cg[5] = p2;</span>
+<span class="lineNum">     405 </span>                : 
+<span class="lineNum">     406 </span>                :     /* Combination */
+<span class="lineNum">     407 </span><span class="lineNoCov">              0 :     u = ((p1 &gt; p2) ? (p1 - p2) * norm : (p1 - p2 + m1) * norm);</span>
+<span class="lineNum">     408 </span>                : 
+<span class="lineNum">     409 </span><span class="lineNoCov">              0 :     return (anti == false) ? u : (1 - u);</span>
+<span class="lineNum">     410 </span>                : }
+<span class="lineNum">     411 </span>                : 
+<span class="lineNum">     412 </span>                : 
+<span class="lineNum">     413 </span>                : //-------------------------------------------------------------------------
+<span class="lineNum">     414 </span>                : // Generate the next random number with extended (53 bits) precision.
+<span class="lineNum">     415 </span>                : //
+<span class="lineNum">     416 </span><span class="lineNoCov">              0 : double RngStream::U01d ()</span>
+<span class="lineNum">     417 </span>                : {
+<span class="lineNum">     418 </span>                :     double u;
+<span class="lineNum">     419 </span><span class="lineNoCov">              0 :     u = U01();</span>
+<span class="lineNum">     420 </span><span class="lineNoCov">              0 :     if (anti) {</span>
+<span class="lineNum">     421 </span>                :         // Don't forget that U01() returns 1 - u in the antithetic case
+<span class="lineNum">     422 </span><span class="lineNoCov">              0 :         u += (U01() - 1.0) * fact;</span>
+<span class="lineNum">     423 </span><span class="lineNoCov">              0 :         return (u &lt; 0.0) ? u + 1.0 : u;</span>
+<span class="lineNum">     424 </span>                :     } else {
+<span class="lineNum">     425 </span><span class="lineNoCov">              0 :         u += U01() * fact;</span>
+<span class="lineNum">     426 </span><span class="lineNoCov">              0 :         return (u &lt; 1.0) ? u : (u - 1.0);</span>
+<span class="lineNum">     427 </span>                :     }
+<span class="lineNum">     428 </span>                : }
+<span class="lineNum">     429 </span>                : 
+<span class="lineNum">     430 </span>                : 
+<span class="lineNum">     431 </span>                : //*************************************************************************
+<span class="lineNum">     432 </span>                : // Public members of the class start here
+<span class="lineNum">     433 </span>                : 
+<span class="lineNum">     434 </span>                : 
+<span class="lineNum">     435 </span>                : //-------------------------------------------------------------------------
+<span class="lineNum">     436 </span>                : // The default seed of the package; will be the seed of the first
+<span class="lineNum">     437 </span>                : // declared RngStream, unless SetPackageSeed is called.
+<span class="lineNum">     438 </span>                : //
+<span class="lineNum">     439 </span>                : #ifdef NO_LONGER_USED
+<span class="lineNum">     440 </span>                : double RngStream::nextSeed[6] =
+<span class="lineNum">     441 </span>                : {
+<span class="lineNum">     442 </span>                :    12345.0, 12345.0, 12345.0, 12345.0, 12345.0, 12345.0
+<span class="lineNum">     443 </span>                : };
+<span class="lineNum">     444 </span>                : #endif
+<span class="lineNum">     445 </span>                : 
+<span class="lineNum">     446 </span>                : //-------------------------------------------------------------------------
+<span class="lineNum">     447 </span>                : // constructor
+<span class="lineNum">     448 </span>                : //
+<span class="lineNum">     449 </span><span class="lineNoCov">              0 : RngStream::RngStream ()</span>
+<span class="lineNum">     450 </span>                : {
+<span class="lineNum">     451 </span><span class="lineNoCov">              0 :    anti = false;</span>
+<span class="lineNum">     452 </span><span class="lineNoCov">              0 :    incPrec = false;</span>
+<span class="lineNum">     453 </span>                : 
+<span class="lineNum">     454 </span>                : #ifdef NO_LONGER_USED
+<span class="lineNum">     455 </span>                :    // Deprecated.  All instances of RngStream EXPLICITLY call SetSeed()
+<span class="lineNum">     456 </span>                :    /* Information on a stream. The arrays {Cg, Bg, Ig} contain the current
+<span class="lineNum">     457 </span>                :    state of the stream, the starting state of the current SubStream, and the
+<span class="lineNum">     458 </span>                :    starting state of the stream. This stream generates antithetic variates
+<span class="lineNum">     459 </span>                :    if anti = true. It also generates numbers with extended precision (53
+<span class="lineNum">     460 </span>                :    bits if machine follows IEEE 754 standard) if incPrec = true. nextSeed
+<span class="lineNum">     461 </span>                :    will be the seed of the next declared RngStream. */
+<span class="lineNum">     462 </span>                : 
+<span class="lineNum">     463 </span>                :    for (int i = 0; i &lt; 6; ++i) {
+<span class="lineNum">     464 </span>                :       Bg[i] = Cg[i] = Ig[i] = nextSeed[i];
+<span class="lineNum">     465 </span>                :    }
+<span class="lineNum">     466 </span>                : 
+<span class="lineNum">     467 </span>                :    MatVecModM (A1p127, nextSeed, nextSeed, m1);
+<span class="lineNum">     468 </span>                :    MatVecModM (A2p127, &amp;nextSeed[3], &amp;nextSeed[3], m2);
+<span class="lineNum">     469 </span>                : #endif
+<span class="lineNum">     470 </span><span class="lineNoCov">              0 : }</span>
+<span class="lineNum">     471 </span>                : 
+<span class="lineNum">     472 </span>                : 
+<span class="lineNum">     473 </span>                : //-------------------------------------------------------------------------
+<span class="lineNum">     474 </span>                : // Reset Stream to beginning of Stream.
+<span class="lineNum">     475 </span>                : //
+<span class="lineNum">     476 </span><span class="lineNoCov">              0 : void RngStream::ResetStartStream ()</span>
+<span class="lineNum">     477 </span>                : {
+<span class="lineNum">     478 </span><span class="lineNoCov">              0 :    for (int i = 0; i &lt; 6; ++i)</span>
+<span class="lineNum">     479 </span><span class="lineNoCov">              0 :       Cg[i] = Bg[i] = Ig[i];</span>
+<span class="lineNum">     480 </span><span class="lineNoCov">              0 : }</span>
+<span class="lineNum">     481 </span>                : 
+<span class="lineNum">     482 </span>                : 
+<span class="lineNum">     483 </span>                : //-------------------------------------------------------------------------
+<span class="lineNum">     484 </span>                : // Reset Stream to beginning of SubStream.
+<span class="lineNum">     485 </span>                : //
+<span class="lineNum">     486 </span><span class="lineNoCov">              0 : void RngStream::ResetStartSubstream ()</span>
+<span class="lineNum">     487 </span>                : {
+<span class="lineNum">     488 </span><span class="lineNoCov">              0 :    for (int i = 0; i &lt; 6; ++i)</span>
+<span class="lineNum">     489 </span><span class="lineNoCov">              0 :       Cg[i] = Bg[i];</span>
+<span class="lineNum">     490 </span><span class="lineNoCov">              0 : }</span>
+<span class="lineNum">     491 </span>                : 
+<span class="lineNum">     492 </span>                : 
+<span class="lineNum">     493 </span>                : //-------------------------------------------------------------------------
+<span class="lineNum">     494 </span>                : // Reset Stream to NextSubStream.
+<span class="lineNum">     495 </span>                : //
+<span class="lineNum">     496 </span><span class="lineNoCov">              0 : void RngStream::ResetNextSubstream ()</span>
+<span class="lineNum">     497 </span>                : {
+<span class="lineNum">     498 </span><span class="lineNoCov">              0 :    MatVecModM(A1p76, Bg, Bg, m1);</span>
+<span class="lineNum">     499 </span><span class="lineNoCov">              0 :    MatVecModM(A2p76, &amp;Bg[3], &amp;Bg[3], m2);</span>
+<span class="lineNum">     500 </span><span class="lineNoCov">              0 :    for (int i = 0; i &lt; 6; ++i)</span>
+<span class="lineNum">     501 </span><span class="lineNoCov">              0 :        Cg[i] = Bg[i];</span>
+<span class="lineNum">     502 </span><span class="lineNoCov">              0 : }</span>
+<span class="lineNum">     503 </span>                : 
+<span class="lineNum">     504 </span>                : 
+<span class="lineNum">     505 </span>                : #ifdef NO_LONGER_USED
+<span class="lineNum">     506 </span>                : //-------------------------------------------------------------------------
+<span class="lineNum">     507 </span>                : bool RngStream::SetPackageSeed (const unsigned long seed[6])
+<span class="lineNum">     508 </span>                : {
+<span class="lineNum">     509 </span>                :   if (!CheckSeed (seed)) return false;
+<span class="lineNum">     510 </span>                :   for (int i = 0; i &lt; 6; ++i)
+<span class="lineNum">     511 </span>                :     nextSeed[i] = seed[i];
+<span class="lineNum">     512 </span>                :   return true;
+<span class="lineNum">     513 </span>                : }
+<span class="lineNum">     514 </span>                : #endif
+<span class="lineNum">     515 </span>                : 
+<span class="lineNum">     516 </span>                : 
+<span class="lineNum">     517 </span>                : //-------------------------------------------------------------------------
+<span class="lineNum">     518 </span><span class="lineNoCov">              0 : bool RngStream::SetSeed (const unsigned long seed[6])</span>
+<span class="lineNum">     519 </span>                : {
+<span class="lineNum">     520 </span><span class="lineNoCov">              0 :   if (!CheckSeed (seed)) return false;</span>
+<span class="lineNum">     521 </span><span class="lineNoCov">              0 :    for (int i = 0; i &lt; 6; ++i)</span>
+<span class="lineNum">     522 </span><span class="lineNoCov">              0 :       Cg[i] = Bg[i] = Ig[i] = seed[i];</span>
+<span class="lineNum">     523 </span><span class="lineNoCov">              0 :    return true;</span>
+<span class="lineNum">     524 </span>                : }
+<span class="lineNum">     525 </span>                : 
+<span class="lineNum">     526 </span>                : 
+<span class="lineNum">     527 </span>                : //-------------------------------------------------------------------------
+<span class="lineNum">     528 </span>                : // if e &gt; 0, let n = 2^e + c;
+<span class="lineNum">     529 </span>                : // if e &lt; 0, let n = -2^(-e) + c;
+<span class="lineNum">     530 </span>                : // if e = 0, let n = c.
+<span class="lineNum">     531 </span>                : // Jump n steps forward if n &gt; 0, backwards if n &lt; 0.
+<span class="lineNum">     532 </span>                : //
+<span class="lineNum">     533 </span><span class="lineNoCov">              0 : void RngStream::AdvanceState (long e, long c)</span>
+<span class="lineNum">     534 </span>                : {
+<span class="lineNum">     535 </span>                :     double B1[3][3], C1[3][3], B2[3][3], C2[3][3];
+<span class="lineNum">     536 </span>                : 
+<span class="lineNum">     537 </span><span class="lineNoCov">              0 :     if (e &gt; 0) {</span>
+<span class="lineNum">     538 </span><span class="lineNoCov">              0 :         MatTwoPowModM (A1p0, B1, m1, e);</span>
+<span class="lineNum">     539 </span><span class="lineNoCov">              0 :         MatTwoPowModM (A2p0, B2, m2, e);</span>
+<span class="lineNum">     540 </span><span class="lineNoCov">              0 :     } else if (e &lt; 0) {</span>
+<span class="lineNum">     541 </span><span class="lineNoCov">              0 :         MatTwoPowModM (InvA1, B1, m1, -e);</span>
+<span class="lineNum">     542 </span><span class="lineNoCov">              0 :         MatTwoPowModM (InvA2, B2, m2, -e);</span>
+<span class="lineNum">     543 </span>                :     }
+<span class="lineNum">     544 </span>                : 
+<span class="lineNum">     545 </span><span class="lineNoCov">              0 :     if (c &gt;= 0) {</span>
+<span class="lineNum">     546 </span><span class="lineNoCov">              0 :         MatPowModM (A1p0, C1, m1, c);</span>
+<span class="lineNum">     547 </span><span class="lineNoCov">              0 :         MatPowModM (A2p0, C2, m2, c);</span>
+<span class="lineNum">     548 </span>                :     } else {
+<span class="lineNum">     549 </span><span class="lineNoCov">              0 :         MatPowModM (InvA1, C1, m1, -c);</span>
+<span class="lineNum">     550 </span><span class="lineNoCov">              0 :         MatPowModM (InvA2, C2, m2, -c);</span>
+<span class="lineNum">     551 </span>                :     }
+<span class="lineNum">     552 </span>                : 
+<span class="lineNum">     553 </span><span class="lineNoCov">              0 :     if (e) {</span>
+<span class="lineNum">     554 </span><span class="lineNoCov">              0 :         MatMatModM (B1, C1, C1, m1);</span>
+<span class="lineNum">     555 </span><span class="lineNoCov">              0 :         MatMatModM (B2, C2, C2, m2);</span>
+<span class="lineNum">     556 </span>                :     }
+<span class="lineNum">     557 </span>                : 
+<span class="lineNum">     558 </span><span class="lineNoCov">              0 :     MatVecModM (C1, Cg, Cg, m1);</span>
+<span class="lineNum">     559 </span><span class="lineNoCov">              0 :     MatVecModM (C2, &amp;Cg[3], &amp;Cg[3], m2);</span>
+<span class="lineNum">     560 </span><span class="lineNoCov">              0 : }</span>
+<span class="lineNum">     561 </span>                : 
+<span class="lineNum">     562 </span>                : 
+<span class="lineNum">     563 </span>                : //-------------------------------------------------------------------------
+<span class="lineNum">     564 </span><span class="lineNoCov">              0 : void RngStream::GetState (unsigned long seed[6]) const</span>
+<span class="lineNum">     565 </span>                : {
+<span class="lineNum">     566 </span><span class="lineNoCov">              0 :    for (int i = 0; i &lt; 6; ++i)</span>
+<span class="lineNum">     567 </span><span class="lineNoCov">              0 :       seed[i] = static_cast&lt;unsigned long&gt; (Cg[i]);</span>
+<span class="lineNum">     568 </span><span class="lineNoCov">              0 : }</span>
+<span class="lineNum">     569 </span>                : 
+<span class="lineNum">     570 </span>                : 
+<span class="lineNum">     571 </span>                : //-------------------------------------------------------------------------
+<span class="lineNum">     572 </span><span class="lineNoCov">              0 : void RngStream::IncreasedPrecis (bool incp)</span>
+<span class="lineNum">     573 </span>                : {
+<span class="lineNum">     574 </span><span class="lineNoCov">              0 :    incPrec = incp;</span>
+<span class="lineNum">     575 </span><span class="lineNoCov">              0 : }</span>
+<span class="lineNum">     576 </span>                : 
+<span class="lineNum">     577 </span>                : 
+<span class="lineNum">     578 </span>                : //-------------------------------------------------------------------------
+<span class="lineNum">     579 </span><span class="lineNoCov">              0 : void RngStream::SetAntithetic (bool a)</span>
+<span class="lineNum">     580 </span>                : {
+<span class="lineNum">     581 </span><span class="lineNoCov">              0 :    anti = a;</span>
+<span class="lineNum">     582 </span><span class="lineNoCov">              0 : }</span>
+<span class="lineNum">     583 </span>                : 
+<span class="lineNum">     584 </span>                : 
+<span class="lineNum">     585 </span>                : //-------------------------------------------------------------------------
+<span class="lineNum">     586 </span>                : // Generate the next random number.
+<span class="lineNum">     587 </span>                : //
+<span class="lineNum">     588 </span><span class="lineNoCov">              0 : double RngStream::RandU01 ()</span>
+<span class="lineNum">     589 </span>                : {
+<span class="lineNum">     590 </span><span class="lineNoCov">              0 :    if (incPrec)</span>
+<span class="lineNum">     591 </span><span class="lineNoCov">              0 :       return U01d();</span>
+<span class="lineNum">     592 </span>                :    else
+<span class="lineNum">     593 </span><span class="lineNoCov">              0 :       return U01();</span>
+<span class="lineNum">     594 </span>                : }
+<span class="lineNum">     595 </span>                : 
+<span class="lineNum">     596 </span>                : 
+<span class="lineNum">     597 </span>                : //-------------------------------------------------------------------------
+<span class="lineNum">     598 </span>                : // Generate the next random integer.
+<span class="lineNum">     599 </span>                : //
+<span class="lineNum">     600 </span><span class="lineNoCov">              0 : long RngStream::RandInt (long low, long high)</span>
+<span class="lineNum">     601 </span>                : {
+<span class="lineNum">     602 </span><span class="lineNoCov">              0 :     return low + static_cast&lt;long&gt; ((high - low + 1) * RandU01 ());</span>
+<span class="lineNum">     603 </span><span class="lineCov">              2 : }</span>
+<span class="lineNum">     604 </span>                : 
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+  <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LTP GCOV extension version 1.6</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

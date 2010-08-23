@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>LCOV - iris.info - /usr/include/bits/mathinline.h</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LTP GCOV extension - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+        <tr>
+          <td class="headerItem" width="20%">Current&nbsp;view:</td>
+          <td class="headerValue" width="80%" colspan=4><a href="../../../index.html">directory</a> - <a href="index.html">usr/include/bits</a> - mathinline.h</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Test:</td>
+          <td class="headerValue" width="80%" colspan=4>iris.info</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Date:</td>
+          <td class="headerValue" width="20%">2010-05-24</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Instrumented&nbsp;lines:</td>
+          <td class="headerValue" width="20%">9</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Code&nbsp;covered:</td>
+          <td class="headerValue" width="20%">0.0 %</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Executed&nbsp;lines:</td>
+          <td class="headerValue" width="20%">0</td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><pre class="source">
+<span class="lineNum">       1 </span>                : /* Inline math functions for x86-64.
+<span class="lineNum">       2 </span>                :    Copyright (C) 2002, 2003, 2004, 2007 Free Software Foundation, Inc.
+<span class="lineNum">       3 </span>                :    This file is part of the GNU C Library.
+<span class="lineNum">       4 </span>                :    Contributed by Andreas Jaeger &lt;aj@suse.de&gt;, 2002.
+<span class="lineNum">       5 </span>                : 
+<span class="lineNum">       6 </span>                :    The GNU C Library is free software; you can redistribute it and/or
+<span class="lineNum">       7 </span>                :    modify it under the terms of the GNU Lesser General Public
+<span class="lineNum">       8 </span>                :    License as published by the Free Software Foundation; either
+<span class="lineNum">       9 </span>                :    version 2.1 of the License, or (at your option) any later version.
+<span class="lineNum">      10 </span>                : 
+<span class="lineNum">      11 </span>                :    The GNU C Library is distributed in the hope that it will be useful,
+<span class="lineNum">      12 </span>                :    but WITHOUT ANY WARRANTY; without even the implied warranty of
+<span class="lineNum">      13 </span>                :    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+<span class="lineNum">      14 </span>                :    Lesser General Public License for more details.
+<span class="lineNum">      15 </span>                : 
+<span class="lineNum">      16 </span>                :    You should have received a copy of the GNU Lesser General Public
+<span class="lineNum">      17 </span>                :    License along with the GNU C Library; if not, write to the Free
+<span class="lineNum">      18 </span>                :    Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
+<span class="lineNum">      19 </span>                :    02111-1307 USA.  */
+<span class="lineNum">      20 </span>                : 
+<span class="lineNum">      21 </span>                : #ifndef _MATH_H
+<span class="lineNum">      22 </span>                : # error &quot;Never use &lt;bits/mathinline.h&gt; directly; include &lt;math.h&gt; instead.&quot;
+<span class="lineNum">      23 </span>                : #endif
+<span class="lineNum">      24 </span>                : 
+<span class="lineNum">      25 </span>                : #ifndef __extern_inline
+<span class="lineNum">      26 </span>                : # define __MATH_INLINE __inline
+<span class="lineNum">      27 </span>                : #else
+<span class="lineNum">      28 </span>                : # define __MATH_INLINE __extern_inline
+<span class="lineNum">      29 </span>                : #endif
+<span class="lineNum">      30 </span>                : 
+<span class="lineNum">      31 </span>                : 
+<span class="lineNum">      32 </span>                : #if defined __USE_ISOC99 &amp;&amp; defined __GNUC__ &amp;&amp; __GNUC__ &gt;= 2
+<span class="lineNum">      33 </span>                : 
+<span class="lineNum">      34 </span>                : /* Test for negative number.  Used in the signbit() macro.  */
+<span class="lineNum">      35 </span>                : __MATH_INLINE int
+<span class="lineNum">      36 </span><span class="lineNoCov">              0 : __NTH (__signbitf (float __x))</span>
+<span class="lineNum">      37 </span>                : {
+<span class="lineNum">      38 </span><span class="lineNoCov">              0 :   __extension__ union { float __f; int __i; } __u = { __f: __x };</span>
+<span class="lineNum">      39 </span><span class="lineNoCov">              0 :   return __u.__i &lt; 0;</span>
+<span class="lineNum">      40 </span>                : }
+<span class="lineNum">      41 </span>                : __MATH_INLINE int
+<span class="lineNum">      42 </span><span class="lineNoCov">              0 : __NTH (__signbit (double __x))</span>
+<span class="lineNum">      43 </span>                : {
+<span class="lineNum">      44 </span><span class="lineNoCov">              0 :   __extension__ union { double __d; int __i[2]; } __u = { __d: __x };</span>
+<span class="lineNum">      45 </span><span class="lineNoCov">              0 :   return __u.__i[1] &lt; 0;</span>
+<span class="lineNum">      46 </span>                : }
+<span class="lineNum">      47 </span>                : __MATH_INLINE int
+<span class="lineNum">      48 </span><span class="lineNoCov">              0 : __NTH (__signbitl (long double __x))</span>
+<span class="lineNum">      49 </span>                : {
+<span class="lineNum">      50 </span><span class="lineNoCov">              0 :   __extension__ union { long double __l; int __i[3]; } __u = { __l: __x };</span>
+<span class="lineNum">      51 </span><span class="lineNoCov">              0 :   return (__u.__i[2] &amp; 0x8000) != 0;</span>
+<span class="lineNum">      52 </span>                : }
+<span class="lineNum">      53 </span>                : #endif
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+  <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LTP GCOV extension version 1.6</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

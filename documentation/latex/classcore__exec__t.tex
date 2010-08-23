@@ -1,0 +1,614 @@
+\section{core\_\-exec\_\-t Class Reference}
+\label{classcore__exec__t}\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}}
+{\tt \#include $<$zesto-exec.h$>$}
+
+Inheritance diagram for core\_\-exec\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classcore__exec__t__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for core\_\-exec\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classcore__exec__t__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf core\_\-exec\_\-t} (void)
+\item 
+virtual {\bf $\sim$core\_\-exec\_\-t} ()
+\item 
+virtual void {\bf reg\_\-stats} (struct {\bf stat\_\-sdb\_\-t} $\ast$const sdb)=0
+\item 
+virtual void {\bf freeze\_\-stats} (void)=0
+\item 
+virtual void {\bf update\_\-occupancy} (void)=0
+\item 
+void {\bf update\_\-last\_\-completed} ({\bf tick\_\-t} now)
+\item 
+virtual void {\bf ALU\_\-exec} (void)=0
+\item 
+virtual void {\bf LDST\_\-exec} (void)=0
+\item 
+virtual void {\bf RS\_\-schedule} (void)=0
+\item 
+virtual void {\bf LDQ\_\-schedule} (void)=0
+\item 
+virtual void {\bf recover} (const struct {\bf Mop\_\-t} $\ast$const Mop)=0
+\item 
+virtual void {\bf recover} (void)=0
+\item 
+virtual void {\bf insert\_\-ready\_\-uop} (struct {\bf uop\_\-t} $\ast$const uop)=0
+\item 
+virtual bool {\bf RS\_\-available} (void)=0
+\item 
+virtual void {\bf RS\_\-insert} (struct {\bf uop\_\-t} $\ast$const uop)=0
+\item 
+virtual void {\bf RS\_\-fuse\_\-insert} (struct {\bf uop\_\-t} $\ast$const uop)=0
+\item 
+virtual void {\bf RS\_\-deallocate} (struct {\bf uop\_\-t} $\ast$const uop)=0
+\item 
+virtual bool {\bf LDQ\_\-available} (void)=0
+\item 
+virtual void {\bf LDQ\_\-insert} (struct {\bf uop\_\-t} $\ast$const uop)=0
+\item 
+virtual void {\bf LDQ\_\-deallocate} (struct {\bf uop\_\-t} $\ast$const uop)=0
+\item 
+virtual void {\bf LDQ\_\-squash} (struct {\bf uop\_\-t} $\ast$const dead\_\-uop)=0
+\item 
+virtual bool {\bf STQ\_\-available} (void)=0
+\item 
+virtual void {\bf STQ\_\-insert\_\-sta} (struct {\bf uop\_\-t} $\ast$const uop)=0
+\item 
+virtual void {\bf STQ\_\-insert\_\-std} (struct {\bf uop\_\-t} $\ast$const uop)=0
+\item 
+virtual void {\bf STQ\_\-deallocate\_\-sta} (void)=0
+\item 
+virtual bool {\bf STQ\_\-deallocate\_\-std} (struct {\bf uop\_\-t} $\ast$const uop)=0
+\item 
+virtual void {\bf STQ\_\-deallocate\_\-senior} (void)=0
+\item 
+virtual void {\bf STQ\_\-squash\_\-sta} (struct {\bf uop\_\-t} $\ast$const dead\_\-uop)=0
+\item 
+virtual void {\bf STQ\_\-squash\_\-std} (struct {\bf uop\_\-t} $\ast$const dead\_\-uop)=0
+\item 
+virtual void {\bf STQ\_\-squash\_\-senior} (void)=0
+\item 
+virtual void {\bf recover\_\-check\_\-assertions} (void)=0
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+{\bf tick\_\-t} {\bf last\_\-completed}
+\item 
+{\bf counter\_\-t} {\bf last\_\-completed\_\-count}
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+struct {\bf core\_\-t} $\ast$ {\bf core}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 78 of file zesto-exec.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!core\_\-exec\_\-t@{core\_\-exec\_\-t}}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{core\_\-exec\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}core\_\-exec\_\-t::core\_\-exec\_\-t (void)}\label{classcore__exec__t_3fe7c5c8c28a6f14633ad2db9e266a07}
+
+
+
+
+Definition at line 275 of file zesto-exec.cpp.\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!$\sim$core\_\-exec\_\-t@{$\sim$core\_\-exec\_\-t}}
+\index{$\sim$core\_\-exec\_\-t@{$\sim$core\_\-exec\_\-t}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{$\sim$core\_\-exec\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}core\_\-exec\_\-t::$\sim$core\_\-exec\_\-t ()\hspace{0.3cm}{\tt  [virtual]}}\label{classcore__exec__t_7a4825102807d2a255a59097b7aba2e5}
+
+
+
+
+Definition at line 281 of file zesto-exec.cpp.
+
+\subsection{Member Function Documentation}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!ALU\_\-exec@{ALU\_\-exec}}
+\index{ALU\_\-exec@{ALU\_\-exec}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{ALU\_\-exec}]{\setlength{\rightskip}{0pt plus 5cm}virtual void core\_\-exec\_\-t::ALU\_\-exec (void)\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_d31afa06ed7f1370ecd7b371fce10889}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_7275a99b63b767196f8a0ff94acac19f}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_540633073e073ec71f940afde5291866}.\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!freeze\_\-stats@{freeze\_\-stats}}
+\index{freeze\_\-stats@{freeze\_\-stats}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{freeze\_\-stats}]{\setlength{\rightskip}{0pt plus 5cm}virtual void core\_\-exec\_\-t::freeze\_\-stats (void)\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_2acb90ed74004297268411a80b742794}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_0bd262cf902ac7ce2f03e713a73be273}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_8868f3bc9dbb927471d635f1afa806d0}.
+
+Referenced by core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=171pt]{classcore__exec__t_2acb90ed74004297268411a80b742794_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!insert\_\-ready\_\-uop@{insert\_\-ready\_\-uop}}
+\index{insert\_\-ready\_\-uop@{insert\_\-ready\_\-uop}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{insert\_\-ready\_\-uop}]{\setlength{\rightskip}{0pt plus 5cm}virtual void core\_\-exec\_\-t::insert\_\-ready\_\-uop (struct {\bf uop\_\-t} $\ast$const  {\em uop})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_c15b3593efb29e34fd18de13c5306fc3}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_2b25eac2731434d9ca1f5ef99297bac6}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_50f32711a2d91dc1612335fcf7eadd82}.
+
+Referenced by core\_\-alloc\_\-STM\_\-t::step(), and core\_\-alloc\_\-DPM\_\-t::step().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classcore__exec__t_c15b3593efb29e34fd18de13c5306fc3_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!LDQ\_\-available@{LDQ\_\-available}}
+\index{LDQ\_\-available@{LDQ\_\-available}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{LDQ\_\-available}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool core\_\-exec\_\-t::LDQ\_\-available (void)\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_dcde0fe50a4c0cfff2a0d77c251b32a5}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_9b7fef0c453e1980ff612a7e0181ed03}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_032bbe73c85c8e3f723399cec0a37095}.
+
+Referenced by core\_\-alloc\_\-STM\_\-t::step(), and core\_\-alloc\_\-DPM\_\-t::step().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{classcore__exec__t_dcde0fe50a4c0cfff2a0d77c251b32a5_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!LDQ\_\-deallocate@{LDQ\_\-deallocate}}
+\index{LDQ\_\-deallocate@{LDQ\_\-deallocate}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{LDQ\_\-deallocate}]{\setlength{\rightskip}{0pt plus 5cm}virtual void core\_\-exec\_\-t::LDQ\_\-deallocate (struct {\bf uop\_\-t} $\ast$const  {\em uop})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_9a7d0f033b9eddd6d725fa0477e6d013}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_78f6cdc56b22df9d7d26ed6a59edd762}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_cd8f278347a187b2312fe3fec220d11f}.
+
+Referenced by core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=178pt]{classcore__exec__t_9a7d0f033b9eddd6d725fa0477e6d013_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!LDQ\_\-insert@{LDQ\_\-insert}}
+\index{LDQ\_\-insert@{LDQ\_\-insert}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{LDQ\_\-insert}]{\setlength{\rightskip}{0pt plus 5cm}virtual void core\_\-exec\_\-t::LDQ\_\-insert (struct {\bf uop\_\-t} $\ast$const  {\em uop})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_309987cdc837639a6db3ce49a377f695}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_3df4995363c8fe7593800e13315bd14c}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_0468aee30ae750c9a389932c076668f4}.
+
+Referenced by core\_\-alloc\_\-STM\_\-t::step(), and core\_\-alloc\_\-DPM\_\-t::step().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=162pt]{classcore__exec__t_309987cdc837639a6db3ce49a377f695_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!LDQ\_\-schedule@{LDQ\_\-schedule}}
+\index{LDQ\_\-schedule@{LDQ\_\-schedule}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{LDQ\_\-schedule}]{\setlength{\rightskip}{0pt plus 5cm}virtual void core\_\-exec\_\-t::LDQ\_\-schedule (void)\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_7e84f64566ff0e37d7e07e675284d536}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_3abf667bd2a370573ac2d255e8a0738b}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_2cae51e2894ca498a2ff807be9a79422}.\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!LDQ\_\-squash@{LDQ\_\-squash}}
+\index{LDQ\_\-squash@{LDQ\_\-squash}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{LDQ\_\-squash}]{\setlength{\rightskip}{0pt plus 5cm}virtual void core\_\-exec\_\-t::LDQ\_\-squash (struct {\bf uop\_\-t} $\ast$const  {\em dead\_\-uop})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_e89588e67823a1240158658814d3fa9c}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_61bee8b6575679752ff99b170f09fec7}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_87649010568050fa07a6650ba04ca3ba}.
+
+Referenced by core\_\-commit\_\-STM\_\-t::recover(), and core\_\-commit\_\-DPM\_\-t::recover().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=179pt]{classcore__exec__t_e89588e67823a1240158658814d3fa9c_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!LDST\_\-exec@{LDST\_\-exec}}
+\index{LDST\_\-exec@{LDST\_\-exec}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{LDST\_\-exec}]{\setlength{\rightskip}{0pt plus 5cm}virtual void core\_\-exec\_\-t::LDST\_\-exec (void)\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_4d30d6c25a185539c64c8cd7d16d9622}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_23c9e1a684a28d4dacd9eb9ba2365d84}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_f57f6b1ac6414e6e190a4e1eaf6e97a3}.
+
+Referenced by zesto\_\-component::downtick\_\-handler().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classcore__exec__t_4d30d6c25a185539c64c8cd7d16d9622_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!recover@{recover}}
+\index{recover@{recover}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{recover}]{\setlength{\rightskip}{0pt plus 5cm}virtual void core\_\-exec\_\-t::recover (void)\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_f49e47016d95519e64b0e32d3f4f8079}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_5814929b0ccda77afa4554df6b990783}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_91b6cbc6f1d429c4de81dbaf7355737f}.\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!recover@{recover}}
+\index{recover@{recover}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{recover}]{\setlength{\rightskip}{0pt plus 5cm}virtual void core\_\-exec\_\-t::recover (const struct {\bf Mop\_\-t} $\ast$const  {\em Mop})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_b9edcea5d76d1bbdbe89696ddf876c73}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_fc70d3a8405f5bbd3102f1ef4119c07b}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_7e467993ba569b8eb3ad48d29ce5fa11}.
+
+Referenced by emergency\_\-recovery(), core\_\-oracle\_\-t::pipe\_\-recover(), core\_\-oracle\_\-t::reset\_\-execution(), core\_\-fetch\_\-DPM\_\-t::step(), core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classcore__exec__t_b9edcea5d76d1bbdbe89696ddf876c73_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!recover\_\-check\_\-assertions@{recover\_\-check\_\-assertions}}
+\index{recover\_\-check\_\-assertions@{recover\_\-check\_\-assertions}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{recover\_\-check\_\-assertions}]{\setlength{\rightskip}{0pt plus 5cm}virtual void core\_\-exec\_\-t::recover\_\-check\_\-assertions (void)\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_b8d15b77bc3cb1d7da22b25c864ebab2}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_f51f86602b423d4367ad2a7f74e77cac}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_88abbc5392ae056e6519e4ddc97ab159}.
+
+Referenced by core\_\-commit\_\-STM\_\-t::recover(), and core\_\-commit\_\-DPM\_\-t::recover().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{classcore__exec__t_b8d15b77bc3cb1d7da22b25c864ebab2_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!reg\_\-stats@{reg\_\-stats}}
+\index{reg\_\-stats@{reg\_\-stats}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{reg\_\-stats}]{\setlength{\rightskip}{0pt plus 5cm}virtual void core\_\-exec\_\-t::reg\_\-stats (struct {\bf stat\_\-sdb\_\-t} $\ast$const  {\em sdb})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_c96ef5ff681c54d9591382272610336e}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_a91990c6b68df8151ad572381551c204}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_ec73191521d5ed4d4b303ff97baab636}.\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!RS\_\-available@{RS\_\-available}}
+\index{RS\_\-available@{RS\_\-available}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{RS\_\-available}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool core\_\-exec\_\-t::RS\_\-available (void)\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_d9483284ceb6ed3706357c14c8baa468}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_2b2575b1ba3174ced4e7bed8b17689d6}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_42fa0b99cba21fdcf40cb521575712de}.
+
+Referenced by core\_\-alloc\_\-STM\_\-t::step(), and core\_\-alloc\_\-DPM\_\-t::step().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{classcore__exec__t_d9483284ceb6ed3706357c14c8baa468_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!RS\_\-deallocate@{RS\_\-deallocate}}
+\index{RS\_\-deallocate@{RS\_\-deallocate}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{RS\_\-deallocate}]{\setlength{\rightskip}{0pt plus 5cm}virtual void core\_\-exec\_\-t::RS\_\-deallocate (struct {\bf uop\_\-t} $\ast$const  {\em uop})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_40b90ec949055afd7525ef3fc9592658}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_91a1a6eefe2b90d3c4d786f688b116d4}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_8c9de96a24df297b8562fd46d3846eb5}.
+
+Referenced by core\_\-exec\_\-STM\_\-t::ALU\_\-exec(), core\_\-commit\_\-STM\_\-t::recover(), and core\_\-commit\_\-DPM\_\-t::recover().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{classcore__exec__t_40b90ec949055afd7525ef3fc9592658_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!RS\_\-fuse\_\-insert@{RS\_\-fuse\_\-insert}}
+\index{RS\_\-fuse\_\-insert@{RS\_\-fuse\_\-insert}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{RS\_\-fuse\_\-insert}]{\setlength{\rightskip}{0pt plus 5cm}virtual void core\_\-exec\_\-t::RS\_\-fuse\_\-insert (struct {\bf uop\_\-t} $\ast$const  {\em uop})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_25ec4e446d32b3558bdaff342f873124}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_06bdb518d429ece3311d878968432bc9}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_1eab67b60f48d88ac6ac6307bf9d0c1e}.
+
+Referenced by core\_\-alloc\_\-DPM\_\-t::step().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=171pt]{classcore__exec__t_25ec4e446d32b3558bdaff342f873124_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!RS\_\-insert@{RS\_\-insert}}
+\index{RS\_\-insert@{RS\_\-insert}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{RS\_\-insert}]{\setlength{\rightskip}{0pt plus 5cm}virtual void core\_\-exec\_\-t::RS\_\-insert (struct {\bf uop\_\-t} $\ast$const  {\em uop})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_4dbe802afa00289d4dfe5bd34b740874}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_8e9ca9566f37da702b6e2f14ead41fad}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_524eab487e49cc3577c1f7ea29a5fc3c}.
+
+Referenced by core\_\-alloc\_\-STM\_\-t::step(), and core\_\-alloc\_\-DPM\_\-t::step().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=159pt]{classcore__exec__t_4dbe802afa00289d4dfe5bd34b740874_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!RS\_\-schedule@{RS\_\-schedule}}
+\index{RS\_\-schedule@{RS\_\-schedule}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{RS\_\-schedule}]{\setlength{\rightskip}{0pt plus 5cm}virtual void core\_\-exec\_\-t::RS\_\-schedule (void)\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_bcbe922b59deefd506a0d38df4b395f7}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_8151e39fd37a59e7616c15a7ba80d101}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_af9a48f62e840b64b7b290b734dec051}.\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!STQ\_\-available@{STQ\_\-available}}
+\index{STQ\_\-available@{STQ\_\-available}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{STQ\_\-available}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool core\_\-exec\_\-t::STQ\_\-available (void)\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_73c8aa5a4411c8c8af81b7bac2c8c36a}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_cd2ed4a962da699b47dda3abc24d256a}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_5559c8122fc8fdadd9cafcf108e0365d}.
+
+Referenced by core\_\-alloc\_\-STM\_\-t::step(), and core\_\-alloc\_\-DPM\_\-t::step().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=170pt]{classcore__exec__t_73c8aa5a4411c8c8af81b7bac2c8c36a_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!STQ\_\-deallocate\_\-senior@{STQ\_\-deallocate\_\-senior}}
+\index{STQ\_\-deallocate\_\-senior@{STQ\_\-deallocate\_\-senior}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{STQ\_\-deallocate\_\-senior}]{\setlength{\rightskip}{0pt plus 5cm}virtual void core\_\-exec\_\-t::STQ\_\-deallocate\_\-senior (void)\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_d0eb8078d0ec0809e3ce7741826babbc}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_3d53b2fdf7a7417775826ba647ee0b7d}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_8b25b616cf4d5577d41b30d00cecfc90}.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::step().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=195pt]{classcore__exec__t_d0eb8078d0ec0809e3ce7741826babbc_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!STQ\_\-deallocate\_\-sta@{STQ\_\-deallocate\_\-sta}}
+\index{STQ\_\-deallocate\_\-sta@{STQ\_\-deallocate\_\-sta}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{STQ\_\-deallocate\_\-sta}]{\setlength{\rightskip}{0pt plus 5cm}virtual void core\_\-exec\_\-t::STQ\_\-deallocate\_\-sta (void)\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_6f97e052e83526ba786d2f02f82dfd66}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_92a5d237405f5a04e466d1f023dcd4fa}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_bfa72d77e1c570e6aabae388e3e0b9de}.
+
+Referenced by core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=188pt]{classcore__exec__t_6f97e052e83526ba786d2f02f82dfd66_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!STQ\_\-deallocate\_\-std@{STQ\_\-deallocate\_\-std}}
+\index{STQ\_\-deallocate\_\-std@{STQ\_\-deallocate\_\-std}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{STQ\_\-deallocate\_\-std}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool core\_\-exec\_\-t::STQ\_\-deallocate\_\-std (struct {\bf uop\_\-t} $\ast$const  {\em uop})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_a47688b9de31bdfd1f56cadd6a735a12}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_4593c06b9cd20d697033cfd948837df6}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_114d870c3995b133cd543b13dee7ed96}.
+
+Referenced by core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=188pt]{classcore__exec__t_a47688b9de31bdfd1f56cadd6a735a12_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!STQ\_\-insert\_\-sta@{STQ\_\-insert\_\-sta}}
+\index{STQ\_\-insert\_\-sta@{STQ\_\-insert\_\-sta}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{STQ\_\-insert\_\-sta}]{\setlength{\rightskip}{0pt plus 5cm}virtual void core\_\-exec\_\-t::STQ\_\-insert\_\-sta (struct {\bf uop\_\-t} $\ast$const  {\em uop})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_3f25958bc359d2be7d6ff0d6795a9bf5}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_0c23a1b1e2f0c81600467c544aa1a6b3}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_3825420bfd6dffd553d68fb8650f3ca7}.
+
+Referenced by core\_\-alloc\_\-STM\_\-t::step(), and core\_\-alloc\_\-DPM\_\-t::step().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=172pt]{classcore__exec__t_3f25958bc359d2be7d6ff0d6795a9bf5_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!STQ\_\-insert\_\-std@{STQ\_\-insert\_\-std}}
+\index{STQ\_\-insert\_\-std@{STQ\_\-insert\_\-std}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{STQ\_\-insert\_\-std}]{\setlength{\rightskip}{0pt plus 5cm}virtual void core\_\-exec\_\-t::STQ\_\-insert\_\-std (struct {\bf uop\_\-t} $\ast$const  {\em uop})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_1c610d68023a596f79fabcbdf99a185b}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_f8766fda83629cd750d7b41ed7ea7a95}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_ffea3d583ddb7c7feba5988cb613155c}.
+
+Referenced by core\_\-alloc\_\-STM\_\-t::step(), and core\_\-alloc\_\-DPM\_\-t::step().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=172pt]{classcore__exec__t_1c610d68023a596f79fabcbdf99a185b_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!STQ\_\-squash\_\-senior@{STQ\_\-squash\_\-senior}}
+\index{STQ\_\-squash\_\-senior@{STQ\_\-squash\_\-senior}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{STQ\_\-squash\_\-senior}]{\setlength{\rightskip}{0pt plus 5cm}virtual void core\_\-exec\_\-t::STQ\_\-squash\_\-senior (void)\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_58c23da8566bbc08e23f6a61c9859f59}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_be6f5af1f9348805b6582a768885201b}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_195dddbabd88342270a75ffd6b8f47db}.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::recover().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=279pt]{classcore__exec__t_58c23da8566bbc08e23f6a61c9859f59_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!STQ\_\-squash\_\-sta@{STQ\_\-squash\_\-sta}}
+\index{STQ\_\-squash\_\-sta@{STQ\_\-squash\_\-sta}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{STQ\_\-squash\_\-sta}]{\setlength{\rightskip}{0pt plus 5cm}virtual void core\_\-exec\_\-t::STQ\_\-squash\_\-sta (struct {\bf uop\_\-t} $\ast$const  {\em dead\_\-uop})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_2741e7d8d06e54281c7f5eb3603f8e91}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_579b2933ffc0634a765926c8accab187}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_8d3ed4fb254fddee1d33cb233b4f6143}.
+
+Referenced by core\_\-commit\_\-STM\_\-t::recover(), and core\_\-commit\_\-DPM\_\-t::recover().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=189pt]{classcore__exec__t_2741e7d8d06e54281c7f5eb3603f8e91_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!STQ\_\-squash\_\-std@{STQ\_\-squash\_\-std}}
+\index{STQ\_\-squash\_\-std@{STQ\_\-squash\_\-std}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{STQ\_\-squash\_\-std}]{\setlength{\rightskip}{0pt plus 5cm}virtual void core\_\-exec\_\-t::STQ\_\-squash\_\-std (struct {\bf uop\_\-t} $\ast$const  {\em dead\_\-uop})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_73339072a45e69a11de1f5e0d58f7b37}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_877aa84541b1cdaec526a14aaa890c05}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_5dce5f711f1460941bd361c71e8b0505}.
+
+Referenced by core\_\-commit\_\-STM\_\-t::recover(), and core\_\-commit\_\-DPM\_\-t::recover().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=189pt]{classcore__exec__t_73339072a45e69a11de1f5e0d58f7b37_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!update\_\-last\_\-completed@{update\_\-last\_\-completed}}
+\index{update\_\-last\_\-completed@{update\_\-last\_\-completed}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{update\_\-last\_\-completed}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-exec\_\-t::update\_\-last\_\-completed ({\bf tick\_\-t} {\em now})}\label{classcore__exec__t_bb24da163e2720dbdf8e54a0448ca958}
+
+
+
+
+Definition at line 286 of file zesto-exec.cpp.
+
+References last\_\-completed.\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!update\_\-occupancy@{update\_\-occupancy}}
+\index{update\_\-occupancy@{update\_\-occupancy}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{update\_\-occupancy}]{\setlength{\rightskip}{0pt plus 5cm}virtual void core\_\-exec\_\-t::update\_\-occupancy (void)\hspace{0.3cm}{\tt  [pure virtual]}}\label{classcore__exec__t_111ffe54eba7244b49b47cca014c1e48}
+
+
+
+
+Implemented in {\bf core\_\-exec\_\-DPM\_\-t} \doxyref{}{p.}{classcore__exec__DPM__t_3e2b3d9545dfa9554736df7a3b27e413}, and {\bf core\_\-exec\_\-STM\_\-t} \doxyref{}{p.}{classcore__exec__STM__t_367031abc313d0ae38f1d203b5d67393}.
+
+Referenced by zesto\_\-component::downtick\_\-handler().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcore__exec__t_111ffe54eba7244b49b47cca014c1e48_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!core@{core}}
+\index{core@{core}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{core}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf core\_\-t}$\ast$ {\bf core\_\-exec\_\-t::core}\hspace{0.3cm}{\tt  [read, protected]}}\label{classcore__exec__t_c6a29d8547d2949f5203b0e97468565a}
+
+
+
+
+Definition at line 156 of file zesto-exec.h.
+
+Referenced by core\_\-exec\_\-STM\_\-t::ALU\_\-exec(), core\_\-exec\_\-DPM\_\-t::ALU\_\-exec(), core\_\-exec\_\-STM\_\-t::check\_\-load\_\-issue\_\-conditions(), core\_\-exec\_\-DPM\_\-t::check\_\-load\_\-issue\_\-conditions(), core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t(), core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t(), core\_\-exec\_\-STM\_\-t::DL1\_\-callback(), core\_\-exec\_\-STM\_\-t::DTLB\_\-callback(), core\_\-exec\_\-DPM\_\-t::DTLB\_\-callback(), core\_\-exec\_\-STM\_\-t::insert\_\-ready\_\-uop(), core\_\-exec\_\-DPM\_\-t::insert\_\-ready\_\-uop(), core\_\-exec\_\-STM\_\-t::LDQ\_\-available(), core\_\-exec\_\-DPM\_\-t::LDQ\_\-available(), core\_\-exec\_\-STM\_\-t::LDQ\_\-deallocate(), core\_\-exec\_\-DPM\_\-t::LDQ\_\-deallocate(), core\_\-exec\_\-STM\_\-t::LDQ\_\-insert(), core\_\-exec\_\-DPM\_\-t::LDQ\_\-insert(), core\_\-exec\_\-STM\_\-t::LDQ\_\-schedule(), core\_\-exec\_\-DPM\_\-t::LDQ\_\-schedule(), core\_\-exec\_\-STM\_\-t::LDQ\_\-squash(), core\_\-exec\_\-DPM\_\-t::LDQ\_\-squash(), core\_\-exec\_\-STM\_\-t::LDST\_\-exec(), core\_\-exec\_\-DPM\_\-t::LDST\_\-exec(), core\_\-exec\_\-DPM\_\-t::load\_\-miss\_\-reschedule(), core\_\-exec\_\-STM\_\-t::load\_\-writeback(), core\_\-exec\_\-DPM\_\-t::load\_\-writeback(), core\_\-exec\_\-STM\_\-t::reg\_\-stats(), core\_\-exec\_\-DPM\_\-t::reg\_\-stats(), core\_\-exec\_\-STM\_\-t::RS\_\-available(), core\_\-exec\_\-DPM\_\-t::RS\_\-available(), core\_\-exec\_\-STM\_\-t::RS\_\-deallocate(), core\_\-exec\_\-DPM\_\-t::RS\_\-deallocate(), core\_\-exec\_\-STM\_\-t::RS\_\-insert(), core\_\-exec\_\-DPM\_\-t::RS\_\-insert(), core\_\-exec\_\-STM\_\-t::RS\_\-schedule(), core\_\-exec\_\-DPM\_\-t::RS\_\-schedule(), core\_\-exec\_\-DPM\_\-t::snatch\_\-back(), core\_\-exec\_\-STM\_\-t::store\_\-dl1\_\-callback(), core\_\-exec\_\-DPM\_\-t::store\_\-dl1\_\-callback(), core\_\-exec\_\-DPM\_\-t::store\_\-dl1\_\-split\_\-callback(), core\_\-exec\_\-STM\_\-t::store\_\-dtlb\_\-callback(), core\_\-exec\_\-DPM\_\-t::store\_\-dtlb\_\-callback(), core\_\-exec\_\-DPM\_\-t::store\_\-translated\_\-callback(), core\_\-exec\_\-STM\_\-t::STQ\_\-available(), core\_\-exec\_\-DPM\_\-t::STQ\_\-available(), core\_\-exec\_\-DPM\_\-t::STQ\_\-deallocate\_\-senior(), core\_\-exec\_\-STM\_\-t::STQ\_\-deallocate\_\-std(), core\_\-exec\_\-DPM\_\-t::STQ\_\-deallocate\_\-std(), core\_\-exec\_\-STM\_\-t::STQ\_\-insert\_\-sta(), core\_\-exec\_\-DPM\_\-t::STQ\_\-insert\_\-sta(), core\_\-exec\_\-STM\_\-t::STQ\_\-insert\_\-std(), core\_\-exec\_\-DPM\_\-t::STQ\_\-insert\_\-std(), core\_\-exec\_\-DPM\_\-t::STQ\_\-squash\_\-senior(), core\_\-exec\_\-STM\_\-t::STQ\_\-squash\_\-sta(), core\_\-exec\_\-DPM\_\-t::STQ\_\-squash\_\-sta(), core\_\-exec\_\-STM\_\-t::STQ\_\-squash\_\-std(), core\_\-exec\_\-DPM\_\-t::STQ\_\-squash\_\-std(), core\_\-exec\_\-STM\_\-t::update\_\-occupancy(), and core\_\-exec\_\-DPM\_\-t::update\_\-occupancy().\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!last\_\-completed@{last\_\-completed}}
+\index{last\_\-completed@{last\_\-completed}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{last\_\-completed}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} {\bf core\_\-exec\_\-t::last\_\-completed}}\label{classcore__exec__t_cdd57a5cb5d71ea527ef696086d97bee}
+
+
+
+
+Definition at line 83 of file zesto-exec.h.
+
+Referenced by core\_\-exec\_\-STM\_\-t::ALU\_\-exec(), core\_\-exec\_\-DPM\_\-t::ALU\_\-exec(), core\_\-exec\_\-STM\_\-t::LDST\_\-exec(), core\_\-exec\_\-DPM\_\-t::LDST\_\-exec(), core\_\-exec\_\-STM\_\-t::load\_\-writeback(), core\_\-exec\_\-DPM\_\-t::load\_\-writeback(), core\_\-commit\_\-STM\_\-t::step(), core\_\-commit\_\-DPM\_\-t::step(), and update\_\-last\_\-completed().\index{core\_\-exec\_\-t@{core\_\-exec\_\-t}!last\_\-completed\_\-count@{last\_\-completed\_\-count}}
+\index{last\_\-completed\_\-count@{last\_\-completed\_\-count}!core_exec_t@{core\_\-exec\_\-t}}
+\subsubsection[{last\_\-completed\_\-count}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf core\_\-exec\_\-t::last\_\-completed\_\-count}}\label{classcore__exec__t_a1444430b4a5c68a31066fed05b3f774}
+
+
+
+
+Definition at line 84 of file zesto-exec.h.
+
+Referenced by core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf zesto-exec.h}\item 
+{\bf zesto-exec.cpp}\end{CompactItemize}

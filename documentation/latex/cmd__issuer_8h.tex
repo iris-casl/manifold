@@ -1,0 +1,207 @@
+\section{cmd\_\-issuer.h File Reference}
+\label{cmd__issuer_8h}\index{cmd\_\-issuer.h@{cmd\_\-issuer.h}}
+{\tt \#include $<$string$>$}\par
+{\tt \#include $<$sstream$>$}\par
+{\tt \#include $<$iostream$>$}\par
+{\tt \#include $<$cstdlib$>$}\par
+{\tt \#include $<$map$>$}\par
+{\tt \#include \char`\"{}../kernel/component.h\char`\"{}}\par
+{\tt \#include \char`\"{}../kernel/simulator.h\char`\"{}}\par
+{\tt \#include \char`\"{}../simIris/data\_\-types/impl/irisEvent.h\char`\"{}}\par
+{\tt \#include \char`\"{}../simIris/components/impl/genericEvents.h\char`\"{}}\par
+{\tt \#include \char`\"{}request.h\char`\"{}}\par
+{\tt \#include \char`\"{}data\_\-bus\_\-handler.h\char`\"{}}\par
+{\tt \#include \char`\"{}cmd\_\-bus\_\-handler.h\char`\"{}}\par
+{\tt \#include \char`\"{}../util/mc\_\-constants.h\char`\"{}}\par
+
+
+Include dependency graph for cmd\_\-issuer.h:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{cmd__issuer_8h__incl}
+\end{center}
+\end{figure}
+
+
+This graph shows which files directly or indirectly include this file:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{cmd__issuer_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+struct {\bf DRAMCmdState}
+\item 
+struct {\bf BankState}
+\item 
+struct {\bf RankState}
+\item 
+struct {\bf ChannelState}
+\item 
+class {\bf CmdIssuer}
+\end{CompactItemize}
+\subsection*{Typedefs}
+\begin{CompactItemize}
+\item 
+typedef {\bf DRAMCmd} {\bf DRAMCmd}
+\item 
+typedef {\bf BurstLength} {\bf BurstLength}
+\item 
+typedef {\bf DRAMCmdState} {\bf DRAMCmdState}
+\item 
+typedef vector$<$ {\bf DRAMCmdState} $>$ {\bf CmdQueue}
+\item 
+typedef {\bf BankState} {\bf BankState}
+\item 
+typedef {\bf RankState} {\bf RankState}
+\item 
+typedef {\bf ChannelState} {\bf ChannelState}
+\end{CompactItemize}
+\subsection*{Enumerations}
+\begin{CompactItemize}
+\item 
+enum {\bf DRAMCmd} \{ \par
+{\bf READ}, 
+{\bf WRITE}, 
+{\bf PRECHARGE}, 
+{\bf ACTIVATE}, 
+\par
+{\bf ALL\_\-BANK\_\-REFRESH}
+ \}
+\item 
+enum {\bf BurstLength} \{ \par
+{\bf READL}, 
+{\bf WRITEL}, 
+{\bf PREFETCHL}, 
+{\bf WRITEBACKL}, 
+\par
+{\bf NORMAL}
+ \}
+\item 
+enum {\bf RankBankComb} \{ {\bf SAME}, 
+{\bf DIFF}
+ \}
+\end{CompactItemize}
+
+
+\subsection{Typedef Documentation}
+\index{cmd\_\-issuer.h@{cmd\_\-issuer.h}!BankState@{BankState}}
+\index{BankState@{BankState}!cmd_issuer.h@{cmd\_\-issuer.h}}
+\subsubsection[{BankState}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf BankState} {\bf BankState}}\label{cmd__issuer_8h_263a9c2fb283d8d83d60fc539a506c0d}
+
+
+
+
+Definition at line 88 of file cmd\_\-issuer.h.\index{cmd\_\-issuer.h@{cmd\_\-issuer.h}!BurstLength@{BurstLength}}
+\index{BurstLength@{BurstLength}!cmd_issuer.h@{cmd\_\-issuer.h}}
+\subsubsection[{BurstLength}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf BurstLength} {\bf BurstLength}}\label{cmd__issuer_8h_c59e023a78acd75eadc82e4fc366eaea}
+
+
+
+
+Definition at line 42 of file cmd\_\-issuer.h.\index{cmd\_\-issuer.h@{cmd\_\-issuer.h}!ChannelState@{ChannelState}}
+\index{ChannelState@{ChannelState}!cmd_issuer.h@{cmd\_\-issuer.h}}
+\subsubsection[{ChannelState}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf ChannelState} {\bf ChannelState}}\label{cmd__issuer_8h_d068299213ab072a5b333e9fde6f6299}
+
+
+
+
+Definition at line 112 of file cmd\_\-issuer.h.\index{cmd\_\-issuer.h@{cmd\_\-issuer.h}!CmdQueue@{CmdQueue}}
+\index{CmdQueue@{CmdQueue}!cmd_issuer.h@{cmd\_\-issuer.h}}
+\subsubsection[{CmdQueue}]{\setlength{\rightskip}{0pt plus 5cm}typedef vector$<${\bf DRAMCmdState}$>$ {\bf CmdQueue}}\label{cmd__issuer_8h_59247f947a613beb68c3253b51c984c1}
+
+
+
+
+Definition at line 72 of file cmd\_\-issuer.h.\index{cmd\_\-issuer.h@{cmd\_\-issuer.h}!DRAMCmd@{DRAMCmd}}
+\index{DRAMCmd@{DRAMCmd}!cmd_issuer.h@{cmd\_\-issuer.h}}
+\subsubsection[{DRAMCmd}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf DRAMCmd} {\bf DRAMCmd}}\label{cmd__issuer_8h_bce082462985d2aa28ffe56cfc739c5d}
+
+
+
+
+Definition at line 39 of file cmd\_\-issuer.h.\index{cmd\_\-issuer.h@{cmd\_\-issuer.h}!DRAMCmdState@{DRAMCmdState}}
+\index{DRAMCmdState@{DRAMCmdState}!cmd_issuer.h@{cmd\_\-issuer.h}}
+\subsubsection[{DRAMCmdState}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf DRAMCmdState} {\bf DRAMCmdState}}\label{cmd__issuer_8h_45d3a88c90ce1a142c7c4d3a84586a8e}
+
+
+
+
+Definition at line 71 of file cmd\_\-issuer.h.\index{cmd\_\-issuer.h@{cmd\_\-issuer.h}!RankState@{RankState}}
+\index{RankState@{RankState}!cmd_issuer.h@{cmd\_\-issuer.h}}
+\subsubsection[{RankState}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf RankState} {\bf RankState}}\label{cmd__issuer_8h_ecc0a39d516477328b868bdc2802de49}
+
+
+
+
+Definition at line 98 of file cmd\_\-issuer.h.
+
+\subsection{Enumeration Type Documentation}
+\index{cmd\_\-issuer.h@{cmd\_\-issuer.h}!BurstLength@{BurstLength}}
+\index{BurstLength@{BurstLength}!cmd_issuer.h@{cmd\_\-issuer.h}}
+\subsubsection[{BurstLength}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf BurstLength}}\label{cmd__issuer_8h_5a39718eef659ba9081830c39b400440}
+
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{READL@{READL}!cmd\_\-issuer.h@{cmd\_\-issuer.h}}\index{cmd\_\-issuer.h@{cmd\_\-issuer.h}!READL@{READL}}\item[{\em 
+READL\label{cmd__issuer_8h_5a39718eef659ba9081830c39b4004406d086721853c328d7d9052c2b66a5118}
+}]\index{WRITEL@{WRITEL}!cmd\_\-issuer.h@{cmd\_\-issuer.h}}\index{cmd\_\-issuer.h@{cmd\_\-issuer.h}!WRITEL@{WRITEL}}\item[{\em 
+WRITEL\label{cmd__issuer_8h_5a39718eef659ba9081830c39b40044035f0763ba91158c66aab8bd6feaa3ec1}
+}]\index{PREFETCHL@{PREFETCHL}!cmd\_\-issuer.h@{cmd\_\-issuer.h}}\index{cmd\_\-issuer.h@{cmd\_\-issuer.h}!PREFETCHL@{PREFETCHL}}\item[{\em 
+PREFETCHL\label{cmd__issuer_8h_5a39718eef659ba9081830c39b400440af4e0aeef5e1629777f124878ba23471}
+}]\index{WRITEBACKL@{WRITEBACKL}!cmd\_\-issuer.h@{cmd\_\-issuer.h}}\index{cmd\_\-issuer.h@{cmd\_\-issuer.h}!WRITEBACKL@{WRITEBACKL}}\item[{\em 
+WRITEBACKL\label{cmd__issuer_8h_5a39718eef659ba9081830c39b4004400d95d20a06bbdfd25a649592a8d7c12b}
+}]\index{NORMAL@{NORMAL}!cmd\_\-issuer.h@{cmd\_\-issuer.h}}\index{cmd\_\-issuer.h@{cmd\_\-issuer.h}!NORMAL@{NORMAL}}\item[{\em 
+NORMAL\label{cmd__issuer_8h_5a39718eef659ba9081830c39b40044050d1448013c6f17125caee18aa418af7}
+}]\end{description}
+\end{Desc}
+
+
+
+Definition at line 41 of file cmd\_\-issuer.h.\index{cmd\_\-issuer.h@{cmd\_\-issuer.h}!DRAMCmd@{DRAMCmd}}
+\index{DRAMCmd@{DRAMCmd}!cmd_issuer.h@{cmd\_\-issuer.h}}
+\subsubsection[{DRAMCmd}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf DRAMCmd}}\label{cmd__issuer_8h_a04b28724f7b03d4f96d73f228348af1}
+
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{READ@{READ}!cmd\_\-issuer.h@{cmd\_\-issuer.h}}\index{cmd\_\-issuer.h@{cmd\_\-issuer.h}!READ@{READ}}\item[{\em 
+READ\label{cmd__issuer_8h_a04b28724f7b03d4f96d73f228348af1cb9be765f361bb7efb9073730aac92c6}
+}]\index{WRITE@{WRITE}!cmd\_\-issuer.h@{cmd\_\-issuer.h}}\index{cmd\_\-issuer.h@{cmd\_\-issuer.h}!WRITE@{WRITE}}\item[{\em 
+WRITE\label{cmd__issuer_8h_a04b28724f7b03d4f96d73f228348af161aa7ff70b76bff0fda378cf61d6afbc}
+}]\index{PRECHARGE@{PRECHARGE}!cmd\_\-issuer.h@{cmd\_\-issuer.h}}\index{cmd\_\-issuer.h@{cmd\_\-issuer.h}!PRECHARGE@{PRECHARGE}}\item[{\em 
+PRECHARGE\label{cmd__issuer_8h_a04b28724f7b03d4f96d73f228348af19d4d157d6a0a8dd2d28ed2284d4d3ec6}
+}]\index{ACTIVATE@{ACTIVATE}!cmd\_\-issuer.h@{cmd\_\-issuer.h}}\index{cmd\_\-issuer.h@{cmd\_\-issuer.h}!ACTIVATE@{ACTIVATE}}\item[{\em 
+ACTIVATE\label{cmd__issuer_8h_a04b28724f7b03d4f96d73f228348af19a25989a7678e52c9900c88a81fb18d3}
+}]\index{ALL\_\-BANK\_\-REFRESH@{ALL\_\-BANK\_\-REFRESH}!cmd\_\-issuer.h@{cmd\_\-issuer.h}}\index{cmd\_\-issuer.h@{cmd\_\-issuer.h}!ALL\_\-BANK\_\-REFRESH@{ALL\_\-BANK\_\-REFRESH}}\item[{\em 
+ALL\_\-BANK\_\-REFRESH\label{cmd__issuer_8h_a04b28724f7b03d4f96d73f228348af1f3d28bfdcf36bc1a1fdebe21670ee317}
+}]\end{description}
+\end{Desc}
+
+
+
+Definition at line 38 of file cmd\_\-issuer.h.\index{cmd\_\-issuer.h@{cmd\_\-issuer.h}!RankBankComb@{RankBankComb}}
+\index{RankBankComb@{RankBankComb}!cmd_issuer.h@{cmd\_\-issuer.h}}
+\subsubsection[{RankBankComb}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf RankBankComb}}\label{cmd__issuer_8h_271ab377f1ab0a9d24ea68f64f5789f6}
+
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{SAME@{SAME}!cmd\_\-issuer.h@{cmd\_\-issuer.h}}\index{cmd\_\-issuer.h@{cmd\_\-issuer.h}!SAME@{SAME}}\item[{\em 
+SAME\label{cmd__issuer_8h_271ab377f1ab0a9d24ea68f64f5789f657316ad3090cf5cb9a92a3ec55dc18e9}
+}]\index{DIFF@{DIFF}!cmd\_\-issuer.h@{cmd\_\-issuer.h}}\index{cmd\_\-issuer.h@{cmd\_\-issuer.h}!DIFF@{DIFF}}\item[{\em 
+DIFF\label{cmd__issuer_8h_271ab377f1ab0a9d24ea68f64f5789f6a5d305f703cfce63b982a4cba74f64ec}
+}]\end{description}
+\end{Desc}
+
+
+
+Definition at line 74 of file cmd\_\-issuer.h.

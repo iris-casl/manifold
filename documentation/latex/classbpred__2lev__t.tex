@@ -1,0 +1,175 @@
+\section{bpred\_\-2lev\_\-t Class Reference}
+\label{classbpred__2lev__t}\index{bpred\_\-2lev\_\-t@{bpred\_\-2lev\_\-t}}
+Inheritance diagram for bpred\_\-2lev\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classbpred__2lev__t__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for bpred\_\-2lev\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classbpred__2lev__t__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class {\bf bpred\_\-2lev\_\-sc\_\-t}
+\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf bpred\_\-2lev\_\-t} (char $\ast$const arg\_\-name, const int arg\_\-bht\_\-size, const int arg\_\-pht\_\-size, const int arg\_\-history\_\-length, const int arg\_\-Xor)
+\item 
+{\bf $\sim$bpred\_\-2lev\_\-t} ()
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+int {\bf bht\_\-size}
+\item 
+int {\bf bht\_\-mask}
+\item 
+int $\ast$ {\bf bht}
+\item 
+int {\bf pht\_\-size}
+\item 
+int {\bf pht\_\-mask}
+\item 
+{\bf my2bc\_\-t} $\ast$ {\bf pht}
+\item 
+int {\bf history\_\-length}
+\item 
+int {\bf history\_\-mask}
+\item 
+int {\bf Xor}
+\item 
+int {\bf xorshift}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 24 of file bpred-2lev.cpp.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{bpred\_\-2lev\_\-t@{bpred\_\-2lev\_\-t}!bpred\_\-2lev\_\-t@{bpred\_\-2lev\_\-t}}
+\index{bpred\_\-2lev\_\-t@{bpred\_\-2lev\_\-t}!bpred_2lev_t@{bpred\_\-2lev\_\-t}}
+\subsubsection[{bpred\_\-2lev\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}bpred\_\-2lev\_\-t::bpred\_\-2lev\_\-t (char $\ast$const  {\em arg\_\-name}, \/  const int {\em arg\_\-bht\_\-size}, \/  const int {\em arg\_\-pht\_\-size}, \/  const int {\em arg\_\-history\_\-length}, \/  const int {\em arg\_\-Xor})\hspace{0.3cm}{\tt  [inline]}}\label{classbpred__2lev__t_94342d909f4e32ff1e0430b0f3ca56c3}
+
+
+
+
+Definition at line 50 of file bpred-2lev.cpp.
+
+References bht, bht\_\-mask, bht\_\-size, bpred\_\-dir\_\-t::bits, CHECK\_\-BOOL, CHECK\_\-NNEG, CHECK\_\-PPOW2, fatal(), history\_\-length, history\_\-mask, bpred\_\-dir\_\-t::init(), log\_\-base2(), MY2BC\_\-WEAKLY\_\-NT, MY2BC\_\-WEAKLY\_\-TAKEN, bpred\_\-dir\_\-t::name, pht, pht\_\-mask, pht\_\-size, bpred\_\-dir\_\-t::type, Xor, and xorshift.\index{bpred\_\-2lev\_\-t@{bpred\_\-2lev\_\-t}!$\sim$bpred\_\-2lev\_\-t@{$\sim$bpred\_\-2lev\_\-t}}
+\index{$\sim$bpred\_\-2lev\_\-t@{$\sim$bpred\_\-2lev\_\-t}!bpred_2lev_t@{bpred\_\-2lev\_\-t}}
+\subsubsection[{$\sim$bpred\_\-2lev\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}bpred\_\-2lev\_\-t::$\sim$bpred\_\-2lev\_\-t ()\hspace{0.3cm}{\tt  [inline]}}\label{classbpred__2lev__t_1ec098743660dc49d988c5fe9e1d1f18}
+
+
+
+
+Definition at line 99 of file bpred-2lev.cpp.
+
+References bht, and pht.
+
+\subsection{Member Data Documentation}
+\index{bpred\_\-2lev\_\-t@{bpred\_\-2lev\_\-t}!bht@{bht}}
+\index{bht@{bht}!bpred_2lev_t@{bpred\_\-2lev\_\-t}}
+\subsubsection[{bht}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ {\bf bpred\_\-2lev\_\-t::bht}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__2lev__t_cfd3b47e2e9f152c6dcb0d96fb0bd9a5}
+
+
+
+
+Definition at line 38 of file bpred-2lev.cpp.
+
+Referenced by bpred\_\-2lev\_\-t(), and $\sim$bpred\_\-2lev\_\-t().\index{bpred\_\-2lev\_\-t@{bpred\_\-2lev\_\-t}!bht\_\-mask@{bht\_\-mask}}
+\index{bht\_\-mask@{bht\_\-mask}!bpred_2lev_t@{bpred\_\-2lev\_\-t}}
+\subsubsection[{bht\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-2lev\_\-t::bht\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__2lev__t_0fa5cebd8ec5232985e71e365b210f1e}
+
+
+
+
+Definition at line 37 of file bpred-2lev.cpp.
+
+Referenced by bpred\_\-2lev\_\-t().\index{bpred\_\-2lev\_\-t@{bpred\_\-2lev\_\-t}!bht\_\-size@{bht\_\-size}}
+\index{bht\_\-size@{bht\_\-size}!bpred_2lev_t@{bpred\_\-2lev\_\-t}}
+\subsubsection[{bht\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-2lev\_\-t::bht\_\-size}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__2lev__t_0cbc305b37abbf5bd0d9fa391d374601}
+
+
+
+
+Definition at line 36 of file bpred-2lev.cpp.
+
+Referenced by bpred\_\-2lev\_\-t().\index{bpred\_\-2lev\_\-t@{bpred\_\-2lev\_\-t}!history\_\-length@{history\_\-length}}
+\index{history\_\-length@{history\_\-length}!bpred_2lev_t@{bpred\_\-2lev\_\-t}}
+\subsubsection[{history\_\-length}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-2lev\_\-t::history\_\-length}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__2lev__t_0866635a5cada7f43caacd1ee7d381db}
+
+
+
+
+Definition at line 42 of file bpred-2lev.cpp.
+
+Referenced by bpred\_\-2lev\_\-t().\index{bpred\_\-2lev\_\-t@{bpred\_\-2lev\_\-t}!history\_\-mask@{history\_\-mask}}
+\index{history\_\-mask@{history\_\-mask}!bpred_2lev_t@{bpred\_\-2lev\_\-t}}
+\subsubsection[{history\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-2lev\_\-t::history\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__2lev__t_404b1fd66a56769144ebe6033327bfea}
+
+
+
+
+Definition at line 43 of file bpred-2lev.cpp.
+
+Referenced by bpred\_\-2lev\_\-t().\index{bpred\_\-2lev\_\-t@{bpred\_\-2lev\_\-t}!pht@{pht}}
+\index{pht@{pht}!bpred_2lev_t@{bpred\_\-2lev\_\-t}}
+\subsubsection[{pht}]{\setlength{\rightskip}{0pt plus 5cm}{\bf my2bc\_\-t}$\ast$ {\bf bpred\_\-2lev\_\-t::pht}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__2lev__t_177b757a4955ba16f905cb67da5167a4}
+
+
+
+
+Definition at line 41 of file bpred-2lev.cpp.
+
+Referenced by bpred\_\-2lev\_\-t(), and $\sim$bpred\_\-2lev\_\-t().\index{bpred\_\-2lev\_\-t@{bpred\_\-2lev\_\-t}!pht\_\-mask@{pht\_\-mask}}
+\index{pht\_\-mask@{pht\_\-mask}!bpred_2lev_t@{bpred\_\-2lev\_\-t}}
+\subsubsection[{pht\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-2lev\_\-t::pht\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__2lev__t_53a1c21c1cbdc89f885969bc0a6740cd}
+
+
+
+
+Definition at line 40 of file bpred-2lev.cpp.
+
+Referenced by bpred\_\-2lev\_\-t().\index{bpred\_\-2lev\_\-t@{bpred\_\-2lev\_\-t}!pht\_\-size@{pht\_\-size}}
+\index{pht\_\-size@{pht\_\-size}!bpred_2lev_t@{bpred\_\-2lev\_\-t}}
+\subsubsection[{pht\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-2lev\_\-t::pht\_\-size}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__2lev__t_6d316d55008054b325267aab912bc33a}
+
+
+
+
+Definition at line 39 of file bpred-2lev.cpp.
+
+Referenced by bpred\_\-2lev\_\-t().\index{bpred\_\-2lev\_\-t@{bpred\_\-2lev\_\-t}!Xor@{Xor}}
+\index{Xor@{Xor}!bpred_2lev_t@{bpred\_\-2lev\_\-t}}
+\subsubsection[{Xor}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-2lev\_\-t::Xor}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__2lev__t_7f576dad58b57977a5d86054eed0e3c3}
+
+
+
+
+Definition at line 44 of file bpred-2lev.cpp.
+
+Referenced by bpred\_\-2lev\_\-t().\index{bpred\_\-2lev\_\-t@{bpred\_\-2lev\_\-t}!xorshift@{xorshift}}
+\index{xorshift@{xorshift}!bpred_2lev_t@{bpred\_\-2lev\_\-t}}
+\subsubsection[{xorshift}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-2lev\_\-t::xorshift}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__2lev__t_7b378f2111da26aa62fe431a18f8a22f}
+
+
+
+
+Definition at line 45 of file bpred-2lev.cpp.
+
+Referenced by bpred\_\-2lev\_\-t().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf bpred-2lev.cpp}\end{CompactItemize}

@@ -1,0 +1,530 @@
+\section{GenericRouterVcs Class Reference}
+\label{classGenericRouterVcs}\index{GenericRouterVcs@{GenericRouterVcs}}
+{\tt \#include $<$genericRouterVcs.h$>$}
+
+Inheritance diagram for GenericRouterVcs:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classGenericRouterVcs__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for GenericRouterVcs:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classGenericRouterVcs__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf GenericRouterVcs} ()
+\item 
+{\bf $\sim$GenericRouterVcs} ()
+\item 
+void {\bf init} ({\bf uint} {\bf ports}, {\bf uint} {\bf vcs}, {\bf uint} {\bf credits}, {\bf uint} {\bf buffer\_\-size})
+\item 
+void {\bf set\_\-no\_\-nodes} ({\bf uint} nodes)
+\begin{CompactList}\small\item\em These functions are mainly for DOR routing and are seperated so as to not force DOR modelling in all designs. \item\end{CompactList}\item 
+void {\bf set\_\-grid\_\-x\_\-location} ({\bf uint} a, {\bf uint} b, {\bf uint} c)
+\item 
+void {\bf set\_\-grid\_\-y\_\-location} ({\bf uint} a, {\bf uint} b, {\bf uint} c)
+\item 
+void {\bf send\_\-credit\_\-back} ({\bf uint} i)
+\item 
+void {\bf process\_\-event} ({\bf IrisEvent} $\ast$e)
+\item 
+string {\bf toString} () const 
+\item 
+string {\bf print\_\-stats} ()
+\item 
+void {\bf set\_\-edge\_\-links} ()
+\item 
+void {\bf dump\_\-buffer\_\-state} ()
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+vector$<$ vector$<$ {\bf uint} $>$ $>$ {\bf downstream\_\-credits}
+\item 
+{\bf uint} {\bf packets}
+\item 
+{\bf uint} {\bf flits}
+\item 
+double {\bf total\_\-packet\_\-latency}
+\item 
+double {\bf last\_\-flit\_\-out\_\-cycle}
+\item 
+unsigned long long int {\bf stat\_\-sim\_\-total\_\-time}
+\item 
+vector$<$ vector$<$ {\bf uint} $>$ $>$ {\bf stat\_\-packet\_\-out}
+\item 
+vector$<$ vector$<$ {\bf uint} $>$ $>$ {\bf stat\_\-flit\_\-out}
+\item 
+bool {\bf is\_\-mc\_\-router}
+\end{CompactItemize}
+\subsection*{Private Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf handle\_\-link\_\-arrival\_\-event} ({\bf IrisEvent} $\ast$e)
+\begin{CompactList}\small\item\em Event handle for the LINK\_\-ARRIVAL\_\-EVENT event. Entry from DES kernel. \item\end{CompactList}\item 
+void {\bf handle\_\-tick\_\-event} ({\bf IrisEvent} $\ast$e)
+\begin{CompactList}\small\item\em Event handle for the TICK\_\-EVENT. Entry from DES kernel. \item\end{CompactList}\item 
+void {\bf handle\_\-detect\_\-deadlock\_\-event} ({\bf IrisEvent} $\ast$)
+\item 
+void {\bf do\_\-switch\_\-traversal} ()
+\item 
+void {\bf do\_\-switch\_\-allocation} ()
+\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+vector$<$ {\bf GenericBuffer} $>$ {\bf in\_\-buffers}
+\item 
+vector$<$ {\bf GenericRC} $>$ {\bf decoders}
+\item 
+vector$<$ {\bf InputBufferState} $>$ {\bf input\_\-buffer\_\-state}
+\item 
+{\bf GenericVcAllocator} {\bf vca}
+\item 
+{\bf PToPSwitchArbiterVcs} {\bf swa}
+\item 
+{\bf GenericCrossbar} {\bf xbar}
+\item 
+vector$<$ {\bf uint} $>$ {\bf available\_\-ports}
+\item 
+vector$<$ {\bf uint} $>$ {\bf available\_\-vcs}
+\item 
+vector$<$ vector$<$ {\bf uint} $>$ $>$ {\bf cr\_\-time}
+\item 
+bool {\bf ticking}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+===================================================================================== Class: Description: Implementing a generic 4 stage physical router model BW-$>$RC-$>$VCA-$>$SA-$>$ST-$>$LT \doxyref{Buffer}{p.}{classBuffer} write(BW) Route Computation (RC) Virtual Channel Allocation (VCA) Switch Allocation (SA) Switch Traversal (ST) \doxyref{Link}{p.}{classLink} Traversal (LT)
+
+Model Description in cycles: --------------------------- BW and RC stages happen in the same cycle ( BW pushes the flits into the input buffer and the RC unit. ) VCA: Head flits request for an output virtual channel and max(pxv) requesting input ports/vcs. On winning the grant the packet requests for SA. The winner is cleared when the tail exits. SA: Pick one output port from n requesting input ports (0$<$n$<$p) for the pxp crossbar ST: Move the flits across the crossbar and push it out on the link LT: This is not modelled within the router and is part of the link component. ===================================================================================== 
+
+Definition at line 64 of file genericRouterVcs.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{GenericRouterVcs@{GenericRouterVcs}!GenericRouterVcs@{GenericRouterVcs}}
+\index{GenericRouterVcs@{GenericRouterVcs}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{GenericRouterVcs}]{\setlength{\rightskip}{0pt plus 5cm}GenericRouterVcs::GenericRouterVcs ()}\label{classGenericRouterVcs_8d6f275b69d860df5e97e2896282dcb4}
+
+
+
+
+Definition at line 24 of file genericRouterVcs.cc.
+
+References NetworkComponent::name, and ticking.\index{GenericRouterVcs@{GenericRouterVcs}!$\sim$GenericRouterVcs@{$\sim$GenericRouterVcs}}
+\index{$\sim$GenericRouterVcs@{$\sim$GenericRouterVcs}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{$\sim$GenericRouterVcs}]{\setlength{\rightskip}{0pt plus 5cm}GenericRouterVcs::$\sim$GenericRouterVcs ()}\label{classGenericRouterVcs_0d52212383fa6ba5a06c3abd331711f3}
+
+
+constructor 
+
+Definition at line 30 of file genericRouterVcs.cc.
+
+\subsection{Member Function Documentation}
+\index{GenericRouterVcs@{GenericRouterVcs}!do\_\-switch\_\-allocation@{do\_\-switch\_\-allocation}}
+\index{do\_\-switch\_\-allocation@{do\_\-switch\_\-allocation}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{do\_\-switch\_\-allocation}]{\setlength{\rightskip}{0pt plus 5cm}void GenericRouterVcs::do\_\-switch\_\-allocation ()\hspace{0.3cm}{\tt  [private]}}\label{classGenericRouterVcs_bc484a7284672d536c53394d564ae453}
+
+
+
+
+Definition at line 541 of file genericRouterVcs.cc.
+
+References SA\_\-unit::ch, PToPSwitchArbiterVcs::clear\_\-requestor(), GenericCrossbar::configure\_\-crossbar(), Router::credits, downstream\_\-credits, in\_\-buffers, input\_\-buffer\_\-state, PToPSwitchArbiterVcs::is\_\-empty(), PToPSwitchArbiterVcs::pick\_\-winner(), SA\_\-unit::port, Router::ports, GenericCrossbar::push(), ST, swa, SWA\_\-REQUESTED, ticking, VCA\_\-COMPLETE, Router::vcs, and xbar.
+
+Referenced by handle\_\-tick\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{classGenericRouterVcs_bc484a7284672d536c53394d564ae453_icgraph}
+\end{center}
+\end{figure}
+\index{GenericRouterVcs@{GenericRouterVcs}!do\_\-switch\_\-traversal@{do\_\-switch\_\-traversal}}
+\index{do\_\-switch\_\-traversal@{do\_\-switch\_\-traversal}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{do\_\-switch\_\-traversal}]{\setlength{\rightskip}{0pt plus 5cm}void GenericRouterVcs::do\_\-switch\_\-traversal ()\hspace{0.3cm}{\tt  [private]}}\label{classGenericRouterVcs_983c2111bb11cee1d215c51d207b350f}
+
+
+
+
+The do\_\-two\_\-stage\_\-router flag is used here to model variable router pipeline delay depending on system clock and router complexity.
+
+Send a credit back and update buffer state for the downstream router buffer 
+
+Definition at line 423 of file genericRouterVcs.cc.
+
+References \_\-DBG, NetworkComponent::address, TailFlit::avg\_\-network\_\-latency, HeadFlit::avg\_\-network\_\-latency, PToPSwitchArbiterVcs::clear\_\-requestor(), GenericVcAllocator::clear\_\-winner(), cr\_\-time, data, do\_\-two\_\-stage\_\-router, downstream\_\-credits, EMPTY, FLIT\_\-ID, HEAD, TailFlit::hop\_\-count, HeadFlit::hop\_\-count, in\_\-buffers, input\_\-buffer\_\-state, GenericCrossbar::is\_\-empty(), is\_\-mc\_\-router, Flit::is\_\-single\_\-flit\_\-pkt, last\_\-flit\_\-out\_\-cycle, LINK\_\-ARRIVAL\_\-EVENT, Simulator::Now(), Router::output\_\-connections, Router::ports, NetworkComponent::process\_\-event(), LinkArrivalData::ptr, GenericCrossbar::pull(), PToPSwitchArbiterVcs::request(), Simulator::Schedule(), send\_\-credit\_\-back(), ST, stat\_\-flit\_\-out, stat\_\-packet\_\-out, swa, SWA\_\-REQUESTED, TAIL, total\_\-packet\_\-latency, Flit::type, LinkArrivalData::type, LinkArrivalData::vc, Flit::vc, vca, VCA\_\-COMPLETE, Router::vcs, and xbar.
+
+Referenced by handle\_\-tick\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=325pt]{classGenericRouterVcs_983c2111bb11cee1d215c51d207b350f_icgraph}
+\end{center}
+\end{figure}
+\index{GenericRouterVcs@{GenericRouterVcs}!dump\_\-buffer\_\-state@{dump\_\-buffer\_\-state}}
+\index{dump\_\-buffer\_\-state@{dump\_\-buffer\_\-state}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{dump\_\-buffer\_\-state}]{\setlength{\rightskip}{0pt plus 5cm}void GenericRouterVcs::dump\_\-buffer\_\-state ()}\label{classGenericRouterVcs_a20a68b058733c848903382bb72a9f2b}
+
+
+
+
+Definition at line 177 of file genericRouterVcs.cc.
+
+References EMPTY, input\_\-buffer\_\-state, INVALID, NetworkComponent::node\_\-ip, Router::ports, and Router::vcs.\index{GenericRouterVcs@{GenericRouterVcs}!handle\_\-detect\_\-deadlock\_\-event@{handle\_\-detect\_\-deadlock\_\-event}}
+\index{handle\_\-detect\_\-deadlock\_\-event@{handle\_\-detect\_\-deadlock\_\-event}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{handle\_\-detect\_\-deadlock\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void GenericRouterVcs::handle\_\-detect\_\-deadlock\_\-event ({\bf IrisEvent} $\ast$ {\em e})\hspace{0.3cm}{\tt  [private]}}\label{classGenericRouterVcs_4080e3d342ece561d50e2e7cc51c4bef}
+
+
+
+
+Definition at line 148 of file genericRouterVcs.cc.
+
+References \_\-DBG\_\-NOARG, cr\_\-time, DETECT\_\-DEADLOCK\_\-EVENT, input\_\-buffer\_\-state, Simulator::Now(), Router::ports, NetworkComponent::process\_\-event(), Simulator::Schedule(), IrisEvent::type, and Router::vcs.
+
+Referenced by process\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{classGenericRouterVcs_4080e3d342ece561d50e2e7cc51c4bef_icgraph}
+\end{center}
+\end{figure}
+\index{GenericRouterVcs@{GenericRouterVcs}!handle\_\-link\_\-arrival\_\-event@{handle\_\-link\_\-arrival\_\-event}}
+\index{handle\_\-link\_\-arrival\_\-event@{handle\_\-link\_\-arrival\_\-event}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{handle\_\-link\_\-arrival\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void GenericRouterVcs::handle\_\-link\_\-arrival\_\-event ({\bf IrisEvent} $\ast$ {\em e})\hspace{0.3cm}{\tt  [private]}}\label{classGenericRouterVcs_4cee0ef119d0075104c9fdae90731316}
+
+
+Event handle for the LINK\_\-ARRIVAL\_\-EVENT event. Entry from DES kernel. 
+
+
+
+Definition at line 265 of file genericRouterVcs.cc.
+
+References \_\-DBG, HeadFlit::addr, cr\_\-time, CREDIT\_\-ID, data, decoders, downstream\_\-credits, HeadFlit::dst\_\-address, IrisEvent::event\_\-data, FLIT\_\-ID, flits, FULL, HEAD, in\_\-buffers, HeadFlit::inport, input\_\-buffer\_\-state, Router::input\_\-connections, is\_\-mc\_\-router, Flit::is\_\-single\_\-flit\_\-pkt, HeadFlit::length, HeadFlit::msg\_\-class, Simulator::Now(), Router::output\_\-connections, packets, Router::ports, NetworkComponent::process\_\-event(), LinkArrivalData::ptr, Simulator::Schedule(), HeadFlit::src\_\-address, IrisEvent::src\_\-id, TAIL, TICK\_\-EVENT, ticking, Flit::type, LinkArrivalData::type, IrisEvent::vc, LinkArrivalData::vc, and Router::vcs.
+
+Referenced by process\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{classGenericRouterVcs_4cee0ef119d0075104c9fdae90731316_icgraph}
+\end{center}
+\end{figure}
+\index{GenericRouterVcs@{GenericRouterVcs}!handle\_\-tick\_\-event@{handle\_\-tick\_\-event}}
+\index{handle\_\-tick\_\-event@{handle\_\-tick\_\-event}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{handle\_\-tick\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void GenericRouterVcs::handle\_\-tick\_\-event ({\bf IrisEvent} $\ast$ {\em e})\hspace{0.3cm}{\tt  [private]}}\label{classGenericRouterVcs_65a0676f6b28ffad48abb47f51d8a78b}
+
+
+Event handle for the TICK\_\-EVENT. Entry from DES kernel. 
+
+
+
+Body and tail flits get written in link arrival and since the message state may already been pushed to ST because of the header we want to ensure that all flits go thru an IB and ST stage. Hence ST is done on the flits\_\-in\_\-ib information and not buffer occupancy. for( uint i=0; i$<$(ports$\ast$vcs); i++) \{ uint ip = input\_\-buffer\_\-state[i].input\_\-port; uint ic = input\_\-buffer\_\-state[i].input\_\-channel;
+
+if ((input\_\-buffer\_\-state[i].pipe\_\-stage == ST $|$$|$ input\_\-buffer\_\-state[i].pipe\_\-stage == IB ) \&\& (input\_\-buffer\_\-state[i].flits\_\-in\_\-ib $<$ in\_\-buffers[ip].get\_\-occupancy(ivc))) \{ input\_\-buffer\_\-state[i].flits\_\-in\_\-ib++; ticking = true; \} \}
+
+Definition at line 600 of file genericRouterVcs.cc.
+
+References Router::credits, GenericVcAllocator::current\_\-winners, do\_\-switch\_\-allocation(), do\_\-switch\_\-traversal(), downstream\_\-credits, FULL, IB, in\_\-buffers, input\_\-buffer\_\-state, GenericVcAllocator::is\_\-empty(), GenericVcAllocator::is\_\-requested(), Simulator::Now(), GenericVcAllocator::pick\_\-winner(), Router::ports, NetworkComponent::process\_\-event(), GenericVcAllocator::request(), PToPSwitchArbiterVcs::request(), Simulator::Schedule(), GenericVcAllocator::squash\_\-requests(), ST, swa, SWA\_\-REQUESTED, TICK\_\-EVENT, ticking, IrisEvent::vc, vca, VCA\_\-COMPLETE, VCA\_\-REQUESTED, and Router::vcs.
+
+Referenced by process\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=213pt]{classGenericRouterVcs_65a0676f6b28ffad48abb47f51d8a78b_icgraph}
+\end{center}
+\end{figure}
+\index{GenericRouterVcs@{GenericRouterVcs}!init@{init}}
+\index{init@{init}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}void GenericRouterVcs::init ({\bf uint} {\em ports}, \/  {\bf uint} {\em vcs}, \/  {\bf uint} {\em credits}, \/  {\bf uint} {\em buffer\_\-size})\hspace{0.3cm}{\tt  [virtual]}}\label{classGenericRouterVcs_772ed25f9d8e1176193605280f8a61d7}
+
+
+destructor 
+
+Implements {\bf Router} \doxyref{}{p.}{classRouter_7c551f11fcda9accb02da87c671c4065}.
+
+Definition at line 35 of file genericRouterVcs.cc.
+
+References GenericVcAllocator::address, PToPSwitchArbiterVcs::address, NetworkComponent::address, Router::buffer\_\-size, cr\_\-time, Router::credits, decoders, DETECT\_\-DEADLOCK\_\-EVENT, downstream\_\-credits, flits, in\_\-buffers, input\_\-buffer\_\-state, Component::myId(), GenericVcAllocator::node\_\-ip, PToPSwitchArbiterVcs::node\_\-ip, NetworkComponent::node\_\-ip, Simulator::Now(), packets, Router::ports, NetworkComponent::process\_\-event(), PToPSwitchArbiterVcs::resize(), Simulator::Schedule(), GenericCrossbar::setup(), GenericVcAllocator::setup(), stat\_\-flit\_\-out, stat\_\-packet\_\-out, swa, total\_\-packet\_\-latency, vca, Router::vcs, and xbar.\index{GenericRouterVcs@{GenericRouterVcs}!print\_\-stats@{print\_\-stats}}
+\index{print\_\-stats@{print\_\-stats}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{print\_\-stats}]{\setlength{\rightskip}{0pt plus 5cm}string GenericRouterVcs::print\_\-stats (void)\hspace{0.3cm}{\tt  [virtual]}}\label{classGenericRouterVcs_6424e47ce8ab1341ebb68c28ad830cf7}
+
+
+
+
+Implements {\bf Router} \doxyref{}{p.}{classRouter_75995624d8bd533a9d3eb8c06a62ce07}.
+
+Definition at line 190 of file genericRouterVcs.cc.
+
+References flits, last\_\-flit\_\-out\_\-cycle, NetworkComponent::node\_\-ip, packets, Router::ports, stat\_\-flit\_\-out, stat\_\-packet\_\-out, and total\_\-packet\_\-latency.\index{GenericRouterVcs@{GenericRouterVcs}!process\_\-event@{process\_\-event}}
+\index{process\_\-event@{process\_\-event}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{process\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void GenericRouterVcs::process\_\-event ({\bf IrisEvent} $\ast$ {\em e})\hspace{0.3cm}{\tt  [virtual]}}\label{classGenericRouterVcs_dfb3a197b8cab933bb3c9639aa1ae419}
+
+
+
+
+Implements {\bf NetworkComponent} \doxyref{}{p.}{classNetworkComponent_c93793eea1e2d424abe86e110ca8b399}.
+
+Definition at line 127 of file genericRouterVcs.cc.
+
+References \_\-DBG, DETECT\_\-DEADLOCK\_\-EVENT, handle\_\-detect\_\-deadlock\_\-event(), handle\_\-link\_\-arrival\_\-event(), handle\_\-tick\_\-event(), LINK\_\-ARRIVAL\_\-EVENT, TICK\_\-EVENT, and IrisEvent::type.\index{GenericRouterVcs@{GenericRouterVcs}!send\_\-credit\_\-back@{send\_\-credit\_\-back}}
+\index{send\_\-credit\_\-back@{send\_\-credit\_\-back}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{send\_\-credit\_\-back}]{\setlength{\rightskip}{0pt plus 5cm}void GenericRouterVcs::send\_\-credit\_\-back ({\bf uint} {\em i})}\label{classGenericRouterVcs_976b792be36e077bb44e22860a547620}
+
+
+
+
+Definition at line 798 of file genericRouterVcs.cc.
+
+References NetworkComponent::address, CREDIT\_\-ID, data, do\_\-two\_\-stage\_\-router, input\_\-buffer\_\-state, Router::input\_\-connections, LINK\_\-ARRIVAL\_\-EVENT, Simulator::Now(), NetworkComponent::process\_\-event(), Simulator::Schedule(), LinkArrivalData::type, and LinkArrivalData::vc.
+
+Referenced by do\_\-switch\_\-traversal().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classGenericRouterVcs_976b792be36e077bb44e22860a547620_icgraph}
+\end{center}
+\end{figure}
+\index{GenericRouterVcs@{GenericRouterVcs}!set\_\-edge\_\-links@{set\_\-edge\_\-links}}
+\index{set\_\-edge\_\-links@{set\_\-edge\_\-links}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{set\_\-edge\_\-links}]{\setlength{\rightskip}{0pt plus 5cm}void GenericRouterVcs::set\_\-edge\_\-links ()}\label{classGenericRouterVcs_616fdd147103c5c99d415c0ec466960c}
+
+
+\index{GenericRouterVcs@{GenericRouterVcs}!set\_\-grid\_\-x\_\-location@{set\_\-grid\_\-x\_\-location}}
+\index{set\_\-grid\_\-x\_\-location@{set\_\-grid\_\-x\_\-location}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{set\_\-grid\_\-x\_\-location}]{\setlength{\rightskip}{0pt plus 5cm}void GenericRouterVcs::set\_\-grid\_\-x\_\-location ({\bf uint} {\em a}, \/  {\bf uint} {\em b}, \/  {\bf uint} {\em c})\hspace{0.3cm}{\tt  [virtual]}}\label{classGenericRouterVcs_6a4f9e79b3ba79838c0bf25c2635173f}
+
+
+For DOR the no of nodes in the network and the grid sizes are to be set and passed to RC. 
+
+Implements {\bf Router} \doxyref{}{p.}{classRouter_650e23b8323870dd47e9d305c1321dac}.
+
+Definition at line 113 of file genericRouterVcs.cc.
+
+References decoders.\index{GenericRouterVcs@{GenericRouterVcs}!set\_\-grid\_\-y\_\-location@{set\_\-grid\_\-y\_\-location}}
+\index{set\_\-grid\_\-y\_\-location@{set\_\-grid\_\-y\_\-location}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{set\_\-grid\_\-y\_\-location}]{\setlength{\rightskip}{0pt plus 5cm}void GenericRouterVcs::set\_\-grid\_\-y\_\-location ({\bf uint} {\em a}, \/  {\bf uint} {\em b}, \/  {\bf uint} {\em c})\hspace{0.3cm}{\tt  [virtual]}}\label{classGenericRouterVcs_54dbdb3d8f8303c732402094328cc904}
+
+
+
+
+Implements {\bf Router} \doxyref{}{p.}{classRouter_6ad394944ee7746254b4ebaed11d7da0}.
+
+Definition at line 119 of file genericRouterVcs.cc.
+
+References decoders.\index{GenericRouterVcs@{GenericRouterVcs}!set\_\-no\_\-nodes@{set\_\-no\_\-nodes}}
+\index{set\_\-no\_\-nodes@{set\_\-no\_\-nodes}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{set\_\-no\_\-nodes}]{\setlength{\rightskip}{0pt plus 5cm}void GenericRouterVcs::set\_\-no\_\-nodes ({\bf uint} {\em nodes})\hspace{0.3cm}{\tt  [virtual]}}\label{classGenericRouterVcs_f6553524ced46cb122fffb72eeb1877d}
+
+
+These functions are mainly for DOR routing and are seperated so as to not force DOR modelling in all designs. 
+
+Initialise the router for ports, vcs and credits. TODO buffer size not used right now. Just make sure its larger than credits. 
+
+Implements {\bf Router} \doxyref{}{p.}{classRouter_33073537e883e8bea1a25690bcb70049}.
+
+Definition at line 103 of file genericRouterVcs.cc.
+
+References decoders.\index{GenericRouterVcs@{GenericRouterVcs}!toString@{toString}}
+\index{toString@{toString}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{toString}]{\setlength{\rightskip}{0pt plus 5cm}string GenericRouterVcs::toString () const\hspace{0.3cm}{\tt  [virtual]}}\label{classGenericRouterVcs_624e79278af6fd3e91658b584fa9469e}
+
+
+
+
+Reimplemented from {\bf Router} \doxyref{}{p.}{classRouter_1e749a51dcf6cbd6925ac677473c7f58}.
+
+Definition at line 775 of file genericRouterVcs.cc.
+
+References NetworkComponent::address, decoders, in\_\-buffers, NetworkComponent::node\_\-ip, swa, GenericCrossbar::toString(), PToPSwitchArbiterVcs::toString(), and xbar.
+
+\subsection{Member Data Documentation}
+\index{GenericRouterVcs@{GenericRouterVcs}!available\_\-ports@{available\_\-ports}}
+\index{available\_\-ports@{available\_\-ports}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{available\_\-ports}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf uint}$>$ {\bf GenericRouterVcs::available\_\-ports}\hspace{0.3cm}{\tt  [private]}}\label{classGenericRouterVcs_9119398a851b895ab9b79f2157d84c6c}
+
+
+
+
+Definition at line 108 of file genericRouterVcs.h.\index{GenericRouterVcs@{GenericRouterVcs}!available\_\-vcs@{available\_\-vcs}}
+\index{available\_\-vcs@{available\_\-vcs}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{available\_\-vcs}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf uint}$>$ {\bf GenericRouterVcs::available\_\-vcs}\hspace{0.3cm}{\tt  [private]}}\label{classGenericRouterVcs_b95f2bc29e509e8b85d2fb98123f0d95}
+
+
+
+
+Definition at line 109 of file genericRouterVcs.h.\index{GenericRouterVcs@{GenericRouterVcs}!cr\_\-time@{cr\_\-time}}
+\index{cr\_\-time@{cr\_\-time}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{cr\_\-time}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ vector$<${\bf uint}$>$ $>$ {\bf GenericRouterVcs::cr\_\-time}\hspace{0.3cm}{\tt  [private]}}\label{classGenericRouterVcs_b881cb5929dda73c815c67ff373753d5}
+
+
+
+
+Definition at line 110 of file genericRouterVcs.h.
+
+Referenced by do\_\-switch\_\-traversal(), handle\_\-detect\_\-deadlock\_\-event(), handle\_\-link\_\-arrival\_\-event(), and init().\index{GenericRouterVcs@{GenericRouterVcs}!decoders@{decoders}}
+\index{decoders@{decoders}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{decoders}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf GenericRC}$>$ {\bf GenericRouterVcs::decoders}\hspace{0.3cm}{\tt  [private]}}\label{classGenericRouterVcs_35f15a12ecb6a1e242aab2a866f6b9aa}
+
+
+
+
+Definition at line 103 of file genericRouterVcs.h.
+
+Referenced by handle\_\-link\_\-arrival\_\-event(), init(), set\_\-grid\_\-x\_\-location(), set\_\-grid\_\-y\_\-location(), set\_\-no\_\-nodes(), and toString().\index{GenericRouterVcs@{GenericRouterVcs}!downstream\_\-credits@{downstream\_\-credits}}
+\index{downstream\_\-credits@{downstream\_\-credits}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{downstream\_\-credits}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ vector$<${\bf uint}$>$ $>$ {\bf GenericRouterVcs::downstream\_\-credits}}\label{classGenericRouterVcs_244441c3e59c53b57ff08692f334a19a}
+
+
+
+
+Definition at line 86 of file genericRouterVcs.h.
+
+Referenced by do\_\-switch\_\-allocation(), do\_\-switch\_\-traversal(), handle\_\-link\_\-arrival\_\-event(), handle\_\-tick\_\-event(), and init().\index{GenericRouterVcs@{GenericRouterVcs}!flits@{flits}}
+\index{flits@{flits}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{flits}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf GenericRouterVcs::flits}}\label{classGenericRouterVcs_c355e86dbc68e06843cdcb08627a54c2}
+
+
+
+
+Definition at line 91 of file genericRouterVcs.h.
+
+Referenced by handle\_\-link\_\-arrival\_\-event(), init(), and print\_\-stats().\index{GenericRouterVcs@{GenericRouterVcs}!in\_\-buffers@{in\_\-buffers}}
+\index{in\_\-buffers@{in\_\-buffers}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{in\_\-buffers}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf GenericBuffer}$>$ {\bf GenericRouterVcs::in\_\-buffers}\hspace{0.3cm}{\tt  [private]}}\label{classGenericRouterVcs_c885570c33e71785c08b96b5962db229}
+
+
+
+
+Definition at line 102 of file genericRouterVcs.h.
+
+Referenced by do\_\-switch\_\-allocation(), do\_\-switch\_\-traversal(), handle\_\-link\_\-arrival\_\-event(), handle\_\-tick\_\-event(), init(), and toString().\index{GenericRouterVcs@{GenericRouterVcs}!input\_\-buffer\_\-state@{input\_\-buffer\_\-state}}
+\index{input\_\-buffer\_\-state@{input\_\-buffer\_\-state}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{input\_\-buffer\_\-state}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf InputBufferState}$>$ {\bf GenericRouterVcs::input\_\-buffer\_\-state}\hspace{0.3cm}{\tt  [private]}}\label{classGenericRouterVcs_e53e518e4d5bec19af7077a5f1da8838}
+
+
+
+
+Definition at line 104 of file genericRouterVcs.h.
+
+Referenced by do\_\-switch\_\-allocation(), do\_\-switch\_\-traversal(), dump\_\-buffer\_\-state(), handle\_\-detect\_\-deadlock\_\-event(), handle\_\-link\_\-arrival\_\-event(), handle\_\-tick\_\-event(), init(), and send\_\-credit\_\-back().\index{GenericRouterVcs@{GenericRouterVcs}!is\_\-mc\_\-router@{is\_\-mc\_\-router}}
+\index{is\_\-mc\_\-router@{is\_\-mc\_\-router}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{is\_\-mc\_\-router}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf GenericRouterVcs::is\_\-mc\_\-router}}\label{classGenericRouterVcs_8c76adae47eb45fffbbd64c7df4e02bb}
+
+
+
+
+Definition at line 97 of file genericRouterVcs.h.
+
+Referenced by do\_\-switch\_\-traversal(), and handle\_\-link\_\-arrival\_\-event().\index{GenericRouterVcs@{GenericRouterVcs}!last\_\-flit\_\-out\_\-cycle@{last\_\-flit\_\-out\_\-cycle}}
+\index{last\_\-flit\_\-out\_\-cycle@{last\_\-flit\_\-out\_\-cycle}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{last\_\-flit\_\-out\_\-cycle}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf GenericRouterVcs::last\_\-flit\_\-out\_\-cycle}}\label{classGenericRouterVcs_080709501bca9f7c8d211ac18805e770}
+
+
+
+
+Definition at line 93 of file genericRouterVcs.h.
+
+Referenced by do\_\-switch\_\-traversal(), and print\_\-stats().\index{GenericRouterVcs@{GenericRouterVcs}!packets@{packets}}
+\index{packets@{packets}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{packets}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf GenericRouterVcs::packets}}\label{classGenericRouterVcs_2b8b5de72091ef7137c50c1fa3864d09}
+
+
+These are the statistics variables 
+
+Definition at line 90 of file genericRouterVcs.h.
+
+Referenced by handle\_\-link\_\-arrival\_\-event(), init(), and print\_\-stats().\index{GenericRouterVcs@{GenericRouterVcs}!stat\_\-flit\_\-out@{stat\_\-flit\_\-out}}
+\index{stat\_\-flit\_\-out@{stat\_\-flit\_\-out}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{stat\_\-flit\_\-out}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ vector$<${\bf uint}$>$ $>$ {\bf GenericRouterVcs::stat\_\-flit\_\-out}}\label{classGenericRouterVcs_6b6a47638aaeae2c566d02e7db3df803}
+
+
+
+
+Definition at line 96 of file genericRouterVcs.h.
+
+Referenced by do\_\-switch\_\-traversal(), init(), and print\_\-stats().\index{GenericRouterVcs@{GenericRouterVcs}!stat\_\-packet\_\-out@{stat\_\-packet\_\-out}}
+\index{stat\_\-packet\_\-out@{stat\_\-packet\_\-out}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{stat\_\-packet\_\-out}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ vector$<${\bf uint}$>$ $>$ {\bf GenericRouterVcs::stat\_\-packet\_\-out}}\label{classGenericRouterVcs_408fcdde34f0c2a3d253a500bbeb97a3}
+
+
+
+
+Definition at line 95 of file genericRouterVcs.h.
+
+Referenced by do\_\-switch\_\-traversal(), init(), and print\_\-stats().\index{GenericRouterVcs@{GenericRouterVcs}!stat\_\-sim\_\-total\_\-time@{stat\_\-sim\_\-total\_\-time}}
+\index{stat\_\-sim\_\-total\_\-time@{stat\_\-sim\_\-total\_\-time}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{stat\_\-sim\_\-total\_\-time}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long long int {\bf GenericRouterVcs::stat\_\-sim\_\-total\_\-time}}\label{classGenericRouterVcs_336f437508573c6389fbf2e5617ca772}
+
+
+
+
+Definition at line 94 of file genericRouterVcs.h.\index{GenericRouterVcs@{GenericRouterVcs}!swa@{swa}}
+\index{swa@{swa}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{swa}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PToPSwitchArbiterVcs} {\bf GenericRouterVcs::swa}\hspace{0.3cm}{\tt  [private]}}\label{classGenericRouterVcs_84ee5875f13b9ec419723492785f263a}
+
+
+
+
+Definition at line 106 of file genericRouterVcs.h.
+
+Referenced by do\_\-switch\_\-allocation(), do\_\-switch\_\-traversal(), handle\_\-tick\_\-event(), init(), and toString().\index{GenericRouterVcs@{GenericRouterVcs}!ticking@{ticking}}
+\index{ticking@{ticking}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{ticking}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf GenericRouterVcs::ticking}\hspace{0.3cm}{\tt  [private]}}\label{classGenericRouterVcs_a1aa808bc4ac91553c93207db042ea2d}
+
+
+
+
+Definition at line 112 of file genericRouterVcs.h.
+
+Referenced by do\_\-switch\_\-allocation(), GenericRouterVcs(), handle\_\-link\_\-arrival\_\-event(), and handle\_\-tick\_\-event().\index{GenericRouterVcs@{GenericRouterVcs}!total\_\-packet\_\-latency@{total\_\-packet\_\-latency}}
+\index{total\_\-packet\_\-latency@{total\_\-packet\_\-latency}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{total\_\-packet\_\-latency}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf GenericRouterVcs::total\_\-packet\_\-latency}}\label{classGenericRouterVcs_ed0bb071826b56329aa6eea8aa5c6d67}
+
+
+
+
+Definition at line 92 of file genericRouterVcs.h.
+
+Referenced by do\_\-switch\_\-traversal(), init(), and print\_\-stats().\index{GenericRouterVcs@{GenericRouterVcs}!vca@{vca}}
+\index{vca@{vca}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{vca}]{\setlength{\rightskip}{0pt plus 5cm}{\bf GenericVcAllocator} {\bf GenericRouterVcs::vca}\hspace{0.3cm}{\tt  [private]}}\label{classGenericRouterVcs_1864e05615bcf2af58e6dcbe77410231}
+
+
+
+
+Definition at line 105 of file genericRouterVcs.h.
+
+Referenced by do\_\-switch\_\-traversal(), handle\_\-tick\_\-event(), and init().\index{GenericRouterVcs@{GenericRouterVcs}!xbar@{xbar}}
+\index{xbar@{xbar}!GenericRouterVcs@{GenericRouterVcs}}
+\subsubsection[{xbar}]{\setlength{\rightskip}{0pt plus 5cm}{\bf GenericCrossbar} {\bf GenericRouterVcs::xbar}\hspace{0.3cm}{\tt  [private]}}\label{classGenericRouterVcs_6f584a7c46b6d28585d54699bd9982d2}
+
+
+
+
+Definition at line 107 of file genericRouterVcs.h.
+
+Referenced by do\_\-switch\_\-allocation(), do\_\-switch\_\-traversal(), init(), and toString().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf genericRouterVcs.h}\item 
+{\bf genericRouterVcs.cc}\end{CompactItemize}

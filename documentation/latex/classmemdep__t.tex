@@ -1,0 +1,234 @@
+\section{memdep\_\-t Class Reference}
+\label{classmemdep__t}\index{memdep\_\-t@{memdep\_\-t}}
+{\tt \#include $<$zesto-memdep.h$>$}
+
+Inheritance diagram for memdep\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classmemdep__t__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf memdep\_\-t} ()
+\item 
+virtual {\bf $\sim$memdep\_\-t} ()
+\item 
+virtual int {\bf lookup} (const {\bf md\_\-addr\_\-t} PC, const bool sta\_\-unknown, const bool conflict\_\-exists, const bool partial\_\-match)=0
+\item 
+virtual void {\bf update} (const {\bf md\_\-addr\_\-t} PC)
+\item 
+virtual void {\bf reg\_\-stats} (struct {\bf stat\_\-sdb\_\-t} $\ast$const sdb, struct {\bf core\_\-t} $\ast$const core)
+\item 
+void {\bf freeze\_\-stats} (void)
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf init} (void)
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+char $\ast$ {\bf name}
+\item 
+char $\ast$ {\bf type}
+\item 
+int {\bf bits}
+\item 
+{\bf counter\_\-t} {\bf lookups}
+\item 
+{\bf counter\_\-t} {\bf updates}
+\item 
+bool {\bf frozen}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 83 of file zesto-memdep.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{memdep\_\-t@{memdep\_\-t}!memdep\_\-t@{memdep\_\-t}}
+\index{memdep\_\-t@{memdep\_\-t}!memdep_t@{memdep\_\-t}}
+\subsubsection[{memdep\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}memdep\_\-t::memdep\_\-t ()}\label{classmemdep__t_176617a9d11aa93dce9cc38c39d4262f}
+
+
+
+
+Definition at line 93 of file zesto-memdep.cpp.
+
+References fatal(), init(), name, and type.\index{memdep\_\-t@{memdep\_\-t}!$\sim$memdep\_\-t@{$\sim$memdep\_\-t}}
+\index{$\sim$memdep\_\-t@{$\sim$memdep\_\-t}!memdep_t@{memdep\_\-t}}
+\subsubsection[{$\sim$memdep\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}memdep\_\-t::$\sim$memdep\_\-t ()\hspace{0.3cm}{\tt  [virtual]}}\label{classmemdep__t_610b94ef3aa02c0c8b86d9d73b04edf5}
+
+
+
+
+Definition at line 102 of file zesto-memdep.cpp.
+
+References name, and type.
+
+\subsection{Member Function Documentation}
+\index{memdep\_\-t@{memdep\_\-t}!freeze\_\-stats@{freeze\_\-stats}}
+\index{freeze\_\-stats@{freeze\_\-stats}!memdep_t@{memdep\_\-t}}
+\subsubsection[{freeze\_\-stats}]{\setlength{\rightskip}{0pt plus 5cm}void memdep\_\-t::freeze\_\-stats (void)}\label{classmemdep__t_6a645b6566c350c8a76febb44b63d861}
+
+
+
+
+Definition at line 139 of file zesto-memdep.cpp.
+
+References frozen.
+
+Referenced by core\_\-exec\_\-DPM\_\-t::freeze\_\-stats().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=179pt]{classmemdep__t_6a645b6566c350c8a76febb44b63d861_icgraph}
+\end{center}
+\end{figure}
+\index{memdep\_\-t@{memdep\_\-t}!init@{init}}
+\index{init@{init}!memdep_t@{memdep\_\-t}}
+\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}void memdep\_\-t::init (void)\hspace{0.3cm}{\tt  [protected]}}\label{classmemdep__t_0419e6a5f42e4c85015147aae9f48ce8}
+
+
+
+
+Definition at line 85 of file zesto-memdep.cpp.
+
+References bits, frozen, lookups, and updates.
+
+Referenced by memdep\_\-blind\_\-t::memdep\_\-blind\_\-t(), memdep\_\-lwt\_\-t::memdep\_\-lwt\_\-t(), memdep\_\-none\_\-t::memdep\_\-none\_\-t(), memdep\_\-oracle\_\-t::memdep\_\-oracle\_\-t(), and memdep\_\-t().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=170pt]{classmemdep__t_0419e6a5f42e4c85015147aae9f48ce8_icgraph}
+\end{center}
+\end{figure}
+\index{memdep\_\-t@{memdep\_\-t}!lookup@{lookup}}
+\index{lookup@{lookup}!memdep_t@{memdep\_\-t}}
+\subsubsection[{lookup}]{\setlength{\rightskip}{0pt plus 5cm}virtual int memdep\_\-t::lookup (const {\bf md\_\-addr\_\-t} {\em PC}, \/  const bool {\em sta\_\-unknown}, \/  const bool {\em conflict\_\-exists}, \/  const bool {\em partial\_\-match})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classmemdep__t_4e942f2faba7dd4b7ed2d28b887723b0}
+
+
+
+
+Referenced by core\_\-exec\_\-DPM\_\-t::check\_\-load\_\-issue\_\-conditions().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=304pt]{classmemdep__t_4e942f2faba7dd4b7ed2d28b887723b0_icgraph}
+\end{center}
+\end{figure}
+\index{memdep\_\-t@{memdep\_\-t}!reg\_\-stats@{reg\_\-stats}}
+\index{reg\_\-stats@{reg\_\-stats}!memdep_t@{memdep\_\-t}}
+\subsubsection[{reg\_\-stats}]{\setlength{\rightskip}{0pt plus 5cm}void memdep\_\-t::reg\_\-stats (struct {\bf stat\_\-sdb\_\-t} $\ast$const {\em sdb}, \/  struct {\bf core\_\-t} $\ast$const {\em core})\hspace{0.3cm}{\tt  [virtual]}}\label{classmemdep__t_a1a98010c0e6d4008ae372469db6888b}
+
+
+
+
+Definition at line 114 of file zesto-memdep.cpp.
+
+References bits, core\_\-t::current\_\-thread, thread\_\-t::id, lookups, name, stat\_\-reg\_\-counter, stat\_\-reg\_\-formula(), stat\_\-reg\_\-int(), stat\_\-reg\_\-string(), type, and updates.
+
+Referenced by core\_\-exec\_\-DPM\_\-t::reg\_\-stats().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{classmemdep__t_a1a98010c0e6d4008ae372469db6888b_icgraph}
+\end{center}
+\end{figure}
+\index{memdep\_\-t@{memdep\_\-t}!update@{update}}
+\index{update@{update}!memdep_t@{memdep\_\-t}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void memdep\_\-t::update (const {\bf md\_\-addr\_\-t} {\em PC})\hspace{0.3cm}{\tt  [virtual]}}\label{classmemdep__t_61189c4dc4e8dbb5928f51a91d629f76}
+
+
+
+
+Definition at line 109 of file zesto-memdep.cpp.
+
+References MEMDEP\_\-STAT, and updates.
+
+Referenced by core\_\-exec\_\-DPM\_\-t::ALU\_\-exec(), and core\_\-exec\_\-DPM\_\-t::LDST\_\-exec().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{classmemdep__t_61189c4dc4e8dbb5928f51a91d629f76_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\index{memdep\_\-t@{memdep\_\-t}!bits@{bits}}
+\index{bits@{bits}!memdep_t@{memdep\_\-t}}
+\subsubsection[{bits}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf memdep\_\-t::bits}\hspace{0.3cm}{\tt  [protected]}}\label{classmemdep__t_1ace19a7514c1042b4c33bdf6eab3360}
+
+
+
+
+Definition at line 88 of file zesto-memdep.h.
+
+Referenced by init(), memdep\_\-lwt\_\-t::memdep\_\-lwt\_\-t(), and reg\_\-stats().\index{memdep\_\-t@{memdep\_\-t}!frozen@{frozen}}
+\index{frozen@{frozen}!memdep_t@{memdep\_\-t}}
+\subsubsection[{frozen}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf memdep\_\-t::frozen}\hspace{0.3cm}{\tt  [protected]}}\label{classmemdep__t_452b897e1055c0c1d70e197066b5d3a1}
+
+
+
+
+Definition at line 91 of file zesto-memdep.h.
+
+Referenced by freeze\_\-stats(), and init().\index{memdep\_\-t@{memdep\_\-t}!lookups@{lookups}}
+\index{lookups@{lookups}!memdep_t@{memdep\_\-t}}
+\subsubsection[{lookups}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf memdep\_\-t::lookups}\hspace{0.3cm}{\tt  [protected]}}\label{classmemdep__t_afce3c6cc59995888583a99be3ee3ffc}
+
+
+
+
+Definition at line 89 of file zesto-memdep.h.
+
+Referenced by init(), and reg\_\-stats().\index{memdep\_\-t@{memdep\_\-t}!name@{name}}
+\index{name@{name}!memdep_t@{memdep\_\-t}}
+\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf memdep\_\-t::name}\hspace{0.3cm}{\tt  [protected]}}\label{classmemdep__t_37071ab6d0d3e5f794bd3a8dcd6bda72}
+
+
+
+
+Definition at line 86 of file zesto-memdep.h.
+
+Referenced by memdep\_\-blind\_\-t::memdep\_\-blind\_\-t(), memdep\_\-create(), memdep\_\-lwt\_\-t::memdep\_\-lwt\_\-t(), memdep\_\-none\_\-t::memdep\_\-none\_\-t(), memdep\_\-oracle\_\-t::memdep\_\-oracle\_\-t(), memdep\_\-t(), reg\_\-stats(), and $\sim$memdep\_\-t().\index{memdep\_\-t@{memdep\_\-t}!type@{type}}
+\index{type@{type}!memdep_t@{memdep\_\-t}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf memdep\_\-t::type}\hspace{0.3cm}{\tt  [protected]}}\label{classmemdep__t_81551a09aafb6a131f7d821fe1c8d140}
+
+
+
+
+Definition at line 87 of file zesto-memdep.h.
+
+Referenced by memdep\_\-blind\_\-t::memdep\_\-blind\_\-t(), memdep\_\-create(), memdep\_\-lwt\_\-t::memdep\_\-lwt\_\-t(), memdep\_\-none\_\-t::memdep\_\-none\_\-t(), memdep\_\-oracle\_\-t::memdep\_\-oracle\_\-t(), memdep\_\-t(), reg\_\-stats(), and $\sim$memdep\_\-t().\index{memdep\_\-t@{memdep\_\-t}!updates@{updates}}
+\index{updates@{updates}!memdep_t@{memdep\_\-t}}
+\subsubsection[{updates}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf memdep\_\-t::updates}\hspace{0.3cm}{\tt  [protected]}}\label{classmemdep__t_5084813349361624222766d24ca0192c}
+
+
+
+
+Definition at line 90 of file zesto-memdep.h.
+
+Referenced by init(), reg\_\-stats(), and update().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf zesto-memdep.h}\item 
+{\bf zesto-memdep.cpp}\end{CompactItemize}

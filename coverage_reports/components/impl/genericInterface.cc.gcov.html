@@ -1,0 +1,551 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>LCOV - iris.info - components/impl/genericInterface.cc</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LTP GCOV extension - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+        <tr>
+          <td class="headerItem" width="20%">Current&nbsp;view:</td>
+          <td class="headerValue" width="80%" colspan=4><a href="../../index.html">directory</a> - <a href="index.html">components/impl</a> - genericInterface.cc</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Test:</td>
+          <td class="headerValue" width="80%" colspan=4>iris.info</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Date:</td>
+          <td class="headerValue" width="20%">2010-05-24</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Instrumented&nbsp;lines:</td>
+          <td class="headerValue" width="20%">201</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Code&nbsp;covered:</td>
+          <td class="headerValue" width="20%">97.0 %</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Executed&nbsp;lines:</td>
+          <td class="headerValue" width="20%">195</td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><pre class="source">
+<span class="lineNum">       1 </span>                : /*
+<span class="lineNum">       2 </span>                :  * =====================================================================================
+<span class="lineNum">       3 </span>                :  *
+<span class="lineNum">       4 </span>                :  *       Filename:  genericInterface.cc
+<span class="lineNum">       5 </span>                :  *
+<span class="lineNum">       6 </span>                :  *    Description:  
+<span class="lineNum">       7 </span>                :  *
+<span class="lineNum">       8 </span>                :  *        Version:  1.0
+<span class="lineNum">       9 </span>                :  *        Created:  02/21/2010 03:46:20 PM
+<span class="lineNum">      10 </span>                :  *       Revision:  none
+<span class="lineNum">      11 </span>                :  *       Compiler:  gcc
+<span class="lineNum">      12 </span>                :  *
+<span class="lineNum">      13 </span>                :  *         Author:  Mitchelle Rasquinha (), mitchelle.rasquinha@gatech.edu
+<span class="lineNum">      14 </span>                :  *        Company:  Georgia Institute of Technology
+<span class="lineNum">      15 </span>                :  *
+<span class="lineNum">      16 </span>                :  * =====================================================================================
+<span class="lineNum">      17 </span>                :  */
+<span class="lineNum">      18 </span>                : 
+<span class="lineNum">      19 </span>                : #ifndef  _genericinterface_cc_INC
+<span class="lineNum">      20 </span>                : #define  _genericinterface_cc_INC
+<span class="lineNum">      21 </span>                : 
+<span class="lineNum">      22 </span>                : #include        &quot;genericInterface.h&quot;
+<span class="lineNum">      23 </span>                : using namespace std;
+<span class="lineNum">      24 </span>                : 
+<span class="lineNum">      25 </span><span class="lineCov">            448 : GenericInterface::GenericInterface ()</span>
+<span class="lineNum">      26 </span>                : {
+<span class="lineNum">      27 </span><span class="lineCov">             64 :     name = &quot;Interface&quot;;</span>
+<span class="lineNum">      28 </span><span class="lineCov">             64 :     ticking =false;</span>
+<span class="lineNum">      29 </span><span class="lineCov">             64 : }               /* -----  end of function GenericInterface::GenericInterface  ----- */</span>
+<span class="lineNum">      30 </span>                : 
+<span class="lineNum">      31 </span><span class="lineCov">             64 : GenericInterface::~GenericInterface ()</span>
+<span class="lineNum">      32 </span>                : {
+<span class="lineNum">      33 </span><span class="lineCov">             64 :     in_packets.clear();</span>
+<span class="lineNum">      34 </span><span class="lineCov">             64 :     out_packets.clear();</span>
+<span class="lineNum">      35 </span>                :     
+<span class="lineNum">      36 </span><span class="lineCov">            320 : }               /* -----  end of function GenericInterface::~GenericInterface  ----- */</span>
+<span class="lineNum">      37 </span>                : 
+<span class="lineNum">      38 </span>                : void
+<span class="lineNum">      39 </span><span class="lineCov">             64 : GenericInterface::setup (uint v, uint cr)</span>
+<span class="lineNum">      40 </span>                : {
+<span class="lineNum">      41 </span><span class="lineCov">             64 :     vcs =v;</span>
+<span class="lineNum">      42 </span><span class="lineCov">             64 :     int credits = cr;</span>
+<span class="lineNum">      43 </span>                :     /* All this is part of the init */
+<span class="lineNum">      44 </span><span class="lineCov">            128 :     address = myId();</span>
+<span class="lineNum">      45 </span>                : //    convert_packet_cycles = DEFAULT_CONVERT_PACKET_CYCLES;
+<span class="lineNum">      46 </span>                : 
+<span class="lineNum">      47 </span><span class="lineCov">             64 :     in_packet_complete = false;</span>
+<span class="lineNum">      48 </span><span class="lineCov">             64 :     in_buffer.resize(vcs, buffer_size);</span>
+<span class="lineNum">      49 </span><span class="lineCov">             64 :     out_buffer.resize(vcs, buffer_size);</span>
+<span class="lineNum">      50 </span><span class="lineCov">             64 :     downstream_credits.resize(vcs);</span>
+<span class="lineNum">      51 </span>                : 
+<span class="lineNum">      52 </span><span class="lineCov">             64 :     out_packet_flit_index.resize(vcs);</span>
+<span class="lineNum">      53 </span><span class="lineCov">             64 :     in_ready.resize(vcs);</span>
+<span class="lineNum">      54 </span><span class="lineCov">             64 :     in_packets_flit_index.resize(vcs);</span>
+<span class="lineNum">      55 </span>                : 
+<span class="lineNum">      56 </span><span class="lineCov">             64 :     in_packets.resize(vcs);</span>
+<span class="lineNum">      57 </span><span class="lineCov">             64 :     in_packets_valid.resize(vcs);</span>
+<span class="lineNum">      58 </span><span class="lineCov">             64 :     out_packets.resize(vcs);</span>
+<span class="lineNum">      59 </span>                : 
+<span class="lineNum">      60 </span>                : 
+<span class="lineNum">      61 </span><span class="lineCov">            128 :     for ( uint i=0; i&lt;vcs ; i++ )</span>
+<span class="lineNum">      62 </span>                :     {
+<span class="lineNum">      63 </span><span class="lineCov">            128 :         out_packet_flit_index[i] = 0;</span>
+<span class="lineNum">      64 </span><span class="lineCov">             64 :         in_ready[i] = true;</span>
+<span class="lineNum">      65 </span><span class="lineCov">            128 :         in_packets[i].destination = address;</span>
+<span class="lineNum">      66 </span><span class="lineCov">            128 :         in_packets[i].virtual_channel = i;</span>
+<span class="lineNum">      67 </span><span class="lineCov">            128 :         in_packets[i].length= 10;</span>
+<span class="lineNum">      68 </span><span class="lineCov">            128 :         downstream_credits[i] = credits;</span>
+<span class="lineNum">      69 </span>                :     }
+<span class="lineNum">      70 </span>                : 
+<span class="lineNum">      71 </span>                :     /*  init stats */
+<span class="lineNum">      72 </span><span class="lineCov">             64 :     packets_out = 0;</span>
+<span class="lineNum">      73 </span><span class="lineCov">             64 :     flits_out = 0;</span>
+<span class="lineNum">      74 </span><span class="lineCov">             64 :     packets_in = 0;</span>
+<span class="lineNum">      75 </span><span class="lineCov">             64 :     flits_in = 0;</span>
+<span class="lineNum">      76 </span><span class="lineCov">             64 :     total_packets_in_time = 0;</span>
+<span class="lineNum">      77 </span>                : 
+<span class="lineNum">      78 </span>                :     /* Init complete */
+<span class="lineNum">      79 </span>                : 
+<span class="lineNum">      80 </span>                :     /* Send a ready event for each vc 
+<span class="lineNum">      81 </span>                :     for ( uint i=0 ; i&lt;vcs ; i++ )
+<span class="lineNum">      82 </span>                :     {
+<span class="lineNum">      83 </span>                :         IrisEvent* event = new IrisEvent();
+<span class="lineNum">      84 </span>                :         in_packets[i].virtual_channel = i;
+<span class="lineNum">      85 </span>                :         VirtualChannelDescription* vc = new VirtualChannelDescription();
+<span class="lineNum">      86 </span>                :         vc-&gt;vc = i;
+<span class="lineNum">      87 </span>                :         event-&gt;event_data.push_back(vc);
+<span class="lineNum">      88 </span>                :         event-&gt;type = READY_EVENT;
+<span class="lineNum">      89 </span>                :         event-&gt;vc = i;
+<span class="lineNum">      90 </span>                :         Simulator::Schedule(Simulator::Now(),&amp;NetworkComponent::process_event, processor_connection, event); 
+<span class="lineNum">      91 </span>                :     }
+<span class="lineNum">      92 </span>                :     */
+<span class="lineNum">      93 </span>                : 
+<span class="lineNum">      94 </span>                :     return;
+<span class="lineNum">      95 </span>                : }               /* -----  end of function GenericInterface::setup  ----- */
+<span class="lineNum">      96 </span>                : 
+<span class="lineNum">      97 </span>                : void
+<span class="lineNum">      98 </span><span class="lineCov">             64 : GenericInterface::set_no_vcs( uint v )</span>
+<span class="lineNum">      99 </span>                : {
+<span class="lineNum">     100 </span><span class="lineCov">             64 :     vcs = v;</span>
+<span class="lineNum">     101 </span><span class="lineCov">             64 : }</span>
+<span class="lineNum">     102 </span>                : 
+<span class="lineNum">     103 </span>                : void
+<span class="lineNum">     104 </span><span class="lineCov">             64 : GenericInterface::set_buffer_size( uint b )</span>
+<span class="lineNum">     105 </span>                : {
+<span class="lineNum">     106 </span><span class="lineCov">             64 :     buffer_size = b;</span>
+<span class="lineNum">     107 </span><span class="lineCov">             64 : }</span>
+<span class="lineNum">     108 </span>                : 
+<span class="lineNum">     109 </span>                : /* We care about credits on the interface only for the output buffers ie on
+<span class="lineNum">     110 </span>                :  * the output side maintain credit info for the downstream buffers */
+<span class="lineNum">     111 </span>                : uint
+<span class="lineNum">     112 </span><span class="lineNoCov">              0 : GenericInterface::get_no_credits () const</span>
+<span class="lineNum">     113 </span>                : {
+<span class="lineNum">     114 </span><span class="lineNoCov">              0 :     return credits;</span>
+<span class="lineNum">     115 </span>                : }               /* -----  end of function GenericInterface::get_no_credits  ----- */
+<span class="lineNum">     116 </span>                : 
+<span class="lineNum">     117 </span>                : void
+<span class="lineNum">     118 </span><span class="lineCov">             64 : GenericInterface::set_no_credits ( int c)</span>
+<span class="lineNum">     119 </span>                : {
+<span class="lineNum">     120 </span><span class="lineCov">             64 :     credits = c;</span>
+<span class="lineNum">     121 </span>                :     return;
+<span class="lineNum">     122 </span>                : }               /* -----  end of function GenericInterface::set_no_credits  ----- */
+<span class="lineNum">     123 </span>                : 
+<span class="lineNum">     124 </span>                : string
+<span class="lineNum">     125 </span><span class="lineCov">             64 : GenericInterface::toString () const</span>
+<span class="lineNum">     126 </span>                : {
+<span class="lineNum">     127 </span><span class="lineCov">             64 :     stringstream str;</span>
+<span class="lineNum">     128 </span>                :     str &lt;&lt; &quot;GenericInterface: &quot;
+<span class="lineNum">     129 </span>                :         &lt;&lt; &quot;\t VC: &quot; &lt;&lt; out_packets.size()
+<span class="lineNum">     130 </span>                :         &lt;&lt; &quot;\t address: &quot; &lt;&lt; address &lt;&lt; &quot; node_ip: &quot; &lt;&lt; node_ip
+<span class="lineNum">     131 </span>                :         &lt;&lt; &quot;\t OutputBuffers: &quot; &lt;&lt; out_buffer.toString()
+<span class="lineNum">     132 </span>                :         &lt;&lt; &quot;\t InputBuffer: &quot; &lt;&lt; in_buffer.toString()
+<span class="lineNum">     133 </span><span class="lineCov">            320 :         ;</span>
+<span class="lineNum">     134 </span><span class="lineCov">             64 :     return str.str();</span>
+<span class="lineNum">     135 </span>                : }               /* -----  end of function GenericInterface::toString  ----- */
+<span class="lineNum">     136 </span>                : 
+<span class="lineNum">     137 </span>                : void
+<span class="lineNum">     138 </span><span class="lineCov">        6000259 : GenericInterface::process_event(IrisEvent* e)</span>
+<span class="lineNum">     139 </span>                : {
+<span class="lineNum">     140 </span><span class="lineCov">        6000259 :     switch(e-&gt;type)</span>
+<span class="lineNum">     141 </span>                :     {
+<span class="lineNum">     142 </span>                :         case READY_EVENT:
+<span class="lineNum">     143 </span><span class="lineCov">         301696 :             handle_ready_event(e);</span>
+<span class="lineNum">     144 </span><span class="lineCov">         301696 :             break;</span>
+<span class="lineNum">     145 </span>                : 
+<span class="lineNum">     146 </span>                :         case LINK_ARRIVAL_EVENT:
+<span class="lineNum">     147 </span><span class="lineCov">        1214942 :             handle_link_arrival(e);</span>
+<span class="lineNum">     148 </span><span class="lineCov">        1214942 :             break;</span>
+<span class="lineNum">     149 </span>                : 
+<span class="lineNum">     150 </span>                :         case NEW_PACKET_EVENT:
+<span class="lineNum">     151 </span><span class="lineCov">         301736 :             handle_new_packet_event(e);</span>
+<span class="lineNum">     152 </span><span class="lineCov">         301736 :             break;</span>
+<span class="lineNum">     153 </span>                : 
+<span class="lineNum">     154 </span>                :         case TICK_EVENT:
+<span class="lineNum">     155 </span><span class="lineCov">        4181885 :             handle_tick_event(e);</span>
+<span class="lineNum">     156 </span><span class="lineCov">        4181885 :             break;</span>
+<span class="lineNum">     157 </span>                :             
+<span class="lineNum">     158 </span>                :         default:
+<span class="lineNum">     159 </span><span class="lineNoCov">              0 :             cout &lt;&lt; &quot;**Unkown event exception! &quot; &lt;&lt; e-&gt;type &lt;&lt; endl;</span>
+<span class="lineNum">     160 </span>                :             break;
+<span class="lineNum">     161 </span>                :     }
+<span class="lineNum">     162 </span><span class="lineCov">        6000259 : }               /* -----  end of function GenericInterface::process_event ----- */</span>
+<span class="lineNum">     163 </span>                : 
+<span class="lineNum">     164 </span>                : void
+<span class="lineNum">     165 </span><span class="lineCov">         301696 : GenericInterface::handle_ready_event( IrisEvent* e)</span>
+<span class="lineNum">     166 </span>                : {
+<span class="lineNum">     167 </span>                :     /*! \brief  These are credits from the processor and hence do not update flow
+<span class="lineNum">     168 </span>                :      *  control state. Flow control state is updated at the link arrival event
+<span class="lineNum">     169 </span>                :      *  for a credit. */
+<span class="lineNum">     170 </span>                : 
+<span class="lineNum">     171 </span>                : #ifdef _DEBUG_INTERFACE
+<span class="lineNum">     172 </span>                :     _DBG(&quot; handle_ready_event %d &quot;, e-&gt;vc);
+<span class="lineNum">     173 </span>                : #endif
+<span class="lineNum">     174 </span>                : 
+<span class="lineNum">     175 </span>                : //    in_ready[e-&gt;vc] = true;
+<span class="lineNum">     176 </span><span class="lineCov">         301696 :     in_ready[0] = true;</span>
+<span class="lineNum">     177 </span><span class="lineCov">         301696 :     if(!ticking)</span>
+<span class="lineNum">     178 </span>                :     { 
+<span class="lineNum">     179 </span><span class="lineCov">         246114 :         ticking = true;</span>
+<span class="lineNum">     180 </span><span class="lineCov">         246114 :         IrisEvent* event = new IrisEvent();</span>
+<span class="lineNum">     181 </span><span class="lineCov">         246114 :         event-&gt;type = TICK_EVENT;</span>
+<span class="lineNum">     182 </span><span class="lineCov">         246114 :         event-&gt;vc = 0 ; //e-&gt;vc;</span>
+<span class="lineNum">     183 </span><span class="lineCov">         246114 :         Simulator::Schedule( floor(Simulator::Now())+1, &amp;NetworkComponent::process_event, this, event);</span>
+<span class="lineNum">     184 </span>                :     }
+<span class="lineNum">     185 </span>                : 
+<span class="lineNum">     186 </span><span class="lineCov">         301696 :     delete e;</span>
+<span class="lineNum">     187 </span>                :     return;
+<span class="lineNum">     188 </span>                : }               /* -----  end of function GenericInterface::handle_ready_event  ----- */
+<span class="lineNum">     189 </span>                : 
+<span class="lineNum">     190 </span>                : void
+<span class="lineNum">     191 </span><span class="lineCov">        1214942 : GenericInterface::handle_link_arrival ( IrisEvent* e)</span>
+<span class="lineNum">     192 </span>                : {
+<span class="lineNum">     193 </span>                :     //Find out if it was a flit or a credit
+<span class="lineNum">     194 </span><span class="lineCov">        1214942 :     LinkArrivalData* uptr = static_cast&lt;LinkArrivalData* &gt;(e-&gt;event_data.at(0));</span>
+<span class="lineNum">     195 </span>                : 
+<span class="lineNum">     196 </span><span class="lineCov">        1214942 :     if(uptr-&gt;type == FLIT_ID)</span>
+<span class="lineNum">     197 </span>                :     {
+<span class="lineNum">     198 </span><span class="lineCov">         607460 :         flits_in++;</span>
+<span class="lineNum">     199 </span><span class="lineCov">         607460 :         in_buffer.change_push_channel(0);</span>
+<span class="lineNum">     200 </span><span class="lineCov">         607460 :         in_buffer.push(uptr-&gt;ptr);</span>
+<span class="lineNum">     201 </span><span class="lineCov">         607460 :         if( uptr-&gt;ptr-&gt;type == TAIL )</span>
+<span class="lineNum">     202 </span>                :         {
+<span class="lineNum">     203 </span><span class="lineCov">         152880 :             packets_in++;</span>
+<span class="lineNum">     204 </span><span class="lineCov">         152880 :             total_packets_in_time += (Simulator::Now() - static_cast&lt;TailFlit*&gt;(uptr-&gt;ptr)-&gt;packet_originated_time);</span>
+<span class="lineNum">     205 </span>                :         }
+<span class="lineNum">     206 </span>                : #ifdef _DEBUG_INTERFACE
+<span class="lineNum">     207 </span>                :     _DBG(&quot; handle_link_arrival FLIT ticking: %d type: %d type: %d&quot;, uptr-&gt;type, ticking, uptr-&gt;ptr-&gt;type);
+<span class="lineNum">     208 </span>                : #endif
+<span class="lineNum">     209 </span>                : 
+<span class="lineNum">     210 </span><span class="lineCov">         607460 :         if( uptr-&gt;ptr-&gt;type == HEAD &amp;&amp; static_cast&lt;HeadFlit*&gt;(uptr-&gt;ptr)-&gt;msg_class == ONE_FLIT_REQ )</span>
+<span class="lineNum">     211 </span>                :         {
+<span class="lineNum">     212 </span><span class="lineCov">         148820 :             packets_in++;</span>
+<span class="lineNum">     213 </span><span class="lineCov">         148820 :             total_packets_in_time += (Simulator::Now() - static_cast&lt;HeadFlit*&gt;(uptr-&gt;ptr)-&gt;packet_originated_time);</span>
+<span class="lineNum">     214 </span>                :         }
+<span class="lineNum">     215 </span><span class="lineCov">         607460 :         uptr-&gt;valid = false;</span>
+<span class="lineNum">     216 </span>                : 
+<span class="lineNum">     217 </span><span class="lineCov">         607460 :         if( !(uptr-&gt;ptr-&gt;type == TAIL || </span>
+<span class="lineNum">     218 </span>                :              ( uptr-&gt;ptr-&gt;type == HEAD &amp;&amp; static_cast&lt;HeadFlit*&gt;(uptr-&gt;ptr)-&gt;msg_class == ONE_FLIT_REQ )))
+<span class="lineNum">     219 </span>                :         {
+<span class="lineNum">     220 </span><span class="lineCov">         305760 :             LinkArrivalData* arrival = new LinkArrivalData();</span>
+<span class="lineNum">     221 </span><span class="lineCov">         305760 :             arrival-&gt;vc = 0;</span>
+<span class="lineNum">     222 </span><span class="lineCov">         305760 :             arrival-&gt;type = CREDIT_ID;</span>
+<span class="lineNum">     223 </span><span class="lineCov">         305760 :             IrisEvent* event = new IrisEvent();</span>
+<span class="lineNum">     224 </span><span class="lineCov">         305760 :             event-&gt;type = LINK_ARRIVAL_EVENT;</span>
+<span class="lineNum">     225 </span><span class="lineCov">         305760 :             event-&gt;vc = 0;</span>
+<span class="lineNum">     226 </span><span class="lineCov">         305760 :             event-&gt;event_data.push_back(arrival);</span>
+<span class="lineNum">     227 </span><span class="lineCov">         305760 :             event-&gt;src_id = address;</span>
+<span class="lineNum">     228 </span>                :             Simulator::Schedule( floor(Simulator::Now())+0.75, 
+<span class="lineNum">     229 </span><span class="lineCov">         305760 :                                  &amp;NetworkComponent::process_event, static_cast&lt;GenericLink*&gt;(input_connection)-&gt;input_connection, event);</span>
+<span class="lineNum">     230 </span>                : 
+<span class="lineNum">     231 </span>                :         }
+<span class="lineNum">     232 </span>                :     }
+<span class="lineNum">     233 </span><span class="lineCov">         607482 :     else if ( uptr-&gt;type == CREDIT_ID)</span>
+<span class="lineNum">     234 </span>                :     {
+<span class="lineNum">     235 </span><span class="lineCov">        1214964 :         downstream_credits[uptr-&gt;vc]++;</span>
+<span class="lineNum">     236 </span>                : #ifdef _DEBUG_INTERFACE
+<span class="lineNum">     237 </span>                :         _DBG(&quot; got a credit vc: %d ftype: %d no_of_credits: %d &quot;, uptr-&gt;vc, uptr-&gt;type, downstream_credits[uptr-&gt;vc] );
+<span class="lineNum">     238 </span>                : #endif
+<span class="lineNum">     239 </span>                :     }
+<span class="lineNum">     240 </span>                :     else
+<span class="lineNum">     241 </span>                :     {
+<span class="lineNum">     242 </span><span class="lineNoCov">              0 :         cout &lt;&lt; &quot;Exception: Unk link arrival data type! &quot; &lt;&lt; endl;</span>
+<span class="lineNum">     243 </span>                :     }
+<span class="lineNum">     244 </span>                : 
+<span class="lineNum">     245 </span><span class="lineCov">        1214942 :     if(!ticking)</span>
+<span class="lineNum">     246 </span>                :     {
+<span class="lineNum">     247 </span><span class="lineCov">        1002933 :         ticking = true;</span>
+<span class="lineNum">     248 </span><span class="lineCov">        1002933 :         IrisEvent* new_event = new IrisEvent();</span>
+<span class="lineNum">     249 </span><span class="lineCov">        1002933 :         new_event-&gt;type = TICK_EVENT;</span>
+<span class="lineNum">     250 </span><span class="lineCov">        1002933 :         new_event-&gt;vc = e-&gt;vc;</span>
+<span class="lineNum">     251 </span><span class="lineCov">        1002933 :         Simulator::Schedule( floor(Simulator::Now())+1, &amp;GenericInterface::process_event, this, new_event);</span>
+<span class="lineNum">     252 </span>                :     }
+<span class="lineNum">     253 </span><span class="lineCov">        1214942 :     delete uptr;</span>
+<span class="lineNum">     254 </span><span class="lineCov">        1214942 :     delete e;</span>
+<span class="lineNum">     255 </span>                :     return;
+<span class="lineNum">     256 </span>                : }               /* -----  end of function GenericInterface::handle_link_arrival  ----- */
+<span class="lineNum">     257 </span>                : 
+<span class="lineNum">     258 </span>                : void
+<span class="lineNum">     259 </span><span class="lineCov">         301736 : GenericInterface::handle_new_packet_event(IrisEvent* e)</span>
+<span class="lineNum">     260 </span>                : {
+<span class="lineNum">     261 </span><span class="lineCov">         301736 :     HighLevelPacket* pkt = static_cast&lt;HighLevelPacket*&gt;(e-&gt;event_data.at(0));</span>
+<span class="lineNum">     262 </span><span class="lineCov">         603472 :     pkt-&gt;to_low_level_packet(&amp;out_packets[0]);</span>
+<span class="lineNum">     263 </span>                : #ifdef _DEBUG_INTERFACE
+<span class="lineNum">     264 </span>                :     _DBG(&quot; Int got new packet: %s&quot;, out_packets[0].toString().c_str());
+<span class="lineNum">     265 </span>                : #endif
+<span class="lineNum">     266 </span>                : 
+<span class="lineNum">     267 </span><span class="lineCov">         301736 :     delete pkt;</span>
+<span class="lineNum">     268 </span>                : 
+<span class="lineNum">     269 </span><span class="lineCov">         603472 :     out_packet_flit_index[ pkt-&gt;virtual_channel ] = 0;</span>
+<span class="lineNum">     270 </span>                : 
+<span class="lineNum">     271 </span>                : #ifdef _DEBUG_INTERFACE
+<span class="lineNum">     272 </span>                :     _DBG(&quot;handle_new_packet_event vc: %d &quot;, static_cast&lt;unsigned int &gt;(pkt-&gt;virtual_channel) );
+<span class="lineNum">     273 </span>                : #endif
+<span class="lineNum">     274 </span>                : 
+<span class="lineNum">     275 </span><span class="lineCov">         301736 :     if( !ticking)</span>
+<span class="lineNum">     276 </span>                :     {
+<span class="lineNum">     277 </span><span class="lineCov">         218263 :         ticking = true;</span>
+<span class="lineNum">     278 </span><span class="lineCov">         218263 :         IrisEvent* event = new IrisEvent();</span>
+<span class="lineNum">     279 </span><span class="lineCov">         218263 :         event-&gt;type = TICK_EVENT;</span>
+<span class="lineNum">     280 </span><span class="lineCov">         218263 :         event-&gt;vc = e-&gt;vc;</span>
+<span class="lineNum">     281 </span><span class="lineCov">         218263 :         Simulator::Schedule(floor(Simulator::Now())+1, &amp;NetworkComponent::process_event, this, event);</span>
+<span class="lineNum">     282 </span>                :     }
+<span class="lineNum">     283 </span>                : 
+<span class="lineNum">     284 </span><span class="lineCov">         301736 :     delete e;</span>
+<span class="lineNum">     285 </span>                :     return;
+<span class="lineNum">     286 </span>                : }               /* -----  end of function GenericInterface::handle_new_packet_event  ----- */
+<span class="lineNum">     287 </span>                : 
+<span class="lineNum">     288 </span>                : void
+<span class="lineNum">     289 </span><span class="lineCov">        4181885 : GenericInterface::handle_tick_event(IrisEvent* e)</span>
+<span class="lineNum">     290 </span>                : {
+<span class="lineNum">     291 </span><span class="lineCov">        4181885 :     ticking = false;</span>
+<span class="lineNum">     292 </span>                :     /*---------- This is on the output side. From processor out to network --------- */
+<span class="lineNum">     293 </span><span class="lineCov">        8363770 :     if( downstream_credits[0]&gt;0 &amp;&amp; out_buffer.get_occupancy(0)&gt;0</span>
+<span class="lineNum">     294 </span>                :         &amp;&amp; in_packet_complete )
+<span class="lineNum">     295 </span>                :     {
+<span class="lineNum">     296 </span><span class="lineCov">         607494 :        out_buffer.change_pull_channel(0);</span>
+<span class="lineNum">     297 </span><span class="lineCov">         607494 :        Flit* f= out_buffer.peek();</span>
+<span class="lineNum">     298 </span><span class="lineCov">         909224 :        if( f-&gt;type == HEAD  &amp;&amp; downstream_credits[0] != credits)</span>
+<span class="lineNum">     299 </span>                :        {
+<span class="lineNum">     300 </span><span class="lineNoCov">              0 :            _DBG_NOARG(&quot; Not sending a new packet for now&quot;);</span>
+<span class="lineNum">     301 </span>                :        }
+<span class="lineNum">     302 </span>                :        else
+<span class="lineNum">     303 </span>                :        {
+<span class="lineNum">     304 </span><span class="lineCov">         607494 :             IrisEvent* event = new IrisEvent();</span>
+<span class="lineNum">     305 </span><span class="lineCov">         607494 :             LinkArrivalData* arrival =  new LinkArrivalData();</span>
+<span class="lineNum">     306 </span><span class="lineCov">         607494 :             arrival-&gt;type = FLIT_ID;</span>
+<span class="lineNum">     307 </span><span class="lineCov">         607494 :             arrival-&gt;vc = 0;</span>
+<span class="lineNum">     308 </span><span class="lineCov">         607494 :             out_buffer.change_pull_channel(0);</span>
+<span class="lineNum">     309 </span><span class="lineCov">         607494 :             f = out_buffer.pull();</span>
+<span class="lineNum">     310 </span><span class="lineCov">        1214988 :        downstream_credits[arrival-&gt;vc]--; </span>
+<span class="lineNum">     311 </span>                : 
+<span class="lineNum">     312 </span><span class="lineCov">         607494 :        if (f-&gt;type == TAIL || ( f-&gt;type == HEAD &amp;&amp; static_cast&lt;HeadFlit*&gt;(f)-&gt;msg_class == ONE_FLIT_REQ) )</span>
+<span class="lineNum">     313 </span>                :        {
+<span class="lineNum">     314 </span><span class="lineCov">         301725 :            packets_out++;</span>
+<span class="lineNum">     315 </span><span class="lineCov">         301725 :            in_packet_complete = false;</span>
+<span class="lineNum">     316 </span><span class="lineCov">         301725 :             IrisEvent* event = new IrisEvent();</span>
+<span class="lineNum">     317 </span><span class="lineCov">         301725 :             event-&gt;type = READY_EVENT;</span>
+<span class="lineNum">     318 </span><span class="lineCov">         301725 :             event-&gt;vc = 0;</span>
+<span class="lineNum">     319 </span><span class="lineCov">         301725 :             Simulator::Schedule(floor(Simulator::Now())+1, &amp;NetworkComponent::process_event, processor_connection, event);</span>
+<span class="lineNum">     320 </span>                :        }
+<span class="lineNum">     321 </span><span class="lineCov">         607494 :        flits_out++;</span>
+<span class="lineNum">     322 </span>                : 
+<span class="lineNum">     323 </span><span class="lineCov">         607494 :        arrival-&gt;ptr = f;</span>
+<span class="lineNum">     324 </span>                : 
+<span class="lineNum">     325 </span><span class="lineCov">         607494 :        event-&gt;event_data.push_back(arrival);</span>
+<span class="lineNum">     326 </span><span class="lineCov">         607494 :        event-&gt;type = LINK_ARRIVAL_EVENT;</span>
+<span class="lineNum">     327 </span><span class="lineCov">         607494 :        event-&gt;src_id = address;</span>
+<span class="lineNum">     328 </span><span class="lineCov">         607494 :        event-&gt;vc = arrival-&gt;vc;</span>
+<span class="lineNum">     329 </span>                : 
+<span class="lineNum">     330 </span><span class="lineCov">         607494 :        ticking = true;</span>
+<span class="lineNum">     331 </span>                : 
+<span class="lineNum">     332 </span><span class="lineCov">         607494 :        Simulator::Schedule(Simulator::Now()+0.75, &amp;NetworkComponent::process_event, static_cast&lt;GenericLink*&gt;(output_connection)-&gt;output_connection, event);</span>
+<span class="lineNum">     333 </span>                : #ifdef _DEBUG_INTERFACE
+<span class="lineNum">     334 </span>                :     _DBG(&quot; FLIT_OUT_EVENT credits_now: %d fty:%d&quot;, downstream_credits[0], arrival-&gt;ptr-&gt;type);
+<span class="lineNum">     335 </span>                : #endif
+<span class="lineNum">     336 </span>                :        }
+<span class="lineNum">     337 </span>                :     }
+<span class="lineNum">     338 </span>                : 
+<span class="lineNum">     339 </span>                :     //out packet to out buffer
+<span class="lineNum">     340 </span><span class="lineCov">        9578786 :         if ( out_packets[0].size() &gt; 0 &amp;&amp; out_packet_flit_index[0] &lt; out_packets[0].length ) //&amp;&amp; out_buffer.get_occupancy(0)&gt;0)</span>
+<span class="lineNum">     341 </span>                :         {
+<span class="lineNum">     342 </span><span class="lineCov">         607508 :             out_buffer.change_push_channel(0);</span>
+<span class="lineNum">     343 </span><span class="lineCov">        1215016 :             Flit* ptr = out_packets[0].get_next_flit();</span>
+<span class="lineNum">     344 </span><span class="lineCov">         607508 :             out_buffer.push( ptr);</span>
+<span class="lineNum">     345 </span><span class="lineCov">        1215016 :             out_packet_flit_index[0]++;</span>
+<span class="lineNum">     346 </span>                : 
+<span class="lineNum">     347 </span>                : #ifdef _DEBUG_INTERFACE
+<span class="lineNum">     348 </span>                :     _DBG(&quot;Flit-&gt;OutBuffer ftype:%d outpkt_len:%d index:%d OB_size: %d &quot;,ptr-&gt;type, out_packets[0].length, out_packet_flit_index[0], out_buffer.get_occupancy(0));
+<span class="lineNum">     349 </span>                : #endif
+<span class="lineNum">     350 </span>                : 
+<span class="lineNum">     351 </span><span class="lineCov">        1822524 :             if(out_packet_flit_index[0] == out_packets[0].length )</span>
+<span class="lineNum">     352 </span>                :             {
+<span class="lineNum">     353 </span><span class="lineCov">         603468 :                 out_packet_flit_index[0] = 0;</span>
+<span class="lineNum">     354 </span><span class="lineCov">         603468 :                 out_packets[0].flits.clear();</span>
+<span class="lineNum">     355 </span><span class="lineCov">         301734 :                 in_packet_complete = true;</span>
+<span class="lineNum">     356 </span>                : 
+<span class="lineNum">     357 </span>                :                 /* 
+<span class="lineNum">     358 </span>                :                 if( out_packets[0].size()&lt;1)
+<span class="lineNum">     359 </span>                :                 {
+<span class="lineNum">     360 </span>                : 
+<span class="lineNum">     361 </span>                :                 IrisEvent* event = new IrisEvent();
+<span class="lineNum">     362 </span>                :                 event-&gt;type = READY_EVENT;
+<span class="lineNum">     363 </span>                :                 event-&gt;vc = 0;
+<span class="lineNum">     364 </span>                :                 Simulator::Schedule(floor(Simulator::Now())+1, &amp;NetworkComponent::process_event, processor_connection, event);
+<span class="lineNum">     365 </span>                :                 }
+<span class="lineNum">     366 </span>                :                  * */
+<span class="lineNum">     367 </span>                : 
+<span class="lineNum">     368 </span>                :             }
+<span class="lineNum">     369 </span><span class="lineCov">         607508 :             ticking = true;</span>
+<span class="lineNum">     370 </span>                :         }
+<span class="lineNum">     371 </span>                : 
+<span class="lineNum">     372 </span>                : 
+<span class="lineNum">     373 </span>                :     /*---------- This is on the input side. From processor out to ntwk --------- */
+<span class="lineNum">     374 </span>                :     // in packets to processor
+<span class="lineNum">     375 </span>                :     
+<span class="lineNum">     376 </span><span class="lineCov">       13195946 :     if ( in_ready[0]  &amp;&amp; in_packets_flit_index[0]!=0 &amp;&amp; in_packets_flit_index[0] == in_packets[0].length)</span>
+<span class="lineNum">     377 </span>                :         {
+<span class="lineNum">     378 </span><span class="lineCov">         301698 :             in_ready[0] = false;        </span>
+<span class="lineNum">     379 </span><span class="lineCov">         301698 :             HighLevelPacket* pkt = new HighLevelPacket();</span>
+<span class="lineNum">     380 </span><span class="lineCov">         603396 :             pkt-&gt;from_low_level_packet(&amp;in_packets[0]);</span>
+<span class="lineNum">     381 </span><span class="lineCov">         301698 :             pkt-&gt;recv_time = Simulator::Now();</span>
+<span class="lineNum">     382 </span>                : #ifdef _DEBUG_INTERFACE
+<span class="lineNum">     383 </span>                :             _DBG( &quot;Interface got a complete llp: %s &quot;, in_packets[0].toString().c_str());
+<span class="lineNum">     384 </span>                :             _DBG(&quot;converted it %s&quot;,pkt-&gt;toString().c_str());
+<span class="lineNum">     385 </span>                : #endif
+<span class="lineNum">     386 </span>                : 
+<span class="lineNum">     387 </span>                :             /* 
+<span class="lineNum">     388 </span>                :             LowLevelPacket* llp = &amp;in_packets[0];
+<span class="lineNum">     389 </span>                :         for( uint k=0; k&lt;llp-&gt;flits.size(); k++)
+<span class="lineNum">     390 </span>                :         {
+<span class="lineNum">     391 </span>                :             for ( uint j=0;j&lt;llp-&gt;flits[k]-&gt;phits.size() ;j++ )
+<span class="lineNum">     392 </span>                :             {
+<span class="lineNum">     393 </span>                :                 llp-&gt;flits[k]-&gt;phits[j]-&gt;data.clear();
+<span class="lineNum">     394 </span>                :                 delete (llp-&gt;flits[k]-&gt;phits[j]);
+<span class="lineNum">     395 </span>                :             }
+<span class="lineNum">     396 </span>                :             llp-&gt;flits[k]-&gt;phits.erase(llp-&gt;flits[k]-&gt;phits.begin(),llp-&gt;flits[k]-&gt;phits.end());
+<span class="lineNum">     397 </span>                :             llp-&gt;flits[k]-&gt;phits.clear();
+<span class="lineNum">     398 </span>                :             delete (llp-&gt;flits[k]);
+<span class="lineNum">     399 </span>                :         }
+<span class="lineNum">     400 </span>                : 
+<span class="lineNum">     401 </span>                :             llp-&gt;flits.erase(llp-&gt;flits.begin(),llp-&gt;flits.end());
+<span class="lineNum">     402 </span>                :             llp-&gt;flits.clear();
+<span class="lineNum">     403 </span>                :              * */
+<span class="lineNum">     404 </span>                : 
+<span class="lineNum">     405 </span><span class="lineCov">         603396 :             in_packets_flit_index[0] = 0;</span>
+<span class="lineNum">     406 </span><span class="lineCov">         301698 :             IrisEvent* event = new IrisEvent();</span>
+<span class="lineNum">     407 </span><span class="lineCov">         301698 :             event-&gt;type = NEW_PACKET_EVENT;</span>
+<span class="lineNum">     408 </span><span class="lineCov">         301698 :             event-&gt;event_data.push_back(pkt);</span>
+<span class="lineNum">     409 </span><span class="lineCov">         301698 :             event-&gt;src_id = address;</span>
+<span class="lineNum">     410 </span><span class="lineCov">         301698 :             event-&gt;vc = 0;</span>
+<span class="lineNum">     411 </span>                :             Simulator::Schedule(floor(Simulator::Now())+ 1, 
+<span class="lineNum">     412 </span><span class="lineCov">         301698 :                                 &amp;NetworkComponent::process_event, processor_connection, event);</span>
+<span class="lineNum">     413 </span>                : 
+<span class="lineNum">     414 </span><span class="lineCov">         301698 :             LinkArrivalData* arrival = new LinkArrivalData();</span>
+<span class="lineNum">     415 </span><span class="lineCov">         301698 :             arrival-&gt;vc = 0;</span>
+<span class="lineNum">     416 </span><span class="lineCov">         301698 :             arrival-&gt;type = CREDIT_ID;</span>
+<span class="lineNum">     417 </span><span class="lineCov">         301698 :             IrisEvent* event2 = new IrisEvent();</span>
+<span class="lineNum">     418 </span><span class="lineCov">         301698 :             event2-&gt;type = LINK_ARRIVAL_EVENT;</span>
+<span class="lineNum">     419 </span><span class="lineCov">         301698 :             event2-&gt;vc = 0;</span>
+<span class="lineNum">     420 </span><span class="lineCov">         301698 :             event2-&gt;event_data.push_back(arrival);</span>
+<span class="lineNum">     421 </span><span class="lineCov">         301698 :             event2-&gt;src_id = address;</span>
+<span class="lineNum">     422 </span>                :             Simulator::Schedule( floor(Simulator::Now())+0.75, 
+<span class="lineNum">     423 </span><span class="lineCov">         301698 :                                  &amp;NetworkComponent::process_event, static_cast&lt;GenericLink*&gt;(input_connection)-&gt;input_connection, event2);</span>
+<span class="lineNum">     424 </span><span class="lineCov">         301698 :             ticking = true;</span>
+<span class="lineNum">     425 </span>                : #ifdef _DEBUG_INTERFACE
+<span class="lineNum">     426 </span>                :     _DBG(&quot;Packet to Processor. Sent credit back: %s&quot;, pkt-&gt;toString().c_str());
+<span class="lineNum">     427 </span>                : #endif
+<span class="lineNum">     428 </span>                :              
+<span class="lineNum">     429 </span>                :         }
+<span class="lineNum">     430 </span><span class="lineCov">       10654965 :         else if ( !in_ready[0] &amp;&amp; (in_packets_flit_index[0]!=0 &amp;&amp; in_packets_flit_index[0] == in_packets[0].length))</span>
+<span class="lineNum">     431 </span>                :         {
+<span class="lineNum">     432 </span><span class="lineCov">         853891 :             ticking = true;</span>
+<span class="lineNum">     433 </span>                :         }
+<span class="lineNum">     434 </span>                : 
+<span class="lineNum">     435 </span>                :     // arbitrate for the winner and push packets to in_buffer
+<span class="lineNum">     436 </span><span class="lineCov">        5396803 :     if( in_buffer.get_occupancy(0) &gt; 0 &amp;&amp; in_packets_flit_index[0] &lt; in_packets[0].length )</span>
+<span class="lineNum">     437 </span>                :     {
+<span class="lineNum">     438 </span><span class="lineCov">         607459 :         in_buffer.change_pull_channel(0);</span>
+<span class="lineNum">     439 </span><span class="lineCov">         607459 :         Flit* ptr = in_buffer.pull();</span>
+<span class="lineNum">     440 </span><span class="lineCov">        1214918 :         in_packets[0].add(ptr);</span>
+<span class="lineNum">     441 </span>                : 
+<span class="lineNum">     442 </span><span class="lineCov">        1214918 :         in_packets_flit_index[0]++;</span>
+<span class="lineNum">     443 </span><span class="lineCov">         607459 :         ticking = true;</span>
+<span class="lineNum">     444 </span>                : #ifdef _DEBUG_INTERFACE
+<span class="lineNum">     445 </span>                : _DBG(&quot;Inpush flit ftype:%d&quot;, ptr-&gt;type);
+<span class="lineNum">     446 </span>                : #endif
+<span class="lineNum">     447 </span><span class="lineCov">         607459 :         if( ptr-&gt;type == HEAD &amp;&amp; static_cast&lt;HeadFlit*&gt;(ptr)-&gt;dst_address != node_ip)</span>
+<span class="lineNum">     448 </span>                :         {
+<span class="lineNum">     449 </span><span class="lineNoCov">              0 :             _DBG(&quot;ERROR IncorrectDestinationException pkt_dest: %d node_ip: %d&quot;, in_packets[0].destination, node_ip); </span>
+<span class="lineNum">     450 </span>                :         }
+<span class="lineNum">     451 </span>                : 
+<span class="lineNum">     452 </span>                :     }
+<span class="lineNum">     453 </span>                : 
+<span class="lineNum">     454 </span><span class="lineCov">        4181885 :     if(ticking)</span>
+<span class="lineNum">     455 </span>                :     {
+<span class="lineNum">     456 </span><span class="lineCov">        2714579 :         ticking = true;</span>
+<span class="lineNum">     457 </span><span class="lineCov">        2714579 :         IrisEvent* new_event = new IrisEvent();</span>
+<span class="lineNum">     458 </span><span class="lineCov">        2714579 :         new_event-&gt;type = TICK_EVENT;</span>
+<span class="lineNum">     459 </span><span class="lineCov">        2714579 :         new_event-&gt;vc = e-&gt;vc;</span>
+<span class="lineNum">     460 </span><span class="lineCov">        2714579 :         Simulator::Schedule( floor(Simulator::Now())+1, &amp;GenericInterface::process_event, this, new_event);</span>
+<span class="lineNum">     461 </span>                :     }
+<span class="lineNum">     462 </span>                : 
+<span class="lineNum">     463 </span><span class="lineCov">        4181885 :     delete e;</span>
+<span class="lineNum">     464 </span><span class="lineCov">        4181885 : }</span>
+<span class="lineNum">     465 </span>                : 
+<span class="lineNum">     466 </span>                : 
+<span class="lineNum">     467 </span>                : string
+<span class="lineNum">     468 </span><span class="lineCov">             64 : GenericInterface::print_stats()</span>
+<span class="lineNum">     469 </span>                : {
+<span class="lineNum">     470 </span><span class="lineCov">             64 :     stringstream str;</span>
+<span class="lineNum">     471 </span>                :     str &lt;&lt; &quot;\n interface[&quot; &lt;&lt; node_ip &lt;&lt;&quot;] flits_in: &quot; &lt;&lt; flits_in
+<span class="lineNum">     472 </span>                :         &lt;&lt; &quot;\n interface[&quot; &lt;&lt; node_ip &lt;&lt;&quot;] packets_in: &quot; &lt;&lt; packets_in
+<span class="lineNum">     473 </span>                :         &lt;&lt; &quot;\n interface[&quot; &lt;&lt; node_ip &lt;&lt;&quot;] flits_out: &quot; &lt;&lt; flits_out
+<span class="lineNum">     474 </span>                :         &lt;&lt; &quot;\n interface[&quot; &lt;&lt; node_ip &lt;&lt;&quot;] packets_out: &quot; &lt;&lt; packets_out
+<span class="lineNum">     475 </span><span class="lineCov">            640 :         &lt;&lt; &quot;\n interface[&quot; &lt;&lt; node_ip &lt;&lt;&quot;] total_packet_latency(In packets): &quot; &lt;&lt; total_packets_in_time;</span>
+<span class="lineNum">     476 </span><span class="lineCov">             64 :     if(packets_in != 0)</span>
+<span class="lineNum">     477 </span>                :     str &lt;&lt; &quot;\n interface[&quot; &lt;&lt; node_ip &lt;&lt;&quot;] avg_packet_latency(In packets): &quot; &lt;&lt; (total_packets_in_time+0.0)/packets_in
+<span class="lineNum">     478 </span><span class="lineCov">            128 :         ;</span>
+<span class="lineNum">     479 </span><span class="lineCov">             64 :     return str.str();</span>
+<span class="lineNum">     480 </span>                : 
+<span class="lineNum">     481 </span><span class="lineCov">              2 : }</span>
+<span class="lineNum">     482 </span>                : 
+<span class="lineNum">     483 </span>                : #endif   /* ----- #ifndef _genericinterface_cc_INC  ----- */
+<span class="lineNum">     484 </span>                : 
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+  <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LTP GCOV extension version 1.6</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

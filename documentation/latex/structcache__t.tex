@@ -1,0 +1,1008 @@
+\section{cache\_\-t Struct Reference}
+\label{structcache__t}\index{cache\_\-t@{cache\_\-t}}
+{\tt \#include $<$zesto-cache.h$>$}
+
+Collaboration diagram for cache\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{structcache__t__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+struct {\bf PFF\_\-t}
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+struct {\bf core\_\-t} $\ast$ {\bf core}
+\item 
+struct {\bf uncore\_\-t} $\ast$ {\bf uncore}
+\item 
+char $\ast$ {\bf name}
+\item 
+enum {\bf read\_\-only\_\-t} {\bf read\_\-only}
+\item 
+bool {\bf frozen}
+\item 
+int {\bf sets}
+\item 
+int {\bf assoc}
+\item 
+int {\bf log2\_\-assoc}
+\item 
+int {\bf linesize}
+\item 
+int {\bf addr\_\-shift}
+\item 
+struct {\bf cache\_\-line\_\-t} $\ast$$\ast$ {\bf blocks}
+\item 
+enum {\bf repl\_\-policy\_\-t} {\bf replacement\_\-policy}
+\item 
+enum {\bf alloc\_\-policy\_\-t} {\bf allocate\_\-policy}
+\item 
+enum {\bf write\_\-policy\_\-t} {\bf write\_\-policy}
+\item 
+int {\bf banks}
+\item 
+int {\bf bank\_\-width}
+\item 
+int {\bf bank\_\-shift}
+\item 
+{\bf md\_\-paddr\_\-t} {\bf bank\_\-mask}
+\item 
+const int {\bf begin\_\-index}
+\item 
+const int {\bf end\_\-index}
+\item 
+int {\bf latency}
+\item 
+int {\bf heap\_\-size}
+\item 
+bool {\bf write\_\-combining}
+\item 
+struct {\bf cache\_\-action\_\-t} $\ast$$\ast$ {\bf pipe}
+\item 
+int $\ast$ {\bf pipe\_\-num}
+\item 
+struct {\bf cache\_\-fill\_\-t} $\ast$$\ast$ {\bf fill\_\-pipe}
+\item 
+int $\ast$ {\bf fill\_\-num}
+\item 
+int {\bf MSHR\_\-banks}
+\item 
+int {\bf MSHR\_\-mask}
+\item 
+int {\bf MSHR\_\-size}
+\item 
+enum {\bf cache\_\-command} $\ast$MSHR\_\-cmd\_\-order int $\ast$MSHR\_\-num int $\ast$MSHR\_\-num\_\-pf int $\ast$MSHR\_\-fill\_\-num int $\ast$MSHR\_\-unprocessed\_\-num struct {\bf cache\_\-action\_\-t} $\ast$$\ast$ {\bf MSHR}
+\item 
+int {\bf start\_\-point}
+\item 
+int {\bf WBB\_\-size}
+\item 
+int $\ast$ {\bf WBB\_\-num}
+\item 
+int $\ast$ {\bf WBB\_\-head}
+\item 
+int $\ast$ {\bf WBB\_\-tail}
+\item 
+struct {\bf cache\_\-line\_\-t} $\ast$$\ast$ {\bf WBB}
+\item 
+int {\bf PFF\_\-size}
+\item 
+int {\bf PFF\_\-num}
+\item 
+int {\bf PFF\_\-head}
+\item 
+int {\bf PFF\_\-tail}
+\item 
+struct {\bf cache\_\-t::PFF\_\-t} $\ast$ {\bf PFF}
+\item 
+struct {\bf prefetch\_\-t} $\ast$$\ast$ {\bf prefetcher}
+\item 
+int {\bf num\_\-prefetchers}
+\item 
+int {\bf prefetch\_\-threshold}
+\item 
+int {\bf prefetch\_\-max}
+\item 
+bool {\bf prefetch\_\-on\_\-miss}
+\item 
+enum {\bf PF\_\-state\_\-t} {\bf PF\_\-state}
+\item 
+int {\bf PF\_\-last\_\-sample}
+\item 
+int {\bf PF\_\-sample\_\-interval}
+\item 
+double {\bf PF\_\-low\_\-watermark}
+\item 
+double {\bf PF\_\-high\_\-watermark}
+\item 
+struct {\bf prefetch\_\-buffer\_\-t} $\ast$ {\bf PF\_\-buffer}
+\item 
+int {\bf PF\_\-buffer\_\-size}
+\item 
+struct {\bf prefetch\_\-filter\_\-t} $\ast$ {\bf PF\_\-filter}
+\item 
+struct {\bf cache\_\-t} $\ast$ {\bf next\_\-level}
+\item 
+struct {\bf bus\_\-t} $\ast$ {\bf next\_\-bus}
+\item 
+bool {\bf check\_\-for\_\-work}
+\item 
+bool {\bf check\_\-for\_\-MSHR\_\-fill\_\-work}
+\item 
+bool {\bf check\_\-for\_\-fill\_\-work}
+\item 
+bool {\bf check\_\-for\_\-pipe\_\-work}
+\item 
+bool {\bf check\_\-for\_\-MSHR\_\-work}
+\item 
+bool {\bf check\_\-for\_\-WBB\_\-work}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>{\bf counter\_t} {\bf load\_lookups}\\
+\>{\bf counter\_t} {\bf load\_misses}\\
+\>{\bf counter\_t} {\bf store\_lookups}\\
+\>{\bf counter\_t} {\bf store\_misses}\\
+\>{\bf counter\_t} {\bf writeback\_lookups}\\
+\>{\bf counter\_t} {\bf writeback\_misses}\\
+\>{\bf counter\_t} {\bf prefetch\_lookups}\\
+\>{\bf counter\_t} {\bf prefetch\_misses}\\
+\>{\bf counter\_t} {\bf prefetch\_insertions}\\
+\>{\bf counter\_t} {\bf prefetch\_useful\_insertions}\\
+\>{\bf counter\_t} {\bf MSHR\_occupancy}\\
+\>{\bf counter\_t} {\bf MSHR\_full\_cycles}\\
+\>{\bf counter\_t} {\bf WBB\_insertions}\\
+\>{\bf counter\_t} {\bf WBB\_victim\_insertions}\\
+\>{\bf counter\_t} {\bf WBB\_combines}\\
+\>{\bf counter\_t} {\bf WBB\_occupancy}\\
+\>{\bf counter\_t} {\bf WBB\_full\_cycles}\\
+\>{\bf counter\_t} {\bf WBB\_hits}\\
+\>{\bf counter\_t} {\bf WBB\_victim\_hits}\\
+\>{\bf counter\_t} $\ast$ {\bf core\_lookups}\\
+\>{\bf counter\_t} $\ast$ {\bf core\_misses}\\
+\>{\bf counter\_t} {\bf MSHR\_combos}\\
+\>{\bf counter\_t} {\bf uncore\_utilization}\\
+\} {\bf stat}\\
+
+\end{tabbing}\item 
+struct {\bf cache\_\-t} $\ast$ {\bf prev\_\-level}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>{\bf counter\_t} {\bf load\_lookups}\\
+\>{\bf counter\_t} {\bf load\_misses}\\
+\>{\bf counter\_t} {\bf store\_lookups}\\
+\>{\bf counter\_t} {\bf store\_misses}\\
+\>{\bf counter\_t} {\bf writeback\_lookups}\\
+\>{\bf counter\_t} {\bf writeback\_misses}\\
+\>{\bf counter\_t} {\bf prefetch\_lookups}\\
+\>{\bf counter\_t} {\bf prefetch\_misses}\\
+\>{\bf counter\_t} {\bf prefetch\_insertions}\\
+\>{\bf counter\_t} {\bf prefetch\_useful\_insertions}\\
+\>{\bf counter\_t} {\bf MSHR\_occupancy}\\
+\>{\bf counter\_t} {\bf MSHR\_full\_cycles}\\
+\>{\bf counter\_t} {\bf WBB\_insertions}\\
+\>{\bf counter\_t} {\bf WBB\_victim\_insertions}\\
+\>{\bf counter\_t} {\bf WBB\_combines}\\
+\>{\bf counter\_t} {\bf WBB\_occupancy}\\
+\>{\bf counter\_t} {\bf WBB\_full\_cycles}\\
+\>{\bf counter\_t} {\bf WBB\_hits}\\
+\>{\bf counter\_t} {\bf WBB\_victim\_hits}\\
+\>{\bf counter\_t} $\ast$ {\bf core\_lookups}\\
+\>{\bf counter\_t} $\ast$ {\bf core\_misses}\\
+\>{\bf counter\_t} {\bf MSHR\_combos}\\
+\>{\bf counter\_t} {\bf uncore\_utilization}\\
+\} {\bf stat}\\
+
+\end{tabbing}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 176 of file config/zesto-cache.h.
+
+\subsection{Member Data Documentation}
+\index{cache\_\-t@{cache\_\-t}!addr\_\-shift@{addr\_\-shift}}
+\index{addr\_\-shift@{addr\_\-shift}!cache_t@{cache\_\-t}}
+\subsubsection[{addr\_\-shift}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cache\_\-t::addr\_\-shift}}\label{structcache__t_2537c4668603eddef78b14fc0238266c}
+
+
+
+
+Definition at line 190 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-get\_\-evictee(), cache\_\-get\_\-evictee\_\-llc(), cache\_\-insert\_\-block(), cache\_\-insert\_\-block\_\-llc(), cache\_\-invalidate(), cache\_\-is\_\-hit(), cache\_\-is\_\-hit\_\-llc(), cache\_\-peek(), cache\_\-peek\_\-llc(), cache\_\-process(), cache\_\-process\_\-llc(), fill\_\-arrived\_\-llc(), core\_\-exec\_\-DPM\_\-t::LDQ\_\-schedule(), MSHR\_\-allocate(), core\_\-exec\_\-DPM\_\-t::STQ\_\-deallocate\_\-std(), WBB\_\-insert(), and WBB\_\-victim\_\-insert().\index{cache\_\-t@{cache\_\-t}!allocate\_\-policy@{allocate\_\-policy}}
+\index{allocate\_\-policy@{allocate\_\-policy}!cache_t@{cache\_\-t}}
+\subsubsection[{allocate\_\-policy}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf alloc\_\-policy\_\-t} {\bf cache\_\-t::allocate\_\-policy}}\label{structcache__t_9b1289db83dbcf6b7841c031504cbb0d}
+
+
+
+
+Definition at line 195 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-process(), and cache\_\-process\_\-llc().\index{cache\_\-t@{cache\_\-t}!assoc@{assoc}}
+\index{assoc@{assoc}!cache_t@{cache\_\-t}}
+\subsubsection[{assoc}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cache\_\-t::assoc}}\label{structcache__t_66e2ce7af7e66e2048486d30550b02f1}
+
+
+
+
+Definition at line 186 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-get\_\-evictee(), and cache\_\-get\_\-evictee\_\-llc().\index{cache\_\-t@{cache\_\-t}!bank\_\-mask@{bank\_\-mask}}
+\index{bank\_\-mask@{bank\_\-mask}!cache_t@{cache\_\-t}}
+\subsubsection[{bank\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}{\bf md\_\-paddr\_\-t} {\bf cache\_\-t::bank\_\-mask}}\label{structcache__t_cd19d427185e24d8edb1045f93e542fa}
+
+
+
+
+Definition at line 201 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-process(), and cache\_\-process\_\-llc().\index{cache\_\-t@{cache\_\-t}!bank\_\-shift@{bank\_\-shift}}
+\index{bank\_\-shift@{bank\_\-shift}!cache_t@{cache\_\-t}}
+\subsubsection[{bank\_\-shift}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cache\_\-t::bank\_\-shift}}\label{structcache__t_60ba00647c4b6bfbccdff12c0c830967}
+
+
+
+
+Definition at line 200 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), and cache\_\-create\_\-llc().\index{cache\_\-t@{cache\_\-t}!bank\_\-width@{bank\_\-width}}
+\index{bank\_\-width@{bank\_\-width}!cache_t@{cache\_\-t}}
+\subsubsection[{bank\_\-width}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cache\_\-t::bank\_\-width}}\label{structcache__t_bbb77a639f8cdede28f7aadb6a9b1b05}
+
+
+
+
+Definition at line 199 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), and cache\_\-create\_\-llc().\index{cache\_\-t@{cache\_\-t}!banks@{banks}}
+\index{banks@{banks}!cache_t@{cache\_\-t}}
+\subsubsection[{banks}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cache\_\-t::banks}}\label{structcache__t_37f77da1dce76bae522ca6dc39178fc3}
+
+
+
+
+Definition at line 198 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-print(), cache\_\-process(), cache\_\-process\_\-llc(), and print\_\-heap().\index{cache\_\-t@{cache\_\-t}!begin\_\-index@{begin\_\-index}}
+\index{begin\_\-index@{begin\_\-index}!cache_t@{cache\_\-t}}
+\subsubsection[{begin\_\-index}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf cache\_\-t::begin\_\-index}}\label{structcache__t_730b08cfadc9cdab2188c38cef6c0e8f}
+
+
+
+
+Definition at line 203 of file config/zesto-cache.h.\index{cache\_\-t@{cache\_\-t}!blocks@{blocks}}
+\index{blocks@{blocks}!cache_t@{cache\_\-t}}
+\subsubsection[{blocks}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf cache\_\-line\_\-t} $\ast$$\ast$ {\bf cache\_\-t::blocks}\hspace{0.3cm}{\tt  [read]}}\label{structcache__t_36501a20f3f325263b4edfdfd7e89092}
+
+
+
+
+Definition at line 192 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-get\_\-evictee(), cache\_\-get\_\-evictee\_\-llc(), cache\_\-insert\_\-block(), cache\_\-insert\_\-block\_\-llc(), cache\_\-invalidate(), cache\_\-is\_\-hit(), cache\_\-is\_\-hit\_\-llc(), cache\_\-peek(), and cache\_\-peek\_\-llc().\index{cache\_\-t@{cache\_\-t}!check\_\-for\_\-fill\_\-work@{check\_\-for\_\-fill\_\-work}}
+\index{check\_\-for\_\-fill\_\-work@{check\_\-for\_\-fill\_\-work}!cache_t@{cache\_\-t}}
+\subsubsection[{check\_\-for\_\-fill\_\-work}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf cache\_\-t::check\_\-for\_\-fill\_\-work}}\label{structcache__t_ae38cc21fdfc0dec5bcaf96a8f658b47}
+
+
+
+
+Definition at line 271 of file config/zesto-cache.h.
+
+Referenced by cache\_\-fill(), cache\_\-fill\_\-llc(), cache\_\-process(), and cache\_\-process\_\-llc().\index{cache\_\-t@{cache\_\-t}!check\_\-for\_\-MSHR\_\-fill\_\-work@{check\_\-for\_\-MSHR\_\-fill\_\-work}}
+\index{check\_\-for\_\-MSHR\_\-fill\_\-work@{check\_\-for\_\-MSHR\_\-fill\_\-work}!cache_t@{cache\_\-t}}
+\subsubsection[{check\_\-for\_\-MSHR\_\-fill\_\-work}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf cache\_\-t::check\_\-for\_\-MSHR\_\-fill\_\-work}}\label{structcache__t_b8201815f5380945b6d4da1ba62be66d}
+
+
+
+
+Definition at line 270 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-process(), cache\_\-process\_\-llc(), fill\_\-arrived(), and fill\_\-arrived\_\-llc().\index{cache\_\-t@{cache\_\-t}!check\_\-for\_\-MSHR\_\-work@{check\_\-for\_\-MSHR\_\-work}}
+\index{check\_\-for\_\-MSHR\_\-work@{check\_\-for\_\-MSHR\_\-work}!cache_t@{cache\_\-t}}
+\subsubsection[{check\_\-for\_\-MSHR\_\-work}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf cache\_\-t::check\_\-for\_\-MSHR\_\-work}}\label{structcache__t_b48fed91578905ee5e6f3dd73b269eea}
+
+
+
+
+Definition at line 273 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process(), cache\_\-process\_\-llc(), and MSHR\_\-allocate().\index{cache\_\-t@{cache\_\-t}!check\_\-for\_\-pipe\_\-work@{check\_\-for\_\-pipe\_\-work}}
+\index{check\_\-for\_\-pipe\_\-work@{check\_\-for\_\-pipe\_\-work}!cache_t@{cache\_\-t}}
+\subsubsection[{check\_\-for\_\-pipe\_\-work}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf cache\_\-t::check\_\-for\_\-pipe\_\-work}}\label{structcache__t_1b895811cc2aeaa4b7484c1f5b118218}
+
+
+
+
+Definition at line 272 of file config/zesto-cache.h.
+
+Referenced by cache\_\-enqueue(), cache\_\-enqueue\_\-llc(), cache\_\-process(), and cache\_\-process\_\-llc().\index{cache\_\-t@{cache\_\-t}!check\_\-for\_\-WBB\_\-work@{check\_\-for\_\-WBB\_\-work}}
+\index{check\_\-for\_\-WBB\_\-work@{check\_\-for\_\-WBB\_\-work}!cache_t@{cache\_\-t}}
+\subsubsection[{check\_\-for\_\-WBB\_\-work}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf cache\_\-t::check\_\-for\_\-WBB\_\-work}}\label{structcache__t_6e96a811c9ea9ee5a30ac1febff9e9c1}
+
+
+
+
+Definition at line 274 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process(), cache\_\-process\_\-llc(), and WBB\_\-insert().\index{cache\_\-t@{cache\_\-t}!check\_\-for\_\-work@{check\_\-for\_\-work}}
+\index{check\_\-for\_\-work@{check\_\-for\_\-work}!cache_t@{cache\_\-t}}
+\subsubsection[{check\_\-for\_\-work}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf cache\_\-t::check\_\-for\_\-work}}\label{structcache__t_9b4a4bd434c4df3d4d004df6b1c362b8}
+
+
+
+
+Definition at line 269 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-enqueue(), cache\_\-enqueue\_\-llc(), cache\_\-fill(), cache\_\-fill\_\-llc(), cache\_\-process(), cache\_\-process\_\-llc(), fill\_\-arrived(), fill\_\-arrived\_\-llc(), core\_\-exec\_\-STM\_\-t::LDST\_\-exec(), core\_\-exec\_\-DPM\_\-t::LDST\_\-exec(), MSHR\_\-allocate(), core\_\-fetch\_\-STM\_\-t::step(), core\_\-fetch\_\-DPM\_\-t::step(), and WBB\_\-insert().\index{cache\_\-t@{cache\_\-t}!core@{core}}
+\index{core@{core}!cache_t@{cache\_\-t}}
+\subsubsection[{core}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf core\_\-t} $\ast$ {\bf cache\_\-t::core}\hspace{0.3cm}{\tt  [read]}}\label{structcache__t_5824ebd1e990fd25be2f43996e19648b}
+
+
+
+
+Definition at line 178 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-process(), and cache\_\-process\_\-llc().\index{cache\_\-t@{cache\_\-t}!core\_\-lookups@{core\_\-lookups}}
+\index{core\_\-lookups@{core\_\-lookups}!cache_t@{cache\_\-t}}
+\subsubsection[{core\_\-lookups}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t}$\ast$ {\bf cache\_\-t::core\_\-lookups}}\label{structcache__t_ac667abbcad88a0dd01d729c919664f8}
+
+
+
+
+Definition at line 296 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-process(), cache\_\-process\_\-llc(), cache\_\-reset\_\-stats(), and LLC\_\-reg\_\-stats().\index{cache\_\-t@{cache\_\-t}!core\_\-misses@{core\_\-misses}}
+\index{core\_\-misses@{core\_\-misses}!cache_t@{cache\_\-t}}
+\subsubsection[{core\_\-misses}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t}$\ast$ {\bf cache\_\-t::core\_\-misses}}\label{structcache__t_4b3d5c1a16b76994887fba22af90c26e}
+
+
+
+
+Definition at line 297 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-process(), cache\_\-process\_\-llc(), cache\_\-reset\_\-stats(), and LLC\_\-reg\_\-stats().\index{cache\_\-t@{cache\_\-t}!end\_\-index@{end\_\-index}}
+\index{end\_\-index@{end\_\-index}!cache_t@{cache\_\-t}}
+\subsubsection[{end\_\-index}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf cache\_\-t::end\_\-index}}\label{structcache__t_2eb787496b20a0dde95b0d3961f26a48}
+
+
+
+
+Definition at line 204 of file config/zesto-cache.h.\index{cache\_\-t@{cache\_\-t}!fill\_\-num@{fill\_\-num}}
+\index{fill\_\-num@{fill\_\-num}!cache_t@{cache\_\-t}}
+\subsubsection[{fill\_\-num}]{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ {\bf cache\_\-t::fill\_\-num}}\label{structcache__t_a2093b0fa3c3d7739aad041cf3f0019b}
+
+
+
+
+Definition at line 214 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-fill(), cache\_\-fill\_\-llc(), cache\_\-fillable(), cache\_\-fillable\_\-llc(), cache\_\-process(), and cache\_\-process\_\-llc().\index{cache\_\-t@{cache\_\-t}!fill\_\-pipe@{fill\_\-pipe}}
+\index{fill\_\-pipe@{fill\_\-pipe}!cache_t@{cache\_\-t}}
+\subsubsection[{fill\_\-pipe}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf cache\_\-fill\_\-t} $\ast$$\ast$ {\bf cache\_\-t::fill\_\-pipe}\hspace{0.3cm}{\tt  [read]}}\label{structcache__t_27ef735eb43c110b6a0d803b3c6dbdce}
+
+
+
+
+Definition at line 213 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-fill(), cache\_\-fill\_\-llc(), cache\_\-print(), cache\_\-process(), and cache\_\-process\_\-llc().\index{cache\_\-t@{cache\_\-t}!frozen@{frozen}}
+\index{frozen@{frozen}!cache_t@{cache\_\-t}}
+\subsubsection[{frozen}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf cache\_\-t::frozen}}\label{structcache__t_b67b8cc10dbf84f896fd5fcc714d0600}
+
+
+
+
+Definition at line 183 of file config/zesto-cache.h.
+
+Referenced by cache\_\-freeze\_\-stats().\index{cache\_\-t@{cache\_\-t}!heap\_\-size@{heap\_\-size}}
+\index{heap\_\-size@{heap\_\-size}!cache_t@{cache\_\-t}}
+\subsubsection[{heap\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cache\_\-t::heap\_\-size}}\label{structcache__t_0cfeed47b284a9b6bcc5222bcf4e29ae}
+
+
+
+
+Definition at line 208 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), and cache\_\-create\_\-llc().\index{cache\_\-t@{cache\_\-t}!latency@{latency}}
+\index{latency@{latency}!cache_t@{cache\_\-t}}
+\subsubsection[{latency}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cache\_\-t::latency}}\label{structcache__t_85aa054d657c7a242147602cb1fff479}
+
+
+
+
+Definition at line 207 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-enqueuable(), cache\_\-enqueuable\_\-llc(), cache\_\-enqueue(), cache\_\-enqueue\_\-llc(), cache\_\-fill(), cache\_\-fill\_\-llc(), cache\_\-fillable(), cache\_\-fillable\_\-llc(), cache\_\-print(), cache\_\-process(), cache\_\-process\_\-llc(), core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t(), core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t(), core\_\-exec\_\-DPM\_\-t::LDQ\_\-schedule(), and core\_\-exec\_\-DPM\_\-t::RS\_\-schedule().\index{cache\_\-t@{cache\_\-t}!linesize@{linesize}}
+\index{linesize@{linesize}!cache_t@{cache\_\-t}}
+\subsubsection[{linesize}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cache\_\-t::linesize}}\label{structcache__t_788c5a8fba04b7d38c39e3e94879d454}
+
+
+
+
+Definition at line 189 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-process(), cache\_\-process\_\-llc(), core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t(), core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t(), and uncore\_\-t::uncore\_\-t().\index{cache\_\-t@{cache\_\-t}!load\_\-lookups@{load\_\-lookups}}
+\index{load\_\-lookups@{load\_\-lookups}!cache_t@{cache\_\-t}}
+\subsubsection[{load\_\-lookups}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf cache\_\-t::load\_\-lookups}}\label{structcache__t_7b4009ed01ea452bc5bcd55e8a1ab452}
+
+
+
+
+Definition at line 277 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process(), cache\_\-process\_\-llc(), cache\_\-reg\_\-stats(), and LLC\_\-reg\_\-stats().\index{cache\_\-t@{cache\_\-t}!load\_\-misses@{load\_\-misses}}
+\index{load\_\-misses@{load\_\-misses}!cache_t@{cache\_\-t}}
+\subsubsection[{load\_\-misses}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf cache\_\-t::load\_\-misses}}\label{structcache__t_74545f135a47d5413065fe4df131b67b}
+
+
+
+
+Definition at line 278 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process(), cache\_\-process\_\-llc(), cache\_\-reg\_\-stats(), and LLC\_\-reg\_\-stats().\index{cache\_\-t@{cache\_\-t}!log2\_\-assoc@{log2\_\-assoc}}
+\index{log2\_\-assoc@{log2\_\-assoc}!cache_t@{cache\_\-t}}
+\subsubsection[{log2\_\-assoc}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cache\_\-t::log2\_\-assoc}}\label{structcache__t_e0265faa626c4ea6a7ed78619fced2a6}
+
+
+
+
+Definition at line 187 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-get\_\-evictee(), cache\_\-get\_\-evictee\_\-llc(), cache\_\-insert\_\-block(), cache\_\-insert\_\-block\_\-llc(), cache\_\-is\_\-hit(), and cache\_\-is\_\-hit\_\-llc().\index{cache\_\-t@{cache\_\-t}!MSHR@{MSHR}}
+\index{MSHR@{MSHR}!cache_t@{cache\_\-t}}
+\subsubsection[{MSHR}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf cache\_\-command} $\ast$MSHR\_\-cmd\_\-order int $\ast$MSHR\_\-num int $\ast$MSHR\_\-num\_\-pf int $\ast$MSHR\_\-fill\_\-num int $\ast$MSHR\_\-unprocessed\_\-num struct {\bf cache\_\-action\_\-t} $\ast$$\ast$ {\bf cache\_\-t::MSHR}\hspace{0.3cm}{\tt  [read]}}\label{structcache__t_5057f7ad4ccb4f030eefb9956047df22}
+
+
+
+
+Definition at line 225 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-print(), cache\_\-process(), cache\_\-process\_\-llc(), fill\_\-arrived(), fill\_\-arrived\_\-llc(), and MSHR\_\-allocate().\index{cache\_\-t@{cache\_\-t}!MSHR\_\-banks@{MSHR\_\-banks}}
+\index{MSHR\_\-banks@{MSHR\_\-banks}!cache_t@{cache\_\-t}}
+\subsubsection[{MSHR\_\-banks}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cache\_\-t::MSHR\_\-banks}}\label{structcache__t_9bc12fa089d7970b4b137f431f78e93e}
+
+
+
+
+Definition at line 217 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-process(), cache\_\-process\_\-llc(), and fill\_\-arrived\_\-llc().\index{cache\_\-t@{cache\_\-t}!MSHR\_\-combos@{MSHR\_\-combos}}
+\index{MSHR\_\-combos@{MSHR\_\-combos}!cache_t@{cache\_\-t}}
+\subsubsection[{MSHR\_\-combos}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf cache\_\-t::MSHR\_\-combos}}\label{structcache__t_a58f6a60944c998b8d073ebf0be69fdd}
+
+
+
+
+Definition at line 298 of file config/zesto-cache.h.
+
+Referenced by cache\_\-reg\_\-stats(), LLC\_\-reg\_\-stats(), and MSHR\_\-allocate().\index{cache\_\-t@{cache\_\-t}!MSHR\_\-full\_\-cycles@{MSHR\_\-full\_\-cycles}}
+\index{MSHR\_\-full\_\-cycles@{MSHR\_\-full\_\-cycles}!cache_t@{cache\_\-t}}
+\subsubsection[{MSHR\_\-full\_\-cycles}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf cache\_\-t::MSHR\_\-full\_\-cycles}}\label{structcache__t_5743409570336e19ebd5f46a1d3ffdf6}
+
+
+
+
+Definition at line 288 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process(), cache\_\-process\_\-llc(), cache\_\-reg\_\-stats(), and LLC\_\-reg\_\-stats().\index{cache\_\-t@{cache\_\-t}!MSHR\_\-mask@{MSHR\_\-mask}}
+\index{MSHR\_\-mask@{MSHR\_\-mask}!cache_t@{cache\_\-t}}
+\subsubsection[{MSHR\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cache\_\-t::MSHR\_\-mask}}\label{structcache__t_22958a10a2fa70e6e1ca99fa0ee55087}
+
+
+
+
+Definition at line 218 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-process(), cache\_\-process\_\-llc(), and fill\_\-arrived\_\-llc().\index{cache\_\-t@{cache\_\-t}!MSHR\_\-occupancy@{MSHR\_\-occupancy}}
+\index{MSHR\_\-occupancy@{MSHR\_\-occupancy}!cache_t@{cache\_\-t}}
+\subsubsection[{MSHR\_\-occupancy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf cache\_\-t::MSHR\_\-occupancy}}\label{structcache__t_deb4c181c0067b1652734b8d0820b859}
+
+
+
+
+Definition at line 287 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process(), cache\_\-process\_\-llc(), cache\_\-reg\_\-stats(), and LLC\_\-reg\_\-stats().\index{cache\_\-t@{cache\_\-t}!MSHR\_\-size@{MSHR\_\-size}}
+\index{MSHR\_\-size@{MSHR\_\-size}!cache_t@{cache\_\-t}}
+\subsubsection[{MSHR\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cache\_\-t::MSHR\_\-size}}\label{structcache__t_9c507bcd154f7bb777c6e8da5202f66d}
+
+
+
+
+Definition at line 219 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-print(), cache\_\-process(), cache\_\-process\_\-llc(), fill\_\-arrived\_\-llc(), MSHR\_\-allocate(), and MSHR\_\-available().\index{cache\_\-t@{cache\_\-t}!name@{name}}
+\index{name@{name}!cache_t@{cache\_\-t}}
+\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ {\bf cache\_\-t::name}}\label{structcache__t_b2a2c8eeb48b5f98cbd0265cce07aa6e}
+
+
+
+
+Definition at line 181 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-get\_\-evictee(), cache\_\-get\_\-evictee\_\-llc(), cache\_\-print(), cache\_\-process(), cache\_\-process\_\-llc(), cache\_\-reg\_\-stats(), core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t(), core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t(), core\_\-fetch\_\-DPM\_\-t::core\_\-fetch\_\-DPM\_\-t(), core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t(), LLC\_\-reg\_\-stats(), prefetch\_\-context\_\-t::prefetch\_\-context\_\-t(), prefetch\_\-IP\_\-t::prefetch\_\-IP\_\-t(), prefetch\_\-stream\_\-t::prefetch\_\-stream\_\-t(), print\_\-heap(), prefetch\_\-t::reg\_\-stats(), and uncore\_\-t::uncore\_\-t().\index{cache\_\-t@{cache\_\-t}!next\_\-bus@{next\_\-bus}}
+\index{next\_\-bus@{next\_\-bus}!cache_t@{cache\_\-t}}
+\subsubsection[{next\_\-bus}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf bus\_\-t} $\ast$ {\bf cache\_\-t::next\_\-bus}\hspace{0.3cm}{\tt  [read]}}\label{structcache__t_b9f9e5cc72434c40d49b5e97d06b7229}
+
+
+
+
+Definition at line 265 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-process(), cache\_\-process\_\-llc(), and prefetch\_\-controller\_\-update().\index{cache\_\-t@{cache\_\-t}!next\_\-level@{next\_\-level}}
+\index{next\_\-level@{next\_\-level}!cache_t@{cache\_\-t}}
+\subsubsection[{next\_\-level}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf cache\_\-t} $\ast$ {\bf cache\_\-t::next\_\-level}\hspace{0.3cm}{\tt  [read]}}\label{structcache__t_7e1aa88ae0c044d1ee11bbb80070cd47}
+
+
+
+
+Definition at line 264 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-process(), and cache\_\-process\_\-llc().\index{cache\_\-t@{cache\_\-t}!num\_\-prefetchers@{num\_\-prefetchers}}
+\index{num\_\-prefetchers@{num\_\-prefetchers}!cache_t@{cache\_\-t}}
+\subsubsection[{num\_\-prefetchers}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cache\_\-t::num\_\-prefetchers}}\label{structcache__t_9c4419121e831734dd6e738ddddb4d2e}
+
+
+
+
+Definition at line 247 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process(), cache\_\-process\_\-llc(), cache\_\-reg\_\-stats(), core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t(), core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t(), core\_\-fetch\_\-DPM\_\-t::core\_\-fetch\_\-DPM\_\-t(), core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t(), LLC\_\-reg\_\-stats(), and uncore\_\-t::uncore\_\-t().\index{cache\_\-t@{cache\_\-t}!PF\_\-buffer@{PF\_\-buffer}}
+\index{PF\_\-buffer@{PF\_\-buffer}!cache_t@{cache\_\-t}}
+\subsubsection[{PF\_\-buffer}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf prefetch\_\-buffer\_\-t} $\ast$ {\bf cache\_\-t::PF\_\-buffer}\hspace{0.3cm}{\tt  [read]}}\label{structcache__t_5d065cf815d558755a20bc7cd9578b9b}
+
+
+
+
+Definition at line 259 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process(), cache\_\-process\_\-llc(), and prefetch\_\-buffer\_\-create().\index{cache\_\-t@{cache\_\-t}!PF\_\-buffer\_\-size@{PF\_\-buffer\_\-size}}
+\index{PF\_\-buffer\_\-size@{PF\_\-buffer\_\-size}!cache_t@{cache\_\-t}}
+\subsubsection[{PF\_\-buffer\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cache\_\-t::PF\_\-buffer\_\-size}}\label{structcache__t_68524485e50f7d2e1120a54c20afc0a7}
+
+
+
+
+Definition at line 260 of file config/zesto-cache.h.
+
+Referenced by prefetch\_\-buffer\_\-create().\index{cache\_\-t@{cache\_\-t}!PF\_\-filter@{PF\_\-filter}}
+\index{PF\_\-filter@{PF\_\-filter}!cache_t@{cache\_\-t}}
+\subsubsection[{PF\_\-filter}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf prefetch\_\-filter\_\-t} $\ast$ {\bf cache\_\-t::PF\_\-filter}\hspace{0.3cm}{\tt  [read]}}\label{structcache__t_dbfc915600b3e46709bb239ab354e59e}
+
+
+
+
+Definition at line 261 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process(), cache\_\-process\_\-llc(), and prefetch\_\-filter\_\-create().\index{cache\_\-t@{cache\_\-t}!PF\_\-high\_\-watermark@{PF\_\-high\_\-watermark}}
+\index{PF\_\-high\_\-watermark@{PF\_\-high\_\-watermark}!cache_t@{cache\_\-t}}
+\subsubsection[{PF\_\-high\_\-watermark}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf cache\_\-t::PF\_\-high\_\-watermark}}\label{structcache__t_aa1cd32fa5467078fd28379cf03dd676}
+
+
+
+
+Definition at line 257 of file config/zesto-cache.h.
+
+Referenced by core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t(), core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t(), core\_\-fetch\_\-DPM\_\-t::core\_\-fetch\_\-DPM\_\-t(), core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t(), prefetch\_\-controller\_\-update(), prefetch\_\-controller\_\-update\_\-llc(), and uncore\_\-t::uncore\_\-t().\index{cache\_\-t@{cache\_\-t}!PF\_\-last\_\-sample@{PF\_\-last\_\-sample}}
+\index{PF\_\-last\_\-sample@{PF\_\-last\_\-sample}!cache_t@{cache\_\-t}}
+\subsubsection[{PF\_\-last\_\-sample}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cache\_\-t::PF\_\-last\_\-sample}}\label{structcache__t_506976bcbef748639645440c37004d6a}
+
+
+
+
+Definition at line 254 of file config/zesto-cache.h.
+
+Referenced by prefetch\_\-controller\_\-update(), and prefetch\_\-controller\_\-update\_\-llc().\index{cache\_\-t@{cache\_\-t}!PF\_\-low\_\-watermark@{PF\_\-low\_\-watermark}}
+\index{PF\_\-low\_\-watermark@{PF\_\-low\_\-watermark}!cache_t@{cache\_\-t}}
+\subsubsection[{PF\_\-low\_\-watermark}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf cache\_\-t::PF\_\-low\_\-watermark}}\label{structcache__t_a8c59fd868757f089f1c64b4fd962974}
+
+
+
+
+Definition at line 256 of file config/zesto-cache.h.
+
+Referenced by core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t(), core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t(), core\_\-fetch\_\-DPM\_\-t::core\_\-fetch\_\-DPM\_\-t(), core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t(), and uncore\_\-t::uncore\_\-t().\index{cache\_\-t@{cache\_\-t}!PF\_\-sample\_\-interval@{PF\_\-sample\_\-interval}}
+\index{PF\_\-sample\_\-interval@{PF\_\-sample\_\-interval}!cache_t@{cache\_\-t}}
+\subsubsection[{PF\_\-sample\_\-interval}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cache\_\-t::PF\_\-sample\_\-interval}}\label{structcache__t_53667e6a8c60a9c09eb66f41ecf7146d}
+
+
+
+
+Definition at line 255 of file config/zesto-cache.h.
+
+Referenced by cache\_\-prefetch(), cache\_\-prefetch\_\-llc(), core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t(), core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t(), core\_\-fetch\_\-DPM\_\-t::core\_\-fetch\_\-DPM\_\-t(), core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t(), prefetch\_\-controller\_\-update(), prefetch\_\-controller\_\-update\_\-llc(), and uncore\_\-t::uncore\_\-t().\index{cache\_\-t@{cache\_\-t}!PF\_\-state@{PF\_\-state}}
+\index{PF\_\-state@{PF\_\-state}!cache_t@{cache\_\-t}}
+\subsubsection[{PF\_\-state}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf PF\_\-state\_\-t} {\bf cache\_\-t::PF\_\-state}}\label{structcache__t_cc19e4a6e5ac1d8b3033798656bc0c2b}
+
+
+
+
+Definition at line 253 of file config/zesto-cache.h.
+
+Referenced by cache\_\-prefetch(), cache\_\-prefetch\_\-llc(), prefetch\_\-controller\_\-update(), and prefetch\_\-controller\_\-update\_\-llc().\index{cache\_\-t@{cache\_\-t}!PFF@{PFF}}
+\index{PFF@{PFF}!cache_t@{cache\_\-t}}
+\subsubsection[{PFF}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf cache\_\-t::PFF\_\-t} $\ast$ {\bf cache\_\-t::PFF}}\label{structcache__t_092432a8d25be05db21f421f873f3781}
+
+
+
+
+Referenced by cache\_\-prefetch(), cache\_\-prefetch\_\-llc(), cache\_\-process(), cache\_\-process\_\-llc(), core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t(), core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t(), core\_\-fetch\_\-DPM\_\-t::core\_\-fetch\_\-DPM\_\-t(), core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t(), and uncore\_\-t::uncore\_\-t().\index{cache\_\-t@{cache\_\-t}!PFF\_\-head@{PFF\_\-head}}
+\index{PFF\_\-head@{PFF\_\-head}!cache_t@{cache\_\-t}}
+\subsubsection[{PFF\_\-head}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cache\_\-t::PFF\_\-head}}\label{structcache__t_9bd1c1f1c8b1e68d49f9c6ca1abc46e1}
+
+
+
+
+Definition at line 238 of file config/zesto-cache.h.
+
+Referenced by cache\_\-prefetch(), cache\_\-prefetch\_\-llc(), cache\_\-process(), and cache\_\-process\_\-llc().\index{cache\_\-t@{cache\_\-t}!PFF\_\-num@{PFF\_\-num}}
+\index{PFF\_\-num@{PFF\_\-num}!cache_t@{cache\_\-t}}
+\subsubsection[{PFF\_\-num}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cache\_\-t::PFF\_\-num}}\label{structcache__t_b89dcb88fdf7513473367a14f8efaad5}
+
+
+
+
+Definition at line 237 of file config/zesto-cache.h.
+
+Referenced by cache\_\-prefetch(), cache\_\-prefetch\_\-llc(), cache\_\-process(), and cache\_\-process\_\-llc().\index{cache\_\-t@{cache\_\-t}!PFF\_\-size@{PFF\_\-size}}
+\index{PFF\_\-size@{PFF\_\-size}!cache_t@{cache\_\-t}}
+\subsubsection[{PFF\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cache\_\-t::PFF\_\-size}}\label{structcache__t_33b4c70f19ea323d92f12d023e14f8ec}
+
+
+
+
+Definition at line 236 of file config/zesto-cache.h.
+
+Referenced by cache\_\-prefetch(), cache\_\-prefetch\_\-llc(), cache\_\-process(), cache\_\-process\_\-llc(), core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t(), core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t(), core\_\-fetch\_\-DPM\_\-t::core\_\-fetch\_\-DPM\_\-t(), core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t(), and uncore\_\-t::uncore\_\-t().\index{cache\_\-t@{cache\_\-t}!PFF\_\-tail@{PFF\_\-tail}}
+\index{PFF\_\-tail@{PFF\_\-tail}!cache_t@{cache\_\-t}}
+\subsubsection[{PFF\_\-tail}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cache\_\-t::PFF\_\-tail}}\label{structcache__t_64f8b519174acebb9537d0be9834e9cb}
+
+
+
+
+Definition at line 239 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process(), and cache\_\-process\_\-llc().\index{cache\_\-t@{cache\_\-t}!pipe@{pipe}}
+\index{pipe@{pipe}!cache_t@{cache\_\-t}}
+\subsubsection[{pipe}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf cache\_\-action\_\-t} $\ast$$\ast$ {\bf cache\_\-t::pipe}\hspace{0.3cm}{\tt  [read]}}\label{structcache__t_e4c32b43be7203fa1ac5b58e5d22e520}
+
+
+
+
+Definition at line 210 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-enqueue(), cache\_\-enqueue\_\-llc(), cache\_\-print(), cache\_\-process(), cache\_\-process\_\-llc(), and print\_\-heap().\index{cache\_\-t@{cache\_\-t}!pipe\_\-num@{pipe\_\-num}}
+\index{pipe\_\-num@{pipe\_\-num}!cache_t@{cache\_\-t}}
+\subsubsection[{pipe\_\-num}]{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ {\bf cache\_\-t::pipe\_\-num}}\label{structcache__t_b3cd043ebdcf2c96f34d8f472f4ac5ea}
+
+
+
+
+Definition at line 211 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-enqueuable(), cache\_\-enqueuable\_\-llc(), cache\_\-enqueue(), cache\_\-enqueue\_\-llc(), cache\_\-process(), cache\_\-process\_\-llc(), and print\_\-heap().\index{cache\_\-t@{cache\_\-t}!prefetch\_\-insertions@{prefetch\_\-insertions}}
+\index{prefetch\_\-insertions@{prefetch\_\-insertions}!cache_t@{cache\_\-t}}
+\subsubsection[{prefetch\_\-insertions}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf cache\_\-t::prefetch\_\-insertions}}\label{structcache__t_f1c9aea1fcd785adbe526de991176c44}
+
+
+
+
+Definition at line 285 of file config/zesto-cache.h.
+
+Referenced by cache\_\-insert\_\-block(), cache\_\-insert\_\-block\_\-llc(), cache\_\-reg\_\-stats(), and LLC\_\-reg\_\-stats().\index{cache\_\-t@{cache\_\-t}!prefetch\_\-lookups@{prefetch\_\-lookups}}
+\index{prefetch\_\-lookups@{prefetch\_\-lookups}!cache_t@{cache\_\-t}}
+\subsubsection[{prefetch\_\-lookups}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf cache\_\-t::prefetch\_\-lookups}}\label{structcache__t_160a60c05728b7888f728a96aede2730}
+
+
+
+
+Definition at line 283 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process(), cache\_\-process\_\-llc(), cache\_\-reg\_\-stats(), and LLC\_\-reg\_\-stats().\index{cache\_\-t@{cache\_\-t}!prefetch\_\-max@{prefetch\_\-max}}
+\index{prefetch\_\-max@{prefetch\_\-max}!cache_t@{cache\_\-t}}
+\subsubsection[{prefetch\_\-max}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cache\_\-t::prefetch\_\-max}}\label{structcache__t_639a7ac5ea0206cfa35c8c86235bf7a4}
+
+
+
+
+Definition at line 250 of file config/zesto-cache.h.
+
+Referenced by cache\_\-prefetch(), cache\_\-prefetch\_\-llc(), core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t(), core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t(), core\_\-fetch\_\-DPM\_\-t::core\_\-fetch\_\-DPM\_\-t(), core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t(), and uncore\_\-t::uncore\_\-t().\index{cache\_\-t@{cache\_\-t}!prefetch\_\-misses@{prefetch\_\-misses}}
+\index{prefetch\_\-misses@{prefetch\_\-misses}!cache_t@{cache\_\-t}}
+\subsubsection[{prefetch\_\-misses}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf cache\_\-t::prefetch\_\-misses}}\label{structcache__t_478a99eea7789f5163d249af41633de8}
+
+
+
+
+Definition at line 284 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process(), cache\_\-process\_\-llc(), cache\_\-reg\_\-stats(), and LLC\_\-reg\_\-stats().\index{cache\_\-t@{cache\_\-t}!prefetch\_\-on\_\-miss@{prefetch\_\-on\_\-miss}}
+\index{prefetch\_\-on\_\-miss@{prefetch\_\-on\_\-miss}!cache_t@{cache\_\-t}}
+\subsubsection[{prefetch\_\-on\_\-miss}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf cache\_\-t::prefetch\_\-on\_\-miss}}\label{structcache__t_c9dbdd85b01ac41d232da64808bf70e5}
+
+
+
+
+Definition at line 251 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process(), cache\_\-process\_\-llc(), core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t(), core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t(), core\_\-fetch\_\-DPM\_\-t::core\_\-fetch\_\-DPM\_\-t(), and core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t().\index{cache\_\-t@{cache\_\-t}!prefetch\_\-threshold@{prefetch\_\-threshold}}
+\index{prefetch\_\-threshold@{prefetch\_\-threshold}!cache_t@{cache\_\-t}}
+\subsubsection[{prefetch\_\-threshold}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cache\_\-t::prefetch\_\-threshold}}\label{structcache__t_e7e8e385030eeff779f3286a13294045}
+
+
+
+
+Definition at line 249 of file config/zesto-cache.h.
+
+Referenced by cache\_\-prefetch(), cache\_\-prefetch\_\-llc(), core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t(), core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t(), core\_\-fetch\_\-DPM\_\-t::core\_\-fetch\_\-DPM\_\-t(), core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t(), and uncore\_\-t::uncore\_\-t().\index{cache\_\-t@{cache\_\-t}!prefetch\_\-useful\_\-insertions@{prefetch\_\-useful\_\-insertions}}
+\index{prefetch\_\-useful\_\-insertions@{prefetch\_\-useful\_\-insertions}!cache_t@{cache\_\-t}}
+\subsubsection[{prefetch\_\-useful\_\-insertions}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf cache\_\-t::prefetch\_\-useful\_\-insertions}}\label{structcache__t_ab8823b939322555622e48f909d24d7b}
+
+
+
+
+Definition at line 286 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process(), cache\_\-process\_\-llc(), cache\_\-reg\_\-stats(), and LLC\_\-reg\_\-stats().\index{cache\_\-t@{cache\_\-t}!prefetcher@{prefetcher}}
+\index{prefetcher@{prefetcher}!cache_t@{cache\_\-t}}
+\subsubsection[{prefetcher}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf prefetch\_\-t} $\ast$$\ast$ {\bf cache\_\-t::prefetcher}\hspace{0.3cm}{\tt  [read]}}\label{structcache__t_2f92869438ffe1d24402149ebb194b8e}
+
+
+
+
+Definition at line 246 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process(), cache\_\-process\_\-llc(), cache\_\-reg\_\-stats(), core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t(), core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t(), core\_\-fetch\_\-DPM\_\-t::core\_\-fetch\_\-DPM\_\-t(), core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t(), LLC\_\-reg\_\-stats(), and uncore\_\-t::uncore\_\-t().\index{cache\_\-t@{cache\_\-t}!prev\_\-level@{prev\_\-level}}
+\index{prev\_\-level@{prev\_\-level}!cache_t@{cache\_\-t}}
+\subsubsection[{prev\_\-level}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf cache\_\-t}$\ast$ {\bf cache\_\-t::prev\_\-level}\hspace{0.3cm}{\tt  [read]}}\label{structcache__t_1e23c1c031a25966dd96bd54c3862c2e}
+
+
+
+
+Definition at line 273 of file zesto-cache.h.
+
+Referenced by cache\_\-invalidate(), cache\_\-process(), cache\_\-process\_\-llc(), and core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t().\index{cache\_\-t@{cache\_\-t}!read\_\-only@{read\_\-only}}
+\index{read\_\-only@{read\_\-only}!cache_t@{cache\_\-t}}
+\subsubsection[{read\_\-only}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf read\_\-only\_\-t} {\bf cache\_\-t::read\_\-only}}\label{structcache__t_bf3cdeab774a246aa639b01633542337}
+
+
+
+
+Definition at line 182 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-is\_\-hit(), cache\_\-is\_\-hit\_\-llc(), cache\_\-reg\_\-stats(), and LLC\_\-reg\_\-stats().\index{cache\_\-t@{cache\_\-t}!replacement\_\-policy@{replacement\_\-policy}}
+\index{replacement\_\-policy@{replacement\_\-policy}!cache_t@{cache\_\-t}}
+\subsubsection[{replacement\_\-policy}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf repl\_\-policy\_\-t} {\bf cache\_\-t::replacement\_\-policy}}\label{structcache__t_11c6495bff25d1d686125a921df5180a}
+
+
+
+
+Definition at line 194 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-get\_\-evictee(), cache\_\-get\_\-evictee\_\-llc(), cache\_\-insert\_\-block(), cache\_\-insert\_\-block\_\-llc(), cache\_\-is\_\-hit(), and cache\_\-is\_\-hit\_\-llc().\index{cache\_\-t@{cache\_\-t}!sets@{sets}}
+\index{sets@{sets}!cache_t@{cache\_\-t}}
+\subsubsection[{sets}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cache\_\-t::sets}}\label{structcache__t_4e084e932e208ca35fc46b0de3bed2f4}
+
+
+
+
+Definition at line 185 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-get\_\-evictee(), cache\_\-get\_\-evictee\_\-llc(), cache\_\-insert\_\-block(), cache\_\-insert\_\-block\_\-llc(), cache\_\-invalidate(), cache\_\-is\_\-hit(), cache\_\-is\_\-hit\_\-llc(), cache\_\-peek(), and cache\_\-peek\_\-llc().\index{cache\_\-t@{cache\_\-t}!start\_\-point@{start\_\-point}}
+\index{start\_\-point@{start\_\-point}!cache_t@{cache\_\-t}}
+\subsubsection[{start\_\-point}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cache\_\-t::start\_\-point}}\label{structcache__t_c1d9a422ff977575acf86e6b8ca4f479}
+
+
+
+
+Definition at line 226 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process(), and cache\_\-process\_\-llc().\index{cache\_\-t@{cache\_\-t}!stat@{stat}}
+\index{stat@{stat}!cache_t@{cache\_\-t}}
+\subsubsection[{stat}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \}   {\bf cache\_\-t::stat}}\label{structcache__t_d9e9ac7507c1c60e0b13c3e0c43e3922}
+
+
+\index{cache\_\-t@{cache\_\-t}!stat@{stat}}
+\index{stat@{stat}!cache_t@{cache\_\-t}}
+\subsubsection[{stat}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \}   {\bf cache\_\-t::stat}}\label{structcache__t_32dc28e18962bbd27f1f42f936f02227}
+
+
+
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-insert\_\-block(), cache\_\-insert\_\-block\_\-llc(), cache\_\-process(), cache\_\-process\_\-llc(), cache\_\-reg\_\-stats(), cache\_\-reset\_\-stats(), LLC\_\-reg\_\-stats(), MSHR\_\-allocate(), prefetch\_\-controller\_\-update\_\-llc(), uncore\_\-utilize(), WBB\_\-insert(), and WBB\_\-victim\_\-insert().\index{cache\_\-t@{cache\_\-t}!store\_\-lookups@{store\_\-lookups}}
+\index{store\_\-lookups@{store\_\-lookups}!cache_t@{cache\_\-t}}
+\subsubsection[{store\_\-lookups}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf cache\_\-t::store\_\-lookups}}\label{structcache__t_9e21a82a48282c7d73766b96077e5ef4}
+
+
+
+
+Definition at line 279 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process(), cache\_\-process\_\-llc(), cache\_\-reg\_\-stats(), and LLC\_\-reg\_\-stats().\index{cache\_\-t@{cache\_\-t}!store\_\-misses@{store\_\-misses}}
+\index{store\_\-misses@{store\_\-misses}!cache_t@{cache\_\-t}}
+\subsubsection[{store\_\-misses}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf cache\_\-t::store\_\-misses}}\label{structcache__t_99d209df2eda215c3b1562e56a533906}
+
+
+
+
+Definition at line 280 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process(), cache\_\-process\_\-llc(), cache\_\-reg\_\-stats(), and LLC\_\-reg\_\-stats().\index{cache\_\-t@{cache\_\-t}!uncore@{uncore}}
+\index{uncore@{uncore}!cache_t@{cache\_\-t}}
+\subsubsection[{uncore}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf uncore\_\-t} $\ast$ {\bf cache\_\-t::uncore}\hspace{0.3cm}{\tt  [read]}}\label{structcache__t_99fc82a104d554d95cb9a73a281a007a}
+
+
+
+
+Definition at line 179 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process\_\-llc(), LLC\_\-reg\_\-stats(), and uncore\_\-t::uncore\_\-t().\index{cache\_\-t@{cache\_\-t}!uncore\_\-utilization@{uncore\_\-utilization}}
+\index{uncore\_\-utilization@{uncore\_\-utilization}!cache_t@{cache\_\-t}}
+\subsubsection[{uncore\_\-utilization}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf cache\_\-t::uncore\_\-utilization}}\label{structcache__t_d856c8a6d21726bb4010206d50053b47}
+
+
+
+
+Definition at line 299 of file config/zesto-cache.h.
+
+Referenced by prefetch\_\-controller\_\-update\_\-llc(), and uncore\_\-utilize().\index{cache\_\-t@{cache\_\-t}!WBB@{WBB}}
+\index{WBB@{WBB}!cache_t@{cache\_\-t}}
+\subsubsection[{WBB}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf cache\_\-line\_\-t} $\ast$$\ast$ {\bf cache\_\-t::WBB}\hspace{0.3cm}{\tt  [read]}}\label{structcache__t_b2f15f41eadb21305652cc337190e380}
+
+
+
+
+Definition at line 233 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-process(), cache\_\-process\_\-llc(), WBB\_\-insert(), and WBB\_\-victim\_\-insert().\index{cache\_\-t@{cache\_\-t}!WBB\_\-combines@{WBB\_\-combines}}
+\index{WBB\_\-combines@{WBB\_\-combines}!cache_t@{cache\_\-t}}
+\subsubsection[{WBB\_\-combines}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf cache\_\-t::WBB\_\-combines}}\label{structcache__t_dee5a52815654047876730b81fecc4dd}
+
+
+
+
+Definition at line 291 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process(), cache\_\-process\_\-llc(), cache\_\-reg\_\-stats(), LLC\_\-reg\_\-stats(), and WBB\_\-insert().\index{cache\_\-t@{cache\_\-t}!WBB\_\-full\_\-cycles@{WBB\_\-full\_\-cycles}}
+\index{WBB\_\-full\_\-cycles@{WBB\_\-full\_\-cycles}!cache_t@{cache\_\-t}}
+\subsubsection[{WBB\_\-full\_\-cycles}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf cache\_\-t::WBB\_\-full\_\-cycles}}\label{structcache__t_2af0d41347cf21e92b6e2c9e4cc297af}
+
+
+
+
+Definition at line 293 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process(), cache\_\-process\_\-llc(), cache\_\-reg\_\-stats(), and LLC\_\-reg\_\-stats().\index{cache\_\-t@{cache\_\-t}!WBB\_\-head@{WBB\_\-head}}
+\index{WBB\_\-head@{WBB\_\-head}!cache_t@{cache\_\-t}}
+\subsubsection[{WBB\_\-head}]{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ {\bf cache\_\-t::WBB\_\-head}}\label{structcache__t_eb30d62950574247b50eac7eadafa492}
+
+
+
+
+Definition at line 231 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-process(), cache\_\-process\_\-llc(), WBB\_\-insert(), and WBB\_\-victim\_\-insert().\index{cache\_\-t@{cache\_\-t}!WBB\_\-hits@{WBB\_\-hits}}
+\index{WBB\_\-hits@{WBB\_\-hits}!cache_t@{cache\_\-t}}
+\subsubsection[{WBB\_\-hits}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf cache\_\-t::WBB\_\-hits}}\label{structcache__t_b676ee4fa653083eb09c37a3feab576e}
+
+
+
+
+Definition at line 294 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process(), cache\_\-process\_\-llc(), cache\_\-reg\_\-stats(), and LLC\_\-reg\_\-stats().\index{cache\_\-t@{cache\_\-t}!WBB\_\-insertions@{WBB\_\-insertions}}
+\index{WBB\_\-insertions@{WBB\_\-insertions}!cache_t@{cache\_\-t}}
+\subsubsection[{WBB\_\-insertions}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf cache\_\-t::WBB\_\-insertions}}\label{structcache__t_af89cd6ff80f5e2aee23f8cb3b1ef030}
+
+
+
+
+Definition at line 289 of file config/zesto-cache.h.
+
+Referenced by cache\_\-reg\_\-stats(), LLC\_\-reg\_\-stats(), and WBB\_\-insert().\index{cache\_\-t@{cache\_\-t}!WBB\_\-num@{WBB\_\-num}}
+\index{WBB\_\-num@{WBB\_\-num}!cache_t@{cache\_\-t}}
+\subsubsection[{WBB\_\-num}]{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ {\bf cache\_\-t::WBB\_\-num}}\label{structcache__t_04107a5e149073f1e6d38da0137685b3}
+
+
+
+
+Definition at line 230 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-process(), cache\_\-process\_\-llc(), WBB\_\-available(), WBB\_\-insert(), and WBB\_\-victim\_\-insert().\index{cache\_\-t@{cache\_\-t}!WBB\_\-occupancy@{WBB\_\-occupancy}}
+\index{WBB\_\-occupancy@{WBB\_\-occupancy}!cache_t@{cache\_\-t}}
+\subsubsection[{WBB\_\-occupancy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf cache\_\-t::WBB\_\-occupancy}}\label{structcache__t_5cf4b90ecf6c273ccd80ab179c6e97eb}
+
+
+
+
+Definition at line 292 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process(), cache\_\-process\_\-llc(), cache\_\-reg\_\-stats(), and LLC\_\-reg\_\-stats().\index{cache\_\-t@{cache\_\-t}!WBB\_\-size@{WBB\_\-size}}
+\index{WBB\_\-size@{WBB\_\-size}!cache_t@{cache\_\-t}}
+\subsubsection[{WBB\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf cache\_\-t::WBB\_\-size}}\label{structcache__t_e30b33cff209a8b0d14d7bee3f8cd8ef}
+
+
+
+
+Definition at line 229 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-process(), cache\_\-process\_\-llc(), WBB\_\-available(), WBB\_\-insert(), and WBB\_\-victim\_\-insert().\index{cache\_\-t@{cache\_\-t}!WBB\_\-tail@{WBB\_\-tail}}
+\index{WBB\_\-tail@{WBB\_\-tail}!cache_t@{cache\_\-t}}
+\subsubsection[{WBB\_\-tail}]{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ {\bf cache\_\-t::WBB\_\-tail}}\label{structcache__t_aac8ffb779d8d0de8fa5b19ec0f4a549}
+
+
+
+
+Definition at line 232 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), and WBB\_\-insert().\index{cache\_\-t@{cache\_\-t}!WBB\_\-victim\_\-hits@{WBB\_\-victim\_\-hits}}
+\index{WBB\_\-victim\_\-hits@{WBB\_\-victim\_\-hits}!cache_t@{cache\_\-t}}
+\subsubsection[{WBB\_\-victim\_\-hits}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf cache\_\-t::WBB\_\-victim\_\-hits}}\label{structcache__t_757dac19087b6b3f183e0c9a1b4365d8}
+
+
+
+
+Definition at line 295 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process(), cache\_\-process\_\-llc(), cache\_\-reg\_\-stats(), and LLC\_\-reg\_\-stats().\index{cache\_\-t@{cache\_\-t}!WBB\_\-victim\_\-insertions@{WBB\_\-victim\_\-insertions}}
+\index{WBB\_\-victim\_\-insertions@{WBB\_\-victim\_\-insertions}!cache_t@{cache\_\-t}}
+\subsubsection[{WBB\_\-victim\_\-insertions}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf cache\_\-t::WBB\_\-victim\_\-insertions}}\label{structcache__t_df6db938aa2867951815e7af6bf2e335}
+
+
+
+
+Definition at line 290 of file config/zesto-cache.h.
+
+Referenced by cache\_\-reg\_\-stats(), LLC\_\-reg\_\-stats(), and WBB\_\-victim\_\-insert().\index{cache\_\-t@{cache\_\-t}!write\_\-combining@{write\_\-combining}}
+\index{write\_\-combining@{write\_\-combining}!cache_t@{cache\_\-t}}
+\subsubsection[{write\_\-combining}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf cache\_\-t::write\_\-combining}}\label{structcache__t_1b6ff3b6340f24e9083bbb6fadcae7e3}
+
+
+
+
+Definition at line 209 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-process(), cache\_\-process\_\-llc(), and WBB\_\-insert().\index{cache\_\-t@{cache\_\-t}!write\_\-policy@{write\_\-policy}}
+\index{write\_\-policy@{write\_\-policy}!cache_t@{cache\_\-t}}
+\subsubsection[{write\_\-policy}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf write\_\-policy\_\-t} {\bf cache\_\-t::write\_\-policy}}\label{structcache__t_4d1a99bcbfd631210afe798dff0906e5}
+
+
+
+
+Definition at line 196 of file config/zesto-cache.h.
+
+Referenced by cache\_\-create(), cache\_\-create\_\-llc(), cache\_\-is\_\-hit(), cache\_\-is\_\-hit\_\-llc(), cache\_\-process(), and cache\_\-process\_\-llc().\index{cache\_\-t@{cache\_\-t}!writeback\_\-lookups@{writeback\_\-lookups}}
+\index{writeback\_\-lookups@{writeback\_\-lookups}!cache_t@{cache\_\-t}}
+\subsubsection[{writeback\_\-lookups}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf cache\_\-t::writeback\_\-lookups}}\label{structcache__t_9e84cff1fccc19c9969530312417d21e}
+
+
+
+
+Definition at line 281 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process(), cache\_\-process\_\-llc(), cache\_\-reg\_\-stats(), and LLC\_\-reg\_\-stats().\index{cache\_\-t@{cache\_\-t}!writeback\_\-misses@{writeback\_\-misses}}
+\index{writeback\_\-misses@{writeback\_\-misses}!cache_t@{cache\_\-t}}
+\subsubsection[{writeback\_\-misses}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf cache\_\-t::writeback\_\-misses}}\label{structcache__t_e7445e7eae56d0c7a8b0044966012e35}
+
+
+
+
+Definition at line 282 of file config/zesto-cache.h.
+
+Referenced by cache\_\-process(), cache\_\-process\_\-llc(), cache\_\-reg\_\-stats(), and LLC\_\-reg\_\-stats().
+
+The documentation for this struct was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf config/zesto-cache.h}\item 
+{\bf zesto-cache.h}\end{CompactItemize}

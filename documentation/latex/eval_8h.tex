@@ -1,0 +1,323 @@
+\section{eval.h File Reference}
+\label{eval_8h}\index{eval.h@{eval.h}}
+{\tt \#include $<$stdio.h$>$}\par
+{\tt \#include \char`\"{}host.h\char`\"{}}\par
+{\tt \#include \char`\"{}misc.h\char`\"{}}\par
+{\tt \#include \char`\"{}machine.h\char`\"{}}\par
+
+
+Include dependency graph for eval.h:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=353pt]{eval_8h__incl}
+\end{center}
+\end{figure}
+
+
+This graph shows which files directly or indirectly include this file:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{eval_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+struct {\bf eval\_\-state\_\-t}
+\item 
+struct {\bf eval\_\-value\_\-t}
+\end{CompactItemize}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define {\bf EVAL\_\-INTEGRAL}(TYPE)
+\end{CompactItemize}
+\subsection*{Enumerations}
+\begin{CompactItemize}
+\item 
+enum {\bf eval\_\-token\_\-t} \{ \par
+{\bf tok\_\-ident}, 
+{\bf tok\_\-const}, 
+{\bf tok\_\-plus}, 
+{\bf tok\_\-minus}, 
+\par
+{\bf tok\_\-mult}, 
+{\bf tok\_\-div}, 
+{\bf tok\_\-exp}, 
+{\bf tok\_\-log}, 
+\par
+{\bf tok\_\-oparen}, 
+{\bf tok\_\-cparen}, 
+{\bf tok\_\-eof}, 
+{\bf tok\_\-whitespace}, 
+\par
+{\bf tok\_\-invalid}
+ \}
+\item 
+enum {\bf eval\_\-err\_\-t} \{ \par
+{\bf ERR\_\-NOERR}, 
+{\bf ERR\_\-UPAREN}, 
+{\bf ERR\_\-NOTERM}, 
+{\bf ERR\_\-DIV0}, 
+\par
+{\bf ERR\_\-BADCONST}, 
+{\bf ERR\_\-BADEXPR}, 
+{\bf ERR\_\-UNDEFVAR}, 
+{\bf ERR\_\-EXTRA}, 
+\par
+{\bf ERR\_\-NUM}
+ \}
+\item 
+enum {\bf eval\_\-type\_\-t} \{ \par
+{\bf et\_\-int}, 
+{\bf et\_\-uint}, 
+{\bf et\_\-addr}, 
+{\bf et\_\-qword}, 
+\par
+{\bf et\_\-sqword}, 
+{\bf et\_\-float}, 
+{\bf et\_\-double}, 
+{\bf et\_\-symbol}, 
+\par
+{\bf et\_\-NUM}
+ \}
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+double {\bf eval\_\-as\_\-double} (struct {\bf eval\_\-value\_\-t} val)
+\item 
+float {\bf eval\_\-as\_\-float} (struct {\bf eval\_\-value\_\-t} val)
+\item 
+qword\_\-t {\bf eval\_\-as\_\-qword} (struct {\bf eval\_\-value\_\-t} val)
+\item 
+sqword\_\-t {\bf eval\_\-as\_\-sqword} (struct {\bf eval\_\-value\_\-t} val)
+\item 
+{\bf md\_\-addr\_\-t} {\bf eval\_\-as\_\-addr} (struct {\bf eval\_\-value\_\-t} val)
+\item 
+unsigned int {\bf eval\_\-as\_\-uint} (struct {\bf eval\_\-value\_\-t} val)
+\item 
+int {\bf eval\_\-as\_\-int} (struct {\bf eval\_\-value\_\-t} val)
+\item 
+struct {\bf eval\_\-state\_\-t} $\ast$ {\bf eval\_\-new} ({\bf eval\_\-ident\_\-t} f\_\-eval\_\-ident, void $\ast$user\_\-ptr)
+\item 
+void {\bf eval\_\-delete} (struct {\bf eval\_\-state\_\-t} $\ast$es)
+\item 
+struct {\bf eval\_\-value\_\-t} {\bf eval\_\-expr} (struct {\bf eval\_\-state\_\-t} $\ast$es, const char $\ast$p, const char $\ast$$\ast$endp)
+\item 
+void {\bf eval\_\-print} (FILE $\ast$stream, struct {\bf eval\_\-value\_\-t} val)
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+struct {\bf eval\_\-value\_\-t}($\ast$ {\bf eval\_\-ident\_\-t} )(struct {\bf eval\_\-state\_\-t} $\ast$es)
+\item 
+enum {\bf eval\_\-err\_\-t} {\bf eval\_\-error}
+\item 
+char $\ast$ {\bf eval\_\-err\_\-str} [ERR\_\-NUM]
+\item 
+char $\ast$ {\bf eval\_\-type\_\-str} [et\_\-NUM]
+\end{CompactItemize}
+
+
+\subsection{Define Documentation}
+\index{eval.h@{eval.h}!EVAL\_\-INTEGRAL@{EVAL\_\-INTEGRAL}}
+\index{EVAL\_\-INTEGRAL@{EVAL\_\-INTEGRAL}!eval.h@{eval.h}}
+\subsubsection[{EVAL\_\-INTEGRAL}]{\setlength{\rightskip}{0pt plus 5cm}\#define EVAL\_\-INTEGRAL(TYPE)}\label{eval_8h_967660fa08f8314efb22699958f68a1b}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}((TYPE) == et_int || (TYPE) == et_uint || (TYPE) == et_addr             \
+   || (TYPE) == et_qword || (TYPE) == et_sqword)
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 133 of file eval.h.
+
+\subsection{Enumeration Type Documentation}
+\index{eval.h@{eval.h}!eval\_\-err\_\-t@{eval\_\-err\_\-t}}
+\index{eval\_\-err\_\-t@{eval\_\-err\_\-t}!eval.h@{eval.h}}
+\subsubsection[{eval\_\-err\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf eval\_\-err\_\-t}}\label{eval_8h_9028fca6bec91c83f48bf214aefec047}
+
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{ERR\_\-NOERR@{ERR\_\-NOERR}!eval.h@{eval.h}}\index{eval.h@{eval.h}!ERR\_\-NOERR@{ERR\_\-NOERR}}\item[{\em 
+ERR\_\-NOERR\label{eval_8h_9028fca6bec91c83f48bf214aefec0472382edec8eab8c8678d1549954a358c4}
+}]\index{ERR\_\-UPAREN@{ERR\_\-UPAREN}!eval.h@{eval.h}}\index{eval.h@{eval.h}!ERR\_\-UPAREN@{ERR\_\-UPAREN}}\item[{\em 
+ERR\_\-UPAREN\label{eval_8h_9028fca6bec91c83f48bf214aefec047f945790dddb34501955ea817960dd806}
+}]\index{ERR\_\-NOTERM@{ERR\_\-NOTERM}!eval.h@{eval.h}}\index{eval.h@{eval.h}!ERR\_\-NOTERM@{ERR\_\-NOTERM}}\item[{\em 
+ERR\_\-NOTERM\label{eval_8h_9028fca6bec91c83f48bf214aefec0471e3e82085dce3402403f1110a2ebeb6c}
+}]\index{ERR\_\-DIV0@{ERR\_\-DIV0}!eval.h@{eval.h}}\index{eval.h@{eval.h}!ERR\_\-DIV0@{ERR\_\-DIV0}}\item[{\em 
+ERR\_\-DIV0\label{eval_8h_9028fca6bec91c83f48bf214aefec047948cb5b6720b02d6773a0647e006f4dc}
+}]\index{ERR\_\-BADCONST@{ERR\_\-BADCONST}!eval.h@{eval.h}}\index{eval.h@{eval.h}!ERR\_\-BADCONST@{ERR\_\-BADCONST}}\item[{\em 
+ERR\_\-BADCONST\label{eval_8h_9028fca6bec91c83f48bf214aefec0474c7656fcad9327df84c4334a36979cdf}
+}]\index{ERR\_\-BADEXPR@{ERR\_\-BADEXPR}!eval.h@{eval.h}}\index{eval.h@{eval.h}!ERR\_\-BADEXPR@{ERR\_\-BADEXPR}}\item[{\em 
+ERR\_\-BADEXPR\label{eval_8h_9028fca6bec91c83f48bf214aefec047f235bba3b9ac2821025c36794afb112b}
+}]\index{ERR\_\-UNDEFVAR@{ERR\_\-UNDEFVAR}!eval.h@{eval.h}}\index{eval.h@{eval.h}!ERR\_\-UNDEFVAR@{ERR\_\-UNDEFVAR}}\item[{\em 
+ERR\_\-UNDEFVAR\label{eval_8h_9028fca6bec91c83f48bf214aefec047040743eeaf9290e7b939b9f797ec779e}
+}]\index{ERR\_\-EXTRA@{ERR\_\-EXTRA}!eval.h@{eval.h}}\index{eval.h@{eval.h}!ERR\_\-EXTRA@{ERR\_\-EXTRA}}\item[{\em 
+ERR\_\-EXTRA\label{eval_8h_9028fca6bec91c83f48bf214aefec0474f690884d0060dd9649711e534ccde96}
+}]\index{ERR\_\-NUM@{ERR\_\-NUM}!eval.h@{eval.h}}\index{eval.h@{eval.h}!ERR\_\-NUM@{ERR\_\-NUM}}\item[{\em 
+ERR\_\-NUM\label{eval_8h_9028fca6bec91c83f48bf214aefec0479f777b12b2a6527f28675ca501f176a1}
+}]\end{description}
+\end{Desc}
+
+
+
+Definition at line 101 of file eval.h.\index{eval.h@{eval.h}!eval\_\-token\_\-t@{eval\_\-token\_\-t}}
+\index{eval\_\-token\_\-t@{eval\_\-token\_\-t}!eval.h@{eval.h}}
+\subsubsection[{eval\_\-token\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf eval\_\-token\_\-t}}\label{eval_8h_debf2cbe62f575d467ac3a9935bfba14}
+
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{tok\_\-ident@{tok\_\-ident}!eval.h@{eval.h}}\index{eval.h@{eval.h}!tok\_\-ident@{tok\_\-ident}}\item[{\em 
+tok\_\-ident\label{eval_8h_debf2cbe62f575d467ac3a9935bfba141a4dad47aa9f6c4af0ba3048812f45c0}
+}]\index{tok\_\-const@{tok\_\-const}!eval.h@{eval.h}}\index{eval.h@{eval.h}!tok\_\-const@{tok\_\-const}}\item[{\em 
+tok\_\-const\label{eval_8h_debf2cbe62f575d467ac3a9935bfba14aee95018ebad11e0e56eed85b59b8a16}
+}]\index{tok\_\-plus@{tok\_\-plus}!eval.h@{eval.h}}\index{eval.h@{eval.h}!tok\_\-plus@{tok\_\-plus}}\item[{\em 
+tok\_\-plus\label{eval_8h_debf2cbe62f575d467ac3a9935bfba14dc20e32315afb545997b1ac1ba3bfd9f}
+}]\index{tok\_\-minus@{tok\_\-minus}!eval.h@{eval.h}}\index{eval.h@{eval.h}!tok\_\-minus@{tok\_\-minus}}\item[{\em 
+tok\_\-minus\label{eval_8h_debf2cbe62f575d467ac3a9935bfba1485cd1d3fe653c72dc364e62bfbc8be50}
+}]\index{tok\_\-mult@{tok\_\-mult}!eval.h@{eval.h}}\index{eval.h@{eval.h}!tok\_\-mult@{tok\_\-mult}}\item[{\em 
+tok\_\-mult\label{eval_8h_debf2cbe62f575d467ac3a9935bfba140c847eb2a1cc0194cdb053832d26ad28}
+}]\index{tok\_\-div@{tok\_\-div}!eval.h@{eval.h}}\index{eval.h@{eval.h}!tok\_\-div@{tok\_\-div}}\item[{\em 
+tok\_\-div\label{eval_8h_debf2cbe62f575d467ac3a9935bfba148a2112df9419d1b4b81c6e97ed5093e7}
+}]\index{tok\_\-exp@{tok\_\-exp}!eval.h@{eval.h}}\index{eval.h@{eval.h}!tok\_\-exp@{tok\_\-exp}}\item[{\em 
+tok\_\-exp\label{eval_8h_debf2cbe62f575d467ac3a9935bfba1473d5dda6745eeef5b7f3b3845f51c39e}
+}]\index{tok\_\-log@{tok\_\-log}!eval.h@{eval.h}}\index{eval.h@{eval.h}!tok\_\-log@{tok\_\-log}}\item[{\em 
+tok\_\-log\label{eval_8h_debf2cbe62f575d467ac3a9935bfba14f5f85c76760d081e61d130524e87bb78}
+}]\index{tok\_\-oparen@{tok\_\-oparen}!eval.h@{eval.h}}\index{eval.h@{eval.h}!tok\_\-oparen@{tok\_\-oparen}}\item[{\em 
+tok\_\-oparen\label{eval_8h_debf2cbe62f575d467ac3a9935bfba14777eefa4368a3c92585389d5b3d33fe2}
+}]\index{tok\_\-cparen@{tok\_\-cparen}!eval.h@{eval.h}}\index{eval.h@{eval.h}!tok\_\-cparen@{tok\_\-cparen}}\item[{\em 
+tok\_\-cparen\label{eval_8h_debf2cbe62f575d467ac3a9935bfba1434626f050233ba4f00c4a6d070cd4098}
+}]\index{tok\_\-eof@{tok\_\-eof}!eval.h@{eval.h}}\index{eval.h@{eval.h}!tok\_\-eof@{tok\_\-eof}}\item[{\em 
+tok\_\-eof\label{eval_8h_debf2cbe62f575d467ac3a9935bfba14e5d30f8e7869dddee3750decf12bda6c}
+}]\index{tok\_\-whitespace@{tok\_\-whitespace}!eval.h@{eval.h}}\index{eval.h@{eval.h}!tok\_\-whitespace@{tok\_\-whitespace}}\item[{\em 
+tok\_\-whitespace\label{eval_8h_debf2cbe62f575d467ac3a9935bfba14a7c5fb47a80bd2d319c17f763dca6513}
+}]\index{tok\_\-invalid@{tok\_\-invalid}!eval.h@{eval.h}}\index{eval.h@{eval.h}!tok\_\-invalid@{tok\_\-invalid}}\item[{\em 
+tok\_\-invalid\label{eval_8h_debf2cbe62f575d467ac3a9935bfba14145208208c54f6b0b2af635887e6cd63}
+}]\end{description}
+\end{Desc}
+
+
+
+Definition at line 74 of file eval.h.\index{eval.h@{eval.h}!eval\_\-type\_\-t@{eval\_\-type\_\-t}}
+\index{eval\_\-type\_\-t@{eval\_\-type\_\-t}!eval.h@{eval.h}}
+\subsubsection[{eval\_\-type\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf eval\_\-type\_\-t}}\label{eval_8h_5d1f93bdbf8aa16f142b54d58eaaa2c8}
+
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{et\_\-int@{et\_\-int}!eval.h@{eval.h}}\index{eval.h@{eval.h}!et\_\-int@{et\_\-int}}\item[{\em 
+et\_\-int\label{eval_8h_5d1f93bdbf8aa16f142b54d58eaaa2c867d7cbc37e009fd6f7a0fa23cc610f20}
+}]\index{et\_\-uint@{et\_\-uint}!eval.h@{eval.h}}\index{eval.h@{eval.h}!et\_\-uint@{et\_\-uint}}\item[{\em 
+et\_\-uint\label{eval_8h_5d1f93bdbf8aa16f142b54d58eaaa2c820eac82fe6ca8b7bad192235cb453f66}
+}]\index{et\_\-addr@{et\_\-addr}!eval.h@{eval.h}}\index{eval.h@{eval.h}!et\_\-addr@{et\_\-addr}}\item[{\em 
+et\_\-addr\label{eval_8h_5d1f93bdbf8aa16f142b54d58eaaa2c80b657a34e318b1de069d214099bf1b0c}
+}]\index{et\_\-qword@{et\_\-qword}!eval.h@{eval.h}}\index{eval.h@{eval.h}!et\_\-qword@{et\_\-qword}}\item[{\em 
+et\_\-qword\label{eval_8h_5d1f93bdbf8aa16f142b54d58eaaa2c840197479804e9a44510fabdc225d0ca0}
+}]\index{et\_\-sqword@{et\_\-sqword}!eval.h@{eval.h}}\index{eval.h@{eval.h}!et\_\-sqword@{et\_\-sqword}}\item[{\em 
+et\_\-sqword\label{eval_8h_5d1f93bdbf8aa16f142b54d58eaaa2c8a0228d64f151e2192a3814392359dbbc}
+}]\index{et\_\-float@{et\_\-float}!eval.h@{eval.h}}\index{eval.h@{eval.h}!et\_\-float@{et\_\-float}}\item[{\em 
+et\_\-float\label{eval_8h_5d1f93bdbf8aa16f142b54d58eaaa2c851a5d0a100bcdfb14977b6860f661ac8}
+}]\index{et\_\-double@{et\_\-double}!eval.h@{eval.h}}\index{eval.h@{eval.h}!et\_\-double@{et\_\-double}}\item[{\em 
+et\_\-double\label{eval_8h_5d1f93bdbf8aa16f142b54d58eaaa2c8c171f30b1519f08b305e86872e5578b9}
+}]\index{et\_\-symbol@{et\_\-symbol}!eval.h@{eval.h}}\index{eval.h@{eval.h}!et\_\-symbol@{et\_\-symbol}}\item[{\em 
+et\_\-symbol\label{eval_8h_5d1f93bdbf8aa16f142b54d58eaaa2c8846da0f4613f3379aaf23a10faa5ccb5}
+}]\index{et\_\-NUM@{et\_\-NUM}!eval.h@{eval.h}}\index{eval.h@{eval.h}!et\_\-NUM@{et\_\-NUM}}\item[{\em 
+et\_\-NUM\label{eval_8h_5d1f93bdbf8aa16f142b54d58eaaa2c858aa36140f6709b84c2f949070658d3d}
+}]\end{description}
+\end{Desc}
+
+
+
+Definition at line 120 of file eval.h.
+
+\subsection{Function Documentation}
+\index{eval.h@{eval.h}!eval\_\-as\_\-addr@{eval\_\-as\_\-addr}}
+\index{eval\_\-as\_\-addr@{eval\_\-as\_\-addr}!eval.h@{eval.h}}
+\subsubsection[{eval\_\-as\_\-addr}]{\setlength{\rightskip}{0pt plus 5cm}{\bf md\_\-addr\_\-t} eval\_\-as\_\-addr (struct {\bf eval\_\-value\_\-t} {\em val})}\label{eval_8h_ae5d008f853388e9d9d82ea31bc0a7c1}
+
+
+\index{eval.h@{eval.h}!eval\_\-as\_\-double@{eval\_\-as\_\-double}}
+\index{eval\_\-as\_\-double@{eval\_\-as\_\-double}!eval.h@{eval.h}}
+\subsubsection[{eval\_\-as\_\-double}]{\setlength{\rightskip}{0pt plus 5cm}double eval\_\-as\_\-double (struct {\bf eval\_\-value\_\-t} {\em val})}\label{eval_8h_e95c4f593b6e6b3d6cce7f30d8af58a2}
+
+
+\index{eval.h@{eval.h}!eval\_\-as\_\-float@{eval\_\-as\_\-float}}
+\index{eval\_\-as\_\-float@{eval\_\-as\_\-float}!eval.h@{eval.h}}
+\subsubsection[{eval\_\-as\_\-float}]{\setlength{\rightskip}{0pt plus 5cm}float eval\_\-as\_\-float (struct {\bf eval\_\-value\_\-t} {\em val})}\label{eval_8h_7e0674fdfa161a8d51c8578d7aa10ca4}
+
+
+\index{eval.h@{eval.h}!eval\_\-as\_\-int@{eval\_\-as\_\-int}}
+\index{eval\_\-as\_\-int@{eval\_\-as\_\-int}!eval.h@{eval.h}}
+\subsubsection[{eval\_\-as\_\-int}]{\setlength{\rightskip}{0pt plus 5cm}int eval\_\-as\_\-int (struct {\bf eval\_\-value\_\-t} {\em val})}\label{eval_8h_a57f736a324e655178666fb1dc1d9edd}
+
+
+\index{eval.h@{eval.h}!eval\_\-as\_\-qword@{eval\_\-as\_\-qword}}
+\index{eval\_\-as\_\-qword@{eval\_\-as\_\-qword}!eval.h@{eval.h}}
+\subsubsection[{eval\_\-as\_\-qword}]{\setlength{\rightskip}{0pt plus 5cm}qword\_\-t eval\_\-as\_\-qword (struct {\bf eval\_\-value\_\-t} {\em val})}\label{eval_8h_c81a46624fad18239e09f8ca09ac3fd7}
+
+
+\index{eval.h@{eval.h}!eval\_\-as\_\-sqword@{eval\_\-as\_\-sqword}}
+\index{eval\_\-as\_\-sqword@{eval\_\-as\_\-sqword}!eval.h@{eval.h}}
+\subsubsection[{eval\_\-as\_\-sqword}]{\setlength{\rightskip}{0pt plus 5cm}sqword\_\-t eval\_\-as\_\-sqword (struct {\bf eval\_\-value\_\-t} {\em val})}\label{eval_8h_780253281964da3e23b8a92f4cf7e041}
+
+
+\index{eval.h@{eval.h}!eval\_\-as\_\-uint@{eval\_\-as\_\-uint}}
+\index{eval\_\-as\_\-uint@{eval\_\-as\_\-uint}!eval.h@{eval.h}}
+\subsubsection[{eval\_\-as\_\-uint}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int eval\_\-as\_\-uint (struct {\bf eval\_\-value\_\-t} {\em val})}\label{eval_8h_060f5058a15e42755dc7aecd63feba37}
+
+
+\index{eval.h@{eval.h}!eval\_\-delete@{eval\_\-delete}}
+\index{eval\_\-delete@{eval\_\-delete}!eval.h@{eval.h}}
+\subsubsection[{eval\_\-delete}]{\setlength{\rightskip}{0pt plus 5cm}void eval\_\-delete (struct {\bf eval\_\-state\_\-t} $\ast$ {\em es})}\label{eval_8h_ecd65c349f912aabe363c400f8a7b8a3}
+
+
+\index{eval.h@{eval.h}!eval\_\-expr@{eval\_\-expr}}
+\index{eval\_\-expr@{eval\_\-expr}!eval.h@{eval.h}}
+\subsubsection[{eval\_\-expr}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf eval\_\-value\_\-t} eval\_\-expr (struct {\bf eval\_\-state\_\-t} $\ast$ {\em es}, \/  const char $\ast$ {\em p}, \/  const char $\ast$$\ast$ {\em endp})\hspace{0.3cm}{\tt  [read]}}\label{eval_8h_8ce87d0deef8161d2407c561f28a440b}
+
+
+\index{eval.h@{eval.h}!eval\_\-new@{eval\_\-new}}
+\index{eval\_\-new@{eval\_\-new}!eval.h@{eval.h}}
+\subsubsection[{eval\_\-new}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf eval\_\-state\_\-t}$\ast$ eval\_\-new ({\bf eval\_\-ident\_\-t} {\em f\_\-eval\_\-ident}, \/  void $\ast$ {\em user\_\-ptr})\hspace{0.3cm}{\tt  [read]}}\label{eval_8h_ab9da158f1a261f4adfd99feaf2f43a6}
+
+
+\index{eval.h@{eval.h}!eval\_\-print@{eval\_\-print}}
+\index{eval\_\-print@{eval\_\-print}!eval.h@{eval.h}}
+\subsubsection[{eval\_\-print}]{\setlength{\rightskip}{0pt plus 5cm}void eval\_\-print (FILE $\ast$ {\em stream}, \/  struct {\bf eval\_\-value\_\-t} {\em val})}\label{eval_8h_9c764f7f765024c6e4a6e3ad42579870}
+
+
+
+
+\subsection{Variable Documentation}
+\index{eval.h@{eval.h}!eval\_\-err\_\-str@{eval\_\-err\_\-str}}
+\index{eval\_\-err\_\-str@{eval\_\-err\_\-str}!eval.h@{eval.h}}
+\subsubsection[{eval\_\-err\_\-str}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf eval\_\-err\_\-str}[ERR\_\-NUM]}\label{eval_8h_70d2d836883e1ad468a472732ef7d43c}
+
+
+\index{eval.h@{eval.h}!eval\_\-error@{eval\_\-error}}
+\index{eval\_\-error@{eval\_\-error}!eval.h@{eval.h}}
+\subsubsection[{eval\_\-error}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf eval\_\-err\_\-t} {\bf eval\_\-error}}\label{eval_8h_cdab0b4fdb81ae26dadd3a1cb2ee23bd}
+
+
+\index{eval.h@{eval.h}!eval\_\-ident\_\-t@{eval\_\-ident\_\-t}}
+\index{eval\_\-ident\_\-t@{eval\_\-ident\_\-t}!eval.h@{eval.h}}
+\subsubsection[{eval\_\-ident\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf eval\_\-value\_\-t}($\ast$ {\bf eval\_\-ident\_\-t})(struct {\bf eval\_\-state\_\-t} $\ast$es)}\label{eval_8h_d6803137df1dab73b5ccb093a54ae3ff}
+
+
+\index{eval.h@{eval.h}!eval\_\-type\_\-str@{eval\_\-type\_\-str}}
+\index{eval\_\-type\_\-str@{eval\_\-type\_\-str}!eval.h@{eval.h}}
+\subsubsection[{eval\_\-type\_\-str}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf eval\_\-type\_\-str}[et\_\-NUM]}\label{eval_8h_403ff3343cc15b30579e052830117ab2}
+
+

@@ -1,0 +1,314 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>LCOV - iris.info - /usr/include/c++/4.3/cstdlib</title>
+  <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LTP GCOV extension - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+        <tr>
+          <td class="headerItem" width="20%">Current&nbsp;view:</td>
+          <td class="headerValue" width="80%" colspan=4><a href="../../../../index.html">directory</a> - <a href="index.html">usr/include/c++/4.3</a> - cstdlib</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Test:</td>
+          <td class="headerValue" width="80%" colspan=4>iris.info</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Date:</td>
+          <td class="headerValue" width="20%">2010-05-24</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Instrumented&nbsp;lines:</td>
+          <td class="headerValue" width="20%">5</td>
+        </tr>
+        <tr>
+          <td class="headerItem" width="20%">Code&nbsp;covered:</td>
+          <td class="headerValue" width="20%">0.0 %</td>
+          <td width="20%"></td>
+          <td class="headerItem" width="20%">Executed&nbsp;lines:</td>
+          <td class="headerValue" width="20%">0</td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td><pre class="source">
+<span class="lineNum">       1 </span>                : // -*- C++ -*- forwarding header.
+<span class="lineNum">       2 </span>                : 
+<span class="lineNum">       3 </span>                : // Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005,
+<span class="lineNum">       4 </span>                : // 2006, 2007, 2008
+<span class="lineNum">       5 </span>                : // Free Software Foundation, Inc.
+<span class="lineNum">       6 </span>                : //
+<span class="lineNum">       7 </span>                : // This file is part of the GNU ISO C++ Library.  This library is free
+<span class="lineNum">       8 </span>                : // software; you can redistribute it and/or modify it under the
+<span class="lineNum">       9 </span>                : // terms of the GNU General Public License as published by the
+<span class="lineNum">      10 </span>                : // Free Software Foundation; either version 2, or (at your option)
+<span class="lineNum">      11 </span>                : // any later version.
+<span class="lineNum">      12 </span>                : 
+<span class="lineNum">      13 </span>                : // This library is distributed in the hope that it will be useful,
+<span class="lineNum">      14 </span>                : // but WITHOUT ANY WARRANTY; without even the implied warranty of
+<span class="lineNum">      15 </span>                : // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+<span class="lineNum">      16 </span>                : // GNU General Public License for more details.
+<span class="lineNum">      17 </span>                : 
+<span class="lineNum">      18 </span>                : // You should have received a copy of the GNU General Public License
+<span class="lineNum">      19 </span>                : // along with this library; see the file COPYING.  If not, write to
+<span class="lineNum">      20 </span>                : // the Free Software Foundation, 51 Franklin Street, Fifth Floor,
+<span class="lineNum">      21 </span>                : // Boston, MA 02110-1301, USA.
+<span class="lineNum">      22 </span>                : 
+<span class="lineNum">      23 </span>                : // As a special exception, you may use this file as part of a free software
+<span class="lineNum">      24 </span>                : // library without restriction.  Specifically, if other files instantiate
+<span class="lineNum">      25 </span>                : // templates or use macros or inline functions from this file, or you compile
+<span class="lineNum">      26 </span>                : // this file and link it with other files to produce an executable, this
+<span class="lineNum">      27 </span>                : // file does not by itself cause the resulting executable to be covered by
+<span class="lineNum">      28 </span>                : // the GNU General Public License.  This exception does not however
+<span class="lineNum">      29 </span>                : // invalidate any other reasons why the executable file might be covered by
+<span class="lineNum">      30 </span>                : // the GNU General Public License.
+<span class="lineNum">      31 </span>                : 
+<span class="lineNum">      32 </span>                : /** @file include/cstdlib
+<span class="lineNum">      33 </span>                :  *  This is a Standard C++ Library file.  You should @c #include this file
+<span class="lineNum">      34 </span>                :  *  in your programs, rather than any of the &quot;*.h&quot; implementation files.
+<span class="lineNum">      35 </span>                :  *
+<span class="lineNum">      36 </span>                :  *  This is the C++ version of the Standard C Library header @c stdlib.h,
+<span class="lineNum">      37 </span>                :  *  and its contents are (mostly) the same as that header, but are all
+<span class="lineNum">      38 </span>                :  *  contained in the namespace @c std (except for names which are defined
+<span class="lineNum">      39 </span>                :  *  as macros in C).
+<span class="lineNum">      40 </span>                :  */
+<span class="lineNum">      41 </span>                : 
+<span class="lineNum">      42 </span>                : //
+<span class="lineNum">      43 </span>                : // ISO C++ 14882: 20.4.6  C library
+<span class="lineNum">      44 </span>                : //
+<span class="lineNum">      45 </span>                : 
+<span class="lineNum">      46 </span>                : #pragma GCC system_header
+<span class="lineNum">      47 </span>                : 
+<span class="lineNum">      48 </span>                : #include &lt;bits/c++config.h&gt;
+<span class="lineNum">      49 </span>                : #include &lt;cstddef&gt;
+<span class="lineNum">      50 </span>                : 
+<span class="lineNum">      51 </span>                : #ifndef _GLIBCXX_CSTDLIB
+<span class="lineNum">      52 </span>                : #define _GLIBCXX_CSTDLIB 1
+<span class="lineNum">      53 </span>                : 
+<span class="lineNum">      54 </span>                : #if !_GLIBCXX_HOSTED
+<span class="lineNum">      55 </span>                : // The C standard does not require a freestanding implementation to
+<span class="lineNum">      56 </span>                : // provide &lt;stdlib.h&gt;.  However, the C++ standard does still require
+<span class="lineNum">      57 </span>                : // &lt;cstdlib&gt; -- but only the functionality mentioned in
+<span class="lineNum">      58 </span>                : // [lib.support.start.term].
+<span class="lineNum">      59 </span>                : 
+<span class="lineNum">      60 </span>                : #define EXIT_SUCCESS 0
+<span class="lineNum">      61 </span>                : #define EXIT_FAILURE 1
+<span class="lineNum">      62 </span>                : 
+<span class="lineNum">      63 </span>                : _GLIBCXX_BEGIN_NAMESPACE(std)
+<span class="lineNum">      64 </span>                : 
+<span class="lineNum">      65 </span>                :   extern &quot;C&quot; void abort(void);
+<span class="lineNum">      66 </span>                :   extern &quot;C&quot; int atexit(void (*)());
+<span class="lineNum">      67 </span>                :   extern &quot;C&quot; void exit(int);
+<span class="lineNum">      68 </span>                : 
+<span class="lineNum">      69 </span>                : _GLIBCXX_END_NAMESPACE
+<span class="lineNum">      70 </span>                : 
+<span class="lineNum">      71 </span>                : #else
+<span class="lineNum">      72 </span>                : 
+<span class="lineNum">      73 </span>                : #include &lt;stdlib.h&gt;
+<span class="lineNum">      74 </span>                : 
+<span class="lineNum">      75 </span>                : // Get rid of those macros defined in &lt;stdlib.h&gt; in lieu of real functions.
+<span class="lineNum">      76 </span>                : #undef abort
+<span class="lineNum">      77 </span>                : #undef abs
+<span class="lineNum">      78 </span>                : #undef atexit
+<span class="lineNum">      79 </span>                : #undef atof
+<span class="lineNum">      80 </span>                : #undef atoi
+<span class="lineNum">      81 </span>                : #undef atol
+<span class="lineNum">      82 </span>                : #undef bsearch
+<span class="lineNum">      83 </span>                : #undef calloc
+<span class="lineNum">      84 </span>                : #undef div
+<span class="lineNum">      85 </span>                : #undef exit
+<span class="lineNum">      86 </span>                : #undef free
+<span class="lineNum">      87 </span>                : #undef getenv
+<span class="lineNum">      88 </span>                : #undef labs
+<span class="lineNum">      89 </span>                : #undef ldiv
+<span class="lineNum">      90 </span>                : #undef malloc
+<span class="lineNum">      91 </span>                : #undef mblen
+<span class="lineNum">      92 </span>                : #undef mbstowcs
+<span class="lineNum">      93 </span>                : #undef mbtowc
+<span class="lineNum">      94 </span>                : #undef qsort
+<span class="lineNum">      95 </span>                : #undef rand
+<span class="lineNum">      96 </span>                : #undef realloc
+<span class="lineNum">      97 </span>                : #undef srand
+<span class="lineNum">      98 </span>                : #undef strtod
+<span class="lineNum">      99 </span>                : #undef strtol
+<span class="lineNum">     100 </span>                : #undef strtoul
+<span class="lineNum">     101 </span>                : #undef system
+<span class="lineNum">     102 </span>                : #undef wcstombs
+<span class="lineNum">     103 </span>                : #undef wctomb
+<span class="lineNum">     104 </span>                : 
+<span class="lineNum">     105 </span>                : _GLIBCXX_BEGIN_NAMESPACE(std)
+<span class="lineNum">     106 </span>                : 
+<span class="lineNum">     107 </span>                :   using ::div_t;
+<span class="lineNum">     108 </span>                :   using ::ldiv_t;
+<span class="lineNum">     109 </span>                : 
+<span class="lineNum">     110 </span>                :   using ::abort;
+<span class="lineNum">     111 </span>                :   using ::abs;
+<span class="lineNum">     112 </span>                :   using ::atexit;
+<span class="lineNum">     113 </span>                :   using ::atof;
+<span class="lineNum">     114 </span>                :   using ::atoi;
+<span class="lineNum">     115 </span>                :   using ::atol;
+<span class="lineNum">     116 </span>                :   using ::bsearch;
+<span class="lineNum">     117 </span>                :   using ::calloc;
+<span class="lineNum">     118 </span>                :   using ::div;
+<span class="lineNum">     119 </span>                :   using ::exit;
+<span class="lineNum">     120 </span>                :   using ::free;
+<span class="lineNum">     121 </span>                :   using ::getenv;
+<span class="lineNum">     122 </span>                :   using ::labs;
+<span class="lineNum">     123 </span>                :   using ::ldiv;
+<span class="lineNum">     124 </span>                :   using ::malloc;
+<span class="lineNum">     125 </span>                : #ifdef _GLIBCXX_HAVE_MBSTATE_T
+<span class="lineNum">     126 </span>                :   using ::mblen;
+<span class="lineNum">     127 </span>                :   using ::mbstowcs;
+<span class="lineNum">     128 </span>                :   using ::mbtowc;
+<span class="lineNum">     129 </span>                : #endif // _GLIBCXX_HAVE_MBSTATE_T
+<span class="lineNum">     130 </span>                :   using ::qsort;
+<span class="lineNum">     131 </span>                :   using ::rand;
+<span class="lineNum">     132 </span>                :   using ::realloc;
+<span class="lineNum">     133 </span>                :   using ::srand;
+<span class="lineNum">     134 </span>                :   using ::strtod;
+<span class="lineNum">     135 </span>                :   using ::strtol;
+<span class="lineNum">     136 </span>                :   using ::strtoul;
+<span class="lineNum">     137 </span>                :   using ::system;
+<span class="lineNum">     138 </span>                : #ifdef _GLIBCXX_USE_WCHAR_T
+<span class="lineNum">     139 </span>                :   using ::wcstombs;
+<span class="lineNum">     140 </span>                :   using ::wctomb;
+<span class="lineNum">     141 </span>                : #endif // _GLIBCXX_USE_WCHAR_T
+<span class="lineNum">     142 </span>                : 
+<span class="lineNum">     143 </span>                :   inline long
+<span class="lineNum">     144 </span><span class="lineNoCov">              0 :   abs(long __i) { return labs(__i); }</span>
+<span class="lineNum">     145 </span>                : 
+<span class="lineNum">     146 </span>                :   inline ldiv_t
+<span class="lineNum">     147 </span><span class="lineNoCov">              0 :   div(long __i, long __j) { return ldiv(__i, __j); }</span>
+<span class="lineNum">     148 </span>                : 
+<span class="lineNum">     149 </span>                : _GLIBCXX_END_NAMESPACE
+<span class="lineNum">     150 </span>                : 
+<span class="lineNum">     151 </span>                : #if _GLIBCXX_USE_C99
+<span class="lineNum">     152 </span>                : 
+<span class="lineNum">     153 </span>                : #undef _Exit
+<span class="lineNum">     154 </span>                : #undef llabs
+<span class="lineNum">     155 </span>                : #undef lldiv
+<span class="lineNum">     156 </span>                : #undef atoll
+<span class="lineNum">     157 </span>                : #undef strtoll
+<span class="lineNum">     158 </span>                : #undef strtoull
+<span class="lineNum">     159 </span>                : #undef strtof
+<span class="lineNum">     160 </span>                : #undef strtold
+<span class="lineNum">     161 </span>                : 
+<span class="lineNum">     162 </span>                : _GLIBCXX_BEGIN_NAMESPACE(__gnu_cxx)
+<span class="lineNum">     163 </span>                : 
+<span class="lineNum">     164 </span>                : #if !_GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
+<span class="lineNum">     165 </span>                :   using ::lldiv_t;
+<span class="lineNum">     166 </span>                : #endif
+<span class="lineNum">     167 </span>                : #if _GLIBCXX_USE_C99_CHECK || _GLIBCXX_USE_C99_DYNAMIC
+<span class="lineNum">     168 </span>                :   extern &quot;C&quot; void (_Exit)(int);
+<span class="lineNum">     169 </span>                : #endif
+<span class="lineNum">     170 </span>                : #if !_GLIBCXX_USE_C99_DYNAMIC
+<span class="lineNum">     171 </span>                :   using ::_Exit;
+<span class="lineNum">     172 </span>                : #endif
+<span class="lineNum">     173 </span>                : 
+<span class="lineNum">     174 </span>                :   inline long long
+<span class="lineNum">     175 </span><span class="lineNoCov">              0 :   abs(long long __x) { return __x &gt;= 0 ? __x : -__x; }</span>
+<span class="lineNum">     176 </span>                : 
+<span class="lineNum">     177 </span>                : #if !_GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
+<span class="lineNum">     178 </span>                :   using ::llabs;
+<span class="lineNum">     179 </span>                : 
+<span class="lineNum">     180 </span>                :   inline lldiv_t
+<span class="lineNum">     181 </span><span class="lineNoCov">              0 :   div(long long __n, long long __d)</span>
+<span class="lineNum">     182 </span><span class="lineNoCov">              0 :   { lldiv_t __q; __q.quot = __n / __d; __q.rem = __n % __d; return __q; }</span>
+<span class="lineNum">     183 </span>                : 
+<span class="lineNum">     184 </span>                :   using ::lldiv;
+<span class="lineNum">     185 </span>                : #endif
+<span class="lineNum">     186 </span>                : 
+<span class="lineNum">     187 </span>                : #if _GLIBCXX_USE_C99_LONG_LONG_CHECK || _GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
+<span class="lineNum">     188 </span>                :   extern &quot;C&quot; long long int (atoll)(const char *);
+<span class="lineNum">     189 </span>                :   extern &quot;C&quot; long long int
+<span class="lineNum">     190 </span>                :     (strtoll)(const char * restrict, char ** restrict, int);
+<span class="lineNum">     191 </span>                :   extern &quot;C&quot; unsigned long long int
+<span class="lineNum">     192 </span>                :     (strtoull)(const char * restrict, char ** restrict, int);
+<span class="lineNum">     193 </span>                : #endif
+<span class="lineNum">     194 </span>                : #if !_GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
+<span class="lineNum">     195 </span>                :   using ::atoll;
+<span class="lineNum">     196 </span>                :   using ::strtoll;
+<span class="lineNum">     197 </span>                :   using ::strtoull;
+<span class="lineNum">     198 </span>                : #endif
+<span class="lineNum">     199 </span>                :   using ::strtof;
+<span class="lineNum">     200 </span>                :   using ::strtold;
+<span class="lineNum">     201 </span>                : 
+<span class="lineNum">     202 </span>                : _GLIBCXX_END_NAMESPACE
+<span class="lineNum">     203 </span>                : 
+<span class="lineNum">     204 </span>                : _GLIBCXX_BEGIN_NAMESPACE(std)
+<span class="lineNum">     205 </span>                : 
+<span class="lineNum">     206 </span>                : #if !_GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
+<span class="lineNum">     207 </span>                :   using ::__gnu_cxx::lldiv_t;
+<span class="lineNum">     208 </span>                : #endif
+<span class="lineNum">     209 </span>                :   using ::__gnu_cxx::_Exit;
+<span class="lineNum">     210 </span>                :   using ::__gnu_cxx::abs;
+<span class="lineNum">     211 </span>                : #if !_GLIBCXX_USE_C99_LONG_LONG_DYNAMIC
+<span class="lineNum">     212 </span>                :   using ::__gnu_cxx::llabs;
+<span class="lineNum">     213 </span>                :   using ::__gnu_cxx::div;
+<span class="lineNum">     214 </span>                :   using ::__gnu_cxx::lldiv;
+<span class="lineNum">     215 </span>                : #endif
+<span class="lineNum">     216 </span>                :   using ::__gnu_cxx::atoll;
+<span class="lineNum">     217 </span>                :   using ::__gnu_cxx::strtof;
+<span class="lineNum">     218 </span>                :   using ::__gnu_cxx::strtoll;
+<span class="lineNum">     219 </span>                :   using ::__gnu_cxx::strtoull;
+<span class="lineNum">     220 </span>                :   using ::__gnu_cxx::strtold;
+<span class="lineNum">     221 </span>                : 
+<span class="lineNum">     222 </span>                : _GLIBCXX_END_NAMESPACE
+<span class="lineNum">     223 </span>                : 
+<span class="lineNum">     224 </span>                : #endif // _GLIBCXX_USE_C99
+<span class="lineNum">     225 </span>                : 
+<span class="lineNum">     226 </span>                : #ifdef __GXX_EXPERIMENTAL_CXX0X__
+<span class="lineNum">     227 </span>                : #  if defined(_GLIBCXX_INCLUDE_AS_TR1)
+<span class="lineNum">     228 </span>                : #    error C++0x header cannot be included from TR1 header
+<span class="lineNum">     229 </span>                : #  endif
+<span class="lineNum">     230 </span>                : #  if defined(_GLIBCXX_INCLUDE_AS_CXX0X)
+<span class="lineNum">     231 </span>                : #    include &lt;tr1_impl/cstdlib&gt;
+<span class="lineNum">     232 </span>                : #  else
+<span class="lineNum">     233 </span>                : #    define _GLIBCXX_INCLUDE_AS_CXX0X
+<span class="lineNum">     234 </span>                : #    define _GLIBCXX_BEGIN_NAMESPACE_TR1
+<span class="lineNum">     235 </span>                : #    define _GLIBCXX_END_NAMESPACE_TR1
+<span class="lineNum">     236 </span>                : #    define _GLIBCXX_TR1
+<span class="lineNum">     237 </span>                : #    include &lt;tr1_impl/cstdlib&gt;
+<span class="lineNum">     238 </span>                : #    undef _GLIBCXX_TR1
+<span class="lineNum">     239 </span>                : #    undef _GLIBCXX_END_NAMESPACE_TR1
+<span class="lineNum">     240 </span>                : #    undef _GLIBCXX_BEGIN_NAMESPACE_TR1
+<span class="lineNum">     241 </span>                : #    undef _GLIBCXX_INCLUDE_AS_CXX0X
+<span class="lineNum">     242 </span>                : #  endif
+<span class="lineNum">     243 </span>                : #endif
+<span class="lineNum">     244 </span>                : 
+<span class="lineNum">     245 </span>                : #endif // !_GLIBCXX_HOSTED
+<span class="lineNum">     246 </span>                : 
+<span class="lineNum">     247 </span>                : #endif
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+  <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+  <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LTP GCOV extension version 1.6</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

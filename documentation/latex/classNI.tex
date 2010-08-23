@@ -1,0 +1,645 @@
+\section{NI Class Reference}
+\label{classNI}\index{NI@{NI}}
+{\tt \#include $<$NI.h$>$}
+
+Inheritance diagram for NI:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classNI__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for NI:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classNI__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf NI} ()
+\item 
+{\bf $\sim$NI} ()
+\item 
+void {\bf setup} ({\bf uint} {\bf no\_\-nodes}, {\bf uint} {\bf vcs}, {\bf uint} {\bf max\_\-sim\_\-time})
+\item 
+void {\bf finish} ()
+\item 
+void {\bf process\_\-event} ({\bf IrisEvent} $\ast$e)
+\item 
+string {\bf toString} () const 
+\item 
+void {\bf set\_\-no\_\-vcs} ({\bf uint} v)
+\item 
+void {\bf set\_\-output\_\-path} (string v)
+\item 
+bool {\bf compare} ()
+\item 
+string {\bf print\_\-stats} () const 
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+{\bf Component} $\ast$ {\bf mc}
+\item 
+vector$<$ {\bf Request} $>$ {\bf niQueue}
+\item 
+{\bf uint} {\bf node\_\-ip}
+\item 
+bool {\bf sending}
+\end{CompactItemize}
+\subsection*{Private Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf handle\_\-new\_\-packet\_\-event} ({\bf IrisEvent} $\ast$e)
+\item 
+void {\bf handle\_\-old\_\-packet\_\-event} ({\bf IrisEvent} $\ast$e)
+\item 
+void {\bf handle\_\-ready\_\-event} ({\bf IrisEvent} $\ast$e)
+\item 
+void {\bf handle\_\-out\_\-pull\_\-event} ({\bf IrisEvent} $\ast$e)
+\item 
+void {\bf handle\_\-detect\_\-deadlock\_\-event} ({\bf IrisEvent} $\ast$)
+\item 
+void {\bf convertToBitStream} ({\bf Request} $\ast$req, {\bf HighLevelPacket} $\ast$hlp)
+\item 
+void {\bf convertFromBitStream} ({\bf Request} $\ast$req, {\bf HighLevelPacket} $\ast$hlp)
+\item 
+bool {\bf GetFromNIQueue} ({\bf Request} $\ast$req)
+\item 
+void {\bf add\_\-mc\_\-bits} ({\bf Request} $\ast$req)
+\item 
+void {\bf strip\_\-mc\_\-bits} ({\bf Request} $\ast$req)
+\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+double {\bf last\_\-pkt\_\-out\_\-cycle}
+\item 
+{\bf ullint} {\bf last\_\-out\_\-pull\_\-cycle}
+\item 
+unsigned long long int {\bf total\_\-missed\_\-time}
+\item 
+unsigned long long int {\bf total\_\-backward\_\-time}
+\item 
+{\bf uint} {\bf missed\_\-time}
+\item 
+unsigned long long int {\bf packets\_\-out}
+\item 
+{\bf ullint} {\bf resp\_\-buff\_\-occ\_\-cycles}
+\item 
+{\bf ullint} {\bf avg\_\-resp\_\-buff\_\-occ}
+\item 
+{\bf uint} {\bf vcs}
+\item 
+{\bf uint} {\bf no\_\-nodes}
+\item 
+unsigned int {\bf packets}
+\item 
+unsigned long long int {\bf max\_\-sim\_\-time}
+\item 
+deque$<$ {\bf HighLevelPacket} $>$ {\bf out\_\-packets}
+\item 
+deque$<$ {\bf HighLevelPacket} $>$ {\bf sent\_\-packets}
+\item 
+vector$<$ {\bf HighLevelPacket} $\ast$ $>$ {\bf outstanding\_\-hlp}
+\item 
+string {\bf out\_\-filename}
+\item 
+string {\bf trace\_\-name}
+\item 
+ofstream {\bf out\_\-file}
+\item 
+fstream {\bf trace\_\-filename}
+\item 
+vector$<$ bool $>$ {\bf ready}
+\item 
+unsigned int {\bf last\_\-vc}
+\item 
+unsigned int {\bf flast\_\-vc}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 48 of file NI.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{NI@{NI}!NI@{NI}}
+\index{NI@{NI}!NI@{NI}}
+\subsubsection[{NI}]{\setlength{\rightskip}{0pt plus 5cm}NI::NI ()}\label{classNI_e1a664b1a0325cd76eed264a85017141}
+
+
+
+
+Definition at line 29 of file NI.cc.
+
+References mc, NetworkComponent::name, and Processor::ni\_\-recv.\index{NI@{NI}!$\sim$NI@{$\sim$NI}}
+\index{$\sim$NI@{$\sim$NI}!NI@{NI}}
+\subsubsection[{$\sim$NI}]{\setlength{\rightskip}{0pt plus 5cm}NI::$\sim$NI ()}\label{classNI_613165324d008633bc7cb396d7a49421}
+
+
+
+
+Definition at line 40 of file NI.cc.
+
+\subsection{Member Function Documentation}
+\index{NI@{NI}!add\_\-mc\_\-bits@{add\_\-mc\_\-bits}}
+\index{add\_\-mc\_\-bits@{add\_\-mc\_\-bits}!NI@{NI}}
+\subsubsection[{add\_\-mc\_\-bits}]{\setlength{\rightskip}{0pt plus 5cm}void NI::add\_\-mc\_\-bits ({\bf Request} $\ast$ {\em req})\hspace{0.3cm}{\tt  [private]}}\label{classNI_135715bc809d5555a8cb1e666a31101e}
+
+
+
+
+Definition at line 131 of file NI.cc.
+
+References Request::address, MC\_\-ADDR\_\-BITS, mc\_\-positions, no\_\-mcs, and node\_\-ip.
+
+Referenced by handle\_\-out\_\-pull\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classNI_135715bc809d5555a8cb1e666a31101e_icgraph}
+\end{center}
+\end{figure}
+\index{NI@{NI}!compare@{compare}}
+\index{compare@{compare}!NI@{NI}}
+\subsubsection[{compare}]{\setlength{\rightskip}{0pt plus 5cm}bool NI::compare ()}\label{classNI_98a412e4b8fb34ae2113828e83726d37}
+
+
+\index{NI@{NI}!convertFromBitStream@{convertFromBitStream}}
+\index{convertFromBitStream@{convertFromBitStream}!NI@{NI}}
+\subsubsection[{convertFromBitStream}]{\setlength{\rightskip}{0pt plus 5cm}void NI::convertFromBitStream ({\bf Request} $\ast$ {\em req}, \/  {\bf HighLevelPacket} $\ast$ {\em hlp})\hspace{0.3cm}{\tt  [private]}}\label{classNI_abaf117896a61219c6ead34295b83ea3}
+
+
+
+
+Definition at line 518 of file NI.cc.
+
+References Request::address, Request::cmdType, HighLevelPacket::data, NETWORK\_\-ADDRESS\_\-BITS, NETWORK\_\-COMMAND\_\-BITS, NETWORK\_\-THREADID\_\-BITS, and Request::threadId.
+
+Referenced by handle\_\-new\_\-packet\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classNI_abaf117896a61219c6ead34295b83ea3_icgraph}
+\end{center}
+\end{figure}
+\index{NI@{NI}!convertToBitStream@{convertToBitStream}}
+\index{convertToBitStream@{convertToBitStream}!NI@{NI}}
+\subsubsection[{convertToBitStream}]{\setlength{\rightskip}{0pt plus 5cm}void NI::convertToBitStream ({\bf Request} $\ast$ {\em req}, \/  {\bf HighLevelPacket} $\ast$ {\em hlp})\hspace{0.3cm}{\tt  [private]}}\label{classNI_4abf83580f78e17068f12277872de6bb}
+
+
+
+
+Definition at line 479 of file NI.cc.
+
+References Request::address, bool, CACHE\_\-BLOCK\_\-SIZE, CACHE\_\-PREFETCH, CACHE\_\-READ, CACHE\_\-WRITE, Request::cmdType, HighLevelPacket::data, HighLevelPacket::data\_\-payload\_\-length, max\_\-phy\_\-link\_\-bits, and NETWORK\_\-ADDRESS\_\-BITS.
+
+Referenced by handle\_\-out\_\-pull\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classNI_4abf83580f78e17068f12277872de6bb_icgraph}
+\end{center}
+\end{figure}
+\index{NI@{NI}!finish@{finish}}
+\index{finish@{finish}!NI@{NI}}
+\subsubsection[{finish}]{\setlength{\rightskip}{0pt plus 5cm}void NI::finish ()}\label{classNI_497dd4f7834b6dce5f7ec7db66c89724}
+
+
+
+
+Definition at line 101 of file NI.cc.
+
+References out\_\-file.\index{NI@{NI}!GetFromNIQueue@{GetFromNIQueue}}
+\index{GetFromNIQueue@{GetFromNIQueue}!NI@{NI}}
+\subsubsection[{GetFromNIQueue}]{\setlength{\rightskip}{0pt plus 5cm}bool NI::GetFromNIQueue ({\bf Request} $\ast$ {\em req})\hspace{0.3cm}{\tt  [private]}}\label{classNI_f13b136c56211ca9561889de51a55917}
+
+
+
+
+Definition at line 465 of file NI.cc.
+
+References niQueue.
+
+Referenced by handle\_\-out\_\-pull\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classNI_f13b136c56211ca9561889de51a55917_icgraph}
+\end{center}
+\end{figure}
+\index{NI@{NI}!handle\_\-detect\_\-deadlock\_\-event@{handle\_\-detect\_\-deadlock\_\-event}}
+\index{handle\_\-detect\_\-deadlock\_\-event@{handle\_\-detect\_\-deadlock\_\-event}!NI@{NI}}
+\subsubsection[{handle\_\-detect\_\-deadlock\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void NI::handle\_\-detect\_\-deadlock\_\-event ({\bf IrisEvent} $\ast$)\hspace{0.3cm}{\tt  [private]}}\label{classNI_564f63e277cce36c7bf701d7abe99ce7}
+
+
+\index{NI@{NI}!handle\_\-new\_\-packet\_\-event@{handle\_\-new\_\-packet\_\-event}}
+\index{handle\_\-new\_\-packet\_\-event@{handle\_\-new\_\-packet\_\-event}!NI@{NI}}
+\subsubsection[{handle\_\-new\_\-packet\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void NI::handle\_\-new\_\-packet\_\-event ({\bf IrisEvent} $\ast$ {\em e})\hspace{0.3cm}{\tt  [private]}}\label{classNI_e46ba8d7412bc25bd55002faf8415360}
+
+
+
+
+Definition at line 186 of file NI.cc.
+
+References \_\-DBG, NetworkComponent::address, Request::arrivalTime, HighLevelPacket::avg\_\-network\_\-latency, Request::avg\_\-network\_\-latency, convertFromBitStream(), IrisEvent::dst, IrisEvent::event\_\-data, flast\_\-vc, HighLevelPacket::hop\_\-count, Request::hop\_\-count, Processor::interface\_\-connections, last\_\-pkt\_\-out\_\-cycle, mc, NEW\_\-PACKET\_\-EVENT, Processor::ni\_\-recv, Simulator::Now(), outstanding\_\-hlp, packets, NetworkComponent::process\_\-event(), RequestHandler::process\_\-event(), READY\_\-EVENT, HighLevelPacket::recv\_\-time, HighLevelPacket::req\_\-start\_\-time, Simulator::Schedule(), IrisEvent::src, IrisEvent::src\_\-id, START, Request::startTime, strip\_\-mc\_\-bits(), IrisEvent::toString(), total\_\-missed\_\-time, IrisEvent::type, IrisEvent::vc, vcs, and HighLevelPacket::virtual\_\-channel.
+
+Referenced by process\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classNI_e46ba8d7412bc25bd55002faf8415360_icgraph}
+\end{center}
+\end{figure}
+\index{NI@{NI}!handle\_\-old\_\-packet\_\-event@{handle\_\-old\_\-packet\_\-event}}
+\index{handle\_\-old\_\-packet\_\-event@{handle\_\-old\_\-packet\_\-event}!NI@{NI}}
+\subsubsection[{handle\_\-old\_\-packet\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void NI::handle\_\-old\_\-packet\_\-event ({\bf IrisEvent} $\ast$ {\em e})\hspace{0.3cm}{\tt  [private]}}\label{classNI_321cd8a5c67adc0f56039530353a6ca4}
+
+
+\index{NI@{NI}!handle\_\-out\_\-pull\_\-event@{handle\_\-out\_\-pull\_\-event}}
+\index{handle\_\-out\_\-pull\_\-event@{handle\_\-out\_\-pull\_\-event}!NI@{NI}}
+\subsubsection[{handle\_\-out\_\-pull\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void NI::handle\_\-out\_\-pull\_\-event ({\bf IrisEvent} $\ast$ {\em e})\hspace{0.3cm}{\tt  [private]}}\label{classNI_13ba7118e07f54025cdd57e4ea877b1d}
+
+
+
+
+Definition at line 289 of file NI.cc.
+
+References add\_\-mc\_\-bits(), HighLevelPacket::addr, Request::address, Request::arrivalTime, Request::avg\_\-network\_\-latency, HighLevelPacket::avg\_\-network\_\-latency, avg\_\-resp\_\-buff\_\-occ, convertToBitStream(), HighLevelPacket::destination, IrisEvent::dst, GetFromNIQueue(), Request::hop\_\-count, HighLevelPacket::hop\_\-count, Processor::interface\_\-connections, last\_\-out\_\-pull\_\-cycle, last\_\-vc, mc, HighLevelPacket::msg\_\-class, NEW\_\-PACKET\_\-EVENT, niQueue, node\_\-ip, Simulator::Now(), packets\_\-out, ResponseHandler::process\_\-event(), NetworkComponent::process\_\-event(), ready, HighLevelPacket::recv\_\-time, HighLevelPacket::req\_\-start\_\-time, resp\_\-buff\_\-occ\_\-cycles, RESPONSE\_\-PKT, Request::retireTime, Simulator::Schedule(), SEND\_\-TO\_\-NI, sending, HighLevelPacket::sent\_\-time, HighLevelPacket::source, Request::startTime, HighLevelPacket::stat\_\-memory\_\-serviced\_\-time, Request::threadId, total\_\-backward\_\-time, HighLevelPacket::transaction\_\-id, IrisEvent::type, vcs, HighLevelPacket::virtual\_\-channel, and HighLevelPacket::waiting\_\-in\_\-ni.
+
+Referenced by process\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classNI_13ba7118e07f54025cdd57e4ea877b1d_icgraph}
+\end{center}
+\end{figure}
+\index{NI@{NI}!handle\_\-ready\_\-event@{handle\_\-ready\_\-event}}
+\index{handle\_\-ready\_\-event@{handle\_\-ready\_\-event}!NI@{NI}}
+\subsubsection[{handle\_\-ready\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void NI::handle\_\-ready\_\-event ({\bf IrisEvent} $\ast$ {\em e})\hspace{0.3cm}{\tt  [private]}}\label{classNI_13476613b15287d53105527eec185c5a}
+
+
+
+
+Definition at line 383 of file NI.cc.
+
+References \_\-DBG, max\_\-sim\_\-time, Simulator::Now(), OUT\_\-PULL\_\-EVENT, NetworkComponent::process\_\-event(), ready, Simulator::Schedule(), sending, IrisEvent::vc, and vcs.
+
+Referenced by process\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classNI_13476613b15287d53105527eec185c5a_icgraph}
+\end{center}
+\end{figure}
+\index{NI@{NI}!print\_\-stats@{print\_\-stats}}
+\index{print\_\-stats@{print\_\-stats}!NI@{NI}}
+\subsubsection[{print\_\-stats}]{\setlength{\rightskip}{0pt plus 5cm}string NI::print\_\-stats (void) const\hspace{0.3cm}{\tt  [virtual]}}\label{classNI_a9e212607f84abb12bd8202829ac9b66}
+
+
+
+
+Implements {\bf Processor} \doxyref{}{p.}{classProcessor_4026b719628ed5e3f65ba0702253ba4d}.
+
+Definition at line 548 of file NI.cc.
+
+References avg\_\-resp\_\-buff\_\-occ, last\_\-pkt\_\-out\_\-cycle, mc, node\_\-ip, packets, packets\_\-out, resp\_\-buff\_\-occ\_\-cycles, total\_\-backward\_\-time, and total\_\-missed\_\-time.\index{NI@{NI}!process\_\-event@{process\_\-event}}
+\index{process\_\-event@{process\_\-event}!NI@{NI}}
+\subsubsection[{process\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void NI::process\_\-event ({\bf IrisEvent} $\ast$ {\em e})\hspace{0.3cm}{\tt  [virtual]}}\label{classNI_3ed3e6f65c38e630706af16212ded02a}
+
+
+
+
+Implements {\bf Processor} \doxyref{}{p.}{classProcessor_18cdeefafbd8225cb3ad18dd098c0e08}.
+
+Definition at line 108 of file NI.cc.
+
+References handle\_\-new\_\-packet\_\-event(), handle\_\-out\_\-pull\_\-event(), handle\_\-ready\_\-event(), NEW\_\-PACKET\_\-EVENT, OUT\_\-PULL\_\-EVENT, READY\_\-EVENT, and IrisEvent::type.
+
+Referenced by ResponseHandler::process\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classNI_3ed3e6f65c38e630706af16212ded02a_icgraph}
+\end{center}
+\end{figure}
+\index{NI@{NI}!set\_\-no\_\-vcs@{set\_\-no\_\-vcs}}
+\index{set\_\-no\_\-vcs@{set\_\-no\_\-vcs}!NI@{NI}}
+\subsubsection[{set\_\-no\_\-vcs}]{\setlength{\rightskip}{0pt plus 5cm}void NI::set\_\-no\_\-vcs ({\bf uint} {\em v})}\label{classNI_787cabf9de0b7603f5a71e1ac9e78a6b}
+
+
+
+
+Definition at line 45 of file NI.cc.
+
+References vcs.\index{NI@{NI}!set\_\-output\_\-path@{set\_\-output\_\-path}}
+\index{set\_\-output\_\-path@{set\_\-output\_\-path}!NI@{NI}}
+\subsubsection[{set\_\-output\_\-path}]{\setlength{\rightskip}{0pt plus 5cm}void NI::set\_\-output\_\-path (string {\em v})\hspace{0.3cm}{\tt  [virtual]}}\label{classNI_7a3889ea698efbc5b42a3c996dc96a20}
+
+
+
+
+Implements {\bf Processor} \doxyref{}{p.}{classProcessor_b4c5dff8417f916a1e0611ae73510a89}.
+
+Definition at line 85 of file NI.cc.
+
+References node\_\-ip, out\_\-file, and out\_\-filename.\index{NI@{NI}!setup@{setup}}
+\index{setup@{setup}!NI@{NI}}
+\subsubsection[{setup}]{\setlength{\rightskip}{0pt plus 5cm}void NI::setup ({\bf uint} {\em no\_\-nodes}, \/  {\bf uint} {\em vcs}, \/  {\bf uint} {\em max\_\-sim\_\-time})\hspace{0.3cm}{\tt  [virtual]}}\label{classNI_b21c80fe863fa252403777f90c6b9a45}
+
+
+
+
+Implements {\bf Processor} \doxyref{}{p.}{classProcessor_dd2277b3c802f5e10419e1180c7e97a5}.
+
+Definition at line 51 of file NI.cc.
+
+References NetworkComponent::address, avg\_\-resp\_\-buff\_\-occ, flast\_\-vc, last\_\-vc, max\_\-sim\_\-time, mc, missed\_\-time, Component::myId(), no\_\-nodes, node\_\-ip, outstanding\_\-hlp, packets, packets\_\-out, ready, resp\_\-buff\_\-occ\_\-cycles, total\_\-backward\_\-time, total\_\-missed\_\-time, and vcs.\index{NI@{NI}!strip\_\-mc\_\-bits@{strip\_\-mc\_\-bits}}
+\index{strip\_\-mc\_\-bits@{strip\_\-mc\_\-bits}!NI@{NI}}
+\subsubsection[{strip\_\-mc\_\-bits}]{\setlength{\rightskip}{0pt plus 5cm}void NI::strip\_\-mc\_\-bits ({\bf Request} $\ast$ {\em req})\hspace{0.3cm}{\tt  [private]}}\label{classNI_c1bedb7fa383d6acf6388f4ae5ebeebc}
+
+
+
+
+Definition at line 156 of file NI.cc.
+
+References Request::address, MC\_\-ADDR\_\-BITS, mc\_\-positions, no\_\-mcs, NO\_\-OF\_\-THREADS, and node\_\-ip.
+
+Referenced by handle\_\-new\_\-packet\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classNI_c1bedb7fa383d6acf6388f4ae5ebeebc_icgraph}
+\end{center}
+\end{figure}
+\index{NI@{NI}!toString@{toString}}
+\index{toString@{toString}!NI@{NI}}
+\subsubsection[{toString}]{\setlength{\rightskip}{0pt plus 5cm}string NI::toString () const\hspace{0.3cm}{\tt  [virtual]}}\label{classNI_06887ce2728265794ba26da5ccb082ce}
+
+
+
+
+Reimplemented from {\bf Processor} \doxyref{}{p.}{classProcessor_d3bdbedfbb00b05f61504e411a418106}.
+
+Definition at line 453 of file NI.cc.
+
+References NetworkComponent::address, Processor::interface\_\-connections, and out\_\-filename.
+
+\subsection{Member Data Documentation}
+\index{NI@{NI}!avg\_\-resp\_\-buff\_\-occ@{avg\_\-resp\_\-buff\_\-occ}}
+\index{avg\_\-resp\_\-buff\_\-occ@{avg\_\-resp\_\-buff\_\-occ}!NI@{NI}}
+\subsubsection[{avg\_\-resp\_\-buff\_\-occ}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ullint} {\bf NI::avg\_\-resp\_\-buff\_\-occ}\hspace{0.3cm}{\tt  [private]}}\label{classNI_051ddc0cbbf97932891cf21b8471db2f}
+
+
+
+
+Definition at line 76 of file NI.h.
+
+Referenced by handle\_\-out\_\-pull\_\-event(), print\_\-stats(), and setup().\index{NI@{NI}!flast\_\-vc@{flast\_\-vc}}
+\index{flast\_\-vc@{flast\_\-vc}!NI@{NI}}
+\subsubsection[{flast\_\-vc}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf NI::flast\_\-vc}\hspace{0.3cm}{\tt  [private]}}\label{classNI_55336b0f4f3975e822846efa45a897f2}
+
+
+
+
+Definition at line 91 of file NI.h.
+
+Referenced by handle\_\-new\_\-packet\_\-event(), and setup().\index{NI@{NI}!last\_\-out\_\-pull\_\-cycle@{last\_\-out\_\-pull\_\-cycle}}
+\index{last\_\-out\_\-pull\_\-cycle@{last\_\-out\_\-pull\_\-cycle}!NI@{NI}}
+\subsubsection[{last\_\-out\_\-pull\_\-cycle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ullint} {\bf NI::last\_\-out\_\-pull\_\-cycle}\hspace{0.3cm}{\tt  [private]}}\label{classNI_47443285d7e57b4e8f47150b44182a8c}
+
+
+
+
+Definition at line 70 of file NI.h.
+
+Referenced by handle\_\-out\_\-pull\_\-event().\index{NI@{NI}!last\_\-pkt\_\-out\_\-cycle@{last\_\-pkt\_\-out\_\-cycle}}
+\index{last\_\-pkt\_\-out\_\-cycle@{last\_\-pkt\_\-out\_\-cycle}!NI@{NI}}
+\subsubsection[{last\_\-pkt\_\-out\_\-cycle}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf NI::last\_\-pkt\_\-out\_\-cycle}\hspace{0.3cm}{\tt  [private]}}\label{classNI_68b44e1e9ccaa902750762e8220a4dae}
+
+
+
+
+Definition at line 69 of file NI.h.
+
+Referenced by handle\_\-new\_\-packet\_\-event(), and print\_\-stats().\index{NI@{NI}!last\_\-vc@{last\_\-vc}}
+\index{last\_\-vc@{last\_\-vc}!NI@{NI}}
+\subsubsection[{last\_\-vc}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf NI::last\_\-vc}\hspace{0.3cm}{\tt  [private]}}\label{classNI_d5b6945d115cd6641bf490f9c859249a}
+
+
+
+
+Definition at line 90 of file NI.h.
+
+Referenced by handle\_\-out\_\-pull\_\-event(), and setup().\index{NI@{NI}!max\_\-sim\_\-time@{max\_\-sim\_\-time}}
+\index{max\_\-sim\_\-time@{max\_\-sim\_\-time}!NI@{NI}}
+\subsubsection[{max\_\-sim\_\-time}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long long int {\bf NI::max\_\-sim\_\-time}\hspace{0.3cm}{\tt  [private]}}\label{classNI_909adb04bc48a0717e43d5ff2b030d76}
+
+
+
+
+Definition at line 81 of file NI.h.
+
+Referenced by handle\_\-ready\_\-event(), and setup().\index{NI@{NI}!mc@{mc}}
+\index{mc@{mc}!NI@{NI}}
+\subsubsection[{mc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Component}$\ast$ {\bf NI::mc}}\label{classNI_42ff0bd50daeccc6477bcd8777edeaeb}
+
+
+
+
+Definition at line 53 of file NI.h.
+
+Referenced by handle\_\-new\_\-packet\_\-event(), handle\_\-out\_\-pull\_\-event(), NI(), print\_\-stats(), and setup().\index{NI@{NI}!missed\_\-time@{missed\_\-time}}
+\index{missed\_\-time@{missed\_\-time}!NI@{NI}}
+\subsubsection[{missed\_\-time}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf NI::missed\_\-time}\hspace{0.3cm}{\tt  [private]}}\label{classNI_ffba3811f8d836b3d1b2b7fdb706ca98}
+
+
+
+
+Definition at line 73 of file NI.h.
+
+Referenced by setup().\index{NI@{NI}!niQueue@{niQueue}}
+\index{niQueue@{niQueue}!NI@{NI}}
+\subsubsection[{niQueue}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf Request}$>$ {\bf NI::niQueue}}\label{classNI_5ff1e077fe021f255a261bdf46ab6bf8}
+
+
+
+
+Definition at line 54 of file NI.h.
+
+Referenced by GetFromNIQueue(), and handle\_\-out\_\-pull\_\-event().\index{NI@{NI}!no\_\-nodes@{no\_\-nodes}}
+\index{no\_\-nodes@{no\_\-nodes}!NI@{NI}}
+\subsubsection[{no\_\-nodes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf NI::no\_\-nodes}\hspace{0.3cm}{\tt  [private]}}\label{classNI_8acbbb379c0ff279efe4fed19379a05b}
+
+
+
+
+Definition at line 79 of file NI.h.
+
+Referenced by setup().\index{NI@{NI}!node\_\-ip@{node\_\-ip}}
+\index{node\_\-ip@{node\_\-ip}!NI@{NI}}
+\subsubsection[{node\_\-ip}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf NI::node\_\-ip}}\label{classNI_6c1e08e250665ec5c78016a12adb4a12}
+
+
+
+
+Reimplemented from {\bf NetworkComponent} \doxyref{}{p.}{classNetworkComponent_56599b3484333fb78af1b6c33f77cf16}.
+
+Definition at line 59 of file NI.h.
+
+Referenced by add\_\-mc\_\-bits(), handle\_\-out\_\-pull\_\-event(), print\_\-stats(), set\_\-output\_\-path(), setup(), and strip\_\-mc\_\-bits().\index{NI@{NI}!out\_\-file@{out\_\-file}}
+\index{out\_\-file@{out\_\-file}!NI@{NI}}
+\subsubsection[{out\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}ofstream {\bf NI::out\_\-file}\hspace{0.3cm}{\tt  [private]}}\label{classNI_ee95241b50b6a3609b74495f9e9dc58d}
+
+
+
+
+Definition at line 87 of file NI.h.
+
+Referenced by finish(), and set\_\-output\_\-path().\index{NI@{NI}!out\_\-filename@{out\_\-filename}}
+\index{out\_\-filename@{out\_\-filename}!NI@{NI}}
+\subsubsection[{out\_\-filename}]{\setlength{\rightskip}{0pt plus 5cm}string {\bf NI::out\_\-filename}\hspace{0.3cm}{\tt  [private]}}\label{classNI_586de3b8d8f6810535a1185148af09ac}
+
+
+
+
+Definition at line 85 of file NI.h.
+
+Referenced by set\_\-output\_\-path(), and toString().\index{NI@{NI}!out\_\-packets@{out\_\-packets}}
+\index{out\_\-packets@{out\_\-packets}!NI@{NI}}
+\subsubsection[{out\_\-packets}]{\setlength{\rightskip}{0pt plus 5cm}deque$<$ {\bf HighLevelPacket} $>$ {\bf NI::out\_\-packets}\hspace{0.3cm}{\tt  [private]}}\label{classNI_999b696c5282bda9f91bef701c957b79}
+
+
+
+
+Definition at line 82 of file NI.h.\index{NI@{NI}!outstanding\_\-hlp@{outstanding\_\-hlp}}
+\index{outstanding\_\-hlp@{outstanding\_\-hlp}!NI@{NI}}
+\subsubsection[{outstanding\_\-hlp}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf HighLevelPacket}$\ast$$>$ {\bf NI::outstanding\_\-hlp}\hspace{0.3cm}{\tt  [private]}}\label{classNI_36febc6f4bd185143ae3902b15c91006}
+
+
+
+
+Definition at line 84 of file NI.h.
+
+Referenced by handle\_\-new\_\-packet\_\-event(), and setup().\index{NI@{NI}!packets@{packets}}
+\index{packets@{packets}!NI@{NI}}
+\subsubsection[{packets}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf NI::packets}\hspace{0.3cm}{\tt  [private]}}\label{classNI_9f170f44f07f709a26162ccee94fcd20}
+
+
+
+
+Definition at line 80 of file NI.h.
+
+Referenced by handle\_\-new\_\-packet\_\-event(), print\_\-stats(), and setup().\index{NI@{NI}!packets\_\-out@{packets\_\-out}}
+\index{packets\_\-out@{packets\_\-out}!NI@{NI}}
+\subsubsection[{packets\_\-out}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long long int {\bf NI::packets\_\-out}\hspace{0.3cm}{\tt  [private]}}\label{classNI_79b4cadda353578b7652dcc29f079172}
+
+
+
+
+Definition at line 74 of file NI.h.
+
+Referenced by handle\_\-out\_\-pull\_\-event(), print\_\-stats(), and setup().\index{NI@{NI}!ready@{ready}}
+\index{ready@{ready}!NI@{NI}}
+\subsubsection[{ready}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ bool $>$ {\bf NI::ready}\hspace{0.3cm}{\tt  [private]}}\label{classNI_e36057a01d5c7f976eca9a076a939b29}
+
+
+
+
+Definition at line 89 of file NI.h.
+
+Referenced by handle\_\-out\_\-pull\_\-event(), handle\_\-ready\_\-event(), and setup().\index{NI@{NI}!resp\_\-buff\_\-occ\_\-cycles@{resp\_\-buff\_\-occ\_\-cycles}}
+\index{resp\_\-buff\_\-occ\_\-cycles@{resp\_\-buff\_\-occ\_\-cycles}!NI@{NI}}
+\subsubsection[{resp\_\-buff\_\-occ\_\-cycles}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ullint} {\bf NI::resp\_\-buff\_\-occ\_\-cycles}\hspace{0.3cm}{\tt  [private]}}\label{classNI_c5406c55decb365c26d4cfa853ea2264}
+
+
+
+
+Definition at line 75 of file NI.h.
+
+Referenced by handle\_\-out\_\-pull\_\-event(), print\_\-stats(), and setup().\index{NI@{NI}!sending@{sending}}
+\index{sending@{sending}!NI@{NI}}
+\subsubsection[{sending}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf NI::sending}}\label{classNI_8fe8209ea9a353d596012c212855123c}
+
+
+
+
+Definition at line 64 of file NI.h.
+
+Referenced by handle\_\-out\_\-pull\_\-event(), and handle\_\-ready\_\-event().\index{NI@{NI}!sent\_\-packets@{sent\_\-packets}}
+\index{sent\_\-packets@{sent\_\-packets}!NI@{NI}}
+\subsubsection[{sent\_\-packets}]{\setlength{\rightskip}{0pt plus 5cm}deque$<$ {\bf HighLevelPacket} $>$ {\bf NI::sent\_\-packets}\hspace{0.3cm}{\tt  [private]}}\label{classNI_81f55cabf6b392d8662e03abb23bf11d}
+
+
+
+
+Definition at line 83 of file NI.h.\index{NI@{NI}!total\_\-backward\_\-time@{total\_\-backward\_\-time}}
+\index{total\_\-backward\_\-time@{total\_\-backward\_\-time}!NI@{NI}}
+\subsubsection[{total\_\-backward\_\-time}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long long int {\bf NI::total\_\-backward\_\-time}\hspace{0.3cm}{\tt  [private]}}\label{classNI_9e0004d2c769b5a302e9773c798a11fc}
+
+
+
+
+Definition at line 72 of file NI.h.
+
+Referenced by handle\_\-out\_\-pull\_\-event(), print\_\-stats(), and setup().\index{NI@{NI}!total\_\-missed\_\-time@{total\_\-missed\_\-time}}
+\index{total\_\-missed\_\-time@{total\_\-missed\_\-time}!NI@{NI}}
+\subsubsection[{total\_\-missed\_\-time}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long long int {\bf NI::total\_\-missed\_\-time}\hspace{0.3cm}{\tt  [private]}}\label{classNI_317285a13f0c4a7cda6c7dbe28e5d6c4}
+
+
+
+
+Definition at line 71 of file NI.h.
+
+Referenced by handle\_\-new\_\-packet\_\-event(), print\_\-stats(), and setup().\index{NI@{NI}!trace\_\-filename@{trace\_\-filename}}
+\index{trace\_\-filename@{trace\_\-filename}!NI@{NI}}
+\subsubsection[{trace\_\-filename}]{\setlength{\rightskip}{0pt plus 5cm}fstream {\bf NI::trace\_\-filename}\hspace{0.3cm}{\tt  [private]}}\label{classNI_ab2169ea73d8901e77cbc5b5bd1ead11}
+
+
+
+
+Definition at line 88 of file NI.h.\index{NI@{NI}!trace\_\-name@{trace\_\-name}}
+\index{trace\_\-name@{trace\_\-name}!NI@{NI}}
+\subsubsection[{trace\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}string {\bf NI::trace\_\-name}\hspace{0.3cm}{\tt  [private]}}\label{classNI_9acd00b7c39a9cba38d4b156085b176c}
+
+
+
+
+Definition at line 86 of file NI.h.\index{NI@{NI}!vcs@{vcs}}
+\index{vcs@{vcs}!NI@{NI}}
+\subsubsection[{vcs}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf NI::vcs}\hspace{0.3cm}{\tt  [private]}}\label{classNI_15777ceea502cd052c3a1be19dcd09f6}
+
+
+
+
+Definition at line 78 of file NI.h.
+
+Referenced by handle\_\-new\_\-packet\_\-event(), handle\_\-out\_\-pull\_\-event(), handle\_\-ready\_\-event(), set\_\-no\_\-vcs(), and setup().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf NI.h}\item 
+{\bf NI.cc}\end{CompactItemize}

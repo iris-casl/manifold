@@ -1,0 +1,169 @@
+\section{DataBusHandler Class Reference}
+\label{classDataBusHandler}\index{DataBusHandler@{DataBusHandler}}
+The data bus class.  
+
+
+{\tt \#include $<$data\_\-bus\_\-handler.h$>$}
+
+Inheritance diagram for DataBusHandler:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=152pt]{classDataBusHandler__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for DataBusHandler:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classDataBusHandler__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf DataBusHandler} ()
+\begin{CompactList}\small\item\em constructor \item\end{CompactList}\item 
+{\bf $\sim$DataBusHandler} ()
+\begin{CompactList}\small\item\em deconstructor \item\end{CompactList}\item 
+void {\bf process\_\-event} ({\bf IrisEvent} $\ast$e)
+\begin{CompactList}\small\item\em Handles all the operations of the data bus. \item\end{CompactList}\item 
+std::string {\bf toString} ()
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+{\bf Component} $\ast$ {\bf parent}
+\begin{CompactList}\small\item\em pointer to its parent \item\end{CompactList}\item 
+{\bf Component} $\ast$ {\bf child1}
+\begin{CompactList}\small\item\em pointer to corresponding \doxyref{DRAM}{p.}{classDRAM} channel \item\end{CompactList}\item 
+{\bf Component} $\ast$ {\bf child2}
+\begin{CompactList}\small\item\em pointer to response handler \item\end{CompactList}\item 
+{\bf Time} {\bf prevTime}
+\begin{CompactList}\small\item\em variable to keep track of the last time data bus was used \item\end{CompactList}\item 
+{\bf Time} {\bf busBusyTime}
+\begin{CompactList}\small\item\em total time the bus remained busy \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+The data bus class. 
+
+Description: This class handles the operation of the data bus. It receives read and write data from the corresponding dram channel or cmd issuer, respectively. It sends them to the response handler or \doxyref{DRAM}{p.}{classDRAM} after burst delay cycles. It also calculates data bus related stats. 
+
+Definition at line 47 of file data\_\-bus\_\-handler.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{DataBusHandler@{DataBusHandler}!DataBusHandler@{DataBusHandler}}
+\index{DataBusHandler@{DataBusHandler}!DataBusHandler@{DataBusHandler}}
+\subsubsection[{DataBusHandler}]{\setlength{\rightskip}{0pt plus 5cm}DataBusHandler::DataBusHandler ()}\label{classDataBusHandler_3c189b2cecaa625d3807dcbba2232f76}
+
+
+constructor 
+
+
+
+Definition at line 34 of file data\_\-bus\_\-handler.cc.
+
+References busBusyTime, and prevTime.\index{DataBusHandler@{DataBusHandler}!$\sim$DataBusHandler@{$\sim$DataBusHandler}}
+\index{$\sim$DataBusHandler@{$\sim$DataBusHandler}!DataBusHandler@{DataBusHandler}}
+\subsubsection[{$\sim$DataBusHandler}]{\setlength{\rightskip}{0pt plus 5cm}DataBusHandler::$\sim$DataBusHandler ()}\label{classDataBusHandler_acc66535bff25de50ed9b1658e8b09d9}
+
+
+deconstructor 
+
+
+
+Definition at line 47 of file data\_\-bus\_\-handler.cc.
+
+\subsection{Member Function Documentation}
+\index{DataBusHandler@{DataBusHandler}!process\_\-event@{process\_\-event}}
+\index{process\_\-event@{process\_\-event}!DataBusHandler@{DataBusHandler}}
+\subsubsection[{process\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void DataBusHandler::process\_\-event ({\bf IrisEvent} $\ast$ {\em e})}\label{classDataBusHandler_62a38fff68da7ad9ad513f14de385297}
+
+
+Handles all the operations of the data bus. 
+
+
+
+Definition at line 59 of file data\_\-bus\_\-handler.cc.
+
+References Request::bankNo, BUS\_\-CYCLE, busBusyTime, child1, child2, Request::data, DDR\_\-BUS\_\-WIDTH, IrisEvent::event\_\-data, Simulator::Now(), prevTime, DRAMChannel::process\_\-event(), ResponseHandler::process\_\-event(), Request::rankNo, REPLY, DRAMCmdState::req, Simulator::Schedule(), Data::size, START\_\-READ, START\_\-WRITE, t\_\-CMD, and IrisEvent::type.
+
+Referenced by DRAMChannel::process\_\-event(), and CmdIssuer::process\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classDataBusHandler_62a38fff68da7ad9ad513f14de385297_icgraph}
+\end{center}
+\end{figure}
+\index{DataBusHandler@{DataBusHandler}!toString@{toString}}
+\index{toString@{toString}!DataBusHandler@{DataBusHandler}}
+\subsubsection[{toString}]{\setlength{\rightskip}{0pt plus 5cm}std::string DataBusHandler::toString ()}\label{classDataBusHandler_cf717e5d6c597c9fd65edde3eeb5f5a6}
+
+
+
+
+\subsection{Member Data Documentation}
+\index{DataBusHandler@{DataBusHandler}!busBusyTime@{busBusyTime}}
+\index{busBusyTime@{busBusyTime}!DataBusHandler@{DataBusHandler}}
+\subsubsection[{busBusyTime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} {\bf DataBusHandler::busBusyTime}}\label{classDataBusHandler_282448c0b3c7ea7d0ee52b36a442b0b3}
+
+
+total time the bus remained busy 
+
+
+
+Definition at line 59 of file data\_\-bus\_\-handler.h.
+
+Referenced by DataBusHandler(), and process\_\-event().\index{DataBusHandler@{DataBusHandler}!child1@{child1}}
+\index{child1@{child1}!DataBusHandler@{DataBusHandler}}
+\subsubsection[{child1}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Component}$\ast$ {\bf DataBusHandler::child1}}\label{classDataBusHandler_b85778ad44b2e82a0adc49c607bc4fc5}
+
+
+pointer to corresponding \doxyref{DRAM}{p.}{classDRAM} channel 
+
+
+
+Definition at line 53 of file data\_\-bus\_\-handler.h.
+
+Referenced by process\_\-event(), and Bus::SetLinks().\index{DataBusHandler@{DataBusHandler}!child2@{child2}}
+\index{child2@{child2}!DataBusHandler@{DataBusHandler}}
+\subsubsection[{child2}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Component}$\ast$ {\bf DataBusHandler::child2}}\label{classDataBusHandler_136fe87b5a2f210a28b0427a8f30c451}
+
+
+pointer to response handler 
+
+
+
+Definition at line 54 of file data\_\-bus\_\-handler.h.
+
+Referenced by process\_\-event(), and Bus::SetLinks().\index{DataBusHandler@{DataBusHandler}!parent@{parent}}
+\index{parent@{parent}!DataBusHandler@{DataBusHandler}}
+\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Component}$\ast$ {\bf DataBusHandler::parent}}\label{classDataBusHandler_9b16bd738b6aa0c934f2f274d59cb50e}
+
+
+pointer to its parent 
+
+
+
+Definition at line 52 of file data\_\-bus\_\-handler.h.
+
+Referenced by Bus::SetLinks().\index{DataBusHandler@{DataBusHandler}!prevTime@{prevTime}}
+\index{prevTime@{prevTime}!DataBusHandler@{DataBusHandler}}
+\subsubsection[{prevTime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time} {\bf DataBusHandler::prevTime}}\label{classDataBusHandler_f41700d361775ecae955d7a2c7c9b126}
+
+
+variable to keep track of the last time data bus was used 
+
+
+
+Definition at line 58 of file data\_\-bus\_\-handler.h.
+
+Referenced by DataBusHandler(), and process\_\-event().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf data\_\-bus\_\-handler.h}\item 
+{\bf data\_\-bus\_\-handler.cc}\end{CompactItemize}

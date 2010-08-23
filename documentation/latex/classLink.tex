@@ -1,0 +1,92 @@
+\section{Link Class Reference}
+\label{classLink}\index{Link@{Link}}
+{\tt \#include $<$link.h$>$}
+
+Collaboration diagram for Link:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classLink__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Link} (int srcComponentId, int linkWidth)
+\item 
+void {\bf Send} (uint64\_\-t {\bf data}, int srcComponentId)
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+int {\bf src}
+\item 
+int {\bf width}
+\item 
+list$<$ {\bf OutputBase} $\ast$ $>$ {\bf outputs}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 35 of file link.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Link@{Link}!Link@{Link}}
+\index{Link@{Link}!Link@{Link}}
+\subsubsection[{Link}]{\setlength{\rightskip}{0pt plus 5cm}Link::Link (int {\em srcComponentId}, \/  int {\em linkWidth})}\label{classLink_16c40a3222f347d6b3fc2698fc5b9038}
+
+
+
+
+Definition at line 6 of file link.cc.
+
+References Component::addOutputLink(), Simulator::getComponentDesc(), ComponentDescription::lpId, Simulator::MyRank(), ComponentDescription::ptr, src, and width.
+
+\subsection{Member Function Documentation}
+\index{Link@{Link}!Send@{Send}}
+\index{Send@{Send}!Link@{Link}}
+\subsubsection[{Send}]{\setlength{\rightskip}{0pt plus 5cm}void Link::Send (uint64\_\-t {\em data}, \/  int {\em srcComponentId})}\label{classLink_9739f28f141d67a3ab14ddd6e4edc985}
+
+
+
+
+Definition at line 19 of file link.cc.
+
+References OutputBase::CallHandler(), Simulator::getComponentDesc(), ComponentDescription::lpId, Simulator::MyRank(), Simulator::Now(), outputs, and Simulator::Schedule().
+
+\subsection{Member Data Documentation}
+\index{Link@{Link}!outputs@{outputs}}
+\index{outputs@{outputs}!Link@{Link}}
+\subsubsection[{outputs}]{\setlength{\rightskip}{0pt plus 5cm}list$<${\bf OutputBase}$\ast$$>$ {\bf Link::outputs}}\label{classLink_ffbc0480926b9f0e59c7581a5ccc1cee}
+
+
+
+
+Definition at line 42 of file link.h.
+
+Referenced by addOutput(), and Send().\index{Link@{Link}!src@{src}}
+\index{src@{src}!Link@{Link}}
+\subsubsection[{src}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Link::src}}\label{classLink_87fb6a54e52fc0c8cea06eafefc8b555}
+
+
+
+
+Definition at line 39 of file link.h.
+
+Referenced by Link().\index{Link@{Link}!width@{width}}
+\index{width@{width}!Link@{Link}}
+\subsubsection[{width}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Link::width}}\label{classLink_6b5ee52bc53fe5063a5805a8f1a5694f}
+
+
+
+
+Definition at line 40 of file link.h.
+
+Referenced by Link().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf link.h}\item 
+{\bf link.cc}\end{CompactItemize}

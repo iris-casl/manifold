@@ -1,0 +1,106 @@
+\section{eio.h File Reference}
+\label{eio_8h}\index{eio.h@{eio.h}}
+{\tt \#include $<$stdio.h$>$}\par
+{\tt \#include \char`\"{}thread.h\char`\"{}}\par
+
+
+Include dependency graph for eio.h:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{eio_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define {\bf EIO\_\-X86\_\-FORMAT}~2
+\item 
+\#define {\bf EIO\_\-FILE\_\-VERSION}~4
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+FILE $\ast$ {\bf eio\_\-create} (struct {\bf thread\_\-t} $\ast$core, char $\ast$fname)
+\item 
+FILE $\ast$ {\bf eio\_\-open} (char $\ast$fname)
+\item 
+int {\bf eio\_\-valid} (char $\ast$fname)
+\item 
+void {\bf eio\_\-close} (FILE $\ast$fd)
+\item 
+{\bf counter\_\-t} {\bf eio\_\-write\_\-chkpt} (struct {\bf thread\_\-t} $\ast$core, FILE $\ast$fd)
+\item 
+{\bf counter\_\-t} {\bf eio\_\-read\_\-chkpt} (struct {\bf thread\_\-t} $\ast$core, FILE $\ast$fd)
+\item 
+void {\bf eio\_\-write\_\-trace} (struct {\bf thread\_\-t} $\ast$core, FILE $\ast$eio\_\-fd, {\bf mem\_\-access\_\-fn} mem\_\-fn, {\bf md\_\-inst\_\-t} inst)
+\item 
+void {\bf eio\_\-read\_\-trace} (struct {\bf thread\_\-t} $\ast$core, FILE $\ast$eio\_\-fd, {\bf mem\_\-access\_\-fn} mem\_\-fn, {\bf md\_\-inst\_\-t} inst)
+\item 
+void {\bf eio\_\-fast\_\-forward} (struct {\bf thread\_\-t} $\ast$core, FILE $\ast$eio\_\-fd, {\bf counter\_\-t} icnt)
+\end{CompactItemize}
+
+
+\subsection{Define Documentation}
+\index{eio.h@{eio.h}!EIO\_\-FILE\_\-VERSION@{EIO\_\-FILE\_\-VERSION}}
+\index{EIO\_\-FILE\_\-VERSION@{EIO\_\-FILE\_\-VERSION}!eio.h@{eio.h}}
+\subsubsection[{EIO\_\-FILE\_\-VERSION}]{\setlength{\rightskip}{0pt plus 5cm}\#define EIO\_\-FILE\_\-VERSION~4}\label{eio_8h_6b7be7a86a6d5f170b8cdcbaf0e853e4}
+
+
+
+
+Definition at line 60 of file eio.h.\index{eio.h@{eio.h}!EIO\_\-X86\_\-FORMAT@{EIO\_\-X86\_\-FORMAT}}
+\index{EIO\_\-X86\_\-FORMAT@{EIO\_\-X86\_\-FORMAT}!eio.h@{eio.h}}
+\subsubsection[{EIO\_\-X86\_\-FORMAT}]{\setlength{\rightskip}{0pt plus 5cm}\#define EIO\_\-X86\_\-FORMAT~2}\label{eio_8h_0c5280391433709ef49b31e63db73391}
+
+
+
+
+Definition at line 58 of file eio.h.
+
+\subsection{Function Documentation}
+\index{eio.h@{eio.h}!eio\_\-close@{eio\_\-close}}
+\index{eio\_\-close@{eio\_\-close}!eio.h@{eio.h}}
+\subsubsection[{eio\_\-close}]{\setlength{\rightskip}{0pt plus 5cm}void eio\_\-close (FILE $\ast$ {\em fd})}\label{eio_8h_5a394eec83655053559e8be7983a3fca}
+
+
+\index{eio.h@{eio.h}!eio\_\-create@{eio\_\-create}}
+\index{eio\_\-create@{eio\_\-create}!eio.h@{eio.h}}
+\subsubsection[{eio\_\-create}]{\setlength{\rightskip}{0pt plus 5cm}FILE$\ast$ eio\_\-create (struct {\bf thread\_\-t} $\ast$ {\em core}, \/  char $\ast$ {\em fname})}\label{eio_8h_d017d2ea71d2d9c6dfb54fbd1c0fe586}
+
+
+\index{eio.h@{eio.h}!eio\_\-fast\_\-forward@{eio\_\-fast\_\-forward}}
+\index{eio\_\-fast\_\-forward@{eio\_\-fast\_\-forward}!eio.h@{eio.h}}
+\subsubsection[{eio\_\-fast\_\-forward}]{\setlength{\rightskip}{0pt plus 5cm}void eio\_\-fast\_\-forward (struct {\bf thread\_\-t} $\ast$ {\em core}, \/  FILE $\ast$ {\em eio\_\-fd}, \/  {\bf counter\_\-t} {\em icnt})}\label{eio_8h_068de1665cc69d2404bf5a433cbc88ca}
+
+
+\index{eio.h@{eio.h}!eio\_\-open@{eio\_\-open}}
+\index{eio\_\-open@{eio\_\-open}!eio.h@{eio.h}}
+\subsubsection[{eio\_\-open}]{\setlength{\rightskip}{0pt plus 5cm}FILE$\ast$ eio\_\-open (char $\ast$ {\em fname})}\label{eio_8h_89207afd7f32a5e68bee6ce011b2edf0}
+
+
+\index{eio.h@{eio.h}!eio\_\-read\_\-chkpt@{eio\_\-read\_\-chkpt}}
+\index{eio\_\-read\_\-chkpt@{eio\_\-read\_\-chkpt}!eio.h@{eio.h}}
+\subsubsection[{eio\_\-read\_\-chkpt}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} eio\_\-read\_\-chkpt (struct {\bf thread\_\-t} $\ast$ {\em core}, \/  FILE $\ast$ {\em fd})}\label{eio_8h_b3d287b57c27288e7fae317a9658c846}
+
+
+\index{eio.h@{eio.h}!eio\_\-read\_\-trace@{eio\_\-read\_\-trace}}
+\index{eio\_\-read\_\-trace@{eio\_\-read\_\-trace}!eio.h@{eio.h}}
+\subsubsection[{eio\_\-read\_\-trace}]{\setlength{\rightskip}{0pt plus 5cm}void eio\_\-read\_\-trace (struct {\bf thread\_\-t} $\ast$ {\em core}, \/  FILE $\ast$ {\em eio\_\-fd}, \/  {\bf mem\_\-access\_\-fn} {\em mem\_\-fn}, \/  {\bf md\_\-inst\_\-t} {\em inst})}\label{eio_8h_1642b5a24fe5ea200e529f036a60450e}
+
+
+\index{eio.h@{eio.h}!eio\_\-valid@{eio\_\-valid}}
+\index{eio\_\-valid@{eio\_\-valid}!eio.h@{eio.h}}
+\subsubsection[{eio\_\-valid}]{\setlength{\rightskip}{0pt plus 5cm}int eio\_\-valid (char $\ast$ {\em fname})}\label{eio_8h_b306a196e213133ac23b9f05811c76ce}
+
+
+\index{eio.h@{eio.h}!eio\_\-write\_\-chkpt@{eio\_\-write\_\-chkpt}}
+\index{eio\_\-write\_\-chkpt@{eio\_\-write\_\-chkpt}!eio.h@{eio.h}}
+\subsubsection[{eio\_\-write\_\-chkpt}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} eio\_\-write\_\-chkpt (struct {\bf thread\_\-t} $\ast$ {\em core}, \/  FILE $\ast$ {\em fd})}\label{eio_8h_a7afc328073078464c5e49983b650d89}
+
+
+\index{eio.h@{eio.h}!eio\_\-write\_\-trace@{eio\_\-write\_\-trace}}
+\index{eio\_\-write\_\-trace@{eio\_\-write\_\-trace}!eio.h@{eio.h}}
+\subsubsection[{eio\_\-write\_\-trace}]{\setlength{\rightskip}{0pt plus 5cm}void eio\_\-write\_\-trace (struct {\bf thread\_\-t} $\ast$ {\em core}, \/  FILE $\ast$ {\em eio\_\-fd}, \/  {\bf mem\_\-access\_\-fn} {\em mem\_\-fn}, \/  {\bf md\_\-inst\_\-t} {\em inst})}\label{eio_8h_4a8ec71c7b59499f966b3f915e6e982a}
+
+

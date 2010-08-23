@@ -1,0 +1,78 @@
+\section{zesto-uncore.h File Reference}
+\label{zesto-uncore_8h}\index{zesto-uncore.h@{zesto-uncore.h}}
+{\tt \#include \char`\"{}zesto-cache.h\char`\"{}}\par
+{\tt \#include \char`\"{}../simIris/components/impl/genericInterfaceVcs.h\char`\"{}}\par
+{\tt \#include \char`\"{}../simIris/components/impl/genericEvents.h\char`\"{}}\par
+{\tt \#include \char`\"{}../simIris/components/interfaces/processor.h\char`\"{}}\par
+{\tt \#include \char`\"{}../simIris/data\_\-types/impl/highLevelPacket.h\char`\"{}}\par
+{\tt \#include \char`\"{}../memctrl/request.h\char`\"{}}\par
+{\tt \#include \char`\"{}../util/genericData.h\char`\"{}}\par
+{\tt \#include \char`\"{}../util/mc\_\-constants.h\char`\"{}}\par
+{\tt \#include $<$math.h$>$}\par
+{\tt \#include $<$stdint.h$>$}\par
+{\tt \#include $<$fstream$>$}\par
+{\tt \#include $<$deque$>$}\par
+
+
+Include dependency graph for zesto-uncore.h:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{zesto-uncore_8h__incl}
+\end{center}
+\end{figure}
+
+
+This graph shows which files directly or indirectly include this file:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{zesto-uncore_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class {\bf uncore\_\-t}
+\item 
+struct {\bf uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t}
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void {\bf uncore\_\-reg\_\-options} (struct {\bf opt\_\-odb\_\-t} $\ast$const odb)
+\item 
+unsigned long long int {\bf GlobalAddrMap} (unsigned long long int addr, unsigned int threadId)
+\item 
+unsigned long long int {\bf GlobalAddrRip} (unsigned long long int addr, unsigned int threadId)
+\item 
+short int {\bf get\_\-mcNo} (unsigned long long int addr)
+\end{CompactItemize}
+
+
+\subsection{Function Documentation}
+\index{zesto-uncore.h@{zesto-uncore.h}!get\_\-mcNo@{get\_\-mcNo}}
+\index{get\_\-mcNo@{get\_\-mcNo}!zesto-uncore.h@{zesto-uncore.h}}
+\subsubsection[{get\_\-mcNo}]{\setlength{\rightskip}{0pt plus 5cm}short int get\_\-mcNo (unsigned long long int {\em addr})}\label{zesto-uncore_8h_970e9d813ef774df8f5d1e7dd760f8e3}
+
+
+\index{zesto-uncore.h@{zesto-uncore.h}!GlobalAddrMap@{GlobalAddrMap}}
+\index{GlobalAddrMap@{GlobalAddrMap}!zesto-uncore.h@{zesto-uncore.h}}
+\subsubsection[{GlobalAddrMap}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long long int GlobalAddrMap (unsigned long long int {\em addr}, \/  unsigned int {\em threadId})}\label{zesto-uncore_8h_7db5ac0cbb6746639cb000294fb15746}
+
+
+\index{zesto-uncore.h@{zesto-uncore.h}!GlobalAddrRip@{GlobalAddrRip}}
+\index{GlobalAddrRip@{GlobalAddrRip}!zesto-uncore.h@{zesto-uncore.h}}
+\subsubsection[{GlobalAddrRip}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long long int GlobalAddrRip (unsigned long long int {\em addr}, \/  unsigned int {\em threadId})}\label{zesto-uncore_8h_b62e71ba41bfe2f22a9454b353169a36}
+
+
+\index{zesto-uncore.h@{zesto-uncore.h}!uncore\_\-reg\_\-options@{uncore\_\-reg\_\-options}}
+\index{uncore\_\-reg\_\-options@{uncore\_\-reg\_\-options}!zesto-uncore.h@{zesto-uncore.h}}
+\subsubsection[{uncore\_\-reg\_\-options}]{\setlength{\rightskip}{0pt plus 5cm}void uncore\_\-reg\_\-options (struct {\bf opt\_\-odb\_\-t} $\ast$const  {\em odb})}\label{zesto-uncore_8h_1c33c2be874ac3de83db43002cde412e}
+
+
+
+
+Definition at line 266 of file zesto-uncore.cpp.
+
+References cpu\_\-speed, LLC\_\-access\_\-rate, LLC\_\-bus\_\-ratio, LLC\_\-high\_\-watermark, LLC\_\-low\_\-watermark, LLC\_\-MSHR\_\-cmd, LLC\_\-num\_\-PF, LLC\_\-opt\_\-str, LLC\_\-PF\_\-buffer\_\-size, LLC\_\-PF\_\-filter\_\-reset, LLC\_\-PF\_\-filter\_\-size, LLC\_\-PF\_\-on\_\-miss, LLC\_\-PF\_\-opt\_\-str, LLC\_\-PFFsize, LLC\_\-PFmax, LLC\_\-PFthresh, LLC\_\-WMinterval, MAX\_\-PREFETCHERS, opt\_\-reg\_\-double(), opt\_\-reg\_\-flag(), opt\_\-reg\_\-int(), opt\_\-reg\_\-string(), and opt\_\-reg\_\-string\_\-list().

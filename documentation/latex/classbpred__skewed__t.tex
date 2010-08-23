@@ -1,0 +1,219 @@
+\section{bpred\_\-skewed\_\-t Class Reference}
+\label{classbpred__skewed__t}\index{bpred\_\-skewed\_\-t@{bpred\_\-skewed\_\-t}}
+Inheritance diagram for bpred\_\-skewed\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classbpred__skewed__t__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for bpred\_\-skewed\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classbpred__skewed__t__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class {\bf bpred\_\-skewed\_\-sc\_\-t}
+\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf bpred\_\-skewed\_\-t} (char $\ast$const arg\_\-name, const int arg\_\-bht\_\-size, const int arg\_\-pht\_\-size, const int arg\_\-history\_\-length, const int arg\_\-partial\_\-update, const int arg\_\-enhanced, const int arg\_\-double\_\-bim)
+\item 
+{\bf $\sim$bpred\_\-skewed\_\-t} ()
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+bool {\bf partial\_\-update}
+\item 
+bool {\bf enhanced}
+\item 
+bool {\bf double\_\-bim}
+\item 
+int {\bf bht\_\-size}
+\item 
+int {\bf bht\_\-mask}
+\item 
+int $\ast$ {\bf bht}
+\item 
+int {\bf pht\_\-size}
+\item 
+int {\bf pht\_\-mask}
+\item 
+{\bf my2bc\_\-t} $\ast$$\ast$ {\bf pht}
+\item 
+int {\bf history\_\-length}
+\item 
+int {\bf history\_\-mask}
+\item 
+int {\bf half\_\-length}
+\item 
+int {\bf half\_\-mask}
+\item 
+int {\bf high\_\-mask}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 25 of file bpred-skewed.cpp.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{bpred\_\-skewed\_\-t@{bpred\_\-skewed\_\-t}!bpred\_\-skewed\_\-t@{bpred\_\-skewed\_\-t}}
+\index{bpred\_\-skewed\_\-t@{bpred\_\-skewed\_\-t}!bpred_skewed_t@{bpred\_\-skewed\_\-t}}
+\subsubsection[{bpred\_\-skewed\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}bpred\_\-skewed\_\-t::bpred\_\-skewed\_\-t (char $\ast$const  {\em arg\_\-name}, \/  const int {\em arg\_\-bht\_\-size}, \/  const int {\em arg\_\-pht\_\-size}, \/  const int {\em arg\_\-history\_\-length}, \/  const int {\em arg\_\-partial\_\-update}, \/  const int {\em arg\_\-enhanced}, \/  const int {\em arg\_\-double\_\-bim})\hspace{0.3cm}{\tt  [inline]}}\label{classbpred__skewed__t_2e3e49d261a8a787b36c421c688b6c99}
+
+
+
+
+Definition at line 56 of file bpred-skewed.cpp.
+
+References bht, bht\_\-mask, bht\_\-size, bpred\_\-dir\_\-t::bits, CHECK\_\-BOOL, CHECK\_\-NNEG, CHECK\_\-PPOW2, COMPONENT\_\-NAME, double\_\-bim, enhanced, fatal(), half\_\-length, half\_\-mask, high\_\-mask, history\_\-length, history\_\-mask, bpred\_\-dir\_\-t::init(), log\_\-base2(), MY2BC\_\-WEAKLY\_\-NT, MY2BC\_\-WEAKLY\_\-TAKEN, bpred\_\-dir\_\-t::name, partial\_\-update, pht, pht\_\-mask, pht\_\-size, and bpred\_\-dir\_\-t::type.\index{bpred\_\-skewed\_\-t@{bpred\_\-skewed\_\-t}!$\sim$bpred\_\-skewed\_\-t@{$\sim$bpred\_\-skewed\_\-t}}
+\index{$\sim$bpred\_\-skewed\_\-t@{$\sim$bpred\_\-skewed\_\-t}!bpred_skewed_t@{bpred\_\-skewed\_\-t}}
+\subsubsection[{$\sim$bpred\_\-skewed\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}bpred\_\-skewed\_\-t::$\sim$bpred\_\-skewed\_\-t ()\hspace{0.3cm}{\tt  [inline]}}\label{classbpred__skewed__t_7d5f991a0175552d817213a31a4405db}
+
+
+
+
+Definition at line 125 of file bpred-skewed.cpp.
+
+References bht, and pht.
+
+\subsection{Member Data Documentation}
+\index{bpred\_\-skewed\_\-t@{bpred\_\-skewed\_\-t}!bht@{bht}}
+\index{bht@{bht}!bpred_skewed_t@{bpred\_\-skewed\_\-t}}
+\subsubsection[{bht}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ {\bf bpred\_\-skewed\_\-t::bht}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__skewed__t_bc1bfc5b5c066817eb46fb4268bca179}
+
+
+
+
+Definition at line 43 of file bpred-skewed.cpp.
+
+Referenced by bpred\_\-skewed\_\-t(), and $\sim$bpred\_\-skewed\_\-t().\index{bpred\_\-skewed\_\-t@{bpred\_\-skewed\_\-t}!bht\_\-mask@{bht\_\-mask}}
+\index{bht\_\-mask@{bht\_\-mask}!bpred_skewed_t@{bpred\_\-skewed\_\-t}}
+\subsubsection[{bht\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-skewed\_\-t::bht\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__skewed__t_357896e066061c336cf59d05059bc3b7}
+
+
+
+
+Definition at line 42 of file bpred-skewed.cpp.
+
+Referenced by bpred\_\-skewed\_\-t().\index{bpred\_\-skewed\_\-t@{bpred\_\-skewed\_\-t}!bht\_\-size@{bht\_\-size}}
+\index{bht\_\-size@{bht\_\-size}!bpred_skewed_t@{bpred\_\-skewed\_\-t}}
+\subsubsection[{bht\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-skewed\_\-t::bht\_\-size}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__skewed__t_9fba1cb25fe7975eed23a08aa19c1172}
+
+
+
+
+Definition at line 41 of file bpred-skewed.cpp.
+
+Referenced by bpred\_\-skewed\_\-t().\index{bpred\_\-skewed\_\-t@{bpred\_\-skewed\_\-t}!double\_\-bim@{double\_\-bim}}
+\index{double\_\-bim@{double\_\-bim}!bpred_skewed_t@{bpred\_\-skewed\_\-t}}
+\subsubsection[{double\_\-bim}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf bpred\_\-skewed\_\-t::double\_\-bim}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__skewed__t_0e5406e1e018f591a20840dff0797275}
+
+
+
+
+Definition at line 40 of file bpred-skewed.cpp.
+
+Referenced by bpred\_\-skewed\_\-t().\index{bpred\_\-skewed\_\-t@{bpred\_\-skewed\_\-t}!enhanced@{enhanced}}
+\index{enhanced@{enhanced}!bpred_skewed_t@{bpred\_\-skewed\_\-t}}
+\subsubsection[{enhanced}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf bpred\_\-skewed\_\-t::enhanced}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__skewed__t_e66c38ff78304143cab1033e711f74e5}
+
+
+
+
+Definition at line 39 of file bpred-skewed.cpp.
+
+Referenced by bpred\_\-skewed\_\-t().\index{bpred\_\-skewed\_\-t@{bpred\_\-skewed\_\-t}!half\_\-length@{half\_\-length}}
+\index{half\_\-length@{half\_\-length}!bpred_skewed_t@{bpred\_\-skewed\_\-t}}
+\subsubsection[{half\_\-length}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-skewed\_\-t::half\_\-length}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__skewed__t_169999803db4523b18b189cedb83b04a}
+
+
+
+
+Definition at line 49 of file bpred-skewed.cpp.
+
+Referenced by bpred\_\-skewed\_\-t().\index{bpred\_\-skewed\_\-t@{bpred\_\-skewed\_\-t}!half\_\-mask@{half\_\-mask}}
+\index{half\_\-mask@{half\_\-mask}!bpred_skewed_t@{bpred\_\-skewed\_\-t}}
+\subsubsection[{half\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-skewed\_\-t::half\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__skewed__t_7025422aca3383224805db0359505168}
+
+
+
+
+Definition at line 50 of file bpred-skewed.cpp.
+
+Referenced by bpred\_\-skewed\_\-t().\index{bpred\_\-skewed\_\-t@{bpred\_\-skewed\_\-t}!high\_\-mask@{high\_\-mask}}
+\index{high\_\-mask@{high\_\-mask}!bpred_skewed_t@{bpred\_\-skewed\_\-t}}
+\subsubsection[{high\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-skewed\_\-t::high\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__skewed__t_8d750a1a6f0cb40e4a0f6dfecdcf525f}
+
+
+
+
+Definition at line 51 of file bpred-skewed.cpp.
+
+Referenced by bpred\_\-skewed\_\-t().\index{bpred\_\-skewed\_\-t@{bpred\_\-skewed\_\-t}!history\_\-length@{history\_\-length}}
+\index{history\_\-length@{history\_\-length}!bpred_skewed_t@{bpred\_\-skewed\_\-t}}
+\subsubsection[{history\_\-length}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-skewed\_\-t::history\_\-length}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__skewed__t_4cb8ecbcedfff96e028617ea889d6921}
+
+
+
+
+Definition at line 47 of file bpred-skewed.cpp.
+
+Referenced by bpred\_\-skewed\_\-t().\index{bpred\_\-skewed\_\-t@{bpred\_\-skewed\_\-t}!history\_\-mask@{history\_\-mask}}
+\index{history\_\-mask@{history\_\-mask}!bpred_skewed_t@{bpred\_\-skewed\_\-t}}
+\subsubsection[{history\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-skewed\_\-t::history\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__skewed__t_1543468c1f0ddcc2737e08b7e772dd70}
+
+
+
+
+Definition at line 48 of file bpred-skewed.cpp.
+
+Referenced by bpred\_\-skewed\_\-t().\index{bpred\_\-skewed\_\-t@{bpred\_\-skewed\_\-t}!partial\_\-update@{partial\_\-update}}
+\index{partial\_\-update@{partial\_\-update}!bpred_skewed_t@{bpred\_\-skewed\_\-t}}
+\subsubsection[{partial\_\-update}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf bpred\_\-skewed\_\-t::partial\_\-update}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__skewed__t_3bb979a7d0c9943c3cfb47b821f223f6}
+
+
+
+
+Definition at line 38 of file bpred-skewed.cpp.
+
+Referenced by bpred\_\-skewed\_\-t().\index{bpred\_\-skewed\_\-t@{bpred\_\-skewed\_\-t}!pht@{pht}}
+\index{pht@{pht}!bpred_skewed_t@{bpred\_\-skewed\_\-t}}
+\subsubsection[{pht}]{\setlength{\rightskip}{0pt plus 5cm}{\bf my2bc\_\-t}$\ast$$\ast$ {\bf bpred\_\-skewed\_\-t::pht}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__skewed__t_324768bf0698b0bc59d010102263572e}
+
+
+
+
+Definition at line 46 of file bpred-skewed.cpp.
+
+Referenced by bpred\_\-skewed\_\-t(), and $\sim$bpred\_\-skewed\_\-t().\index{bpred\_\-skewed\_\-t@{bpred\_\-skewed\_\-t}!pht\_\-mask@{pht\_\-mask}}
+\index{pht\_\-mask@{pht\_\-mask}!bpred_skewed_t@{bpred\_\-skewed\_\-t}}
+\subsubsection[{pht\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-skewed\_\-t::pht\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__skewed__t_fc0e757b12ca3bbb5de97e8fe9491636}
+
+
+
+
+Definition at line 45 of file bpred-skewed.cpp.
+
+Referenced by bpred\_\-skewed\_\-t().\index{bpred\_\-skewed\_\-t@{bpred\_\-skewed\_\-t}!pht\_\-size@{pht\_\-size}}
+\index{pht\_\-size@{pht\_\-size}!bpred_skewed_t@{bpred\_\-skewed\_\-t}}
+\subsubsection[{pht\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-skewed\_\-t::pht\_\-size}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__skewed__t_e6567fd955bde0079e41d8797a1610af}
+
+
+
+
+Definition at line 44 of file bpred-skewed.cpp.
+
+Referenced by bpred\_\-skewed\_\-t().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf bpred-skewed.cpp}\end{CompactItemize}

@@ -1,0 +1,1158 @@
+\section{core\_\-t::core\_\-t::core\_\-stat\_\-t Struct Reference}
+\label{structcore__t_1_1core__stat__t}\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}}
+{\tt \#include $<$zesto-core.h$>$}
+
+Collaboration diagram for core\_\-t::core\_\-t::core\_\-stat\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{structcore__t_1_1core__stat__t__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+{\bf tick\_\-t} {\bf final\_\-sim\_\-cycle}
+\item 
+{\bf counter\_\-t} {\bf fetch\_\-bytes}
+\item 
+{\bf counter\_\-t} {\bf fetch\_\-insn}
+\item 
+{\bf counter\_\-t} {\bf fetch\_\-uops}
+\item 
+{\bf counter\_\-t} {\bf fetch\_\-eff\_\-uops}
+\item 
+{\bf counter\_\-t} {\bf byteQ\_\-occupancy}
+\item 
+{\bf counter\_\-t} {\bf predecode\_\-bytes}
+\item 
+{\bf counter\_\-t} {\bf predecode\_\-insn}
+\item 
+{\bf counter\_\-t} {\bf predecode\_\-uops}
+\item 
+{\bf counter\_\-t} {\bf predecode\_\-eff\_\-uops}
+\item 
+{\bf counter\_\-t} {\bf IQ\_\-occupancy}
+\item 
+{\bf counter\_\-t} {\bf IQ\_\-uop\_\-occupancy}
+\item 
+{\bf counter\_\-t} {\bf IQ\_\-eff\_\-uop\_\-occupancy}
+\item 
+{\bf counter\_\-t} {\bf IQ\_\-full\_\-cycles}
+\item 
+{\bf counter\_\-t} {\bf IQ\_\-empty\_\-cycles}
+\item 
+struct {\bf stat\_\-stat\_\-t} $\ast$ {\bf fetch\_\-stall}
+\item 
+{\bf counter\_\-t} {\bf target\_\-resteers}
+\item 
+{\bf counter\_\-t} {\bf phantom\_\-resteers}
+\item 
+{\bf counter\_\-t} {\bf override\_\-pred\_\-resteers}
+\item 
+{\bf counter\_\-t} {\bf decode\_\-insn}
+\item 
+{\bf counter\_\-t} {\bf decode\_\-uops}
+\item 
+{\bf counter\_\-t} {\bf decode\_\-eff\_\-uops}
+\item 
+{\bf counter\_\-t} {\bf uopQ\_\-occupancy}
+\item 
+{\bf counter\_\-t} {\bf uopQ\_\-eff\_\-occupancy}
+\item 
+{\bf counter\_\-t} {\bf uopQ\_\-full\_\-cycles}
+\item 
+{\bf counter\_\-t} {\bf uopQ\_\-empty\_\-cycles}
+\item 
+struct {\bf stat\_\-stat\_\-t} $\ast$ {\bf decode\_\-stall}
+\item 
+{\bf counter\_\-t} {\bf alloc\_\-insn}
+\item 
+{\bf counter\_\-t} {\bf alloc\_\-uops}
+\item 
+{\bf counter\_\-t} {\bf alloc\_\-eff\_\-uops}
+\item 
+struct {\bf stat\_\-stat\_\-t} $\ast$ {\bf alloc\_\-stall}
+\item 
+{\bf counter\_\-t} {\bf exec\_\-uops\_\-issued}
+\item 
+{\bf counter\_\-t} {\bf exec\_\-uops\_\-replayed}
+\item 
+{\bf counter\_\-t} {\bf exec\_\-uops\_\-snatched\_\-back}
+\item 
+{\bf counter\_\-t} {\bf RS\_\-occupancy}
+\item 
+{\bf counter\_\-t} {\bf RS\_\-eff\_\-occupancy}
+\item 
+{\bf counter\_\-t} {\bf RS\_\-full\_\-cycles}
+\item 
+{\bf counter\_\-t} {\bf RS\_\-empty\_\-cycles}
+\item 
+{\bf counter\_\-t} {\bf num\_\-jeclear}
+\item 
+{\bf counter\_\-t} {\bf num\_\-wp\_\-jeclear}
+\item 
+{\bf counter\_\-t} {\bf load\_\-nukes}
+\item 
+{\bf counter\_\-t} {\bf wp\_\-load\_\-nukes}
+\item 
+{\bf counter\_\-t} {\bf DL1\_\-load\_\-split\_\-accesses}
+\item 
+{\bf counter\_\-t} {\bf commit\_\-bytes}
+\item 
+{\bf counter\_\-t} {\bf commit\_\-insn}
+\item 
+{\bf counter\_\-t} {\bf commit\_\-uops}
+\item 
+{\bf counter\_\-t} {\bf commit\_\-eff\_\-uops}
+\item 
+{\bf counter\_\-t} {\bf commit\_\-fusions}
+\item 
+{\bf counter\_\-t} {\bf commit\_\-refs}
+\item 
+{\bf counter\_\-t} {\bf commit\_\-loads}
+\item 
+{\bf counter\_\-t} {\bf commit\_\-branches}
+\item 
+{\bf counter\_\-t} {\bf commit\_\-traps}
+\item 
+{\bf counter\_\-t} {\bf commit\_\-rep\_\-insn}
+\item 
+{\bf counter\_\-t} {\bf commit\_\-rep\_\-iterations}
+\item 
+{\bf counter\_\-t} {\bf commit\_\-rep\_\-uops}
+\item 
+{\bf counter\_\-t} {\bf commit\_\-UROM\_\-insn}
+\item 
+{\bf counter\_\-t} {\bf commit\_\-UROM\_\-uops}
+\item 
+{\bf counter\_\-t} {\bf commit\_\-UROM\_\-eff\_\-uops}
+\item 
+{\bf counter\_\-t} {\bf DL1\_\-store\_\-split\_\-accesses}
+\item 
+{\bf counter\_\-t} {\bf eio\_\-commit\_\-insn}
+\item 
+{\bf counter\_\-t} {\bf commit\_\-deadlock\_\-flushes}
+\item 
+{\bf counter\_\-t} {\bf ROB\_\-occupancy}
+\item 
+{\bf counter\_\-t} {\bf ROB\_\-eff\_\-occupancy}
+\item 
+{\bf counter\_\-t} {\bf ROB\_\-full\_\-cycles}
+\item 
+{\bf counter\_\-t} {\bf ROB\_\-empty\_\-cycles}
+\item 
+{\bf counter\_\-t} {\bf LDQ\_\-occupancy}
+\item 
+{\bf counter\_\-t} {\bf LDQ\_\-full\_\-cycles}
+\item 
+{\bf counter\_\-t} {\bf LDQ\_\-empty\_\-cycles}
+\item 
+{\bf counter\_\-t} {\bf STQ\_\-occupancy}
+\item 
+{\bf counter\_\-t} {\bf STQ\_\-full\_\-cycles}
+\item 
+{\bf counter\_\-t} {\bf STQ\_\-empty\_\-cycles}
+\item 
+struct {\bf stat\_\-stat\_\-t} $\ast$ {\bf commit\_\-stall}
+\item 
+int {\bf flow\_\-count}
+\item 
+int {\bf eff\_\-flow\_\-count}
+\item 
+struct {\bf stat\_\-stat\_\-t} $\ast$ {\bf flow\_\-histo}
+\item 
+struct {\bf stat\_\-stat\_\-t} $\ast$ {\bf eff\_\-flow\_\-histo}
+\item 
+{\bf tick\_\-t} {\bf Mop\_\-fetch\_\-slip}
+\item 
+{\bf tick\_\-t} {\bf Mop\_\-fetch2decode\_\-slip}
+\item 
+{\bf tick\_\-t} {\bf Mop\_\-decode\_\-slip}
+\item 
+{\bf tick\_\-t} {\bf Mop\_\-decode2commit\_\-slip}
+\item 
+{\bf tick\_\-t} {\bf Mop\_\-commit\_\-slip}
+\item 
+{\bf tick\_\-t} {\bf uop\_\-decode2alloc\_\-slip}
+\item 
+{\bf tick\_\-t} {\bf uop\_\-alloc2ready\_\-slip}
+\item 
+{\bf tick\_\-t} {\bf uop\_\-ready2issue\_\-slip}
+\item 
+{\bf tick\_\-t} {\bf uop\_\-issue2exec\_\-slip}
+\item 
+{\bf tick\_\-t} {\bf uop\_\-exec2complete\_\-slip}
+\item 
+{\bf tick\_\-t} {\bf uop\_\-complete2commit\_\-slip}
+\item 
+{\bf counter\_\-t} {\bf oracle\_\-total\_\-insn}
+\item 
+{\bf counter\_\-t} {\bf oracle\_\-inst\_\-undo}
+\item 
+{\bf counter\_\-t} {\bf oracle\_\-total\_\-uops}
+\item 
+{\bf counter\_\-t} {\bf oracle\_\-uop\_\-undo}
+\item 
+{\bf counter\_\-t} {\bf oracle\_\-total\_\-eff\_\-uops}
+\item 
+{\bf counter\_\-t} {\bf oracle\_\-eff\_\-uop\_\-undo}
+\item 
+{\bf counter\_\-t} {\bf oracle\_\-total\_\-refs}
+\item 
+{\bf counter\_\-t} {\bf oracle\_\-total\_\-loads}
+\item 
+{\bf counter\_\-t} {\bf oracle\_\-total\_\-branches}
+\item 
+{\bf counter\_\-t} {\bf oracle\_\-num\_\-refs}
+\item 
+{\bf counter\_\-t} {\bf oracle\_\-num\_\-loads}
+\item 
+{\bf counter\_\-t} {\bf oracle\_\-num\_\-branches}
+\item 
+{\bf counter\_\-t} {\bf oracle\_\-bogus\_\-cycles}
+\item 
+{\bf counter\_\-t} {\bf MopQ\_\-occupancy}
+\item 
+{\bf counter\_\-t} {\bf MopQ\_\-full\_\-cycles}
+\item 
+{\bf counter\_\-t} {\bf oracle\_\-resets}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 216 of file zesto-core.h.
+
+\subsection{Member Data Documentation}
+\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!alloc\_\-eff\_\-uops@{alloc\_\-eff\_\-uops}}
+\index{alloc\_\-eff\_\-uops@{alloc\_\-eff\_\-uops}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{alloc\_\-eff\_\-uops}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::alloc\_\-eff\_\-uops}\label{structcore__t_1_1core__stat__t_e93b01079b3578812e863d16d8415181}
+
+
+
+
+Definition at line 251 of file zesto-core.h.
+
+Referenced by core\_\-alloc\_\-DPM\_\-t::reg\_\-stats(), and core\_\-alloc\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!alloc\_\-insn@{alloc\_\-insn}}
+\index{alloc\_\-insn@{alloc\_\-insn}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{alloc\_\-insn}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::alloc\_\-insn}\label{structcore__t_1_1core__stat__t_b6347c3786e3c046e4245efdcbfc2ff5}
+
+
+
+
+Definition at line 249 of file zesto-core.h.
+
+Referenced by core\_\-alloc\_\-STM\_\-t::reg\_\-stats(), core\_\-alloc\_\-DPM\_\-t::reg\_\-stats(), core\_\-alloc\_\-STM\_\-t::step(), and core\_\-alloc\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!alloc\_\-stall@{alloc\_\-stall}}
+\index{alloc\_\-stall@{alloc\_\-stall}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{alloc\_\-stall}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf stat\_\-stat\_\-t}$\ast$ core\_\-t::core\_\-t::core\_\-stat\_\-t::alloc\_\-stall\hspace{0.3cm}{\tt  [read]}}\label{structcore__t_1_1core__stat__t_41f400ef3a4396e148bdc3d1872ffe86}
+
+
+
+
+Definition at line 252 of file zesto-core.h.
+
+Referenced by core\_\-alloc\_\-STM\_\-t::reg\_\-stats(), core\_\-alloc\_\-DPM\_\-t::reg\_\-stats(), core\_\-alloc\_\-STM\_\-t::step(), and core\_\-alloc\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!alloc\_\-uops@{alloc\_\-uops}}
+\index{alloc\_\-uops@{alloc\_\-uops}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{alloc\_\-uops}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::alloc\_\-uops}\label{structcore__t_1_1core__stat__t_0a9cce5016426cc71e61332c4d66a930}
+
+
+
+
+Definition at line 250 of file zesto-core.h.
+
+Referenced by core\_\-alloc\_\-STM\_\-t::reg\_\-stats(), core\_\-alloc\_\-DPM\_\-t::reg\_\-stats(), core\_\-alloc\_\-STM\_\-t::step(), and core\_\-alloc\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!byteQ\_\-occupancy@{byteQ\_\-occupancy}}
+\index{byteQ\_\-occupancy@{byteQ\_\-occupancy}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{byteQ\_\-occupancy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::byteQ\_\-occupancy}\label{structcore__t_1_1core__stat__t_a364f8fb635bb5006f65c7ca4447efa4}
+
+
+
+
+Definition at line 223 of file zesto-core.h.
+
+Referenced by core\_\-fetch\_\-STM\_\-t::reg\_\-stats(), core\_\-fetch\_\-DPM\_\-t::reg\_\-stats(), core\_\-fetch\_\-STM\_\-t::update\_\-occupancy(), and core\_\-fetch\_\-DPM\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!commit\_\-branches@{commit\_\-branches}}
+\index{commit\_\-branches@{commit\_\-branches}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{commit\_\-branches}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-branches}\label{structcore__t_1_1core__stat__t_ab2545830130a7d2c6cc828e896bee0b}
+
+
+
+
+Definition at line 276 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!commit\_\-bytes@{commit\_\-bytes}}
+\index{commit\_\-bytes@{commit\_\-bytes}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{commit\_\-bytes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-bytes}\label{structcore__t_1_1core__stat__t_55d2bfdc168268ce43fc373ccd7d3420}
+
+
+
+
+Definition at line 269 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!commit\_\-deadlock\_\-flushes@{commit\_\-deadlock\_\-flushes}}
+\index{commit\_\-deadlock\_\-flushes@{commit\_\-deadlock\_\-flushes}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{commit\_\-deadlock\_\-flushes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-deadlock\_\-flushes}\label{structcore__t_1_1core__stat__t_6c0721ecba9c68f18708d4b2fb155285}
+
+
+
+
+Definition at line 288 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-STM\_\-t::reg\_\-stats(), core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!commit\_\-eff\_\-uops@{commit\_\-eff\_\-uops}}
+\index{commit\_\-eff\_\-uops@{commit\_\-eff\_\-uops}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{commit\_\-eff\_\-uops}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-eff\_\-uops}\label{structcore__t_1_1core__stat__t_b9b59be72d347627a29fff615fee71e6}
+
+
+
+
+Definition at line 272 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!commit\_\-fusions@{commit\_\-fusions}}
+\index{commit\_\-fusions@{commit\_\-fusions}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{commit\_\-fusions}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-fusions}\label{structcore__t_1_1core__stat__t_6c057bd1e63107df76c484a31595b75e}
+
+
+
+
+Definition at line 273 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!commit\_\-insn@{commit\_\-insn}}
+\index{commit\_\-insn@{commit\_\-insn}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{commit\_\-insn}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-insn}\label{structcore__t_1_1core__stat__t_695be096dc6d4c3ef8dadfb9875a3c38}
+
+
+
+
+Definition at line 270 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-STM\_\-t::reg\_\-stats(), core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!commit\_\-loads@{commit\_\-loads}}
+\index{commit\_\-loads@{commit\_\-loads}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{commit\_\-loads}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-loads}\label{structcore__t_1_1core__stat__t_6795007baed703f79069c605b342462c}
+
+
+
+
+Definition at line 275 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-STM\_\-t::reg\_\-stats(), core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!commit\_\-refs@{commit\_\-refs}}
+\index{commit\_\-refs@{commit\_\-refs}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{commit\_\-refs}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-refs}\label{structcore__t_1_1core__stat__t_f7dad952fb9b6af8fa5e7bd24f793c7c}
+
+
+
+
+Definition at line 274 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-STM\_\-t::reg\_\-stats(), core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!commit\_\-rep\_\-insn@{commit\_\-rep\_\-insn}}
+\index{commit\_\-rep\_\-insn@{commit\_\-rep\_\-insn}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{commit\_\-rep\_\-insn}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-rep\_\-insn}\label{structcore__t_1_1core__stat__t_6ed6d4bf6827a4b7f5f947ee1fe06461}
+
+
+
+
+Definition at line 278 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!commit\_\-rep\_\-iterations@{commit\_\-rep\_\-iterations}}
+\index{commit\_\-rep\_\-iterations@{commit\_\-rep\_\-iterations}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{commit\_\-rep\_\-iterations}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-rep\_\-iterations}\label{structcore__t_1_1core__stat__t_5fde43047a0bf209409fd84fea291cb7}
+
+
+
+
+Definition at line 279 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!commit\_\-rep\_\-uops@{commit\_\-rep\_\-uops}}
+\index{commit\_\-rep\_\-uops@{commit\_\-rep\_\-uops}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{commit\_\-rep\_\-uops}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-rep\_\-uops}\label{structcore__t_1_1core__stat__t_a4ceed200ed821113ab79de29aa771d3}
+
+
+
+
+Definition at line 280 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!commit\_\-stall@{commit\_\-stall}}
+\index{commit\_\-stall@{commit\_\-stall}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{commit\_\-stall}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf stat\_\-stat\_\-t}$\ast$ core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-stall\hspace{0.3cm}{\tt  [read]}}\label{structcore__t_1_1core__stat__t_9aa1b782d670256448505543248b88dd}
+
+
+
+
+Definition at line 302 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-STM\_\-t::reg\_\-stats(), core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!commit\_\-traps@{commit\_\-traps}}
+\index{commit\_\-traps@{commit\_\-traps}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{commit\_\-traps}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-traps}\label{structcore__t_1_1core__stat__t_e8807b9f2691c7f2f705541a69733514}
+
+
+
+
+Definition at line 277 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!commit\_\-uops@{commit\_\-uops}}
+\index{commit\_\-uops@{commit\_\-uops}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{commit\_\-uops}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-uops}\label{structcore__t_1_1core__stat__t_92a5adf70cb88182f89436f5be116715}
+
+
+
+
+Definition at line 271 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-STM\_\-t::reg\_\-stats(), core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!commit\_\-UROM\_\-eff\_\-uops@{commit\_\-UROM\_\-eff\_\-uops}}
+\index{commit\_\-UROM\_\-eff\_\-uops@{commit\_\-UROM\_\-eff\_\-uops}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{commit\_\-UROM\_\-eff\_\-uops}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-UROM\_\-eff\_\-uops}\label{structcore__t_1_1core__stat__t_bf911fc8f2203830b120207411ea1260}
+
+
+
+
+Definition at line 283 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!commit\_\-UROM\_\-insn@{commit\_\-UROM\_\-insn}}
+\index{commit\_\-UROM\_\-insn@{commit\_\-UROM\_\-insn}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{commit\_\-UROM\_\-insn}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-UROM\_\-insn}\label{structcore__t_1_1core__stat__t_f74f8ee918a3458e8c6eeda7519f1967}
+
+
+
+
+Definition at line 281 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!commit\_\-UROM\_\-uops@{commit\_\-UROM\_\-uops}}
+\index{commit\_\-UROM\_\-uops@{commit\_\-UROM\_\-uops}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{commit\_\-UROM\_\-uops}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::commit\_\-UROM\_\-uops}\label{structcore__t_1_1core__stat__t_392acd37d5938f3a2b2623edc443ee19}
+
+
+
+
+Definition at line 282 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!decode\_\-eff\_\-uops@{decode\_\-eff\_\-uops}}
+\index{decode\_\-eff\_\-uops@{decode\_\-eff\_\-uops}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{decode\_\-eff\_\-uops}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::decode\_\-eff\_\-uops}\label{structcore__t_1_1core__stat__t_d3ae76a37beaf871b235823005d246b4}
+
+
+
+
+Definition at line 241 of file zesto-core.h.
+
+Referenced by core\_\-decode\_\-DPM\_\-t::reg\_\-stats(), and core\_\-decode\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!decode\_\-insn@{decode\_\-insn}}
+\index{decode\_\-insn@{decode\_\-insn}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{decode\_\-insn}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::decode\_\-insn}\label{structcore__t_1_1core__stat__t_75637749ba354148e80242ac89747641}
+
+
+
+
+Definition at line 239 of file zesto-core.h.
+
+Referenced by core\_\-decode\_\-STM\_\-t::reg\_\-stats(), core\_\-decode\_\-DPM\_\-t::reg\_\-stats(), core\_\-decode\_\-DPM\_\-t::step(), and core\_\-decode\_\-STM\_\-t::uop\_\-consume().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!decode\_\-stall@{decode\_\-stall}}
+\index{decode\_\-stall@{decode\_\-stall}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{decode\_\-stall}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf stat\_\-stat\_\-t}$\ast$ core\_\-t::core\_\-t::core\_\-stat\_\-t::decode\_\-stall\hspace{0.3cm}{\tt  [read]}}\label{structcore__t_1_1core__stat__t_06f7bf43ba230f7f8635332b06105b19}
+
+
+
+
+Definition at line 246 of file zesto-core.h.
+
+Referenced by core\_\-decode\_\-STM\_\-t::check\_\-flush(), core\_\-decode\_\-DPM\_\-t::check\_\-flush(), core\_\-decode\_\-STM\_\-t::reg\_\-stats(), core\_\-decode\_\-DPM\_\-t::reg\_\-stats(), core\_\-decode\_\-STM\_\-t::step(), and core\_\-decode\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!decode\_\-uops@{decode\_\-uops}}
+\index{decode\_\-uops@{decode\_\-uops}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{decode\_\-uops}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::decode\_\-uops}\label{structcore__t_1_1core__stat__t_931aa6bb669ef3ec79d86380150e05ad}
+
+
+
+
+Definition at line 240 of file zesto-core.h.
+
+Referenced by core\_\-decode\_\-STM\_\-t::reg\_\-stats(), core\_\-decode\_\-DPM\_\-t::reg\_\-stats(), core\_\-decode\_\-DPM\_\-t::step(), and core\_\-decode\_\-STM\_\-t::uop\_\-consume().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!DL1\_\-load\_\-split\_\-accesses@{DL1\_\-load\_\-split\_\-accesses}}
+\index{DL1\_\-load\_\-split\_\-accesses@{DL1\_\-load\_\-split\_\-accesses}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{DL1\_\-load\_\-split\_\-accesses}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::DL1\_\-load\_\-split\_\-accesses}\label{structcore__t_1_1core__stat__t_bb877e542f5f8d359cdf905408babf06}
+
+
+
+
+Definition at line 266 of file zesto-core.h.
+
+Referenced by core\_\-exec\_\-DPM\_\-t::LDQ\_\-schedule(), and core\_\-exec\_\-DPM\_\-t::reg\_\-stats().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!DL1\_\-store\_\-split\_\-accesses@{DL1\_\-store\_\-split\_\-accesses}}
+\index{DL1\_\-store\_\-split\_\-accesses@{DL1\_\-store\_\-split\_\-accesses}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{DL1\_\-store\_\-split\_\-accesses}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::DL1\_\-store\_\-split\_\-accesses}\label{structcore__t_1_1core__stat__t_e3f4766c49b7d48cff4cdcbf0db8f24a}
+
+
+
+
+Definition at line 284 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-exec\_\-DPM\_\-t::STQ\_\-deallocate\_\-std().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!eff\_\-flow\_\-count@{eff\_\-flow\_\-count}}
+\index{eff\_\-flow\_\-count@{eff\_\-flow\_\-count}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{eff\_\-flow\_\-count}]{\setlength{\rightskip}{0pt plus 5cm}int core\_\-t::core\_\-t::core\_\-stat\_\-t::eff\_\-flow\_\-count}\label{structcore__t_1_1core__stat__t_46957b4310b2a3cab7583bef08b2d94b}
+
+
+
+
+Definition at line 305 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!eff\_\-flow\_\-histo@{eff\_\-flow\_\-histo}}
+\index{eff\_\-flow\_\-histo@{eff\_\-flow\_\-histo}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{eff\_\-flow\_\-histo}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf stat\_\-stat\_\-t}$\ast$ core\_\-t::core\_\-t::core\_\-stat\_\-t::eff\_\-flow\_\-histo\hspace{0.3cm}{\tt  [read]}}\label{structcore__t_1_1core__stat__t_b6a60a80d28dae8b4d70540af78fc0ba}
+
+
+
+
+Definition at line 307 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!eio\_\-commit\_\-insn@{eio\_\-commit\_\-insn}}
+\index{eio\_\-commit\_\-insn@{eio\_\-commit\_\-insn}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{eio\_\-commit\_\-insn}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::eio\_\-commit\_\-insn}\label{structcore__t_1_1core__stat__t_a41c519bf86d69b41a84c7253bf14276}
+
+
+
+
+Definition at line 286 of file zesto-core.h.
+
+Referenced by emergency\_\-recovery(), sim\_\-fastfwd(), core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!exec\_\-uops\_\-issued@{exec\_\-uops\_\-issued}}
+\index{exec\_\-uops\_\-issued@{exec\_\-uops\_\-issued}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{exec\_\-uops\_\-issued}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::exec\_\-uops\_\-issued}\label{structcore__t_1_1core__stat__t_104d279c5246d5f2c940f18dfcdb3908}
+
+
+
+
+Definition at line 255 of file zesto-core.h.
+
+Referenced by core\_\-exec\_\-STM\_\-t::reg\_\-stats(), core\_\-exec\_\-DPM\_\-t::reg\_\-stats(), core\_\-exec\_\-STM\_\-t::RS\_\-schedule(), and core\_\-exec\_\-DPM\_\-t::RS\_\-schedule().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!exec\_\-uops\_\-replayed@{exec\_\-uops\_\-replayed}}
+\index{exec\_\-uops\_\-replayed@{exec\_\-uops\_\-replayed}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{exec\_\-uops\_\-replayed}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::exec\_\-uops\_\-replayed}\label{structcore__t_1_1core__stat__t_b005a5cbe605689ec13b19d653471fcf}
+
+
+
+
+Definition at line 256 of file zesto-core.h.
+
+Referenced by core\_\-exec\_\-DPM\_\-t::ALU\_\-exec(), core\_\-exec\_\-STM\_\-t::reg\_\-stats(), and core\_\-exec\_\-DPM\_\-t::reg\_\-stats().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!exec\_\-uops\_\-snatched\_\-back@{exec\_\-uops\_\-snatched\_\-back}}
+\index{exec\_\-uops\_\-snatched\_\-back@{exec\_\-uops\_\-snatched\_\-back}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{exec\_\-uops\_\-snatched\_\-back}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::exec\_\-uops\_\-snatched\_\-back}\label{structcore__t_1_1core__stat__t_4236da8517eb44a608d141215bdf23cc}
+
+
+
+
+Definition at line 257 of file zesto-core.h.
+
+Referenced by core\_\-exec\_\-STM\_\-t::reg\_\-stats(), core\_\-exec\_\-DPM\_\-t::reg\_\-stats(), and core\_\-exec\_\-DPM\_\-t::snatch\_\-back().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!fetch\_\-bytes@{fetch\_\-bytes}}
+\index{fetch\_\-bytes@{fetch\_\-bytes}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{fetch\_\-bytes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::fetch\_\-bytes}\label{structcore__t_1_1core__stat__t_8564eac1a391c1eb2bf15c3ad95e72ae}
+
+
+
+
+Definition at line 219 of file zesto-core.h.
+
+Referenced by core\_\-fetch\_\-DPM\_\-t::reg\_\-stats(), and core\_\-fetch\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!fetch\_\-eff\_\-uops@{fetch\_\-eff\_\-uops}}
+\index{fetch\_\-eff\_\-uops@{fetch\_\-eff\_\-uops}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{fetch\_\-eff\_\-uops}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::fetch\_\-eff\_\-uops}\label{structcore__t_1_1core__stat__t_c2af89c2fe55760dfb25b837a3214630}
+
+
+
+
+Definition at line 222 of file zesto-core.h.
+
+Referenced by core\_\-fetch\_\-DPM\_\-t::reg\_\-stats(), and core\_\-fetch\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!fetch\_\-insn@{fetch\_\-insn}}
+\index{fetch\_\-insn@{fetch\_\-insn}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{fetch\_\-insn}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::fetch\_\-insn}\label{structcore__t_1_1core__stat__t_3f86f6ee77ffa816fef52f42b3df3ed2}
+
+
+
+
+Definition at line 220 of file zesto-core.h.
+
+Referenced by core\_\-fetch\_\-STM\_\-t::Mop\_\-consume(), core\_\-fetch\_\-STM\_\-t::reg\_\-stats(), core\_\-fetch\_\-DPM\_\-t::reg\_\-stats(), and core\_\-fetch\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!fetch\_\-stall@{fetch\_\-stall}}
+\index{fetch\_\-stall@{fetch\_\-stall}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{fetch\_\-stall}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf stat\_\-stat\_\-t}$\ast$ core\_\-t::core\_\-t::core\_\-stat\_\-t::fetch\_\-stall\hspace{0.3cm}{\tt  [read]}}\label{structcore__t_1_1core__stat__t_3cddfe5575dce461b508037a13deae5d}
+
+
+
+
+Definition at line 233 of file zesto-core.h.
+
+Referenced by core\_\-fetch\_\-STM\_\-t::reg\_\-stats(), core\_\-fetch\_\-DPM\_\-t::reg\_\-stats(), core\_\-fetch\_\-STM\_\-t::step(), and core\_\-fetch\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!fetch\_\-uops@{fetch\_\-uops}}
+\index{fetch\_\-uops@{fetch\_\-uops}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{fetch\_\-uops}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::fetch\_\-uops}\label{structcore__t_1_1core__stat__t_47b9581190262fa0a7a9c7d18173d502}
+
+
+
+
+Definition at line 221 of file zesto-core.h.
+
+Referenced by core\_\-fetch\_\-STM\_\-t::Mop\_\-consume(), core\_\-fetch\_\-STM\_\-t::reg\_\-stats(), core\_\-fetch\_\-DPM\_\-t::reg\_\-stats(), and core\_\-fetch\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!final\_\-sim\_\-cycle@{final\_\-sim\_\-cycle}}
+\index{final\_\-sim\_\-cycle@{final\_\-sim\_\-cycle}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{final\_\-sim\_\-cycle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::final\_\-sim\_\-cycle}\label{structcore__t_1_1core__stat__t_5bdfc20ac509b4f10d9ac1b28f8c5a35}
+
+
+
+
+Definition at line 217 of file zesto-core.h.
+
+Referenced by zesto\_\-component::downtick\_\-handler(), core\_\-commit\_\-STM\_\-t::reg\_\-stats(), core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!flow\_\-count@{flow\_\-count}}
+\index{flow\_\-count@{flow\_\-count}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{flow\_\-count}]{\setlength{\rightskip}{0pt plus 5cm}int core\_\-t::core\_\-t::core\_\-stat\_\-t::flow\_\-count}\label{structcore__t_1_1core__stat__t_6d36cc9bbc761b78f6147cf11a99b3a8}
+
+
+
+
+Definition at line 304 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!flow\_\-histo@{flow\_\-histo}}
+\index{flow\_\-histo@{flow\_\-histo}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{flow\_\-histo}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf stat\_\-stat\_\-t}$\ast$ core\_\-t::core\_\-t::core\_\-stat\_\-t::flow\_\-histo\hspace{0.3cm}{\tt  [read]}}\label{structcore__t_1_1core__stat__t_fedfecd010b8b8c8f91aac0e0e8700d6}
+
+
+
+
+Definition at line 306 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!IQ\_\-eff\_\-uop\_\-occupancy@{IQ\_\-eff\_\-uop\_\-occupancy}}
+\index{IQ\_\-eff\_\-uop\_\-occupancy@{IQ\_\-eff\_\-uop\_\-occupancy}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{IQ\_\-eff\_\-uop\_\-occupancy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::IQ\_\-eff\_\-uop\_\-occupancy}\label{structcore__t_1_1core__stat__t_0c6992a01f8dbbac334a00151a2e1600}
+
+
+
+
+Definition at line 230 of file zesto-core.h.
+
+Referenced by core\_\-fetch\_\-DPM\_\-t::reg\_\-stats(), and core\_\-fetch\_\-DPM\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!IQ\_\-empty\_\-cycles@{IQ\_\-empty\_\-cycles}}
+\index{IQ\_\-empty\_\-cycles@{IQ\_\-empty\_\-cycles}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{IQ\_\-empty\_\-cycles}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::IQ\_\-empty\_\-cycles}\label{structcore__t_1_1core__stat__t_3fa0a0b9e39651f3f289f34ad5414e3b}
+
+
+
+
+Definition at line 232 of file zesto-core.h.
+
+Referenced by core\_\-fetch\_\-DPM\_\-t::reg\_\-stats(), and core\_\-fetch\_\-DPM\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!IQ\_\-full\_\-cycles@{IQ\_\-full\_\-cycles}}
+\index{IQ\_\-full\_\-cycles@{IQ\_\-full\_\-cycles}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{IQ\_\-full\_\-cycles}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::IQ\_\-full\_\-cycles}\label{structcore__t_1_1core__stat__t_db41417f9f79332f2339b9789bf12e0f}
+
+
+
+
+Definition at line 231 of file zesto-core.h.
+
+Referenced by core\_\-fetch\_\-DPM\_\-t::reg\_\-stats(), and core\_\-fetch\_\-DPM\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!IQ\_\-occupancy@{IQ\_\-occupancy}}
+\index{IQ\_\-occupancy@{IQ\_\-occupancy}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{IQ\_\-occupancy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::IQ\_\-occupancy}\label{structcore__t_1_1core__stat__t_c8bae7936586e090215521daea934c48}
+
+
+
+
+Definition at line 228 of file zesto-core.h.
+
+Referenced by core\_\-fetch\_\-DPM\_\-t::reg\_\-stats(), and core\_\-fetch\_\-DPM\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!IQ\_\-uop\_\-occupancy@{IQ\_\-uop\_\-occupancy}}
+\index{IQ\_\-uop\_\-occupancy@{IQ\_\-uop\_\-occupancy}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{IQ\_\-uop\_\-occupancy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::IQ\_\-uop\_\-occupancy}\label{structcore__t_1_1core__stat__t_27b35f79da6b58002c469bb911ad4551}
+
+
+
+
+Definition at line 229 of file zesto-core.h.
+
+Referenced by core\_\-fetch\_\-DPM\_\-t::reg\_\-stats(), and core\_\-fetch\_\-DPM\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!LDQ\_\-empty\_\-cycles@{LDQ\_\-empty\_\-cycles}}
+\index{LDQ\_\-empty\_\-cycles@{LDQ\_\-empty\_\-cycles}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{LDQ\_\-empty\_\-cycles}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::LDQ\_\-empty\_\-cycles}\label{structcore__t_1_1core__stat__t_4371248c98020ddd54dcf55af58c2711}
+
+
+
+
+Definition at line 297 of file zesto-core.h.
+
+Referenced by core\_\-exec\_\-STM\_\-t::reg\_\-stats(), core\_\-exec\_\-DPM\_\-t::reg\_\-stats(), core\_\-exec\_\-STM\_\-t::update\_\-occupancy(), and core\_\-exec\_\-DPM\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!LDQ\_\-full\_\-cycles@{LDQ\_\-full\_\-cycles}}
+\index{LDQ\_\-full\_\-cycles@{LDQ\_\-full\_\-cycles}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{LDQ\_\-full\_\-cycles}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::LDQ\_\-full\_\-cycles}\label{structcore__t_1_1core__stat__t_b0b5be3619f63b56564dcc8bd071498c}
+
+
+
+
+Definition at line 296 of file zesto-core.h.
+
+Referenced by core\_\-exec\_\-STM\_\-t::reg\_\-stats(), core\_\-exec\_\-DPM\_\-t::reg\_\-stats(), core\_\-exec\_\-STM\_\-t::update\_\-occupancy(), and core\_\-exec\_\-DPM\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!LDQ\_\-occupancy@{LDQ\_\-occupancy}}
+\index{LDQ\_\-occupancy@{LDQ\_\-occupancy}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{LDQ\_\-occupancy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::LDQ\_\-occupancy}\label{structcore__t_1_1core__stat__t_e1d79fd0bb4a1ed80afb00241258a6a2}
+
+
+
+
+Definition at line 295 of file zesto-core.h.
+
+Referenced by core\_\-exec\_\-STM\_\-t::reg\_\-stats(), core\_\-exec\_\-DPM\_\-t::reg\_\-stats(), core\_\-exec\_\-STM\_\-t::update\_\-occupancy(), and core\_\-exec\_\-DPM\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!load\_\-nukes@{load\_\-nukes}}
+\index{load\_\-nukes@{load\_\-nukes}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{load\_\-nukes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::load\_\-nukes}\label{structcore__t_1_1core__stat__t_39d7d4fa63d61b57d7b92c14827c0704}
+
+
+
+
+Definition at line 264 of file zesto-core.h.
+
+Referenced by core\_\-exec\_\-DPM\_\-t::ALU\_\-exec(), core\_\-exec\_\-DPM\_\-t::LDST\_\-exec(), and core\_\-exec\_\-DPM\_\-t::reg\_\-stats().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!Mop\_\-commit\_\-slip@{Mop\_\-commit\_\-slip}}
+\index{Mop\_\-commit\_\-slip@{Mop\_\-commit\_\-slip}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{Mop\_\-commit\_\-slip}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::Mop\_\-commit\_\-slip}\label{structcore__t_1_1core__stat__t_34d777376f04eeaeb7a930b8e3df9fdd}
+
+
+
+
+Definition at line 313 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!Mop\_\-decode2commit\_\-slip@{Mop\_\-decode2commit\_\-slip}}
+\index{Mop\_\-decode2commit\_\-slip@{Mop\_\-decode2commit\_\-slip}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{Mop\_\-decode2commit\_\-slip}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::Mop\_\-decode2commit\_\-slip}\label{structcore__t_1_1core__stat__t_519e564423324c4a9a81ed285d6b98a6}
+
+
+
+
+Definition at line 312 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!Mop\_\-decode\_\-slip@{Mop\_\-decode\_\-slip}}
+\index{Mop\_\-decode\_\-slip@{Mop\_\-decode\_\-slip}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{Mop\_\-decode\_\-slip}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::Mop\_\-decode\_\-slip}\label{structcore__t_1_1core__stat__t_5b29d573d49d3e185fcf636cbd41d098}
+
+
+
+
+Definition at line 311 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!Mop\_\-fetch2decode\_\-slip@{Mop\_\-fetch2decode\_\-slip}}
+\index{Mop\_\-fetch2decode\_\-slip@{Mop\_\-fetch2decode\_\-slip}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{Mop\_\-fetch2decode\_\-slip}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::Mop\_\-fetch2decode\_\-slip}\label{structcore__t_1_1core__stat__t_b64f8c00b6daf64bb83abecc174be7a6}
+
+
+
+
+Definition at line 310 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!Mop\_\-fetch\_\-slip@{Mop\_\-fetch\_\-slip}}
+\index{Mop\_\-fetch\_\-slip@{Mop\_\-fetch\_\-slip}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{Mop\_\-fetch\_\-slip}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::Mop\_\-fetch\_\-slip}\label{structcore__t_1_1core__stat__t_a15f0041c9b3bed648185155199f5718}
+
+
+
+
+Definition at line 309 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!MopQ\_\-full\_\-cycles@{MopQ\_\-full\_\-cycles}}
+\index{MopQ\_\-full\_\-cycles@{MopQ\_\-full\_\-cycles}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{MopQ\_\-full\_\-cycles}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::MopQ\_\-full\_\-cycles}\label{structcore__t_1_1core__stat__t_a9e4d315b27d71b8bafcdf8edb1d0682}
+
+
+
+
+Definition at line 337 of file zesto-core.h.
+
+Referenced by core\_\-oracle\_\-t::reg\_\-stats(), and core\_\-oracle\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!MopQ\_\-occupancy@{MopQ\_\-occupancy}}
+\index{MopQ\_\-occupancy@{MopQ\_\-occupancy}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{MopQ\_\-occupancy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::MopQ\_\-occupancy}\label{structcore__t_1_1core__stat__t_0fe73f7da6d6422f041b6e1f59fe1a91}
+
+
+
+
+Definition at line 336 of file zesto-core.h.
+
+Referenced by core\_\-oracle\_\-t::reg\_\-stats(), and core\_\-oracle\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!num\_\-jeclear@{num\_\-jeclear}}
+\index{num\_\-jeclear@{num\_\-jeclear}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{num\_\-jeclear}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::num\_\-jeclear}\label{structcore__t_1_1core__stat__t_e6a4a159e00e9d5b93db9544015f98f7}
+
+
+
+
+Definition at line 262 of file zesto-core.h.
+
+Referenced by core\_\-exec\_\-STM\_\-t::ALU\_\-exec(), core\_\-exec\_\-DPM\_\-t::ALU\_\-exec(), core\_\-exec\_\-DPM\_\-t::LDQ\_\-schedule(), core\_\-exec\_\-STM\_\-t::LDST\_\-exec(), core\_\-exec\_\-DPM\_\-t::LDST\_\-exec(), core\_\-exec\_\-STM\_\-t::load\_\-writeback(), core\_\-exec\_\-DPM\_\-t::load\_\-writeback(), core\_\-exec\_\-STM\_\-t::reg\_\-stats(), and core\_\-exec\_\-DPM\_\-t::reg\_\-stats().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!num\_\-wp\_\-jeclear@{num\_\-wp\_\-jeclear}}
+\index{num\_\-wp\_\-jeclear@{num\_\-wp\_\-jeclear}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{num\_\-wp\_\-jeclear}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::num\_\-wp\_\-jeclear}\label{structcore__t_1_1core__stat__t_33a60de88faadccd45eacdf575271002}
+
+
+
+
+Definition at line 263 of file zesto-core.h.
+
+Referenced by core\_\-exec\_\-STM\_\-t::ALU\_\-exec(), core\_\-exec\_\-DPM\_\-t::ALU\_\-exec(), core\_\-exec\_\-DPM\_\-t::LDQ\_\-schedule(), core\_\-exec\_\-STM\_\-t::LDST\_\-exec(), core\_\-exec\_\-DPM\_\-t::LDST\_\-exec(), core\_\-exec\_\-STM\_\-t::load\_\-writeback(), core\_\-exec\_\-DPM\_\-t::load\_\-writeback(), core\_\-exec\_\-STM\_\-t::reg\_\-stats(), and core\_\-exec\_\-DPM\_\-t::reg\_\-stats().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!oracle\_\-bogus\_\-cycles@{oracle\_\-bogus\_\-cycles}}
+\index{oracle\_\-bogus\_\-cycles@{oracle\_\-bogus\_\-cycles}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{oracle\_\-bogus\_\-cycles}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::oracle\_\-bogus\_\-cycles}\label{structcore__t_1_1core__stat__t_7cf3db555f89a1f97af10c481a820d51}
+
+
+
+
+Definition at line 335 of file zesto-core.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), and core\_\-oracle\_\-t::reg\_\-stats().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!oracle\_\-eff\_\-uop\_\-undo@{oracle\_\-eff\_\-uop\_\-undo}}
+\index{oracle\_\-eff\_\-uop\_\-undo@{oracle\_\-eff\_\-uop\_\-undo}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{oracle\_\-eff\_\-uop\_\-undo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::oracle\_\-eff\_\-uop\_\-undo}\label{structcore__t_1_1core__stat__t_f45e29e7af5cc3d2d4642fde587eb4c7}
+
+
+
+
+Definition at line 328 of file zesto-core.h.
+
+Referenced by core\_\-oracle\_\-t::reg\_\-stats(), and core\_\-oracle\_\-t::undo().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!oracle\_\-inst\_\-undo@{oracle\_\-inst\_\-undo}}
+\index{oracle\_\-inst\_\-undo@{oracle\_\-inst\_\-undo}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{oracle\_\-inst\_\-undo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::oracle\_\-inst\_\-undo}\label{structcore__t_1_1core__stat__t_4297d18ae42208a6fe8d25fe88ab13c7}
+
+
+
+
+Definition at line 324 of file zesto-core.h.
+
+Referenced by core\_\-oracle\_\-t::reg\_\-stats(), and core\_\-oracle\_\-t::undo().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!oracle\_\-num\_\-branches@{oracle\_\-num\_\-branches}}
+\index{oracle\_\-num\_\-branches@{oracle\_\-num\_\-branches}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{oracle\_\-num\_\-branches}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::oracle\_\-num\_\-branches}\label{structcore__t_1_1core__stat__t_41f068fd35eac1ec28b4fe69b88d1edd}
+
+
+
+
+Definition at line 334 of file zesto-core.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), and core\_\-oracle\_\-t::reg\_\-stats().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!oracle\_\-num\_\-loads@{oracle\_\-num\_\-loads}}
+\index{oracle\_\-num\_\-loads@{oracle\_\-num\_\-loads}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{oracle\_\-num\_\-loads}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::oracle\_\-num\_\-loads}\label{structcore__t_1_1core__stat__t_b0f22a4d1fc67a8007391bf9d139cbab}
+
+
+
+
+Definition at line 333 of file zesto-core.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), and core\_\-oracle\_\-t::reg\_\-stats().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!oracle\_\-num\_\-refs@{oracle\_\-num\_\-refs}}
+\index{oracle\_\-num\_\-refs@{oracle\_\-num\_\-refs}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{oracle\_\-num\_\-refs}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::oracle\_\-num\_\-refs}\label{structcore__t_1_1core__stat__t_9d38f70d7711758002a9f0a103dbddf0}
+
+
+
+
+Definition at line 332 of file zesto-core.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), and core\_\-oracle\_\-t::reg\_\-stats().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!oracle\_\-resets@{oracle\_\-resets}}
+\index{oracle\_\-resets@{oracle\_\-resets}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{oracle\_\-resets}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::oracle\_\-resets}\label{structcore__t_1_1core__stat__t_6f1c10a0ec011ec2b106084c7be4f640}
+
+
+
+
+Definition at line 339 of file zesto-core.h.
+
+Referenced by core\_\-oracle\_\-t::reset\_\-execution().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!oracle\_\-total\_\-branches@{oracle\_\-total\_\-branches}}
+\index{oracle\_\-total\_\-branches@{oracle\_\-total\_\-branches}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{oracle\_\-total\_\-branches}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::oracle\_\-total\_\-branches}\label{structcore__t_1_1core__stat__t_437c271d49060c1283eb8a894ca5dda4}
+
+
+
+
+Definition at line 331 of file zesto-core.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), and core\_\-oracle\_\-t::reg\_\-stats().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!oracle\_\-total\_\-eff\_\-uops@{oracle\_\-total\_\-eff\_\-uops}}
+\index{oracle\_\-total\_\-eff\_\-uops@{oracle\_\-total\_\-eff\_\-uops}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{oracle\_\-total\_\-eff\_\-uops}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::oracle\_\-total\_\-eff\_\-uops}\label{structcore__t_1_1core__stat__t_8c9802fcef07a9344070d45736f9af17}
+
+
+
+
+Definition at line 327 of file zesto-core.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), and core\_\-oracle\_\-t::reg\_\-stats().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!oracle\_\-total\_\-insn@{oracle\_\-total\_\-insn}}
+\index{oracle\_\-total\_\-insn@{oracle\_\-total\_\-insn}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{oracle\_\-total\_\-insn}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::oracle\_\-total\_\-insn}\label{structcore__t_1_1core__stat__t_94cb8397eca3462590b990f8e428e0be}
+
+
+
+
+Definition at line 323 of file zesto-core.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), and core\_\-oracle\_\-t::reg\_\-stats().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!oracle\_\-total\_\-loads@{oracle\_\-total\_\-loads}}
+\index{oracle\_\-total\_\-loads@{oracle\_\-total\_\-loads}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{oracle\_\-total\_\-loads}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::oracle\_\-total\_\-loads}\label{structcore__t_1_1core__stat__t_7e3c8f66ac3b8562f5f65a84c99a19c9}
+
+
+
+
+Definition at line 330 of file zesto-core.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), and core\_\-oracle\_\-t::reg\_\-stats().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!oracle\_\-total\_\-refs@{oracle\_\-total\_\-refs}}
+\index{oracle\_\-total\_\-refs@{oracle\_\-total\_\-refs}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{oracle\_\-total\_\-refs}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::oracle\_\-total\_\-refs}\label{structcore__t_1_1core__stat__t_7fe9765f24e107db96dbb0fb43085d11}
+
+
+
+
+Definition at line 329 of file zesto-core.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), and core\_\-oracle\_\-t::reg\_\-stats().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!oracle\_\-total\_\-uops@{oracle\_\-total\_\-uops}}
+\index{oracle\_\-total\_\-uops@{oracle\_\-total\_\-uops}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{oracle\_\-total\_\-uops}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::oracle\_\-total\_\-uops}\label{structcore__t_1_1core__stat__t_9c6c4ccf8310d7a378ea90b01555d141}
+
+
+
+
+Definition at line 325 of file zesto-core.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), and core\_\-oracle\_\-t::reg\_\-stats().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!oracle\_\-uop\_\-undo@{oracle\_\-uop\_\-undo}}
+\index{oracle\_\-uop\_\-undo@{oracle\_\-uop\_\-undo}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{oracle\_\-uop\_\-undo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::oracle\_\-uop\_\-undo}\label{structcore__t_1_1core__stat__t_73d06bc16b62c80eb6e6bb28f4494a98}
+
+
+
+
+Definition at line 326 of file zesto-core.h.
+
+Referenced by core\_\-oracle\_\-t::reg\_\-stats(), and core\_\-oracle\_\-t::undo().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!override\_\-pred\_\-resteers@{override\_\-pred\_\-resteers}}
+\index{override\_\-pred\_\-resteers@{override\_\-pred\_\-resteers}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{override\_\-pred\_\-resteers}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::override\_\-pred\_\-resteers}\label{structcore__t_1_1core__stat__t_9659a7f298b4972f8ef8a91b35f5f0e8}
+
+
+
+
+Definition at line 238 of file zesto-core.h.\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!phantom\_\-resteers@{phantom\_\-resteers}}
+\index{phantom\_\-resteers@{phantom\_\-resteers}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{phantom\_\-resteers}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::phantom\_\-resteers}\label{structcore__t_1_1core__stat__t_c8afe12f113023f74a2cce332d2b3e4d}
+
+
+
+
+Definition at line 237 of file zesto-core.h.
+
+Referenced by core\_\-decode\_\-DPM\_\-t::check\_\-target(), and core\_\-decode\_\-DPM\_\-t::reg\_\-stats().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!predecode\_\-bytes@{predecode\_\-bytes}}
+\index{predecode\_\-bytes@{predecode\_\-bytes}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{predecode\_\-bytes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::predecode\_\-bytes}\label{structcore__t_1_1core__stat__t_ca26cafac57267553a96525e1c7d1310}
+
+
+
+
+Definition at line 224 of file zesto-core.h.
+
+Referenced by core\_\-fetch\_\-DPM\_\-t::reg\_\-stats(), and core\_\-fetch\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!predecode\_\-eff\_\-uops@{predecode\_\-eff\_\-uops}}
+\index{predecode\_\-eff\_\-uops@{predecode\_\-eff\_\-uops}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{predecode\_\-eff\_\-uops}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::predecode\_\-eff\_\-uops}\label{structcore__t_1_1core__stat__t_eceebbbc9b6e6928cafaee46f39fccce}
+
+
+
+
+Definition at line 227 of file zesto-core.h.
+
+Referenced by core\_\-fetch\_\-DPM\_\-t::reg\_\-stats(), and core\_\-fetch\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!predecode\_\-insn@{predecode\_\-insn}}
+\index{predecode\_\-insn@{predecode\_\-insn}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{predecode\_\-insn}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::predecode\_\-insn}\label{structcore__t_1_1core__stat__t_4a9ad360a954f4f585c2ee0aef869cd2}
+
+
+
+
+Definition at line 225 of file zesto-core.h.
+
+Referenced by core\_\-fetch\_\-DPM\_\-t::reg\_\-stats(), and core\_\-fetch\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!predecode\_\-uops@{predecode\_\-uops}}
+\index{predecode\_\-uops@{predecode\_\-uops}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{predecode\_\-uops}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::predecode\_\-uops}\label{structcore__t_1_1core__stat__t_f3ac1b35fe9feda8dc990780e8562e6a}
+
+
+
+
+Definition at line 226 of file zesto-core.h.
+
+Referenced by core\_\-fetch\_\-DPM\_\-t::reg\_\-stats(), and core\_\-fetch\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!ROB\_\-eff\_\-occupancy@{ROB\_\-eff\_\-occupancy}}
+\index{ROB\_\-eff\_\-occupancy@{ROB\_\-eff\_\-occupancy}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{ROB\_\-eff\_\-occupancy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::ROB\_\-eff\_\-occupancy}\label{structcore__t_1_1core__stat__t_2bfcce3e6cb1e4fde8078e30842627e8}
+
+
+
+
+Definition at line 292 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-commit\_\-DPM\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!ROB\_\-empty\_\-cycles@{ROB\_\-empty\_\-cycles}}
+\index{ROB\_\-empty\_\-cycles@{ROB\_\-empty\_\-cycles}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{ROB\_\-empty\_\-cycles}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::ROB\_\-empty\_\-cycles}\label{structcore__t_1_1core__stat__t_2eda3dc8169484641c1b9fd2e511e85c}
+
+
+
+
+Definition at line 294 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-STM\_\-t::reg\_\-stats(), core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), core\_\-commit\_\-STM\_\-t::update\_\-occupancy(), and core\_\-commit\_\-DPM\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!ROB\_\-full\_\-cycles@{ROB\_\-full\_\-cycles}}
+\index{ROB\_\-full\_\-cycles@{ROB\_\-full\_\-cycles}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{ROB\_\-full\_\-cycles}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::ROB\_\-full\_\-cycles}\label{structcore__t_1_1core__stat__t_beff139f1bd9e6510270680bcb52d775}
+
+
+
+
+Definition at line 293 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-STM\_\-t::reg\_\-stats(), core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), core\_\-commit\_\-STM\_\-t::update\_\-occupancy(), and core\_\-commit\_\-DPM\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!ROB\_\-occupancy@{ROB\_\-occupancy}}
+\index{ROB\_\-occupancy@{ROB\_\-occupancy}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{ROB\_\-occupancy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::ROB\_\-occupancy}\label{structcore__t_1_1core__stat__t_899085658ec2043bdc858c5d80c77042}
+
+
+
+
+Definition at line 291 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-STM\_\-t::reg\_\-stats(), core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), core\_\-commit\_\-STM\_\-t::update\_\-occupancy(), and core\_\-commit\_\-DPM\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!RS\_\-eff\_\-occupancy@{RS\_\-eff\_\-occupancy}}
+\index{RS\_\-eff\_\-occupancy@{RS\_\-eff\_\-occupancy}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{RS\_\-eff\_\-occupancy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::RS\_\-eff\_\-occupancy}\label{structcore__t_1_1core__stat__t_95b31bd7f27932f8fe38fccbdda7ba38}
+
+
+
+
+Definition at line 259 of file zesto-core.h.
+
+Referenced by core\_\-exec\_\-DPM\_\-t::reg\_\-stats(), and core\_\-exec\_\-DPM\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!RS\_\-empty\_\-cycles@{RS\_\-empty\_\-cycles}}
+\index{RS\_\-empty\_\-cycles@{RS\_\-empty\_\-cycles}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{RS\_\-empty\_\-cycles}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::RS\_\-empty\_\-cycles}\label{structcore__t_1_1core__stat__t_e8a8753db2b224c53929e248798f601b}
+
+
+
+
+Definition at line 261 of file zesto-core.h.
+
+Referenced by core\_\-exec\_\-STM\_\-t::reg\_\-stats(), core\_\-exec\_\-DPM\_\-t::reg\_\-stats(), core\_\-exec\_\-STM\_\-t::update\_\-occupancy(), and core\_\-exec\_\-DPM\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!RS\_\-full\_\-cycles@{RS\_\-full\_\-cycles}}
+\index{RS\_\-full\_\-cycles@{RS\_\-full\_\-cycles}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{RS\_\-full\_\-cycles}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::RS\_\-full\_\-cycles}\label{structcore__t_1_1core__stat__t_23382493b536f19ec3983eca2a0ba39a}
+
+
+
+
+Definition at line 260 of file zesto-core.h.
+
+Referenced by core\_\-exec\_\-STM\_\-t::reg\_\-stats(), core\_\-exec\_\-DPM\_\-t::reg\_\-stats(), core\_\-exec\_\-STM\_\-t::update\_\-occupancy(), and core\_\-exec\_\-DPM\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!RS\_\-occupancy@{RS\_\-occupancy}}
+\index{RS\_\-occupancy@{RS\_\-occupancy}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{RS\_\-occupancy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::RS\_\-occupancy}\label{structcore__t_1_1core__stat__t_e60b98f996e4dbbb1b186dbe35c1e234}
+
+
+
+
+Definition at line 258 of file zesto-core.h.
+
+Referenced by core\_\-exec\_\-STM\_\-t::reg\_\-stats(), core\_\-exec\_\-DPM\_\-t::reg\_\-stats(), core\_\-exec\_\-STM\_\-t::update\_\-occupancy(), and core\_\-exec\_\-DPM\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!STQ\_\-empty\_\-cycles@{STQ\_\-empty\_\-cycles}}
+\index{STQ\_\-empty\_\-cycles@{STQ\_\-empty\_\-cycles}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{STQ\_\-empty\_\-cycles}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::STQ\_\-empty\_\-cycles}\label{structcore__t_1_1core__stat__t_06d788186a25803ec4a760efceee91dd}
+
+
+
+
+Definition at line 300 of file zesto-core.h.
+
+Referenced by core\_\-exec\_\-STM\_\-t::reg\_\-stats(), core\_\-exec\_\-DPM\_\-t::reg\_\-stats(), core\_\-exec\_\-STM\_\-t::update\_\-occupancy(), and core\_\-exec\_\-DPM\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!STQ\_\-full\_\-cycles@{STQ\_\-full\_\-cycles}}
+\index{STQ\_\-full\_\-cycles@{STQ\_\-full\_\-cycles}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{STQ\_\-full\_\-cycles}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::STQ\_\-full\_\-cycles}\label{structcore__t_1_1core__stat__t_ff713272c88f24d8fd792c082fa9e22b}
+
+
+
+
+Definition at line 299 of file zesto-core.h.
+
+Referenced by core\_\-exec\_\-STM\_\-t::reg\_\-stats(), core\_\-exec\_\-DPM\_\-t::reg\_\-stats(), core\_\-exec\_\-STM\_\-t::update\_\-occupancy(), and core\_\-exec\_\-DPM\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!STQ\_\-occupancy@{STQ\_\-occupancy}}
+\index{STQ\_\-occupancy@{STQ\_\-occupancy}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{STQ\_\-occupancy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::STQ\_\-occupancy}\label{structcore__t_1_1core__stat__t_f3d2158ddddc0b2516fa0ffb92a21aad}
+
+
+
+
+Definition at line 298 of file zesto-core.h.
+
+Referenced by core\_\-exec\_\-STM\_\-t::reg\_\-stats(), core\_\-exec\_\-DPM\_\-t::reg\_\-stats(), core\_\-exec\_\-STM\_\-t::update\_\-occupancy(), and core\_\-exec\_\-DPM\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!target\_\-resteers@{target\_\-resteers}}
+\index{target\_\-resteers@{target\_\-resteers}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{target\_\-resteers}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::target\_\-resteers}\label{structcore__t_1_1core__stat__t_20714a7001e308cba48cd7ee46430f9d}
+
+
+
+
+Definition at line 236 of file zesto-core.h.
+
+Referenced by core\_\-decode\_\-STM\_\-t::check\_\-target(), core\_\-decode\_\-DPM\_\-t::check\_\-target(), core\_\-decode\_\-STM\_\-t::reg\_\-stats(), and core\_\-decode\_\-DPM\_\-t::reg\_\-stats().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!uop\_\-alloc2ready\_\-slip@{uop\_\-alloc2ready\_\-slip}}
+\index{uop\_\-alloc2ready\_\-slip@{uop\_\-alloc2ready\_\-slip}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{uop\_\-alloc2ready\_\-slip}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::uop\_\-alloc2ready\_\-slip}\label{structcore__t_1_1core__stat__t_2558608f59a0d6feeb4ca9b7c0a56ad9}
+
+
+
+
+Definition at line 316 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!uop\_\-complete2commit\_\-slip@{uop\_\-complete2commit\_\-slip}}
+\index{uop\_\-complete2commit\_\-slip@{uop\_\-complete2commit\_\-slip}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{uop\_\-complete2commit\_\-slip}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::uop\_\-complete2commit\_\-slip}\label{structcore__t_1_1core__stat__t_dcedefe56d42005a7e99bb8aabca20bb}
+
+
+
+
+Definition at line 320 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!uop\_\-decode2alloc\_\-slip@{uop\_\-decode2alloc\_\-slip}}
+\index{uop\_\-decode2alloc\_\-slip@{uop\_\-decode2alloc\_\-slip}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{uop\_\-decode2alloc\_\-slip}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::uop\_\-decode2alloc\_\-slip}\label{structcore__t_1_1core__stat__t_a68f914b607a15a547982a11acb46de6}
+
+
+
+
+Definition at line 315 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!uop\_\-exec2complete\_\-slip@{uop\_\-exec2complete\_\-slip}}
+\index{uop\_\-exec2complete\_\-slip@{uop\_\-exec2complete\_\-slip}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{uop\_\-exec2complete\_\-slip}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::uop\_\-exec2complete\_\-slip}\label{structcore__t_1_1core__stat__t_615ce46ec3e9886d71524faa67c1d7f9}
+
+
+
+
+Definition at line 319 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!uop\_\-issue2exec\_\-slip@{uop\_\-issue2exec\_\-slip}}
+\index{uop\_\-issue2exec\_\-slip@{uop\_\-issue2exec\_\-slip}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{uop\_\-issue2exec\_\-slip}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::uop\_\-issue2exec\_\-slip}\label{structcore__t_1_1core__stat__t_0091584a14f71deacbbb940022cfee09}
+
+
+
+
+Definition at line 318 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!uop\_\-ready2issue\_\-slip@{uop\_\-ready2issue\_\-slip}}
+\index{uop\_\-ready2issue\_\-slip@{uop\_\-ready2issue\_\-slip}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{uop\_\-ready2issue\_\-slip}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::uop\_\-ready2issue\_\-slip}\label{structcore__t_1_1core__stat__t_a149b0bc43f0c6f36c02c682535ef69b}
+
+
+
+
+Definition at line 317 of file zesto-core.h.
+
+Referenced by core\_\-commit\_\-DPM\_\-t::reg\_\-stats(), and core\_\-commit\_\-DPM\_\-t::step().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!uopQ\_\-eff\_\-occupancy@{uopQ\_\-eff\_\-occupancy}}
+\index{uopQ\_\-eff\_\-occupancy@{uopQ\_\-eff\_\-occupancy}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{uopQ\_\-eff\_\-occupancy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::uopQ\_\-eff\_\-occupancy}\label{structcore__t_1_1core__stat__t_5e331f26fe1d4b3d798b33566f8eeb9c}
+
+
+
+
+Definition at line 243 of file zesto-core.h.
+
+Referenced by core\_\-decode\_\-DPM\_\-t::reg\_\-stats(), and core\_\-decode\_\-DPM\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!uopQ\_\-empty\_\-cycles@{uopQ\_\-empty\_\-cycles}}
+\index{uopQ\_\-empty\_\-cycles@{uopQ\_\-empty\_\-cycles}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{uopQ\_\-empty\_\-cycles}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::uopQ\_\-empty\_\-cycles}\label{structcore__t_1_1core__stat__t_ccb25a222a9aeeb5fbb2118bc56896dc}
+
+
+
+
+Definition at line 245 of file zesto-core.h.
+
+Referenced by core\_\-decode\_\-DPM\_\-t::reg\_\-stats(), and core\_\-decode\_\-DPM\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!uopQ\_\-full\_\-cycles@{uopQ\_\-full\_\-cycles}}
+\index{uopQ\_\-full\_\-cycles@{uopQ\_\-full\_\-cycles}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{uopQ\_\-full\_\-cycles}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::uopQ\_\-full\_\-cycles}\label{structcore__t_1_1core__stat__t_c341421044c53a4ca6b854c817faa55a}
+
+
+
+
+Definition at line 244 of file zesto-core.h.
+
+Referenced by core\_\-decode\_\-DPM\_\-t::reg\_\-stats(), and core\_\-decode\_\-DPM\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!uopQ\_\-occupancy@{uopQ\_\-occupancy}}
+\index{uopQ\_\-occupancy@{uopQ\_\-occupancy}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{uopQ\_\-occupancy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::uopQ\_\-occupancy}\label{structcore__t_1_1core__stat__t_8d3748dbc9ad936ed66382f8ee8c8d7b}
+
+
+
+
+Definition at line 242 of file zesto-core.h.
+
+Referenced by core\_\-decode\_\-DPM\_\-t::reg\_\-stats(), and core\_\-decode\_\-DPM\_\-t::update\_\-occupancy().\index{core\_\-t::core\_\-stat\_\-t@{core\_\-t::core\_\-stat\_\-t}!wp\_\-load\_\-nukes@{wp\_\-load\_\-nukes}}
+\index{wp\_\-load\_\-nukes@{wp\_\-load\_\-nukes}!core_t::core_stat_t@{core\_\-t::core\_\-stat\_\-t}}
+\subsubsection[{wp\_\-load\_\-nukes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} core\_\-t::core\_\-t::core\_\-stat\_\-t::wp\_\-load\_\-nukes}\label{structcore__t_1_1core__stat__t_285541b5146d15da412fb1475e647123}
+
+
+
+
+Definition at line 265 of file zesto-core.h.
+
+Referenced by core\_\-exec\_\-DPM\_\-t::ALU\_\-exec(), core\_\-exec\_\-DPM\_\-t::LDST\_\-exec(), and core\_\-exec\_\-DPM\_\-t::reg\_\-stats().
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf zesto-core.h}\end{CompactItemize}

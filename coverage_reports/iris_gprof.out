@@ -1,0 +1,503 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls   s/call   s/call  name    
+  7.45      2.59     2.59 34025159     0.00     0.00  std::set<EventBase*, event_less, std::allocator<EventBase*> >::insert(EventBase* const&)
+  6.73      4.93     2.34                             _int_malloc
+  4.72      6.57     1.64 15843026     0.00     0.00  GenericRouterVct::handle_tick_event(IrisEvent*)
+  4.55      8.15     1.58   717972     0.00     0.00  Flit::populate_phit_data(std::vector<bool, std::allocator<bool> >*)
+  4.23      9.62     1.47                             std::_Rb_tree_insert_and_rebalance(bool, std::_Rb_tree_node_base*, std::_Rb_tree_node_base*, std::_Rb_tree_node_base&)
+  3.80     10.94     1.32                             std::_Rb_tree_rebalance_for_erase(std::_Rb_tree_node_base*, std::_Rb_tree_node_base&)
+  3.62     12.20     1.26                             _int_free
+  3.28     13.34     1.14                             cfree
+  3.02     14.39     1.05   356584     0.00     0.00  HighLevelPacket::to_low_level_packet(LowLevelPacket*)
+  2.99     15.43     1.04 15843026     0.00     0.00  GenericRouterVct::do_switch_traversal()
+  2.96     16.46     1.03                             gettimeofday
+  2.93     17.48     1.02  6523597     0.00     0.00  CmdIssuer::IssueCmd(bool*, DRAMCmdState*)
+  2.79     18.45     0.97                             malloc
+  2.65     19.37     0.92 47041589     0.00     0.00  std::_Rb_tree<EventBase*, EventBase*, std::_Identity<EventBase*>, event_less, std::allocator<EventBase*> >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, EventBase* const&)
+  2.53     20.25     0.88   717952     0.00     0.00  LowLevelPacket::add(Flit*)
+  2.42     21.09     0.84  8956998     0.00     0.00  GenericRouterVct::handle_link_arrival_event(IrisEvent*)
+  2.19     21.85     0.76   356573     0.00     0.00  HighLevelPacket::from_low_level_packet(LowLevelPacket*)
+  1.75     22.46     0.61  6558517     0.00     0.00  EventId Simulator::Schedule<CmdIssuer, CmdIssuer, IrisEvent*, IrisEvent*>(double, void (CmdIssuer::*)(IrisEvent*), CmdIssuer*, IrisEvent*)
+  1.70     23.05     0.59        1     0.59    23.04  Simulator::Run()
+  1.58     23.60     0.55                             operator new(unsigned int)
+  1.52     24.13     0.53 15843026     0.00     0.00  GenericRouterVct::do_switch_allocation()
+  1.52     24.66     0.53   356584     0.00     0.00  HeadFlit::populate_head_flit()
+  1.15     25.06     0.40                             operator delete(void*)
+  1.09     25.44     0.38  4678995     0.00     0.00  EventId Simulator::Schedule<BankHandler, BankHandler, IrisEvent*, IrisEvent*>(double, void (BankHandler::*)(IrisEvent*), BankHandler*, IrisEvent*)
+  1.06     25.81     0.37  6559191     0.00     0.00  CmdIssuer::process_event(IrisEvent*)
+  1.04     26.17     0.36   180748     0.00     0.00  GenericTPG::convertToBitStream(Request*, HighLevelPacket*)
+  0.86     26.47     0.30  8021018     0.00     0.00  std::vector<bool, std::allocator<bool> >::_M_insert_aux(std::_Bit_iterator, bool)
+  0.86     26.77     0.30  4755654     0.00     0.00  GenericInterface::handle_tick_event(IrisEvent*)
+  0.75     27.03     0.26 30856271     0.00     0.00  GenericBuffer::get_occupancy(unsigned int) const
+  0.75     27.29     0.26                             memmove
+  0.72     27.54     0.25 15843026     0.00     0.00  Event1<NetworkComponent, GenericRouterVct, IrisEvent*, IrisEvent*>::CallHandler()
+  0.69     27.78     0.24  7314735     0.00     0.00  CmdIssuer::CalculateBusyTime(DRAMCmd, DRAMCmd, RankBankComb, RankBankComb, unsigned long long)
+  0.69     28.02     0.24  4859728     0.00     0.00  BankHandler::process_event(IrisEvent*)
+  0.69     28.26     0.24   175837     0.00     0.00  NI::convertToBitStream(Request*, HighLevelPacket*)
+  0.60     28.47     0.21 21358400     0.00     0.00  Request::Request()
+  0.60     28.68     0.21                             __i686.get_pc_thunk.bx
+  0.58     28.88     0.20 47302499     0.00     0.00  IrisEvent::IrisEvent()
+  0.58     29.08     0.20 47302381     0.00     0.00  IrisEvent::~IrisEvent()
+  0.55     29.27     0.19 11106077     0.00     0.00  Event1<NetworkComponent, NetworkComponent, IrisEvent*, IrisEvent*>::CallHandler()
+  0.55     29.46     0.19  2283146     0.00     0.00  PToPSwitchArbiter::pick_winner(unsigned int)
+  0.52     29.64     0.18  5491929     0.00     0.00  CmdIssuer::BankNotBusy(DRAMCmdState)
+  0.49     29.81     0.17 83376185     0.00     0.00  Simulator::Now()
+  0.49     29.98     0.17 17125466     0.00     0.00  GenericCrossbar::is_empty(unsigned int, unsigned int)
+  0.46     30.14     0.16 16224194     0.00     0.00  CmdIssuer::BusNotBusy(DRAMCmdState)
+  0.43     30.29     0.15 26051772     0.00     0.00  void** std::__copy_move<false, true, std::random_access_iterator_tag>::__copy_m<void*>(void* const*, void* const*, void**)
+  0.43     30.44     0.15 13025886     0.00     0.00  std::vector<void*, std::allocator<void*> >::_M_insert_aux(__gnu_cxx::__normal_iterator<void**, std::vector<void*, std::allocator<void*> > >, void* const&)
+  0.40     30.58     0.14 24800024     0.00     0.00  GenericRouterVct::process_event(IrisEvent*)
+  0.40     30.72     0.14  4478499     0.00     0.00  GenericRouterVct::send_credit_back(unsigned int)
+  0.40     30.86     0.14  2283146     0.00     0.00  PToPSwitchArbiter::is_empty()
+  0.40     31.00     0.14                             std::istreambuf_iterator<char, std::char_traits<char> > std::num_get<char, std::istreambuf_iterator<char, std::char_traits<char> > >::_M_extract_int<unsigned long long>(std::istreambuf_iterator<char, std::char_traits<char> >, std::istreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, std::_Ios_Iostate&, unsigned long long&) const
+  0.32     31.11     0.11  5914423     0.00     0.00  GenericBuffer::pull()
+  0.32     31.22     0.11  5202268     0.00     0.00  PToPSwitchArbiter::is_requested(unsigned int, unsigned int)
+  0.32     31.33     0.11  4478518     0.00     0.00  GenericRC::push(Flit*, unsigned int)
+  0.32     31.44     0.11  4163787     0.00     0.00  Event1<GenericInterface, GenericInterface, IrisEvent*, IrisEvent*>::CallHandler()
+  0.32     31.55     0.11  2224144     0.00     0.00  GenericCrossbar::configure_crossbar(unsigned int, unsigned int, unsigned int)
+  0.29     31.65     0.10 13025886     0.00     0.00  std::_Vector_base<void*, std::allocator<void*> >::_M_allocate(unsigned int)
+  0.26     31.74     0.09  8378498     0.00     0.00  std::vector<bool, std::allocator<bool> >::_M_check_len(unsigned int, char const*) const
+  0.26     31.83     0.09  5914443     0.00     0.00  GenericBuffer::push(Flit*)
+  0.26     31.92     0.09                             malloc_consolidate
+  0.23     32.00     0.08 13025886     0.00     0.00  std::vector<void*, std::allocator<void*> >::_M_check_len(unsigned int, char const*) const
+  0.23     32.08     0.08  6904733     0.00     0.00  GenericInterface::process_event(IrisEvent*)
+  0.23     32.16     0.08   423695     0.00     0.00  DRAMChannel::process_event(IrisEvent*)
+  0.23     32.24     0.08                             __read_nocancel
+  0.23     32.32     0.08                             floor
+  0.20     32.39     0.07  6632395     0.00     0.00  std::_Deque_iterator<Flit*, Flit*&, Flit**>::difference_type std::operator-<Flit*, Flit*&, Flit**>(std::_Deque_iterator<Flit*, Flit*&, Flit**> const&, std::_Deque_iterator<Flit*, Flit*&, Flit**> const&)
+  0.20     32.46     0.07  4859728     0.00     0.00  Event1<BankHandler, BankHandler, IrisEvent*, IrisEvent*>::CallHandler()
+  0.20     32.53     0.07  4449588     0.00     0.00  std::vector<unsigned int, std::allocator<unsigned int> >::_M_fill_insert(__gnu_cxx::__normal_iterator<unsigned int*, std::vector<unsigned int, std::allocator<unsigned int> > >, unsigned int, unsigned int const&)
+  0.20     32.60     0.07   418841     0.00     0.00  CmdBusHandler::process_event(IrisEvent*)
+  0.20     32.67     0.07   364058     0.00     0.00  MSHR_H::process_event(IrisEvent*)
+  0.20     32.74     0.07                             __i686.get_pc_thunk.cx
+  0.17     32.80     0.06  6559191     0.00     0.00  BusHandler::SetIfFull()
+  0.17     32.86     0.06  6559191     0.00     0.00  Event1<CmdIssuer, CmdIssuer, IrisEvent*, IrisEvent*>::CallHandler()
+  0.17     32.92     0.06  4755654     0.00     0.00  LowLevelPacket::size()
+  0.17     32.98     0.06  2224153     0.00     0.00  GenericRC::route_x_y(unsigned int)
+  0.17     33.04     0.06  1490908     0.00     0.00  CmdIssuer::CanSchedule(DRAMCmdState, DRAMCmdState)
+  0.14     33.09     0.05 64013446     0.00     0.00  Request::~Request()
+  0.14     33.14     0.05 10392921     0.00     0.00  LinkArrivalData::LinkArrivalData()
+  0.14     33.19     0.05  5693165     0.00     0.00  BankHandler::IsBufferFull()
+  0.14     33.24     0.05  4699342     0.00     0.00  ResponseHandler::IsBufferFull()
+  0.14     33.29     0.05   193806     0.00     0.00  RequestHandler::process_event(IrisEvent*)
+  0.14     33.34     0.05   180740     0.00     0.00  AddrMap::process_event(IrisEvent*)
+  0.14     33.39     0.05   180695     0.00     0.00  DataBusHandler::process_event(IrisEvent*)
+  0.12     33.43     0.04  6632395     0.00     0.00  GenericBuffer::change_pull_channel(unsigned int)
+  0.12     33.47     0.04  4448308     0.00     0.00  std::vector<unsigned int, std::allocator<unsigned int> >::resize(unsigned int, unsigned int)
+  0.12     33.51     0.04   357544     0.00     0.00  std::__fill_bvector(std::_Bit_iterator, std::_Bit_iterator, bool)
+  0.12     33.55     0.04   148118     0.00     0.00  EventId Simulator::Schedule<NI, NI, IrisEvent*, IrisEvent*>(double, void (NI::*)(IrisEvent*), NI*, IrisEvent*)
+  0.12     33.59     0.04                             std::istreambuf_iterator<char, std::char_traits<char> > std::num_get<char, std::istreambuf_iterator<char, std::char_traits<char> > >::_M_extract_int<unsigned int>(std::istreambuf_iterator<char, std::char_traits<char> >, std::istreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, std::_Ios_Iostate&, unsigned int&) const
+  0.12     33.63     0.04                             std::istream::sentry::sentry(std::istream&, bool)
+  0.12     33.67     0.04                             std::_Rb_tree_decrement(std::_Rb_tree_node_base*)
+  0.12     33.71     0.04                             __ieee754_pow
+  0.12     33.75     0.04                             ceil
+  0.09     33.78     0.03  2283148     0.00     0.00  PToPSwitchArbiter::request(unsigned int, unsigned int)
+  0.09     33.81     0.03  2224131     0.00     0.00  PToPSwitchArbiter::clear_winner(unsigned int, unsigned int)
+  0.09     33.84     0.03   906413     0.00     0.00  GenericTPG::process_event(IrisEvent*)
+  0.09     33.87     0.03   893862     0.00     0.00  std::vector<Phit*, std::allocator<Phit*> >::_M_insert_aux(__gnu_cxx::__normal_iterator<Phit**, std::vector<Phit*, std::allocator<Phit*> > >, Phit* const&)
+  0.09     33.90     0.03   549778     0.00     0.00  GenericTPG::handle_out_pull_event(IrisEvent*)
+  0.09     33.93     0.03   527536     0.00     0.00  ResponseHandler::process_event(IrisEvent*)
+  0.09     33.96     0.03   423695     0.00     0.00  Event1<DRAMChannel, DRAMChannel, IrisEvent*, IrisEvent*>::CallHandler()
+  0.09     33.99     0.03   180741     0.00     0.00  NI::convertFromBitStream(Request*, HighLevelPacket*)
+  0.09     34.02     0.03   175837     0.00     0.00  ResponseHandler::SearchBuffer(DRAMCmdState*)
+  0.09     34.05     0.03   175831     0.00     0.00  GenericTPG::handle_new_packet_event(IrisEvent*)
+  0.06     34.07     0.02 10392921     0.00     0.00  LinkArrivalData::~LinkArrivalData()
+  0.06     34.09     0.02  1787724     0.00     0.00  Phit** std::__copy_move<false, true, std::random_access_iterator_tag>::__copy_m<Phit*>(Phit* const*, Phit* const*, Phit**)
+  0.06     34.11     0.02  1435923     0.00     0.00  GenericInterface::handle_link_arrival(IrisEvent*)
+  0.06     34.13     0.02   893862     0.00     0.00  std::vector<Phit*, std::allocator<Phit*> >::_M_check_len(unsigned int, char const*) const
+  0.06     34.15     0.02   721330     0.00     0.00  NI::process_event(IrisEvent*)
+  0.06     34.17     0.02   717972     0.00     0.00  GenericBuffer::peek()
+  0.06     34.19     0.02   713156     0.00     0.00  Event1<NetworkComponent, Interface, IrisEvent*, IrisEvent*>::CallHandler()
+  0.06     34.21     0.02   591867     0.00     0.00  Event1<NetworkComponent, GenericInterface, IrisEvent*, IrisEvent*>::CallHandler()
+  0.06     34.23     0.02   527536     0.00     0.00  Event1<ResponseHandler, ResponseHandler, IrisEvent*, IrisEvent*>::CallHandler()
+  0.06     34.25     0.02   361608     0.00     0.00  Event1<NetworkComponent, GenericTPG, IrisEvent*, IrisEvent*>::CallHandler()
+  0.06     34.27     0.02   356048     0.00     0.00  GenericTPG::GetNewRequest(Request*)
+  0.06     34.29     0.02   351680     0.00     0.00  NI::handle_out_pull_event(IrisEvent*)
+  0.06     34.31     0.02   341945     0.00     0.00  __gnu_cxx::__normal_iterator<DRAMCmdState*, std::vector<DRAMCmdState, std::allocator<DRAMCmdState> > > std::copy<__gnu_cxx::__normal_iterator<DRAMCmdState*, std::vector<DRAMCmdState, std::allocator<DRAMCmdState> > >, __gnu_cxx::__normal_iterator<DRAMCmdState*, std::vector<DRAMCmdState, std::allocator<DRAMCmdState> > > >(__gnu_cxx::__normal_iterator<DRAMCmdState*, std::vector<DRAMCmdState, std::allocator<DRAMCmdState> > >, __gnu_cxx::__normal_iterator<DRAMCmdState*, std::vector<DRAMCmdState, std::allocator<DRAMCmdState> > >, __gnu_cxx::__normal_iterator<DRAMCmdState*, std::vector<DRAMCmdState, std::allocator<DRAMCmdState> > >)
+  0.06     34.33     0.02   180805     0.00     0.00  MSHR_H::GlobalAddrMap(unsigned long long, unsigned int)
+  0.06     34.35     0.02   180748     0.00     0.00  MSHR_H::demap_addr(unsigned long long, unsigned long long)
+  0.06     34.37     0.02   180741     0.00     0.00  EventId Simulator::Schedule<AddrMap, AddrMap, IrisEvent*, IrisEvent*>(double, void (AddrMap::*)(IrisEvent*), AddrMap*, IrisEvent*)
+  0.06     34.39     0.02   180718     0.00     0.00  BankHandler::RowHitFirst(Request*, int*)
+  0.06     34.41     0.02   180694     0.00     0.00  TailFlit::populate_tail_flit()
+  0.06     34.43     0.02   175831     0.00     0.00  MSHR_H::DeleteInMSHR(Request*)
+  0.06     34.45     0.02                             std::istream& std::istream::_M_extract<unsigned long long>(unsigned long long&)
+  0.06     34.47     0.02                             std::istream::operator>>(std::ios_base& (*)(std::ios_base&))
+  0.06     34.49     0.02                             isnan
+  0.03     34.50     0.01  5914443     0.00     0.00  GenericBuffer::change_push_channel(unsigned int)
+  0.03     34.51     0.01  4699342     0.00     0.00  BusHandler::BankRankFree(unsigned int, unsigned int, unsigned int)
+  0.03     34.52     0.01  2224153     0.00     0.00  GenericRC::get_output_port(unsigned int)
+  0.03     34.53     0.01  2224131     0.00     0.00  GenericCrossbar::pull(unsigned int, unsigned int)
+  0.03     34.54     0.01   715152     0.00     0.00  std::_Bit_iterator_base::_M_incr(int)
+  0.03     34.55     0.01   537449     0.00     0.00  std::dec(std::ios_base&)
+  0.03     34.56     0.01   418841     0.00     0.00  CmdIssuer::SetPrevState(DRAMCmdState)
+  0.03     34.57     0.01   418841     0.00     0.00  CmdIssuer::SetBusBusyTime(DRAMCmdState)
+  0.03     34.58     0.01   364058     0.00     0.00  Event1<MSHR_H, MSHR_H, IrisEvent*, IrisEvent*>::CallHandler()
+  0.03     34.59     0.01   357480     0.00     0.00  std::vector<bool, std::allocator<bool> >::_M_copy_aligned(std::_Bit_const_iterator, std::_Bit_const_iterator, std::_Bit_iterator)
+  0.03     34.60     0.01   356584     0.00     0.00  GenericInterface::handle_new_packet_event(IrisEvent*)
+  0.03     34.61     0.01   356555     0.00     0.00  std::vector<Request, std::allocator<Request> >::erase(__gnu_cxx::__normal_iterator<Request*, std::vector<Request, std::allocator<Request> > >)
+  0.03     34.62     0.01   188226     0.00     0.00  Event1<GenericTPG, GenericTPG, IrisEvent*, IrisEvent*>::CallHandler()
+  0.03     34.63     0.01   181398     0.00     0.00  BusHandler::LowLevelCmdGen(Request*)
+  0.03     34.64     0.01   180804     0.00     0.00  GenericTPG::handle_ready_event(IrisEvent*)
+  0.03     34.65     0.01   180740     0.00     0.00  Event1<AddrMap, AddrMap, IrisEvent*, IrisEvent*>::CallHandler()
+  0.03     34.66     0.01   180694     0.00     0.00  TailFlit::TailFlit()
+  0.03     34.67     0.01   180691     0.00     0.00  Statistic::CollectStatsPerRequest(Request*)
+  0.03     34.68     0.01   180689     0.00     0.00  BodyFlit::~BodyFlit()
+  0.03     34.69     0.01   175851     0.00     0.00  Event1<NetworkComponent, NI, IrisEvent*, IrisEvent*>::CallHandler()
+  0.03     34.70     0.01   152976     0.00     0.00  std::vector<Request, std::allocator<Request> >::push_back(Request const&)
+  0.03     34.71     0.01    98810     0.00     0.00  BankHandler::OldestFirst(Request*, int*)
+  0.03     34.72     0.01    50153     0.00     0.00  std::deque<Flit*, std::allocator<Flit*> >::_M_reserve_map_at_back(unsigned int)
+  0.03     34.73     0.01                             std::__use_cache<std::__numpunct_cache<char> >::operator()(std::locale const&) const
+  0.03     34.74     0.01                             std::num_get<char, std::istreambuf_iterator<char, std::char_traits<char> > >::do_get(std::istreambuf_iterator<char, std::char_traits<char> >, std::istreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, std::_Ios_Iostate&, unsigned int&) const
+  0.03     34.75     0.01                             gcov_write_words
+  0.03     34.76     0.01                             pow
+  0.00     34.76     0.00  4730038     0.00     0.00  BusHandler::IsFull(int)
+  0.00     34.76     0.00  2224144     0.00     0.00  GenericCrossbar::push(unsigned int, unsigned int)
+  0.00     34.76     0.00  1435934     0.00     0.00  EventId Simulator::Schedule<NetworkComponent, NetworkComponent, IrisEvent*, IrisEvent*>(double, void (NetworkComponent::*)(IrisEvent*), NetworkComponent*, IrisEvent*)
+  0.00     34.76     0.00   893862     0.00     0.00  std::_Vector_base<Phit*, std::allocator<Phit*> >::_M_allocate(unsigned int)
+  0.00     34.76     0.00   893838     0.00     0.00  Phit::~Phit()
+  0.00     34.76     0.00   717972     0.00     0.00  LowLevelPacket::get_next_flit()
+  0.00     34.76     0.00   714064     0.00     0.00  std::vector<bool, std::allocator<bool> >::_M_fill_insert(std::_Bit_iterator, unsigned int, bool)
+  0.00     34.76     0.00   713158     0.00     0.00  HighLevelPacket::HighLevelPacket()
+  0.00     34.76     0.00   713156     0.00     0.00  HighLevelPacket::~HighLevelPacket()
+  0.00     34.76     0.00   549574     0.00     0.00  std::vector<void*, std::allocator<void*> >::push_back(void* const&)
+  0.00     34.76     0.00   418841     0.00     0.00  Event1<CmdBusHandler, CmdBusHandler, IrisEvent*, IrisEvent*>::CallHandler()
+  0.00     34.76     0.00   357544     0.00     0.00  std::fill(std::_Bit_iterator, std::_Bit_iterator, bool const&)
+  0.00     34.76     0.00   356584     0.00     0.00  HeadFlit::HeadFlit()
+  0.00     34.76     0.00   356584     0.00     0.00  std::deque<Flit*, std::allocator<Flit*> >::clear()
+  0.00     34.76     0.00   356575     0.00     0.00  HeadFlit::~HeadFlit()
+  0.00     34.76     0.00   356572     0.00     0.00  GenericInterface::handle_ready_event(IrisEvent*)
+  0.00     34.76     0.00   356048     0.00     0.00  GenericTPG::GetRequest()
+  0.00     34.76     0.00   323954     0.00     0.00  ResponseHandler::SendServiced()
+  0.00     34.76     0.00   193807     0.00     0.00  NI::handle_new_packet_event(IrisEvent*)
+  0.00     34.76     0.00   193806     0.00     0.00  Event1<RequestHandler, RequestHandler, IrisEvent*, IrisEvent*>::CallHandler()
+  0.00     34.76     0.00   188902     0.00     0.00  Event1<NI, NI, IrisEvent*, IrisEvent*>::CallHandler()
+  0.00     34.76     0.00   180805     0.00     0.00  std::hex(std::ios_base&)
+  0.00     34.76     0.00   180748     0.00     0.00  GenericTPG::map_addr(unsigned long long*)
+  0.00     34.76     0.00   180740     0.00     0.00  AddrMap::map_addr(Request*)
+  0.00     34.76     0.00   180718     0.00     0.00  BankHandler::SetReadsOWrite(CallerType, Command_t)
+  0.00     34.76     0.00   180718     0.00     0.00  BankHandler::FRFCFS(Request*, int*)
+  0.00     34.76     0.00   180718     0.00     0.00  DRAMCmdState::set(DRAMCmd, BurstLength, Request)
+  0.00     34.76     0.00   180695     0.00     0.00  Event1<DataBusHandler, DataBusHandler, IrisEvent*, IrisEvent*>::CallHandler()
+  0.00     34.76     0.00   180694     0.00     0.00  BodyFlit::populate_body_flit()
+  0.00     34.76     0.00   180694     0.00     0.00  BodyFlit::BodyFlit()
+  0.00     34.76     0.00   180694     0.00     0.00  std::deque<Flit*, std::allocator<Flit*> >::push_back(Flit* const&)
+  0.00     34.76     0.00   180688     0.00     0.00  TailFlit::~TailFlit()
+  0.00     34.76     0.00   175863     0.00     0.00  EventId Simulator::Schedule<ResponseHandler, ResponseHandler, IrisEvent*, IrisEvent*>(double, void (ResponseHandler::*)(IrisEvent*), ResponseHandler*, IrisEvent*)
+  0.00     34.76     0.00   175843     0.00     0.00  NI::handle_ready_event(IrisEvent*)
+  0.00     34.76     0.00   175831     0.00     0.00  GenericTPG::convertFromBitStream(Request*, HighLevelPacket*)
+  0.00     34.76     0.00   118790     0.00     0.00  BankHandler::ReadsFirst(Request*, int*)
+  0.00     34.76     0.00    81908     0.00     0.00  BankHandler::SetBypasses(unsigned int)
+  0.00     34.76     0.00    59002     0.00     0.00  PToPSwitchArbiter::clear_requested(unsigned int, unsigned int)
+  0.00     34.76     0.00    51574     0.00     0.00  std::_Deque_base<Flit*, std::allocator<Flit*> >::_M_deallocate_node(Flit**)
+  0.00     34.76     0.00    50153     0.00     0.00  std::_Deque_base<Flit*, std::allocator<Flit*> >::_M_allocate_node()
+  0.00     34.76     0.00    20480     0.00     0.00  GenericRouterVct::set_grid_x_location(unsigned int, unsigned int, unsigned int)
+  0.00     34.76     0.00    20480     0.00     0.00  GenericRouterVct::set_grid_y_location(unsigned int, unsigned int, unsigned int)
+  0.00     34.76     0.00    12585     0.00     0.00  Flit*** std::__copy_move<false, true, std::random_access_iterator_tag>::__copy_m<Flit**>(Flit** const*, Flit** const*, Flit***)
+  0.00     34.76     0.00    12585     0.00     0.00  std::deque<Flit*, std::allocator<Flit*> >::_M_reallocate_map(unsigned int, bool)
+  0.00     34.76     0.00     7478     0.00     0.00  EventId Simulator::Schedule<GenericTPG, GenericTPG, IrisEvent*, IrisEvent*>(double, void (GenericTPG::*)(IrisEvent*), GenericTPG*, IrisEvent*)
+  0.00     34.76     0.00     7478     0.00     0.00  EventId Simulator::Schedule<MSHR_H, MSHR_H, IrisEvent*, IrisEvent*>(double, void (MSHR_H::*)(IrisEvent*), MSHR_H*, IrisEvent*)
+  0.00     34.76     0.00     4855     0.00     0.00  DRAMCmdState::DRAMCmdState()
+  0.00     34.76     0.00     4855     0.00     0.00  CmdIssuer::CalculateDataDelay(DRAMCmdState)
+  0.00     34.76     0.00     4855     0.00     0.00  EventId Simulator::Schedule<DataBusHandler, DataBusHandler, IrisEvent*, IrisEvent*>(double, void (DataBusHandler::*)(IrisEvent*), DataBusHandler*, IrisEvent*)
+  0.00     34.76     0.00     4234     0.00     0.00  std::__convert_from_v(__locale_struct* const&, char*, int, char const*, ...)
+  0.00     34.76     0.00     2184     0.00     0.00  unsigned int* std::__copy_move<false, true, std::random_access_iterator_tag>::__copy_m<unsigned int>(unsigned int const*, unsigned int const*, unsigned int*)
+  0.00     34.76     0.00     2086     0.00     0.00  std::vector<unsigned int, std::allocator<unsigned int> >::_M_check_len(unsigned int, char const*) const
+  0.00     34.76     0.00     1728     0.00     0.00  std::vector<unsigned int, std::allocator<unsigned int> >::vector(std::vector<unsigned int, std::allocator<unsigned int> > const&)
+  0.00     34.76     0.00     1600     0.00     0.00  std::_Deque_base<Flit*, std::allocator<Flit*> >::_M_initialize_map(unsigned int)
+  0.00     34.76     0.00     1600     0.00     0.00  std::_Deque_base<Flit*, std::allocator<Flit*> >::~_Deque_base()
+  0.00     34.76     0.00     1480     0.00     0.00  Component::setComponentId(int)
+  0.00     34.76     0.00     1257     0.00     0.00  char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&, std::forward_iterator_tag)
+  0.00     34.76     0.00     1024     0.00     0.00  NetworkComponent** std::__copy_move<false, true, std::random_access_iterator_tag>::__copy_m<NetworkComponent*>(NetworkComponent* const*, NetworkComponent* const*, NetworkComponent**)
+  0.00     34.76     0.00     1024     0.00     0.00  std::deque<Flit*, std::allocator<Flit*> >::deque(std::deque<Flit*, std::allocator<Flit*> > const&)
+  0.00     34.76     0.00     1024     0.00     0.00  std::_Deque_iterator<Flit*, Flit*&, Flit**> std::copy<std::_Deque_iterator<Flit*, Flit* const&, Flit* const*>, std::_Deque_iterator<Flit*, Flit*&, Flit**> >(std::_Deque_iterator<Flit*, Flit* const&, Flit* const*>, std::_Deque_iterator<Flit*, Flit* const&, Flit* const*>, std::_Deque_iterator<Flit*, Flit*&, Flit**>)
+  0.00     34.76     0.00      896     0.00     0.00  std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > >* std::__uninitialized_copy<false>::uninitialized_copy<std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > >*, std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > >*>(std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > >*, std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > >*, std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > >*)
+  0.00     34.76     0.00      872     0.00     0.00  Component::Component()
+  0.00     34.76     0.00      872     0.00     0.00  Simulator::registerComponent(Component*, int)
+  0.00     34.76     0.00      872     0.00     0.00  std::_Rb_tree<int, std::pair<int const, ComponentDescription*>, std::_Select1st<std::pair<int const, ComponentDescription*> >, std::less<int>, std::allocator<std::pair<int const, ComponentDescription*> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<int const, ComponentDescription*> const&)
+  0.00     34.76     0.00      872     0.00     0.00  std::_Rb_tree<int, std::pair<int const, ComponentDescription*>, std::_Select1st<std::pair<int const, ComponentDescription*> >, std::less<int>, std::allocator<std::pair<int const, ComponentDescription*> > >::_M_insert_unique_(std::_Rb_tree_const_iterator<std::pair<int const, ComponentDescription*> >, std::pair<int const, ComponentDescription*> const&)
+  0.00     34.76     0.00      832     0.00     0.00  GenericLink::setup()
+  0.00     34.76     0.00      768     0.00     0.00  int* std::__copy_move<false, true, std::random_access_iterator_tag>::__copy_m<int>(int const*, int const*, int*)
+  0.00     34.76     0.00      704     0.00     0.00  std::vector<bool, std::allocator<bool> >::vector(std::vector<bool, std::allocator<bool> > const&)
+  0.00     34.76     0.00      680     0.00     0.00  RefreshMgr::process_event(IrisEvent*)
+  0.00     34.76     0.00      680     0.00     0.00  Event1<RefreshMgr, RefreshMgr, IrisEvent*, IrisEvent*>::CallHandler()
+  0.00     34.76     0.00      664     0.00     0.00  Component::~Component()
+  0.00     34.76     0.00      640     0.00     0.00  std::vector<int, std::allocator<int> >::vector(std::vector<int, std::allocator<int> > const&)
+  0.00     34.76     0.00      635     0.00     0.00  std::vector<Request, std::allocator<Request> >::_M_check_len(unsigned int, char const*) const
+  0.00     34.76     0.00      635     0.00     0.00  std::_Vector_base<Request, std::allocator<Request> >::_M_allocate(unsigned int)
+  0.00     34.76     0.00      635     0.00     0.00  std::vector<Request, std::allocator<Request> >::_M_insert_aux(__gnu_cxx::__normal_iterator<Request*, std::vector<Request, std::allocator<Request> > >, Request const&)
+  0.00     34.76     0.00      635     0.00     0.00  void std::_Destroy<Request*>(Request*, Request*)
+  0.00     34.76     0.00      608     0.00     0.00  NetworkComponent::NetworkComponent()
+  0.00     34.76     0.00      608     0.00     0.00  NetworkComponent::~NetworkComponent()
+  0.00     34.76     0.00      608     0.00     0.00  __gnu_cxx::__exchange_and_add_dispatch(int*, int)
+  0.00     34.76     0.00      512     0.00     0.00  GenericBuffer::~GenericBuffer()
+  0.00     34.76     0.00      512     0.00     0.00  std::vector<NetworkComponent*, std::allocator<NetworkComponent*> >::_M_check_len(unsigned int, char const*) const
+  0.00     34.76     0.00      512     0.00     0.00  std::_Vector_base<NetworkComponent*, std::allocator<NetworkComponent*> >::_M_allocate(unsigned int)
+  0.00     34.76     0.00      512     0.00     0.00  std::vector<NetworkComponent*, std::allocator<NetworkComponent*> >::_M_insert_aux(__gnu_cxx::__normal_iterator<NetworkComponent**, std::vector<NetworkComponent*, std::allocator<NetworkComponent*> > >, NetworkComponent* const&)
+  0.00     34.76     0.00      504     0.00     0.00  __gnu_cxx::__exchange_and_add_dispatch(int*, int)
+  0.00     34.76     0.00      448     0.00     0.00  GenericBuffer::resize(unsigned int, unsigned int)
+  0.00     34.76     0.00      448     0.00     0.00  std::vector<std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > >, std::allocator<std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > > > >::_M_check_len(unsigned int, char const*) const
+  0.00     34.76     0.00      448     0.00     0.00  void std::__uninitialized_fill_n<false>::uninitialized_fill_n<std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > >*, unsigned int, std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > > >(std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > >*, unsigned int, std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > > const&)
+  0.00     34.76     0.00      448     0.00     0.00  std::vector<std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > >, std::allocator<std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > > > >::_M_fill_insert(__gnu_cxx::__normal_iterator<std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > >*, std::vector<std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > >, std::allocator<std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > > > > >, unsigned int, std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > > const&)
+  0.00     34.76     0.00      448     0.00     0.00  std::vector<std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > >, std::allocator<std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > > > >::resize(unsigned int, std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > >)
+  0.00     34.76     0.00      416     0.00     0.00  GenericLink::~GenericLink()
+  0.00     34.76     0.00      416     0.00     0.00  __gnu_cxx::__exchange_and_add_dispatch(int*, int)
+  0.00     34.76     0.00      416     0.00     0.00  GenericLink::toString() const
+  0.00     34.76     0.00      384     0.00     0.00  InputBufferState::~InputBufferState()
+  0.00     34.76     0.00      384     0.00     0.00  GenericRC::~GenericRC()
+  0.00     34.76     0.00      384     0.00     0.00  std::vector<SA_unit, std::allocator<SA_unit> >::_M_check_len(unsigned int, char const*) const
+  0.00     34.76     0.00      384     0.00     0.00  std::vector<SA_unit, std::allocator<SA_unit> >::_M_fill_insert(__gnu_cxx::__normal_iterator<SA_unit*, std::vector<SA_unit, std::allocator<SA_unit> > >, unsigned int, SA_unit const&)
+  0.00     34.76     0.00      320     0.00     0.00  GenericBuffer::GenericBuffer(GenericBuffer const&)
+  0.00     34.76     0.00      320     0.00     0.00  GenericRC::resize(unsigned int)
+  0.00     34.76     0.00      320     0.00     0.00  GenericRC::GenericRC(GenericRC const&)
+  0.00     34.76     0.00      320     0.00     0.00  GenericRC::Address* std::__copy_move<false, true, std::random_access_iterator_tag>::__copy_m<GenericRC::Address>(GenericRC::Address const*, GenericRC::Address const*, GenericRC::Address*)
+  0.00     34.76     0.00      320     0.00     0.00  std::_Bvector_base<std::allocator<bool> >::~_Bvector_base()
+  0.00     34.76     0.00      320     0.00     0.00  std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > >* std::__uninitialized_copy<false>::uninitialized_copy<__gnu_cxx::__normal_iterator<std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > > const*, std::vector<std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > >, std::allocator<std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > > > > >, std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > >*>(__gnu_cxx::__normal_iterator<std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > > const*, std::vector<std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > >, std::allocator<std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > > > > >, __gnu_cxx::__normal_iterator<std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > > const*, std::vector<std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > >, std::allocator<std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > > > > >, std::queue<Flit*, std::deque<Flit*, std::allocator<Flit*> > >*)
+  0.00     34.76     0.00      320     0.00     0.00  std::map<unsigned int, unsigned int, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, unsigned int> > >::insert(std::pair<unsigned int const, unsigned int> const&)
+  0.00     34.76     0.00      320     0.00     0.00  std::vector<GenericRC::Address, std::allocator<GenericRC::Address> >::_M_fill_insert(__gnu_cxx::__normal_iterator<GenericRC::Address*, std::vector<GenericRC::Address, std::allocator<GenericRC::Address> > >, unsigned int, GenericRC::Address const&)
+  0.00     34.76     0.00      320     0.00     0.00  std::_Rb_tree<unsigned int, std::pair<unsigned int const, unsigned int>, std::_Select1st<std::pair<unsigned int const, unsigned int> >, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, unsigned int> > >::_M_insert_(std::_Rb_tree_node_base const*, std::_Rb_tree_node_base const*, std::pair<unsigned int const, unsigned int> const&)
+  0.00     34.76     0.00      256     0.00     0.00  LowLevelPacket::~LowLevelPacket()
+  0.00     34.76     0.00      256     0.00     0.00  LowLevelPacket* std::__uninitialized_copy<false>::uninitialized_copy<LowLevelPacket*, LowLevelPacket*>(LowLevelPacket*, LowLevelPacket*, LowLevelPacket*)
+  0.00     34.76     0.00      256     0.00     0.00  std::vector<bool, std::allocator<bool> >* std::__uninitialized_copy<false>::uninitialized_copy<std::vector<bool, std::allocator<bool> >*, std::vector<bool, std::allocator<bool> >*>(std::vector<bool, std::allocator<bool> >*, std::vector<bool, std::allocator<bool> >*, std::vector<bool, std::allocator<bool> >*)
+  0.00     34.76     0.00      256     0.00     0.00  std::vector<unsigned int, std::allocator<unsigned int> >* std::__uninitialized_copy<false>::uninitialized_copy<std::vector<unsigned int, std::allocator<unsigned int> >*, std::vector<unsigned int, std::allocator<unsigned int> >*>(std::vector<unsigned int, std::allocator<unsigned int> >*, std::vector<unsigned int, std::allocator<unsigned int> >*, std::vector<unsigned int, std::allocator<unsigned int> >*)
+  0.00     34.76     0.00      228     0.00     0.00  std::_Vector_base<unsigned int, std::allocator<unsigned int> >::_M_allocate(unsigned int)
+  0.00     34.76     0.00      228     0.00     0.00  std::vector<unsigned int, std::allocator<unsigned int> >::_M_insert_aux(__gnu_cxx::__normal_iterator<unsigned int*, std::vector<unsigned int, std::allocator<unsigned int> > >, unsigned int const&)
+  0.00     34.76     0.00      192     0.00     0.00  GenericBuffer::GenericBuffer()
+  0.00     34.76     0.00      192     0.00     0.00  GenericBuffer::toString() const
+  0.00     34.76     0.00      168     0.00     0.00  __gnu_cxx::__exchange_and_add_dispatch(int*, int)
+  0.00     34.76     0.00      128     0.00     0.00  BankHandler::BankHandler()
+  0.00     34.76     0.00      128     0.00     0.00  LowLevelPacket::LowLevelPacket(LowLevelPacket const&)
+  0.00     34.76     0.00      128     0.00     0.00  LowLevelPacket::LowLevelPacket()
+  0.00     34.76     0.00      128     0.00     0.00  MTRand::seed()
+  0.00     34.76     0.00      128     0.00     0.00  __gnu_cxx::__exchange_and_add_dispatch(int*, int)
+  0.00     34.76     0.00      128     0.00     0.00  __gnu_cxx::__exchange_and_add_dispatch(int*, int)
+  0.00     34.76     0.00      128     0.00     0.00  __gnu_cxx::__exchange_and_add_dispatch(int*, int)
+  0.00     34.76     0.00      128     0.00     0.00  std::vector<LowLevelPacket, std::allocator<LowLevelPacket> >::_M_check_len(unsigned int, char const*) const
+  0.00     34.76     0.00      128     0.00     0.00  std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > >::_M_check_len(unsigned int, char const*) const
+  0.00     34.76     0.00      128     0.00     0.00  std::vector<std::vector<unsigned int, std::allocator<unsigned int> >, std::allocator<std::vector<unsigned int, std::allocator<unsigned int> > > >::_M_check_len(unsigned int, char const*) const
+  0.00     34.76     0.00      128     0.00     0.00  std::_Deque_base<HighLevelPacket, std::allocator<HighLevelPacket> >::_M_initialize_map(unsigned int)
+  0.00     34.76     0.00      128     0.00     0.00  std::_Deque_base<HighLevelPacket, std::allocator<HighLevelPacket> >::~_Deque_base()
+  0.00     34.76     0.00      128     0.00     0.00  GenericBuffer* std::__uninitialized_copy<false>::uninitialized_copy<GenericBuffer*, GenericBuffer*>(GenericBuffer*, GenericBuffer*, GenericBuffer*)
+  0.00     34.76     0.00      128     0.00     0.00  InputBufferState* std::__uninitialized_copy<false>::uninitialized_copy<InputBufferState*, InputBufferState*>(InputBufferState*, InputBufferState*, InputBufferState*)
+  0.00     34.76     0.00      128     0.00     0.00  GenericRC* std::__uninitialized_copy<false>::uninitialized_copy<GenericRC*, GenericRC*>(GenericRC*, GenericRC*, GenericRC*)
+  0.00     34.76     0.00      128     0.00     0.00  std::vector<SA_unit, std::allocator<SA_unit> >* std::__uninitialized_copy<false>::uninitialized_copy<std::vector<SA_unit, std::allocator<SA_unit> >*, std::vector<SA_unit, std::allocator<SA_unit> >*>(std::vector<SA_unit, std::allocator<SA_unit> >*, std::vector<SA_unit, std::allocator<SA_unit> >*, std::vector<SA_unit, std::allocator<SA_unit> >*)
+  0.00     34.76     0.00      128     0.00     0.00  void std::__uninitialized_fill_n<false>::uninitialized_fill_n<LowLevelPacket*, unsigned int, LowLevelPacket>(LowLevelPacket*, unsigned int, LowLevelPacket const&)
+  0.00     34.76     0.00      128     0.00     0.00  void std::__uninitialized_fill_n<false>::uninitialized_fill_n<std::vector<bool, std::allocator<bool> >*, unsigned int, std::vector<bool, std::allocator<bool> > >(std::vector<bool, std::allocator<bool> >*, unsigned int, std::vector<bool, std::allocator<bool> > const&)
+  0.00     34.76     0.00      128     0.00     0.00  void std::__uninitialized_fill_n<false>::uninitialized_fill_n<std::vector<unsigned int, std::allocator<unsigned int> >*, unsigned int, std::vector<unsigned int, std::allocator<unsigned int> > >(std::vector<unsigned int, std::allocator<unsigned int> >*, unsigned int, std::vector<unsigned int, std::allocator<unsigned int> > const&)
+  0.00     34.76     0.00      128     0.00     0.00  std::deque<HighLevelPacket, std::allocator<HighLevelPacket> >::~deque()
+  0.00     34.76     0.00      128     0.00     0.00  std::vector<LowLevelPacket, std::allocator<LowLevelPacket> >::_M_fill_insert(__gnu_cxx::__normal_iterator<LowLevelPacket*, std::vector<LowLevelPacket, std::allocator<LowLevelPacket> > >, unsigned int, LowLevelPacket const&)
+  0.00     34.76     0.00      128     0.00     0.00  std::vector<LowLevelPacket, std::allocator<LowLevelPacket> >::~vector()
+  0.00     34.76     0.00      128     0.00     0.00  std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > >::_M_fill_insert(__gnu_cxx::__normal_iterator<std::vector<bool, std::allocator<bool> >*, std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > > >, unsigned int, std::vector<bool, std::allocator<bool> > const&)
+  0.00     34.76     0.00      128     0.00     0.00  std::vector<std::vector<unsigned int, std::allocator<unsigned int> >, std::allocator<std::vector<unsigned int, std::allocator<unsigned int> > > >::_M_fill_insert(__gnu_cxx::__normal_iterator<std::vector<unsigned int, std::allocator<unsigned int> >*, std::vector<std::vector<unsigned int, std::allocator<unsigned int> >, std::allocator<std::vector<unsigned int, std::allocator<unsigned int> > > > >, unsigned int, std::vector<unsigned int, std::allocator<unsigned int> > const&)
+  0.00     34.76     0.00      128     0.00     0.00  std::vector<std::vector<unsigned int, std::allocator<unsigned int> >, std::allocator<std::vector<unsigned int, std::allocator<unsigned int> > > >::~vector()
+  0.00     34.76     0.00       71     0.00     0.00  std::vector<Interface*, std::allocator<Interface*> >::_M_check_len(unsigned int, char const*) const
+  0.00     34.76     0.00       64     0.00     0.00  GenericCrossbar::set_input_ports(unsigned int)
+  0.00     34.76     0.00       64     0.00     0.00  GenericCrossbar::set_output_ports(unsigned int)
+  0.00     34.76     0.00       64     0.00     0.00  GenericCrossbar::set_no_virtual_channels(unsigned int)
+  0.00     34.76     0.00       64     0.00     0.00  GenericCrossbar::GenericCrossbar()
+  0.00     34.76     0.00       64     0.00     0.00  GenericCrossbar::~GenericCrossbar()
+  0.00     34.76     0.00       64     0.00     0.00  GenericInterface::set_no_vcs(unsigned int)
+  0.00     34.76     0.00       64     0.00     0.00  GenericInterface::print_stats()
+  0.00     34.76     0.00       64     0.00     0.00  GenericInterface::get_flits_out()
+  0.00     34.76     0.00       64     0.00     0.00  GenericInterface::set_no_credits(int)
+  0.00     34.76     0.00       64     0.00     0.00  GenericInterface::get_packets_out()
+  0.00     34.76     0.00       64     0.00     0.00  GenericInterface::set_buffer_size(unsigned int)
+  0.00     34.76     0.00       64     0.00     0.00  GenericInterface::setup(unsigned int, unsigned int)
+  0.00     34.76     0.00       64     0.00     0.00  GenericInterface::GenericInterface()
+  0.00     34.76     0.00       64     0.00     0.00  GenericInterface::~GenericInterface()
+  0.00     34.76     0.00       64     0.00     0.00  GenericRouterVct::print_stats()
+  0.00     34.76     0.00       64     0.00     0.00  GenericRouterVct::set_no_nodes(unsigned int)
+  0.00     34.76     0.00       64     0.00     0.00  GenericRouterVct::init(unsigned int, unsigned int, unsigned int, unsigned int)
+  0.00     34.76     0.00       64     0.00     0.00  GenericRouterVct::GenericRouterVct()
+  0.00     34.76     0.00       64     0.00     0.00  GenericRouterVct::~GenericRouterVct()
+  0.00     34.76     0.00       64     0.00     0.00  InputBufferState::InputBufferState()
+  0.00     34.76     0.00       64     0.00     0.00  PToPSwitchArbiter::resize(unsigned int)
+  0.00     34.76     0.00       64     0.00     0.00  PToPSwitchArbiter::PToPSwitchArbiter()
+  0.00     34.76     0.00       64     0.00     0.00  PToPSwitchArbiter::~PToPSwitchArbiter()
+  0.00     34.76     0.00       64     0.00     0.00  Router::~Router()
+  0.00     34.76     0.00       64     0.00     0.00  GenericRC::GenericRC()
+  0.00     34.76     0.00       64     0.00     0.00  Interface::Interface()
+  0.00     34.76     0.00       64     0.00     0.00  Interface::~Interface()
+  0.00     34.76     0.00       64     0.00     0.00  Processor::Processor()
+  0.00     34.76     0.00       64     0.00     0.00  Processor::~Processor()
+  0.00     34.76     0.00       64     0.00     0.00  GenericCrossbar::toString() const
+  0.00     34.76     0.00       64     0.00     0.00  GenericInterface::toString() const
+  0.00     34.76     0.00       64     0.00     0.00  GenericRouterVct::toString() const
+  0.00     34.76     0.00       64     0.00     0.00  PToPSwitchArbiter::toString() const
+  0.00     34.76     0.00       64     0.00     0.00  GenericRC::toString() const
+  0.00     34.76     0.00       64     0.00     0.00  std::vector<GenericBuffer, std::allocator<GenericBuffer> >::_M_check_len(unsigned int, char const*) const
+  0.00     34.76     0.00       64     0.00     0.00  std::vector<InputBufferState, std::allocator<InputBufferState> >::_M_check_len(unsigned int, char const*) const
+  0.00     34.76     0.00       64     0.00     0.00  std::vector<GenericRC, std::allocator<GenericRC> >::_M_check_len(unsigned int, char const*) const
+  0.00     34.76     0.00       64     0.00     0.00  std::vector<std::vector<SA_unit, std::allocator<SA_unit> >, std::allocator<std::vector<SA_unit, std::allocator<SA_unit> > > >::_M_check_len(unsigned int, char const*) const
+  0.00     34.76     0.00       64     0.00     0.00  std::vector<int, std::allocator<int> >::_M_check_len(unsigned int, char const*) const
+  0.00     34.76     0.00       64     0.00     0.00  void std::__uninitialized_fill_n<false>::uninitialized_fill_n<GenericBuffer*, unsigned int, GenericBuffer>(GenericBuffer*, unsigned int, GenericBuffer const&)
+  0.00     34.76     0.00       64     0.00     0.00  void std::__uninitialized_fill_n<false>::uninitialized_fill_n<InputBufferState*, unsigned int, InputBufferState>(InputBufferState*, unsigned int, InputBufferState const&)
+  0.00     34.76     0.00       64     0.00     0.00  void std::__uninitialized_fill_n<false>::uninitialized_fill_n<GenericRC*, unsigned int, GenericRC>(GenericRC*, unsigned int, GenericRC const&)
+  0.00     34.76     0.00       64     0.00     0.00  void std::__uninitialized_fill_n<false>::uninitialized_fill_n<std::vector<SA_unit, std::allocator<SA_unit> >*, unsigned int, std::vector<SA_unit, std::allocator<SA_unit> > >(std::vector<SA_unit, std::allocator<SA_unit> >*, unsigned int, std::vector<SA_unit, std::allocator<SA_unit> > const&)
+  0.00     34.76     0.00       64     0.00     0.00  std::vector<GenericBuffer, std::allocator<GenericBuffer> >::_M_fill_insert(__gnu_cxx::__normal_iterator<GenericBuffer*, std::vector<GenericBuffer, std::allocator<GenericBuffer> > >, unsigned int, GenericBuffer const&)
+  0.00     34.76     0.00       64     0.00     0.00  std::vector<GenericBuffer, std::allocator<GenericBuffer> >::~vector()
+  0.00     34.76     0.00       64     0.00     0.00  std::vector<InputBufferState, std::allocator<InputBufferState> >::_M_fill_insert(__gnu_cxx::__normal_iterator<InputBufferState*, std::vector<InputBufferState, std::allocator<InputBufferState> > >, unsigned int, InputBufferState const&)
+  0.00     34.76     0.00       64     0.00     0.00  std::vector<InputBufferState, std::allocator<InputBufferState> >::~vector()
+  0.00     34.76     0.00       64     0.00     0.00  std::vector<GenericRC, std::allocator<GenericRC> >::_M_fill_insert(__gnu_cxx::__normal_iterator<GenericRC*, std::vector<GenericRC, std::allocator<GenericRC> > >, unsigned int, GenericRC const&)
+  0.00     34.76     0.00       64     0.00     0.00  std::vector<GenericRC, std::allocator<GenericRC> >::~vector()
+  0.00     34.76     0.00       64     0.00     0.00  std::vector<Interface*, std::allocator<Interface*> >::_M_fill_insert(__gnu_cxx::__normal_iterator<Interface**, std::vector<Interface*, std::allocator<Interface*> > >, unsigned int, Interface* const&)
+  0.00     34.76     0.00       64     0.00     0.00  std::vector<std::vector<SA_unit, std::allocator<SA_unit> >, std::allocator<std::vector<SA_unit, std::allocator<SA_unit> > > >::_M_fill_insert(__gnu_cxx::__normal_iterator<std::vector<SA_unit, std::allocator<SA_unit> >*, std::vector<std::vector<SA_unit, std::allocator<SA_unit> >, std::allocator<std::vector<SA_unit, std::allocator<SA_unit> > > > >, unsigned int, std::vector<SA_unit, std::allocator<SA_unit> > const&)
+  0.00     34.76     0.00       64     0.00     0.00  std::vector<std::vector<SA_unit, std::allocator<SA_unit> >, std::allocator<std::vector<SA_unit, std::allocator<SA_unit> > > >::resize(unsigned int, std::vector<SA_unit, std::allocator<SA_unit> >)
+  0.00     34.76     0.00       64     0.00     0.00  std::vector<std::vector<unsigned int, std::allocator<unsigned int> >, std::allocator<std::vector<unsigned int, std::allocator<unsigned int> > > >::resize(unsigned int, std::vector<unsigned int, std::allocator<unsigned int> >)
+  0.00     34.76     0.00       64     0.00     0.00  std::vector<bool, std::allocator<bool> >::resize(unsigned int, bool)
+  0.00     34.76     0.00       64     0.00     0.00  std::vector<int, std::allocator<int> >::_M_fill_insert(__gnu_cxx::__normal_iterator<int*, std::vector<int, std::allocator<int> > >, unsigned int, int const&)
+  0.00     34.76     0.00       56     0.00     0.00  GenericTPG::set_output_path(std::string)
+  0.00     34.76     0.00       56     0.00     0.00  GenericTPG::set_trace_filename(std::string)
+  0.00     34.76     0.00       56     0.00     0.00  GenericTPG::setup(unsigned int, unsigned int, unsigned int)
+  0.00     34.76     0.00       56     0.00     0.00  GenericTPG::GenericTPG()
+  0.00     34.76     0.00       56     0.00     0.00  GenericTPG::~GenericTPG()
+  0.00     34.76     0.00       56     0.00     0.00  MSHR_H::MSHR_H()
+  0.00     34.76     0.00       56     0.00     0.00  MSHR_H::~MSHR_H()
+  0.00     34.76     0.00       56     0.00     0.00  GenericTPG::print_stats() const
+  0.00     34.76     0.00       56     0.00     0.00  GenericTPG::toString() const
+  0.00     34.76     0.00       47     0.00     0.00  std::vector<DRAMCmdState, std::allocator<DRAMCmdState> >::_M_check_len(unsigned int, char const*) const
+  0.00     34.76     0.00       47     0.00     0.00  std::_Vector_base<DRAMCmdState, std::allocator<DRAMCmdState> >::_M_allocate(unsigned int)
+  0.00     34.76     0.00       47     0.00     0.00  std::vector<DRAMCmdState, std::allocator<DRAMCmdState> >::_M_insert_aux(__gnu_cxx::__normal_iterator<DRAMCmdState*, std::vector<DRAMCmdState, std::allocator<DRAMCmdState> > >, DRAMCmdState const&)
+  0.00     34.76     0.00       47     0.00     0.00  void std::_Destroy<DRAMCmdState*>(DRAMCmdState*, DRAMCmdState*)
+  0.00     34.76     0.00       36     0.00     0.00  GenericLink** std::__copy_move<false, true, std::random_access_iterator_tag>::__copy_m<GenericLink*>(GenericLink* const*, GenericLink* const*, GenericLink**)
+  0.00     34.76     0.00       24     0.00     0.00  __gnu_cxx::__exchange_and_add_dispatch(int*, int)
+  0.00     34.76     0.00       18     0.00     0.00  std::vector<GenericLink*, std::allocator<GenericLink*> >::_M_check_len(unsigned int, char const*) const
+  0.00     34.76     0.00       18     0.00     0.00  std::_Vector_base<GenericLink*, std::allocator<GenericLink*> >::_M_allocate(unsigned int)
+  0.00     34.76     0.00       18     0.00     0.00  std::vector<GenericLink*, std::allocator<GenericLink*> >::_M_insert_aux(__gnu_cxx::__normal_iterator<GenericLink**, std::vector<GenericLink*, std::allocator<GenericLink*> > >, GenericLink* const&)
+  0.00     34.76     0.00       16     0.00     0.00  RankHandler::RankHandler()
+  0.00     34.76     0.00       16     0.00     0.00  __gnu_cxx::__exchange_and_add_dispatch(int*, int)
+  0.00     34.76     0.00       14     0.00     0.00  Router** std::__copy_move<false, true, std::random_access_iterator_tag>::__copy_m<Router*>(Router* const*, Router* const*, Router**)
+  0.00     34.76     0.00       14     0.00     0.00  Interface** std::__copy_move<false, true, std::random_access_iterator_tag>::__copy_m<Interface*>(Interface* const*, Interface* const*, Interface**)
+  0.00     34.76     0.00       14     0.00     0.00  Processor** std::__copy_move<false, true, std::random_access_iterator_tag>::__copy_m<Processor*>(Processor* const*, Processor* const*, Processor**)
+  0.00     34.76     0.00       14     0.00     0.00  std::string* std::__uninitialized_copy<false>::uninitialized_copy<std::string*, std::string*>(std::string*, std::string*, std::string*)
+  0.00     34.76     0.00        8     0.00     0.00  BusHandler::BusHandler()
+  0.00     34.76     0.00        8     0.00     0.00  RefreshMgr::RefreshMgr()
+  0.00     34.76     0.00        8     0.00     0.00  CmdBusHandler::CmdBusHandler()
+  0.00     34.76     0.00        8     0.00     0.00  ChannelHandler::ChannelHandler()
+  0.00     34.76     0.00        8     0.00     0.00  DataBusHandler::DataBusHandler()
+  0.00     34.76     0.00        8     0.00     0.00  RequestHandler::SetLinks()
+  0.00     34.76     0.00        8     0.00     0.00  RequestHandler::RequestHandler()
+  0.00     34.76     0.00        8     0.00     0.00  ResponseHandler::ResponseHandler()
+  0.00     34.76     0.00        8     0.00     0.00  VirtualChannelDescription::VirtualChannelDescription()
+  0.00     34.76     0.00        8     0.00     0.00  MC::StartRefresh()
+  0.00     34.76     0.00        8     0.00     0.00  MC::Init()
+  0.00     34.76     0.00        8     0.00     0.00  MC::MC()
+  0.00     34.76     0.00        8     0.00     0.00  NI::set_output_path(std::string)
+  0.00     34.76     0.00        8     0.00     0.00  NI::setup(unsigned int, unsigned int, unsigned int)
+  0.00     34.76     0.00        8     0.00     0.00  NI::NI()
+  0.00     34.76     0.00        8     0.00     0.00  NI::~NI()
+  0.00     34.76     0.00        8     0.00     0.00  Bus::SetLinks()
+  0.00     34.76     0.00        8     0.00     0.00  Bus::Bus()
+  0.00     34.76     0.00        8     0.00     0.00  DRAM::SetLinks()
+  0.00     34.76     0.00        8     0.00     0.00  DRAM::DRAM()
+  0.00     34.76     0.00        8     0.00     0.00  AddrMap::AddrMap()
+  0.00     34.76     0.00        8     0.00     0.00  CmdIssuer::CmdIssuer()
+  0.00     34.76     0.00        8     0.00     0.00  Statistic::PrintAggregateStats(unsigned int)
+  0.00     34.76     0.00        8     0.00     0.00  Statistic::CalculateAggregateStats()
+  0.00     34.76     0.00        8     0.00     0.00  Statistic::InitStats()
+  0.00     34.76     0.00        8     0.00     0.00  NI::print_stats() const
+  0.00     34.76     0.00        8     0.00     0.00  NI::toString() const
+  0.00     34.76     0.00        7     0.00     0.00  std::vector<Router*, std::allocator<Router*> >::_M_check_len(unsigned int, char const*) const
+  0.00     34.76     0.00        7     0.00     0.00  std::vector<Processor*, std::allocator<Processor*> >::_M_check_len(unsigned int, char const*) const
+  0.00     34.76     0.00        7     0.00     0.00  std::vector<std::string, std::allocator<std::string> >::_M_check_len(unsigned int, char const*) const
+  0.00     34.76     0.00        7     0.00     0.00  std::_Vector_base<Router*, std::allocator<Router*> >::_M_allocate(unsigned int)
+  0.00     34.76     0.00        7     0.00     0.00  std::_Vector_base<Interface*, std::allocator<Interface*> >::_M_allocate(unsigned int)
+  0.00     34.76     0.00        7     0.00     0.00  std::_Vector_base<Processor*, std::allocator<Processor*> >::_M_allocate(unsigned int)
+  0.00     34.76     0.00        7     0.00     0.00  std::vector<Router*, std::allocator<Router*> >::_M_insert_aux(__gnu_cxx::__normal_iterator<Router**, std::vector<Router*, std::allocator<Router*> > >, Router* const&)
+  0.00     34.76     0.00        7     0.00     0.00  std::vector<Interface*, std::allocator<Interface*> >::_M_insert_aux(__gnu_cxx::__normal_iterator<Interface**, std::vector<Interface*, std::allocator<Interface*> > >, Interface* const&)
+  0.00     34.76     0.00        7     0.00     0.00  std::vector<Processor*, std::allocator<Processor*> >::_M_insert_aux(__gnu_cxx::__normal_iterator<Processor**, std::vector<Processor*, std::allocator<Processor*> > >, Processor* const&)
+  0.00     34.76     0.00        7     0.00     0.00  std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+  0.00     34.76     0.00        7     0.00     0.00  std::_Rb_tree<unsigned int, std::pair<unsigned int const, unsigned int>, std::_Select1st<std::pair<unsigned int const, unsigned int> >, std::less<unsigned int>, std::allocator<std::pair<unsigned int const, unsigned int> > >::_M_erase(std::_Rb_tree_node<std::pair<unsigned int const, unsigned int> >*)
+  0.00     34.76     0.00        3     0.00     0.00  std::_Vector_base<unsigned int, std::allocator<unsigned int> >::~_Vector_base()
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _Z10timed_coutSs
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN10BusHandlerC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN10GenericTPGC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN10RefreshMgrC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN11BankHandlerC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN11GenericLink5setupEv
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN11RankHandlerC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN12ConstantSeedC2Em
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN13CmdBusHandlerC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN13GenericBufferC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN14ChannelHandlerC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN14DataBusHandlerC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN14LowLevelPacketC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN14RequestHandlerC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN15GenericCrossbarC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN15HighLevelPacketC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN15LinkArrivalDataC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN15ResponseHandlerC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN16GenericInterfaceC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN16GenericRouterVctC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN16NetworkComponentC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN17PToPSwitchArbiterC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN2MC4InitEv
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN2NIC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN3BusC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN4DRAMC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN4MeshC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN4PhitC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN6MSHR_HC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN7AddrMapC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN7RequestC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN9CmdIssuerC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN9ComponentD2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN9EventBase7nextUIDE
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN9GenericRCC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN9InterfaceC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN9IrisEvent8toStringEv
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN9ProcessorC2Ev
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN9RngStream9CheckSeedEPKm
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZN9Statistic22CollectStatsPerRequestEP7Request
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZNK6Router8toStringEv
+  0.00     34.76     0.00        1     0.00     0.00  global constructors keyed to _ZNK8IrisLink8toStringEv
+  0.00     34.76     0.00        1     0.00     0.00  Event0Stat::CallHandler()
+  0.00     34.76     0.00        1     0.00     0.00  Mesh::print_stats()
+  0.00     34.76     0.00        1     0.00     0.00  Mesh::connect_routers()
+  0.00     34.76     0.00        1     0.00     0.00  Mesh::connect_interface_routers()
+  0.00     34.76     0.00        1     0.00     0.00  Mesh::connect_interface_processor()
+  0.00     34.76     0.00        1     0.00     0.00  Mesh::init(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int)
+  0.00     34.76     0.00        1     0.00     0.00  Mesh::setup()
+  0.00     34.76     0.00        1     0.00     0.00  Mesh::Mesh()
+  0.00     34.76     0.00        1     0.00     0.00  Mesh::~Mesh()
+  0.00     34.76     0.00        1     0.00     0.00  Simulator::Stop()
+  0.00     34.76     0.00        1     0.00     0.00  Simulator::StopAt(double)
+  0.00     34.76     0.00        1     0.00     0.00  __gnu_cxx::__exchange_and_add_dispatch(int*, int)
+  0.00     34.76     0.00        1     0.00     0.00  std::ctype<char>::do_widen(char const*, char const*, char*) const
+  0.00     34.76     0.00        1     0.00     0.00  std::ctype<char>::do_widen(char) const
+  0.00     34.76     0.00        1     0.00     0.00  std::map<int, ComponentDescription*, std::less<int>, std::allocator<std::pair<int const, ComponentDescription*> > >::~map()
+  0.00     34.76     0.00        1     0.00     0.00  std::set<EventBase*, event_less, std::allocator<EventBase*> >::~set()
+  0.00     34.76     0.00        1     0.00     0.00  std::vector<std::string, std::allocator<std::string> >::~vector()
+  0.00     34.76     0.00        1     0.00     0.00  std::_Rb_tree<EventBase*, EventBase*, std::_Identity<EventBase*>, event_less, std::allocator<EventBase*> >::_M_erase(std::_Rb_tree_node<EventBase*>*)
+  0.00     34.76     0.00        1     0.00     0.00  std::_Rb_tree<int, std::pair<int const, ComponentDescription*>, std::_Select1st<std::pair<int const, ComponentDescription*> >, std::less<int>, std::allocator<std::pair<int const, ComponentDescription*> > >::_M_insert_unique(std::pair<int const, ComponentDescription*> const&)
+  0.00     34.76     0.00        1     0.00     0.00  std::_Rb_tree<int, std::pair<int const, ComponentDescription*>, std::_Select1st<std::pair<int const, ComponentDescription*> >, std::less<int>, std::allocator<std::pair<int const, ComponentDescription*> > >::_M_erase(std::_Rb_tree_node<std::pair<int const, ComponentDescription*> >*)
+  0.00     34.76     0.00        1     0.00    23.04  main
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+ 
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this 
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.

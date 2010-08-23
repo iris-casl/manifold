@@ -1,0 +1,200 @@
+\section{exo\_\-term\_\-t Struct Reference}
+\label{structexo__term__t}\index{exo\_\-term\_\-t@{exo\_\-term\_\-t}}
+{\tt \#include $<$libexo.h$>$}
+
+Collaboration diagram for exo\_\-term\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{structexo__term__t__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+struct {\bf exo\_\-term\_\-t} $\ast$ {\bf next}
+\item 
+enum {\bf exo\_\-class\_\-t} {\bf ec}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>struct \textbf{as\_integer\_t} \{\\
+\>\>{\bf exo\_integer\_t} {\bf val}\\
+\>\} {\bf as\_integer}\\
+\>struct \textbf{as\_address\_t} \{\\
+\>\>{\bf exo\_address\_t} {\bf val}\\
+\>\} {\bf as\_address}\\
+\>struct \textbf{as\_float\_t} \{\\
+\>\>{\bf exo\_float\_t} {\bf val}\\
+\>\} {\bf as\_float}\\
+\>struct \textbf{as\_char\_t} \{\\
+\>\>char {\bf val}\\
+\>\} {\bf as\_char}\\
+\>struct \textbf{as\_string\_t} \{\\
+\>\>unsigned char $\ast$ {\bf str}\\
+\>\} {\bf as\_string}\\
+\>struct \textbf{as\_list\_t} \{\\
+\>\>struct {\bf exo\_term\_t} $\ast$ {\bf head}\\
+\>\} {\bf as\_list}\\
+\>struct \textbf{as\_array\_t} \{\\
+\>\>int {\bf size}\\
+\>\>struct {\bf exo\_term\_t} $\ast$$\ast$ {\bf array}\\
+\>\} {\bf as\_array}\\
+\>struct \textbf{as\_token\_t} \{\\
+\>\>struct {\bf exo\_token\_t} $\ast$ {\bf ent}\\
+\>\} {\bf as\_token}\\
+\>struct \textbf{as\_blob\_t} \{\\
+\>\>int {\bf size}\\
+\>\>unsigned char $\ast$ {\bf data}\\
+\>\} {\bf as\_blob}\\
+\} {\bf variant}\\
+
+\end{tabbing}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 109 of file libexo.h.
+
+\subsection{Member Data Documentation}
+\index{exo\_\-term\_\-t@{exo\_\-term\_\-t}!array@{array}}
+\index{array@{array}!exo_term_t@{exo\_\-term\_\-t}}
+\subsubsection[{array}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf exo\_\-term\_\-t}$\ast$$\ast$ {\bf exo\_\-term\_\-t::array}\hspace{0.3cm}{\tt  [read]}}\label{structexo__term__t_72fa5918fbefc7f65970d8330f381aa9}
+
+
+
+
+Definition at line 136 of file libexo.h.\index{exo\_\-term\_\-t@{exo\_\-term\_\-t}!as\_\-address@{as\_\-address}}
+\index{as\_\-address@{as\_\-address}!exo_term_t@{exo\_\-term\_\-t}}
+\subsubsection[{as\_\-address}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \} ::as\_\-address\_\-t  {\bf exo\_\-term\_\-t::as\_\-address}}\label{structexo__term__t_960d6b97b673e0ff7be4c7fa39a0cb90}
+
+
+\index{exo\_\-term\_\-t@{exo\_\-term\_\-t}!as\_\-array@{as\_\-array}}
+\index{as\_\-array@{as\_\-array}!exo_term_t@{exo\_\-term\_\-t}}
+\subsubsection[{as\_\-array}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \} ::as\_\-array\_\-t  {\bf exo\_\-term\_\-t::as\_\-array}}\label{structexo__term__t_cbc20e7fc9406199aab2db5858405ada}
+
+
+\index{exo\_\-term\_\-t@{exo\_\-term\_\-t}!as\_\-blob@{as\_\-blob}}
+\index{as\_\-blob@{as\_\-blob}!exo_term_t@{exo\_\-term\_\-t}}
+\subsubsection[{as\_\-blob}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \} ::as\_\-blob\_\-t  {\bf exo\_\-term\_\-t::as\_\-blob}}\label{structexo__term__t_01fa13a9b8d9b6425f9ed802124ab09a}
+
+
+\index{exo\_\-term\_\-t@{exo\_\-term\_\-t}!as\_\-char@{as\_\-char}}
+\index{as\_\-char@{as\_\-char}!exo_term_t@{exo\_\-term\_\-t}}
+\subsubsection[{as\_\-char}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \} ::as\_\-char\_\-t  {\bf exo\_\-term\_\-t::as\_\-char}}\label{structexo__term__t_9e4595e158cccba56869f6bc637424a7}
+
+
+\index{exo\_\-term\_\-t@{exo\_\-term\_\-t}!as\_\-float@{as\_\-float}}
+\index{as\_\-float@{as\_\-float}!exo_term_t@{exo\_\-term\_\-t}}
+\subsubsection[{as\_\-float}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \} ::as\_\-float\_\-t  {\bf exo\_\-term\_\-t::as\_\-float}}\label{structexo__term__t_bd37ca481ebaf538035ba22a029b3ab5}
+
+
+\index{exo\_\-term\_\-t@{exo\_\-term\_\-t}!as\_\-integer@{as\_\-integer}}
+\index{as\_\-integer@{as\_\-integer}!exo_term_t@{exo\_\-term\_\-t}}
+\subsubsection[{as\_\-integer}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \} ::as\_\-integer\_\-t  {\bf exo\_\-term\_\-t::as\_\-integer}}\label{structexo__term__t_278055e68572fe16a904735a188c96e7}
+
+
+\index{exo\_\-term\_\-t@{exo\_\-term\_\-t}!as\_\-list@{as\_\-list}}
+\index{as\_\-list@{as\_\-list}!exo_term_t@{exo\_\-term\_\-t}}
+\subsubsection[{as\_\-list}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \} ::as\_\-list\_\-t  {\bf exo\_\-term\_\-t::as\_\-list}}\label{structexo__term__t_6db597bcf1578968e5c5495d50bf5b85}
+
+
+\index{exo\_\-term\_\-t@{exo\_\-term\_\-t}!as\_\-string@{as\_\-string}}
+\index{as\_\-string@{as\_\-string}!exo_term_t@{exo\_\-term\_\-t}}
+\subsubsection[{as\_\-string}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \} ::as\_\-string\_\-t  {\bf exo\_\-term\_\-t::as\_\-string}}\label{structexo__term__t_5298bd98e525e5f949c0bce4ccc97743}
+
+
+\index{exo\_\-term\_\-t@{exo\_\-term\_\-t}!as\_\-token@{as\_\-token}}
+\index{as\_\-token@{as\_\-token}!exo_term_t@{exo\_\-term\_\-t}}
+\subsubsection[{as\_\-token}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \} ::as\_\-token\_\-t  {\bf exo\_\-term\_\-t::as\_\-token}}\label{structexo__term__t_71748f65950622819b28c83d8d3084d3}
+
+
+\index{exo\_\-term\_\-t@{exo\_\-term\_\-t}!data@{data}}
+\index{data@{data}!exo_term_t@{exo\_\-term\_\-t}}
+\subsubsection[{data}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char$\ast$ {\bf exo\_\-term\_\-t::data}}\label{structexo__term__t_4aa2e76b899e818a7abb01c45d420183}
+
+
+
+
+Definition at line 143 of file libexo.h.\index{exo\_\-term\_\-t@{exo\_\-term\_\-t}!ec@{ec}}
+\index{ec@{ec}!exo_term_t@{exo\_\-term\_\-t}}
+\subsubsection[{ec}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf exo\_\-class\_\-t} {\bf exo\_\-term\_\-t::ec}}\label{structexo__term__t_0c34b6d816fe43be4d950610290fd266}
+
+
+
+
+Definition at line 111 of file libexo.h.\index{exo\_\-term\_\-t@{exo\_\-term\_\-t}!ent@{ent}}
+\index{ent@{ent}!exo_term_t@{exo\_\-term\_\-t}}
+\subsubsection[{ent}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf exo\_\-token\_\-t}$\ast$ {\bf exo\_\-term\_\-t::ent}\hspace{0.3cm}{\tt  [read]}}\label{structexo__term__t_17e0fc063a7a4645df4b60ff8b468f38}
+
+
+
+
+Definition at line 139 of file libexo.h.\index{exo\_\-term\_\-t@{exo\_\-term\_\-t}!head@{head}}
+\index{head@{head}!exo_term_t@{exo\_\-term\_\-t}}
+\subsubsection[{head}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf exo\_\-term\_\-t}$\ast$ {\bf exo\_\-term\_\-t::head}\hspace{0.3cm}{\tt  [read]}}\label{structexo__term__t_df26c2b4577abe0827751147c60589d9}
+
+
+
+
+Definition at line 132 of file libexo.h.\index{exo\_\-term\_\-t@{exo\_\-term\_\-t}!next@{next}}
+\index{next@{next}!exo_term_t@{exo\_\-term\_\-t}}
+\subsubsection[{next}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf exo\_\-term\_\-t}$\ast$ {\bf exo\_\-term\_\-t::next}\hspace{0.3cm}{\tt  [read]}}\label{structexo__term__t_fb192f34c36ddf7a5793ab7457294543}
+
+
+
+
+Definition at line 110 of file libexo.h.\index{exo\_\-term\_\-t@{exo\_\-term\_\-t}!size@{size}}
+\index{size@{size}!exo_term_t@{exo\_\-term\_\-t}}
+\subsubsection[{size}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf exo\_\-term\_\-t::size}}\label{structexo__term__t_81df90d4deda607d7ec5b35202a69215}
+
+
+
+
+Definition at line 135 of file libexo.h.\index{exo\_\-term\_\-t@{exo\_\-term\_\-t}!str@{str}}
+\index{str@{str}!exo_term_t@{exo\_\-term\_\-t}}
+\subsubsection[{str}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char$\ast$ {\bf exo\_\-term\_\-t::str}}\label{structexo__term__t_7e8b9352a2ae7dbff6e63f6759a77428}
+
+
+
+
+Definition at line 129 of file libexo.h.\index{exo\_\-term\_\-t@{exo\_\-term\_\-t}!val@{val}}
+\index{val@{val}!exo_term_t@{exo\_\-term\_\-t}}
+\subsubsection[{val}]{\setlength{\rightskip}{0pt plus 5cm}char {\bf exo\_\-term\_\-t::val}}\label{structexo__term__t_d55158c99e232b68c6a363c9f3a7ecf2}
+
+
+
+
+Definition at line 126 of file libexo.h.\index{exo\_\-term\_\-t@{exo\_\-term\_\-t}!val@{val}}
+\index{val@{val}!exo_term_t@{exo\_\-term\_\-t}}
+\subsubsection[{val}]{\setlength{\rightskip}{0pt plus 5cm}{\bf exo\_\-float\_\-t} {\bf exo\_\-term\_\-t::val}}\label{structexo__term__t_78bf0fe61b0bcdcd6e82e5b0c7c8adaf}
+
+
+
+
+Definition at line 123 of file libexo.h.\index{exo\_\-term\_\-t@{exo\_\-term\_\-t}!val@{val}}
+\index{val@{val}!exo_term_t@{exo\_\-term\_\-t}}
+\subsubsection[{val}]{\setlength{\rightskip}{0pt plus 5cm}{\bf exo\_\-address\_\-t} {\bf exo\_\-term\_\-t::val}}\label{structexo__term__t_ab79b121da17555c91f236f381f5f057}
+
+
+
+
+Definition at line 120 of file libexo.h.\index{exo\_\-term\_\-t@{exo\_\-term\_\-t}!val@{val}}
+\index{val@{val}!exo_term_t@{exo\_\-term\_\-t}}
+\subsubsection[{val}]{\setlength{\rightskip}{0pt plus 5cm}{\bf exo\_\-integer\_\-t} {\bf exo\_\-term\_\-t::val}}\label{structexo__term__t_19151f180e746c6f35a0768f818c40a5}
+
+
+
+
+Definition at line 114 of file libexo.h.\index{exo\_\-term\_\-t@{exo\_\-term\_\-t}!variant@{variant}}
+\index{variant@{variant}!exo_term_t@{exo\_\-term\_\-t}}
+\subsubsection[{variant}]{\setlength{\rightskip}{0pt plus 5cm}union \{ ... \}   {\bf exo\_\-term\_\-t::variant}}\label{structexo__term__t_bc9acd023c1e307b3c4bb5d8a00b0fe6}
+
+
+
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf libexo.h}\end{CompactItemize}

@@ -1,0 +1,191 @@
+\section{Bus Class Reference}
+\label{classBus}\index{Bus@{Bus}}
+Class to model cmd, address and data buses of a \doxyref{DRAM}{p.}{classDRAM}.  
+
+
+{\tt \#include $<$bus.h$>$}
+
+Inheritance diagram for Bus:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classBus__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for Bus:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classBus__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Bus} ()
+\begin{CompactList}\small\item\em constructor \item\end{CompactList}\item 
+{\bf $\sim$Bus} ()
+\begin{CompactList}\small\item\em deconstructor \item\end{CompactList}\item 
+void {\bf process\_\-event} ({\bf IrisEvent} $\ast$e)
+\item 
+void {\bf SetLinks} ()
+\begin{CompactList}\small\item\em Setd the links of buses with various components. \item\end{CompactList}\item 
+std::string {\bf toString} ()
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+{\bf Component} $\ast$ {\bf mc}
+\begin{CompactList}\small\item\em pointer to the Mem Ctrl that contains it \item\end{CompactList}\item 
+{\bf Component} $\ast$ {\bf parent}
+\begin{CompactList}\small\item\em pointer to its parent \item\end{CompactList}\item 
+{\bf Component} $\ast$ {\bf child1}
+\begin{CompactList}\small\item\em \doxyref{DRAM}{p.}{classDRAM} side link. \item\end{CompactList}\item 
+{\bf Component} $\ast$ {\bf child2}
+\begin{CompactList}\small\item\em Response side link. \item\end{CompactList}\item 
+{\bf DataBusHandler} {\bf dataBus} [{\bf NO\_\-OF\_\-CHANNELS}]
+\begin{CompactList}\small\item\em Array of data buses (1 per channel). \item\end{CompactList}\item 
+{\bf CmdBusHandler} {\bf cmdBus} [{\bf NO\_\-OF\_\-CHANNELS}]
+\begin{CompactList}\small\item\em Array of cmd buses (1 per channel). \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Class to model cmd, address and data buses of a \doxyref{DRAM}{p.}{classDRAM}. 
+
+Description: This class just acts a wrapper around the data and cmd buses of all the channels. It contains the array of both cmd and data bus handlers. It is not used during normal \doxyref{MC}{p.}{classMC} \& \doxyref{DRAM}{p.}{classDRAM} operations but only used to set up some links between the busses and other components in the beginning 
+
+Definition at line 48 of file bus.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Bus@{Bus}!Bus@{Bus}}
+\index{Bus@{Bus}!Bus@{Bus}}
+\subsubsection[{Bus}]{\setlength{\rightskip}{0pt plus 5cm}Bus::Bus ()}\label{classBus_acf35e62456128245a02db34334f9a3d}
+
+
+constructor 
+
+
+
+Definition at line 32 of file bus.cc.\index{Bus@{Bus}!$\sim$Bus@{$\sim$Bus}}
+\index{$\sim$Bus@{$\sim$Bus}!Bus@{Bus}}
+\subsubsection[{$\sim$Bus}]{\setlength{\rightskip}{0pt plus 5cm}Bus::$\sim$Bus ()}\label{classBus_ab6194602b6a5a4fa87987f7c1adf35d}
+
+
+deconstructor 
+
+
+
+Definition at line 44 of file bus.cc.
+
+\subsection{Member Function Documentation}
+\index{Bus@{Bus}!process\_\-event@{process\_\-event}}
+\index{process\_\-event@{process\_\-event}!Bus@{Bus}}
+\subsubsection[{process\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void Bus::process\_\-event ({\bf IrisEvent} $\ast$ {\em e})}\label{classBus_b6d779514281009c3189e9c77c13cf6f}
+
+
+
+
+Definition at line 56 of file bus.cc.\index{Bus@{Bus}!SetLinks@{SetLinks}}
+\index{SetLinks@{SetLinks}!Bus@{Bus}}
+\subsubsection[{SetLinks}]{\setlength{\rightskip}{0pt plus 5cm}void Bus::SetLinks ()}\label{classBus_15aa095175a3c08262515388fd6538fc}
+
+
+Setd the links of buses with various components. 
+
+
+
+Definition at line 61 of file bus.cc.
+
+References CmdBusHandler::child, child1, DataBusHandler::child1, child2, DataBusHandler::child2, cmdBus, dataBus, NO\_\-OF\_\-CHANNELS, CmdBusHandler::parent, and DataBusHandler::parent.
+
+Referenced by MC::Init().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=142pt]{classBus_15aa095175a3c08262515388fd6538fc_icgraph}
+\end{center}
+\end{figure}
+\index{Bus@{Bus}!toString@{toString}}
+\index{toString@{toString}!Bus@{Bus}}
+\subsubsection[{toString}]{\setlength{\rightskip}{0pt plus 5cm}std::string Bus::toString ()}\label{classBus_9919f45e96bc75bdb196fc0da6e7bda2}
+
+
+
+
+Definition at line 72 of file bus.cc.
+
+\subsection{Member Data Documentation}
+\index{Bus@{Bus}!child1@{child1}}
+\index{child1@{child1}!Bus@{Bus}}
+\subsubsection[{child1}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Component}$\ast$ {\bf Bus::child1}}\label{classBus_c5e5a030404f2b6d4afcff5e8dc82f56}
+
+
+\doxyref{DRAM}{p.}{classDRAM} side link. 
+
+
+
+Definition at line 55 of file bus.h.
+
+Referenced by MC::Init(), and SetLinks().\index{Bus@{Bus}!child2@{child2}}
+\index{child2@{child2}!Bus@{Bus}}
+\subsubsection[{child2}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Component}$\ast$ {\bf Bus::child2}}\label{classBus_996d2e3721462ebe7aec6aa3d3bf45f6}
+
+
+Response side link. 
+
+
+
+Definition at line 56 of file bus.h.
+
+Referenced by MC::Init(), and SetLinks().\index{Bus@{Bus}!cmdBus@{cmdBus}}
+\index{cmdBus@{cmdBus}!Bus@{Bus}}
+\subsubsection[{cmdBus}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CmdBusHandler} {\bf Bus::cmdBus}[{\bf NO\_\-OF\_\-CHANNELS}]}\label{classBus_5e3cde8ba130fce94a960abd940404ad}
+
+
+Array of cmd buses (1 per channel). 
+
+
+
+Definition at line 58 of file bus.h.
+
+Referenced by SetLinks().\index{Bus@{Bus}!dataBus@{dataBus}}
+\index{dataBus@{dataBus}!Bus@{Bus}}
+\subsubsection[{dataBus}]{\setlength{\rightskip}{0pt plus 5cm}{\bf DataBusHandler} {\bf Bus::dataBus}[{\bf NO\_\-OF\_\-CHANNELS}]}\label{classBus_49be70e05f3ab59a7a2345dc369301cc}
+
+
+Array of data buses (1 per channel). 
+
+
+
+Definition at line 57 of file bus.h.
+
+Referenced by SetLinks().\index{Bus@{Bus}!mc@{mc}}
+\index{mc@{mc}!Bus@{Bus}}
+\subsubsection[{mc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Component}$\ast$ {\bf Bus::mc}}\label{classBus_dc72aafb43c6203662eb0499a0fe3396}
+
+
+pointer to the Mem Ctrl that contains it 
+
+
+
+Definition at line 53 of file bus.h.
+
+Referenced by MC::Init().\index{Bus@{Bus}!parent@{parent}}
+\index{parent@{parent}!Bus@{Bus}}
+\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Component}$\ast$ {\bf Bus::parent}}\label{classBus_c703d9f488c393efd9ad74b4efcaadc6}
+
+
+pointer to its parent 
+
+
+
+Definition at line 54 of file bus.h.
+
+Referenced by MC::Init().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf bus.h}\item 
+{\bf bus.cc}\end{CompactItemize}
