@@ -2,12 +2,16 @@ bin_PROGRAMS = manifold_simIris manifold_fullSim manifold_simMC
 
 OBJDIR = $(TOPDIR)/build
 BUILDDIR = $(TOPDIR)/build
-CXX_FLAGS = -D_FILE_OFFSET_BITS=64 -I source -m64 -ansi -g -gstabs+ -O0 -static-libgcc
-ZESTO_FLAGS = -O0 -g -m64 -DMIN_SYSCALL_MODE -DUSE_SSE_MOVE -Wall -DDEBUG -msse4a -mfpmath=sse
+CXX_FLAGS = -D_FILE_OFFSET_BITS=64 -I source -m32 -ansi -g -gstabs+ -O0 -static-libgcc
+ZESTO_FLAGS = -O0 -g -m32 -DMIN_SYSCALL_MODE -DUSE_SSE_MOVE -Wall -DDEBUG -msse4a -mfpmath=sse
+#Zesto needs to be compiled as 64 bit
+#ZESTO_FLAGS = -O0 -g -m64 -DMIN_SYSCALL_MODE -DUSE_SSE_MOVE -Wall -DDEBUG -msse4a -mfpmath=sse
 MLIBS  = -lm -ldl -lqsim -L../qsim-0.1-pre5/
-ZESTOCXXLD = g++-4.4 -lc -lm -ldl -lqsim -L../qsim-0.1-pre5/
-CXXLD = g++-4.4 -lc -lm -ldl
-CXXLD_PROFILE = g++-4.4 -lgcov -lc
+#for zesto to be compiled with qsim and g++ 4.4
+#ZESTOCXXLD = g++-4.4 -lc -lm -ldl -lqsim -L../qsim-0.1-pre5/
+ZESTOCXXLD = g++ -lc -lm -ldl -lqsim -L../qsim-0.1-pre5/
+CXXLD = g++ -lc -lm -ldl
+CXXLD_PROFILE = g++ -lgcov -lc
 #DEBUG_FLAGS = -D_DEBUG -D_DEBUG_ROUTER 
 DEBUG_FLAGS = -g -pg -D_STLP_DEBUG -D_DEBUG -DDEBUG -D_DEBUG_ROUTER -D_DEBUG_INTERFACE -DDEBUG
 PROFILE_FLAGS = -fprofile-arcs -ftest-coverage -lgcov -g -pg
@@ -53,6 +57,7 @@ ALL_HDRS = \
 	   source/simIris/components/impl/genericTPGVcs.h \
 	   source/simIris/components/impl/genericVcAllocator.h \
 	   source/simIris/components/impl/genericFlatMc.h \
+	   source/simIris/components/impl/memctrlFE.h \
 	   source/frontend/impl/mesh.h \
 	   source/memctrl/addr_map.h \
 	   source/memctrl/request.h \
@@ -69,7 +74,6 @@ ALL_HDRS = \
 	   source/memctrl/refresh_manager.h \
 	   source/memctrl/response_handler.h \
 	   source/memctrl/stats.h \
-	   source/memctrl/NI.h \
 	   source/memctrl/mshr.h \
 	   source/memctrl/mshr_standalone.h \
 	   source/zesto/bbtracker.h \
@@ -118,8 +122,7 @@ manifold_fullSim_SOURCES = $(FE_SOURCES)\
 
 manifold_fullSim_LDADD = source/simIris/libIris.a \
 			 source/memctrl/libsimMC.a \
-			 source/zesto/libZesto.a \
-			 source/simIris/libIris_a-processor.o
+			 source/zesto/libZesto.a 
 
 ## manifold_simIris
 manifold_simIris_CXXFLAGS = $(CXX_FLAGS) 

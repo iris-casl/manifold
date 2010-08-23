@@ -17,13 +17,13 @@
 ## Redhat Enterprise 5/Linux 2.6.18/64-bit
 ## Redhat Enterprise 4/Linux 2.6.9/32-bit
 ##
-CC = g++-4.4
+CC = g++
 
 ##################################################################
 # Uncomment only one of the following OFLAGS, or make your own
 
 # For debug:
-OFLAGS = -O0 -g -m64 -DMIN_SYSCALL_MODE -DUSE_SSE_MOVE -Wall -DDEBUG -msse4a -mfpmath=sse  -lm -ldl -lqsim -L../../../qsim-0.1-pre5/ 
+OFLAGS = -O0 -g -m32 -DMIN_SYSCALL_MODE -DUSE_SSE_MOVE -Wall -DDEBUG -msse4a -mfpmath=sse  -lm -ldl -lqsim -L../../../qsim-0.1-pre5/ 
 
 PROGS =  sim-zesto$(EEXT) 
 # Fully-optimized, but with profiling for gprof:

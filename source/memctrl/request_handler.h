@@ -33,7 +33,6 @@
 #include	"bank_handler.h"
 #include 	"addr_map.h"
 #include	"../util/mc_constants.h"
-#include	"NI.h"
 
 using namespace std;
 

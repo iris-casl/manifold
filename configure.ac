@@ -30,5 +30,5 @@ AC_TYPE_UINT64_T
 # Checks for library functions.
 AC_CHECK_FUNCS([floor gettimeofday pow sqrt])
 
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([Makefile source/simIris/Makefile source/memctrl/Makefile documentation/Makefile])
 AC_OUTPUT 

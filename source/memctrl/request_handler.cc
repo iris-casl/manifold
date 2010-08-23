@@ -19,7 +19,6 @@
 #include <math.h>
 #include "request_handler.h"
 #include "bus.h"
-#include "NI.h"
 #include "MC.h"
 
 

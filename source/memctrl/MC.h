@@ -27,10 +27,10 @@
 #include        "bus_handler.h"
 #include        "bus.h"
 #include        "dram.h"
-#include        "NI.h"
 #include	"refresh_manager.h"
 #include	"response_handler.h"
 #include	"stats.h"
+#include	"../simIris/components/impl/memctrlFE.h"
 
 class MC
 {

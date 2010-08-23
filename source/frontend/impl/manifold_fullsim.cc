@@ -699,7 +699,7 @@ int main( int argc, char *argv[] )
 
   class zesto_component *tick = new zesto_component();
 
-  Simulator::StopAt(1000000000000);
+  Simulator::StopAt(4000000000);
   Simulator::Run();
 
   sim_print_stats(stderr);

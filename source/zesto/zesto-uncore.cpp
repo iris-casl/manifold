@@ -595,7 +595,11 @@ short int get_mcNo(md_paddr_t req_addr)
     unsigned int temp = MC_ADDR_BITS;   
     unsigned int temp2 = temp-(int)log2(no_mcs);   
     unsigned int lower_mask = (uint)pow(2.0,temp2*1.0)-1;
+#ifdef _64BIT
     md_paddr_t upper_mask = (ullint)((0xFFFFFFFFFFFF)-(pow(2.0,temp*1.0)-1));
+#else
+    md_paddr_t upper_mask = (ullint)((0xFFFFFFFF)-(pow(2.0,temp*1.0)-1));
+#endif
     unsigned int lower_addr = (*addr) & lower_mask;
     md_paddr_t upper_addr = ((*addr) & upper_mask) >> (int)log2(no_mcs);
 
@@ -663,7 +667,11 @@ void uncore_t::convertFromBitStream(Request* req, HighLevelPacket *hlp)
 	//cout<< hex << req->address <<endl;
     }
     //cout << "Returned address" << hex << req->address << endl;
+#ifdef _64BIT
     req->address = req->address & (0xFFFFFFFFFFFF) ;
+#else
+    req->address = req->address & (0xFFFFFFFF) ;
+#endif
 
     //cout << "\n BitstreamReqAddress " <<  hex << req->address ; 
 /*    unsigned int temp = 0;

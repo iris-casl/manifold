@@ -25,8 +25,7 @@ SIMMC_SOURCES = \
 		  refresh_manager.cc \
 		  response_handler.cc \
 		  stats.cc \
-		  MC.cc \
-		  NI.cc 
+		  MC.cc 
 
 ##libsimMC
 libsimMC_a_CXXFLAGS = $(CXX_FLAGS) -DMEM_STANDALONE=0

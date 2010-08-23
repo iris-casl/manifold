@@ -32,7 +32,6 @@
 #include        "../../memctrl/bus_handler.h"
 #include        "../../memctrl/bus.h"
 #include        "../../memctrl/dram.h"
-#include        "../../memctrl/NI.h"
 #include	"../../memctrl/refresh_manager.h"
 #include	"../../memctrl/response_handler.h"
 #include	"../../memctrl/MC.h"
