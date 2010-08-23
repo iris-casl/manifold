@@ -1,0 +1,90 @@
+\section{manifold\_\-simmc.cc File Reference}
+\label{manifold__simmc_8cc}\index{manifold\_\-simmc.cc@{manifold\_\-simmc.cc}}
+{\tt \#include $<$string$>$}\par
+{\tt \#include $<$sstream$>$}\par
+{\tt \#include $<$iostream$>$}\par
+{\tt \#include $<$iomanip$>$}\par
+{\tt \#include $<$cstdlib$>$}\par
+{\tt \#include $<$fstream$>$}\par
+{\tt \#include $<$map$>$}\par
+{\tt \#include \char`\"{}../../kernel/component.h\char`\"{}}\par
+{\tt \#include \char`\"{}../../kernel/simulator.h\char`\"{}}\par
+{\tt \#include \char`\"{}../../util/config\_\-params.h\char`\"{}}\par
+{\tt \#include \char`\"{}../../simIris/data\_\-types/impl/irisEvent.h\char`\"{}}\par
+{\tt \#include \char`\"{}../../memctrl/request.h\char`\"{}}\par
+{\tt \#include \char`\"{}../../memctrl/request\_\-handler.h\char`\"{}}\par
+{\tt \#include \char`\"{}../../memctrl/bus\_\-handler.h\char`\"{}}\par
+{\tt \#include \char`\"{}../../memctrl/bus.h\char`\"{}}\par
+{\tt \#include \char`\"{}../../memctrl/dram.h\char`\"{}}\par
+{\tt \#include \char`\"{}../../memctrl/NI.h\char`\"{}}\par
+{\tt \#include \char`\"{}../../memctrl/refresh\_\-manager.h\char`\"{}}\par
+{\tt \#include \char`\"{}../../memctrl/response\_\-handler.h\char`\"{}}\par
+{\tt \#include \char`\"{}../../memctrl/MC.h\char`\"{}}\par
+{\tt \#include \char`\"{}../../memctrl/mshr\_\-standalone.h\char`\"{}}\par
+{\tt \#include \char`\"{}../../zesto/zesto-cache.h\char`\"{}}\par
+
+
+Include dependency graph for manifold\_\-simmc.cc:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{manifold__simmc_8cc__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+bool {\bf GetNextRequest} ({\bf Request} $\ast$req, unsigned int $\ast$index)
+\item 
+int {\bf main} (int argc, char $\ast$$\ast$argv)
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+vector$<$ {\bf MSHR\_\-SA\_\-H} $\ast$ $>$ {\bf mshrHandler}
+\end{CompactItemize}
+
+
+\subsection{Function Documentation}
+\index{manifold\_\-simmc.cc@{manifold\_\-simmc.cc}!GetNextRequest@{GetNextRequest}}
+\index{GetNextRequest@{GetNextRequest}!manifold_simmc.cc@{manifold\_\-simmc.cc}}
+\subsubsection[{GetNextRequest}]{\setlength{\rightskip}{0pt plus 5cm}bool GetNextRequest ({\bf Request} $\ast$ {\em req}, \/  unsigned int $\ast$ {\em index})}\label{manifold__simmc_8cc_26e5d15bc9c5f1f3b6827de96fee7b53}
+
+
+
+
+Definition at line 47 of file manifold\_\-simmc.cc.
+
+References mshrHandler, and NO\_\-OF\_\-THREADS.
+
+Referenced by main(), and MC::sim\_\-main().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=161pt]{manifold__simmc_8cc_26e5d15bc9c5f1f3b6827de96fee7b53_icgraph}
+\end{center}
+\end{figure}
+\index{manifold\_\-simmc.cc@{manifold\_\-simmc.cc}!main@{main}}
+\index{main@{main}!manifold_simmc.cc@{manifold\_\-simmc.cc}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (int {\em argc}, \/  char $\ast$$\ast$ {\em argv})}\label{manifold__simmc_8cc_3c04138a5bfe5d72780bb7e82a18e627}
+
+
+
+
+Definition at line 157 of file manifold\_\-simmc.cc.
+
+References Request::address, Request::arrivalTime, Statistic::CalculateAggregateStats(), Request::cmdType, CONTINUE, MC::Init(), init\_\-dram\_\-timing\_\-parameters(), max\_\-sim\_\-time, mshrHandler, NO\_\-OF\_\-THREADS, Simulator::Now(), Statistic::PrintAggregateStats(), MSHR\_\-SA\_\-H::process\_\-event(), Simulator::Run(), Simulator::Schedule(), MC::sim\_\-main(), MC::stats, Simulator::StopAt(), Request::threadId, and IrisEvent::type.
+
+\subsection{Variable Documentation}
+\index{manifold\_\-simmc.cc@{manifold\_\-simmc.cc}!mshrHandler@{mshrHandler}}
+\index{mshrHandler@{mshrHandler}!manifold_simmc.cc@{manifold\_\-simmc.cc}}
+\subsubsection[{mshrHandler}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf MSHR\_\-SA\_\-H}$\ast$$>$ {\bf mshrHandler}}\label{manifold__simmc_8cc_1fc79726402dfb84d1bfc19aaf5dc776}
+
+
+
+
+Definition at line 46 of file manifold\_\-simmc.cc.
+
+Referenced by GetNextRequest(), main(), and ResponseHandler::process\_\-event().

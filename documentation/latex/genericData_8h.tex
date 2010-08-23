@@ -1,0 +1,194 @@
+\section{genericData.h File Reference}
+\label{genericData_8h}\index{genericData.h@{genericData.h}}
+{\tt \#include \char`\"{}../simIris/data\_\-types/impl/flit.h\char`\"{}}\par
+{\tt \#include \char`\"{}simIrisComponentHeader.h\char`\"{}}\par
+
+
+Include dependency graph for genericData.h:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=297pt]{genericData_8h__incl}
+\end{center}
+\end{figure}
+
+
+This graph shows which files directly or indirectly include this file:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{genericData_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class {\bf InputBufferState}
+\item 
+class {\bf LinkArrivalData}
+\item 
+class {\bf VirtualChannelDescription}
+\item 
+class {\bf RouteEntry}
+\item 
+class {\bf SA\_\-unit}
+\end{CompactItemize}
+\subsection*{Enumerations}
+\begin{CompactItemize}
+\item 
+enum {\bf ROUTING\_\-SCHEME} \{ \par
+{\bf XY}, 
+{\bf NEGATIVE\_\-FIRST}, 
+{\bf ODD\_\-EVEN}, 
+{\bf WEST\_\-FIRST}, 
+\par
+{\bf NORTH\_\-LAST}, 
+{\bf NORTH\_\-LAST\_\-NON\_\-MINIMAL}
+ \}
+\item 
+enum {\bf SW\_\-ARBITRATION} \{ {\bf ROUND\_\-ROBIN}, 
+{\bf FCFS}, 
+{\bf ROUND\_\-ROBIN\_\-PRIORITY}
+ \}
+\item 
+enum {\bf RouterPipeStage} \{ \par
+{\bf INVALID}, 
+{\bf EMPTY}, 
+{\bf IB}, 
+{\bf FULL}, 
+\par
+{\bf ROUTED}, 
+{\bf VCA\_\-REQUESTED}, 
+{\bf SWA\_\-REQUESTED}, 
+{\bf SW\_\-ALLOCATED}, 
+\par
+{\bf ST}, 
+{\bf REQ\_\-OUTVC\_\-ARB}, 
+{\bf VCA\_\-COMPLETE}
+ \}
+\item 
+enum {\bf ROUTER\_\-MODEL} \{ {\bf PHYSICAL\_\-3STAGE}, 
+{\bf VIRTUAL\_\-4STAGE}
+ \}
+\item 
+enum {\bf MC\_\-MODEL} \{ {\bf GENERIC\_\-MC}, 
+{\bf FLAT\_\-MC}
+ \}
+\end{CompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\index{genericData.h@{genericData.h}!MC\_\-MODEL@{MC\_\-MODEL}}
+\index{MC\_\-MODEL@{MC\_\-MODEL}!genericData.h@{genericData.h}}
+\subsubsection[{MC\_\-MODEL}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf MC\_\-MODEL}}\label{genericData_8h_8e2fd46fcbafd222a638be10eafa4e6c}
+
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{GENERIC\_\-MC@{GENERIC\_\-MC}!genericData.h@{genericData.h}}\index{genericData.h@{genericData.h}!GENERIC\_\-MC@{GENERIC\_\-MC}}\item[{\em 
+GENERIC\_\-MC\label{genericData_8h_8e2fd46fcbafd222a638be10eafa4e6c5e1ae027cf01a625a2ad1a1b83a5f556}
+}]\index{FLAT\_\-MC@{FLAT\_\-MC}!genericData.h@{genericData.h}}\index{genericData.h@{genericData.h}!FLAT\_\-MC@{FLAT\_\-MC}}\item[{\em 
+FLAT\_\-MC\label{genericData_8h_8e2fd46fcbafd222a638be10eafa4e6c18767e421b8140f43e7fc05923a5d2e3}
+}]\end{description}
+\end{Desc}
+
+
+
+Definition at line 41 of file genericData.h.\index{genericData.h@{genericData.h}!ROUTER\_\-MODEL@{ROUTER\_\-MODEL}}
+\index{ROUTER\_\-MODEL@{ROUTER\_\-MODEL}!genericData.h@{genericData.h}}
+\subsubsection[{ROUTER\_\-MODEL}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf ROUTER\_\-MODEL}}\label{genericData_8h_9b0a579510798eb743ed2eba22578ac9}
+
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{PHYSICAL\_\-3STAGE@{PHYSICAL\_\-3STAGE}!genericData.h@{genericData.h}}\index{genericData.h@{genericData.h}!PHYSICAL\_\-3STAGE@{PHYSICAL\_\-3STAGE}}\item[{\em 
+PHYSICAL\_\-3STAGE\label{genericData_8h_9b0a579510798eb743ed2eba22578ac9bf58e361282855e9acea55fb6547ddf2}
+}]\index{VIRTUAL\_\-4STAGE@{VIRTUAL\_\-4STAGE}!genericData.h@{genericData.h}}\index{genericData.h@{genericData.h}!VIRTUAL\_\-4STAGE@{VIRTUAL\_\-4STAGE}}\item[{\em 
+VIRTUAL\_\-4STAGE\label{genericData_8h_9b0a579510798eb743ed2eba22578ac942a8c040e29208ac817c1178fc05b5bb}
+}]\end{description}
+\end{Desc}
+
+
+
+Definition at line 40 of file genericData.h.\index{genericData.h@{genericData.h}!RouterPipeStage@{RouterPipeStage}}
+\index{RouterPipeStage@{RouterPipeStage}!genericData.h@{genericData.h}}
+\subsubsection[{RouterPipeStage}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf RouterPipeStage}}\label{genericData_8h_59274afcabf39cc40ebbe9d062ee29d7}
+
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{INVALID@{INVALID}!genericData.h@{genericData.h}}\index{genericData.h@{genericData.h}!INVALID@{INVALID}}\item[{\em 
+INVALID\label{genericData_8h_59274afcabf39cc40ebbe9d062ee29d7ef2863a469df3ea6871d640e3669a2f2}
+}]\index{EMPTY@{EMPTY}!genericData.h@{genericData.h}}\index{genericData.h@{genericData.h}!EMPTY@{EMPTY}}\item[{\em 
+EMPTY\label{genericData_8h_59274afcabf39cc40ebbe9d062ee29d72f0d18fc0d0fa4a6cd92dc328501874d}
+}]\index{IB@{IB}!genericData.h@{genericData.h}}\index{genericData.h@{genericData.h}!IB@{IB}}\item[{\em 
+IB\label{genericData_8h_59274afcabf39cc40ebbe9d062ee29d708e83d43ee6d0a9beca8045296f6637c}
+}]\index{FULL@{FULL}!genericData.h@{genericData.h}}\index{genericData.h@{genericData.h}!FULL@{FULL}}\item[{\em 
+FULL\label{genericData_8h_59274afcabf39cc40ebbe9d062ee29d7d08f8ac0aa8dfb59589824359772459e}
+}]\index{ROUTED@{ROUTED}!genericData.h@{genericData.h}}\index{genericData.h@{genericData.h}!ROUTED@{ROUTED}}\item[{\em 
+ROUTED\label{genericData_8h_59274afcabf39cc40ebbe9d062ee29d7890ee948de6920618010df6c64eb487b}
+}]\index{VCA\_\-REQUESTED@{VCA\_\-REQUESTED}!genericData.h@{genericData.h}}\index{genericData.h@{genericData.h}!VCA\_\-REQUESTED@{VCA\_\-REQUESTED}}\item[{\em 
+VCA\_\-REQUESTED\label{genericData_8h_59274afcabf39cc40ebbe9d062ee29d7b7470a734485ada6f151717263944169}
+}]\index{SWA\_\-REQUESTED@{SWA\_\-REQUESTED}!genericData.h@{genericData.h}}\index{genericData.h@{genericData.h}!SWA\_\-REQUESTED@{SWA\_\-REQUESTED}}\item[{\em 
+SWA\_\-REQUESTED\label{genericData_8h_59274afcabf39cc40ebbe9d062ee29d7683e811df16a583d0b981a0f025092d0}
+}]\index{SW\_\-ALLOCATED@{SW\_\-ALLOCATED}!genericData.h@{genericData.h}}\index{genericData.h@{genericData.h}!SW\_\-ALLOCATED@{SW\_\-ALLOCATED}}\item[{\em 
+SW\_\-ALLOCATED\label{genericData_8h_59274afcabf39cc40ebbe9d062ee29d7c1055d967f2547ceb92536ecdf62a6ca}
+}]\index{ST@{ST}!genericData.h@{genericData.h}}\index{genericData.h@{genericData.h}!ST@{ST}}\item[{\em 
+ST\label{genericData_8h_59274afcabf39cc40ebbe9d062ee29d7200bf26d1a70596904b82da10880c2f1}
+}]\index{REQ\_\-OUTVC\_\-ARB@{REQ\_\-OUTVC\_\-ARB}!genericData.h@{genericData.h}}\index{genericData.h@{genericData.h}!REQ\_\-OUTVC\_\-ARB@{REQ\_\-OUTVC\_\-ARB}}\item[{\em 
+REQ\_\-OUTVC\_\-ARB\label{genericData_8h_59274afcabf39cc40ebbe9d062ee29d7e1c70fb53e295020b36df55a4437b8e8}
+}]\index{VCA\_\-COMPLETE@{VCA\_\-COMPLETE}!genericData.h@{genericData.h}}\index{genericData.h@{genericData.h}!VCA\_\-COMPLETE@{VCA\_\-COMPLETE}}\item[{\em 
+VCA\_\-COMPLETE\label{genericData_8h_59274afcabf39cc40ebbe9d062ee29d7e28da509569c8a2bd0beb99e1011003c}
+}]\end{description}
+\end{Desc}
+
+
+
+Definition at line 28 of file genericData.h.\index{genericData.h@{genericData.h}!ROUTING\_\-SCHEME@{ROUTING\_\-SCHEME}}
+\index{ROUTING\_\-SCHEME@{ROUTING\_\-SCHEME}!genericData.h@{genericData.h}}
+\subsubsection[{ROUTING\_\-SCHEME}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf ROUTING\_\-SCHEME}}\label{genericData_8h_446b2f595d7b4a95a0cb9c9137235112}
+
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{XY@{XY}!genericData.h@{genericData.h}}\index{genericData.h@{genericData.h}!XY@{XY}}\item[{\em 
+XY\label{genericData_8h_446b2f595d7b4a95a0cb9c91372351120e35228e79b7d412f3c0ba4d49646ef5}
+}]\index{NEGATIVE\_\-FIRST@{NEGATIVE\_\-FIRST}!genericData.h@{genericData.h}}\index{genericData.h@{genericData.h}!NEGATIVE\_\-FIRST@{NEGATIVE\_\-FIRST}}\item[{\em 
+NEGATIVE\_\-FIRST\label{genericData_8h_446b2f595d7b4a95a0cb9c9137235112dc56521af0d227cef441ffe16288d478}
+}]\index{ODD\_\-EVEN@{ODD\_\-EVEN}!genericData.h@{genericData.h}}\index{genericData.h@{genericData.h}!ODD\_\-EVEN@{ODD\_\-EVEN}}\item[{\em 
+ODD\_\-EVEN\label{genericData_8h_446b2f595d7b4a95a0cb9c91372351124a6d52f9c22b5c5244ac1adab2c25a7d}
+}]\index{WEST\_\-FIRST@{WEST\_\-FIRST}!genericData.h@{genericData.h}}\index{genericData.h@{genericData.h}!WEST\_\-FIRST@{WEST\_\-FIRST}}\item[{\em 
+WEST\_\-FIRST\label{genericData_8h_446b2f595d7b4a95a0cb9c91372351128b0162080f1f0063329101c403a57722}
+}]\index{NORTH\_\-LAST@{NORTH\_\-LAST}!genericData.h@{genericData.h}}\index{genericData.h@{genericData.h}!NORTH\_\-LAST@{NORTH\_\-LAST}}\item[{\em 
+NORTH\_\-LAST\label{genericData_8h_446b2f595d7b4a95a0cb9c913723511247228dcce14f1b8b091308a31a8ec05d}
+}]\index{NORTH\_\-LAST\_\-NON\_\-MINIMAL@{NORTH\_\-LAST\_\-NON\_\-MINIMAL}!genericData.h@{genericData.h}}\index{genericData.h@{genericData.h}!NORTH\_\-LAST\_\-NON\_\-MINIMAL@{NORTH\_\-LAST\_\-NON\_\-MINIMAL}}\item[{\em 
+NORTH\_\-LAST\_\-NON\_\-MINIMAL\label{genericData_8h_446b2f595d7b4a95a0cb9c9137235112aac41590ed3053d94af4b6fb6ba9da1d}
+}]\end{description}
+\end{Desc}
+
+
+
+Definition at line 26 of file genericData.h.\index{genericData.h@{genericData.h}!SW\_\-ARBITRATION@{SW\_\-ARBITRATION}}
+\index{SW\_\-ARBITRATION@{SW\_\-ARBITRATION}!genericData.h@{genericData.h}}
+\subsubsection[{SW\_\-ARBITRATION}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf SW\_\-ARBITRATION}}\label{genericData_8h_7396526e22856f6ba276bb145dc9a4cc}
+
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{ROUND\_\-ROBIN@{ROUND\_\-ROBIN}!genericData.h@{genericData.h}}\index{genericData.h@{genericData.h}!ROUND\_\-ROBIN@{ROUND\_\-ROBIN}}\item[{\em 
+ROUND\_\-ROBIN\label{genericData_8h_7396526e22856f6ba276bb145dc9a4cc9e805af736d9be20caf33f5ec0dc1d47}
+}]\index{FCFS@{FCFS}!genericData.h@{genericData.h}}\index{genericData.h@{genericData.h}!FCFS@{FCFS}}\item[{\em 
+FCFS\label{genericData_8h_7396526e22856f6ba276bb145dc9a4cc423cd86c32d4009579e138b098f06ba8}
+}]\index{ROUND\_\-ROBIN\_\-PRIORITY@{ROUND\_\-ROBIN\_\-PRIORITY}!genericData.h@{genericData.h}}\index{genericData.h@{genericData.h}!ROUND\_\-ROBIN\_\-PRIORITY@{ROUND\_\-ROBIN\_\-PRIORITY}}\item[{\em 
+ROUND\_\-ROBIN\_\-PRIORITY\label{genericData_8h_7396526e22856f6ba276bb145dc9a4cc061b02e87de3418afaca209b1f65044e}
+}]\end{description}
+\end{Desc}
+
+
+
+Definition at line 27 of file genericData.h.

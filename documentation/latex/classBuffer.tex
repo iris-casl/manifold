@@ -1,0 +1,75 @@
+\section{Buffer Class Reference}
+\label{classBuffer}\index{Buffer@{Buffer}}
+{\tt \#include $<$buffer.h$>$}
+
+Inheritance diagram for Buffer:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classBuffer__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf Buffer} ()
+\item 
+{\bf $\sim$Buffer} ()
+\item 
+virtual void {\bf push} ({\bf Flit} $\ast$f)=0
+\item 
+virtual {\bf Flit} $\ast$ {\bf pull} ()=0
+\item 
+virtual {\bf uint} {\bf get\_\-occupancy} ({\bf uint} channel) const =0
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 34 of file buffer.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Buffer@{Buffer}!Buffer@{Buffer}}
+\index{Buffer@{Buffer}!Buffer@{Buffer}}
+\subsubsection[{Buffer}]{\setlength{\rightskip}{0pt plus 5cm}Buffer::Buffer ()\hspace{0.3cm}{\tt  [inline]}}\label{classBuffer_e7ef2cd201190fde551dcb902627112b}
+
+
+
+
+Definition at line 37 of file buffer.h.\index{Buffer@{Buffer}!$\sim$Buffer@{$\sim$Buffer}}
+\index{$\sim$Buffer@{$\sim$Buffer}!Buffer@{Buffer}}
+\subsubsection[{$\sim$Buffer}]{\setlength{\rightskip}{0pt plus 5cm}Buffer::$\sim$Buffer ()\hspace{0.3cm}{\tt  [inline]}}\label{classBuffer_59b8743e4a5f731bdd0c4185c9ef263b}
+
+
+
+
+Definition at line 38 of file buffer.h.
+
+\subsection{Member Function Documentation}
+\index{Buffer@{Buffer}!get\_\-occupancy@{get\_\-occupancy}}
+\index{get\_\-occupancy@{get\_\-occupancy}!Buffer@{Buffer}}
+\subsubsection[{get\_\-occupancy}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf uint} Buffer::get\_\-occupancy ({\bf uint} {\em channel}) const\hspace{0.3cm}{\tt  [pure virtual]}}\label{classBuffer_af4e2d4031945429ae58350b5897570a}
+
+
+
+
+Implemented in {\bf GenericBuffer} \doxyref{}{p.}{classGenericBuffer_f2f85cf979616bab9dad5373d25d7813}.\index{Buffer@{Buffer}!pull@{pull}}
+\index{pull@{pull}!Buffer@{Buffer}}
+\subsubsection[{pull}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Flit}$\ast$ Buffer::pull ()\hspace{0.3cm}{\tt  [pure virtual]}}\label{classBuffer_95f5c230f9c261bc13ddcfafcc340e7e}
+
+
+
+
+Implemented in {\bf GenericBuffer} \doxyref{}{p.}{classGenericBuffer_6ce6f151eb6f65ec1fffafffb04a8f0e}.\index{Buffer@{Buffer}!push@{push}}
+\index{push@{push}!Buffer@{Buffer}}
+\subsubsection[{push}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Buffer::push ({\bf Flit} $\ast$ {\em f})\hspace{0.3cm}{\tt  [pure virtual]}}\label{classBuffer_c9dce1860c655146f000df30314caaa9}
+
+
+
+
+Implemented in {\bf GenericBuffer} \doxyref{}{p.}{classGenericBuffer_c5a0781106485f9567898b49021f6346}.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf buffer.h}\end{CompactItemize}

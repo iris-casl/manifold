@@ -1,0 +1,112 @@
+\section{BodyFlit Class Reference}
+\label{classBodyFlit}\index{BodyFlit@{BodyFlit}}
+{\tt \#include $<$flit.h$>$}
+
+Inheritance diagram for BodyFlit:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=156pt]{classBodyFlit__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for BodyFlit:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classBodyFlit__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf BodyFlit} ()
+\item 
+{\bf $\sim$BodyFlit} ()
+\item 
+void {\bf populate\_\-body\_\-flit} ()
+\item 
+std::string {\bf toString} () const 
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+vector$<$ bool $>$ {\bf bf\_\-data}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 128 of file flit.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{BodyFlit@{BodyFlit}!BodyFlit@{BodyFlit}}
+\index{BodyFlit@{BodyFlit}!BodyFlit@{BodyFlit}}
+\subsubsection[{BodyFlit}]{\setlength{\rightskip}{0pt plus 5cm}BodyFlit::BodyFlit ()}\label{classBodyFlit_794842b7823df2d936bb652a34778d9b}
+
+
+
+
+Definition at line 170 of file flit.cc.
+
+References BODY, and Flit::type.\index{BodyFlit@{BodyFlit}!$\sim$BodyFlit@{$\sim$BodyFlit}}
+\index{$\sim$BodyFlit@{$\sim$BodyFlit}!BodyFlit@{BodyFlit}}
+\subsubsection[{$\sim$BodyFlit}]{\setlength{\rightskip}{0pt plus 5cm}BodyFlit::$\sim$BodyFlit ()}\label{classBodyFlit_52d1abfb160afc4146c978bd7b20fdaa}
+
+
+
+
+Definition at line 175 of file flit.cc.
+
+References Flit::phits.
+
+\subsection{Member Function Documentation}
+\index{BodyFlit@{BodyFlit}!populate\_\-body\_\-flit@{populate\_\-body\_\-flit}}
+\index{populate\_\-body\_\-flit@{populate\_\-body\_\-flit}!BodyFlit@{BodyFlit}}
+\subsubsection[{populate\_\-body\_\-flit}]{\setlength{\rightskip}{0pt plus 5cm}void BodyFlit::populate\_\-body\_\-flit ()}\label{classBodyFlit_16020481654a7620d6e35c8a569ca0ad}
+
+
+
+
+Definition at line 203 of file flit.cc.
+
+References bf\_\-data, and Flit::populate\_\-phit\_\-data().
+
+Referenced by HighLevelPacket::to\_\-low\_\-level\_\-packet().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classBodyFlit_16020481654a7620d6e35c8a569ca0ad_icgraph}
+\end{center}
+\end{figure}
+\index{BodyFlit@{BodyFlit}!toString@{toString}}
+\index{toString@{toString}!BodyFlit@{BodyFlit}}
+\subsubsection[{toString}]{\setlength{\rightskip}{0pt plus 5cm}string BodyFlit::toString () const}\label{classBodyFlit_408f02aae1a229c761ff0f3537675cde}
+
+
+
+
+Reimplemented from {\bf Flit} \doxyref{}{p.}{classFlit_ffc6c729a005389b51818aac59710dab}.
+
+Definition at line 189 of file flit.cc.
+
+References Flit::phits, and Flit::type.
+
+\subsection{Member Data Documentation}
+\index{BodyFlit@{BodyFlit}!bf\_\-data@{bf\_\-data}}
+\index{bf\_\-data@{bf\_\-data}!BodyFlit@{BodyFlit}}
+\subsubsection[{bf\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$bool$>$ {\bf BodyFlit::bf\_\-data}}\label{classBodyFlit_c400c1ad10a7b57cdf6e9e6a12d0050d}
+
+
+
+
+Definition at line 134 of file flit.h.
+
+Referenced by LowLevelPacket::add(), populate\_\-body\_\-flit(), and HighLevelPacket::to\_\-low\_\-level\_\-packet().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf flit.h}\item 
+{\bf flit.cc}\end{CompactItemize}

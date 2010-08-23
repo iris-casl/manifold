@@ -1,0 +1,269 @@
+\section{genericComponentHeader.h File Reference}
+\label{genericComponentHeader_8h}\index{genericComponentHeader.h@{genericComponentHeader.h}}
+{\tt \#include $<$cstdlib$>$}\par
+{\tt \#include $<$iostream$>$}\par
+{\tt \#include $<$stdio.h$>$}\par
+{\tt \#include $<$cassert$>$}\par
+{\tt \#include \char`\"{}../../data\_\-types/impl/util.h\char`\"{}}\par
+{\tt \#include \char`\"{}../../data\_\-types/impl/util.h\char`\"{}}\par
+
+
+Include dependency graph for genericComponentHeader.h:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=331pt]{genericComponentHeader_8h__incl}
+\end{center}
+\end{figure}
+
+
+This graph shows which files directly or indirectly include this file:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{genericComponentHeader_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define {\bf DEFAULT\_\-ADDRESS}~0
+\item 
+\#define {\bf DEFAULT\_\-CONVERT\_\-PACKET\_\-CYCLES}~1
+\item 
+\#define {\bf NO\_\-DATA}~true
+\item 
+\#define {\bf FLIT\_\-ID}~9800
+\item 
+\#define {\bf CREDIT\_\-ID}~9801
+\item 
+\#define {\bf LOC}~std::cout $<$$<$ \char`\"{}$\backslash$nTime:\char`\"{} $<$$<$ dec $<$$<$ Simulator::Now() $<$$<$\char`\"{} \char`\"{} $<$$<$ name $<$$<$ \char`\"{} \char`\"{} $<$$<$ address $<$$<$ \char`\"{} \char`\"{} $<$$<$ node\_\-ip $<$$<$ \char`\"{} \char`\"{};
+\item 
+\#define {\bf \_\-DBG}(fmt,...)~LOC printf(fmt,\_\-\_\-VA\_\-ARGS\_\-\_\-);
+\item 
+\#define {\bf \_\-DBG\_\-NOARG}(fmt)~LOC printf(fmt);
+\end{CompactItemize}
+\subsection*{Typedefs}
+\begin{CompactItemize}
+\item 
+typedef unsigned long int {\bf uniqueId}
+\item 
+typedef unsigned long long int {\bf simTime}
+\item 
+typedef unsigned long long int {\bf ullint}
+\item 
+typedef unsigned int {\bf uint}
+\end{CompactItemize}
+\subsection*{Enumerations}
+\begin{CompactItemize}
+\item 
+enum {\bf message\_\-class} \{ \par
+{\bf INVALID\_\-PKT}, 
+{\bf REQUEST\_\-PKT}, 
+{\bf WRITE\_\-REQ}, 
+{\bf RESPONSE\_\-PKT}, 
+\par
+{\bf ONE\_\-FLIT\_\-REQ}, 
+{\bf CLUBBED\_\-PKT}, 
+{\bf PRIORITY\_\-REQ}
+ \}
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+const unsigned int {\bf max\_\-network\_\-node\_\-bits} = 8
+\item 
+const unsigned int {\bf max\_\-transaction\_\-id\_\-bits} = 8
+\item 
+const unsigned int {\bf max\_\-tail\_\-length\_\-bits} = 8
+\item 
+const unsigned int {\bf max\_\-control\_\-bits} = 8
+\item 
+const unsigned int {\bf max\_\-pkt\_\-cnt\_\-bits} = 3
+\item 
+const unsigned int {\bf head\_\-and\_\-tail\_\-length} = 80
+\end{CompactItemize}
+
+
+\subsection{Define Documentation}
+\index{genericComponentHeader.h@{genericComponentHeader.h}!\_\-DBG@{\_\-DBG}}
+\index{\_\-DBG@{\_\-DBG}!genericComponentHeader.h@{genericComponentHeader.h}}
+\subsubsection[{\_\-DBG}]{\setlength{\rightskip}{0pt plus 5cm}\#define \_\-DBG(fmt, \/   {\em ...})~LOC printf(fmt,\_\-\_\-VA\_\-ARGS\_\-\_\-);}\label{genericComponentHeader_8h_db8be0abb314b4cd0da20a9aa45a473e}
+
+
+
+
+Definition at line 37 of file genericComponentHeader.h.
+
+Referenced by GenericRouterVct::do\_\-switch\_\-allocation(), GenericRouterNoVcs::do\_\-switch\_\-allocation(), GenericRouterVct::do\_\-switch\_\-traversal(), GenericRouterNoVcs::do\_\-switch\_\-traversal(), GenericRouterAdaptive::do\_\-switch\_\-traversal(), GenericVcArbiter::empty(), GenericInterface::handle\_\-link\_\-arrival(), GenericRouterVct::handle\_\-link\_\-arrival\_\-event(), GenericRouterNoVcs::handle\_\-link\_\-arrival\_\-event(), GenericLink::handle\_\-link\_\-arrival\_\-event(), GenericRouterAdaptive::handle\_\-link\_\-arrival\_\-event\_\-multiple\_\-flit\_\-in\_\-buffer(), GenericRouterAdaptive::handle\_\-link\_\-arrival\_\-event\_\-one\_\-msg\_\-per\_\-buffer(), NI::handle\_\-new\_\-packet\_\-event(), GenericTPG\_\-clubbed::handle\_\-new\_\-packet\_\-event(), GenericTPG::handle\_\-new\_\-packet\_\-event(), GenericRPG::handle\_\-new\_\-packet\_\-event(), GenericInterface::handle\_\-new\_\-packet\_\-event(), NI\_\-clubbed::handle\_\-out\_\-pull\_\-event(), NI::handle\_\-out\_\-pull\_\-event(), GenericTPG\_\-clubbed::handle\_\-out\_\-pull\_\-event(), GenericTPG::handle\_\-out\_\-pull\_\-event(), GenericSink::handle\_\-outpull\_\-event(), GenericInterface::handle\_\-ready\_\-event(), GenericRouterVct::handle\_\-tick\_\-event(), GenericRouterNoVcs::handle\_\-tick\_\-event(), GenericRouterAdaptive::handle\_\-tick\_\-event(), GenericInterface::handle\_\-tick\_\-event(), GenericVcArbiter::is\_\-requested(), GenericVcArbiter::pick\_\-winner(), GenericRouterVct::process\_\-event(), GenericRouterNoVcs::process\_\-event(), GenericRouterAdaptive::process\_\-event(), GenericVcArbiter::pull\_\-winner(), GenericRC::push(), GenericRC::route\_\-negative\_\-first(), GenericRC::route\_\-north\_\-last(), GenericRC::route\_\-north\_\-last\_\-non\_\-minimal(), GenericRC::route\_\-west\_\-first(), GenericRC::route\_\-x\_\-y(), GenericRouterVct::send\_\-credit\_\-back(), GenericRouterNoVcs::send\_\-credit\_\-back(), and GenericRouterAdaptive::send\_\-credit\_\-back().\index{genericComponentHeader.h@{genericComponentHeader.h}!\_\-DBG\_\-NOARG@{\_\-DBG\_\-NOARG}}
+\index{\_\-DBG\_\-NOARG@{\_\-DBG\_\-NOARG}!genericComponentHeader.h@{genericComponentHeader.h}}
+\subsubsection[{\_\-DBG\_\-NOARG}]{\setlength{\rightskip}{0pt plus 5cm}\#define \_\-DBG\_\-NOARG(fmt)~LOC printf(fmt);}\label{genericComponentHeader_8h_34e0f121e3b717b1a15c6f90dae9f5d5}
+
+
+
+
+Definition at line 38 of file genericComponentHeader.h.
+
+Referenced by PToPSwitchArbiter::do\_\-fcfs\_\-arbitration(), PToPSwitchArbiter::do\_\-priority\_\-round\_\-robin\_\-arbitration(), PToPSwitchArbiter::do\_\-round\_\-robin\_\-arbitration(), GenericRouterVct::do\_\-switch\_\-traversal(), GenericRouterNoVcs::do\_\-switch\_\-traversal(), NI\_\-clubbed::handle\_\-new\_\-packet\_\-event(), GenericRPG::handle\_\-ready\_\-event(), GenericFlatMc::handle\_\-ready\_\-event(), GenericRouterVct::handle\_\-tick\_\-event(), GenericRouterNoVcs::handle\_\-tick\_\-event(), and GenericRC::push().\index{genericComponentHeader.h@{genericComponentHeader.h}!CREDIT\_\-ID@{CREDIT\_\-ID}}
+\index{CREDIT\_\-ID@{CREDIT\_\-ID}!genericComponentHeader.h@{genericComponentHeader.h}}
+\subsubsection[{CREDIT\_\-ID}]{\setlength{\rightskip}{0pt plus 5cm}\#define CREDIT\_\-ID~9801}\label{genericComponentHeader_8h_2d879516eff32a88299e25eb5a377fee}
+
+
+
+
+Definition at line 27 of file genericComponentHeader.h.
+
+Referenced by GenericInterface::handle\_\-link\_\-arrival(), GenericRouterVct::handle\_\-link\_\-arrival\_\-event(), GenericRouterNoVcs::handle\_\-link\_\-arrival\_\-event(), GenericRouterAdaptive::handle\_\-link\_\-arrival\_\-event\_\-multiple\_\-flit\_\-in\_\-buffer(), GenericRouterAdaptive::handle\_\-link\_\-arrival\_\-event\_\-one\_\-msg\_\-per\_\-buffer(), GenericInterface::handle\_\-tick\_\-event(), GenericRouterVct::send\_\-credit\_\-back(), GenericRouterNoVcs::send\_\-credit\_\-back(), and GenericRouterAdaptive::send\_\-credit\_\-back().\index{genericComponentHeader.h@{genericComponentHeader.h}!DEFAULT\_\-ADDRESS@{DEFAULT\_\-ADDRESS}}
+\index{DEFAULT\_\-ADDRESS@{DEFAULT\_\-ADDRESS}!genericComponentHeader.h@{genericComponentHeader.h}}
+\subsubsection[{DEFAULT\_\-ADDRESS}]{\setlength{\rightskip}{0pt plus 5cm}\#define DEFAULT\_\-ADDRESS~0}\label{genericComponentHeader_8h_838ee749ec1dfd8d73187bb32e9ec427}
+
+
+
+
+Definition at line 23 of file genericComponentHeader.h.\index{genericComponentHeader.h@{genericComponentHeader.h}!DEFAULT\_\-CONVERT\_\-PACKET\_\-CYCLES@{DEFAULT\_\-CONVERT\_\-PACKET\_\-CYCLES}}
+\index{DEFAULT\_\-CONVERT\_\-PACKET\_\-CYCLES@{DEFAULT\_\-CONVERT\_\-PACKET\_\-CYCLES}!genericComponentHeader.h@{genericComponentHeader.h}}
+\subsubsection[{DEFAULT\_\-CONVERT\_\-PACKET\_\-CYCLES}]{\setlength{\rightskip}{0pt plus 5cm}\#define DEFAULT\_\-CONVERT\_\-PACKET\_\-CYCLES~1}\label{genericComponentHeader_8h_4cd25c48b8874affbec9785d9d4ba055}
+
+
+
+
+Definition at line 24 of file genericComponentHeader.h.\index{genericComponentHeader.h@{genericComponentHeader.h}!FLIT\_\-ID@{FLIT\_\-ID}}
+\index{FLIT\_\-ID@{FLIT\_\-ID}!genericComponentHeader.h@{genericComponentHeader.h}}
+\subsubsection[{FLIT\_\-ID}]{\setlength{\rightskip}{0pt plus 5cm}\#define FLIT\_\-ID~9800}\label{genericComponentHeader_8h_4c17fe87d84664c123df538e6be7fa5c}
+
+
+
+
+Definition at line 26 of file genericComponentHeader.h.
+
+Referenced by GenericRouterVct::do\_\-switch\_\-traversal(), GenericRouterNoVcs::do\_\-switch\_\-traversal(), GenericRouterAdaptive::do\_\-switch\_\-traversal(), GenericInterface::handle\_\-link\_\-arrival(), GenericRouterVct::handle\_\-link\_\-arrival\_\-event(), GenericRouterNoVcs::handle\_\-link\_\-arrival\_\-event(), GenericRouterAdaptive::handle\_\-link\_\-arrival\_\-event\_\-multiple\_\-flit\_\-in\_\-buffer(), GenericRouterAdaptive::handle\_\-link\_\-arrival\_\-event\_\-one\_\-msg\_\-per\_\-buffer(), and GenericInterface::handle\_\-tick\_\-event().\index{genericComponentHeader.h@{genericComponentHeader.h}!LOC@{LOC}}
+\index{LOC@{LOC}!genericComponentHeader.h@{genericComponentHeader.h}}
+\subsubsection[{LOC}]{\setlength{\rightskip}{0pt plus 5cm}\#define LOC~std::cout $<$$<$ \char`\"{}$\backslash$nTime:\char`\"{} $<$$<$ dec $<$$<$ Simulator::Now() $<$$<$\char`\"{} \char`\"{} $<$$<$ name $<$$<$ \char`\"{} \char`\"{} $<$$<$ address $<$$<$ \char`\"{} \char`\"{} $<$$<$ node\_\-ip $<$$<$ \char`\"{} \char`\"{};}\label{genericComponentHeader_8h_0fee446a4a4ef6536664bc1ff47ff694}
+
+
+
+
+Definition at line 36 of file genericComponentHeader.h.\index{genericComponentHeader.h@{genericComponentHeader.h}!NO\_\-DATA@{NO\_\-DATA}}
+\index{NO\_\-DATA@{NO\_\-DATA}!genericComponentHeader.h@{genericComponentHeader.h}}
+\subsubsection[{NO\_\-DATA}]{\setlength{\rightskip}{0pt plus 5cm}\#define NO\_\-DATA~true}\label{genericComponentHeader_8h_68de9030c39965958f08402f7d452ad9}
+
+
+
+
+Definition at line 25 of file genericComponentHeader.h.
+
+\subsection{Typedef Documentation}
+\index{genericComponentHeader.h@{genericComponentHeader.h}!simTime@{simTime}}
+\index{simTime@{simTime}!genericComponentHeader.h@{genericComponentHeader.h}}
+\subsubsection[{simTime}]{\setlength{\rightskip}{0pt plus 5cm}typedef unsigned long long int {\bf simTime}}\label{genericComponentHeader_8h_d88faca783e7aa496cda721d9029a2e3}
+
+
+
+
+Definition at line 44 of file genericComponentHeader.h.\index{genericComponentHeader.h@{genericComponentHeader.h}!uint@{uint}}
+\index{uint@{uint}!genericComponentHeader.h@{genericComponentHeader.h}}
+\subsubsection[{uint}]{\setlength{\rightskip}{0pt plus 5cm}typedef unsigned int {\bf uint}}\label{genericComponentHeader_8h_91ad9478d81a7aaf2593e8d9c3d06a14}
+
+
+
+
+Definition at line 46 of file genericComponentHeader.h.\index{genericComponentHeader.h@{genericComponentHeader.h}!ullint@{ullint}}
+\index{ullint@{ullint}!genericComponentHeader.h@{genericComponentHeader.h}}
+\subsubsection[{ullint}]{\setlength{\rightskip}{0pt plus 5cm}typedef unsigned long long int {\bf ullint}}\label{genericComponentHeader_8h_b03b0cc5e09b0e1f1ca05c2502cb93f4}
+
+
+
+
+Definition at line 45 of file genericComponentHeader.h.\index{genericComponentHeader.h@{genericComponentHeader.h}!uniqueId@{uniqueId}}
+\index{uniqueId@{uniqueId}!genericComponentHeader.h@{genericComponentHeader.h}}
+\subsubsection[{uniqueId}]{\setlength{\rightskip}{0pt plus 5cm}typedef unsigned long int {\bf uniqueId}}\label{genericComponentHeader_8h_880960a57c549f69d77cf01237366978}
+
+
+
+
+Definition at line 43 of file genericComponentHeader.h.
+
+\subsection{Enumeration Type Documentation}
+\index{genericComponentHeader.h@{genericComponentHeader.h}!message\_\-class@{message\_\-class}}
+\index{message\_\-class@{message\_\-class}!genericComponentHeader.h@{genericComponentHeader.h}}
+\subsubsection[{message\_\-class}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf message\_\-class}}\label{genericComponentHeader_8h_155eefa40b3e6db305cb151f7bb6bef4}
+
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{INVALID\_\-PKT@{INVALID\_\-PKT}!genericComponentHeader.h@{genericComponentHeader.h}}\index{genericComponentHeader.h@{genericComponentHeader.h}!INVALID\_\-PKT@{INVALID\_\-PKT}}\item[{\em 
+INVALID\_\-PKT\label{genericComponentHeader_8h_155eefa40b3e6db305cb151f7bb6bef4e7fe9d12722f3ee42b17fc4c9c04faba}
+}]\index{REQUEST\_\-PKT@{REQUEST\_\-PKT}!genericComponentHeader.h@{genericComponentHeader.h}}\index{genericComponentHeader.h@{genericComponentHeader.h}!REQUEST\_\-PKT@{REQUEST\_\-PKT}}\item[{\em 
+REQUEST\_\-PKT\label{genericComponentHeader_8h_155eefa40b3e6db305cb151f7bb6bef4d3e842c7a5ceb4faa20853be6b41b8db}
+}]\index{WRITE\_\-REQ@{WRITE\_\-REQ}!genericComponentHeader.h@{genericComponentHeader.h}}\index{genericComponentHeader.h@{genericComponentHeader.h}!WRITE\_\-REQ@{WRITE\_\-REQ}}\item[{\em 
+WRITE\_\-REQ\label{genericComponentHeader_8h_155eefa40b3e6db305cb151f7bb6bef44b69f4b601ec9ab61dde94aadd61f5f8}
+}]\index{RESPONSE\_\-PKT@{RESPONSE\_\-PKT}!genericComponentHeader.h@{genericComponentHeader.h}}\index{genericComponentHeader.h@{genericComponentHeader.h}!RESPONSE\_\-PKT@{RESPONSE\_\-PKT}}\item[{\em 
+RESPONSE\_\-PKT\label{genericComponentHeader_8h_155eefa40b3e6db305cb151f7bb6bef4294528b7f87e4eee5d8f8ce252480ee1}
+}]\index{ONE\_\-FLIT\_\-REQ@{ONE\_\-FLIT\_\-REQ}!genericComponentHeader.h@{genericComponentHeader.h}}\index{genericComponentHeader.h@{genericComponentHeader.h}!ONE\_\-FLIT\_\-REQ@{ONE\_\-FLIT\_\-REQ}}\item[{\em 
+ONE\_\-FLIT\_\-REQ\label{genericComponentHeader_8h_155eefa40b3e6db305cb151f7bb6bef462d2a16eab393943696ee3dce69c15d6}
+}]\index{CLUBBED\_\-PKT@{CLUBBED\_\-PKT}!genericComponentHeader.h@{genericComponentHeader.h}}\index{genericComponentHeader.h@{genericComponentHeader.h}!CLUBBED\_\-PKT@{CLUBBED\_\-PKT}}\item[{\em 
+CLUBBED\_\-PKT\label{genericComponentHeader_8h_155eefa40b3e6db305cb151f7bb6bef4155897a00b1a5373c29d5a196a318184}
+}]\index{PRIORITY\_\-REQ@{PRIORITY\_\-REQ}!genericComponentHeader.h@{genericComponentHeader.h}}\index{genericComponentHeader.h@{genericComponentHeader.h}!PRIORITY\_\-REQ@{PRIORITY\_\-REQ}}\item[{\em 
+PRIORITY\_\-REQ\label{genericComponentHeader_8h_155eefa40b3e6db305cb151f7bb6bef40ac409ee0059f317bf64a33cd711732f}
+}]\end{description}
+\end{Desc}
+
+
+
+Definition at line 47 of file genericComponentHeader.h.
+
+\subsection{Variable Documentation}
+\index{genericComponentHeader.h@{genericComponentHeader.h}!head\_\-and\_\-tail\_\-length@{head\_\-and\_\-tail\_\-length}}
+\index{head\_\-and\_\-tail\_\-length@{head\_\-and\_\-tail\_\-length}!genericComponentHeader.h@{genericComponentHeader.h}}
+\subsubsection[{head\_\-and\_\-tail\_\-length}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned int {\bf head\_\-and\_\-tail\_\-length} = 80}\label{genericComponentHeader_8h_8dbcbbf46fb808cab854d20ce33645d5}
+
+
+
+
+Definition at line 56 of file genericComponentHeader.h.
+
+Referenced by GenericTPG\_\-clubbed::convertToBitStream2().\index{genericComponentHeader.h@{genericComponentHeader.h}!max\_\-control\_\-bits@{max\_\-control\_\-bits}}
+\index{max\_\-control\_\-bits@{max\_\-control\_\-bits}!genericComponentHeader.h@{genericComponentHeader.h}}
+\subsubsection[{max\_\-control\_\-bits}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned int {\bf max\_\-control\_\-bits} = 8}\label{genericComponentHeader_8h_3c2da81fd84ab0358092e3b47aac3b3c}
+
+
+
+
+Definition at line 52 of file genericComponentHeader.h.\index{genericComponentHeader.h@{genericComponentHeader.h}!max\_\-network\_\-node\_\-bits@{max\_\-network\_\-node\_\-bits}}
+\index{max\_\-network\_\-node\_\-bits@{max\_\-network\_\-node\_\-bits}!genericComponentHeader.h@{genericComponentHeader.h}}
+\subsubsection[{max\_\-network\_\-node\_\-bits}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned int {\bf max\_\-network\_\-node\_\-bits} = 8}\label{genericComponentHeader_8h_a11688d7b68d9e3b60784e388b3a94c8}
+
+
+
+
+Definition at line 49 of file genericComponentHeader.h.
+
+Referenced by HeadFlit::populate\_\-head\_\-flit().\index{genericComponentHeader.h@{genericComponentHeader.h}!max\_\-pkt\_\-cnt\_\-bits@{max\_\-pkt\_\-cnt\_\-bits}}
+\index{max\_\-pkt\_\-cnt\_\-bits@{max\_\-pkt\_\-cnt\_\-bits}!genericComponentHeader.h@{genericComponentHeader.h}}
+\subsubsection[{max\_\-pkt\_\-cnt\_\-bits}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned int {\bf max\_\-pkt\_\-cnt\_\-bits} = 3}\label{genericComponentHeader_8h_3c6f8fc634796e799dfe8c3d848abd40}
+
+
+
+
+Definition at line 55 of file genericComponentHeader.h.
+
+Referenced by HeadFlit::populate\_\-head\_\-flit().\index{genericComponentHeader.h@{genericComponentHeader.h}!max\_\-tail\_\-length\_\-bits@{max\_\-tail\_\-length\_\-bits}}
+\index{max\_\-tail\_\-length\_\-bits@{max\_\-tail\_\-length\_\-bits}!genericComponentHeader.h@{genericComponentHeader.h}}
+\subsubsection[{max\_\-tail\_\-length\_\-bits}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned int {\bf max\_\-tail\_\-length\_\-bits} = 8}\label{genericComponentHeader_8h_5865e4b460e585b9a53f2dfa6a5839ae}
+
+
+
+
+Definition at line 51 of file genericComponentHeader.h.
+
+Referenced by TailFlit::populate\_\-tail\_\-flit().\index{genericComponentHeader.h@{genericComponentHeader.h}!max\_\-transaction\_\-id\_\-bits@{max\_\-transaction\_\-id\_\-bits}}
+\index{max\_\-transaction\_\-id\_\-bits@{max\_\-transaction\_\-id\_\-bits}!genericComponentHeader.h@{genericComponentHeader.h}}
+\subsubsection[{max\_\-transaction\_\-id\_\-bits}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned int {\bf max\_\-transaction\_\-id\_\-bits} = 8}\label{genericComponentHeader_8h_df297dfc5bd1387de6bec325bfa30f23}
+
+
+
+
+Definition at line 50 of file genericComponentHeader.h.
+
+Referenced by HeadFlit::populate\_\-head\_\-flit().

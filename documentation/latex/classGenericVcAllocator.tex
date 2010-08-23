@@ -1,0 +1,413 @@
+\section{GenericVcAllocator Class Reference}
+\label{classGenericVcAllocator}\index{GenericVcAllocator@{GenericVcAllocator}}
+This class allocates an output virtual channel to all requesting input messages. Only head flits pass through VCA. =====================================================================================.  
+
+
+{\tt \#include $<$genericVcAllocator.h$>$}
+
+Collaboration diagram for GenericVcAllocator:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classGenericVcAllocator__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf GenericVcAllocator} ()
+\item 
+{\bf $\sim$GenericVcAllocator} ()
+\item 
+void {\bf setup} ({\bf uint} p, {\bf uint} v)
+\item 
+bool {\bf request} ({\bf uint} out\_\-port, {\bf uint} out\_\-vc, {\bf uint} in\_\-port, {\bf uint} in\_\-vc)
+\item 
+bool {\bf is\_\-empty} (void)
+\item 
+bool {\bf is\_\-empty} ({\bf uint} i)
+\item 
+void {\bf pick\_\-winner} (void)
+\item 
+void {\bf set\_\-request\_\-matrix} (void)
+\item 
+void {\bf do\_\-round\_\-robin\_\-arbitration} (void)
+\item 
+void {\bf clear\_\-winner} ({\bf uint} op, {\bf uint} ovc, {\bf uint} ip, {\bf uint} ivc)
+\item 
+void {\bf squash\_\-requests} ({\bf uint} op, {\bf uint} ovc, {\bf uint} ip, {\bf uint} ivc)
+\item 
+string {\bf toString} () const 
+\item 
+bool {\bf is\_\-requested} ({\bf uint} op, {\bf uint} ovc, {\bf uint} ip, {\bf uint} ivc)
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+vector$<$ {\bf uint} $>$ {\bf current\_\-winners}
+\item 
+{\bf uint} {\bf address}
+\item 
+{\bf uint} {\bf node\_\-ip}
+\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+{\bf uint} {\bf ports}
+\item 
+{\bf uint} {\bf vcs}
+\item 
+string {\bf name}
+\item 
+vector$<$ bool $>$ {\bf done}
+\item 
+vector$<$ bool $>$ {\bf locked}
+\item 
+vector$<$ {\bf uint} $>$ {\bf last\_\-winner}
+\item 
+vector$<$ vector$<$ bool $>$ $>$ {\bf requested}
+\item 
+vector$<$ vector$<$ {\bf uint} $>$ $>$ {\bf last\_\-inport\_\-winner}
+\item 
+vector$<$ vector$<$ vector$<$ short int $>$ $>$ $>$ {\bf requestor\_\-inport}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+This class allocates an output virtual channel to all requesting input messages. Only head flits pass through VCA. =====================================================================================. 
+
+===================================================================================== Class: \doxyref{GenericVcAllocator}{p.}{classGenericVcAllocator} Description: 
+
+Definition at line 43 of file genericVcAllocator.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{GenericVcAllocator@{GenericVcAllocator}!GenericVcAllocator@{GenericVcAllocator}}
+\index{GenericVcAllocator@{GenericVcAllocator}!GenericVcAllocator@{GenericVcAllocator}}
+\subsubsection[{GenericVcAllocator}]{\setlength{\rightskip}{0pt plus 5cm}GenericVcAllocator::GenericVcAllocator ()}\label{classGenericVcAllocator_16b2c409bc70abcfb90c6a64512f405d}
+
+
+
+
+Definition at line 25 of file genericVcAllocator.cc.
+
+References name.\index{GenericVcAllocator@{GenericVcAllocator}!$\sim$GenericVcAllocator@{$\sim$GenericVcAllocator}}
+\index{$\sim$GenericVcAllocator@{$\sim$GenericVcAllocator}!GenericVcAllocator@{GenericVcAllocator}}
+\subsubsection[{$\sim$GenericVcAllocator}]{\setlength{\rightskip}{0pt plus 5cm}GenericVcAllocator::$\sim$GenericVcAllocator ()}\label{classGenericVcAllocator_7707fa4759b00068a9ae86abab118937}
+
+
+
+
+Definition at line 30 of file genericVcAllocator.cc.
+
+\subsection{Member Function Documentation}
+\index{GenericVcAllocator@{GenericVcAllocator}!clear\_\-winner@{clear\_\-winner}}
+\index{clear\_\-winner@{clear\_\-winner}!GenericVcAllocator@{GenericVcAllocator}}
+\subsubsection[{clear\_\-winner}]{\setlength{\rightskip}{0pt plus 5cm}void GenericVcAllocator::clear\_\-winner ({\bf uint} {\em op}, \/  {\bf uint} {\em ovc}, \/  {\bf uint} {\em ip}, \/  {\bf uint} {\em ivc})}\label{classGenericVcAllocator_a4f1939dca67958c3db027a0f5f29535}
+
+
+
+
+Definition at line 277 of file genericVcAllocator.cc.
+
+References \_\-DBG, current\_\-winners, done, locked, requested, requestor\_\-inport, and vcs.
+
+Referenced by GenericRouterVcs::do\_\-switch\_\-traversal().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classGenericVcAllocator_a4f1939dca67958c3db027a0f5f29535_icgraph}
+\end{center}
+\end{figure}
+\index{GenericVcAllocator@{GenericVcAllocator}!do\_\-round\_\-robin\_\-arbitration@{do\_\-round\_\-robin\_\-arbitration}}
+\index{do\_\-round\_\-robin\_\-arbitration@{do\_\-round\_\-robin\_\-arbitration}!GenericVcAllocator@{GenericVcAllocator}}
+\subsubsection[{do\_\-round\_\-robin\_\-arbitration}]{\setlength{\rightskip}{0pt plus 5cm}void GenericVcAllocator::do\_\-round\_\-robin\_\-arbitration (void)}\label{classGenericVcAllocator_e5f0e92a3aba6a084637e6560849e3ba}
+
+
+
+
+Definition at line 229 of file genericVcAllocator.cc.
+
+References current\_\-winners, done, last\_\-inport\_\-winner, last\_\-winner, locked, ports, requested, and vcs.
+
+Referenced by pick\_\-winner().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classGenericVcAllocator_e5f0e92a3aba6a084637e6560849e3ba_icgraph}
+\end{center}
+\end{figure}
+\index{GenericVcAllocator@{GenericVcAllocator}!is\_\-empty@{is\_\-empty}}
+\index{is\_\-empty@{is\_\-empty}!GenericVcAllocator@{GenericVcAllocator}}
+\subsubsection[{is\_\-empty}]{\setlength{\rightskip}{0pt plus 5cm}bool GenericVcAllocator::is\_\-empty ({\bf uint} {\em i})}\label{classGenericVcAllocator_236278cf8532c6efd893ebbaacf8be6b}
+
+
+
+
+Definition at line 127 of file genericVcAllocator.cc.
+
+References ports, requestor\_\-inport, and vcs.\index{GenericVcAllocator@{GenericVcAllocator}!is\_\-empty@{is\_\-empty}}
+\index{is\_\-empty@{is\_\-empty}!GenericVcAllocator@{GenericVcAllocator}}
+\subsubsection[{is\_\-empty}]{\setlength{\rightskip}{0pt plus 5cm}bool GenericVcAllocator::is\_\-empty (void)}\label{classGenericVcAllocator_931088e890c3520774ce337adce130eb}
+
+
+
+
+Definition at line 115 of file genericVcAllocator.cc.
+
+References ports, requestor\_\-inport, and vcs.
+
+Referenced by GenericRouterVcs::handle\_\-tick\_\-event(), and pick\_\-winner().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=401pt]{classGenericVcAllocator_931088e890c3520774ce337adce130eb_icgraph}
+\end{center}
+\end{figure}
+\index{GenericVcAllocator@{GenericVcAllocator}!is\_\-requested@{is\_\-requested}}
+\index{is\_\-requested@{is\_\-requested}!GenericVcAllocator@{GenericVcAllocator}}
+\subsubsection[{is\_\-requested}]{\setlength{\rightskip}{0pt plus 5cm}bool GenericVcAllocator::is\_\-requested ({\bf uint} {\em op}, \/  {\bf uint} {\em ovc}, \/  {\bf uint} {\em ip}, \/  {\bf uint} {\em ivc})}\label{classGenericVcAllocator_271feff7750476795585ccc4828c18b5}
+
+
+
+
+Definition at line 318 of file genericVcAllocator.cc.
+
+References requestor\_\-inport, and vcs.
+
+Referenced by GenericRouterVcs::handle\_\-tick\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{classGenericVcAllocator_271feff7750476795585ccc4828c18b5_icgraph}
+\end{center}
+\end{figure}
+\index{GenericVcAllocator@{GenericVcAllocator}!pick\_\-winner@{pick\_\-winner}}
+\index{pick\_\-winner@{pick\_\-winner}!GenericVcAllocator@{GenericVcAllocator}}
+\subsubsection[{pick\_\-winner}]{\setlength{\rightskip}{0pt plus 5cm}void GenericVcAllocator::pick\_\-winner (void)}\label{classGenericVcAllocator_3b24f98199dc00c72c290b63eaa05158}
+
+
+
+
+Definition at line 138 of file genericVcAllocator.cc.
+
+References do\_\-round\_\-robin\_\-arbitration(), is\_\-empty(), and set\_\-request\_\-matrix().
+
+Referenced by GenericRouterVcs::handle\_\-tick\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=310pt]{classGenericVcAllocator_3b24f98199dc00c72c290b63eaa05158_icgraph}
+\end{center}
+\end{figure}
+\index{GenericVcAllocator@{GenericVcAllocator}!request@{request}}
+\index{request@{request}!GenericVcAllocator@{GenericVcAllocator}}
+\subsubsection[{request}]{\setlength{\rightskip}{0pt plus 5cm}bool GenericVcAllocator::request ({\bf uint} {\em out\_\-port}, \/  {\bf uint} {\em out\_\-vc}, \/  {\bf uint} {\em in\_\-port}, \/  {\bf uint} {\em in\_\-vc})}\label{classGenericVcAllocator_4330429e5ab35e77f1d4f1d056b99f3f}
+
+
+
+
+Definition at line 76 of file genericVcAllocator.cc.
+
+References locked, requestor\_\-inport, and vcs.
+
+Referenced by GenericRouterVcs::handle\_\-tick\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=300pt]{classGenericVcAllocator_4330429e5ab35e77f1d4f1d056b99f3f_icgraph}
+\end{center}
+\end{figure}
+\index{GenericVcAllocator@{GenericVcAllocator}!set\_\-request\_\-matrix@{set\_\-request\_\-matrix}}
+\index{set\_\-request\_\-matrix@{set\_\-request\_\-matrix}!GenericVcAllocator@{GenericVcAllocator}}
+\subsubsection[{set\_\-request\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}void GenericVcAllocator::set\_\-request\_\-matrix (void)}\label{classGenericVcAllocator_34ce41d5e60202583d218bde7e2a794f}
+
+
+
+
+Definition at line 181 of file genericVcAllocator.cc.
+
+References last\_\-inport\_\-winner, locked, ports, requested, requestor\_\-inport, and vcs.
+
+Referenced by pick\_\-winner().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{classGenericVcAllocator_34ce41d5e60202583d218bde7e2a794f_icgraph}
+\end{center}
+\end{figure}
+\index{GenericVcAllocator@{GenericVcAllocator}!setup@{setup}}
+\index{setup@{setup}!GenericVcAllocator@{GenericVcAllocator}}
+\subsubsection[{setup}]{\setlength{\rightskip}{0pt plus 5cm}void GenericVcAllocator::setup ({\bf uint} {\em p}, \/  {\bf uint} {\em v})}\label{classGenericVcAllocator_d55f9ef975c75d1c9f4dc8b47a2399ae}
+
+
+
+
+Definition at line 36 of file genericVcAllocator.cc.
+
+References current\_\-winners, done, last\_\-inport\_\-winner, last\_\-winner, locked, ports, requested, requestor\_\-inport, and vcs.
+
+Referenced by GenericRouterVcs::init().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=162pt]{classGenericVcAllocator_d55f9ef975c75d1c9f4dc8b47a2399ae_icgraph}
+\end{center}
+\end{figure}
+\index{GenericVcAllocator@{GenericVcAllocator}!squash\_\-requests@{squash\_\-requests}}
+\index{squash\_\-requests@{squash\_\-requests}!GenericVcAllocator@{GenericVcAllocator}}
+\subsubsection[{squash\_\-requests}]{\setlength{\rightskip}{0pt plus 5cm}void GenericVcAllocator::squash\_\-requests ({\bf uint} {\em op}, \/  {\bf uint} {\em ovc}, \/  {\bf uint} {\em ip}, \/  {\bf uint} {\em ivc})}\label{classGenericVcAllocator_3b82c3e8aefa88fee57e2dd7aa033d46}
+
+
+
+
+Definition at line 324 of file genericVcAllocator.cc.
+
+References current\_\-winners, done, locked, requested, requestor\_\-inport, and vcs.
+
+Referenced by GenericRouterVcs::handle\_\-tick\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=321pt]{classGenericVcAllocator_3b82c3e8aefa88fee57e2dd7aa033d46_icgraph}
+\end{center}
+\end{figure}
+\index{GenericVcAllocator@{GenericVcAllocator}!toString@{toString}}
+\index{toString@{toString}!GenericVcAllocator@{GenericVcAllocator}}
+\subsubsection[{toString}]{\setlength{\rightskip}{0pt plus 5cm}string GenericVcAllocator::toString () const}\label{classGenericVcAllocator_e77ca57322939b3bf5f0b8f3f55997c0}
+
+
+
+
+\subsection{Member Data Documentation}
+\index{GenericVcAllocator@{GenericVcAllocator}!address@{address}}
+\index{address@{address}!GenericVcAllocator@{GenericVcAllocator}}
+\subsubsection[{address}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf GenericVcAllocator::address}}\label{classGenericVcAllocator_fe886751eeedc4adbab64a769ec6089d}
+
+
+
+
+Definition at line 63 of file genericVcAllocator.h.
+
+Referenced by GenericRouterVcs::init().\index{GenericVcAllocator@{GenericVcAllocator}!current\_\-winners@{current\_\-winners}}
+\index{current\_\-winners@{current\_\-winners}!GenericVcAllocator@{GenericVcAllocator}}
+\subsubsection[{current\_\-winners}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf uint} $>$ {\bf GenericVcAllocator::current\_\-winners}}\label{classGenericVcAllocator_3b603c3125c15f9fa432678bd40d0c2e}
+
+
+
+
+Definition at line 62 of file genericVcAllocator.h.
+
+Referenced by clear\_\-winner(), do\_\-round\_\-robin\_\-arbitration(), GenericRouterVcs::handle\_\-tick\_\-event(), setup(), and squash\_\-requests().\index{GenericVcAllocator@{GenericVcAllocator}!done@{done}}
+\index{done@{done}!GenericVcAllocator@{GenericVcAllocator}}
+\subsubsection[{done}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ bool $>$ {\bf GenericVcAllocator::done}\hspace{0.3cm}{\tt  [private]}}\label{classGenericVcAllocator_967eb772484495f2c779fa1256fe0123}
+
+
+
+
+Definition at line 70 of file genericVcAllocator.h.
+
+Referenced by clear\_\-winner(), do\_\-round\_\-robin\_\-arbitration(), setup(), and squash\_\-requests().\index{GenericVcAllocator@{GenericVcAllocator}!last\_\-inport\_\-winner@{last\_\-inport\_\-winner}}
+\index{last\_\-inport\_\-winner@{last\_\-inport\_\-winner}!GenericVcAllocator@{GenericVcAllocator}}
+\subsubsection[{last\_\-inport\_\-winner}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ vector $<$ {\bf uint} $>$ $>$ {\bf GenericVcAllocator::last\_\-inport\_\-winner}\hspace{0.3cm}{\tt  [private]}}\label{classGenericVcAllocator_0fb3299eed3f2387447e527c45d9c8d5}
+
+
+
+
+Definition at line 74 of file genericVcAllocator.h.
+
+Referenced by do\_\-round\_\-robin\_\-arbitration(), set\_\-request\_\-matrix(), and setup().\index{GenericVcAllocator@{GenericVcAllocator}!last\_\-winner@{last\_\-winner}}
+\index{last\_\-winner@{last\_\-winner}!GenericVcAllocator@{GenericVcAllocator}}
+\subsubsection[{last\_\-winner}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf uint} $>$ {\bf GenericVcAllocator::last\_\-winner}\hspace{0.3cm}{\tt  [private]}}\label{classGenericVcAllocator_fa939275ba1db14b03b189ba2ed4b9ca}
+
+
+
+
+Definition at line 72 of file genericVcAllocator.h.
+
+Referenced by do\_\-round\_\-robin\_\-arbitration(), and setup().\index{GenericVcAllocator@{GenericVcAllocator}!locked@{locked}}
+\index{locked@{locked}!GenericVcAllocator@{GenericVcAllocator}}
+\subsubsection[{locked}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ bool $>$ {\bf GenericVcAllocator::locked}\hspace{0.3cm}{\tt  [private]}}\label{classGenericVcAllocator_81e424b1dc20203ff14b06d6480a8d80}
+
+
+
+
+Definition at line 71 of file genericVcAllocator.h.
+
+Referenced by clear\_\-winner(), do\_\-round\_\-robin\_\-arbitration(), request(), set\_\-request\_\-matrix(), setup(), and squash\_\-requests().\index{GenericVcAllocator@{GenericVcAllocator}!name@{name}}
+\index{name@{name}!GenericVcAllocator@{GenericVcAllocator}}
+\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}string {\bf GenericVcAllocator::name}\hspace{0.3cm}{\tt  [private]}}\label{classGenericVcAllocator_7265f4063ce46044374dfbfac030dfad}
+
+
+
+
+Definition at line 69 of file genericVcAllocator.h.
+
+Referenced by GenericVcAllocator().\index{GenericVcAllocator@{GenericVcAllocator}!node\_\-ip@{node\_\-ip}}
+\index{node\_\-ip@{node\_\-ip}!GenericVcAllocator@{GenericVcAllocator}}
+\subsubsection[{node\_\-ip}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf GenericVcAllocator::node\_\-ip}}\label{classGenericVcAllocator_27380cc6778cc89067c351db2d1c4e8e}
+
+
+
+
+Definition at line 64 of file genericVcAllocator.h.
+
+Referenced by GenericRouterVcs::init().\index{GenericVcAllocator@{GenericVcAllocator}!ports@{ports}}
+\index{ports@{ports}!GenericVcAllocator@{GenericVcAllocator}}
+\subsubsection[{ports}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf GenericVcAllocator::ports}\hspace{0.3cm}{\tt  [private]}}\label{classGenericVcAllocator_4c72812732899e52fb71a0cabe805453}
+
+
+
+
+Definition at line 67 of file genericVcAllocator.h.
+
+Referenced by do\_\-round\_\-robin\_\-arbitration(), is\_\-empty(), set\_\-request\_\-matrix(), and setup().\index{GenericVcAllocator@{GenericVcAllocator}!requested@{requested}}
+\index{requested@{requested}!GenericVcAllocator@{GenericVcAllocator}}
+\subsubsection[{requested}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ vector $<$ bool $>$ $>$ {\bf GenericVcAllocator::requested}\hspace{0.3cm}{\tt  [private]}}\label{classGenericVcAllocator_a7bca668ad841aa2730de0830a777332}
+
+
+
+
+Definition at line 73 of file genericVcAllocator.h.
+
+Referenced by clear\_\-winner(), do\_\-round\_\-robin\_\-arbitration(), set\_\-request\_\-matrix(), setup(), and squash\_\-requests().\index{GenericVcAllocator@{GenericVcAllocator}!requestor\_\-inport@{requestor\_\-inport}}
+\index{requestor\_\-inport@{requestor\_\-inport}!GenericVcAllocator@{GenericVcAllocator}}
+\subsubsection[{requestor\_\-inport}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ vector $<$ vector $<$short int $>$ $>$ $>$ {\bf GenericVcAllocator::requestor\_\-inport}\hspace{0.3cm}{\tt  [private]}}\label{classGenericVcAllocator_09896d451cd87becce9581e529420802}
+
+
+
+
+Definition at line 75 of file genericVcAllocator.h.
+
+Referenced by clear\_\-winner(), is\_\-empty(), is\_\-requested(), request(), set\_\-request\_\-matrix(), setup(), and squash\_\-requests().\index{GenericVcAllocator@{GenericVcAllocator}!vcs@{vcs}}
+\index{vcs@{vcs}!GenericVcAllocator@{GenericVcAllocator}}
+\subsubsection[{vcs}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf GenericVcAllocator::vcs}\hspace{0.3cm}{\tt  [private]}}\label{classGenericVcAllocator_4ad9240f713f1c693b78c5c703110390}
+
+
+
+
+Definition at line 68 of file genericVcAllocator.h.
+
+Referenced by clear\_\-winner(), do\_\-round\_\-robin\_\-arbitration(), is\_\-empty(), is\_\-requested(), request(), set\_\-request\_\-matrix(), setup(), and squash\_\-requests().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf genericVcAllocator.h}\item 
+{\bf genericVcAllocator.cc}\end{CompactItemize}

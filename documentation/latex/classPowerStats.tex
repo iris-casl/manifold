@@ -1,0 +1,262 @@
+\section{PowerStats Class Reference}
+\label{classPowerStats}\index{PowerStats@{PowerStats}}
+{\tt \#include $<$stats.h$>$}
+
+Inheritance diagram for PowerStats:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classPowerStats__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for PowerStats:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classPowerStats__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf PowerStats} ()
+\item 
+{\bf $\sim$PowerStats} ()
+\item 
+void {\bf CalcPower} (float {\bf BNK\_\-PRE}, float {\bf CLK\_\-LO\_\-PRE}, float {\bf CLK\_\-LO\_\-ACT}, float {\bf RDsch}, float {\bf WRsch}, float {\bf termRDsch}, float {\bf termWRsch}, float {\bf RRDsch})
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+float {\bf Pow\_\-PRE\_\-PDN}
+\item 
+float {\bf Pow\_\-PRE\_\-STBY}
+\item 
+float {\bf Pow\_\-ACT\_\-PDN}
+\item 
+float {\bf Pow\_\-ACT\_\-STBY}
+\item 
+float {\bf Pow\_\-REF}
+\item 
+float {\bf Pow\_\-ACT\_\-PRE}
+\item 
+float {\bf Pow\_\-WR}
+\item 
+float {\bf Pow\_\-RD}
+\item 
+float {\bf Pow\_\-DQ}
+\item 
+float {\bf Pow\_\-termWR}
+\item 
+float {\bf Pow\_\-termRDoth}
+\item 
+float {\bf Pow\_\-termWRoth}
+\item 
+float {\bf Pow\_\-Term}
+\item 
+float {\bf Pow\_\-Bkg}
+\item 
+float {\bf Pow\_\-AP}
+\item 
+float {\bf Pow\_\-RD\_\-WR\_\-Tr}
+\item 
+float {\bf Pow\_\-Total}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 162 of file memctrl/stats.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{PowerStats@{PowerStats}!PowerStats@{PowerStats}}
+\index{PowerStats@{PowerStats}!PowerStats@{PowerStats}}
+\subsubsection[{PowerStats}]{\setlength{\rightskip}{0pt plus 5cm}PowerStats::PowerStats ()}\label{classPowerStats_323f1fcdbdbbb1ecb4505dfc596a9533}
+
+
+
+
+Definition at line 22 of file stats.cc.
+
+References Pow\_\-ACT\_\-PDN, Pow\_\-ACT\_\-PRE, Pow\_\-ACT\_\-STBY, Pow\_\-AP, Pow\_\-Bkg, Pow\_\-DQ, Pow\_\-PRE\_\-PDN, Pow\_\-PRE\_\-STBY, Pow\_\-RD, Pow\_\-RD\_\-WR\_\-Tr, Pow\_\-REF, Pow\_\-Term, Pow\_\-termRDoth, Pow\_\-termWR, Pow\_\-termWRoth, Pow\_\-Total, and Pow\_\-WR.\index{PowerStats@{PowerStats}!$\sim$PowerStats@{$\sim$PowerStats}}
+\index{$\sim$PowerStats@{$\sim$PowerStats}!PowerStats@{PowerStats}}
+\subsubsection[{$\sim$PowerStats}]{\setlength{\rightskip}{0pt plus 5cm}PowerStats::$\sim$PowerStats ()}\label{classPowerStats_01f056839fcb347db4a272aa970ca2bb}
+
+
+
+
+Definition at line 43 of file stats.cc.
+
+\subsection{Member Function Documentation}
+\index{PowerStats@{PowerStats}!CalcPower@{CalcPower}}
+\index{CalcPower@{CalcPower}!PowerStats@{PowerStats}}
+\subsubsection[{CalcPower}]{\setlength{\rightskip}{0pt plus 5cm}void PowerStats::CalcPower (float {\em BNK\_\-PRE}, \/  float {\em CLK\_\-LO\_\-PRE}, \/  float {\em CLK\_\-LO\_\-ACT}, \/  float {\em RDsch}, \/  float {\em WRsch}, \/  float {\em termRDsch}, \/  float {\em termWRsch}, \/  float {\em RRDsch})}\label{classPowerStats_e80a81ee6be435bbea38c09a02f888e7}
+
+
+
+
+Definition at line 47 of file stats.cc.
+
+References BL, DM, DQS, IDD0, IDD2N, IDD2PF, IDD3N, IDD3P, IDD4R, IDD4W, IDD5A, MaxVcc, PdqRD, PdqWR, Pow\_\-ACT\_\-PDN, Pow\_\-ACT\_\-PRE, Pow\_\-ACT\_\-STBY, Pow\_\-AP, Pow\_\-Bkg, Pow\_\-DQ, Pow\_\-PRE\_\-PDN, Pow\_\-PRE\_\-STBY, Pow\_\-RD, Pow\_\-RD\_\-WR\_\-Tr, Pow\_\-REF, Pow\_\-Term, Pow\_\-termRDoth, Pow\_\-termWR, Pow\_\-termWRoth, Pow\_\-Total, Pow\_\-WR, SysClk, SysVdd, t\_\-CK, tRAS, tRC, tREFI, and tRFC.
+
+\subsection{Member Data Documentation}
+\index{PowerStats@{PowerStats}!Pow\_\-ACT\_\-PDN@{Pow\_\-ACT\_\-PDN}}
+\index{Pow\_\-ACT\_\-PDN@{Pow\_\-ACT\_\-PDN}!PowerStats@{PowerStats}}
+\subsubsection[{Pow\_\-ACT\_\-PDN}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf PowerStats::Pow\_\-ACT\_\-PDN}}\label{classPowerStats_a54e530f27e6de3a9413806c01265082}
+
+
+
+
+Definition at line 173 of file memctrl/stats.h.
+
+Referenced by CalcPower(), and PowerStats().\index{PowerStats@{PowerStats}!Pow\_\-ACT\_\-PRE@{Pow\_\-ACT\_\-PRE}}
+\index{Pow\_\-ACT\_\-PRE@{Pow\_\-ACT\_\-PRE}!PowerStats@{PowerStats}}
+\subsubsection[{Pow\_\-ACT\_\-PRE}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf PowerStats::Pow\_\-ACT\_\-PRE}}\label{classPowerStats_26d3a59564a00ba326b52e7339532c1e}
+
+
+
+
+Definition at line 176 of file memctrl/stats.h.
+
+Referenced by CalcPower(), and PowerStats().\index{PowerStats@{PowerStats}!Pow\_\-ACT\_\-STBY@{Pow\_\-ACT\_\-STBY}}
+\index{Pow\_\-ACT\_\-STBY@{Pow\_\-ACT\_\-STBY}!PowerStats@{PowerStats}}
+\subsubsection[{Pow\_\-ACT\_\-STBY}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf PowerStats::Pow\_\-ACT\_\-STBY}}\label{classPowerStats_934def72d9c17387227f03aa77cf33f1}
+
+
+
+
+Definition at line 174 of file memctrl/stats.h.
+
+Referenced by CalcPower(), and PowerStats().\index{PowerStats@{PowerStats}!Pow\_\-AP@{Pow\_\-AP}}
+\index{Pow\_\-AP@{Pow\_\-AP}!PowerStats@{PowerStats}}
+\subsubsection[{Pow\_\-AP}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf PowerStats::Pow\_\-AP}}\label{classPowerStats_240666efca9caaa4cb03254f67a8e73f}
+
+
+
+
+Definition at line 185 of file memctrl/stats.h.
+
+Referenced by CalcPower(), and PowerStats().\index{PowerStats@{PowerStats}!Pow\_\-Bkg@{Pow\_\-Bkg}}
+\index{Pow\_\-Bkg@{Pow\_\-Bkg}!PowerStats@{PowerStats}}
+\subsubsection[{Pow\_\-Bkg}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf PowerStats::Pow\_\-Bkg}}\label{classPowerStats_e972073d4e91b7e2547d7a97e2ec211a}
+
+
+
+
+Definition at line 184 of file memctrl/stats.h.
+
+Referenced by CalcPower(), and PowerStats().\index{PowerStats@{PowerStats}!Pow\_\-DQ@{Pow\_\-DQ}}
+\index{Pow\_\-DQ@{Pow\_\-DQ}!PowerStats@{PowerStats}}
+\subsubsection[{Pow\_\-DQ}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf PowerStats::Pow\_\-DQ}}\label{classPowerStats_f9ee7072b2408a81b284703f9a79611a}
+
+
+
+
+Definition at line 179 of file memctrl/stats.h.
+
+Referenced by CalcPower(), and PowerStats().\index{PowerStats@{PowerStats}!Pow\_\-PRE\_\-PDN@{Pow\_\-PRE\_\-PDN}}
+\index{Pow\_\-PRE\_\-PDN@{Pow\_\-PRE\_\-PDN}!PowerStats@{PowerStats}}
+\subsubsection[{Pow\_\-PRE\_\-PDN}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf PowerStats::Pow\_\-PRE\_\-PDN}}\label{classPowerStats_d8fc8ee5489223928600f7317822d6ed}
+
+
+
+
+Definition at line 171 of file memctrl/stats.h.
+
+Referenced by CalcPower(), and PowerStats().\index{PowerStats@{PowerStats}!Pow\_\-PRE\_\-STBY@{Pow\_\-PRE\_\-STBY}}
+\index{Pow\_\-PRE\_\-STBY@{Pow\_\-PRE\_\-STBY}!PowerStats@{PowerStats}}
+\subsubsection[{Pow\_\-PRE\_\-STBY}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf PowerStats::Pow\_\-PRE\_\-STBY}}\label{classPowerStats_e0f798ed2ff0b7e6a06e141f404b3be7}
+
+
+
+
+Definition at line 172 of file memctrl/stats.h.
+
+Referenced by CalcPower(), and PowerStats().\index{PowerStats@{PowerStats}!Pow\_\-RD@{Pow\_\-RD}}
+\index{Pow\_\-RD@{Pow\_\-RD}!PowerStats@{PowerStats}}
+\subsubsection[{Pow\_\-RD}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf PowerStats::Pow\_\-RD}}\label{classPowerStats_06a235bf85d39668b4af9000face1d23}
+
+
+
+
+Definition at line 178 of file memctrl/stats.h.
+
+Referenced by CalcPower(), and PowerStats().\index{PowerStats@{PowerStats}!Pow\_\-RD\_\-WR\_\-Tr@{Pow\_\-RD\_\-WR\_\-Tr}}
+\index{Pow\_\-RD\_\-WR\_\-Tr@{Pow\_\-RD\_\-WR\_\-Tr}!PowerStats@{PowerStats}}
+\subsubsection[{Pow\_\-RD\_\-WR\_\-Tr}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf PowerStats::Pow\_\-RD\_\-WR\_\-Tr}}\label{classPowerStats_3597bcdd55268d0126c8b5565708bf67}
+
+
+
+
+Definition at line 186 of file memctrl/stats.h.
+
+Referenced by CalcPower(), and PowerStats().\index{PowerStats@{PowerStats}!Pow\_\-REF@{Pow\_\-REF}}
+\index{Pow\_\-REF@{Pow\_\-REF}!PowerStats@{PowerStats}}
+\subsubsection[{Pow\_\-REF}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf PowerStats::Pow\_\-REF}}\label{classPowerStats_95f53e555c3930005975a894b341294e}
+
+
+
+
+Definition at line 175 of file memctrl/stats.h.
+
+Referenced by CalcPower(), and PowerStats().\index{PowerStats@{PowerStats}!Pow\_\-Term@{Pow\_\-Term}}
+\index{Pow\_\-Term@{Pow\_\-Term}!PowerStats@{PowerStats}}
+\subsubsection[{Pow\_\-Term}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf PowerStats::Pow\_\-Term}}\label{classPowerStats_b5f2bc484efc2f51efa60805f3c246d9}
+
+
+
+
+Definition at line 183 of file memctrl/stats.h.
+
+Referenced by CalcPower(), and PowerStats().\index{PowerStats@{PowerStats}!Pow\_\-termRDoth@{Pow\_\-termRDoth}}
+\index{Pow\_\-termRDoth@{Pow\_\-termRDoth}!PowerStats@{PowerStats}}
+\subsubsection[{Pow\_\-termRDoth}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf PowerStats::Pow\_\-termRDoth}}\label{classPowerStats_92cdfd1b5df32fbb7ef2d88f12b9efda}
+
+
+
+
+Definition at line 181 of file memctrl/stats.h.
+
+Referenced by CalcPower(), and PowerStats().\index{PowerStats@{PowerStats}!Pow\_\-termWR@{Pow\_\-termWR}}
+\index{Pow\_\-termWR@{Pow\_\-termWR}!PowerStats@{PowerStats}}
+\subsubsection[{Pow\_\-termWR}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf PowerStats::Pow\_\-termWR}}\label{classPowerStats_4567f1aea7c8678f792406f3598f63ac}
+
+
+
+
+Definition at line 180 of file memctrl/stats.h.
+
+Referenced by CalcPower(), and PowerStats().\index{PowerStats@{PowerStats}!Pow\_\-termWRoth@{Pow\_\-termWRoth}}
+\index{Pow\_\-termWRoth@{Pow\_\-termWRoth}!PowerStats@{PowerStats}}
+\subsubsection[{Pow\_\-termWRoth}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf PowerStats::Pow\_\-termWRoth}}\label{classPowerStats_4345b4fde92d296ecfc476883b6ce874}
+
+
+
+
+Definition at line 182 of file memctrl/stats.h.
+
+Referenced by CalcPower(), and PowerStats().\index{PowerStats@{PowerStats}!Pow\_\-Total@{Pow\_\-Total}}
+\index{Pow\_\-Total@{Pow\_\-Total}!PowerStats@{PowerStats}}
+\subsubsection[{Pow\_\-Total}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf PowerStats::Pow\_\-Total}}\label{classPowerStats_6003d7c3cbb9227042d4b166f06852d6}
+
+
+
+
+Definition at line 187 of file memctrl/stats.h.
+
+Referenced by CalcPower(), and PowerStats().\index{PowerStats@{PowerStats}!Pow\_\-WR@{Pow\_\-WR}}
+\index{Pow\_\-WR@{Pow\_\-WR}!PowerStats@{PowerStats}}
+\subsubsection[{Pow\_\-WR}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf PowerStats::Pow\_\-WR}}\label{classPowerStats_2e1b9a14c1af10caedc35e55b69d749a}
+
+
+
+
+Definition at line 177 of file memctrl/stats.h.
+
+Referenced by CalcPower(), and PowerStats().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf memctrl/stats.h}\item 
+{\bf stats.cc}\end{CompactItemize}

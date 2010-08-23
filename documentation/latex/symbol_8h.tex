@@ -1,0 +1,201 @@
+\section{symbol.h File Reference}
+\label{symbol_8h}\index{symbol.h@{symbol.h}}
+{\tt \#include $<$stdio.h$>$}\par
+{\tt \#include \char`\"{}host.h\char`\"{}}\par
+{\tt \#include \char`\"{}misc.h\char`\"{}}\par
+{\tt \#include \char`\"{}machine.h\char`\"{}}\par
+
+
+Include dependency graph for symbol.h:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=353pt]{symbol_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+struct {\bf sym\_\-sym\_\-t}
+\end{CompactItemize}
+\subsection*{Enumerations}
+\begin{CompactItemize}
+\item 
+enum {\bf sym\_\-seg\_\-t} \{ {\bf ss\_\-data}, 
+{\bf ss\_\-text}, 
+{\bf ss\_\-NUM}
+ \}
+\item 
+enum {\bf sym\_\-db\_\-t} \{ {\bf sdb\_\-any}, 
+{\bf sdb\_\-text}, 
+{\bf sdb\_\-data}, 
+{\bf sdb\_\-NUM}
+ \}
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void {\bf sym\_\-loadsyms} (char $\ast$fname, int load\_\-locals)
+\item 
+void {\bf sym\_\-dumpsym} (struct {\bf sym\_\-sym\_\-t} $\ast$sym, FILE $\ast$fd)
+\item 
+void {\bf sym\_\-dumpsyms} (FILE $\ast$fd)
+\item 
+void {\bf sym\_\-dumpstate} (FILE $\ast$fd)
+\item 
+struct {\bf sym\_\-sym\_\-t} $\ast$ {\bf sym\_\-bind\_\-addr} ({\bf md\_\-addr\_\-t} addr, int $\ast$pindex, int exact, enum {\bf sym\_\-db\_\-t} db)
+\item 
+struct {\bf sym\_\-sym\_\-t} $\ast$ {\bf sym\_\-bind\_\-name} (char $\ast$name, int $\ast$pindex, enum {\bf sym\_\-db\_\-t} db)
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+struct {\bf sym\_\-sym\_\-t} $\ast$ {\bf sym\_\-db}
+\item 
+int {\bf sym\_\-nsyms}
+\item 
+struct {\bf sym\_\-sym\_\-t} $\ast$$\ast$ {\bf sym\_\-syms}
+\item 
+struct {\bf sym\_\-sym\_\-t} $\ast$$\ast$ {\bf sym\_\-syms\_\-by\_\-name}
+\item 
+int {\bf sym\_\-ntextsyms}
+\item 
+struct {\bf sym\_\-sym\_\-t} $\ast$$\ast$ {\bf sym\_\-textsyms}
+\item 
+struct {\bf sym\_\-sym\_\-t} $\ast$$\ast$ {\bf sym\_\-textsyms\_\-by\_\-name}
+\item 
+int {\bf sym\_\-ndatasyms}
+\item 
+struct {\bf sym\_\-sym\_\-t} $\ast$$\ast$ {\bf sym\_\-datasyms}
+\item 
+struct {\bf sym\_\-sym\_\-t} $\ast$$\ast$ {\bf sym\_\-datasyms\_\-by\_\-name}
+\end{CompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\index{symbol.h@{symbol.h}!sym\_\-db\_\-t@{sym\_\-db\_\-t}}
+\index{sym\_\-db\_\-t@{sym\_\-db\_\-t}!symbol.h@{symbol.h}}
+\subsubsection[{sym\_\-db\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf sym\_\-db\_\-t}}\label{symbol_8h_7ab6195b4c213ccdbc7c6748579cd662}
+
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{sdb\_\-any@{sdb\_\-any}!symbol.h@{symbol.h}}\index{symbol.h@{symbol.h}!sdb\_\-any@{sdb\_\-any}}\item[{\em 
+sdb\_\-any\label{symbol_8h_7ab6195b4c213ccdbc7c6748579cd6629fb801c83cec6c145086dd8d4b02ac85}
+}]\index{sdb\_\-text@{sdb\_\-text}!symbol.h@{symbol.h}}\index{symbol.h@{symbol.h}!sdb\_\-text@{sdb\_\-text}}\item[{\em 
+sdb\_\-text\label{symbol_8h_7ab6195b4c213ccdbc7c6748579cd6628c68ac8eee2546e39b01a216ed8a161e}
+}]\index{sdb\_\-data@{sdb\_\-data}!symbol.h@{symbol.h}}\index{symbol.h@{symbol.h}!sdb\_\-data@{sdb\_\-data}}\item[{\em 
+sdb\_\-data\label{symbol_8h_7ab6195b4c213ccdbc7c6748579cd6625b8c7ec02439a924930b971e075bc8b7}
+}]\index{sdb\_\-NUM@{sdb\_\-NUM}!symbol.h@{symbol.h}}\index{symbol.h@{symbol.h}!sdb\_\-NUM@{sdb\_\-NUM}}\item[{\em 
+sdb\_\-NUM\label{symbol_8h_7ab6195b4c213ccdbc7c6748579cd66219eac861bcb5dc7737ca74089b3dbac3}
+}]\end{description}
+\end{Desc}
+
+
+
+Definition at line 124 of file symbol.h.\index{symbol.h@{symbol.h}!sym\_\-seg\_\-t@{sym\_\-seg\_\-t}}
+\index{sym\_\-seg\_\-t@{sym\_\-seg\_\-t}!symbol.h@{symbol.h}}
+\subsubsection[{sym\_\-seg\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf sym\_\-seg\_\-t}}\label{symbol_8h_a1afe27f02a7265d74e5bdc212ebd633}
+
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{ss\_\-data@{ss\_\-data}!symbol.h@{symbol.h}}\index{symbol.h@{symbol.h}!ss\_\-data@{ss\_\-data}}\item[{\em 
+ss\_\-data\label{symbol_8h_a1afe27f02a7265d74e5bdc212ebd6334c89cafd5240b6b75d3205d13f588658}
+}]\index{ss\_\-text@{ss\_\-text}!symbol.h@{symbol.h}}\index{symbol.h@{symbol.h}!ss\_\-text@{ss\_\-text}}\item[{\em 
+ss\_\-text\label{symbol_8h_a1afe27f02a7265d74e5bdc212ebd633315471628ad97a6711b60a5a975480ec}
+}]\index{ss\_\-NUM@{ss\_\-NUM}!symbol.h@{symbol.h}}\index{symbol.h@{symbol.h}!ss\_\-NUM@{ss\_\-NUM}}\item[{\em 
+ss\_\-NUM\label{symbol_8h_a1afe27f02a7265d74e5bdc212ebd6338dfb7d7d8ed483a01fe758b6633c948d}
+}]\end{description}
+\end{Desc}
+
+
+
+Definition at line 64 of file symbol.h.
+
+\subsection{Function Documentation}
+\index{symbol.h@{symbol.h}!sym\_\-bind\_\-addr@{sym\_\-bind\_\-addr}}
+\index{sym\_\-bind\_\-addr@{sym\_\-bind\_\-addr}!symbol.h@{symbol.h}}
+\subsubsection[{sym\_\-bind\_\-addr}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf sym\_\-sym\_\-t}$\ast$ sym\_\-bind\_\-addr ({\bf md\_\-addr\_\-t} {\em addr}, \/  int $\ast$ {\em pindex}, \/  int {\em exact}, \/  enum {\bf sym\_\-db\_\-t} {\em db})\hspace{0.3cm}{\tt  [read]}}\label{symbol_8h_eb593eb256a5c4165c818dc260c0e6fe}
+
+
+\index{symbol.h@{symbol.h}!sym\_\-bind\_\-name@{sym\_\-bind\_\-name}}
+\index{sym\_\-bind\_\-name@{sym\_\-bind\_\-name}!symbol.h@{symbol.h}}
+\subsubsection[{sym\_\-bind\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf sym\_\-sym\_\-t}$\ast$ sym\_\-bind\_\-name (char $\ast$ {\em name}, \/  int $\ast$ {\em pindex}, \/  enum {\bf sym\_\-db\_\-t} {\em db})\hspace{0.3cm}{\tt  [read]}}\label{symbol_8h_48adab8d080804518e86f2513fca3f5f}
+
+
+\index{symbol.h@{symbol.h}!sym\_\-dumpstate@{sym\_\-dumpstate}}
+\index{sym\_\-dumpstate@{sym\_\-dumpstate}!symbol.h@{symbol.h}}
+\subsubsection[{sym\_\-dumpstate}]{\setlength{\rightskip}{0pt plus 5cm}void sym\_\-dumpstate (FILE $\ast$ {\em fd})}\label{symbol_8h_f2e201c036ffb60c9e7bd69970980887}
+
+
+\index{symbol.h@{symbol.h}!sym\_\-dumpsym@{sym\_\-dumpsym}}
+\index{sym\_\-dumpsym@{sym\_\-dumpsym}!symbol.h@{symbol.h}}
+\subsubsection[{sym\_\-dumpsym}]{\setlength{\rightskip}{0pt plus 5cm}void sym\_\-dumpsym (struct {\bf sym\_\-sym\_\-t} $\ast$ {\em sym}, \/  FILE $\ast$ {\em fd})}\label{symbol_8h_b3608c67aa91dbac41c538cdc4ec5ec3}
+
+
+\index{symbol.h@{symbol.h}!sym\_\-dumpsyms@{sym\_\-dumpsyms}}
+\index{sym\_\-dumpsyms@{sym\_\-dumpsyms}!symbol.h@{symbol.h}}
+\subsubsection[{sym\_\-dumpsyms}]{\setlength{\rightskip}{0pt plus 5cm}void sym\_\-dumpsyms (FILE $\ast$ {\em fd})}\label{symbol_8h_b375dcf4bd31ee4aa731d669c2f4c19e}
+
+
+\index{symbol.h@{symbol.h}!sym\_\-loadsyms@{sym\_\-loadsyms}}
+\index{sym\_\-loadsyms@{sym\_\-loadsyms}!symbol.h@{symbol.h}}
+\subsubsection[{sym\_\-loadsyms}]{\setlength{\rightskip}{0pt plus 5cm}void sym\_\-loadsyms (char $\ast$ {\em fname}, \/  int {\em load\_\-locals})}\label{symbol_8h_aaef60e957baaa1a9e209599e3f33346}
+
+
+
+
+\subsection{Variable Documentation}
+\index{symbol.h@{symbol.h}!sym\_\-datasyms@{sym\_\-datasyms}}
+\index{sym\_\-datasyms@{sym\_\-datasyms}!symbol.h@{symbol.h}}
+\subsubsection[{sym\_\-datasyms}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf sym\_\-sym\_\-t}$\ast$$\ast$ {\bf sym\_\-datasyms}}\label{symbol_8h_7f51c22715bcdee9dca084bd0b6c9b14}
+
+
+\index{symbol.h@{symbol.h}!sym\_\-datasyms\_\-by\_\-name@{sym\_\-datasyms\_\-by\_\-name}}
+\index{sym\_\-datasyms\_\-by\_\-name@{sym\_\-datasyms\_\-by\_\-name}!symbol.h@{symbol.h}}
+\subsubsection[{sym\_\-datasyms\_\-by\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf sym\_\-sym\_\-t}$\ast$$\ast$ {\bf sym\_\-datasyms\_\-by\_\-name}}\label{symbol_8h_4a8e690601ed1955bc030ead94b31cbc}
+
+
+\index{symbol.h@{symbol.h}!sym\_\-db@{sym\_\-db}}
+\index{sym\_\-db@{sym\_\-db}!symbol.h@{symbol.h}}
+\subsubsection[{sym\_\-db}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf sym\_\-sym\_\-t}$\ast$ {\bf sym\_\-db}}\label{symbol_8h_c763c3af04ea89bf1a7faf928227f46d}
+
+
+\index{symbol.h@{symbol.h}!sym\_\-ndatasyms@{sym\_\-ndatasyms}}
+\index{sym\_\-ndatasyms@{sym\_\-ndatasyms}!symbol.h@{symbol.h}}
+\subsubsection[{sym\_\-ndatasyms}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf sym\_\-ndatasyms}}\label{symbol_8h_9e459f729ef5b0fe45cfcfe52ab9e0b9}
+
+
+\index{symbol.h@{symbol.h}!sym\_\-nsyms@{sym\_\-nsyms}}
+\index{sym\_\-nsyms@{sym\_\-nsyms}!symbol.h@{symbol.h}}
+\subsubsection[{sym\_\-nsyms}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf sym\_\-nsyms}}\label{symbol_8h_4c00150ba53ed4f7f418267f600ccd98}
+
+
+\index{symbol.h@{symbol.h}!sym\_\-ntextsyms@{sym\_\-ntextsyms}}
+\index{sym\_\-ntextsyms@{sym\_\-ntextsyms}!symbol.h@{symbol.h}}
+\subsubsection[{sym\_\-ntextsyms}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf sym\_\-ntextsyms}}\label{symbol_8h_d0d38f1fd1cf6df9447b5cb2c5396f1d}
+
+
+\index{symbol.h@{symbol.h}!sym\_\-syms@{sym\_\-syms}}
+\index{sym\_\-syms@{sym\_\-syms}!symbol.h@{symbol.h}}
+\subsubsection[{sym\_\-syms}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf sym\_\-sym\_\-t}$\ast$$\ast$ {\bf sym\_\-syms}}\label{symbol_8h_cec5744ea5a9ea0a4677c97e4c197274}
+
+
+\index{symbol.h@{symbol.h}!sym\_\-syms\_\-by\_\-name@{sym\_\-syms\_\-by\_\-name}}
+\index{sym\_\-syms\_\-by\_\-name@{sym\_\-syms\_\-by\_\-name}!symbol.h@{symbol.h}}
+\subsubsection[{sym\_\-syms\_\-by\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf sym\_\-sym\_\-t}$\ast$$\ast$ {\bf sym\_\-syms\_\-by\_\-name}}\label{symbol_8h_40c4ec75f915ea02eb6d8cb185eba484}
+
+
+\index{symbol.h@{symbol.h}!sym\_\-textsyms@{sym\_\-textsyms}}
+\index{sym\_\-textsyms@{sym\_\-textsyms}!symbol.h@{symbol.h}}
+\subsubsection[{sym\_\-textsyms}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf sym\_\-sym\_\-t}$\ast$$\ast$ {\bf sym\_\-textsyms}}\label{symbol_8h_a2d7d9a4d30822db0b45f568a4ddae2e}
+
+
+\index{symbol.h@{symbol.h}!sym\_\-textsyms\_\-by\_\-name@{sym\_\-textsyms\_\-by\_\-name}}
+\index{sym\_\-textsyms\_\-by\_\-name@{sym\_\-textsyms\_\-by\_\-name}!symbol.h@{symbol.h}}
+\subsubsection[{sym\_\-textsyms\_\-by\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf sym\_\-sym\_\-t}$\ast$$\ast$ {\bf sym\_\-textsyms\_\-by\_\-name}}\label{symbol_8h_a27701e95d2ec6fef6be4574a6419551}
+
+

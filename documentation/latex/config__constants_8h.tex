@@ -1,0 +1,923 @@
+\section{config\_\-constants.h File Reference}
+\label{config__constants_8h}\index{config\_\-constants.h@{config\_\-constants.h}}
+{\tt \#include $<$math.h$>$}\par
+{\tt \#include $<$stdint.h$>$}\par
+{\tt \#include \char`\"{}simIrisComponentHeader.h\char`\"{}}\par
+
+
+Include dependency graph for config\_\-constants.h:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{config__constants_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define {\bf STALL\_\-TIME}~50
+\end{CompactItemize}
+\subsection*{Typedefs}
+\begin{CompactItemize}
+\item 
+typedef unsigned long long int {\bf Time}
+\item 
+typedef unsigned long long int {\bf Addr\_\-t}
+\item 
+typedef unsigned int {\bf UInt}
+\end{CompactItemize}
+\subsection*{Enumerations}
+\begin{CompactItemize}
+\item 
+enum {\bf DRAM\_\-PAGE\_\-POLICY} \{ {\bf OPEN\_\-PAGE\_\-POLICY}, 
+{\bf CLOSE\_\-PAGE\_\-POLICY}, 
+{\bf OPEN\_\-PAGE\_\-POLICY}, 
+{\bf CLOSE\_\-PAGE\_\-POLICY}
+ \}
+\item 
+enum {\bf MC\_\-SCHEDULLING\_\-ALGO} \{ \par
+{\bf PAR\_\-BS}, 
+{\bf FR\_\-FCFS}, 
+{\bf FC\_\-FS}, 
+{\bf NFQ}, 
+\par
+{\bf PAR\_\-BS}, 
+{\bf FR\_\-FCFS}, 
+{\bf FC\_\-FS}, 
+{\bf NFQ}
+ \}
+\item 
+enum {\bf ADDR\_\-MAP\_\-SCHEME} \{ \par
+{\bf PAGE\_\-INTERLEAVING}, 
+{\bf PERMUTATION}, 
+{\bf CACHELINE\_\-INTERLEAVING}, 
+{\bf SWAPPING}, 
+\par
+{\bf GENERIC}, 
+{\bf NO\_\-SCHEME}, 
+{\bf LOCAL\_\-ADDR\_\-MAP}, 
+{\bf PAGE\_\-INTERLEAVING}, 
+\par
+{\bf PERMUTATION}, 
+{\bf CACHELINE\_\-INTERLEAVING}, 
+{\bf SWAPPING}, 
+{\bf GENERIC}, 
+\par
+{\bf NO\_\-SCHEME}, 
+{\bf LOCAL\_\-ADDR\_\-MAP}
+ \}
+\item 
+enum {\bf DRAM\_\-CONFIG} \{ \par
+{\bf DDR3\_\-1333\_\-9\_\-9\_\-9}, 
+{\bf DDR3\_\-1600\_\-10\_\-10\_\-10}, 
+{\bf DDR3\_\-1333\_\-6\_\-6\_\-6}, 
+{\bf DDR2\_\-533\_\-4\_\-4\_\-4}, 
+\par
+{\bf DDR2\_\-667\_\-4\_\-4\_\-4}, 
+{\bf DDR3\_\-1333\_\-9}, 
+{\bf DDR3\_\-1600\_\-10}, 
+{\bf DDR3\_\-1333\_\-6}, 
+\par
+{\bf DDR2\_\-533\_\-4}, 
+{\bf DDR2\_\-667\_\-4}
+ \}
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+{\bf DRAM\_\-PAGE\_\-POLICY} {\bf dram\_\-page\_\-policy} = OPEN\_\-PAGE\_\-POLICY
+\item 
+{\bf MC\_\-SCHEDULLING\_\-ALGO} {\bf mc\_\-scheduling\_\-algorithm} = FR\_\-FCFS
+\item 
+{\bf ADDR\_\-MAP\_\-SCHEME} {\bf addr\_\-map\_\-scheme} = PAGE\_\-INTERLEAVING
+\item 
+unsigned int {\bf THREAD\_\-BITS\_\-POSITION} = 25
+\item 
+unsigned int {\bf MC\_\-ADDR\_\-BITS} = 12
+\item 
+unsigned int {\bf BANK\_\-BITS} = 13
+\item 
+{\bf uint} {\bf NO\_\-OF\_\-THREADS} = 2
+\item 
+{\bf uint} {\bf NO\_\-OF\_\-CHANNELS} = 1
+\item 
+{\bf uint} {\bf NO\_\-OF\_\-RANKS} = 32
+\item 
+{\bf uint} {\bf NO\_\-OF\_\-BANKS} = 8
+\item 
+{\bf uint} {\bf NO\_\-OF\_\-BUFFERS} = {\bf NO\_\-OF\_\-BANKS}
+\item 
+{\bf uint} {\bf NO\_\-OF\_\-ROWS} = 8192
+\item 
+{\bf uint} {\bf NO\_\-OF\_\-COLUMNS} = 128
+\item 
+{\bf uint} {\bf COLUMN\_\-SIZE} = 64
+\item 
+{\bf uint} {\bf BLOCKS\_\-PER\_\-ROW} = 128
+\item 
+{\bf uint} {\bf CACHE\_\-BLOCK\_\-SIZE} = 64
+\item 
+{\bf uint} {\bf ROW\_\-SIZE} = {\bf NO\_\-OF\_\-COLUMNS}$\ast${\bf COLUMN\_\-SIZE}
+\item 
+{\bf uint} {\bf DRAM\_\-SIZE} = {\bf NO\_\-OF\_\-CHANNELS}$\ast${\bf NO\_\-OF\_\-RANKS}$\ast${\bf NO\_\-OF\_\-BANKS}$\ast${\bf NO\_\-OF\_\-ROWS}$\ast${\bf ROW\_\-SIZE}
+\item 
+{\bf uint} {\bf TAG\_\-BITS} = 8
+\item 
+{\bf uint} {\bf USE\_\-MSHR} = 1
+\item 
+{\bf uint} {\bf MSHR\_\-SIZE} = 8
+\item 
+{\bf uint} {\bf GLOBAL\_\-XOR} = 0
+\item 
+{\bf uint} {\bf MAX\_\-BUFFER\_\-SIZE} = 8
+\item 
+{\bf uint} {\bf MAX\_\-CMD\_\-BUFFER\_\-SIZE} = 16
+\item 
+{\bf uint} {\bf RESPONSE\_\-BUFFER\_\-SIZE} = 56$\ast$8
+\item 
+{\bf uint} {\bf BATCH\_\-FORM\_\-TIME} = 2000
+\item 
+{\bf uint} {\bf MAX\_\-BATCH\_\-SIZE} = 5
+\item 
+{\bf uint} {\bf MAX\_\-READ\_\-OV\_\-WRITE} = 8
+\item 
+{\bf uint} {\bf NETWORK\_\-ADDRESS\_\-BITS} = 48
+\item 
+{\bf uint} {\bf NETWORK\_\-THREADID\_\-BITS} = 6
+\item 
+{\bf uint} {\bf NETWORK\_\-COMMAND\_\-BITS} = 3
+\item 
+const {\bf uint} {\bf READ\_\-SIZE} = {\bf CACHE\_\-BLOCK\_\-SIZE}
+\item 
+const {\bf uint} {\bf WRITE\_\-SIZE} = {\bf CACHE\_\-BLOCK\_\-SIZE}
+\item 
+const {\bf uint} {\bf PREFETCH\_\-SIZE} = {\bf CACHE\_\-BLOCK\_\-SIZE}
+\item 
+const {\bf uint} {\bf WRITEBACK\_\-SIZE} = {\bf CACHE\_\-BLOCK\_\-SIZE}
+\item 
+{\bf uint} {\bf DDR\_\-BUS\_\-WIDTH}
+\item 
+{\bf uint} {\bf BUS\_\-SPEED}
+\item 
+{\bf uint} {\bf CORE\_\-SPEED}
+\item 
+{\bf uint} {\bf MEM\_\-SPEED}
+\item 
+{\bf uint} {\bf MEM\_\-CYCLE}
+\item 
+{\bf uint} {\bf BUS\_\-CYCLE}
+\item 
+{\bf uint} {\bf CYCLE}
+\item 
+{\bf uint} {\bf tREFI}
+\item 
+{\bf uint} {\bf tRFC}
+\item 
+{\bf uint} {\bf tRC}
+\item 
+{\bf uint} {\bf tRAS}
+\item 
+{\bf uint} {\bf t\_\-CMD}
+\item 
+{\bf uint} {\bf t\_\-RCD}
+\item 
+{\bf uint} {\bf t\_\-RRD}
+\item 
+{\bf uint} {\bf t\_\-RAS}
+\item 
+{\bf uint} {\bf t\_\-CAS}
+\item 
+{\bf uint} {\bf t\_\-RTRS}
+\item 
+{\bf uint} {\bf t\_\-OST}
+\item 
+{\bf uint} {\bf t\_\-WR}
+\item 
+{\bf uint} {\bf t\_\-WTR}
+\item 
+{\bf uint} {\bf t\_\-RP}
+\item 
+{\bf uint} {\bf t\_\-CCD}
+\item 
+{\bf uint} {\bf t\_\-AL}
+\item 
+{\bf uint} {\bf t\_\-CWD}
+\item 
+{\bf uint} {\bf t\_\-RC}
+\item 
+{\bf uint} {\bf t\_\-RTP}
+\item 
+{\bf uint} {\bf t\_\-RFC}
+\item 
+const unsigned long long int {\bf REFRESH\_\-PERIOD} = {\bf CORE\_\-SPEED}$\ast$64000
+\item 
+const unsigned long long int {\bf REFRESH\_\-INC} = ({\bf ullint})floor({\bf REFRESH\_\-PERIOD}/(8192)) - {\bf BUS\_\-CYCLE}
+\item 
+{\bf DRAM\_\-CONFIG} {\bf dram\_\-config\_\-string} = DDR3\_\-1333\_\-9\_\-9\_\-9
+\end{CompactItemize}
+
+
+\subsection{Define Documentation}
+\index{config\_\-constants.h@{config\_\-constants.h}!STALL\_\-TIME@{STALL\_\-TIME}}
+\index{STALL\_\-TIME@{STALL\_\-TIME}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{STALL\_\-TIME}]{\setlength{\rightskip}{0pt plus 5cm}\#define STALL\_\-TIME~50}\label{config__constants_8h_a7157d228b08e0908de40a3a7cc280a8}
+
+
+
+
+Definition at line 49 of file config\_\-constants.h.
+
+\subsection{Typedef Documentation}
+\index{config\_\-constants.h@{config\_\-constants.h}!Addr\_\-t@{Addr\_\-t}}
+\index{Addr\_\-t@{Addr\_\-t}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{Addr\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef unsigned long long int {\bf Addr\_\-t}}\label{config__constants_8h_51badf0ffa6471a1e529c69852e56f57}
+
+
+
+
+Definition at line 25 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!Time@{Time}}
+\index{Time@{Time}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{Time}]{\setlength{\rightskip}{0pt plus 5cm}typedef unsigned long long int {\bf Time}}\label{config__constants_8h_a475e5c84e5eb0fe317942dc62553f7e}
+
+
+
+
+Definition at line 24 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!UInt@{UInt}}
+\index{UInt@{UInt}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{UInt}]{\setlength{\rightskip}{0pt plus 5cm}typedef unsigned int {\bf UInt}}\label{config__constants_8h_ba0996d26f7be2572973245b51852757}
+
+
+
+
+Definition at line 26 of file config\_\-constants.h.
+
+\subsection{Enumeration Type Documentation}
+\index{config\_\-constants.h@{config\_\-constants.h}!ADDR\_\-MAP\_\-SCHEME@{ADDR\_\-MAP\_\-SCHEME}}
+\index{ADDR\_\-MAP\_\-SCHEME@{ADDR\_\-MAP\_\-SCHEME}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{ADDR\_\-MAP\_\-SCHEME}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf ADDR\_\-MAP\_\-SCHEME}}\label{config__constants_8h_5070e557d1fe0f8dfbfe47ffb8feb753}
+
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{PAGE\_\-INTERLEAVING@{PAGE\_\-INTERLEAVING}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!PAGE\_\-INTERLEAVING@{PAGE\_\-INTERLEAVING}}\item[{\em 
+PAGE\_\-INTERLEAVING\label{config__constants_8h_5070e557d1fe0f8dfbfe47ffb8feb7536318d7b959b906483ab378e56405a7a0}
+}]\index{PERMUTATION@{PERMUTATION}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!PERMUTATION@{PERMUTATION}}\item[{\em 
+PERMUTATION\label{config__constants_8h_5070e557d1fe0f8dfbfe47ffb8feb75391bebfe0b6592c69090ade437798b19b}
+}]\index{CACHELINE\_\-INTERLEAVING@{CACHELINE\_\-INTERLEAVING}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!CACHELINE\_\-INTERLEAVING@{CACHELINE\_\-INTERLEAVING}}\item[{\em 
+CACHELINE\_\-INTERLEAVING\label{config__constants_8h_5070e557d1fe0f8dfbfe47ffb8feb75314219aa18138d58f46b69b57e01efbeb}
+}]\index{SWAPPING@{SWAPPING}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!SWAPPING@{SWAPPING}}\item[{\em 
+SWAPPING\label{config__constants_8h_5070e557d1fe0f8dfbfe47ffb8feb7530ce3016e7d4844b6546c795caf020ef1}
+}]\index{GENERIC@{GENERIC}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!GENERIC@{GENERIC}}\item[{\em 
+GENERIC\label{config__constants_8h_5070e557d1fe0f8dfbfe47ffb8feb7539e022e6380da28dd73210ed34b137c36}
+}]\index{NO\_\-SCHEME@{NO\_\-SCHEME}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!NO\_\-SCHEME@{NO\_\-SCHEME}}\item[{\em 
+NO\_\-SCHEME\label{config__constants_8h_5070e557d1fe0f8dfbfe47ffb8feb753ccb106f572e6684c377552afac75dac9}
+}]\index{LOCAL\_\-ADDR\_\-MAP@{LOCAL\_\-ADDR\_\-MAP}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!LOCAL\_\-ADDR\_\-MAP@{LOCAL\_\-ADDR\_\-MAP}}\item[{\em 
+LOCAL\_\-ADDR\_\-MAP\label{config__constants_8h_5070e557d1fe0f8dfbfe47ffb8feb753705c391e0d76021b61cd7e74c72e1a64}
+}]\index{PAGE\_\-INTERLEAVING@{PAGE\_\-INTERLEAVING}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!PAGE\_\-INTERLEAVING@{PAGE\_\-INTERLEAVING}}\item[{\em 
+PAGE\_\-INTERLEAVING\label{config__constants_8h_5070e557d1fe0f8dfbfe47ffb8feb7536318d7b959b906483ab378e56405a7a0}
+}]\index{PERMUTATION@{PERMUTATION}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!PERMUTATION@{PERMUTATION}}\item[{\em 
+PERMUTATION\label{config__constants_8h_5070e557d1fe0f8dfbfe47ffb8feb75391bebfe0b6592c69090ade437798b19b}
+}]\index{CACHELINE\_\-INTERLEAVING@{CACHELINE\_\-INTERLEAVING}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!CACHELINE\_\-INTERLEAVING@{CACHELINE\_\-INTERLEAVING}}\item[{\em 
+CACHELINE\_\-INTERLEAVING\label{config__constants_8h_5070e557d1fe0f8dfbfe47ffb8feb75314219aa18138d58f46b69b57e01efbeb}
+}]\index{SWAPPING@{SWAPPING}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!SWAPPING@{SWAPPING}}\item[{\em 
+SWAPPING\label{config__constants_8h_5070e557d1fe0f8dfbfe47ffb8feb7530ce3016e7d4844b6546c795caf020ef1}
+}]\index{GENERIC@{GENERIC}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!GENERIC@{GENERIC}}\item[{\em 
+GENERIC\label{config__constants_8h_5070e557d1fe0f8dfbfe47ffb8feb7539e022e6380da28dd73210ed34b137c36}
+}]\index{NO\_\-SCHEME@{NO\_\-SCHEME}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!NO\_\-SCHEME@{NO\_\-SCHEME}}\item[{\em 
+NO\_\-SCHEME\label{config__constants_8h_5070e557d1fe0f8dfbfe47ffb8feb753ccb106f572e6684c377552afac75dac9}
+}]\index{LOCAL\_\-ADDR\_\-MAP@{LOCAL\_\-ADDR\_\-MAP}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!LOCAL\_\-ADDR\_\-MAP@{LOCAL\_\-ADDR\_\-MAP}}\item[{\em 
+LOCAL\_\-ADDR\_\-MAP\label{config__constants_8h_5070e557d1fe0f8dfbfe47ffb8feb753705c391e0d76021b61cd7e74c72e1a64}
+}]\end{description}
+\end{Desc}
+
+
+
+Definition at line 30 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!DRAM\_\-CONFIG@{DRAM\_\-CONFIG}}
+\index{DRAM\_\-CONFIG@{DRAM\_\-CONFIG}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{DRAM\_\-CONFIG}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf DRAM\_\-CONFIG}}\label{config__constants_8h_e9e4ff36044e2d5a86faa987c553bd3c}
+
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{DDR3\_\-1333\_\-9\_\-9\_\-9@{DDR3\_\-1333\_\-9\_\-9\_\-9}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!DDR3\_\-1333\_\-9\_\-9\_\-9@{DDR3\_\-1333\_\-9\_\-9\_\-9}}\item[{\em 
+DDR3\_\-1333\_\-9\_\-9\_\-9\label{config__constants_8h_e9e4ff36044e2d5a86faa987c553bd3c712c348582ed4edfb090d8c73b8b5391}
+}]\index{DDR3\_\-1600\_\-10\_\-10\_\-10@{DDR3\_\-1600\_\-10\_\-10\_\-10}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!DDR3\_\-1600\_\-10\_\-10\_\-10@{DDR3\_\-1600\_\-10\_\-10\_\-10}}\item[{\em 
+DDR3\_\-1600\_\-10\_\-10\_\-10\label{config__constants_8h_e9e4ff36044e2d5a86faa987c553bd3c12473400467619bf225c5f29af3799a2}
+}]\index{DDR3\_\-1333\_\-6\_\-6\_\-6@{DDR3\_\-1333\_\-6\_\-6\_\-6}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!DDR3\_\-1333\_\-6\_\-6\_\-6@{DDR3\_\-1333\_\-6\_\-6\_\-6}}\item[{\em 
+DDR3\_\-1333\_\-6\_\-6\_\-6\label{config__constants_8h_e9e4ff36044e2d5a86faa987c553bd3c59e4aeb7c22ad8de2d7a59f51a38c699}
+}]\index{DDR2\_\-533\_\-4\_\-4\_\-4@{DDR2\_\-533\_\-4\_\-4\_\-4}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!DDR2\_\-533\_\-4\_\-4\_\-4@{DDR2\_\-533\_\-4\_\-4\_\-4}}\item[{\em 
+DDR2\_\-533\_\-4\_\-4\_\-4\label{config__constants_8h_e9e4ff36044e2d5a86faa987c553bd3c0ff5eab57ec99b2f02cfbb355cf77234}
+}]\index{DDR2\_\-667\_\-4\_\-4\_\-4@{DDR2\_\-667\_\-4\_\-4\_\-4}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!DDR2\_\-667\_\-4\_\-4\_\-4@{DDR2\_\-667\_\-4\_\-4\_\-4}}\item[{\em 
+DDR2\_\-667\_\-4\_\-4\_\-4\label{config__constants_8h_e9e4ff36044e2d5a86faa987c553bd3cee61db8fff3689314f94bfbd49817c46}
+}]\index{DDR3\_\-1333\_\-9@{DDR3\_\-1333\_\-9}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!DDR3\_\-1333\_\-9@{DDR3\_\-1333\_\-9}}\item[{\em 
+DDR3\_\-1333\_\-9\label{config__constants_8h_e9e4ff36044e2d5a86faa987c553bd3cff807c763cb52ea99c781812686ea277}
+}]\index{DDR3\_\-1600\_\-10@{DDR3\_\-1600\_\-10}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!DDR3\_\-1600\_\-10@{DDR3\_\-1600\_\-10}}\item[{\em 
+DDR3\_\-1600\_\-10\label{config__constants_8h_e9e4ff36044e2d5a86faa987c553bd3cea8ed17daab991b7c28b7f32cd25e884}
+}]\index{DDR3\_\-1333\_\-6@{DDR3\_\-1333\_\-6}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!DDR3\_\-1333\_\-6@{DDR3\_\-1333\_\-6}}\item[{\em 
+DDR3\_\-1333\_\-6\label{config__constants_8h_e9e4ff36044e2d5a86faa987c553bd3c6e5296fb0dd6c0020e875f676c23acec}
+}]\index{DDR2\_\-533\_\-4@{DDR2\_\-533\_\-4}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!DDR2\_\-533\_\-4@{DDR2\_\-533\_\-4}}\item[{\em 
+DDR2\_\-533\_\-4\label{config__constants_8h_e9e4ff36044e2d5a86faa987c553bd3cf47ed4c38864a6049bc7b8fbb4b6af65}
+}]\index{DDR2\_\-667\_\-4@{DDR2\_\-667\_\-4}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!DDR2\_\-667\_\-4@{DDR2\_\-667\_\-4}}\item[{\em 
+DDR2\_\-667\_\-4\label{config__constants_8h_e9e4ff36044e2d5a86faa987c553bd3c73c4d46e25b8226910aba0a131024af7}
+}]\end{description}
+\end{Desc}
+
+
+
+Definition at line 123 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!DRAM\_\-PAGE\_\-POLICY@{DRAM\_\-PAGE\_\-POLICY}}
+\index{DRAM\_\-PAGE\_\-POLICY@{DRAM\_\-PAGE\_\-POLICY}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{DRAM\_\-PAGE\_\-POLICY}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf DRAM\_\-PAGE\_\-POLICY}}\label{config__constants_8h_02b5ad5e16eaacab3c36f43c6acfcd90}
+
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{OPEN\_\-PAGE\_\-POLICY@{OPEN\_\-PAGE\_\-POLICY}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!OPEN\_\-PAGE\_\-POLICY@{OPEN\_\-PAGE\_\-POLICY}}\item[{\em 
+OPEN\_\-PAGE\_\-POLICY\label{config__constants_8h_02b5ad5e16eaacab3c36f43c6acfcd90438d37ce8f9a1cede22242b06ea8dd6d}
+}]\index{CLOSE\_\-PAGE\_\-POLICY@{CLOSE\_\-PAGE\_\-POLICY}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!CLOSE\_\-PAGE\_\-POLICY@{CLOSE\_\-PAGE\_\-POLICY}}\item[{\em 
+CLOSE\_\-PAGE\_\-POLICY\label{config__constants_8h_02b5ad5e16eaacab3c36f43c6acfcd9029c3f4e40ff3e9a39e81f11d7d11ee68}
+}]\index{OPEN\_\-PAGE\_\-POLICY@{OPEN\_\-PAGE\_\-POLICY}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!OPEN\_\-PAGE\_\-POLICY@{OPEN\_\-PAGE\_\-POLICY}}\item[{\em 
+OPEN\_\-PAGE\_\-POLICY\label{config__constants_8h_02b5ad5e16eaacab3c36f43c6acfcd90438d37ce8f9a1cede22242b06ea8dd6d}
+}]\index{CLOSE\_\-PAGE\_\-POLICY@{CLOSE\_\-PAGE\_\-POLICY}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!CLOSE\_\-PAGE\_\-POLICY@{CLOSE\_\-PAGE\_\-POLICY}}\item[{\em 
+CLOSE\_\-PAGE\_\-POLICY\label{config__constants_8h_02b5ad5e16eaacab3c36f43c6acfcd9029c3f4e40ff3e9a39e81f11d7d11ee68}
+}]\end{description}
+\end{Desc}
+
+
+
+Definition at line 28 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!MC\_\-SCHEDULLING\_\-ALGO@{MC\_\-SCHEDULLING\_\-ALGO}}
+\index{MC\_\-SCHEDULLING\_\-ALGO@{MC\_\-SCHEDULLING\_\-ALGO}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{MC\_\-SCHEDULLING\_\-ALGO}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf MC\_\-SCHEDULLING\_\-ALGO}}\label{config__constants_8h_002864bf5400b3e03842d12532d679df}
+
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{PAR\_\-BS@{PAR\_\-BS}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!PAR\_\-BS@{PAR\_\-BS}}\item[{\em 
+PAR\_\-BS\label{config__constants_8h_002864bf5400b3e03842d12532d679dff942a71e46dd15ebc3eb960184dff68e}
+}]\index{FR\_\-FCFS@{FR\_\-FCFS}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!FR\_\-FCFS@{FR\_\-FCFS}}\item[{\em 
+FR\_\-FCFS\label{config__constants_8h_002864bf5400b3e03842d12532d679df4ed35b4578ad1ff958552b796e19dc6d}
+}]\index{FC\_\-FS@{FC\_\-FS}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!FC\_\-FS@{FC\_\-FS}}\item[{\em 
+FC\_\-FS\label{config__constants_8h_002864bf5400b3e03842d12532d679df29086fb21b49a1c5b1c673473bcdf767}
+}]\index{NFQ@{NFQ}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!NFQ@{NFQ}}\item[{\em 
+NFQ\label{config__constants_8h_002864bf5400b3e03842d12532d679dffb89046de3f4c0ad594a931181303b73}
+}]\index{PAR\_\-BS@{PAR\_\-BS}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!PAR\_\-BS@{PAR\_\-BS}}\item[{\em 
+PAR\_\-BS\label{config__constants_8h_002864bf5400b3e03842d12532d679dff942a71e46dd15ebc3eb960184dff68e}
+}]\index{FR\_\-FCFS@{FR\_\-FCFS}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!FR\_\-FCFS@{FR\_\-FCFS}}\item[{\em 
+FR\_\-FCFS\label{config__constants_8h_002864bf5400b3e03842d12532d679df4ed35b4578ad1ff958552b796e19dc6d}
+}]\index{FC\_\-FS@{FC\_\-FS}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!FC\_\-FS@{FC\_\-FS}}\item[{\em 
+FC\_\-FS\label{config__constants_8h_002864bf5400b3e03842d12532d679df29086fb21b49a1c5b1c673473bcdf767}
+}]\index{NFQ@{NFQ}!config\_\-constants.h@{config\_\-constants.h}}\index{config\_\-constants.h@{config\_\-constants.h}!NFQ@{NFQ}}\item[{\em 
+NFQ\label{config__constants_8h_002864bf5400b3e03842d12532d679dffb89046de3f4c0ad594a931181303b73}
+}]\end{description}
+\end{Desc}
+
+
+
+Definition at line 29 of file config\_\-constants.h.
+
+\subsection{Variable Documentation}
+\index{config\_\-constants.h@{config\_\-constants.h}!addr\_\-map\_\-scheme@{addr\_\-map\_\-scheme}}
+\index{addr\_\-map\_\-scheme@{addr\_\-map\_\-scheme}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{addr\_\-map\_\-scheme}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ADDR\_\-MAP\_\-SCHEME} {\bf addr\_\-map\_\-scheme} = PAGE\_\-INTERLEAVING}\label{config__constants_8h_d1a6650288eeca57ccc26007fe8b2ebe}
+
+
+
+
+Definition at line 34 of file config\_\-constants.h.
+
+Referenced by main(), and AddrMap::map\_\-addr().\index{config\_\-constants.h@{config\_\-constants.h}!BANK\_\-BITS@{BANK\_\-BITS}}
+\index{BANK\_\-BITS@{BANK\_\-BITS}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{BANK\_\-BITS}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf BANK\_\-BITS} = 13}\label{config__constants_8h_4dead09fbe9da04753765df2d1dc54dd}
+
+
+
+
+Definition at line 38 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!BATCH\_\-FORM\_\-TIME@{BATCH\_\-FORM\_\-TIME}}
+\index{BATCH\_\-FORM\_\-TIME@{BATCH\_\-FORM\_\-TIME}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{BATCH\_\-FORM\_\-TIME}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf BATCH\_\-FORM\_\-TIME} = 2000}\label{config__constants_8h_243042fd09a1409f876bd7419735069c}
+
+
+
+
+Definition at line 75 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!BLOCKS\_\-PER\_\-ROW@{BLOCKS\_\-PER\_\-ROW}}
+\index{BLOCKS\_\-PER\_\-ROW@{BLOCKS\_\-PER\_\-ROW}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{BLOCKS\_\-PER\_\-ROW}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf BLOCKS\_\-PER\_\-ROW} = 128}\label{config__constants_8h_c15398f7ab1a6741703b039a8292c72b}
+
+
+
+
+Definition at line 59 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!BUS\_\-CYCLE@{BUS\_\-CYCLE}}
+\index{BUS\_\-CYCLE@{BUS\_\-CYCLE}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{BUS\_\-CYCLE}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf BUS\_\-CYCLE}}\label{config__constants_8h_118a88ead6b4377dcda9a070e35df8b4}
+
+
+
+
+Definition at line 96 of file config\_\-constants.h.
+
+Referenced by CmdIssuer::CalculateBurstL(), init\_\-dram\_\-timing\_\-parameters(), and DataBusHandler::process\_\-event().\index{config\_\-constants.h@{config\_\-constants.h}!BUS\_\-SPEED@{BUS\_\-SPEED}}
+\index{BUS\_\-SPEED@{BUS\_\-SPEED}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{BUS\_\-SPEED}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf BUS\_\-SPEED}}\label{config__constants_8h_90658998db7134b26708c557c42693ef}
+
+
+
+
+Definition at line 92 of file config\_\-constants.h.
+
+Referenced by init\_\-dram\_\-timing\_\-parameters().\index{config\_\-constants.h@{config\_\-constants.h}!CACHE\_\-BLOCK\_\-SIZE@{CACHE\_\-BLOCK\_\-SIZE}}
+\index{CACHE\_\-BLOCK\_\-SIZE@{CACHE\_\-BLOCK\_\-SIZE}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{CACHE\_\-BLOCK\_\-SIZE}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf CACHE\_\-BLOCK\_\-SIZE} = 64}\label{config__constants_8h_c8931ee7117c23e5d56b04ecd0defe7f}
+
+
+
+
+Definition at line 60 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!COLUMN\_\-SIZE@{COLUMN\_\-SIZE}}
+\index{COLUMN\_\-SIZE@{COLUMN\_\-SIZE}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{COLUMN\_\-SIZE}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf COLUMN\_\-SIZE} = 64}\label{config__constants_8h_f0596ae8862443e137eb225092bffad6}
+
+
+
+
+Definition at line 58 of file config\_\-constants.h.
+
+Referenced by dump\_\-configuration(), MSHR\_\-H::local\_\-map\_\-addr(), main(), and AddrMap::map\_\-addr().\index{config\_\-constants.h@{config\_\-constants.h}!CORE\_\-SPEED@{CORE\_\-SPEED}}
+\index{CORE\_\-SPEED@{CORE\_\-SPEED}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{CORE\_\-SPEED}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf CORE\_\-SPEED}}\label{config__constants_8h_35d206401cbf25e649eeaaabe640bdeb}
+
+
+
+
+Definition at line 93 of file config\_\-constants.h.
+
+Referenced by init\_\-dram\_\-timing\_\-parameters().\index{config\_\-constants.h@{config\_\-constants.h}!CYCLE@{CYCLE}}
+\index{CYCLE@{CYCLE}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{CYCLE}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf CYCLE}}\label{config__constants_8h_edf6b282fe503cde395d3e12e2d63ffc}
+
+
+
+
+Definition at line 97 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!DDR\_\-BUS\_\-WIDTH@{DDR\_\-BUS\_\-WIDTH}}
+\index{DDR\_\-BUS\_\-WIDTH@{DDR\_\-BUS\_\-WIDTH}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{DDR\_\-BUS\_\-WIDTH}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf DDR\_\-BUS\_\-WIDTH}}\label{config__constants_8h_c8c3d8aa62537d9f6ced46f883d8099b}
+
+
+
+
+Definition at line 91 of file config\_\-constants.h.
+
+Referenced by CmdIssuer::CalculateBurstL(), init\_\-dram\_\-timing\_\-parameters(), and DataBusHandler::process\_\-event().\index{config\_\-constants.h@{config\_\-constants.h}!dram\_\-config\_\-string@{dram\_\-config\_\-string}}
+\index{dram\_\-config\_\-string@{dram\_\-config\_\-string}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{dram\_\-config\_\-string}]{\setlength{\rightskip}{0pt plus 5cm}{\bf DRAM\_\-CONFIG} {\bf dram\_\-config\_\-string} = DDR3\_\-1333\_\-9\_\-9\_\-9}\label{config__constants_8h_3b6b4be16dd8a08f4cb1f477dee6ca48}
+
+
+
+
+Definition at line 130 of file config\_\-constants.h.
+
+Referenced by init\_\-dram\_\-timing\_\-parameters().\index{config\_\-constants.h@{config\_\-constants.h}!dram\_\-page\_\-policy@{dram\_\-page\_\-policy}}
+\index{dram\_\-page\_\-policy@{dram\_\-page\_\-policy}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{dram\_\-page\_\-policy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf DRAM\_\-PAGE\_\-POLICY} {\bf dram\_\-page\_\-policy} = OPEN\_\-PAGE\_\-POLICY}\label{config__constants_8h_9b7e9850a84a1625ba61689a4c8b7686}
+
+
+
+
+Definition at line 32 of file config\_\-constants.h.
+
+Referenced by CmdIssuer::CalculateBusyTime(), BusHandler::LowLevelCmdGen(), main(), BankHandler::MainScheduler(), BankHandler::OldestFirst(), and CmdIssuer::process\_\-event().\index{config\_\-constants.h@{config\_\-constants.h}!DRAM\_\-SIZE@{DRAM\_\-SIZE}}
+\index{DRAM\_\-SIZE@{DRAM\_\-SIZE}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{DRAM\_\-SIZE}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf DRAM\_\-SIZE} = {\bf NO\_\-OF\_\-CHANNELS}$\ast${\bf NO\_\-OF\_\-RANKS}$\ast${\bf NO\_\-OF\_\-BANKS}$\ast${\bf NO\_\-OF\_\-ROWS}$\ast${\bf ROW\_\-SIZE}}\label{config__constants_8h_c7b5bdc4efe710284e25b5a1b12d3312}
+
+
+
+
+Definition at line 62 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!GLOBAL\_\-XOR@{GLOBAL\_\-XOR}}
+\index{GLOBAL\_\-XOR@{GLOBAL\_\-XOR}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{GLOBAL\_\-XOR}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf GLOBAL\_\-XOR} = 0}\label{config__constants_8h_0c871220ef7613fb31b7644c90e63671}
+
+
+
+
+Definition at line 68 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!MAX\_\-BATCH\_\-SIZE@{MAX\_\-BATCH\_\-SIZE}}
+\index{MAX\_\-BATCH\_\-SIZE@{MAX\_\-BATCH\_\-SIZE}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{MAX\_\-BATCH\_\-SIZE}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf MAX\_\-BATCH\_\-SIZE} = 5}\label{config__constants_8h_840d31886703a5f59cd2f607b00caed1}
+
+
+
+
+Definition at line 77 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!MAX\_\-BUFFER\_\-SIZE@{MAX\_\-BUFFER\_\-SIZE}}
+\index{MAX\_\-BUFFER\_\-SIZE@{MAX\_\-BUFFER\_\-SIZE}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{MAX\_\-BUFFER\_\-SIZE}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf MAX\_\-BUFFER\_\-SIZE} = 8}\label{config__constants_8h_5834e03c9871421dab2ce0050888d6f9}
+
+
+
+
+Definition at line 71 of file config\_\-constants.h.
+
+Referenced by GenericTPG::convertFromBitStream(), BankHandler::FindHighest(), BankHandler::IsBufferFull(), and main().\index{config\_\-constants.h@{config\_\-constants.h}!MAX\_\-CMD\_\-BUFFER\_\-SIZE@{MAX\_\-CMD\_\-BUFFER\_\-SIZE}}
+\index{MAX\_\-CMD\_\-BUFFER\_\-SIZE@{MAX\_\-CMD\_\-BUFFER\_\-SIZE}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{MAX\_\-CMD\_\-BUFFER\_\-SIZE}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf MAX\_\-CMD\_\-BUFFER\_\-SIZE} = 16}\label{config__constants_8h_7b3f5203e83ae79d6e9c365f6286dc97}
+
+
+
+
+Definition at line 72 of file config\_\-constants.h.
+
+Referenced by main(), and BusHandler::SetIfFull().\index{config\_\-constants.h@{config\_\-constants.h}!MAX\_\-READ\_\-OV\_\-WRITE@{MAX\_\-READ\_\-OV\_\-WRITE}}
+\index{MAX\_\-READ\_\-OV\_\-WRITE@{MAX\_\-READ\_\-OV\_\-WRITE}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{MAX\_\-READ\_\-OV\_\-WRITE}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf MAX\_\-READ\_\-OV\_\-WRITE} = 8}\label{config__constants_8h_91edaf1971d0cd92284086fee6f41660}
+
+
+
+
+Definition at line 78 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!MC\_\-ADDR\_\-BITS@{MC\_\-ADDR\_\-BITS}}
+\index{MC\_\-ADDR\_\-BITS@{MC\_\-ADDR\_\-BITS}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{MC\_\-ADDR\_\-BITS}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf MC\_\-ADDR\_\-BITS} = 12}\label{config__constants_8h_5797f7fc969d8a7c02df4ba708ed734f}
+
+
+
+
+Definition at line 37 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!mc\_\-scheduling\_\-algorithm@{mc\_\-scheduling\_\-algorithm}}
+\index{mc\_\-scheduling\_\-algorithm@{mc\_\-scheduling\_\-algorithm}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{mc\_\-scheduling\_\-algorithm}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MC\_\-SCHEDULLING\_\-ALGO} {\bf mc\_\-scheduling\_\-algorithm} = FR\_\-FCFS}\label{config__constants_8h_951b5bcc078c8d83bdc41858085f4717}
+
+
+
+
+Definition at line 33 of file config\_\-constants.h.
+
+Referenced by main(), and BankHandler::MainScheduler().\index{config\_\-constants.h@{config\_\-constants.h}!MEM\_\-CYCLE@{MEM\_\-CYCLE}}
+\index{MEM\_\-CYCLE@{MEM\_\-CYCLE}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{MEM\_\-CYCLE}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf MEM\_\-CYCLE}}\label{config__constants_8h_424f85d588c3ab008d093b9e9021d882}
+
+
+
+
+Definition at line 95 of file config\_\-constants.h.
+
+Referenced by init\_\-dram\_\-timing\_\-parameters().\index{config\_\-constants.h@{config\_\-constants.h}!MEM\_\-SPEED@{MEM\_\-SPEED}}
+\index{MEM\_\-SPEED@{MEM\_\-SPEED}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{MEM\_\-SPEED}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf MEM\_\-SPEED}}\label{config__constants_8h_d284b4a8d7191a00227f7f1ab9ff9656}
+
+
+
+
+Definition at line 94 of file config\_\-constants.h.
+
+Referenced by init\_\-dram\_\-timing\_\-parameters().\index{config\_\-constants.h@{config\_\-constants.h}!MSHR\_\-SIZE@{MSHR\_\-SIZE}}
+\index{MSHR\_\-SIZE@{MSHR\_\-SIZE}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{MSHR\_\-SIZE}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf MSHR\_\-SIZE} = 8}\label{config__constants_8h_4f1d8d474d4e841808eb38cf137c9d6e}
+
+
+
+
+Definition at line 66 of file config\_\-constants.h.
+
+Referenced by GenericFlatMc::handle\_\-new\_\-packet\_\-event(), GenericFlatMc::handle\_\-ready\_\-event(), main(), MSHR\_\-SA\_\-H::process\_\-event(), and MSHR\_\-H::process\_\-event().\index{config\_\-constants.h@{config\_\-constants.h}!NETWORK\_\-ADDRESS\_\-BITS@{NETWORK\_\-ADDRESS\_\-BITS}}
+\index{NETWORK\_\-ADDRESS\_\-BITS@{NETWORK\_\-ADDRESS\_\-BITS}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{NETWORK\_\-ADDRESS\_\-BITS}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf NETWORK\_\-ADDRESS\_\-BITS} = 48}\label{config__constants_8h_bee72fa7d3b3eb5cc82e7dc8d6db8222}
+
+
+
+
+Definition at line 80 of file config\_\-constants.h.
+
+Referenced by uncore\_\-t::convertFromBitStream(), NI::convertFromBitStream(), GenericTPGVcs::convertFromBitStream(), GenericTPG::convertFromBitStream(), GenericFlatMc::convertFromBitStream(), uncore\_\-t::convertToBitStream(), NI::convertToBitStream(), GenericTPGVcs::convertToBitStream(), GenericTPG::convertToBitStream(), dump\_\-configuration(), and main().\index{config\_\-constants.h@{config\_\-constants.h}!NETWORK\_\-COMMAND\_\-BITS@{NETWORK\_\-COMMAND\_\-BITS}}
+\index{NETWORK\_\-COMMAND\_\-BITS@{NETWORK\_\-COMMAND\_\-BITS}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{NETWORK\_\-COMMAND\_\-BITS}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf NETWORK\_\-COMMAND\_\-BITS} = 3}\label{config__constants_8h_dc7fe0dd54cfc2c2acf6e737e18116a1}
+
+
+
+
+Definition at line 82 of file config\_\-constants.h.
+
+Referenced by NI::convertFromBitStream(), GenericFlatMc::convertFromBitStream(), uncore\_\-t::convertToBitStream(), GenericTPGVcs::convertToBitStream(), GenericTPG::convertToBitStream(), dump\_\-configuration(), and main().\index{config\_\-constants.h@{config\_\-constants.h}!NETWORK\_\-THREADID\_\-BITS@{NETWORK\_\-THREADID\_\-BITS}}
+\index{NETWORK\_\-THREADID\_\-BITS@{NETWORK\_\-THREADID\_\-BITS}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{NETWORK\_\-THREADID\_\-BITS}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf NETWORK\_\-THREADID\_\-BITS} = 6}\label{config__constants_8h_582a80c814dfe22c0a7ad5dda77d2033}
+
+
+
+
+Definition at line 81 of file config\_\-constants.h.
+
+Referenced by NI::convertFromBitStream(), GenericFlatMc::convertFromBitStream(), uncore\_\-t::convertToBitStream(), GenericTPGVcs::convertToBitStream(), GenericTPG::convertToBitStream(), dump\_\-configuration(), and main().\index{config\_\-constants.h@{config\_\-constants.h}!NO\_\-OF\_\-BANKS@{NO\_\-OF\_\-BANKS}}
+\index{NO\_\-OF\_\-BANKS@{NO\_\-OF\_\-BANKS}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{NO\_\-OF\_\-BANKS}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf NO\_\-OF\_\-BANKS} = 8}\label{config__constants_8h_a9a8bc812122b9b1129824fdea80e872}
+
+
+
+
+Definition at line 54 of file config\_\-constants.h.
+
+Referenced by CmdIssuer::BankNotBusy(), BusHandler::BusHandler(), Statistic::CalculateAggregateStats(), CmdIssuer::CmdIssuer(), MSHR\_\-H::countBLP(), DRAM::DRAM(), dump\_\-configuration(), Statistic::InitStats(), MSHR\_\-H::local\_\-map\_\-addr(), main(), AddrMap::map\_\-addr(), MSHR\_\-H::MSHR\_\-H(), Statistic::PrintAggregateStats(), DRAMChannel::process\_\-event(), RankHandler::RankHandler(), RankState::RankState(), Request::Request(), and RequestHandler::RequestHandler().\index{config\_\-constants.h@{config\_\-constants.h}!NO\_\-OF\_\-BUFFERS@{NO\_\-OF\_\-BUFFERS}}
+\index{NO\_\-OF\_\-BUFFERS@{NO\_\-OF\_\-BUFFERS}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{NO\_\-OF\_\-BUFFERS}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf NO\_\-OF\_\-BUFFERS} = {\bf NO\_\-OF\_\-BANKS}}\label{config__constants_8h_9a3d0e2a191845b6b14b2c7a1faab4c2}
+
+
+
+
+Definition at line 55 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!NO\_\-OF\_\-CHANNELS@{NO\_\-OF\_\-CHANNELS}}
+\index{NO\_\-OF\_\-CHANNELS@{NO\_\-OF\_\-CHANNELS}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{NO\_\-OF\_\-CHANNELS}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf NO\_\-OF\_\-CHANNELS} = 1}\label{config__constants_8h_9ae97152d782bf89a47f2fb62982bd91}
+
+
+
+
+Definition at line 52 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!NO\_\-OF\_\-COLUMNS@{NO\_\-OF\_\-COLUMNS}}
+\index{NO\_\-OF\_\-COLUMNS@{NO\_\-OF\_\-COLUMNS}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{NO\_\-OF\_\-COLUMNS}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf NO\_\-OF\_\-COLUMNS} = 128}\label{config__constants_8h_ffc6bbc04b2973cf564f70f37103a946}
+
+
+
+
+Definition at line 57 of file config\_\-constants.h.
+
+Referenced by dump\_\-configuration(), MSHR\_\-H::local\_\-map\_\-addr(), main(), AddrMap::map\_\-addr(), and Request::Request().\index{config\_\-constants.h@{config\_\-constants.h}!NO\_\-OF\_\-RANKS@{NO\_\-OF\_\-RANKS}}
+\index{NO\_\-OF\_\-RANKS@{NO\_\-OF\_\-RANKS}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{NO\_\-OF\_\-RANKS}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf NO\_\-OF\_\-RANKS} = 32}\label{config__constants_8h_e1acef1609deca0291eaf30593109d17}
+
+
+
+
+Definition at line 53 of file config\_\-constants.h.
+
+Referenced by BusHandler::BusHandler(), Statistic::CalculateAggregateStats(), ChannelHandler::ChannelHandler(), ChannelState::ChannelState(), CmdIssuer::CmdIssuer(), Statistic::CollectStatsPerCycle(), DRAM::DRAM(), dump\_\-configuration(), Statistic::InitStats(), MSHR\_\-H::local\_\-map\_\-addr(), main(), AddrMap::map\_\-addr(), RequestHandler::MarkAll(), RequestHandler::MarkBatchOnly(), Statistic::PrintAggregateStats(), RefreshMgr::process\_\-event(), Request::Request(), and RequestHandler::RequestHandler().\index{config\_\-constants.h@{config\_\-constants.h}!NO\_\-OF\_\-ROWS@{NO\_\-OF\_\-ROWS}}
+\index{NO\_\-OF\_\-ROWS@{NO\_\-OF\_\-ROWS}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{NO\_\-OF\_\-ROWS}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf NO\_\-OF\_\-ROWS} = 8192}\label{config__constants_8h_b3d6bbcaed3c5e9c84170ea78a55ac79}
+
+
+
+
+Definition at line 56 of file config\_\-constants.h.
+
+Referenced by dump\_\-configuration(), MSHR\_\-H::local\_\-map\_\-addr(), main(), AddrMap::map\_\-addr(), RefreshMgr::process\_\-event(), and Request::Request().\index{config\_\-constants.h@{config\_\-constants.h}!NO\_\-OF\_\-THREADS@{NO\_\-OF\_\-THREADS}}
+\index{NO\_\-OF\_\-THREADS@{NO\_\-OF\_\-THREADS}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{NO\_\-OF\_\-THREADS}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf NO\_\-OF\_\-THREADS} = 2}\label{config__constants_8h_550c282169249cd6a9f0eb1b19bb8e04}
+
+
+
+
+Definition at line 51 of file config\_\-constants.h.
+
+Referenced by Statistic::CalculateAggregateStats(), dump\_\-configuration(), BankHandler::FindHighest(), get\_\-mcNo(), GetNextRequest(), GlobalAddrMap(), MSHR\_\-SA\_\-H::GlobalAddrMap(), MSHR\_\-H::GlobalAddrMap(), GlobalAddrRip(), Statistic::InitStats(), main(), MSHR\_\-H::map\_\-addr(), RequestHandler::MarkBatchOnly(), Statistic::PrintAggregateStats(), and NI::strip\_\-mc\_\-bits().\index{config\_\-constants.h@{config\_\-constants.h}!PREFETCH\_\-SIZE@{PREFETCH\_\-SIZE}}
+\index{PREFETCH\_\-SIZE@{PREFETCH\_\-SIZE}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{PREFETCH\_\-SIZE}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf uint} {\bf PREFETCH\_\-SIZE} = {\bf CACHE\_\-BLOCK\_\-SIZE}}\label{config__constants_8h_624d7e625d99d2ac11d8e8f96075cfa3}
+
+
+
+
+Definition at line 86 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!READ\_\-SIZE@{READ\_\-SIZE}}
+\index{READ\_\-SIZE@{READ\_\-SIZE}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{READ\_\-SIZE}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf uint} {\bf READ\_\-SIZE} = {\bf CACHE\_\-BLOCK\_\-SIZE}}\label{config__constants_8h_d114b4c812fd5e350f6af789584aab23}
+
+
+
+
+Definition at line 84 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!REFRESH\_\-INC@{REFRESH\_\-INC}}
+\index{REFRESH\_\-INC@{REFRESH\_\-INC}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{REFRESH\_\-INC}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned long long int {\bf REFRESH\_\-INC} = ({\bf ullint})floor({\bf REFRESH\_\-PERIOD}/(8192)) - {\bf BUS\_\-CYCLE}}\label{config__constants_8h_9a745bfbe702d815996ac96a955c5ef7}
+
+
+
+
+Definition at line 121 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!REFRESH\_\-PERIOD@{REFRESH\_\-PERIOD}}
+\index{REFRESH\_\-PERIOD@{REFRESH\_\-PERIOD}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{REFRESH\_\-PERIOD}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned long long int {\bf REFRESH\_\-PERIOD} = {\bf CORE\_\-SPEED}$\ast$64000}\label{config__constants_8h_d18776c43e1bb0d2434a1a1d217d1523}
+
+
+
+
+Definition at line 120 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!RESPONSE\_\-BUFFER\_\-SIZE@{RESPONSE\_\-BUFFER\_\-SIZE}}
+\index{RESPONSE\_\-BUFFER\_\-SIZE@{RESPONSE\_\-BUFFER\_\-SIZE}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{RESPONSE\_\-BUFFER\_\-SIZE}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf RESPONSE\_\-BUFFER\_\-SIZE} = 56$\ast$8}\label{config__constants_8h_15d2d426c9f48f49b5b35c3953238331}
+
+
+
+
+Definition at line 73 of file config\_\-constants.h.
+
+Referenced by ResponseHandler::CanStart(), ResponseHandler::IsBufferFull(), main(), BankHandler::process\_\-event(), and ResponseHandler::ResponseHandler().\index{config\_\-constants.h@{config\_\-constants.h}!ROW\_\-SIZE@{ROW\_\-SIZE}}
+\index{ROW\_\-SIZE@{ROW\_\-SIZE}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{ROW\_\-SIZE}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf ROW\_\-SIZE} = {\bf NO\_\-OF\_\-COLUMNS}$\ast${\bf COLUMN\_\-SIZE}}\label{config__constants_8h_06612380f279606f69a92c2c5b4e7a0a}
+
+
+
+
+Definition at line 61 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!t\_\-AL@{t\_\-AL}}
+\index{t\_\-AL@{t\_\-AL}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{t\_\-AL}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf t\_\-AL}}\label{config__constants_8h_00d8a8f3f7c90331db7294a4766e73cf}
+
+
+
+
+Definition at line 113 of file config\_\-constants.h.
+
+Referenced by CmdIssuer::CalculateBusyTime(), and init\_\-dram\_\-timing\_\-parameters().\index{config\_\-constants.h@{config\_\-constants.h}!t\_\-CAS@{t\_\-CAS}}
+\index{t\_\-CAS@{t\_\-CAS}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{t\_\-CAS}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf t\_\-CAS}}\label{config__constants_8h_3650e278079b6a0bf6732709f2637bad}
+
+
+
+
+Definition at line 106 of file config\_\-constants.h.
+
+Referenced by CmdIssuer::CalculateBusyTime(), CmdIssuer::CmdDelay(), init\_\-dram\_\-timing\_\-parameters(), and DRAMChannel::process\_\-event().\index{config\_\-constants.h@{config\_\-constants.h}!t\_\-CCD@{t\_\-CCD}}
+\index{t\_\-CCD@{t\_\-CCD}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{t\_\-CCD}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf t\_\-CCD}}\label{config__constants_8h_678432cf3d4dac2a1d3880f336cc8044}
+
+
+
+
+Definition at line 112 of file config\_\-constants.h.
+
+Referenced by CmdIssuer::CalculateBusyTime(), and init\_\-dram\_\-timing\_\-parameters().\index{config\_\-constants.h@{config\_\-constants.h}!t\_\-CMD@{t\_\-CMD}}
+\index{t\_\-CMD@{t\_\-CMD}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{t\_\-CMD}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf t\_\-CMD}}\label{config__constants_8h_efe4d57151bd8153618cfa15165705ef}
+
+
+
+
+Definition at line 102 of file config\_\-constants.h.
+
+Referenced by CmdIssuer::BusNotBusy(), CmdIssuer::CalculateBusyTime(), CmdIssuer::CalculateDataDelay(), init\_\-dram\_\-timing\_\-parameters(), DataBusHandler::process\_\-event(), and CmdBusHandler::process\_\-event().\index{config\_\-constants.h@{config\_\-constants.h}!t\_\-CWD@{t\_\-CWD}}
+\index{t\_\-CWD@{t\_\-CWD}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{t\_\-CWD}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf t\_\-CWD}}\label{config__constants_8h_8e5df97e5c05a4940306cb3f09749cfc}
+
+
+
+
+Definition at line 114 of file config\_\-constants.h.
+
+Referenced by CmdIssuer::CalculateBusyTime(), CmdIssuer::CalculateDataDelay(), and init\_\-dram\_\-timing\_\-parameters().\index{config\_\-constants.h@{config\_\-constants.h}!t\_\-OST@{t\_\-OST}}
+\index{t\_\-OST@{t\_\-OST}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{t\_\-OST}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf t\_\-OST}}\label{config__constants_8h_635df1de31d54e4cb8777583366f4557}
+
+
+
+
+Definition at line 108 of file config\_\-constants.h.
+
+Referenced by CmdIssuer::CalculateBusyTime(), and init\_\-dram\_\-timing\_\-parameters().\index{config\_\-constants.h@{config\_\-constants.h}!t\_\-RAS@{t\_\-RAS}}
+\index{t\_\-RAS@{t\_\-RAS}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{t\_\-RAS}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf t\_\-RAS}}\label{config__constants_8h_922b63d06cf57b48a984342835b4e871}
+
+
+
+
+Definition at line 105 of file config\_\-constants.h.
+
+Referenced by CmdIssuer::CalculateBusyTime(), and init\_\-dram\_\-timing\_\-parameters().\index{config\_\-constants.h@{config\_\-constants.h}!t\_\-RC@{t\_\-RC}}
+\index{t\_\-RC@{t\_\-RC}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{t\_\-RC}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf t\_\-RC}}\label{config__constants_8h_0dca745437819ad187ed4fcac7620fbd}
+
+
+
+
+Definition at line 115 of file config\_\-constants.h.
+
+Referenced by init\_\-dram\_\-timing\_\-parameters().\index{config\_\-constants.h@{config\_\-constants.h}!t\_\-RCD@{t\_\-RCD}}
+\index{t\_\-RCD@{t\_\-RCD}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{t\_\-RCD}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf t\_\-RCD}}\label{config__constants_8h_6230a7fc83ebdda3c94d2268a38194ed}
+
+
+
+
+Definition at line 103 of file config\_\-constants.h.
+
+Referenced by CmdIssuer::CalculateBusyTime(), CmdIssuer::CmdDelay(), init\_\-dram\_\-timing\_\-parameters(), and DRAMChannel::process\_\-event().\index{config\_\-constants.h@{config\_\-constants.h}!t\_\-RFC@{t\_\-RFC}}
+\index{t\_\-RFC@{t\_\-RFC}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{t\_\-RFC}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf t\_\-RFC}}\label{config__constants_8h_0ff88cb083371f71b3b85123c8fc3f9f}
+
+
+
+
+Definition at line 117 of file config\_\-constants.h.
+
+Referenced by CmdIssuer::CalculateBusyTime(), CmdIssuer::CmdDelay(), init\_\-dram\_\-timing\_\-parameters(), and DRAMChannel::process\_\-event().\index{config\_\-constants.h@{config\_\-constants.h}!t\_\-RP@{t\_\-RP}}
+\index{t\_\-RP@{t\_\-RP}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{t\_\-RP}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf t\_\-RP}}\label{config__constants_8h_450ac5bc984f4919d77f393a415fcb67}
+
+
+
+
+Definition at line 111 of file config\_\-constants.h.
+
+Referenced by CmdIssuer::CalculateBusyTime(), CmdIssuer::CmdDelay(), init\_\-dram\_\-timing\_\-parameters(), and DRAMChannel::process\_\-event().\index{config\_\-constants.h@{config\_\-constants.h}!t\_\-RRD@{t\_\-RRD}}
+\index{t\_\-RRD@{t\_\-RRD}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{t\_\-RRD}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf t\_\-RRD}}\label{config__constants_8h_37ffc12def32694d56e78b377b97772a}
+
+
+
+
+Definition at line 104 of file config\_\-constants.h.
+
+Referenced by CmdIssuer::CalculateBusyTime(), and init\_\-dram\_\-timing\_\-parameters().\index{config\_\-constants.h@{config\_\-constants.h}!t\_\-RTP@{t\_\-RTP}}
+\index{t\_\-RTP@{t\_\-RTP}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{t\_\-RTP}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf t\_\-RTP}}\label{config__constants_8h_0914d4451f1ceba4606b651fe3d58854}
+
+
+
+
+Definition at line 116 of file config\_\-constants.h.
+
+Referenced by CmdIssuer::CalculateBusyTime(), and init\_\-dram\_\-timing\_\-parameters().\index{config\_\-constants.h@{config\_\-constants.h}!t\_\-RTRS@{t\_\-RTRS}}
+\index{t\_\-RTRS@{t\_\-RTRS}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{t\_\-RTRS}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf t\_\-RTRS}}\label{config__constants_8h_878d3dc90fd5fee1108c736ad43d7607}
+
+
+
+
+Definition at line 107 of file config\_\-constants.h.
+
+Referenced by CmdIssuer::CalculateBusyTime(), and init\_\-dram\_\-timing\_\-parameters().\index{config\_\-constants.h@{config\_\-constants.h}!t\_\-WR@{t\_\-WR}}
+\index{t\_\-WR@{t\_\-WR}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{t\_\-WR}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf t\_\-WR}}\label{config__constants_8h_59cb204d6cd0bc9403224348bd724436}
+
+
+
+
+Definition at line 109 of file config\_\-constants.h.
+
+Referenced by CmdIssuer::CalculateBusyTime(), init\_\-dram\_\-timing\_\-parameters(), and DRAMChannel::process\_\-event().\index{config\_\-constants.h@{config\_\-constants.h}!t\_\-WTR@{t\_\-WTR}}
+\index{t\_\-WTR@{t\_\-WTR}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{t\_\-WTR}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf t\_\-WTR}}\label{config__constants_8h_344b9b38599995882828432f63575e65}
+
+
+
+
+Definition at line 110 of file config\_\-constants.h.
+
+Referenced by CmdIssuer::CalculateBusyTime(), and init\_\-dram\_\-timing\_\-parameters().\index{config\_\-constants.h@{config\_\-constants.h}!TAG\_\-BITS@{TAG\_\-BITS}}
+\index{TAG\_\-BITS@{TAG\_\-BITS}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{TAG\_\-BITS}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf TAG\_\-BITS} = 8}\label{config__constants_8h_a00203dc72b02b1b8393c16dfd7ddf0f}
+
+
+
+
+Definition at line 63 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!THREAD\_\-BITS\_\-POSITION@{THREAD\_\-BITS\_\-POSITION}}
+\index{THREAD\_\-BITS\_\-POSITION@{THREAD\_\-BITS\_\-POSITION}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{THREAD\_\-BITS\_\-POSITION}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf THREAD\_\-BITS\_\-POSITION} = 25}\label{config__constants_8h_581f0c063e972c5f202149f2e3ce7452}
+
+
+
+
+Definition at line 36 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!tRAS@{tRAS}}
+\index{tRAS@{tRAS}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{tRAS}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf tRAS}}\label{config__constants_8h_b04341bc974da754ab3203d08630dabc}
+
+
+
+
+Definition at line 101 of file config\_\-constants.h.
+
+Referenced by PowerStats::CalcPower(), and init\_\-dram\_\-timing\_\-parameters().\index{config\_\-constants.h@{config\_\-constants.h}!tRC@{tRC}}
+\index{tRC@{tRC}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{tRC}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf tRC}}\label{config__constants_8h_92ad454fbec9160710e2dd6f86be41cf}
+
+
+
+
+Definition at line 100 of file config\_\-constants.h.
+
+Referenced by PowerStats::CalcPower(), and init\_\-dram\_\-timing\_\-parameters().\index{config\_\-constants.h@{config\_\-constants.h}!tREFI@{tREFI}}
+\index{tREFI@{tREFI}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{tREFI}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf tREFI}}\label{config__constants_8h_550ce21a84e96942a1d99b608a582221}
+
+
+
+
+Definition at line 98 of file config\_\-constants.h.
+
+Referenced by PowerStats::CalcPower(), and init\_\-dram\_\-timing\_\-parameters().\index{config\_\-constants.h@{config\_\-constants.h}!tRFC@{tRFC}}
+\index{tRFC@{tRFC}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{tRFC}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf tRFC}}\label{config__constants_8h_7a7954dd073cbc0e349508917b36bd6b}
+
+
+
+
+Definition at line 99 of file config\_\-constants.h.
+
+Referenced by PowerStats::CalcPower(), and init\_\-dram\_\-timing\_\-parameters().\index{config\_\-constants.h@{config\_\-constants.h}!USE\_\-MSHR@{USE\_\-MSHR}}
+\index{USE\_\-MSHR@{USE\_\-MSHR}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{USE\_\-MSHR}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf USE\_\-MSHR} = 1}\label{config__constants_8h_5da9b77c2b6e7724a2509424704e2e0e}
+
+
+
+
+Definition at line 65 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!WRITE\_\-SIZE@{WRITE\_\-SIZE}}
+\index{WRITE\_\-SIZE@{WRITE\_\-SIZE}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{WRITE\_\-SIZE}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf uint} {\bf WRITE\_\-SIZE} = {\bf CACHE\_\-BLOCK\_\-SIZE}}\label{config__constants_8h_c20076cb353e3c0eca6357054db302ef}
+
+
+
+
+Definition at line 85 of file config\_\-constants.h.\index{config\_\-constants.h@{config\_\-constants.h}!WRITEBACK\_\-SIZE@{WRITEBACK\_\-SIZE}}
+\index{WRITEBACK\_\-SIZE@{WRITEBACK\_\-SIZE}!config_constants.h@{config\_\-constants.h}}
+\subsubsection[{WRITEBACK\_\-SIZE}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf uint} {\bf WRITEBACK\_\-SIZE} = {\bf CACHE\_\-BLOCK\_\-SIZE}}\label{config__constants_8h_8104e7934ee02b29fba883f8378b3a0e}
+
+
+
+
+Definition at line 87 of file config\_\-constants.h.

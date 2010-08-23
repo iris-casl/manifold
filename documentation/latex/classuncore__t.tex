@@ -1,0 +1,541 @@
+\section{uncore\_\-t Class Reference}
+\label{classuncore__t}\index{uncore\_\-t@{uncore\_\-t}}
+{\tt \#include $<$zesto-uncore.h$>$}
+
+Inheritance diagram for uncore\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classuncore__t__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for uncore\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classuncore__t__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+struct {\bf uncore\_\-stat\_\-t}
+\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+bool {\bf enqueuable} (const {\bf md\_\-paddr\_\-t} addr, const enum {\bf cache\_\-command} cmd, {\bf tick\_\-t} when\_\-enqueued)
+\item 
+void {\bf enqueue} (struct {\bf cache\_\-t} $\ast$const prev\_\-cp, const enum {\bf cache\_\-command} cmd, const {\bf md\_\-paddr\_\-t} addr, const int linesize, const {\bf seq\_\-t} action\_\-id, const int MSHR\_\-bank, const int MSHR\_\-index, void $\ast$const op, void($\ast$const cb)(void $\ast$), {\bf seq\_\-t}($\ast$const get\_\-action\_\-id)(void $\ast$))
+\item 
+bool {\bf compare} ()
+\item 
+void {\bf uncore\_\-reg\_\-stats} (struct {\bf uncore\_\-t} $\ast$uncore, struct {\bf stat\_\-sdb\_\-t} $\ast$const sdb)
+\item 
+void {\bf setup} ({\bf uint} {\bf no\_\-nodes}, {\bf uint} {\bf vcs}, {\bf uint} {\bf max\_\-sim\_\-time})
+\item 
+string {\bf toString} () const 
+\item 
+string {\bf print\_\-stats} () const 
+\item 
+void {\bf set\_\-output\_\-path} (string outpath\_\-name)
+\item 
+{\bf uncore\_\-t} (unsigned int arg\_\-id, const double arg\_\-cpu\_\-speed, unsigned int arg\_\-virtual\_\-channels, unsigned int arg\_\-tile\_\-count)
+\item 
+virtual {\bf $\sim$uncore\_\-t} ()
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+uint32\_\-t {\bf virtual\_\-channels}
+\item 
+uint32\_\-t {\bf tile\_\-count}
+\item 
+unsigned int {\bf num\_\-cores}
+\item 
+double {\bf cpu\_\-speed}
+\item 
+int {\bf cpu\_\-ratio}
+\item 
+struct {\bf core\_\-t} $\ast$ {\bf core} [4]
+\item 
+unsigned int {\bf id}
+\item 
+struct {\bf bus\_\-t} $\ast$ {\bf LLC\_\-bus}
+\item 
+struct {\bf cache\_\-t} $\ast$ {\bf LLC}
+\item 
+{\bf tick\_\-t} {\bf LLC\_\-cycle\_\-mask}
+\item 
+int {\bf creq\_\-size}
+\item 
+int {\bf creq\_\-num}
+\item 
+int {\bf creq\_\-head}
+\item 
+int {\bf creq\_\-tail}
+\item 
+struct {\bf coherence\_\-req} $\ast$ {\bf creq}
+\item 
+struct {\bf uncore\_\-t::uncore\_\-stat\_\-t} {\bf stat}
+\item 
+vector$<$ bool $>$ {\bf ready}
+\item 
+bool {\bf sending}
+\item 
+{\bf uint} {\bf sending\_\-vc}
+\item 
+{\bf ullint} {\bf lastSentTime}
+\item 
+vector$<$ unsigned int $>$ {\bf mc\_\-node\_\-ip}
+\item 
+FILE $\ast$ {\bf app\_\-mem\_\-trace}
+\item 
+bool {\bf log\_\-trace}
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf convertToBitStream} ({\bf Request} $\ast$req, {\bf HighLevelPacket} $\ast$hlp)
+\item 
+void {\bf convertFromBitStream} ({\bf Request} $\ast$req, {\bf HighLevelPacket} $\ast$hlp)
+\item 
+void {\bf handle\_\-new\_\-packet\_\-event} ({\bf IrisEvent} $\ast$e)
+\item 
+void {\bf handle\_\-ready\_\-event} ({\bf IrisEvent} $\ast$e)
+\item 
+void {\bf process\_\-event} ({\bf IrisEvent} $\ast$e)
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+unsigned int {\bf last\_\-vc}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 94 of file zesto-uncore.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{uncore\_\-t@{uncore\_\-t}!uncore\_\-t@{uncore\_\-t}}
+\index{uncore\_\-t@{uncore\_\-t}!uncore_t@{uncore\_\-t}}
+\subsubsection[{uncore\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}uncore\_\-t::uncore\_\-t (unsigned int {\em arg\_\-id}, \/  const double {\em arg\_\-cpu\_\-speed}, \/  unsigned int {\em arg\_\-virtual\_\-channels}, \/  unsigned int {\em arg\_\-tile\_\-count})}\label{classuncore__t_e77d4ff919b2a60d9288553573c94143}
+
+
+
+
+Definition at line 115 of file zesto-uncore.cpp.
+
+References bus\_\-create(), cache\_\-create\_\-llc(), CACHE\_\-PREFETCH, CACHE\_\-READ, CACHE\_\-READWRITE, CACHE\_\-WRITE, CACHE\_\-WRITEBACK, cores\_\-per\_\-node, fatal(), uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::fwd\_\-path\_\-delay, uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::last\_\-packet\_\-out\_\-cycle, lastSentTime, cache\_\-t::linesize, LLC, LLC\_\-access\_\-rate, LLC\_\-bus, LLC\_\-bus\_\-ratio, LLC\_\-cycle\_\-mask, LLC\_\-high\_\-watermark, LLC\_\-low\_\-watermark, LLC\_\-MSHR\_\-cmd, LLC\_\-num\_\-PF, LLC\_\-opt\_\-str, LLC\_\-PF\_\-buffer\_\-size, LLC\_\-PF\_\-filter\_\-reset, LLC\_\-PF\_\-filter\_\-size, LLC\_\-PF\_\-opt\_\-str, LLC\_\-PFFsize, LLC\_\-PFmax, LLC\_\-PFthresh, LLC\_\-WMinterval, uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::min\_\-pkt\_\-latency, mytoupper(), cache\_\-t::name, NetworkComponent::name, num\_\-cores, cache\_\-t::num\_\-prefetchers, uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::packets\_\-in, uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::packets\_\-out, cache\_\-t::PF\_\-high\_\-watermark, cache\_\-t::PF\_\-low\_\-watermark, cache\_\-t::PF\_\-sample\_\-interval, cache\_\-t::PFF, cache\_\-t::PFF\_\-size, prefetch\_\-buffer\_\-create(), prefetch\_\-create(), prefetch\_\-filter\_\-create(), cache\_\-t::prefetch\_\-max, cache\_\-t::prefetch\_\-threshold, cache\_\-t::prefetcher, ready, uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::round\_\-trip\_\-hop\_\-count, uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::round\_\-trip\_\-lat, uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::round\_\-trip\_\-memory\_\-latency, uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::round\_\-trip\_\-network\_\-latency, stat, cache\_\-t::uncore, virtual\_\-channels, and uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::waiting\_\-in\_\-ni.
+
+Referenced by sim\_\-post\_\-init().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{classuncore__t_e77d4ff919b2a60d9288553573c94143_icgraph}
+\end{center}
+\end{figure}
+\index{uncore\_\-t@{uncore\_\-t}!$\sim$uncore\_\-t@{$\sim$uncore\_\-t}}
+\index{$\sim$uncore\_\-t@{$\sim$uncore\_\-t}!uncore_t@{uncore\_\-t}}
+\subsubsection[{$\sim$uncore\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}uncore\_\-t::$\sim$uncore\_\-t ()\hspace{0.3cm}{\tt  [virtual]}}\label{classuncore__t_1abcbfc5de8fdbf629e7fabe3980093b}
+
+
+
+
+Definition at line 229 of file zesto-uncore.cpp.
+
+\subsection{Member Function Documentation}
+\index{uncore\_\-t@{uncore\_\-t}!compare@{compare}}
+\index{compare@{compare}!uncore_t@{uncore\_\-t}}
+\subsubsection[{compare}]{\setlength{\rightskip}{0pt plus 5cm}bool uncore\_\-t::compare ()}\label{classuncore__t_ba67cde79055a8ce9f657a5fb8bbb638}
+
+
+\index{uncore\_\-t@{uncore\_\-t}!convertFromBitStream@{convertFromBitStream}}
+\index{convertFromBitStream@{convertFromBitStream}!uncore_t@{uncore\_\-t}}
+\subsubsection[{convertFromBitStream}]{\setlength{\rightskip}{0pt plus 5cm}void uncore\_\-t::convertFromBitStream ({\bf Request} $\ast$ {\em req}, \/  {\bf HighLevelPacket} $\ast$ {\em hlp})\hspace{0.3cm}{\tt  [protected]}}\label{classuncore__t_48133095295902cffe47a63fc822b61b}
+
+
+
+
+Definition at line 653 of file zesto-uncore.cpp.
+
+References Request::address, CACHE\_\-BLOCK\_\-SIZE, CACHE\_\-PREFETCH, CACHE\_\-READ, CACHE\_\-WRITE, Request::cmdType, Request::data, HighLevelPacket::data, max\_\-phy\_\-link\_\-bits, Request::mcNo, NETWORK\_\-ADDRESS\_\-BITS, Data::size, HighLevelPacket::source, and Data::value.
+
+Referenced by handle\_\-new\_\-packet\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=286pt]{classuncore__t_48133095295902cffe47a63fc822b61b_icgraph}
+\end{center}
+\end{figure}
+\index{uncore\_\-t@{uncore\_\-t}!convertToBitStream@{convertToBitStream}}
+\index{convertToBitStream@{convertToBitStream}!uncore_t@{uncore\_\-t}}
+\subsubsection[{convertToBitStream}]{\setlength{\rightskip}{0pt plus 5cm}void uncore\_\-t::convertToBitStream ({\bf Request} $\ast$ {\em req}, \/  {\bf HighLevelPacket} $\ast$ {\em hlp})\hspace{0.3cm}{\tt  [protected]}}\label{classuncore__t_b447ee013b2038a86a9fb22e3e26fa1f}
+
+
+
+
+Definition at line 615 of file zesto-uncore.cpp.
+
+References Request::address, Request::arrivalTime, bool, CACHE\_\-BLOCK\_\-SIZE, CACHE\_\-WRITEBACK, Request::cmdType, HighLevelPacket::data, HighLevelPacket::data\_\-payload\_\-length, max\_\-phy\_\-link\_\-bits, HighLevelPacket::msg\_\-class, NETWORK\_\-ADDRESS\_\-BITS, NETWORK\_\-COMMAND\_\-BITS, NETWORK\_\-THREADID\_\-BITS, ONE\_\-FLIT\_\-REQ, RESPONSE\_\-PKT, HighLevelPacket::sent\_\-time, and Request::threadId.
+
+Referenced by enqueue().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{classuncore__t_b447ee013b2038a86a9fb22e3e26fa1f_icgraph}
+\end{center}
+\end{figure}
+\index{uncore\_\-t@{uncore\_\-t}!enqueuable@{enqueuable}}
+\index{enqueuable@{enqueuable}!uncore_t@{uncore\_\-t}}
+\subsubsection[{enqueuable}]{\setlength{\rightskip}{0pt plus 5cm}bool uncore\_\-t::enqueuable (const {\bf md\_\-paddr\_\-t} {\em addr}, \/  const enum {\bf cache\_\-command} {\em cmd}, \/  {\bf tick\_\-t} {\em when\_\-enqueued})}\label{classuncore__t_84e547d18486a891159d88b7ae7c7fb1}
+
+
+
+
+Definition at line 449 of file zesto-uncore.cpp.
+
+References last\_\-vc, ready, sending, sending\_\-vc, and vcs.
+
+Referenced by cache\_\-process\_\-llc().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=144pt]{classuncore__t_84e547d18486a891159d88b7ae7c7fb1_icgraph}
+\end{center}
+\end{figure}
+\index{uncore\_\-t@{uncore\_\-t}!enqueue@{enqueue}}
+\index{enqueue@{enqueue}!uncore_t@{uncore\_\-t}}
+\subsubsection[{enqueue}]{\setlength{\rightskip}{0pt plus 5cm}void uncore\_\-t::enqueue (struct {\bf cache\_\-t} $\ast$const  {\em prev\_\-cp}, \/  const enum {\bf cache\_\-command} {\em cmd}, \/  const {\bf md\_\-paddr\_\-t} {\em addr}, \/  const int {\em linesize}, \/  const {\bf seq\_\-t} {\em action\_\-id}, \/  const int {\em MSHR\_\-bank}, \/  const int {\em MSHR\_\-index}, \/  void $\ast$const  {\em op}, \/  void($\ast$)(void $\ast$) {\em cb}, \/  {\bf seq\_\-t}($\ast$)(void $\ast$) {\em get\_\-action\_\-id})}\label{classuncore__t_e9b209711f2177c6c85b552ac6297325}
+
+
+
+
+Definition at line 488 of file zesto-uncore.cpp.
+
+References HighLevelPacket::addr, NetworkComponent::address, Request::address, app\_\-mem\_\-trace, Request::arrivalTime, Request::cmdType, convertToBitStream(), HighLevelPacket::destination, uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::fwd\_\-path\_\-delay, get\_\-mcNo(), GlobalAddrMap(), Processor::interface\_\-connections, log\_\-trace, mc\_\-node\_\-ip, Request::mcNo, NEW\_\-PACKET\_\-EVENT, NetworkComponent::node\_\-ip, Simulator::Now(), uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::packets\_\-out, NetworkComponent::process\_\-event(), ready, HighLevelPacket::req\_\-start\_\-time, Simulator::Schedule(), sending\_\-vc, HighLevelPacket::sent\_\-time, sim\_\-cycle, HighLevelPacket::source, stat, Request::threadId, HighLevelPacket::transaction\_\-id, and HighLevelPacket::virtual\_\-channel.
+
+Referenced by cache\_\-process\_\-llc().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=137pt]{classuncore__t_e9b209711f2177c6c85b552ac6297325_icgraph}
+\end{center}
+\end{figure}
+\index{uncore\_\-t@{uncore\_\-t}!handle\_\-new\_\-packet\_\-event@{handle\_\-new\_\-packet\_\-event}}
+\index{handle\_\-new\_\-packet\_\-event@{handle\_\-new\_\-packet\_\-event}!uncore_t@{uncore\_\-t}}
+\subsubsection[{handle\_\-new\_\-packet\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void uncore\_\-t::handle\_\-new\_\-packet\_\-event ({\bf IrisEvent} $\ast$ {\em e})\hspace{0.3cm}{\tt  [protected]}}\label{classuncore__t_c32c72d69f75c050d6eafac341c25f97}
+
+
+
+
+Definition at line 402 of file zesto-uncore.cpp.
+
+References HighLevelPacket::avg\_\-network\_\-latency, convertFromBitStream(), IrisEvent::event\_\-data, fill\_\-arrived\_\-llc(), GlobalAddrRip(), HighLevelPacket::hop\_\-count, Processor::interface\_\-connections, uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::last\_\-packet\_\-out\_\-cycle, LLC, uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::min\_\-pkt\_\-latency, Processor::ni\_\-recv, NetworkComponent::node\_\-ip, Simulator::Now(), uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::packets\_\-in, NetworkComponent::process\_\-event(), READY\_\-EVENT, HighLevelPacket::req\_\-start\_\-time, uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::round\_\-trip\_\-hop\_\-count, uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::round\_\-trip\_\-lat, uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::round\_\-trip\_\-memory\_\-latency, uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::round\_\-trip\_\-network\_\-latency, Simulator::Schedule(), HighLevelPacket::sent\_\-time, stat, HighLevelPacket::stat\_\-memory\_\-serviced\_\-time, IrisEvent::type, IrisEvent::vc, HighLevelPacket::virtual\_\-channel, HighLevelPacket::waiting\_\-in\_\-ni, and uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::waiting\_\-in\_\-ni.
+
+Referenced by process\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=189pt]{classuncore__t_c32c72d69f75c050d6eafac341c25f97_icgraph}
+\end{center}
+\end{figure}
+\index{uncore\_\-t@{uncore\_\-t}!handle\_\-ready\_\-event@{handle\_\-ready\_\-event}}
+\index{handle\_\-ready\_\-event@{handle\_\-ready\_\-event}!uncore_t@{uncore\_\-t}}
+\subsubsection[{handle\_\-ready\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void uncore\_\-t::handle\_\-ready\_\-event ({\bf IrisEvent} $\ast$ {\em e})\hspace{0.3cm}{\tt  [protected]}}\label{classuncore__t_df578efac6442303cd9c1710f5238f30}
+
+
+
+
+Definition at line 376 of file zesto-uncore.cpp.
+
+References ready, and IrisEvent::vc.
+
+Referenced by process\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=176pt]{classuncore__t_df578efac6442303cd9c1710f5238f30_icgraph}
+\end{center}
+\end{figure}
+\index{uncore\_\-t@{uncore\_\-t}!print\_\-stats@{print\_\-stats}}
+\index{print\_\-stats@{print\_\-stats}!uncore_t@{uncore\_\-t}}
+\subsubsection[{print\_\-stats}]{\setlength{\rightskip}{0pt plus 5cm}string uncore\_\-t::print\_\-stats (void) const\hspace{0.3cm}{\tt  [virtual]}}\label{classuncore__t_99952211693debb09e106c13dd637995}
+
+
+
+
+Implements {\bf Processor} \doxyref{}{p.}{classProcessor_4026b719628ed5e3f65ba0702253ba4d}.
+
+Definition at line 255 of file zesto-uncore.cpp.\index{uncore\_\-t@{uncore\_\-t}!process\_\-event@{process\_\-event}}
+\index{process\_\-event@{process\_\-event}!uncore_t@{uncore\_\-t}}
+\subsubsection[{process\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void uncore\_\-t::process\_\-event ({\bf IrisEvent} $\ast$ {\em e})\hspace{0.3cm}{\tt  [protected, virtual]}}\label{classuncore__t_779e7bab275968208e714aaf6ec84787}
+
+
+
+
+Implements {\bf Processor} \doxyref{}{p.}{classProcessor_18cdeefafbd8225cb3ad18dd098c0e08}.
+
+Definition at line 385 of file zesto-uncore.cpp.
+
+References handle\_\-new\_\-packet\_\-event(), handle\_\-ready\_\-event(), NEW\_\-PACKET\_\-EVENT, READY\_\-EVENT, and IrisEvent::type.\index{uncore\_\-t@{uncore\_\-t}!set\_\-output\_\-path@{set\_\-output\_\-path}}
+\index{set\_\-output\_\-path@{set\_\-output\_\-path}!uncore_t@{uncore\_\-t}}
+\subsubsection[{set\_\-output\_\-path}]{\setlength{\rightskip}{0pt plus 5cm}void uncore\_\-t::set\_\-output\_\-path (string {\em outpath\_\-name})\hspace{0.3cm}{\tt  [virtual]}}\label{classuncore__t_821de0da5fb4b47ab85b9c81c3b0679d}
+
+
+
+
+Implements {\bf Processor} \doxyref{}{p.}{classProcessor_b4c5dff8417f916a1e0611ae73510a89}.
+
+Definition at line 261 of file zesto-uncore.cpp.\index{uncore\_\-t@{uncore\_\-t}!setup@{setup}}
+\index{setup@{setup}!uncore_t@{uncore\_\-t}}
+\subsubsection[{setup}]{\setlength{\rightskip}{0pt plus 5cm}void uncore\_\-t::setup ({\bf uint} {\em no\_\-nodes}, \/  {\bf uint} {\em vcs}, \/  {\bf uint} {\em max\_\-sim\_\-time})\hspace{0.3cm}{\tt  [virtual]}}\label{classuncore__t_7ea0333b0a6648b99a33db0571e59df2}
+
+
+
+
+Implements {\bf Processor} \doxyref{}{p.}{classProcessor_dd2277b3c802f5e10419e1180c7e97a5}.
+
+Definition at line 234 of file zesto-uncore.cpp.
+
+References NetworkComponent::address, app\_\-mem\_\-trace, fatal(), log\_\-trace, Component::myId(), and NetworkComponent::node\_\-ip.\index{uncore\_\-t@{uncore\_\-t}!toString@{toString}}
+\index{toString@{toString}!uncore_t@{uncore\_\-t}}
+\subsubsection[{toString}]{\setlength{\rightskip}{0pt plus 5cm}string uncore\_\-t::toString (void) const\hspace{0.3cm}{\tt  [virtual]}}\label{classuncore__t_336925ab404ce8e63bbbde7184934669}
+
+
+
+
+Reimplemented from {\bf Processor} \doxyref{}{p.}{classProcessor_d3bdbedfbb00b05f61504e411a418106}.
+
+Definition at line 693 of file zesto-uncore.cpp.
+
+References NetworkComponent::address, Processor::interface\_\-connections, NetworkComponent::node\_\-ip, and ready.\index{uncore\_\-t@{uncore\_\-t}!uncore\_\-reg\_\-stats@{uncore\_\-reg\_\-stats}}
+\index{uncore\_\-reg\_\-stats@{uncore\_\-reg\_\-stats}!uncore_t@{uncore\_\-t}}
+\subsubsection[{uncore\_\-reg\_\-stats}]{\setlength{\rightskip}{0pt plus 5cm}void uncore\_\-t::uncore\_\-reg\_\-stats (struct {\bf uncore\_\-t} $\ast$ {\em uncore}, \/  struct {\bf stat\_\-sdb\_\-t} $\ast$const  {\em sdb})}\label{classuncore__t_94e2a60a623b492a5fa2e3b306948ce6}
+
+
+
+
+Definition at line 305 of file zesto-uncore.cpp.
+
+References bus\_\-reg\_\-stats(), uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::fwd\_\-path\_\-delay, uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::last\_\-packet\_\-out\_\-cycle, LLC, LLC\_\-bus, LLC\_\-reg\_\-stats(), uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::min\_\-pkt\_\-latency, NetworkComponent::node\_\-ip, uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::packets\_\-in, uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::packets\_\-out, uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::round\_\-trip\_\-hop\_\-count, uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::round\_\-trip\_\-lat, uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::round\_\-trip\_\-memory\_\-latency, uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::round\_\-trip\_\-network\_\-latency, stat, stat\_\-reg\_\-counter, stat\_\-reg\_\-formula(), stat\_\-reg\_\-note(), and uncore\_\-t::uncore\_\-t::uncore\_\-stat\_\-t::waiting\_\-in\_\-ni.
+
+\subsection{Member Data Documentation}
+\index{uncore\_\-t@{uncore\_\-t}!app\_\-mem\_\-trace@{app\_\-mem\_\-trace}}
+\index{app\_\-mem\_\-trace@{app\_\-mem\_\-trace}!uncore_t@{uncore\_\-t}}
+\subsubsection[{app\_\-mem\_\-trace}]{\setlength{\rightskip}{0pt plus 5cm}FILE$\ast$ {\bf uncore\_\-t::app\_\-mem\_\-trace}}\label{classuncore__t_17345a3e4bcfc825a19725e8b3ac6cb1}
+
+
+
+
+Definition at line 167 of file zesto-uncore.h.
+
+Referenced by enqueue(), and setup().\index{uncore\_\-t@{uncore\_\-t}!core@{core}}
+\index{core@{core}!uncore_t@{uncore\_\-t}}
+\subsubsection[{core}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf core\_\-t}$\ast$ {\bf uncore\_\-t::core}[4]\hspace{0.3cm}{\tt  [read]}}\label{classuncore__t_0ec1c954e2de8eb1cded0fb69d9eb14b}
+
+
+
+
+Definition at line 120 of file zesto-uncore.h.
+
+Referenced by LLC\_\-reg\_\-stats(), and sim\_\-post\_\-init().\index{uncore\_\-t@{uncore\_\-t}!cpu\_\-ratio@{cpu\_\-ratio}}
+\index{cpu\_\-ratio@{cpu\_\-ratio}!uncore_t@{uncore\_\-t}}
+\subsubsection[{cpu\_\-ratio}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf uncore\_\-t::cpu\_\-ratio}}\label{classuncore__t_fdfa75dee415da14c2a719387d5fe80d}
+
+
+
+
+Definition at line 117 of file zesto-uncore.h.\index{uncore\_\-t@{uncore\_\-t}!cpu\_\-speed@{cpu\_\-speed}}
+\index{cpu\_\-speed@{cpu\_\-speed}!uncore_t@{uncore\_\-t}}
+\subsubsection[{cpu\_\-speed}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf uncore\_\-t::cpu\_\-speed}}\label{classuncore__t_91be2d2d96126b191389feff195eaffd}
+
+
+
+
+Definition at line 116 of file zesto-uncore.h.\index{uncore\_\-t@{uncore\_\-t}!creq@{creq}}
+\index{creq@{creq}!uncore_t@{uncore\_\-t}}
+\subsubsection[{creq}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf coherence\_\-req}$\ast$ {\bf uncore\_\-t::creq}\hspace{0.3cm}{\tt  [read]}}\label{classuncore__t_b976d615919b3aee05d5ea9d59f49be5}
+
+
+
+
+Definition at line 136 of file zesto-uncore.h.\index{uncore\_\-t@{uncore\_\-t}!creq\_\-head@{creq\_\-head}}
+\index{creq\_\-head@{creq\_\-head}!uncore_t@{uncore\_\-t}}
+\subsubsection[{creq\_\-head}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf uncore\_\-t::creq\_\-head}}\label{classuncore__t_078f0a855190f2a564b7145bfa075b26}
+
+
+
+
+Definition at line 134 of file zesto-uncore.h.\index{uncore\_\-t@{uncore\_\-t}!creq\_\-num@{creq\_\-num}}
+\index{creq\_\-num@{creq\_\-num}!uncore_t@{uncore\_\-t}}
+\subsubsection[{creq\_\-num}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf uncore\_\-t::creq\_\-num}}\label{classuncore__t_470ba8634660b9eecb56d6b3883e6134}
+
+
+
+
+Definition at line 133 of file zesto-uncore.h.\index{uncore\_\-t@{uncore\_\-t}!creq\_\-size@{creq\_\-size}}
+\index{creq\_\-size@{creq\_\-size}!uncore_t@{uncore\_\-t}}
+\subsubsection[{creq\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf uncore\_\-t::creq\_\-size}}\label{classuncore__t_9c25dcffe2ae12dc3a822c8d153c816d}
+
+
+
+
+Definition at line 132 of file zesto-uncore.h.\index{uncore\_\-t@{uncore\_\-t}!creq\_\-tail@{creq\_\-tail}}
+\index{creq\_\-tail@{creq\_\-tail}!uncore_t@{uncore\_\-t}}
+\subsubsection[{creq\_\-tail}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf uncore\_\-t::creq\_\-tail}}\label{classuncore__t_24064cdcd6aaa57e0f5bf42570766170}
+
+
+
+
+Definition at line 135 of file zesto-uncore.h.\index{uncore\_\-t@{uncore\_\-t}!id@{id}}
+\index{id@{id}!uncore_t@{uncore\_\-t}}
+\subsubsection[{id}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf uncore\_\-t::id}}\label{classuncore__t_950a8e48fe5e72b7f30b312368576ccd}
+
+
+
+
+Definition at line 124 of file zesto-uncore.h.\index{uncore\_\-t@{uncore\_\-t}!last\_\-vc@{last\_\-vc}}
+\index{last\_\-vc@{last\_\-vc}!uncore_t@{uncore\_\-t}}
+\subsubsection[{last\_\-vc}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf uncore\_\-t::last\_\-vc}\hspace{0.3cm}{\tt  [protected]}}\label{classuncore__t_b3997ce173da072910ddbdf560db7983}
+
+
+
+
+Definition at line 97 of file zesto-uncore.h.
+
+Referenced by enqueuable().\index{uncore\_\-t@{uncore\_\-t}!lastSentTime@{lastSentTime}}
+\index{lastSentTime@{lastSentTime}!uncore_t@{uncore\_\-t}}
+\subsubsection[{lastSentTime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ullint} {\bf uncore\_\-t::lastSentTime}}\label{classuncore__t_074d3bca3147b924aad66f4bbbff75cf}
+
+
+
+
+Definition at line 162 of file zesto-uncore.h.
+
+Referenced by uncore\_\-t().\index{uncore\_\-t@{uncore\_\-t}!LLC@{LLC}}
+\index{LLC@{LLC}!uncore_t@{uncore\_\-t}}
+\subsubsection[{LLC}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf cache\_\-t}$\ast$ {\bf uncore\_\-t::LLC}\hspace{0.3cm}{\tt  [read]}}\label{classuncore__t_5395b18a5afbfdfcf7d2c331000781b8}
+
+
+
+
+Definition at line 128 of file zesto-uncore.h.
+
+Referenced by cache\_\-process\_\-llc(), core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t(), core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t(), core\_\-fetch\_\-DPM\_\-t::core\_\-fetch\_\-DPM\_\-t(), core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t(), handle\_\-new\_\-packet\_\-event(), prefetch\_\-LLC(), sim\_\-fastfwd(), step\_\-LLC\_\-PF\_\-controller(), uncore\_\-reg\_\-stats(), and uncore\_\-t().\index{uncore\_\-t@{uncore\_\-t}!LLC\_\-bus@{LLC\_\-bus}}
+\index{LLC\_\-bus@{LLC\_\-bus}!uncore_t@{uncore\_\-t}}
+\subsubsection[{LLC\_\-bus}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf bus\_\-t}$\ast$ {\bf uncore\_\-t::LLC\_\-bus}\hspace{0.3cm}{\tt  [read]}}\label{classuncore__t_d6b074e9f80776c006cf1d399219d111}
+
+
+
+
+Definition at line 127 of file zesto-uncore.h.
+
+Referenced by core\_\-exec\_\-DPM\_\-t::core\_\-exec\_\-DPM\_\-t(), core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t(), core\_\-fetch\_\-DPM\_\-t::core\_\-fetch\_\-DPM\_\-t(), core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t(), uncore\_\-reg\_\-stats(), and uncore\_\-t().\index{uncore\_\-t@{uncore\_\-t}!LLC\_\-cycle\_\-mask@{LLC\_\-cycle\_\-mask}}
+\index{LLC\_\-cycle\_\-mask@{LLC\_\-cycle\_\-mask}!uncore_t@{uncore\_\-t}}
+\subsubsection[{LLC\_\-cycle\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} {\bf uncore\_\-t::LLC\_\-cycle\_\-mask}}\label{classuncore__t_88d1cbf58ad374e4a94e6989541a7fc8}
+
+
+
+
+Definition at line 129 of file zesto-uncore.h.
+
+Referenced by uncore\_\-t().\index{uncore\_\-t@{uncore\_\-t}!log\_\-trace@{log\_\-trace}}
+\index{log\_\-trace@{log\_\-trace}!uncore_t@{uncore\_\-t}}
+\subsubsection[{log\_\-trace}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf uncore\_\-t::log\_\-trace}}\label{classuncore__t_e029dbd483564fa07f30996f3e2d84ab}
+
+
+
+
+Definition at line 168 of file zesto-uncore.h.
+
+Referenced by enqueue(), core\_\-oracle\_\-t::exec(), and setup().\index{uncore\_\-t@{uncore\_\-t}!mc\_\-node\_\-ip@{mc\_\-node\_\-ip}}
+\index{mc\_\-node\_\-ip@{mc\_\-node\_\-ip}!uncore_t@{uncore\_\-t}}
+\subsubsection[{mc\_\-node\_\-ip}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$unsigned int$>$ {\bf uncore\_\-t::mc\_\-node\_\-ip}}\label{classuncore__t_386e290abd279105b0fea6367b726a0c}
+
+
+
+
+Definition at line 163 of file zesto-uncore.h.
+
+Referenced by enqueue().\index{uncore\_\-t@{uncore\_\-t}!num\_\-cores@{num\_\-cores}}
+\index{num\_\-cores@{num\_\-cores}!uncore_t@{uncore\_\-t}}
+\subsubsection[{num\_\-cores}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf uncore\_\-t::num\_\-cores}}\label{classuncore__t_fad8caae4b03cdecd00f6b37a6bcc246}
+
+
+
+
+Definition at line 114 of file zesto-uncore.h.
+
+Referenced by LLC\_\-reg\_\-stats(), and uncore\_\-t().\index{uncore\_\-t@{uncore\_\-t}!ready@{ready}}
+\index{ready@{ready}!uncore_t@{uncore\_\-t}}
+\subsubsection[{ready}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$bool$>$ {\bf uncore\_\-t::ready}}\label{classuncore__t_104d2735dfb880e1b90c820babfe4460}
+
+
+
+
+Definition at line 158 of file zesto-uncore.h.
+
+Referenced by enqueuable(), enqueue(), handle\_\-ready\_\-event(), toString(), and uncore\_\-t().\index{uncore\_\-t@{uncore\_\-t}!sending@{sending}}
+\index{sending@{sending}!uncore_t@{uncore\_\-t}}
+\subsubsection[{sending}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf uncore\_\-t::sending}}\label{classuncore__t_dcad0bbfe2a820d413b7c348fb2463f2}
+
+
+
+
+Definition at line 159 of file zesto-uncore.h.
+
+Referenced by enqueuable().\index{uncore\_\-t@{uncore\_\-t}!sending\_\-vc@{sending\_\-vc}}
+\index{sending\_\-vc@{sending\_\-vc}!uncore_t@{uncore\_\-t}}
+\subsubsection[{sending\_\-vc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf uncore\_\-t::sending\_\-vc}}\label{classuncore__t_1d048939c50035784921227918a7b207}
+
+
+
+
+Definition at line 161 of file zesto-uncore.h.
+
+Referenced by enqueuable(), and enqueue().\index{uncore\_\-t@{uncore\_\-t}!stat@{stat}}
+\index{stat@{stat}!uncore_t@{uncore\_\-t}}
+\subsubsection[{stat}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf uncore\_\-t::uncore\_\-stat\_\-t} {\bf uncore\_\-t::stat}}\label{classuncore__t_75b99a57e34af9daf8866b931e268cea}
+
+
+
+
+Referenced by enqueue(), handle\_\-new\_\-packet\_\-event(), uncore\_\-reg\_\-stats(), and uncore\_\-t().\index{uncore\_\-t@{uncore\_\-t}!tile\_\-count@{tile\_\-count}}
+\index{tile\_\-count@{tile\_\-count}!uncore_t@{uncore\_\-t}}
+\subsubsection[{tile\_\-count}]{\setlength{\rightskip}{0pt plus 5cm}uint32\_\-t {\bf uncore\_\-t::tile\_\-count}}\label{classuncore__t_f91b2bab639d942ba013bb4d082f83a8}
+
+
+
+
+Definition at line 113 of file zesto-uncore.h.\index{uncore\_\-t@{uncore\_\-t}!virtual\_\-channels@{virtual\_\-channels}}
+\index{virtual\_\-channels@{virtual\_\-channels}!uncore_t@{uncore\_\-t}}
+\subsubsection[{virtual\_\-channels}]{\setlength{\rightskip}{0pt plus 5cm}uint32\_\-t {\bf uncore\_\-t::virtual\_\-channels}}\label{classuncore__t_978066795ee5466bd5b4d820ddf7bd44}
+
+
+
+
+Definition at line 112 of file zesto-uncore.h.
+
+Referenced by uncore\_\-t().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf zesto-uncore.h}\item 
+{\bf zesto-uncore.cpp}\end{CompactItemize}

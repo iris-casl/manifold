@@ -1,0 +1,528 @@
+\section{Mop\_\-t Struct Reference}
+\label{structMop__t}\index{Mop\_\-t@{Mop\_\-t}}
+{\tt \#include $<$zesto-structs.h$>$}
+
+Collaboration diagram for Mop\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{structMop__t__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+struct {\bf core\_\-t} $\ast$ {\bf core}
+\item 
+int {\bf valid}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>{\bf md\_addr\_t} {\bf PC}\\
+\>{\bf md\_addr\_t} {\bf pred\_NPC}\\
+\>{\bf md\_inst\_t} {\bf inst}\\
+\>bool {\bf first\_byte\_requested}\\
+\>bool {\bf last\_byte\_requested}\\
+\>{\bf seq\_t} {\bf jeclear\_action\_id}\\
+\>bool {\bf branch\_mispred}\\
+\>void $\ast$ {\bf bpred\_update}\\
+\} {\bf fetch}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>enum {\bf md\_opcode} {\bf op}\\
+\>unsigned int {\bf opflags}\\
+\>int {\bf flow\_length}\\
+\>int {\bf last\_uop\_index}\\
+\>int {\bf rep\_seq}\\
+\>bool {\bf first\_rep}\\
+\>{\bf md\_addr\_t} {\bf targetPC}\\
+\>bool {\bf is\_trap}\\
+\>bool {\bf is\_ctrl}\\
+\>int {\bf last\_stage\_index}\\
+\>enum {\bf fpstack\_ops\_t} {\bf fpstack\_op}\\
+\} {\bf decode}\\
+
+\end{tabbing}\item 
+struct {\bf uop\_\-t} $\ast$ {\bf uop}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>int {\bf complete\_index}\\
+\>int {\bf commit\_index}\\
+\>bool {\bf jeclear\_in\_flight}\\
+\} {\bf commit}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>{\bf md\_addr\_t} {\bf NextPC}\\
+\>{\bf seq\_t} {\bf seq}\\
+\>bool {\bf zero\_rep}\\
+\>bool {\bf spec\_mode}\\
+\>bool {\bf recover\_inst}\\
+\} {\bf oracle}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>{\bf tick\_t} {\bf when\_fetch\_started}\\
+\>{\bf tick\_t} {\bf when\_fetched}\\
+\>{\bf tick\_t} {\bf when\_MS\_started}\\
+\>{\bf tick\_t} {\bf when\_decode\_started}\\
+\>{\bf tick\_t} {\bf when\_decode\_finished}\\
+\>{\bf tick\_t} {\bf when\_commit\_started}\\
+\>{\bf tick\_t} {\bf when\_commit\_finished}\\
+\} {\bf timing}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>int {\bf num\_uops}\\
+\>int {\bf num\_eff\_uops}\\
+\>int {\bf num\_refs}\\
+\>int {\bf num\_loads}\\
+\>int {\bf num\_branches}\\
+\} {\bf stat}\\
+
+\end{tabbing}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 239 of file zesto-structs.h.
+
+\subsection{Member Data Documentation}
+\index{Mop\_\-t@{Mop\_\-t}!bpred\_\-update@{bpred\_\-update}}
+\index{bpred\_\-update@{bpred\_\-update}!Mop_t@{Mop\_\-t}}
+\subsubsection[{bpred\_\-update}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ {\bf Mop\_\-t::bpred\_\-update}}\label{structMop__t_f33535affa9efa0509db7e31a70bea08}
+
+
+
+
+Definition at line 262 of file zesto-structs.h.
+
+Referenced by core\_\-decode\_\-STM\_\-t::check\_\-target(), core\_\-decode\_\-DPM\_\-t::check\_\-target(), core\_\-oracle\_\-t::complete\_\-flush(), core\_\-oracle\_\-t::pipe\_\-recover(), core\_\-oracle\_\-t::recover(), sim\_\-fastfwd(), core\_\-fetch\_\-STM\_\-t::step(), core\_\-fetch\_\-DPM\_\-t::step(), core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!branch\_\-mispred@{branch\_\-mispred}}
+\index{branch\_\-mispred@{branch\_\-mispred}!Mop_t@{Mop\_\-t}}
+\subsubsection[{branch\_\-mispred}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Mop\_\-t::branch\_\-mispred}}\label{structMop__t_b816a0b34ea5ca8a061c02c6946fef3e}
+
+
+
+
+Definition at line 258 of file zesto-structs.h.
+
+Referenced by core\_\-exec\_\-DPM\_\-t::ALU\_\-exec(), core\_\-exec\_\-DPM\_\-t::LDQ\_\-schedule(), core\_\-exec\_\-DPM\_\-t::LDST\_\-exec(), core\_\-exec\_\-DPM\_\-t::load\_\-writeback(), core\_\-oracle\_\-t::recover(), and core\_\-fetch\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!commit@{commit}}
+\index{commit@{commit}!Mop_t@{Mop\_\-t}}
+\subsubsection[{commit}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \}   {\bf Mop\_\-t::commit}}\label{structMop__t_77cff2eda77d17e84d903d3dedd6d0af}
+
+
+
+
+Referenced by zesto\_\-component::downtick\_\-handler(), core\_\-fetch\_\-DPM\_\-t::step(), core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!commit\_\-index@{commit\_\-index}}
+\index{commit\_\-index@{commit\_\-index}!Mop_t@{Mop\_\-t}}
+\subsubsection[{commit\_\-index}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Mop\_\-t::commit\_\-index}}\label{structMop__t_2e86bc0a7037dfc0948a3dc895f02735}
+
+
+
+
+Definition at line 289 of file zesto-structs.h.
+
+Referenced by core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!complete\_\-index@{complete\_\-index}}
+\index{complete\_\-index@{complete\_\-index}!Mop_t@{Mop\_\-t}}
+\subsubsection[{complete\_\-index}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Mop\_\-t::complete\_\-index}}\label{structMop__t_bf12e6ea4212ed366a436c76d7b72fad}
+
+
+
+
+Definition at line 288 of file zesto-structs.h.
+
+Referenced by core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!core@{core}}
+\index{core@{core}!Mop_t@{Mop\_\-t}}
+\subsubsection[{core}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf core\_\-t}$\ast$ {\bf Mop\_\-t::core}\hspace{0.3cm}{\tt  [read]}}\label{structMop__t_2ab1350e46f43d1327adc1457ac77372}
+
+
+
+
+Definition at line 241 of file zesto-structs.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), core\_\-oracle\_\-t::pipe\_\-flush(), and core\_\-fetch\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!decode@{decode}}
+\index{decode@{decode}!Mop_t@{Mop\_\-t}}
+\subsubsection[{decode}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \}   {\bf Mop\_\-t::decode}}\label{structMop__t_28058bfb31dd9263c008929f3c4f7f08}
+
+
+
+
+Referenced by core\_\-decode\_\-STM\_\-t::check\_\-target(), core\_\-decode\_\-DPM\_\-t::check\_\-target(), core\_\-oracle\_\-t::cleanup\_\-aborted\_\-mop(), zesto\_\-component::downtick\_\-handler(), core\_\-oracle\_\-t::exec(), core\_\-fetch\_\-STM\_\-t::Mop\_\-consume(), sim\_\-fastfwd(), core\_\-fetch\_\-STM\_\-t::step(), core\_\-fetch\_\-DPM\_\-t::step(), core\_\-decode\_\-DPM\_\-t::step(), core\_\-commit\_\-STM\_\-t::step(), core\_\-commit\_\-DPM\_\-t::step(), core\_\-alloc\_\-STM\_\-t::step(), core\_\-alloc\_\-DPM\_\-t::step(), core\_\-oracle\_\-t::undo(), core\_\-decode\_\-STM\_\-t::uop\_\-consume(), and core\_\-decode\_\-STM\_\-t::uop\_\-peek().\index{Mop\_\-t@{Mop\_\-t}!fetch@{fetch}}
+\index{fetch@{fetch}!Mop_t@{Mop\_\-t}}
+\subsubsection[{fetch}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \}   {\bf Mop\_\-t::fetch}}\label{structMop__t_068ff277465b6ed03aad00e96daccc62}
+
+
+
+
+Referenced by core\_\-exec\_\-STM\_\-t::ALU\_\-exec(), core\_\-exec\_\-DPM\_\-t::ALU\_\-exec(), core\_\-exec\_\-DPM\_\-t::check\_\-load\_\-issue\_\-conditions(), core\_\-decode\_\-STM\_\-t::check\_\-target(), core\_\-decode\_\-DPM\_\-t::check\_\-target(), core\_\-oracle\_\-t::complete\_\-flush(), core\_\-oracle\_\-t::exec(), core\_\-exec\_\-STM\_\-t::LDQ\_\-schedule(), core\_\-exec\_\-DPM\_\-t::LDQ\_\-schedule(), core\_\-exec\_\-STM\_\-t::LDST\_\-exec(), core\_\-exec\_\-DPM\_\-t::LDST\_\-exec(), core\_\-exec\_\-STM\_\-t::load\_\-writeback(), core\_\-exec\_\-DPM\_\-t::load\_\-writeback(), core\_\-oracle\_\-t::pipe\_\-flush(), core\_\-oracle\_\-t::pipe\_\-recover(), core\_\-oracle\_\-t::recover(), sim\_\-fastfwd(), core\_\-fetch\_\-STM\_\-t::step(), core\_\-fetch\_\-DPM\_\-t::step(), core\_\-decode\_\-DPM\_\-t::step(), core\_\-commit\_\-STM\_\-t::step(), core\_\-commit\_\-DPM\_\-t::step(), core\_\-exec\_\-STM\_\-t::STQ\_\-deallocate\_\-std(), core\_\-exec\_\-DPM\_\-t::STQ\_\-deallocate\_\-std(), and core\_\-oracle\_\-t::undo().\index{Mop\_\-t@{Mop\_\-t}!first\_\-byte\_\-requested@{first\_\-byte\_\-requested}}
+\index{first\_\-byte\_\-requested@{first\_\-byte\_\-requested}!Mop_t@{Mop\_\-t}}
+\subsubsection[{first\_\-byte\_\-requested}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Mop\_\-t::first\_\-byte\_\-requested}}\label{structMop__t_6df8699de07dace3f1f67a9026536acb}
+
+
+
+
+Definition at line 254 of file zesto-structs.h.
+
+Referenced by core\_\-fetch\_\-STM\_\-t::step(), and core\_\-fetch\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!first\_\-rep@{first\_\-rep}}
+\index{first\_\-rep@{first\_\-rep}!Mop_t@{Mop\_\-t}}
+\subsubsection[{first\_\-rep}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Mop\_\-t::first\_\-rep}}\label{structMop__t_63b2a1a4d6f27a1bd3b6c3ca831f16b2}
+
+
+
+
+Definition at line 272 of file zesto-structs.h.
+
+Referenced by core\_\-oracle\_\-t::exec().\index{Mop\_\-t@{Mop\_\-t}!flow\_\-length@{flow\_\-length}}
+\index{flow\_\-length@{flow\_\-length}!Mop_t@{Mop\_\-t}}
+\subsubsection[{flow\_\-length}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Mop\_\-t::flow\_\-length}}\label{structMop__t_7718f3555efe88921d86e395fc3fbc74}
+
+
+
+
+Definition at line 269 of file zesto-structs.h.
+
+Referenced by core\_\-oracle\_\-t::cleanup\_\-aborted\_\-mop(), core\_\-oracle\_\-t::exec(), core\_\-decode\_\-DPM\_\-t::step(), core\_\-commit\_\-STM\_\-t::step(), core\_\-commit\_\-DPM\_\-t::step(), core\_\-oracle\_\-t::undo(), and core\_\-decode\_\-STM\_\-t::uop\_\-consume().\index{Mop\_\-t@{Mop\_\-t}!fpstack\_\-op@{fpstack\_\-op}}
+\index{fpstack\_\-op@{fpstack\_\-op}!Mop_t@{Mop\_\-t}}
+\subsubsection[{fpstack\_\-op}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf fpstack\_\-ops\_\-t} {\bf Mop\_\-t::fpstack\_\-op}}\label{structMop__t_7fb3398e3b0132467e40c95cb551db96}
+
+
+
+
+Definition at line 281 of file zesto-structs.h.
+
+Referenced by core\_\-oracle\_\-t::exec().\index{Mop\_\-t@{Mop\_\-t}!inst@{inst}}
+\index{inst@{inst}!Mop_t@{Mop\_\-t}}
+\subsubsection[{inst}]{\setlength{\rightskip}{0pt plus 5cm}{\bf md\_\-inst\_\-t} {\bf Mop\_\-t::inst}}\label{structMop__t_268a8bdf9dc08de70db61fbbdd52480d}
+
+
+
+
+Definition at line 253 of file zesto-structs.h.
+
+Referenced by core\_\-decode\_\-STM\_\-t::check\_\-target(), core\_\-decode\_\-DPM\_\-t::check\_\-target(), core\_\-oracle\_\-t::exec(), core\_\-oracle\_\-t::pipe\_\-recover(), sim\_\-fastfwd(), core\_\-fetch\_\-STM\_\-t::step(), core\_\-fetch\_\-DPM\_\-t::step(), core\_\-decode\_\-DPM\_\-t::step(), core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!is\_\-ctrl@{is\_\-ctrl}}
+\index{is\_\-ctrl@{is\_\-ctrl}!Mop_t@{Mop\_\-t}}
+\subsubsection[{is\_\-ctrl}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Mop\_\-t::is\_\-ctrl}}\label{structMop__t_64bb9f9c135012445c43e8823e98bb3d}
+
+
+
+
+Definition at line 277 of file zesto-structs.h.
+
+Referenced by core\_\-decode\_\-STM\_\-t::check\_\-target(), core\_\-decode\_\-DPM\_\-t::check\_\-target(), core\_\-oracle\_\-t::exec(), sim\_\-fastfwd(), core\_\-fetch\_\-STM\_\-t::step(), core\_\-fetch\_\-DPM\_\-t::step(), core\_\-decode\_\-DPM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!is\_\-trap@{is\_\-trap}}
+\index{is\_\-trap@{is\_\-trap}!Mop_t@{Mop\_\-t}}
+\subsubsection[{is\_\-trap}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Mop\_\-t::is\_\-trap}}\label{structMop__t_2ac0786c8628d0e7042cdc07a8d6fcdd}
+
+
+
+
+Definition at line 276 of file zesto-structs.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), sim\_\-fastfwd(), core\_\-fetch\_\-DPM\_\-t::step(), core\_\-commit\_\-DPM\_\-t::step(), core\_\-alloc\_\-STM\_\-t::step(), and core\_\-alloc\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!jeclear\_\-action\_\-id@{jeclear\_\-action\_\-id}}
+\index{jeclear\_\-action\_\-id@{jeclear\_\-action\_\-id}!Mop_t@{Mop\_\-t}}
+\subsubsection[{jeclear\_\-action\_\-id}]{\setlength{\rightskip}{0pt plus 5cm}{\bf seq\_\-t} {\bf Mop\_\-t::jeclear\_\-action\_\-id}}\label{structMop__t_5a1a1b0c85b6d77e4817a5fb68774b09}
+
+
+
+
+Definition at line 257 of file zesto-structs.h.
+
+Referenced by core\_\-fetch\_\-DPM\_\-t::step(), and core\_\-oracle\_\-t::undo().\index{Mop\_\-t@{Mop\_\-t}!jeclear\_\-in\_\-flight@{jeclear\_\-in\_\-flight}}
+\index{jeclear\_\-in\_\-flight@{jeclear\_\-in\_\-flight}!Mop_t@{Mop\_\-t}}
+\subsubsection[{jeclear\_\-in\_\-flight}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Mop\_\-t::jeclear\_\-in\_\-flight}}\label{structMop__t_e6995a52499b926cb6b9f929208a5fff}
+
+
+
+
+Definition at line 290 of file zesto-structs.h.
+
+Referenced by core\_\-fetch\_\-DPM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!last\_\-byte\_\-requested@{last\_\-byte\_\-requested}}
+\index{last\_\-byte\_\-requested@{last\_\-byte\_\-requested}!Mop_t@{Mop\_\-t}}
+\subsubsection[{last\_\-byte\_\-requested}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Mop\_\-t::last\_\-byte\_\-requested}}\label{structMop__t_ea69aabb30124f2a67afc5c5aa042faf}
+
+
+
+
+Definition at line 255 of file zesto-structs.h.
+
+Referenced by core\_\-fetch\_\-STM\_\-t::step(), and core\_\-fetch\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!last\_\-stage\_\-index@{last\_\-stage\_\-index}}
+\index{last\_\-stage\_\-index@{last\_\-stage\_\-index}!Mop_t@{Mop\_\-t}}
+\subsubsection[{last\_\-stage\_\-index}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Mop\_\-t::last\_\-stage\_\-index}}\label{structMop__t_aa7435f0fa93379e266fb2695a69e1f3}
+
+
+
+
+Definition at line 279 of file zesto-structs.h.
+
+Referenced by core\_\-decode\_\-DPM\_\-t::step(), core\_\-decode\_\-STM\_\-t::uop\_\-consume(), and core\_\-decode\_\-STM\_\-t::uop\_\-peek().\index{Mop\_\-t@{Mop\_\-t}!last\_\-uop\_\-index@{last\_\-uop\_\-index}}
+\index{last\_\-uop\_\-index@{last\_\-uop\_\-index}!Mop_t@{Mop\_\-t}}
+\subsubsection[{last\_\-uop\_\-index}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Mop\_\-t::last\_\-uop\_\-index}}\label{structMop__t_82638df3748d18d1c8c2e3d58d077a49}
+
+
+
+
+Definition at line 270 of file zesto-structs.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), core\_\-fetch\_\-STM\_\-t::Mop\_\-consume(), core\_\-fetch\_\-STM\_\-t::step(), core\_\-fetch\_\-DPM\_\-t::step(), core\_\-decode\_\-DPM\_\-t::step(), core\_\-commit\_\-STM\_\-t::step(), core\_\-commit\_\-DPM\_\-t::step(), and core\_\-decode\_\-STM\_\-t::uop\_\-consume().\index{Mop\_\-t@{Mop\_\-t}!NextPC@{NextPC}}
+\index{NextPC@{NextPC}!Mop_t@{Mop\_\-t}}
+\subsubsection[{NextPC}]{\setlength{\rightskip}{0pt plus 5cm}{\bf md\_\-addr\_\-t} {\bf Mop\_\-t::NextPC}}\label{structMop__t_56859cbd74e3f756c4b2ef9f573fe642}
+
+
+
+
+Definition at line 294 of file zesto-structs.h.
+
+Referenced by core\_\-exec\_\-STM\_\-t::ALU\_\-exec(), core\_\-exec\_\-DPM\_\-t::ALU\_\-exec(), core\_\-oracle\_\-t::exec(), core\_\-exec\_\-DPM\_\-t::LDQ\_\-schedule(), core\_\-exec\_\-STM\_\-t::LDST\_\-exec(), core\_\-exec\_\-DPM\_\-t::LDST\_\-exec(), core\_\-exec\_\-STM\_\-t::load\_\-writeback(), core\_\-exec\_\-DPM\_\-t::load\_\-writeback(), core\_\-oracle\_\-t::pipe\_\-flush(), core\_\-oracle\_\-t::recover(), sim\_\-fastfwd(), core\_\-fetch\_\-STM\_\-t::step(), core\_\-fetch\_\-DPM\_\-t::step(), core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!num\_\-branches@{num\_\-branches}}
+\index{num\_\-branches@{num\_\-branches}!Mop_t@{Mop\_\-t}}
+\subsubsection[{num\_\-branches}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Mop\_\-t::num\_\-branches}}\label{structMop__t_3112da7835a7592682fa3c358e9d3cad}
+
+
+
+
+Definition at line 316 of file zesto-structs.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), and core\_\-commit\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!num\_\-eff\_\-uops@{num\_\-eff\_\-uops}}
+\index{num\_\-eff\_\-uops@{num\_\-eff\_\-uops}!Mop_t@{Mop\_\-t}}
+\subsubsection[{num\_\-eff\_\-uops}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Mop\_\-t::num\_\-eff\_\-uops}}\label{structMop__t_e76ae084a61689a2170b98ffd872a6a3}
+
+
+
+
+Definition at line 313 of file zesto-structs.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), core\_\-fetch\_\-DPM\_\-t::Mop\_\-consume(), core\_\-fetch\_\-DPM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!num\_\-loads@{num\_\-loads}}
+\index{num\_\-loads@{num\_\-loads}!Mop_t@{Mop\_\-t}}
+\subsubsection[{num\_\-loads}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Mop\_\-t::num\_\-loads}}\label{structMop__t_52274c64edc3d83425766a0f8cdd71df}
+
+
+
+
+Definition at line 315 of file zesto-structs.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!num\_\-refs@{num\_\-refs}}
+\index{num\_\-refs@{num\_\-refs}!Mop_t@{Mop\_\-t}}
+\subsubsection[{num\_\-refs}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Mop\_\-t::num\_\-refs}}\label{structMop__t_f0c857b3ff34e7bac381f3999036c251}
+
+
+
+
+Definition at line 314 of file zesto-structs.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!num\_\-uops@{num\_\-uops}}
+\index{num\_\-uops@{num\_\-uops}!Mop_t@{Mop\_\-t}}
+\subsubsection[{num\_\-uops}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Mop\_\-t::num\_\-uops}}\label{structMop__t_b63d1f53be60fd17e64b2e6fe22e6f3b}
+
+
+
+
+Definition at line 312 of file zesto-structs.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), core\_\-fetch\_\-STM\_\-t::Mop\_\-consume(), core\_\-fetch\_\-DPM\_\-t::Mop\_\-consume(), core\_\-fetch\_\-DPM\_\-t::step(), core\_\-decode\_\-DPM\_\-t::step(), core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!op@{op}}
+\index{op@{op}!Mop_t@{Mop\_\-t}}
+\subsubsection[{op}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf md\_\-opcode} {\bf Mop\_\-t::op}}\label{structMop__t_59504c7680bff25f84fca7951439626a}
+
+
+
+
+Definition at line 267 of file zesto-structs.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), and sim\_\-fastfwd().\index{Mop\_\-t@{Mop\_\-t}!opflags@{opflags}}
+\index{opflags@{opflags}!Mop_t@{Mop\_\-t}}
+\subsubsection[{opflags}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf Mop\_\-t::opflags}}\label{structMop__t_7301ad4e0c0f5ece738ba62448f7c655}
+
+
+
+
+Definition at line 268 of file zesto-structs.h.
+
+Referenced by core\_\-decode\_\-STM\_\-t::check\_\-target(), core\_\-decode\_\-DPM\_\-t::check\_\-target(), core\_\-oracle\_\-t::exec(), sim\_\-fastfwd(), core\_\-fetch\_\-STM\_\-t::step(), core\_\-fetch\_\-DPM\_\-t::step(), core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!oracle@{oracle}}
+\index{oracle@{oracle}!Mop_t@{Mop\_\-t}}
+\subsubsection[{oracle}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \}   {\bf Mop\_\-t::oracle}}\label{structMop__t_f445a1796fbcfb01bb7094b956b4361a}
+
+
+
+
+Referenced by core\_\-exec\_\-STM\_\-t::ALU\_\-exec(), core\_\-exec\_\-DPM\_\-t::ALU\_\-exec(), core\_\-exec\_\-STM\_\-t::check\_\-load\_\-issue\_\-conditions(), core\_\-oracle\_\-t::commit(), zesto\_\-component::downtick\_\-handler(), core\_\-oracle\_\-t::exec(), core\_\-oracle\_\-t::install\_\-dependencies(), core\_\-fetch\_\-DPM\_\-t::jeclear\_\-enqueue(), core\_\-exec\_\-DPM\_\-t::LDQ\_\-schedule(), core\_\-exec\_\-STM\_\-t::LDST\_\-exec(), core\_\-exec\_\-DPM\_\-t::LDST\_\-exec(), core\_\-exec\_\-STM\_\-t::load\_\-writeback(), core\_\-exec\_\-DPM\_\-t::load\_\-writeback(), core\_\-oracle\_\-t::pipe\_\-flush(), core\_\-oracle\_\-t::recover(), sim\_\-fastfwd(), core\_\-fetch\_\-STM\_\-t::step(), core\_\-fetch\_\-DPM\_\-t::step(), core\_\-commit\_\-STM\_\-t::step(), core\_\-commit\_\-DPM\_\-t::step(), core\_\-oracle\_\-t::undo(), and core\_\-decode\_\-STM\_\-t::uop\_\-peek().\index{Mop\_\-t@{Mop\_\-t}!PC@{PC}}
+\index{PC@{PC}!Mop_t@{Mop\_\-t}}
+\subsubsection[{PC}]{\setlength{\rightskip}{0pt plus 5cm}{\bf md\_\-addr\_\-t} {\bf Mop\_\-t::PC}}\label{structMop__t_5645e3dfe55b1b6b2206ffb38379c44d}
+
+
+
+
+Definition at line 251 of file zesto-structs.h.
+
+Referenced by core\_\-exec\_\-DPM\_\-t::ALU\_\-exec(), core\_\-exec\_\-DPM\_\-t::check\_\-load\_\-issue\_\-conditions(), core\_\-decode\_\-STM\_\-t::check\_\-target(), core\_\-decode\_\-DPM\_\-t::check\_\-target(), core\_\-oracle\_\-t::complete\_\-flush(), core\_\-oracle\_\-t::exec(), core\_\-exec\_\-STM\_\-t::LDQ\_\-schedule(), core\_\-exec\_\-DPM\_\-t::LDQ\_\-schedule(), core\_\-exec\_\-DPM\_\-t::LDST\_\-exec(), core\_\-oracle\_\-t::pipe\_\-recover(), core\_\-oracle\_\-t::recover(), sim\_\-fastfwd(), core\_\-fetch\_\-STM\_\-t::step(), core\_\-fetch\_\-DPM\_\-t::step(), core\_\-commit\_\-STM\_\-t::step(), core\_\-commit\_\-DPM\_\-t::step(), core\_\-exec\_\-STM\_\-t::STQ\_\-deallocate\_\-std(), and core\_\-exec\_\-DPM\_\-t::STQ\_\-deallocate\_\-std().\index{Mop\_\-t@{Mop\_\-t}!pred\_\-NPC@{pred\_\-NPC}}
+\index{pred\_\-NPC@{pred\_\-NPC}!Mop_t@{Mop\_\-t}}
+\subsubsection[{pred\_\-NPC}]{\setlength{\rightskip}{0pt plus 5cm}{\bf md\_\-addr\_\-t} {\bf Mop\_\-t::pred\_\-NPC}}\label{structMop__t_2337789f03bfd40d471eafa6e31b4b45}
+
+
+
+
+Definition at line 252 of file zesto-structs.h.
+
+Referenced by core\_\-exec\_\-STM\_\-t::ALU\_\-exec(), core\_\-exec\_\-DPM\_\-t::ALU\_\-exec(), core\_\-decode\_\-STM\_\-t::check\_\-target(), core\_\-decode\_\-DPM\_\-t::check\_\-target(), core\_\-oracle\_\-t::exec(), core\_\-exec\_\-STM\_\-t::LDST\_\-exec(), core\_\-exec\_\-DPM\_\-t::LDST\_\-exec(), core\_\-exec\_\-STM\_\-t::load\_\-writeback(), core\_\-exec\_\-DPM\_\-t::load\_\-writeback(), core\_\-oracle\_\-t::pipe\_\-flush(), core\_\-fetch\_\-STM\_\-t::step(), and core\_\-fetch\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!recover\_\-inst@{recover\_\-inst}}
+\index{recover\_\-inst@{recover\_\-inst}!Mop_t@{Mop\_\-t}}
+\subsubsection[{recover\_\-inst}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Mop\_\-t::recover\_\-inst}}\label{structMop__t_91414c4b76b4a38c6ee3629b949c01c4}
+
+
+
+
+Definition at line 298 of file zesto-structs.h.
+
+Referenced by core\_\-fetch\_\-STM\_\-t::step(), and core\_\-fetch\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!rep\_\-seq@{rep\_\-seq}}
+\index{rep\_\-seq@{rep\_\-seq}!Mop_t@{Mop\_\-t}}
+\subsubsection[{rep\_\-seq}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Mop\_\-t::rep\_\-seq}}\label{structMop__t_4d78627f97c622df4b1a9ea232bdc5ce}
+
+
+
+
+Definition at line 271 of file zesto-structs.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), and core\_\-oracle\_\-t::undo().\index{Mop\_\-t@{Mop\_\-t}!seq@{seq}}
+\index{seq@{seq}!Mop_t@{Mop\_\-t}}
+\subsubsection[{seq}]{\setlength{\rightskip}{0pt plus 5cm}{\bf seq\_\-t} {\bf Mop\_\-t::seq}}\label{structMop__t_73a37cb3f710fed5c590d5185dd45531}
+
+
+
+
+Definition at line 295 of file zesto-structs.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), core\_\-oracle\_\-t::install\_\-dependencies(), core\_\-fetch\_\-DPM\_\-t::jeclear\_\-enqueue(), and core\_\-decode\_\-STM\_\-t::uop\_\-peek().\index{Mop\_\-t@{Mop\_\-t}!spec\_\-mode@{spec\_\-mode}}
+\index{spec\_\-mode@{spec\_\-mode}!Mop_t@{Mop\_\-t}}
+\subsubsection[{spec\_\-mode}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Mop\_\-t::spec\_\-mode}}\label{structMop__t_92d2861b39c23b47dd58854da3288e81}
+
+
+
+
+Definition at line 297 of file zesto-structs.h.
+
+Referenced by core\_\-exec\_\-STM\_\-t::ALU\_\-exec(), core\_\-exec\_\-DPM\_\-t::ALU\_\-exec(), core\_\-exec\_\-STM\_\-t::check\_\-load\_\-issue\_\-conditions(), core\_\-oracle\_\-t::commit(), core\_\-oracle\_\-t::exec(), core\_\-exec\_\-DPM\_\-t::LDQ\_\-schedule(), core\_\-exec\_\-STM\_\-t::LDST\_\-exec(), core\_\-exec\_\-DPM\_\-t::LDST\_\-exec(), core\_\-exec\_\-STM\_\-t::load\_\-writeback(), core\_\-exec\_\-DPM\_\-t::load\_\-writeback(), core\_\-oracle\_\-t::recover(), core\_\-commit\_\-STM\_\-t::step(), core\_\-commit\_\-DPM\_\-t::step(), and core\_\-oracle\_\-t::undo().\index{Mop\_\-t@{Mop\_\-t}!stat@{stat}}
+\index{stat@{stat}!Mop_t@{Mop\_\-t}}
+\subsubsection[{stat}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \}   {\bf Mop\_\-t::stat}}\label{structMop__t_42838437539e18e14b2049aa3ad512c2}
+
+
+
+
+Referenced by zesto\_\-component::downtick\_\-handler(), core\_\-oracle\_\-t::exec(), core\_\-fetch\_\-STM\_\-t::Mop\_\-consume(), core\_\-fetch\_\-DPM\_\-t::Mop\_\-consume(), core\_\-fetch\_\-DPM\_\-t::step(), core\_\-decode\_\-DPM\_\-t::step(), core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!targetPC@{targetPC}}
+\index{targetPC@{targetPC}!Mop_t@{Mop\_\-t}}
+\subsubsection[{targetPC}]{\setlength{\rightskip}{0pt plus 5cm}{\bf md\_\-addr\_\-t} {\bf Mop\_\-t::targetPC}}\label{structMop__t_f820451bdee352d521eb3bf905c3d4e0}
+
+
+
+
+Definition at line 273 of file zesto-structs.h.
+
+Referenced by core\_\-decode\_\-STM\_\-t::check\_\-target(), core\_\-decode\_\-DPM\_\-t::check\_\-target(), core\_\-oracle\_\-t::exec(), sim\_\-fastfwd(), core\_\-fetch\_\-STM\_\-t::step(), core\_\-fetch\_\-DPM\_\-t::step(), core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!timing@{timing}}
+\index{timing@{timing}!Mop_t@{Mop\_\-t}}
+\subsubsection[{timing}]{\setlength{\rightskip}{0pt plus 5cm}struct \{ ... \}   {\bf Mop\_\-t::timing}}\label{structMop__t_7cbb20c576aa6fff6bfcbd39a074528f}
+
+
+
+
+Referenced by core\_\-oracle\_\-t::exec(), core\_\-fetch\_\-STM\_\-t::Mop\_\-consume(), core\_\-fetch\_\-STM\_\-t::step(), core\_\-fetch\_\-DPM\_\-t::step(), core\_\-decode\_\-DPM\_\-t::step(), core\_\-commit\_\-STM\_\-t::step(), core\_\-commit\_\-DPM\_\-t::step(), and core\_\-decode\_\-STM\_\-t::uop\_\-consume().\index{Mop\_\-t@{Mop\_\-t}!uop@{uop}}
+\index{uop@{uop}!Mop_t@{Mop\_\-t}}
+\subsubsection[{uop}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf uop\_\-t}$\ast$ {\bf Mop\_\-t::uop}\hspace{0.3cm}{\tt  [read]}}\label{structMop__t_b435acfedb392843bc50658c7650cbdd}
+
+
+
+
+Definition at line 285 of file zesto-structs.h.
+
+Referenced by core\_\-oracle\_\-t::cleanup\_\-aborted\_\-mop(), core\_\-oracle\_\-t::exec(), core\_\-fetch\_\-STM\_\-t::Mop\_\-consume(), core\_\-fetch\_\-STM\_\-t::step(), core\_\-fetch\_\-DPM\_\-t::step(), core\_\-decode\_\-DPM\_\-t::step(), core\_\-commit\_\-STM\_\-t::step(), core\_\-commit\_\-DPM\_\-t::step(), core\_\-oracle\_\-t::undo(), core\_\-decode\_\-STM\_\-t::uop\_\-consume(), and core\_\-decode\_\-STM\_\-t::uop\_\-peek().\index{Mop\_\-t@{Mop\_\-t}!valid@{valid}}
+\index{valid@{valid}!Mop_t@{Mop\_\-t}}
+\subsubsection[{valid}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Mop\_\-t::valid}}\label{structMop__t_9de159d013ea3a9cca480a4d459d5eb4}
+
+
+
+
+Definition at line 242 of file zesto-structs.h.
+
+Referenced by core\_\-oracle\_\-t::commit(), core\_\-oracle\_\-t::complete\_\-flush(), core\_\-oracle\_\-t::exec(), and core\_\-oracle\_\-t::recover().\index{Mop\_\-t@{Mop\_\-t}!when\_\-commit\_\-finished@{when\_\-commit\_\-finished}}
+\index{when\_\-commit\_\-finished@{when\_\-commit\_\-finished}!Mop_t@{Mop\_\-t}}
+\subsubsection[{when\_\-commit\_\-finished}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} {\bf Mop\_\-t::when\_\-commit\_\-finished}}\label{structMop__t_e1bbc6ef1aa73472c028b716fc3c5ef8}
+
+
+
+
+Definition at line 308 of file zesto-structs.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!when\_\-commit\_\-started@{when\_\-commit\_\-started}}
+\index{when\_\-commit\_\-started@{when\_\-commit\_\-started}!Mop_t@{Mop\_\-t}}
+\subsubsection[{when\_\-commit\_\-started}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} {\bf Mop\_\-t::when\_\-commit\_\-started}}\label{structMop__t_bb62262ae07e9e18cb4869c709e366ad}
+
+
+
+
+Definition at line 307 of file zesto-structs.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), core\_\-commit\_\-STM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!when\_\-decode\_\-finished@{when\_\-decode\_\-finished}}
+\index{when\_\-decode\_\-finished@{when\_\-decode\_\-finished}!Mop_t@{Mop\_\-t}}
+\subsubsection[{when\_\-decode\_\-finished}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} {\bf Mop\_\-t::when\_\-decode\_\-finished}}\label{structMop__t_d1e4ae6820210aefb1091db30d72f2a8}
+
+
+
+
+Definition at line 306 of file zesto-structs.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), core\_\-decode\_\-DPM\_\-t::step(), core\_\-commit\_\-DPM\_\-t::step(), and core\_\-decode\_\-STM\_\-t::uop\_\-consume().\index{Mop\_\-t@{Mop\_\-t}!when\_\-decode\_\-started@{when\_\-decode\_\-started}}
+\index{when\_\-decode\_\-started@{when\_\-decode\_\-started}!Mop_t@{Mop\_\-t}}
+\subsubsection[{when\_\-decode\_\-started}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} {\bf Mop\_\-t::when\_\-decode\_\-started}}\label{structMop__t_d07da636f69ae00564cc491a2efc2a95}
+
+
+
+
+Definition at line 305 of file zesto-structs.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), core\_\-decode\_\-DPM\_\-t::step(), core\_\-commit\_\-DPM\_\-t::step(), and core\_\-decode\_\-STM\_\-t::uop\_\-consume().\index{Mop\_\-t@{Mop\_\-t}!when\_\-fetch\_\-started@{when\_\-fetch\_\-started}}
+\index{when\_\-fetch\_\-started@{when\_\-fetch\_\-started}!Mop_t@{Mop\_\-t}}
+\subsubsection[{when\_\-fetch\_\-started}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} {\bf Mop\_\-t::when\_\-fetch\_\-started}}\label{structMop__t_074734a2c4989bb09528dc993321a01b}
+
+
+
+
+Definition at line 302 of file zesto-structs.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), core\_\-fetch\_\-STM\_\-t::step(), core\_\-fetch\_\-DPM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!when\_\-fetched@{when\_\-fetched}}
+\index{when\_\-fetched@{when\_\-fetched}!Mop_t@{Mop\_\-t}}
+\subsubsection[{when\_\-fetched}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} {\bf Mop\_\-t::when\_\-fetched}}\label{structMop__t_9e740f401f882c0173adc702cea64834}
+
+
+
+
+Definition at line 303 of file zesto-structs.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), core\_\-fetch\_\-STM\_\-t::Mop\_\-consume(), core\_\-fetch\_\-STM\_\-t::step(), core\_\-fetch\_\-DPM\_\-t::step(), and core\_\-commit\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!when\_\-MS\_\-started@{when\_\-MS\_\-started}}
+\index{when\_\-MS\_\-started@{when\_\-MS\_\-started}!Mop_t@{Mop\_\-t}}
+\subsubsection[{when\_\-MS\_\-started}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} {\bf Mop\_\-t::when\_\-MS\_\-started}}\label{structMop__t_7c4a056d45928f498938f5a5b96bc3f0}
+
+
+
+
+Definition at line 304 of file zesto-structs.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), and core\_\-decode\_\-DPM\_\-t::step().\index{Mop\_\-t@{Mop\_\-t}!zero\_\-rep@{zero\_\-rep}}
+\index{zero\_\-rep@{zero\_\-rep}!Mop_t@{Mop\_\-t}}
+\subsubsection[{zero\_\-rep}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Mop\_\-t::zero\_\-rep}}\label{structMop__t_4b7707567ffe0d3d712027c190dde6b1}
+
+
+
+
+Definition at line 296 of file zesto-structs.h.
+
+Referenced by core\_\-oracle\_\-t::exec(), and core\_\-commit\_\-DPM\_\-t::step().
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf zesto-structs.h}\end{CompactItemize}

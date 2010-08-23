@@ -1,0 +1,186 @@
+\section{bpred\_\-bimode\_\-t Class Reference}
+\label{classbpred__bimode__t}\index{bpred\_\-bimode\_\-t@{bpred\_\-bimode\_\-t}}
+Inheritance diagram for bpred\_\-bimode\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classbpred__bimode__t__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for bpred\_\-bimode\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classbpred__bimode__t__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class {\bf bpred\_\-bimode\_\-sc\_\-t}
+\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf bpred\_\-bimode\_\-t} (char $\ast$const arg\_\-name, const int arg\_\-bht\_\-size, const int arg\_\-pht\_\-size, const int arg\_\-history\_\-length, const int arg\_\-Xor)
+\item 
+{\bf $\sim$bpred\_\-bimode\_\-t} ()
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+int {\bf bht\_\-size}
+\item 
+int {\bf bht\_\-mask}
+\item 
+int $\ast$ {\bf bht}
+\item 
+int {\bf pht\_\-size}
+\item 
+int {\bf pht\_\-mask}
+\item 
+{\bf my2bc\_\-t} $\ast$$\ast$ {\bf pht}
+\item 
+{\bf my2bc\_\-t} $\ast$ {\bf pht\_\-meta}
+\item 
+int {\bf history\_\-length}
+\item 
+int {\bf history\_\-mask}
+\item 
+int {\bf Xor}
+\item 
+int {\bf xorshift}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 24 of file bpred-bimode.cpp.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{bpred\_\-bimode\_\-t@{bpred\_\-bimode\_\-t}!bpred\_\-bimode\_\-t@{bpred\_\-bimode\_\-t}}
+\index{bpred\_\-bimode\_\-t@{bpred\_\-bimode\_\-t}!bpred_bimode_t@{bpred\_\-bimode\_\-t}}
+\subsubsection[{bpred\_\-bimode\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}bpred\_\-bimode\_\-t::bpred\_\-bimode\_\-t (char $\ast$const  {\em arg\_\-name}, \/  const int {\em arg\_\-bht\_\-size}, \/  const int {\em arg\_\-pht\_\-size}, \/  const int {\em arg\_\-history\_\-length}, \/  const int {\em arg\_\-Xor})\hspace{0.3cm}{\tt  [inline]}}\label{classbpred__bimode__t_d751a5717eadeb48417f59edce3e70a7}
+
+
+
+
+Definition at line 54 of file bpred-bimode.cpp.
+
+References bht, bht\_\-mask, bht\_\-size, bpred\_\-dir\_\-t::bits, CHECK\_\-BOOL, CHECK\_\-NNEG, CHECK\_\-PPOW2, COMPONENT\_\-NAME, fatal(), history\_\-length, history\_\-mask, bpred\_\-dir\_\-t::init(), log\_\-base2(), MY2BC\_\-WEAKLY\_\-NT, MY2BC\_\-WEAKLY\_\-TAKEN, bpred\_\-dir\_\-t::name, pht, pht\_\-mask, pht\_\-meta, pht\_\-size, bpred\_\-dir\_\-t::type, Xor, and xorshift.\index{bpred\_\-bimode\_\-t@{bpred\_\-bimode\_\-t}!$\sim$bpred\_\-bimode\_\-t@{$\sim$bpred\_\-bimode\_\-t}}
+\index{$\sim$bpred\_\-bimode\_\-t@{$\sim$bpred\_\-bimode\_\-t}!bpred_bimode_t@{bpred\_\-bimode\_\-t}}
+\subsubsection[{$\sim$bpred\_\-bimode\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}bpred\_\-bimode\_\-t::$\sim$bpred\_\-bimode\_\-t ()\hspace{0.3cm}{\tt  [inline]}}\label{classbpred__bimode__t_88da6f55a0fc5549a047ca0c85b042e5}
+
+
+
+
+Definition at line 112 of file bpred-bimode.cpp.
+
+References bht, pht, and pht\_\-meta.
+
+\subsection{Member Data Documentation}
+\index{bpred\_\-bimode\_\-t@{bpred\_\-bimode\_\-t}!bht@{bht}}
+\index{bht@{bht}!bpred_bimode_t@{bpred\_\-bimode\_\-t}}
+\subsubsection[{bht}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ {\bf bpred\_\-bimode\_\-t::bht}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__bimode__t_0f36b672003c41550ee000c29992ca49}
+
+
+
+
+Definition at line 41 of file bpred-bimode.cpp.
+
+Referenced by bpred\_\-bimode\_\-t(), and $\sim$bpred\_\-bimode\_\-t().\index{bpred\_\-bimode\_\-t@{bpred\_\-bimode\_\-t}!bht\_\-mask@{bht\_\-mask}}
+\index{bht\_\-mask@{bht\_\-mask}!bpred_bimode_t@{bpred\_\-bimode\_\-t}}
+\subsubsection[{bht\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-bimode\_\-t::bht\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__bimode__t_993842298bb7fe0d02e12a65996c6b72}
+
+
+
+
+Definition at line 40 of file bpred-bimode.cpp.
+
+Referenced by bpred\_\-bimode\_\-t().\index{bpred\_\-bimode\_\-t@{bpred\_\-bimode\_\-t}!bht\_\-size@{bht\_\-size}}
+\index{bht\_\-size@{bht\_\-size}!bpred_bimode_t@{bpred\_\-bimode\_\-t}}
+\subsubsection[{bht\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-bimode\_\-t::bht\_\-size}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__bimode__t_4b1410098b8967d9306e3c65c7fce07a}
+
+
+
+
+Definition at line 39 of file bpred-bimode.cpp.
+
+Referenced by bpred\_\-bimode\_\-t().\index{bpred\_\-bimode\_\-t@{bpred\_\-bimode\_\-t}!history\_\-length@{history\_\-length}}
+\index{history\_\-length@{history\_\-length}!bpred_bimode_t@{bpred\_\-bimode\_\-t}}
+\subsubsection[{history\_\-length}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-bimode\_\-t::history\_\-length}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__bimode__t_ac38e5be0149677c934a811d5653658b}
+
+
+
+
+Definition at line 46 of file bpred-bimode.cpp.
+
+Referenced by bpred\_\-bimode\_\-t().\index{bpred\_\-bimode\_\-t@{bpred\_\-bimode\_\-t}!history\_\-mask@{history\_\-mask}}
+\index{history\_\-mask@{history\_\-mask}!bpred_bimode_t@{bpred\_\-bimode\_\-t}}
+\subsubsection[{history\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-bimode\_\-t::history\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__bimode__t_91f293cee81a59af2ec35ad346daa924}
+
+
+
+
+Definition at line 47 of file bpred-bimode.cpp.
+
+Referenced by bpred\_\-bimode\_\-t().\index{bpred\_\-bimode\_\-t@{bpred\_\-bimode\_\-t}!pht@{pht}}
+\index{pht@{pht}!bpred_bimode_t@{bpred\_\-bimode\_\-t}}
+\subsubsection[{pht}]{\setlength{\rightskip}{0pt plus 5cm}{\bf my2bc\_\-t}$\ast$$\ast$ {\bf bpred\_\-bimode\_\-t::pht}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__bimode__t_dcfe4773ef519f1424be5941bb98eacf}
+
+
+
+
+Definition at line 44 of file bpred-bimode.cpp.
+
+Referenced by bpred\_\-bimode\_\-t(), and $\sim$bpred\_\-bimode\_\-t().\index{bpred\_\-bimode\_\-t@{bpred\_\-bimode\_\-t}!pht\_\-mask@{pht\_\-mask}}
+\index{pht\_\-mask@{pht\_\-mask}!bpred_bimode_t@{bpred\_\-bimode\_\-t}}
+\subsubsection[{pht\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-bimode\_\-t::pht\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__bimode__t_26046f46378232e197b7b46dd48a1f72}
+
+
+
+
+Definition at line 43 of file bpred-bimode.cpp.
+
+Referenced by bpred\_\-bimode\_\-t().\index{bpred\_\-bimode\_\-t@{bpred\_\-bimode\_\-t}!pht\_\-meta@{pht\_\-meta}}
+\index{pht\_\-meta@{pht\_\-meta}!bpred_bimode_t@{bpred\_\-bimode\_\-t}}
+\subsubsection[{pht\_\-meta}]{\setlength{\rightskip}{0pt plus 5cm}{\bf my2bc\_\-t}$\ast$ {\bf bpred\_\-bimode\_\-t::pht\_\-meta}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__bimode__t_9d5886c56147b19aa8376ba3d76145a3}
+
+
+
+
+Definition at line 45 of file bpred-bimode.cpp.
+
+Referenced by bpred\_\-bimode\_\-t(), and $\sim$bpred\_\-bimode\_\-t().\index{bpred\_\-bimode\_\-t@{bpred\_\-bimode\_\-t}!pht\_\-size@{pht\_\-size}}
+\index{pht\_\-size@{pht\_\-size}!bpred_bimode_t@{bpred\_\-bimode\_\-t}}
+\subsubsection[{pht\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-bimode\_\-t::pht\_\-size}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__bimode__t_0ece9e64cda7680e3f674f5949f13c72}
+
+
+
+
+Definition at line 42 of file bpred-bimode.cpp.
+
+Referenced by bpred\_\-bimode\_\-t().\index{bpred\_\-bimode\_\-t@{bpred\_\-bimode\_\-t}!Xor@{Xor}}
+\index{Xor@{Xor}!bpred_bimode_t@{bpred\_\-bimode\_\-t}}
+\subsubsection[{Xor}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-bimode\_\-t::Xor}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__bimode__t_7238343e64e82043a9ade3d28281ab96}
+
+
+
+
+Definition at line 48 of file bpred-bimode.cpp.
+
+Referenced by bpred\_\-bimode\_\-t().\index{bpred\_\-bimode\_\-t@{bpred\_\-bimode\_\-t}!xorshift@{xorshift}}
+\index{xorshift@{xorshift}!bpred_bimode_t@{bpred\_\-bimode\_\-t}}
+\subsubsection[{xorshift}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-bimode\_\-t::xorshift}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__bimode__t_d44477f1eebe30335ba38766093ac97d}
+
+
+
+
+Definition at line 49 of file bpred-bimode.cpp.
+
+Referenced by bpred\_\-bimode\_\-t().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf bpred-bimode.cpp}\end{CompactItemize}

@@ -1,0 +1,608 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%Creator: Graphviz version 2.20.2 (Mon Mar 30 10:09:11 UTC 2009)
+%%For: (mitch) Mitchelle Rasquinha,,,
+%%Title: G
+%%Pages: (atend)
+%%BoundingBox: (atend)
+%%EndComments
+save
+%%BeginProlog
+/DotDict 200 dict def
+DotDict begin
+
+/setupLatin1 {
+mark
+/EncodingVector 256 array def
+ EncodingVector 0
+
+ISOLatin1Encoding 0 255 getinterval putinterval
+EncodingVector 45 /hyphen put
+
+% Set up ISO Latin 1 character encoding
+/starnetISO {
+        dup dup findfont dup length dict begin
+        { 1 index /FID ne { def }{ pop pop } ifelse
+        } forall
+        /Encoding EncodingVector def
+        currentdict end definefont
+} def
+/Times-Roman starnetISO def
+/Times-Italic starnetISO def
+/Times-Bold starnetISO def
+/Times-BoldItalic starnetISO def
+/Helvetica starnetISO def
+/Helvetica-Oblique starnetISO def
+/Helvetica-Bold starnetISO def
+/Helvetica-BoldOblique starnetISO def
+/Courier starnetISO def
+/Courier-Oblique starnetISO def
+/Courier-Bold starnetISO def
+/Courier-BoldOblique starnetISO def
+cleartomark
+} bind def
+
+%%BeginResource: procset graphviz 0 0
+/coord-font-family /Times-Roman def
+/default-font-family /Times-Roman def
+/coordfont coord-font-family findfont 8 scalefont def
+
+/InvScaleFactor 1.0 def
+/set_scale {
+       dup 1 exch div /InvScaleFactor exch def
+       scale
+} bind def
+
+% styles
+/solid { [] 0 setdash } bind def
+/dashed { [9 InvScaleFactor mul dup ] 0 setdash } bind def
+/dotted { [1 InvScaleFactor mul 6 InvScaleFactor mul] 0 setdash } bind def
+/invis {/fill {newpath} def /stroke {newpath} def /show {pop newpath} def} bind def
+/bold { 2 setlinewidth } bind def
+/filled { } bind def
+/unfilled { } bind def
+/rounded { } bind def
+/diagonals { } bind def
+
+% hooks for setting color 
+/nodecolor { sethsbcolor } bind def
+/edgecolor { sethsbcolor } bind def
+/graphcolor { sethsbcolor } bind def
+/nopcolor {pop pop pop} bind def
+
+/beginpage {	% i j npages
+	/npages exch def
+	/j exch def
+	/i exch def
+	/str 10 string def
+	npages 1 gt {
+		gsave
+			coordfont setfont
+			0 0 moveto
+			(\() show i str cvs show (,) show j str cvs show (\)) show
+		grestore
+	} if
+} bind def
+
+/set_font {
+	findfont exch
+	scalefont setfont
+} def
+
+% draw text fitted to its expected width
+/alignedtext {			% width text
+	/text exch def
+	/width exch def
+	gsave
+		width 0 gt {
+			[] 0 setdash
+			text stringwidth pop width exch sub text length div 0 text ashow
+		} if
+	grestore
+} def
+
+/boxprim {				% xcorner ycorner xsize ysize
+		4 2 roll
+		moveto
+		2 copy
+		exch 0 rlineto
+		0 exch rlineto
+		pop neg 0 rlineto
+		closepath
+} bind def
+
+/ellipse_path {
+	/ry exch def
+	/rx exch def
+	/y exch def
+	/x exch def
+	matrix currentmatrix
+	newpath
+	x y translate
+	rx ry scale
+	0 0 1 0 360 arc
+	setmatrix
+} bind def
+
+/endpage { showpage } bind def
+/showpage { } def
+
+/layercolorseq
+	[	% layer color sequence - darkest to lightest
+		[0 0 0]
+		[.2 .8 .8]
+		[.4 .8 .8]
+		[.6 .8 .8]
+		[.8 .8 .8]
+	]
+def
+
+/layerlen layercolorseq length def
+
+/setlayer {/maxlayer exch def /curlayer exch def
+	layercolorseq curlayer 1 sub layerlen mod get
+	aload pop sethsbcolor
+	/nodecolor {nopcolor} def
+	/edgecolor {nopcolor} def
+	/graphcolor {nopcolor} def
+} bind def
+
+/onlayer { curlayer ne {invis} if } def
+
+/onlayers {
+	/myupper exch def
+	/mylower exch def
+	curlayer mylower lt
+	curlayer myupper gt
+	or
+	{invis} if
+} def
+
+/curlayer 0 def
+
+%%EndResource
+%%EndProlog
+%%BeginSetup
+14 default-font-family set_font
+1 setmiterlimit
+% /arrowlength 10 def
+% /arrowwidth 5 def
+
+% make sure pdfmark is harmless for PS-interpreters other than Distiller
+/pdfmark where {pop} {userdict /pdfmark /cleartomark load put} ifelse
+% make '<<' and '>>' safe on PS Level 1 devices
+/languagelevel where {pop languagelevel}{1} ifelse
+2 lt {
+    userdict (<<) cvn ([) cvn load put
+    userdict (>>) cvn ([) cvn load put
+} if
+
+%%EndSetup
+setupLatin1
+%%Page: 1 1
+%%PageBoundingBox: 36 36 186 1172
+%%PageOrientation: Portrait
+0 0 1 beginpage
+gsave
+36 36 150 1136 boxprim clip newpath
+1 1 set_scale 0 rotate 40 40 translate
+% Node1
+gsave
+0.000 0.000 0.749 nodecolor
+newpath 0 0 moveto
+0 516 lineto
+143 516 lineto
+143 0 lineto
+closepath fill
+1 setlinewidth
+filled
+0.000 0.000 0.000 nodecolor
+newpath 0 0 moveto
+0 516 lineto
+143 516 lineto
+143 0 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+26.5 503 moveto 89 (GenericInterfaceVcs) alignedtext
+1 setlinewidth
+filled
+0.000 0.000 0.000 nodecolor
+newpath 0 496 moveto
+143 496 lineto
+stroke
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 483 moveto 78 (+ is_mc_interface) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 471 moveto 22 (- vcs) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 459 moveto 53 (- buffer_size) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 447 moveto 35 (- credits) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 435 moveto 85 (- in_packet_cleared) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 423 moveto 93 (- in_packet_complete) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 411 moveto 41 (- flast_vc) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 399 moveto 35 (- ticking) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 387 moveto 49 (- out_buffer) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 375 moveto 43 (- in_buffer) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 363 moveto 52 (- out_arbiter) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 351 moveto 93 (- downstream_credits) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 339 moveto 59 (- out_packets) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 327 moveto 98 (- out_packet_flit_index) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 315 moveto 53 (- in_packets) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 303 moveto 98 (- in_packets_flit_index) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 291 moveto 79 (- in_packets_valid) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 279 moveto 43 (- in_ready) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 267 moveto 35 (- flits_in) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 255 moveto 53 (- packets_in) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 243 moveto 41 (- flits_out) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 231 moveto 59 (- packets_out) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 219 moveto 101 (- total_packets_in_time) alignedtext
+1 setlinewidth
+filled
+0.000 0.000 0.000 nodecolor
+newpath 0 212 moveto
+143 212 lineto
+stroke
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 199 moveto 104 (+ GenericInterfaceVcs\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 187 moveto 110 (+ ~GenericInterfaceVcs\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 175 moveto 79 (+ get_no_credits\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 163 moveto 79 (+ set_no_credits\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 151 moveto 65 (+ set_no_vcs\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 139 moveto 81 (+ set_buffer_size\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 127 moveto 39 (+ setup\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 115 moveto 49 (+ toString\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 103 moveto 79 (+ process_event\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 91 moveto 61 (+ print_stats\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 79 moveto 87 (+ get_packets_out\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 67 moveto 68 (+ get_packets\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 55 moveto 68 (+ get_flits_out\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 43 moveto 127 (- handle_new_packet_event\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 31 moveto 99 (- handle_ready_event\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 19 moveto 91 (- handle_tick_event\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+7.5 7 moveto 92 (- handle_link_arrival\(\)) alignedtext
+grestore
+% Node2
+gsave
+[ /Rect [ 11 552 131 768 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI ($classInterface.html) >>
+  /Subtype /Link
+/ANN pdfmark
+0.000 0.000 1.000 nodecolor
+newpath 11 552 moveto
+11 768 lineto
+131 768 lineto
+131 552 lineto
+closepath fill
+1 setlinewidth
+filled
+0.000 0.000 0.000 nodecolor
+newpath 11 552 moveto
+11 768 lineto
+131 768 lineto
+131 552 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+52 755 moveto 38 (Interface) alignedtext
+1 setlinewidth
+filled
+0.000 0.000 0.000 nodecolor
+newpath 11 748 moveto
+131 748 lineto
+stroke
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+19 735 moveto 104 (+ processor_connection) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+19 723 moveto 83 (+ input_connection) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+19 711 moveto 89 (+ output_connection) alignedtext
+1 setlinewidth
+filled
+0.000 0.000 0.000 nodecolor
+newpath 11 704 moveto
+131 704 lineto
+stroke
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+19 691 moveto 53 (+ Interface\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+19 679 moveto 59 (+ ~Interface\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+19 667 moveto 49 (+ toString\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+19 655 moveto 39 (+ setup\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+19 643 moveto 79 (+ set_no_credits\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+19 631 moveto 81 (+ set_buffer_size\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+19 619 moveto 65 (+ set_no_vcs\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+19 607 moveto 79 (+ process_event\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+19 595 moveto 61 (+ print_stats\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+19 583 moveto 87 (+ get_packets_out\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+19 571 moveto 68 (+ get_packets\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+19 559 moveto 68 (+ get_flits_out\(\)) alignedtext
+grestore
+% Node2->Node1
+gsave
+1 setlinewidth
+solid
+0.667 0.776 0.439 edgecolor
+newpath 71 542 moveto
+71 533 71 525 71 516 curveto
+stroke
+1 setlinewidth
+solid
+0.667 0.776 0.439 edgecolor
+newpath 67.5 542 moveto
+71 552 lineto
+74.5 542 lineto
+closepath stroke
+grestore
+% Node3
+gsave
+[ /Rect [ 10 804 132 936 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI ($classNetworkComponent.html) >>
+  /Subtype /Link
+/ANN pdfmark
+0.000 0.000 1.000 nodecolor
+newpath 10 804 moveto
+10 936 lineto
+132 936 lineto
+132 804 lineto
+closepath fill
+1 setlinewidth
+filled
+0.000 0.000 0.000 nodecolor
+newpath 10 804 moveto
+10 936 lineto
+132 936 lineto
+132 804 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+28.5 923 moveto 85 (NetworkComponent) alignedtext
+1 setlinewidth
+filled
+0.000 0.000 0.000 nodecolor
+newpath 10 916 moveto
+132 916 lineto
+stroke
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+18 903 moveto 28 (+ type) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+18 891 moveto 33 (+ name) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+18 879 moveto 44 (+ address) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+18 867 moveto 43 (+ node_ip) alignedtext
+1 setlinewidth
+filled
+0.000 0.000 0.000 nodecolor
+newpath 10 860 moveto
+132 860 lineto
+stroke
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+18 847 moveto 100 (+ NetworkComponent\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+18 835 moveto 106 (+ ~NetworkComponent\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+18 823 moveto 49 (+ toString\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+18 811 moveto 79 (+ process_event\(\)) alignedtext
+grestore
+% Node3->Node2
+gsave
+1 setlinewidth
+solid
+0.667 0.776 0.439 edgecolor
+newpath 71 794 moveto
+71 785 71 777 71 768 curveto
+stroke
+1 setlinewidth
+solid
+0.667 0.776 0.439 edgecolor
+newpath 67.5 794 moveto
+71 804 lineto
+74.5 794 lineto
+closepath stroke
+grestore
+% Node4
+gsave
+[ /Rect [ 20 972 122 1128 ]
+  /Border [ 0 0 0 ]
+  /Action << /Subtype /URI /URI ($classComponent.html) >>
+  /Subtype /Link
+/ANN pdfmark
+0.000 0.000 1.000 nodecolor
+newpath 20 972 moveto
+20 1128 lineto
+122 1128 lineto
+122 972 lineto
+closepath fill
+1 setlinewidth
+filled
+0.000 0.000 0.000 nodecolor
+newpath 20 972 moveto
+20 1128 lineto
+122 1128 lineto
+122 972 lineto
+closepath stroke
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+46 1115 moveto 50 (Component) alignedtext
+1 setlinewidth
+filled
+0.000 0.000 0.000 nodecolor
+newpath 20 1108 moveto
+122 1108 lineto
+stroke
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+28 1095 moveto 40 (+ inLinks) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+28 1083 moveto 46 (+ outLinks) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+28 1071 moveto 62 (- componentId) alignedtext
+1 setlinewidth
+filled
+0.000 0.000 0.000 nodecolor
+newpath 20 1064 moveto
+122 1064 lineto
+stroke
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+28 1051 moveto 65 (+ Component\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+28 1039 moveto 65 (+ Component\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+28 1027 moveto 71 (+ ~Component\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+28 1015 moveto 86 (+ setComponentId\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+28 1003 moveto 71 (+ addInputLink\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+28 991 moveto 78 (+ addOutputLink\(\)) alignedtext
+0.000 0.000 0.000 nodecolor
+10 /FreeSans set_font
+28 979 moveto 37 (+ myId\(\)) alignedtext
+grestore
+% Node4->Node3
+gsave
+1 setlinewidth
+solid
+0.667 0.776 0.439 edgecolor
+newpath 71 962 moveto
+71 953 71 945 71 936 curveto
+stroke
+1 setlinewidth
+solid
+0.667 0.776 0.439 edgecolor
+newpath 67.5 962 moveto
+71 972 lineto
+74.5 962 lineto
+closepath stroke
+grestore
+endpage
+showpage
+grestore
+%%PageTrailer
+%%EndPage: 1
+%%Trailer
+%%Pages: 1
+%%BoundingBox: 36 36 186 1172
+end
+restore
+%%EOF

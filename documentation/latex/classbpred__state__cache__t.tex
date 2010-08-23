@@ -1,0 +1,159 @@
+\section{bpred\_\-state\_\-cache\_\-t Class Reference}
+\label{classbpred__state__cache__t}\index{bpred\_\-state\_\-cache\_\-t@{bpred\_\-state\_\-cache\_\-t}}
+{\tt \#include $<$zesto-bpred.h$>$}
+
+Collaboration diagram for bpred\_\-state\_\-cache\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classbpred__state__cache__t__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf bpred\_\-state\_\-cache\_\-t} (void)
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+bool {\bf our\_\-pred}
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+bool $\ast$ {\bf preds}
+\item 
+{\bf md\_\-addr\_\-t} {\bf our\_\-target}
+\item 
+class {\bf bpred\_\-sc\_\-t} $\ast$$\ast$ {\bf pcache}
+\item 
+class {\bf fusion\_\-sc\_\-t} $\ast$ {\bf fcache}
+\item 
+class {\bf BTB\_\-sc\_\-t} $\ast$ {\bf dirjmp}
+\item 
+class {\bf BTB\_\-sc\_\-t} $\ast$ {\bf indirjmp}
+\item 
+class {\bf RAS\_\-chkpt\_\-t} $\ast$ {\bf ras\_\-checkpoint}
+\end{CompactItemize}
+\subsection*{Friends}
+\begin{CompactItemize}
+\item 
+class {\bf bpred\_\-t}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 450 of file zesto-bpred.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{bpred\_\-state\_\-cache\_\-t@{bpred\_\-state\_\-cache\_\-t}!bpred\_\-state\_\-cache\_\-t@{bpred\_\-state\_\-cache\_\-t}}
+\index{bpred\_\-state\_\-cache\_\-t@{bpred\_\-state\_\-cache\_\-t}!bpred_state_cache_t@{bpred\_\-state\_\-cache\_\-t}}
+\subsubsection[{bpred\_\-state\_\-cache\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}bpred\_\-state\_\-cache\_\-t::bpred\_\-state\_\-cache\_\-t (void)\hspace{0.3cm}{\tt  [inline]}}\label{classbpred__state__cache__t_52dc7d033f4f1c95aa44029fc9d40629}
+
+
+
+
+Definition at line 467 of file zesto-bpred.h.
+
+Referenced by bpred\_\-t::get\_\-state\_\-cache().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=368pt]{classbpred__state__cache__t_52dc7d033f4f1c95aa44029fc9d40629_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Friends And Related Function Documentation}
+\index{bpred\_\-state\_\-cache\_\-t@{bpred\_\-state\_\-cache\_\-t}!bpred\_\-t@{bpred\_\-t}}
+\index{bpred\_\-t@{bpred\_\-t}!bpred_state_cache_t@{bpred\_\-state\_\-cache\_\-t}}
+\subsubsection[{bpred\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf bpred\_\-t}\hspace{0.3cm}{\tt  [friend]}}\label{classbpred__state__cache__t_44319d3cf67079457eb46e2c6fcfeb49}
+
+
+
+
+Definition at line 452 of file zesto-bpred.h.
+
+\subsection{Member Data Documentation}
+\index{bpred\_\-state\_\-cache\_\-t@{bpred\_\-state\_\-cache\_\-t}!dirjmp@{dirjmp}}
+\index{dirjmp@{dirjmp}!bpred_state_cache_t@{bpred\_\-state\_\-cache\_\-t}}
+\subsubsection[{dirjmp}]{\setlength{\rightskip}{0pt plus 5cm}class {\bf BTB\_\-sc\_\-t}$\ast$ {\bf bpred\_\-state\_\-cache\_\-t::dirjmp}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__state__cache__t_18fc0f9e45a4925cfa20a32580a0acf0}
+
+
+
+
+Definition at line 460 of file zesto-bpred.h.
+
+Referenced by bpred\_\-t::destroy\_\-state\_\-cache\_\-pool(), bpred\_\-t::flush(), bpred\_\-t::get\_\-state\_\-cache(), bpred\_\-t::lookup(), bpred\_\-t::recover(), bpred\_\-t::spec\_\-update(), and bpred\_\-t::update().\index{bpred\_\-state\_\-cache\_\-t@{bpred\_\-state\_\-cache\_\-t}!fcache@{fcache}}
+\index{fcache@{fcache}!bpred_state_cache_t@{bpred\_\-state\_\-cache\_\-t}}
+\subsubsection[{fcache}]{\setlength{\rightskip}{0pt plus 5cm}class {\bf fusion\_\-sc\_\-t}$\ast$ {\bf bpred\_\-state\_\-cache\_\-t::fcache}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__state__cache__t_16db1caa3444899168c8386f6e41a9cd}
+
+
+
+
+Definition at line 459 of file zesto-bpred.h.
+
+Referenced by bpred\_\-t::destroy\_\-state\_\-cache\_\-pool(), bpred\_\-t::flush(), bpred\_\-t::get\_\-state\_\-cache(), bpred\_\-t::lookup(), bpred\_\-t::recover(), bpred\_\-t::spec\_\-update(), and bpred\_\-t::update().\index{bpred\_\-state\_\-cache\_\-t@{bpred\_\-state\_\-cache\_\-t}!indirjmp@{indirjmp}}
+\index{indirjmp@{indirjmp}!bpred_state_cache_t@{bpred\_\-state\_\-cache\_\-t}}
+\subsubsection[{indirjmp}]{\setlength{\rightskip}{0pt plus 5cm}class {\bf BTB\_\-sc\_\-t}$\ast$ {\bf bpred\_\-state\_\-cache\_\-t::indirjmp}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__state__cache__t_b8fd131a650115451a1c8e5cbf77614b}
+
+
+
+
+Definition at line 461 of file zesto-bpred.h.
+
+Referenced by bpred\_\-t::destroy\_\-state\_\-cache\_\-pool(), bpred\_\-t::flush(), bpred\_\-t::get\_\-state\_\-cache(), bpred\_\-t::lookup(), bpred\_\-t::recover(), bpred\_\-t::spec\_\-update(), and bpred\_\-t::update().\index{bpred\_\-state\_\-cache\_\-t@{bpred\_\-state\_\-cache\_\-t}!our\_\-pred@{our\_\-pred}}
+\index{our\_\-pred@{our\_\-pred}!bpred_state_cache_t@{bpred\_\-state\_\-cache\_\-t}}
+\subsubsection[{our\_\-pred}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf bpred\_\-state\_\-cache\_\-t::our\_\-pred}}\label{classbpred__state__cache__t_6ae3589b3c282461078dc80d4f9935db}
+
+
+
+
+Definition at line 465 of file zesto-bpred.h.
+
+Referenced by bpred\_\-t::lookup(), bpred\_\-t::spec\_\-update(), and bpred\_\-t::update().\index{bpred\_\-state\_\-cache\_\-t@{bpred\_\-state\_\-cache\_\-t}!our\_\-target@{our\_\-target}}
+\index{our\_\-target@{our\_\-target}!bpred_state_cache_t@{bpred\_\-state\_\-cache\_\-t}}
+\subsubsection[{our\_\-target}]{\setlength{\rightskip}{0pt plus 5cm}{\bf md\_\-addr\_\-t} {\bf bpred\_\-state\_\-cache\_\-t::our\_\-target}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__state__cache__t_b86b749246b95fe7cedf505c4f69f3f8}
+
+
+
+
+Definition at line 456 of file zesto-bpred.h.
+
+Referenced by bpred\_\-t::lookup(), bpred\_\-t::spec\_\-update(), and bpred\_\-t::update().\index{bpred\_\-state\_\-cache\_\-t@{bpred\_\-state\_\-cache\_\-t}!pcache@{pcache}}
+\index{pcache@{pcache}!bpred_state_cache_t@{bpred\_\-state\_\-cache\_\-t}}
+\subsubsection[{pcache}]{\setlength{\rightskip}{0pt plus 5cm}class {\bf bpred\_\-sc\_\-t}$\ast$$\ast$ {\bf bpred\_\-state\_\-cache\_\-t::pcache}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__state__cache__t_0caa9290d262b185658b68ff0ad1a859}
+
+
+
+
+Definition at line 458 of file zesto-bpred.h.
+
+Referenced by bpred\_\-t::destroy\_\-state\_\-cache\_\-pool(), bpred\_\-t::flush(), bpred\_\-t::get\_\-state\_\-cache(), bpred\_\-t::lookup(), bpred\_\-t::recover(), bpred\_\-t::spec\_\-update(), and bpred\_\-t::update().\index{bpred\_\-state\_\-cache\_\-t@{bpred\_\-state\_\-cache\_\-t}!preds@{preds}}
+\index{preds@{preds}!bpred_state_cache_t@{bpred\_\-state\_\-cache\_\-t}}
+\subsubsection[{preds}]{\setlength{\rightskip}{0pt plus 5cm}bool$\ast$ {\bf bpred\_\-state\_\-cache\_\-t::preds}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__state__cache__t_dc9e375a218a14bee7c64c069a25fbf0}
+
+
+
+
+Definition at line 455 of file zesto-bpred.h.
+
+Referenced by bpred\_\-t::destroy\_\-state\_\-cache\_\-pool(), bpred\_\-t::get\_\-state\_\-cache(), bpred\_\-t::lookup(), bpred\_\-t::spec\_\-update(), and bpred\_\-t::update().\index{bpred\_\-state\_\-cache\_\-t@{bpred\_\-state\_\-cache\_\-t}!ras\_\-checkpoint@{ras\_\-checkpoint}}
+\index{ras\_\-checkpoint@{ras\_\-checkpoint}!bpred_state_cache_t@{bpred\_\-state\_\-cache\_\-t}}
+\subsubsection[{ras\_\-checkpoint}]{\setlength{\rightskip}{0pt plus 5cm}class {\bf RAS\_\-chkpt\_\-t}$\ast$ {\bf bpred\_\-state\_\-cache\_\-t::ras\_\-checkpoint}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__state__cache__t_2b62c64b1cd517768e59f9f17face06c}
+
+
+
+
+Definition at line 462 of file zesto-bpred.h.
+
+Referenced by bpred\_\-t::destroy\_\-state\_\-cache\_\-pool(), bpred\_\-t::flush(), bpred\_\-t::get\_\-state\_\-cache(), bpred\_\-t::lookup(), and bpred\_\-t::recover().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf zesto-bpred.h}\end{CompactItemize}

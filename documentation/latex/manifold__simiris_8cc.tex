@@ -1,0 +1,109 @@
+\section{manifold\_\-simiris.cc File Reference}
+\label{manifold__simiris_8cc}\index{manifold\_\-simiris.cc@{manifold\_\-simiris.cc}}
+{\tt \#include \char`\"{}mesh.h\char`\"{}}\par
+{\tt \#include \char`\"{}../../simIris/data\_\-types/impl/flit.h\char`\"{}}\par
+{\tt \#include \char`\"{}../../simIris/data\_\-types/impl/highLevelPacket.h\char`\"{}}\par
+{\tt \#include \char`\"{}../../simIris/components/impl/genericFlatMc.h\char`\"{}}\par
+{\tt \#include \char`\"{}../../util/genericData.h\char`\"{}}\par
+{\tt \#include \char`\"{}../../util/config\_\-params.h\char`\"{}}\par
+{\tt \#include \char`\"{}../../memctrl/mshr.cc\char`\"{}}\par
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include $<$sys/time.h$>$}\par
+{\tt \#include $<$algorithm$>$}\par
+
+
+Include dependency graph for manifold\_\-simiris.cc:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{manifold__simiris_8cc__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void {\bf dump\_\-configuration} (void)
+\item 
+int {\bf main} (int argc, char $\ast$argv[$\,$])
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+unsigned long int {\bf net\_\-pack\_\-info} [8][8]
+\item 
+{\bf Mesh} $\ast$ {\bf mesh}
+\item 
+string {\bf router\_\-model\_\-string}
+\item 
+string {\bf mc\_\-model\_\-string}
+\end{CompactItemize}
+
+
+\subsection{Function Documentation}
+\index{manifold\_\-simiris.cc@{manifold\_\-simiris.cc}!dump\_\-configuration@{dump\_\-configuration}}
+\index{dump\_\-configuration@{dump\_\-configuration}!manifold_simiris.cc@{manifold\_\-simiris.cc}}
+\subsubsection[{dump\_\-configuration}]{\setlength{\rightskip}{0pt plus 5cm}void dump\_\-configuration (void)}\label{manifold__simiris_8cc_ba4b9ebf0f24b6a5bd293a6b7c6a54dc}
+
+
+
+
+Definition at line 39 of file manifold\_\-simiris.cc.
+
+References BANK\_\-BITS, buffer\_\-size, COLUMN\_\-SIZE, credits, do\_\-two\_\-stage\_\-router, grid\_\-size, links, max\_\-phy\_\-link\_\-bits, max\_\-sim\_\-time, MC\_\-ADDR\_\-BITS, msg\_\-type\_\-string, NETWORK\_\-ADDRESS\_\-BITS, NETWORK\_\-COMMAND\_\-BITS, NETWORK\_\-THREADID\_\-BITS, no\_\-mcs, no\_\-nodes, NO\_\-OF\_\-BANKS, NO\_\-OF\_\-COLUMNS, NO\_\-OF\_\-RANKS, NO\_\-OF\_\-ROWS, NO\_\-OF\_\-THREADS, ports, rc\_\-method, routing\_\-scheme, sw\_\-arbitration, sw\_\-arbitration\_\-scheme, THREAD\_\-BITS\_\-POSITION, traces, and vcs.
+
+Referenced by main().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=110pt]{manifold__simiris_8cc_ba4b9ebf0f24b6a5bd293a6b7c6a54dc_icgraph}
+\end{center}
+\end{figure}
+\index{manifold\_\-simiris.cc@{manifold\_\-simiris.cc}!main@{main}}
+\index{main@{main}!manifold_simiris.cc@{manifold\_\-simiris.cc}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (int {\em argc}, \/  char $\ast$ {\em argv}[$\,$])}\label{manifold__simiris_8cc_0ddf1224851353fc92bfbff6f499fa97}
+
+
+
+
+Definition at line 81 of file manifold\_\-simiris.cc.
+
+References addr\_\-map\_\-scheme, addr\_\-map\_\-scheme\_\-string, BANK\_\-BITS, buffer\_\-size, CACHELINE\_\-INTERLEAVING, CLOSE\_\-PAGE\_\-POLICY, COLUMN\_\-SIZE, Mesh::connect\_\-interface\_\-processor(), Mesh::connect\_\-interface\_\-routers(), Mesh::connect\_\-routers(), credits, data, do\_\-two\_\-stage\_\-router, dram\_\-page\_\-policy, dram\_\-page\_\-policy\_\-string, dump\_\-configuration(), FC\_\-FS, FCFS, FLAT\_\-MC, FR\_\-FCFS, GENERIC, GENERIC\_\-MC, grid\_\-size, Mesh::init(), init\_\-dram\_\-timing\_\-parameters(), Mesh::interfaces, Mesh::link\_\-a, Mesh::link\_\-b, links, LOCAL\_\-ADDR\_\-MAP, MAX\_\-BUFFER\_\-SIZE, MAX\_\-CMD\_\-BUFFER\_\-SIZE, max\_\-phy\_\-link\_\-bits, Mesh::max\_\-sim\_\-time, max\_\-sim\_\-time, MC\_\-ADDR\_\-BITS, mc\_\-model, mc\_\-model\_\-string, mc\_\-positions, mc\_\-scheduling\_\-algorithm, mc\_\-scheduling\_\-algorithm\_\-string, msg\_\-type\_\-string, MSHR\_\-SIZE, NEGATIVE\_\-FIRST, net\_\-pack\_\-info, NETWORK\_\-ADDRESS\_\-BITS, NETWORK\_\-COMMAND\_\-BITS, NETWORK\_\-THREADID\_\-BITS, no\_\-mcs, no\_\-nodes, NO\_\-OF\_\-BANKS, NO\_\-OF\_\-COLUMNS, NO\_\-OF\_\-RANKS, NO\_\-OF\_\-ROWS, NO\_\-OF\_\-THREADS, NO\_\-SCHEME, NORTH\_\-LAST, NORTH\_\-LAST\_\-NON\_\-MINIMAL, ODD\_\-EVEN, ONE\_\-FLIT\_\-REQ, OPEN\_\-PAGE\_\-POLICY, output\_\-path, PAGE\_\-INTERLEAVING, PAR\_\-BS, PERMUTATION, PHYSICAL\_\-3STAGE, ports, print\_\-setup, Mesh::print\_\-stats(), priority\_\-msg\_\-type, PRIORITY\_\-REQ, Mesh::processors, rc\_\-method, RESPONSE\_\-BUFFER\_\-SIZE, RESPONSE\_\-PKT, ROUND\_\-ROBIN, ROUND\_\-ROBIN\_\-PRIORITY, router\_\-model, router\_\-model\_\-string, Mesh::routers, routing\_\-scheme, Simulator::Run(), Mesh::setup(), sim\_\-start\_\-time, Simulator::StopAt(), sw\_\-arbitration, sw\_\-arbitration\_\-scheme, THREAD\_\-BITS\_\-POSITION, trace\_\-name, traces, vcs, VIRTUAL\_\-4STAGE, WEST\_\-FIRST, word, and XY.
+
+\subsection{Variable Documentation}
+\index{manifold\_\-simiris.cc@{manifold\_\-simiris.cc}!mc\_\-model\_\-string@{mc\_\-model\_\-string}}
+\index{mc\_\-model\_\-string@{mc\_\-model\_\-string}!manifold_simiris.cc@{manifold\_\-simiris.cc}}
+\subsubsection[{mc\_\-model\_\-string}]{\setlength{\rightskip}{0pt plus 5cm}string {\bf mc\_\-model\_\-string}}\label{manifold__simiris_8cc_c1080a1e495d62c01b4d94b6905df2b3}
+
+
+
+
+Definition at line 78 of file manifold\_\-simiris.cc.
+
+Referenced by main().\index{manifold\_\-simiris.cc@{manifold\_\-simiris.cc}!mesh@{mesh}}
+\index{mesh@{mesh}!manifold_simiris.cc@{manifold\_\-simiris.cc}}
+\subsubsection[{mesh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mesh}$\ast$ {\bf mesh}}\label{manifold__simiris_8cc_6e08f89b32254fb4b129720418e7c6ea}
+
+
+
+
+Definition at line 36 of file manifold\_\-simiris.cc.\index{manifold\_\-simiris.cc@{manifold\_\-simiris.cc}!net\_\-pack\_\-info@{net\_\-pack\_\-info}}
+\index{net\_\-pack\_\-info@{net\_\-pack\_\-info}!manifold_simiris.cc@{manifold\_\-simiris.cc}}
+\subsubsection[{net\_\-pack\_\-info}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long int {\bf net\_\-pack\_\-info}[8][8]}\label{manifold__simiris_8cc_c118c8e942c2969e83597b046b9a2dac}
+
+
+
+
+Definition at line 34 of file manifold\_\-simiris.cc.
+
+Referenced by main().\index{manifold\_\-simiris.cc@{manifold\_\-simiris.cc}!router\_\-model\_\-string@{router\_\-model\_\-string}}
+\index{router\_\-model\_\-string@{router\_\-model\_\-string}!manifold_simiris.cc@{manifold\_\-simiris.cc}}
+\subsubsection[{router\_\-model\_\-string}]{\setlength{\rightskip}{0pt plus 5cm}string {\bf router\_\-model\_\-string}}\label{manifold__simiris_8cc_4699ae97a212bb3129fffc7a928b9fe5}
+
+
+
+
+Definition at line 78 of file manifold\_\-simiris.cc.
+
+Referenced by main().

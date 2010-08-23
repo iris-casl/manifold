@@ -1,0 +1,810 @@
+\section{zesto-oracle.cpp File Reference}
+\label{zesto-oracle_8cpp}\index{zesto-oracle.cpp@{zesto-oracle.cpp}}
+{\tt \#include $<$stddef.h$>$}\par
+{\tt \#include $<$stdio.h$>$}\par
+{\tt \#include $<$sys/io.h$>$}\par
+{\tt \#include \char`\"{}zesto-qsim.h\char`\"{}}\par
+{\tt \#include \char`\"{}misc.h\char`\"{}}\par
+{\tt \#include \char`\"{}thread.h\char`\"{}}\par
+{\tt \#include \char`\"{}syscall.h\char`\"{}}\par
+{\tt \#include \char`\"{}sim.h\char`\"{}}\par
+{\tt \#include \char`\"{}zesto-core.h\char`\"{}}\par
+{\tt \#include \char`\"{}zesto-opts.h\char`\"{}}\par
+{\tt \#include \char`\"{}zesto-oracle.h\char`\"{}}\par
+{\tt \#include \char`\"{}zesto-fetch.h\char`\"{}}\par
+{\tt \#include \char`\"{}zesto-bpred.h\char`\"{}}\par
+{\tt \#include \char`\"{}zesto-decode.h\char`\"{}}\par
+{\tt \#include \char`\"{}zesto-alloc.h\char`\"{}}\par
+{\tt \#include \char`\"{}zesto-exec.h\char`\"{}}\par
+{\tt \#include \char`\"{}zesto-commit.h\char`\"{}}\par
+{\tt \#include \char`\"{}zesto-cache.h\char`\"{}}\par
+{\tt \#include \char`\"{}zesto-uncore.h\char`\"{}}\par
+{\tt \#include \char`\"{}machine.def\char`\"{}}\par
+
+
+Include dependency graph for zesto-oracle.cpp:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{zesto-oracle_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define {\bf ZESTO\_\-ORACLE\_\-C}
+\item 
+\#define {\bf CPC}~(thread $\rightarrow$ regs.regs\_\-PC)
+\item 
+\#define {\bf NPC}~(thread $\rightarrow$ regs.regs\_\-NPC)
+\item 
+\#define {\bf SET\_\-NPC}(EXPR)~(thread $\rightarrow$ regs.regs\_\-NPC )
+\item 
+\#define {\bf SET\_\-NPC\_\-D}(EXPR)~SET\_\-NPC(EXPR)
+\item 
+\#define {\bf SET\_\-NPC\_\-V}(EXPR)~((Mop $\rightarrow$ fetch.inst.mode \& MODE\_\-OPER32) ? SET\_\-NPC((EXPR)) : SET\_\-NPC((EXPR) \& 0xffff))
+\item 
+\#define {\bf \_\-HI}(N)~((N) \& 0x04)
+\item 
+\#define {\bf \_\-ID}(N)~((N) \& 0x03)
+\item 
+\#define {\bf \_\-ARCH}(N)~((N) $<$ MD\_\-REG\_\-TMP0)
+\item 
+\#define {\bf SEG\_\-W}(N)~(thread $\rightarrow$ regs.regs\_\-S.w[N])
+\item 
+\#define {\bf SET\_\-SEG\_\-W}(N, EXPR)~(thread $\rightarrow$ regs.regs\_\-S.w[N] = (EXPR))
+\item 
+\#define {\bf GPR\_\-B}(N)
+\item 
+\#define {\bf SET\_\-GPR\_\-B}(N, EXPR)
+\item 
+\#define {\bf GPR\_\-W}(N)~(thread $\rightarrow$ regs.regs\_\-R.w[N].lo)
+\item 
+\#define {\bf SET\_\-GPR\_\-W}(N, EXPR)~(thread $\rightarrow$ regs.regs\_\-R.w[N].lo = (EXPR))
+\item 
+\#define {\bf GPR\_\-D}(N)~(thread $\rightarrow$ regs.regs\_\-R.dw[N])
+\item 
+\#define {\bf SET\_\-GPR\_\-D}(N, EXPR)~(thread $\rightarrow$ regs.regs\_\-R.dw[N] = (EXPR))
+\item 
+\#define {\bf GPR\_\-V}(N)
+\item 
+\#define {\bf SET\_\-GPR\_\-V}(N, EXPR)
+\item 
+\#define {\bf GPR\_\-A}(N)
+\item 
+\#define {\bf SET\_\-GPR\_\-A}(N, EXPR)
+\item 
+\#define {\bf GPR\_\-S}(N)
+\item 
+\#define {\bf SET\_\-GPR\_\-S}(N, EXPR)
+\item 
+\#define {\bf GPR\_\-DB}(N)
+\item 
+\#define {\bf SET\_\-GPR\_\-DB}(N, EXPR)
+\item 
+\#define {\bf GPR}(N)~GPR\_\-D(N)
+\item 
+\#define {\bf SET\_\-GPR}(N, EXPR)~SET\_\-GPR\_\-D(N,EXPR)
+\item 
+\#define {\bf AFLAGS}(MSK)~(thread $\rightarrow$ regs.regs\_\-C.aflags \& (MSK))
+\item 
+\#define {\bf SET\_\-AFLAGS}(EXPR, MSK)
+\item 
+\#define {\bf DAFLAGS}(MSK)~(MSK)
+\item 
+\#define {\bf FSW}(MSK)~(thread $\rightarrow$ regs.regs\_\-C.fsw \& (MSK))
+\item 
+\#define {\bf SET\_\-FSW}(EXPR, MSK)
+\item 
+\#define {\bf CWD}(MSK)~(thread $\rightarrow$ regs.regs\_\-C.cwd \& (MSK))
+\item 
+\#define {\bf SET\_\-CWD}(EXPR, MSK)
+\item 
+\#define {\bf \_\-FPARCH}(N)~((N) $<$ MD\_\-REG\_\-FTMP0)
+\item 
+\#define {\bf F2P}(N)~(\_\-FPARCH(N) ? ((FSW\_\-TOP(thread $\rightarrow$ regs.regs\_\-C.fsw) + (N)) \& 0x07) : (N))
+\item 
+\#define {\bf FPR}(N)~(thread $\rightarrow$ regs.regs\_\-F.e[F2P(N)])
+\item 
+\#define {\bf SET\_\-FPR}(N, EXPR)~(thread $\rightarrow$ regs.regs\_\-F.e[F2P(N)] = (EXPR))
+\item 
+\#define {\bf FPSTACK\_\-POP}()~SET\_\-FSW\_\-TOP(thread $\rightarrow$ regs.regs\_\-C.fsw, (FSW\_\-TOP(thread $\rightarrow$ regs.regs\_\-C.fsw) + 1) \& 0x07)
+\item 
+\#define {\bf FPSTACK\_\-PUSH}()~SET\_\-FSW\_\-TOP(thread $\rightarrow$ regs.regs\_\-C.fsw, (FSW\_\-TOP(thread $\rightarrow$ regs.regs\_\-C.fsw) + 7) \& 0x07)
+\item 
+\#define {\bf FPSTACK\_\-IMPL}(OP)
+\item 
+\#define {\bf READ\_\-BYTE}(SRC, FAULT)~((FAULT) = md\_\-fault\_\-none, uop $\rightarrow$ oracle.virt\_\-addr = (SRC), uop $\rightarrow$ decode.mem\_\-size = 1, XMEM\_\-READ\_\-BYTE(thread $\rightarrow$ mem, (SRC)))
+\item 
+\#define {\bf READ\_\-WORD}(SRC, FAULT)~((FAULT) = md\_\-fault\_\-none, uop $\rightarrow$ oracle.virt\_\-addr = (SRC), uop $\rightarrow$ decode.mem\_\-size = 2, XMEM\_\-READ\_\-WORD(thread $\rightarrow$ mem, (SRC)))
+\item 
+\#define {\bf READ\_\-DWORD}(SRC, FAULT)~((FAULT) = md\_\-fault\_\-none, uop $\rightarrow$ oracle.virt\_\-addr = (SRC), uop $\rightarrow$ decode.mem\_\-size = 4, XMEM\_\-READ\_\-DWORD(thread $\rightarrow$ mem, (SRC)))
+\item 
+\#define {\bf READ\_\-QWORD}(SRC, FAULT)~((FAULT) = md\_\-fault\_\-none, uop $\rightarrow$ oracle.virt\_\-addr = (SRC), uop $\rightarrow$ decode.mem\_\-size = 8, XMEM\_\-READ\_\-QWORD(thread $\rightarrow$ mem, (SRC)))
+\item 
+\#define {\bf WRITE\_\-BYTE}(SRC, DST, FAULT)~((FAULT) = md\_\-fault\_\-none, uop $\rightarrow$ oracle.virt\_\-addr = (DST), uop $\rightarrow$ decode.mem\_\-size = 1, XMEM\_\-WRITE\_\-BYTE(thread $\rightarrow$ mem, (DST), (SRC)))
+\item 
+\#define {\bf WRITE\_\-WORD}(SRC, DST, FAULT)~((FAULT) = md\_\-fault\_\-none, uop $\rightarrow$ oracle.virt\_\-addr = (DST), uop $\rightarrow$ decode.mem\_\-size = 2, XMEM\_\-WRITE\_\-WORD(thread $\rightarrow$ mem, (DST), (SRC)))
+\item 
+\#define {\bf WRITE\_\-DWORD}(SRC, DST, FAULT)~((FAULT) = md\_\-fault\_\-none, uop $\rightarrow$ oracle.virt\_\-addr = (DST), uop $\rightarrow$ decode.mem\_\-size = 4, XMEM\_\-WRITE\_\-DWORD(thread $\rightarrow$ mem, (DST), (SRC)))
+\item 
+\#define {\bf WRITE\_\-QWORD}(SRC, DST, FAULT)~((FAULT) = md\_\-fault\_\-none, uop $\rightarrow$ oracle.virt\_\-addr = (DST), uop $\rightarrow$ decode.mem\_\-size = 8, XMEM\_\-WRITE\_\-QWORD(thread $\rightarrow$ mem, (DST), (SRC)))
+\item 
+\#define {\bf WRITE\_\-DWORD2}(SRC, DST, FAULT)~(uop $\rightarrow$ decode.mem\_\-size = 12, XMEM\_\-WRITE\_\-DWORD2(thread $\rightarrow$ mem, (DST), (SRC)))
+\item 
+\#define {\bf SYSCALL}(INST)~unsigned int tni=0
+\item 
+\#define {\bf DEFINST}(OP, MSK, NAME, OPFORM, RES, FLAGS, O1, I1, I2, I3, OFLAGS, IFLAGS)
+\item 
+\#define {\bf DEFUOP}(OP, MSK, NAME, OPFORM, RES, FLAGS, O1, I1, I2, I3, OFLAGS, IFLAGS)
+\item 
+\#define {\bf DEFLINK}(OP, MSK, NAME, MASK, SHIFT)
+\item 
+\#define {\bf CONNECT}(OP)
+\item 
+\#define {\bf DECLARE\_\-FAULT}(FAULT)~\{ uop $\rightarrow$ oracle.fault = (FAULT); return; \}
+\item 
+\#define {\bf DEFINST}(OP, MSK, NAME, OPFORM, RES, FLAGS, O1, I1, I2, I3, OFLAGS, IFLAGS)
+\item 
+\#define {\bf DEFUOP}(OP, MSK, NAME, OPFORM, RES, FLAGS, O1, I1, I2, I3, OFLAGS, IFLAGS)
+\item 
+\#define {\bf DEFLINK}(OP, MSK, NAME, MASK, SHIFT)
+\item 
+\#define {\bf CONNECT}(OP)
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void {\bf md\_\-fetch\_\-inst} ({\bf md\_\-inst\_\-t} $\ast$inst, struct {\bf mem\_\-t} $\ast$mem, const {\bf md\_\-addr\_\-t} pc, unsigned int core\_\-id)
+\item 
+{\bf md\_\-addr\_\-t} {\bf md\_\-fetch\_\-next\_\-pc} ({\bf md\_\-addr\_\-t} $\ast$nextPC, unsigned int core\_\-id)
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+{\bf md\_\-addr\_\-t} {\bf store\_\-nextPC} [16]
+\item 
+bool {\bf use\_\-stored\_\-nextPC} [16]
+\item 
+static {\bf counter\_\-t} {\bf syscall\_\-mem\_\-accesses} = 0
+\end{CompactItemize}
+
+
+\subsection{Define Documentation}
+\index{zesto-oracle.cpp@{zesto-oracle.cpp}!\_\-ARCH@{\_\-ARCH}}
+\index{\_\-ARCH@{\_\-ARCH}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{\_\-ARCH}]{\setlength{\rightskip}{0pt plus 5cm}\#define \_\-ARCH(N)~((N) $<$ MD\_\-REG\_\-TMP0)}\label{zesto-oracle_8cpp_93a68b4412d259f67d1257b64267534d}
+
+
+
+
+Definition at line 507 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!\_\-FPARCH@{\_\-FPARCH}}
+\index{\_\-FPARCH@{\_\-FPARCH}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{\_\-FPARCH}]{\setlength{\rightskip}{0pt plus 5cm}\#define \_\-FPARCH(N)~((N) $<$ MD\_\-REG\_\-FTMP0)}\label{zesto-oracle_8cpp_4c385ed05e0bd8490781f35a122a0241}
+
+
+
+
+Definition at line 586 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!\_\-HI@{\_\-HI}}
+\index{\_\-HI@{\_\-HI}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{\_\-HI}]{\setlength{\rightskip}{0pt plus 5cm}\#define \_\-HI(N)~((N) \& 0x04)}\label{zesto-oracle_8cpp_950ef2d9ae345ed861765730157d37d2}
+
+
+
+
+Definition at line 505 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!\_\-ID@{\_\-ID}}
+\index{\_\-ID@{\_\-ID}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{\_\-ID}]{\setlength{\rightskip}{0pt plus 5cm}\#define \_\-ID(N)~((N) \& 0x03)}\label{zesto-oracle_8cpp_711eed827b7f6cfec827e05579cd2b66}
+
+
+
+
+Definition at line 506 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!AFLAGS@{AFLAGS}}
+\index{AFLAGS@{AFLAGS}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{AFLAGS}]{\setlength{\rightskip}{0pt plus 5cm}\#define AFLAGS(MSK)~(thread $\rightarrow$ regs.regs\_\-C.aflags \& (MSK))}\label{zesto-oracle_8cpp_369389eba049ae8bd5b4de5d660b861f}
+
+
+
+
+Definition at line 564 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!CONNECT@{CONNECT}}
+\index{CONNECT@{CONNECT}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{CONNECT}]{\setlength{\rightskip}{0pt plus 5cm}\#define CONNECT(OP)}\label{zesto-oracle_8cpp_39a7648865000d8fa2ae64257cb18132}
+
+
+
+
+Definition at line 653 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!CONNECT@{CONNECT}}
+\index{CONNECT@{CONNECT}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{CONNECT}]{\setlength{\rightskip}{0pt plus 5cm}\#define CONNECT(OP)}\label{zesto-oracle_8cpp_39a7648865000d8fa2ae64257cb18132}
+
+
+
+
+Definition at line 653 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!CPC@{CPC}}
+\index{CPC@{CPC}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{CPC}]{\setlength{\rightskip}{0pt plus 5cm}\#define CPC~(thread $\rightarrow$ regs.regs\_\-PC)}\label{zesto-oracle_8cpp_47928f393a8ffdecfa07271f22beb34b}
+
+
+
+
+Definition at line 495 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!CWD@{CWD}}
+\index{CWD@{CWD}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{CWD}]{\setlength{\rightskip}{0pt plus 5cm}\#define CWD(MSK)~(thread $\rightarrow$ regs.regs\_\-C.cwd \& (MSK))}\label{zesto-oracle_8cpp_9fbb923f79e2e5cdd6c74c94705b21cb}
+
+
+
+
+Definition at line 578 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!DAFLAGS@{DAFLAGS}}
+\index{DAFLAGS@{DAFLAGS}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{DAFLAGS}]{\setlength{\rightskip}{0pt plus 5cm}\#define DAFLAGS(MSK)~(MSK)}\label{zesto-oracle_8cpp_ae73cec06b7c25168fc7f1e419d980c4}
+
+
+
+
+Definition at line 569 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!DECLARE\_\-FAULT@{DECLARE\_\-FAULT}}
+\index{DECLARE\_\-FAULT@{DECLARE\_\-FAULT}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{DECLARE\_\-FAULT}]{\setlength{\rightskip}{0pt plus 5cm}\#define DECLARE\_\-FAULT(FAULT)~\{ uop $\rightarrow$ oracle.fault = (FAULT); return; \}}\label{zesto-oracle_8cpp_598ae1e60cce3e06a2f531d8a3de36a1}
+
+
+
+
+Definition at line 654 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!DEFINST@{DEFINST}}
+\index{DEFINST@{DEFINST}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{DEFINST}]{\setlength{\rightskip}{0pt plus 5cm}\#define DEFINST(OP, \/  MSK, \/  NAME, \/  OPFORM, \/  RES, \/  FLAGS, \/  O1, \/  I1, \/  I2, \/  I3, \/  OFLAGS, \/  IFLAGS)}\label{zesto-oracle_8cpp_0d06a1978d25d25a08e7365790bb9cea}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}case OP: uop->decode.idep_name[0] = I1; uop->decode.odep_name = O1;  \
+               uop->decode.idep_name[1] = I2;  \
+               uop->decode.idep_name[2] = I3;  \
+               uop->decode.iflags = (IFLAGS!=DNA)?IFLAGS:0; \
+               uop->decode.oflags = (OFLAGS!=DNA)?OFLAGS:0; \
+      break;
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 646 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!DEFINST@{DEFINST}}
+\index{DEFINST@{DEFINST}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{DEFINST}]{\setlength{\rightskip}{0pt plus 5cm}\#define DEFINST(OP, \/  MSK, \/  NAME, \/  OPFORM, \/  RES, \/  FLAGS, \/  O1, \/  I1, \/  I2, \/  I3, \/  OFLAGS, \/  IFLAGS)}\label{zesto-oracle_8cpp_0d06a1978d25d25a08e7365790bb9cea}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}static inline void SYMCAT(OP,_IMPL_FUNC)(struct thread_t * const thread, struct core_t * const core, struct Mop_t * const Mop, struct uop_t * const uop, bool * const bogus)               \
+     SYMCAT(OP,_IMPL)
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 646 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!DEFLINK@{DEFLINK}}
+\index{DEFLINK@{DEFLINK}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{DEFLINK}]{\setlength{\rightskip}{0pt plus 5cm}\#define DEFLINK(OP, \/  MSK, \/  NAME, \/  MASK, \/  SHIFT)}\label{zesto-oracle_8cpp_e2e57a47696d1134596738df09c2a5f2}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}case OP:                            \
+                            panic("attempted to execute a linking opcode");
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 652 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!DEFLINK@{DEFLINK}}
+\index{DEFLINK@{DEFLINK}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{DEFLINK}]{\setlength{\rightskip}{0pt plus 5cm}\#define DEFLINK(OP, \/  MSK, \/  NAME, \/  MASK, \/  SHIFT)}\label{zesto-oracle_8cpp_e2e57a47696d1134596738df09c2a5f2}
+
+
+
+
+Definition at line 652 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!DEFUOP@{DEFUOP}}
+\index{DEFUOP@{DEFUOP}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{DEFUOP}]{\setlength{\rightskip}{0pt plus 5cm}\#define DEFUOP(OP, \/  MSK, \/  NAME, \/  OPFORM, \/  RES, \/  FLAGS, \/  O1, \/  I1, \/  I2, \/  I3, \/  OFLAGS, \/  IFLAGS)}\label{zesto-oracle_8cpp_f554fbf4d732dcec84d863e7903d8c86}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}case OP: uop->decode.idep_name[0] = I1; uop->decode.odep_name = O1;  \
+               uop->decode.idep_name[1] = I2;  \
+               uop->decode.idep_name[2] = I3;  \
+               uop->decode.iflags = (IFLAGS!=DNA)?IFLAGS:0; \
+               uop->decode.oflags = (OFLAGS!=DNA)?OFLAGS:0; \
+      break;
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 649 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!DEFUOP@{DEFUOP}}
+\index{DEFUOP@{DEFUOP}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{DEFUOP}]{\setlength{\rightskip}{0pt plus 5cm}\#define DEFUOP(OP, \/  MSK, \/  NAME, \/  OPFORM, \/  RES, \/  FLAGS, \/  O1, \/  I1, \/  I2, \/  I3, \/  OFLAGS, \/  IFLAGS)}\label{zesto-oracle_8cpp_f554fbf4d732dcec84d863e7903d8c86}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}static inline void SYMCAT(OP,_IMPL_FUNC)(struct thread_t * const thread, struct core_t * const core, struct Mop_t * const Mop, struct uop_t * const uop, bool * const bogus)               \
+     SYMCAT(OP,_IMPL)
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 649 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!F2P@{F2P}}
+\index{F2P@{F2P}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{F2P}]{\setlength{\rightskip}{0pt plus 5cm}\#define F2P(N)~(\_\-FPARCH(N) ? ((FSW\_\-TOP(thread $\rightarrow$ regs.regs\_\-C.fsw) + (N)) \& 0x07) : (N))}\label{zesto-oracle_8cpp_9adbd7a2d18e1ad0c7ae0fe923acad93}
+
+
+
+
+Definition at line 587 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!FPR@{FPR}}
+\index{FPR@{FPR}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{FPR}]{\setlength{\rightskip}{0pt plus 5cm}\#define FPR(N)~(thread $\rightarrow$ regs.regs\_\-F.e[F2P(N)])}\label{zesto-oracle_8cpp_fcb75f93887802ec859d1129462e2bc7}
+
+
+
+
+Definition at line 588 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!FPSTACK\_\-IMPL@{FPSTACK\_\-IMPL}}
+\index{FPSTACK\_\-IMPL@{FPSTACK\_\-IMPL}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{FPSTACK\_\-IMPL}]{\setlength{\rightskip}{0pt plus 5cm}\#define FPSTACK\_\-IMPL(OP)}\label{zesto-oracle_8cpp_a751a02ae08302c577ec12f2ca780b81}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}{                                    \
+  /* if ((OP) == fpstk_nop) - already checked before call of macro */                        \
+  /* ; */                            \
+  /* else */ if ((OP) == fpstk_pop)                        \
+    SET_FSW_TOP(thread->regs.regs_C.fsw, (FSW_TOP(thread->regs.regs_C.fsw)+1)&0x07);\
+  else if ((OP) == fpstk_poppop)                    \
+    SET_FSW_TOP(thread->regs.regs_C.fsw, (FSW_TOP(thread->regs.regs_C.fsw)+2)&0x07);\
+  else if ((OP) == fpstk_push)                    \
+    SET_FSW_TOP(thread->regs.regs_C.fsw, (FSW_TOP(thread->regs.regs_C.fsw)+7)&0x07);\
+  else                                \
+  panic("bogus FP stack operation");                \
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 594 of file zesto-oracle.cpp.
+
+Referenced by core\_\-oracle\_\-t::exec().\index{zesto-oracle.cpp@{zesto-oracle.cpp}!FPSTACK\_\-POP@{FPSTACK\_\-POP}}
+\index{FPSTACK\_\-POP@{FPSTACK\_\-POP}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{FPSTACK\_\-POP}]{\setlength{\rightskip}{0pt plus 5cm}\#define FPSTACK\_\-POP()~SET\_\-FSW\_\-TOP(thread $\rightarrow$ regs.regs\_\-C.fsw, (FSW\_\-TOP(thread $\rightarrow$ regs.regs\_\-C.fsw) + 1) \& 0x07)}\label{zesto-oracle_8cpp_327a614a72ecd9c0b62884060a1bb259}
+
+
+
+
+Definition at line 591 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!FPSTACK\_\-PUSH@{FPSTACK\_\-PUSH}}
+\index{FPSTACK\_\-PUSH@{FPSTACK\_\-PUSH}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{FPSTACK\_\-PUSH}]{\setlength{\rightskip}{0pt plus 5cm}\#define FPSTACK\_\-PUSH()~SET\_\-FSW\_\-TOP(thread $\rightarrow$ regs.regs\_\-C.fsw, (FSW\_\-TOP(thread $\rightarrow$ regs.regs\_\-C.fsw) + 7) \& 0x07)}\label{zesto-oracle_8cpp_33f3b84a911da7e5f45c0ef7c72d2cd1}
+
+
+
+
+Definition at line 592 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!FSW@{FSW}}
+\index{FSW@{FSW}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{FSW}]{\setlength{\rightskip}{0pt plus 5cm}\#define FSW(MSK)~(thread $\rightarrow$ regs.regs\_\-C.fsw \& (MSK))}\label{zesto-oracle_8cpp_1a0c942425e8394d87a1262793048912}
+
+
+
+
+Definition at line 571 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!GPR@{GPR}}
+\index{GPR@{GPR}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{GPR}]{\setlength{\rightskip}{0pt plus 5cm}\#define GPR(N)~GPR\_\-D(N)}\label{zesto-oracle_8cpp_33a09842f2467a215179ba1c4e09653f}
+
+
+
+
+Definition at line 561 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!GPR\_\-A@{GPR\_\-A}}
+\index{GPR\_\-A@{GPR\_\-A}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{GPR\_\-A}]{\setlength{\rightskip}{0pt plus 5cm}\#define GPR\_\-A(N)}\label{zesto-oracle_8cpp_fe3b1fb9d4a9bfd28f1f0536e6a52094}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}((Mop->fetch.inst.mode & MODE_ADDR32)        \
+    ? GPR_D(N)                \
+    : (dword_t)GPR_W(N))
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 538 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!GPR\_\-B@{GPR\_\-B}}
+\index{GPR\_\-B@{GPR\_\-B}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{GPR\_\-B}]{\setlength{\rightskip}{0pt plus 5cm}\#define GPR\_\-B(N)}\label{zesto-oracle_8cpp_841ea8fd08139832b659b3ff0d6f0e3d}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}(_ARCH(N)                \
+    ? (_HI(N)                \
+      ? thread->regs.regs_R.b[_ID(N)].hi        \
+      : thread->regs.regs_R.b[_ID(N)].lo)      \
+    : thread->regs.regs_R.b[N].lo)
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 513 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!GPR\_\-D@{GPR\_\-D}}
+\index{GPR\_\-D@{GPR\_\-D}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{GPR\_\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define GPR\_\-D(N)~(thread $\rightarrow$ regs.regs\_\-R.dw[N])}\label{zesto-oracle_8cpp_47f414f821791526173fe7d70d726fb2}
+
+
+
+
+Definition at line 527 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!GPR\_\-DB@{GPR\_\-DB}}
+\index{GPR\_\-DB@{GPR\_\-DB}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{GPR\_\-DB}]{\setlength{\rightskip}{0pt plus 5cm}\#define GPR\_\-DB(N)}\label{zesto-oracle_8cpp_df3fe7e9d48738a5f50cdcf7267799f7}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}(_ARCH(N)                               \
+    ? thread->regs.regs_R.dw[_ID(N)]            \
+    : thread->regs.regs_R.dw[N])
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 554 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!GPR\_\-S@{GPR\_\-S}}
+\index{GPR\_\-S@{GPR\_\-S}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{GPR\_\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define GPR\_\-S(N)}\label{zesto-oracle_8cpp_7533b70fb575778a0b20811f5a9c8bb4}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}((Mop->fetch.inst.mode & MODE_STACK32)        \
+    ? GPR_D(N)                \
+    : (dword_t)GPR_W(N))
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 545 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!GPR\_\-V@{GPR\_\-V}}
+\index{GPR\_\-V@{GPR\_\-V}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{GPR\_\-V}]{\setlength{\rightskip}{0pt plus 5cm}\#define GPR\_\-V(N)}\label{zesto-oracle_8cpp_643f69abe43c44c53ccb513dc75b8edd}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}((Mop->fetch.inst.mode & MODE_OPER32)        \
+    ? GPR_D(N)                \
+    : (dword_t)GPR_W(N))
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 531 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!GPR\_\-W@{GPR\_\-W}}
+\index{GPR\_\-W@{GPR\_\-W}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{GPR\_\-W}]{\setlength{\rightskip}{0pt plus 5cm}\#define GPR\_\-W(N)~(thread $\rightarrow$ regs.regs\_\-R.w[N].lo)}\label{zesto-oracle_8cpp_49937247dbcf35e59ac3a4103e47259f}
+
+
+
+
+Definition at line 524 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!NPC@{NPC}}
+\index{NPC@{NPC}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{NPC}]{\setlength{\rightskip}{0pt plus 5cm}\#define NPC~(thread $\rightarrow$ regs.regs\_\-NPC)}\label{zesto-oracle_8cpp_6bc40f3f63777e2bd9deb13953e38b2d}
+
+
+
+
+Definition at line 498 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!READ\_\-BYTE@{READ\_\-BYTE}}
+\index{READ\_\-BYTE@{READ\_\-BYTE}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{READ\_\-BYTE}]{\setlength{\rightskip}{0pt plus 5cm}\#define READ\_\-BYTE(SRC, \/  FAULT)~((FAULT) = md\_\-fault\_\-none, uop $\rightarrow$ oracle.virt\_\-addr = (SRC), uop $\rightarrow$ decode.mem\_\-size = 1, XMEM\_\-READ\_\-BYTE(thread $\rightarrow$ mem, (SRC)))}\label{zesto-oracle_8cpp_2967bbef616af8861c316b12b5ca3203}
+
+
+
+
+Definition at line 617 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!READ\_\-DWORD@{READ\_\-DWORD}}
+\index{READ\_\-DWORD@{READ\_\-DWORD}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{READ\_\-DWORD}]{\setlength{\rightskip}{0pt plus 5cm}\#define READ\_\-DWORD(SRC, \/  FAULT)~((FAULT) = md\_\-fault\_\-none, uop $\rightarrow$ oracle.virt\_\-addr = (SRC), uop $\rightarrow$ decode.mem\_\-size = 4, XMEM\_\-READ\_\-DWORD(thread $\rightarrow$ mem, (SRC)))}\label{zesto-oracle_8cpp_a2ff7b45c340039544196f5da2de752b}
+
+
+
+
+Definition at line 619 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!READ\_\-QWORD@{READ\_\-QWORD}}
+\index{READ\_\-QWORD@{READ\_\-QWORD}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{READ\_\-QWORD}]{\setlength{\rightskip}{0pt plus 5cm}\#define READ\_\-QWORD(SRC, \/  FAULT)~((FAULT) = md\_\-fault\_\-none, uop $\rightarrow$ oracle.virt\_\-addr = (SRC), uop $\rightarrow$ decode.mem\_\-size = 8, XMEM\_\-READ\_\-QWORD(thread $\rightarrow$ mem, (SRC)))}\label{zesto-oracle_8cpp_7c5f5d585d91dff10f5b6ca754b421f6}
+
+
+
+
+Definition at line 620 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!READ\_\-WORD@{READ\_\-WORD}}
+\index{READ\_\-WORD@{READ\_\-WORD}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{READ\_\-WORD}]{\setlength{\rightskip}{0pt plus 5cm}\#define READ\_\-WORD(SRC, \/  FAULT)~((FAULT) = md\_\-fault\_\-none, uop $\rightarrow$ oracle.virt\_\-addr = (SRC), uop $\rightarrow$ decode.mem\_\-size = 2, XMEM\_\-READ\_\-WORD(thread $\rightarrow$ mem, (SRC)))}\label{zesto-oracle_8cpp_6a5dc8a34de59be3e818f3e4e548f6c8}
+
+
+
+
+Definition at line 618 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!SEG\_\-W@{SEG\_\-W}}
+\index{SEG\_\-W@{SEG\_\-W}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{SEG\_\-W}]{\setlength{\rightskip}{0pt plus 5cm}\#define SEG\_\-W(N)~(thread $\rightarrow$ regs.regs\_\-S.w[N])}\label{zesto-oracle_8cpp_a3788cd9050f7482f9bd8ac25e0ecf5b}
+
+
+
+
+Definition at line 510 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!SET\_\-AFLAGS@{SET\_\-AFLAGS}}
+\index{SET\_\-AFLAGS@{SET\_\-AFLAGS}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{SET\_\-AFLAGS}]{\setlength{\rightskip}{0pt plus 5cm}\#define SET\_\-AFLAGS(EXPR, \/  MSK)}\label{zesto-oracle_8cpp_c5654cb73f3268e0390e1bd8382c6ad8}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}(assert(((EXPR) & ~(MSK)) == 0),    \
+    thread->regs.regs_C.aflags =            \
+    ((thread->regs.regs_C.aflags & ~(MSK))    \
+     | ((EXPR) & (MSK))))
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 565 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!SET\_\-CWD@{SET\_\-CWD}}
+\index{SET\_\-CWD@{SET\_\-CWD}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{SET\_\-CWD}]{\setlength{\rightskip}{0pt plus 5cm}\#define SET\_\-CWD(EXPR, \/  MSK)}\label{zesto-oracle_8cpp_8071d6de21b945570bfac9589dd49f79}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}(assert(((EXPR) & ~(MSK)) == 0),        \
+    thread->regs.regs_C.cwd =                      \
+    ((thread->regs.regs_C.cwd & ~(MSK))            \
+     | ((EXPR) & (MSK))))
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 579 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!SET\_\-FPR@{SET\_\-FPR}}
+\index{SET\_\-FPR@{SET\_\-FPR}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{SET\_\-FPR}]{\setlength{\rightskip}{0pt plus 5cm}\#define SET\_\-FPR(N, \/  EXPR)~(thread $\rightarrow$ regs.regs\_\-F.e[F2P(N)] = (EXPR))}\label{zesto-oracle_8cpp_d1f2e24af906596ccab8c65a695dce70}
+
+
+
+
+Definition at line 589 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!SET\_\-FSW@{SET\_\-FSW}}
+\index{SET\_\-FSW@{SET\_\-FSW}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{SET\_\-FSW}]{\setlength{\rightskip}{0pt plus 5cm}\#define SET\_\-FSW(EXPR, \/  MSK)}\label{zesto-oracle_8cpp_9896e158582eb11c95d07047c3fec101}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}(assert(((EXPR) & ~(MSK)) == 0),    \
+    thread->regs.regs_C.fsw =            \
+    ((thread->regs.regs_C.fsw & ~(MSK))        \
+     | ((EXPR) & (MSK))))
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 572 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!SET\_\-GPR@{SET\_\-GPR}}
+\index{SET\_\-GPR@{SET\_\-GPR}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{SET\_\-GPR}]{\setlength{\rightskip}{0pt plus 5cm}\#define SET\_\-GPR(N, \/  EXPR)~SET\_\-GPR\_\-D(N,EXPR)}\label{zesto-oracle_8cpp_68fae1b429c1b8849ca83f455ad6ea38}
+
+
+
+
+Definition at line 562 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!SET\_\-GPR\_\-A@{SET\_\-GPR\_\-A}}
+\index{SET\_\-GPR\_\-A@{SET\_\-GPR\_\-A}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{SET\_\-GPR\_\-A}]{\setlength{\rightskip}{0pt plus 5cm}\#define SET\_\-GPR\_\-A(N, \/  EXPR)}\label{zesto-oracle_8cpp_aaad11abd50c2dc2ff406fa27cf7678f}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}((Mop->fetch.inst.mode & MODE_ADDR32)        \
+    ? SET_GPR_D(N, EXPR)            \
+    : SET_GPR_W(N, EXPR))
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 541 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!SET\_\-GPR\_\-B@{SET\_\-GPR\_\-B}}
+\index{SET\_\-GPR\_\-B@{SET\_\-GPR\_\-B}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{SET\_\-GPR\_\-B}]{\setlength{\rightskip}{0pt plus 5cm}\#define SET\_\-GPR\_\-B(N, \/  EXPR)}\label{zesto-oracle_8cpp_d033dd2415fd695c9d1e8318b6341a2e}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}(_ARCH(N)                   \
+    ? (_HI(N)                   \
+      ? (thread->regs.regs_R.b[_ID(N)].hi = (EXPR))  \
+      : (thread->regs.regs_R.b[_ID(N)].lo = (EXPR))) \
+    : (thread->regs.regs_R.b[N].lo = (EXPR)))
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 518 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!SET\_\-GPR\_\-D@{SET\_\-GPR\_\-D}}
+\index{SET\_\-GPR\_\-D@{SET\_\-GPR\_\-D}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{SET\_\-GPR\_\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define SET\_\-GPR\_\-D(N, \/  EXPR)~(thread $\rightarrow$ regs.regs\_\-R.dw[N] = (EXPR))}\label{zesto-oracle_8cpp_f479882a574ad1c3e8028a799c3c031d}
+
+
+
+
+Definition at line 528 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!SET\_\-GPR\_\-DB@{SET\_\-GPR\_\-DB}}
+\index{SET\_\-GPR\_\-DB@{SET\_\-GPR\_\-DB}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{SET\_\-GPR\_\-DB}]{\setlength{\rightskip}{0pt plus 5cm}\#define SET\_\-GPR\_\-DB(N, \/  EXPR)}\label{zesto-oracle_8cpp_156362c48d8e9d87140ae34017f84c4a}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}(_ARCH(N)                                  \
+    ? (thread->regs.regs_R.dw[_ID(N)] = (EXPR))  \
+    : (thread->regs.regs_R.dw[N] = (EXPR)))
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 557 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!SET\_\-GPR\_\-S@{SET\_\-GPR\_\-S}}
+\index{SET\_\-GPR\_\-S@{SET\_\-GPR\_\-S}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{SET\_\-GPR\_\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define SET\_\-GPR\_\-S(N, \/  EXPR)}\label{zesto-oracle_8cpp_36c3c33eb0e30cbae3b64c6d0803eae4}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}((Mop->fetch.inst.mode & MODE_STACK32)        \
+    ? SET_GPR_D(N, EXPR)            \
+    : SET_GPR_W(N, EXPR))
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 548 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!SET\_\-GPR\_\-V@{SET\_\-GPR\_\-V}}
+\index{SET\_\-GPR\_\-V@{SET\_\-GPR\_\-V}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{SET\_\-GPR\_\-V}]{\setlength{\rightskip}{0pt plus 5cm}\#define SET\_\-GPR\_\-V(N, \/  EXPR)}\label{zesto-oracle_8cpp_94ea2069d35ea9a6666a46dd573c310d}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}((Mop->fetch.inst.mode & MODE_OPER32)        \
+    ? SET_GPR_D(N, EXPR)            \
+    : SET_GPR_W(N, EXPR))
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 534 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!SET\_\-GPR\_\-W@{SET\_\-GPR\_\-W}}
+\index{SET\_\-GPR\_\-W@{SET\_\-GPR\_\-W}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{SET\_\-GPR\_\-W}]{\setlength{\rightskip}{0pt plus 5cm}\#define SET\_\-GPR\_\-W(N, \/  EXPR)~(thread $\rightarrow$ regs.regs\_\-R.w[N].lo = (EXPR))}\label{zesto-oracle_8cpp_94bc1db9dcc4e27b6f9dc9b181c1f188}
+
+
+
+
+Definition at line 525 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!SET\_\-NPC@{SET\_\-NPC}}
+\index{SET\_\-NPC@{SET\_\-NPC}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{SET\_\-NPC}]{\setlength{\rightskip}{0pt plus 5cm}\#define SET\_\-NPC(EXPR)~(thread $\rightarrow$ regs.regs\_\-NPC )}\label{zesto-oracle_8cpp_865b63e02a03e6220f36dfedfaf171f0}
+
+
+
+
+Definition at line 499 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!SET\_\-NPC\_\-D@{SET\_\-NPC\_\-D}}
+\index{SET\_\-NPC\_\-D@{SET\_\-NPC\_\-D}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{SET\_\-NPC\_\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define SET\_\-NPC\_\-D(EXPR)~SET\_\-NPC(EXPR)}\label{zesto-oracle_8cpp_237e92c04084e04a6903083038b0d2b3}
+
+
+
+
+Definition at line 500 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!SET\_\-NPC\_\-V@{SET\_\-NPC\_\-V}}
+\index{SET\_\-NPC\_\-V@{SET\_\-NPC\_\-V}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{SET\_\-NPC\_\-V}]{\setlength{\rightskip}{0pt plus 5cm}\#define SET\_\-NPC\_\-V(EXPR)~((Mop $\rightarrow$ fetch.inst.mode \& MODE\_\-OPER32) ? SET\_\-NPC((EXPR)) : SET\_\-NPC((EXPR) \& 0xffff))}\label{zesto-oracle_8cpp_5df75989ea017f05abfeeaaca9c34c4b}
+
+
+
+
+Definition at line 501 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!SET\_\-SEG\_\-W@{SET\_\-SEG\_\-W}}
+\index{SET\_\-SEG\_\-W@{SET\_\-SEG\_\-W}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{SET\_\-SEG\_\-W}]{\setlength{\rightskip}{0pt plus 5cm}\#define SET\_\-SEG\_\-W(N, \/  EXPR)~(thread $\rightarrow$ regs.regs\_\-S.w[N] = (EXPR))}\label{zesto-oracle_8cpp_0e4a1562565f347b84caa32963258150}
+
+
+
+
+Definition at line 511 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!SYSCALL@{SYSCALL}}
+\index{SYSCALL@{SYSCALL}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{SYSCALL}]{\setlength{\rightskip}{0pt plus 5cm}\#define SYSCALL(INST)~unsigned int tni=0}\label{zesto-oracle_8cpp_72bc0399d2dd2ad179b9c5f0505551e2}
+
+
+
+
+Definition at line 635 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!WRITE\_\-BYTE@{WRITE\_\-BYTE}}
+\index{WRITE\_\-BYTE@{WRITE\_\-BYTE}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{WRITE\_\-BYTE}]{\setlength{\rightskip}{0pt plus 5cm}\#define WRITE\_\-BYTE(SRC, \/  DST, \/  FAULT)~((FAULT) = md\_\-fault\_\-none, uop $\rightarrow$ oracle.virt\_\-addr = (DST), uop $\rightarrow$ decode.mem\_\-size = 1, XMEM\_\-WRITE\_\-BYTE(thread $\rightarrow$ mem, (DST), (SRC)))}\label{zesto-oracle_8cpp_fc76adbab625381a0c38c41c059ca331}
+
+
+
+
+Definition at line 622 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!WRITE\_\-DWORD@{WRITE\_\-DWORD}}
+\index{WRITE\_\-DWORD@{WRITE\_\-DWORD}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{WRITE\_\-DWORD}]{\setlength{\rightskip}{0pt plus 5cm}\#define WRITE\_\-DWORD(SRC, \/  DST, \/  FAULT)~((FAULT) = md\_\-fault\_\-none, uop $\rightarrow$ oracle.virt\_\-addr = (DST), uop $\rightarrow$ decode.mem\_\-size = 4, XMEM\_\-WRITE\_\-DWORD(thread $\rightarrow$ mem, (DST), (SRC)))}\label{zesto-oracle_8cpp_76efb0aae9cc59d15bad44bbdeca75d5}
+
+
+
+
+Definition at line 624 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!WRITE\_\-DWORD2@{WRITE\_\-DWORD2}}
+\index{WRITE\_\-DWORD2@{WRITE\_\-DWORD2}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{WRITE\_\-DWORD2}]{\setlength{\rightskip}{0pt plus 5cm}\#define WRITE\_\-DWORD2(SRC, \/  DST, \/  FAULT)~(uop $\rightarrow$ decode.mem\_\-size = 12, XMEM\_\-WRITE\_\-DWORD2(thread $\rightarrow$ mem, (DST), (SRC)))}\label{zesto-oracle_8cpp_5d75212fc6c9f2094fabfe9c7cbe8e35}
+
+
+
+
+Definition at line 628 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!WRITE\_\-QWORD@{WRITE\_\-QWORD}}
+\index{WRITE\_\-QWORD@{WRITE\_\-QWORD}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{WRITE\_\-QWORD}]{\setlength{\rightskip}{0pt plus 5cm}\#define WRITE\_\-QWORD(SRC, \/  DST, \/  FAULT)~((FAULT) = md\_\-fault\_\-none, uop $\rightarrow$ oracle.virt\_\-addr = (DST), uop $\rightarrow$ decode.mem\_\-size = 8, XMEM\_\-WRITE\_\-QWORD(thread $\rightarrow$ mem, (DST), (SRC)))}\label{zesto-oracle_8cpp_973ac8efc8287f3aebe50e8cf1aef741}
+
+
+
+
+Definition at line 625 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!WRITE\_\-WORD@{WRITE\_\-WORD}}
+\index{WRITE\_\-WORD@{WRITE\_\-WORD}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{WRITE\_\-WORD}]{\setlength{\rightskip}{0pt plus 5cm}\#define WRITE\_\-WORD(SRC, \/  DST, \/  FAULT)~((FAULT) = md\_\-fault\_\-none, uop $\rightarrow$ oracle.virt\_\-addr = (DST), uop $\rightarrow$ decode.mem\_\-size = 2, XMEM\_\-WRITE\_\-WORD(thread $\rightarrow$ mem, (DST), (SRC)))}\label{zesto-oracle_8cpp_39396193613c8f3b1a09a4ff205c16da}
+
+
+
+
+Definition at line 623 of file zesto-oracle.cpp.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!ZESTO\_\-ORACLE\_\-C@{ZESTO\_\-ORACLE\_\-C}}
+\index{ZESTO\_\-ORACLE\_\-C@{ZESTO\_\-ORACLE\_\-C}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{ZESTO\_\-ORACLE\_\-C}]{\setlength{\rightskip}{0pt plus 5cm}\#define ZESTO\_\-ORACLE\_\-C}\label{zesto-oracle_8cpp_205e53e866813d3a0aab9decb7becf26}
+
+
+
+
+Definition at line 134 of file zesto-oracle.cpp.
+
+\subsection{Function Documentation}
+\index{zesto-oracle.cpp@{zesto-oracle.cpp}!md\_\-fetch\_\-inst@{md\_\-fetch\_\-inst}}
+\index{md\_\-fetch\_\-inst@{md\_\-fetch\_\-inst}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{md\_\-fetch\_\-inst}]{\setlength{\rightskip}{0pt plus 5cm}void md\_\-fetch\_\-inst ({\bf md\_\-inst\_\-t} $\ast$ {\em inst}, \/  struct {\bf mem\_\-t} $\ast$ {\em mem}, \/  const {\bf md\_\-addr\_\-t} {\em pc}, \/  unsigned int {\em core\_\-id})}\label{zesto-oracle_8cpp_c9b36de1d166dbea41697884bd42aa7e}
+
+
+
+
+Definition at line 2230 of file zesto-oracle.cpp.
+
+References md\_\-inst\_\-t::code, cores, mem\_\-ops::ld\_\-dequeued, mem\_\-ops::ld\_\-size, md\_\-inst\_\-t::mem\_\-ops, mem\_\-ops::mem\_\-paddr\_\-ld, mem\_\-ops::mem\_\-paddr\_\-str, MEM\_\-RD, mem\_\-ops::mem\_\-vaddr\_\-ld, mem\_\-ops::mem\_\-vaddr\_\-str, MEM\_\-WR, mem\_\-ops::memops, md\_\-inst\_\-t::paddr, md\_\-inst\_\-t::qemu\_\-len, sim\_\-exit\_\-buf, store\_\-nextPC, mem\_\-ops::str\_\-dequeued, mem\_\-ops::str\_\-size, use\_\-stored\_\-nextPC, and md\_\-inst\_\-t::vaddr.\index{zesto-oracle.cpp@{zesto-oracle.cpp}!md\_\-fetch\_\-next\_\-pc@{md\_\-fetch\_\-next\_\-pc}}
+\index{md\_\-fetch\_\-next\_\-pc@{md\_\-fetch\_\-next\_\-pc}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{md\_\-fetch\_\-next\_\-pc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf md\_\-addr\_\-t} md\_\-fetch\_\-next\_\-pc ({\bf md\_\-addr\_\-t} $\ast$ {\em nextPC}, \/  unsigned int {\em core\_\-id})}\label{zesto-oracle_8cpp_4603dc5f3e60fbfcd30343123777d18c}
+
+
+
+
+Definition at line 2429 of file zesto-oracle.cpp.
+
+References cores, core\_\-t::current\_\-thread, core\_\-t::fetch, core\_\-fetch\_\-t::PC, thread\_\-t::pin\_\-trace, thread\_\-t::regs, regs\_\-t::regs\_\-NPC, regs\_\-t::regs\_\-PC, store\_\-nextPC, and use\_\-stored\_\-nextPC.
+
+Referenced by core\_\-oracle\_\-t::pipe\_\-flush().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{zesto-oracle_8cpp_4603dc5f3e60fbfcd30343123777d18c_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Variable Documentation}
+\index{zesto-oracle.cpp@{zesto-oracle.cpp}!store\_\-nextPC@{store\_\-nextPC}}
+\index{store\_\-nextPC@{store\_\-nextPC}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{store\_\-nextPC}]{\setlength{\rightskip}{0pt plus 5cm}{\bf md\_\-addr\_\-t} {\bf store\_\-nextPC}[16]}\label{zesto-oracle_8cpp_87de3dd0dc95ac44e817dc0f7c7ba3d7}
+
+
+
+
+Definition at line 159 of file zesto-oracle.cpp.
+
+Referenced by md\_\-fetch\_\-inst(), md\_\-fetch\_\-next\_\-pc(), core\_\-oracle\_\-t::pipe\_\-flush(), and sim\_\-main().\index{zesto-oracle.cpp@{zesto-oracle.cpp}!syscall\_\-mem\_\-accesses@{syscall\_\-mem\_\-accesses}}
+\index{syscall\_\-mem\_\-accesses@{syscall\_\-mem\_\-accesses}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{syscall\_\-mem\_\-accesses}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf syscall\_\-mem\_\-accesses} = 0\hspace{0.3cm}{\tt  [static]}}\label{zesto-oracle_8cpp_4f7a5d6cac7682f923ed4e3a7234921f}
+
+
+
+
+Definition at line 220 of file zesto-oracle.cpp.
+
+Referenced by core\_\-oracle\_\-t::reg\_\-stats(), and core\_\-oracle\_\-t::syscall\_\-mem\_\-access().\index{zesto-oracle.cpp@{zesto-oracle.cpp}!use\_\-stored\_\-nextPC@{use\_\-stored\_\-nextPC}}
+\index{use\_\-stored\_\-nextPC@{use\_\-stored\_\-nextPC}!zesto-oracle.cpp@{zesto-oracle.cpp}}
+\subsubsection[{use\_\-stored\_\-nextPC}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf use\_\-stored\_\-nextPC}[16]}\label{zesto-oracle_8cpp_38a36f4cd3940833135cd0c497f726f4}
+
+
+
+
+Definition at line 160 of file zesto-oracle.cpp.
+
+Referenced by emergency\_\-recovery(), md\_\-fetch\_\-inst(), md\_\-fetch\_\-next\_\-pc(), and sim\_\-main().

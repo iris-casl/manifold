@@ -1,0 +1,198 @@
+\section{BusHandler Class Reference}
+\label{classBusHandler}\index{BusHandler@{BusHandler}}
+{\tt \#include $<$bus\_\-handler.h$>$}
+
+Collaboration diagram for BusHandler:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classBusHandler__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf BusHandler} ()
+\item 
+{\bf $\sim$BusHandler} ()
+\item 
+bool {\bf BankRankFree} (unsigned int bankNo, unsigned int rankNo, unsigned int channelNo)
+\item 
+void {\bf SetIfFull} ()
+\item 
+bool {\bf IsFull} (int i)
+\item 
+void {\bf LowLevelCmdGen} ({\bf Request} $\ast$req)
+\item 
+std::string {\bf toString} ()
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+{\bf Component} $\ast$ {\bf parent}
+\item 
+{\bf CmdQueue} {\bf cmdQueue} [{\bf NO\_\-OF\_\-CHANNELS}]
+\item 
+{\bf CmdIssuer} {\bf cmdIssuer} [{\bf NO\_\-OF\_\-CHANNELS}]
+\item 
+bool {\bf stopSignal}
+\item 
+bool {\bf full} [{\bf NO\_\-OF\_\-CHANNELS}]
+\item 
+bool {\bf linkBusy} [{\bf NO\_\-OF\_\-CHANNELS}]
+\item 
+vector$<$ vector$<$ vector$<$ bool $>$ $>$ $>$ {\bf oneReq}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 46 of file bus\_\-handler.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{BusHandler@{BusHandler}!BusHandler@{BusHandler}}
+\index{BusHandler@{BusHandler}!BusHandler@{BusHandler}}
+\subsubsection[{BusHandler}]{\setlength{\rightskip}{0pt plus 5cm}BusHandler::BusHandler ()}\label{classBusHandler_8e0f1cd4cc53c51152413eb19a0a5c63}
+
+
+
+
+Definition at line 34 of file bus\_\-handler.cc.
+
+References CmdIssuer::bufferId, cmdIssuer, full, CmdIssuer::Id, linkBusy, NO\_\-OF\_\-BANKS, NO\_\-OF\_\-CHANNELS, NO\_\-OF\_\-RANKS, oneReq, CmdIssuer::parent, and stopSignal.\index{BusHandler@{BusHandler}!$\sim$BusHandler@{$\sim$BusHandler}}
+\index{$\sim$BusHandler@{$\sim$BusHandler}!BusHandler@{BusHandler}}
+\subsubsection[{$\sim$BusHandler}]{\setlength{\rightskip}{0pt plus 5cm}BusHandler::$\sim$BusHandler ()}\label{classBusHandler_4167c4a5b3fed2e3c90dfb55ae051d38}
+
+
+
+
+Definition at line 69 of file bus\_\-handler.cc.
+
+\subsection{Member Function Documentation}
+\index{BusHandler@{BusHandler}!BankRankFree@{BankRankFree}}
+\index{BankRankFree@{BankRankFree}!BusHandler@{BusHandler}}
+\subsubsection[{BankRankFree}]{\setlength{\rightskip}{0pt plus 5cm}bool BusHandler::BankRankFree (unsigned int {\em bankNo}, \/  unsigned int {\em rankNo}, \/  unsigned int {\em channelNo})}\label{classBusHandler_08661b7c676ea61de65a76a615e2d8e0}
+
+
+
+
+Definition at line 93 of file bus\_\-handler.cc.
+
+References oneReq.\index{BusHandler@{BusHandler}!IsFull@{IsFull}}
+\index{IsFull@{IsFull}!BusHandler@{BusHandler}}
+\subsubsection[{IsFull}]{\setlength{\rightskip}{0pt plus 5cm}bool BusHandler::IsFull (int {\em i})}\label{classBusHandler_c0ecf6b699545c251b6f75bbea68c2f2}
+
+
+
+
+Definition at line 89 of file bus\_\-handler.cc.
+
+References full.\index{BusHandler@{BusHandler}!LowLevelCmdGen@{LowLevelCmdGen}}
+\index{LowLevelCmdGen@{LowLevelCmdGen}!BusHandler@{BusHandler}}
+\subsubsection[{LowLevelCmdGen}]{\setlength{\rightskip}{0pt plus 5cm}void BusHandler::LowLevelCmdGen ({\bf Request} $\ast$ {\em req})}\label{classBusHandler_2b8cd5f4be39270cf6abd4e6a64d45d0}
+
+
+
+
+Definition at line 98 of file bus\_\-handler.cc.
+
+References ACTIVATE, ALL\_\-BANK\_\-REFRESH, CACHE\_\-PREFETCH, CACHE\_\-READ, CACHE\_\-WRITE, CACHE\_\-WRITEBACK, Request::channelNo, CLOSE\_\-PAGE\_\-POLICY, CLOSED, cmdQueue, Request::cmdType, CONFLICT, dram\_\-page\_\-policy, IDLE, NO\_\-OF\_\-CHANNELS, NORMAL, OPEN, OPEN\_\-PAGE\_\-POLICY, PRECHARGE, PREFETCHL, READ, READL, REFRESH, DRAMCmdState::set(), Request::status, WRITE, WRITEBACKL, and WRITEL.
+
+Referenced by RefreshMgr::process\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{classBusHandler_2b8cd5f4be39270cf6abd4e6a64d45d0_icgraph}
+\end{center}
+\end{figure}
+\index{BusHandler@{BusHandler}!SetIfFull@{SetIfFull}}
+\index{SetIfFull@{SetIfFull}!BusHandler@{BusHandler}}
+\subsubsection[{SetIfFull}]{\setlength{\rightskip}{0pt plus 5cm}void BusHandler::SetIfFull ()}\label{classBusHandler_ec754a189e4f6fe2a4644691e80c3891}
+
+
+
+
+Definition at line 79 of file bus\_\-handler.cc.
+
+References cmdQueue, full, MAX\_\-CMD\_\-BUFFER\_\-SIZE, NO\_\-OF\_\-CHANNELS, and stopSignal.\index{BusHandler@{BusHandler}!toString@{toString}}
+\index{toString@{toString}!BusHandler@{BusHandler}}
+\subsubsection[{toString}]{\setlength{\rightskip}{0pt plus 5cm}std::string BusHandler::toString ()}\label{classBusHandler_892d4aa770091924a43ee446848db5e5}
+
+
+
+
+Definition at line 74 of file bus\_\-handler.cc.
+
+\subsection{Member Data Documentation}
+\index{BusHandler@{BusHandler}!cmdIssuer@{cmdIssuer}}
+\index{cmdIssuer@{cmdIssuer}!BusHandler@{BusHandler}}
+\subsubsection[{cmdIssuer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CmdIssuer} {\bf BusHandler::cmdIssuer}[{\bf NO\_\-OF\_\-CHANNELS}]}\label{classBusHandler_be8960744c8252a6e87e16cb4e053c27}
+
+
+
+
+Definition at line 54 of file bus\_\-handler.h.
+
+Referenced by BusHandler(), RefreshMgr::process\_\-event(), and RequestHandler::SetLinks().\index{BusHandler@{BusHandler}!cmdQueue@{cmdQueue}}
+\index{cmdQueue@{cmdQueue}!BusHandler@{BusHandler}}
+\subsubsection[{cmdQueue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CmdQueue} {\bf BusHandler::cmdQueue}[{\bf NO\_\-OF\_\-CHANNELS}]}\label{classBusHandler_a2fcdc7c7117ee34c79ca742dab2a595}
+
+
+
+
+Definition at line 53 of file bus\_\-handler.h.
+
+Referenced by CmdIssuer::BanksFirstReq(), CmdIssuer::IssueCmd(), LowLevelCmdGen(), and SetIfFull().\index{BusHandler@{BusHandler}!full@{full}}
+\index{full@{full}!BusHandler@{BusHandler}}
+\subsubsection[{full}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf BusHandler::full}[{\bf NO\_\-OF\_\-CHANNELS}]}\label{classBusHandler_2fe96733417204a2a206c1f2522b3c5b}
+
+
+
+
+Definition at line 56 of file bus\_\-handler.h.
+
+Referenced by BusHandler(), IsFull(), RequestHandler::process\_\-event(), and SetIfFull().\index{BusHandler@{BusHandler}!linkBusy@{linkBusy}}
+\index{linkBusy@{linkBusy}!BusHandler@{BusHandler}}
+\subsubsection[{linkBusy}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf BusHandler::linkBusy}[{\bf NO\_\-OF\_\-CHANNELS}]}\label{classBusHandler_24b8ef732b4bf23223bfcae98053f8ae}
+
+
+
+
+Definition at line 57 of file bus\_\-handler.h.
+
+Referenced by BusHandler().\index{BusHandler@{BusHandler}!oneReq@{oneReq}}
+\index{oneReq@{oneReq}!BusHandler@{BusHandler}}
+\subsubsection[{oneReq}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ vector$<$ vector$<$bool$>$ $>$ $>$ {\bf BusHandler::oneReq}}\label{classBusHandler_4a132b59f5b4e15f316d3bb3409c6ff0}
+
+
+
+
+Definition at line 58 of file bus\_\-handler.h.
+
+Referenced by BankRankFree(), and BusHandler().\index{BusHandler@{BusHandler}!parent@{parent}}
+\index{parent@{parent}!BusHandler@{BusHandler}}
+\subsubsection[{parent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Component}$\ast$ {\bf BusHandler::parent}}\label{classBusHandler_940c0372eb5b0d7c8a163a01a3485598}
+
+
+
+
+Definition at line 51 of file bus\_\-handler.h.
+
+Referenced by RequestHandler::RequestHandler().\index{BusHandler@{BusHandler}!stopSignal@{stopSignal}}
+\index{stopSignal@{stopSignal}!BusHandler@{BusHandler}}
+\subsubsection[{stopSignal}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf BusHandler::stopSignal}}\label{classBusHandler_9200377626ca177f01880335ccc0101e}
+
+
+
+
+Definition at line 55 of file bus\_\-handler.h.
+
+Referenced by BusHandler(), RequestHandler::process\_\-event(), and SetIfFull().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf bus\_\-handler.h}\item 
+{\bf bus\_\-handler.cc}\end{CompactItemize}

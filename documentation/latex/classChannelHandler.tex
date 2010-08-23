@@ -1,0 +1,89 @@
+\section{ChannelHandler Class Reference}
+\label{classChannelHandler}\index{ChannelHandler@{ChannelHandler}}
+Handles all the operations of a channel in the \doxyref{MC}{p.}{classMC}.  
+
+
+{\tt \#include $<$channel\_\-handler.h$>$}
+
+Collaboration diagram for ChannelHandler:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classChannelHandler__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf ChannelHandler} ()
+\begin{CompactList}\small\item\em constructor \item\end{CompactList}\item 
+{\bf $\sim$ChannelHandler} ()
+\begin{CompactList}\small\item\em destructor \item\end{CompactList}\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+short {\bf chanId}
+\begin{CompactList}\small\item\em unique Id of the channel per \doxyref{MC}{p.}{classMC} \item\end{CompactList}\item 
+vector$<$ {\bf RankHandler} $>$ {\bf rank}
+\begin{CompactList}\small\item\em Array of handlers to the rank constituting the channel. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Handles all the operations of a channel in the \doxyref{MC}{p.}{classMC}. 
+
+Description: This class contains data structures related to per channel in the memory controller. Right now just acts as a wrapper around all rank handlers of that channel 
+
+Definition at line 45 of file channel\_\-handler.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{ChannelHandler@{ChannelHandler}!ChannelHandler@{ChannelHandler}}
+\index{ChannelHandler@{ChannelHandler}!ChannelHandler@{ChannelHandler}}
+\subsubsection[{ChannelHandler}]{\setlength{\rightskip}{0pt plus 5cm}ChannelHandler::ChannelHandler ()}\label{classChannelHandler_b17039eaaec5335f80aa2fcc2ce65fa1}
+
+
+constructor 
+
+
+
+Definition at line 32 of file channel\_\-handler.cc.
+
+References NO\_\-OF\_\-RANKS, and rank.\index{ChannelHandler@{ChannelHandler}!$\sim$ChannelHandler@{$\sim$ChannelHandler}}
+\index{$\sim$ChannelHandler@{$\sim$ChannelHandler}!ChannelHandler@{ChannelHandler}}
+\subsubsection[{$\sim$ChannelHandler}]{\setlength{\rightskip}{0pt plus 5cm}ChannelHandler::$\sim$ChannelHandler ()}\label{classChannelHandler_343e37821ff275e45ad23fa11282f0e4}
+
+
+destructor 
+
+
+
+Definition at line 44 of file channel\_\-handler.cc.
+
+\subsection{Member Data Documentation}
+\index{ChannelHandler@{ChannelHandler}!chanId@{chanId}}
+\index{chanId@{chanId}!ChannelHandler@{ChannelHandler}}
+\subsubsection[{chanId}]{\setlength{\rightskip}{0pt plus 5cm}short {\bf ChannelHandler::chanId}}\label{classChannelHandler_1ccffe521ae049bd1f45a9d595344b86}
+
+
+unique Id of the channel per \doxyref{MC}{p.}{classMC} 
+
+
+
+Definition at line 50 of file channel\_\-handler.h.
+
+Referenced by RequestHandler::RequestHandler().\index{ChannelHandler@{ChannelHandler}!rank@{rank}}
+\index{rank@{rank}!ChannelHandler@{ChannelHandler}}
+\subsubsection[{rank}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf RankHandler}$>$ {\bf ChannelHandler::rank}}\label{classChannelHandler_c7bdaf4c97e555f48d450f2d8dfeca17}
+
+
+Array of handlers to the rank constituting the channel. 
+
+
+
+Definition at line 51 of file channel\_\-handler.h.
+
+Referenced by ChannelHandler(), RequestHandler::MarkAll(), RequestHandler::MarkBatchOnly(), and RequestHandler::RequestHandler().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf channel\_\-handler.h}\item 
+{\bf channel\_\-handler.cc}\end{CompactItemize}

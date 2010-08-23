@@ -1,0 +1,87 @@
+\section{request.h File Reference}
+\label{request_8h}\index{request.h@{request.h}}
+{\tt \#include $<$string$>$}\par
+{\tt \#include $<$sstream$>$}\par
+{\tt \#include $<$iostream$>$}\par
+{\tt \#include $<$cstdlib$>$}\par
+{\tt \#include $<$map$>$}\par
+{\tt \#include \char`\"{}../kernel/component.h\char`\"{}}\par
+{\tt \#include \char`\"{}../kernel/simulator.h\char`\"{}}\par
+{\tt \#include \char`\"{}../zesto/host.h\char`\"{}}\par
+{\tt \#include \char`\"{}../zesto/machine.h\char`\"{}}\par
+{\tt \#include \char`\"{}../zesto/zesto-cache.h\char`\"{}}\par
+{\tt \#include \char`\"{}../util/mc\_\-constants.h\char`\"{}}\par
+
+
+Include dependency graph for request.h:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{request_8h__incl}
+\end{center}
+\end{figure}
+
+
+This graph shows which files directly or indirectly include this file:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=420pt]{request_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+struct {\bf Data}
+\item 
+class {\bf Request}
+\begin{CompactList}\small\item\em The main data structure for each memory operation that flows in the memory controller. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Typedefs}
+\begin{CompactItemize}
+\item 
+typedef {\bf Data} {\bf Data}
+\end{CompactItemize}
+\subsection*{Enumerations}
+\begin{CompactItemize}
+\item 
+enum {\bf CStatus} \{ {\bf OPEN}, 
+{\bf CLOSED}, 
+{\bf CONFLICT}, 
+{\bf IDLE}
+ \}
+\end{CompactItemize}
+
+
+\subsection{Typedef Documentation}
+\index{request.h@{request.h}!Data@{Data}}
+\index{Data@{Data}!request.h@{request.h}}
+\subsubsection[{Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf Data} {\bf Data}}\label{request_8h_040fc07acd6f92cd77e65c471e177c8a}
+
+
+
+
+Definition at line 43 of file request.h.
+
+\subsection{Enumeration Type Documentation}
+\index{request.h@{request.h}!CStatus@{CStatus}}
+\index{CStatus@{CStatus}!request.h@{request.h}}
+\subsubsection[{CStatus}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf CStatus}}\label{request_8h_8d135869d04d8d8c55c0e45752845cf0}
+
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{OPEN@{OPEN}!request.h@{request.h}}\index{request.h@{request.h}!OPEN@{OPEN}}\item[{\em 
+OPEN\label{request_8h_8d135869d04d8d8c55c0e45752845cf00e0143636c29971736eab47415868eae}
+}]\index{CLOSED@{CLOSED}!request.h@{request.h}}\index{request.h@{request.h}!CLOSED@{CLOSED}}\item[{\em 
+CLOSED\label{request_8h_8d135869d04d8d8c55c0e45752845cf0929f0327e17604ce9713b2a6117bd603}
+}]\index{CONFLICT@{CONFLICT}!request.h@{request.h}}\index{request.h@{request.h}!CONFLICT@{CONFLICT}}\item[{\em 
+CONFLICT\label{request_8h_8d135869d04d8d8c55c0e45752845cf03124eeef4801cbb117a96b9e4a0d7eb7}
+}]\index{IDLE@{IDLE}!request.h@{request.h}}\index{request.h@{request.h}!IDLE@{IDLE}}\item[{\em 
+IDLE\label{request_8h_8d135869d04d8d8c55c0e45752845cf0fd6a0e4343048b10646dd2976cc5ad18}
+}]\end{description}
+\end{Desc}
+
+
+
+Definition at line 36 of file request.h.

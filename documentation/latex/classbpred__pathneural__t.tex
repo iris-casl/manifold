@@ -1,0 +1,241 @@
+\section{bpred\_\-pathneural\_\-t Class Reference}
+\label{classbpred__pathneural__t}\index{bpred\_\-pathneural\_\-t@{bpred\_\-pathneural\_\-t}}
+Inheritance diagram for bpred\_\-pathneural\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classbpred__pathneural__t__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for bpred\_\-pathneural\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classbpred__pathneural__t__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class {\bf bpred\_\-pathneural\_\-sc\_\-t}
+\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf bpred\_\-pathneural\_\-t} (char $\ast$const arg\_\-name, const int arg\_\-bht\_\-size, const int arg\_\-history\_\-length, const int arg\_\-top\_\-size)
+\item 
+{\bf $\sim$bpred\_\-pathneural\_\-t} ()
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+int {\bf bht\_\-size}
+\item 
+int {\bf bht\_\-mask}
+\item 
+qword\_\-t $\ast$ {\bf bht}
+\item 
+int {\bf top\_\-size}
+\item 
+int {\bf top\_\-mask}
+\item 
+short $\ast$$\ast$ {\bf top}
+\item 
+int {\bf weight\_\-width}
+\item 
+int {\bf weight\_\-max}
+\item 
+int {\bf weight\_\-min}
+\item 
+int {\bf theta}
+\item 
+{\bf md\_\-addr\_\-t} {\bf path} [MAX\_\-PATHNEURAL\_\-PATH]
+\item 
+int {\bf path\_\-head}
+\item 
+{\bf counter\_\-t} {\bf weights\_\-read}
+\item 
+{\bf counter\_\-t} {\bf weights\_\-written}
+\item 
+int {\bf history\_\-length}
+\item 
+qword\_\-t {\bf history\_\-mask}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 22 of file bpred-pathneural.cpp.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{bpred\_\-pathneural\_\-t@{bpred\_\-pathneural\_\-t}!bpred\_\-pathneural\_\-t@{bpred\_\-pathneural\_\-t}}
+\index{bpred\_\-pathneural\_\-t@{bpred\_\-pathneural\_\-t}!bpred_pathneural_t@{bpred\_\-pathneural\_\-t}}
+\subsubsection[{bpred\_\-pathneural\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}bpred\_\-pathneural\_\-t::bpred\_\-pathneural\_\-t (char $\ast$const  {\em arg\_\-name}, \/  const int {\em arg\_\-bht\_\-size}, \/  const int {\em arg\_\-history\_\-length}, \/  const int {\em arg\_\-top\_\-size})\hspace{0.3cm}{\tt  [inline]}}\label{classbpred__pathneural__t_9d0413280218e02aea9d5b51a4f3fcd4}
+
+
+
+
+Definition at line 64 of file bpred-pathneural.cpp.
+
+References bht, bht\_\-mask, bht\_\-size, bpred\_\-dir\_\-t::bits, CHECK\_\-NNEG, CHECK\_\-PPOW2, COMPONENT\_\-NAME, fatal(), history\_\-length, history\_\-mask, bpred\_\-dir\_\-t::init(), log\_\-base2(), MAX\_\-PATHNEURAL\_\-PATH, bpred\_\-dir\_\-t::name, path, path\_\-head, theta, top, top\_\-mask, top\_\-size, bpred\_\-dir\_\-t::type, weight\_\-max, weight\_\-min, weight\_\-width, weights\_\-read, and weights\_\-written.\index{bpred\_\-pathneural\_\-t@{bpred\_\-pathneural\_\-t}!$\sim$bpred\_\-pathneural\_\-t@{$\sim$bpred\_\-pathneural\_\-t}}
+\index{$\sim$bpred\_\-pathneural\_\-t@{$\sim$bpred\_\-pathneural\_\-t}!bpred_pathneural_t@{bpred\_\-pathneural\_\-t}}
+\subsubsection[{$\sim$bpred\_\-pathneural\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}bpred\_\-pathneural\_\-t::$\sim$bpred\_\-pathneural\_\-t ()\hspace{0.3cm}{\tt  [inline]}}\label{classbpred__pathneural__t_04328c73312a390bd0ac479544b1412c}
+
+
+
+
+Definition at line 130 of file bpred-pathneural.cpp.
+
+References bht, top, and top\_\-size.
+
+\subsection{Member Data Documentation}
+\index{bpred\_\-pathneural\_\-t@{bpred\_\-pathneural\_\-t}!bht@{bht}}
+\index{bht@{bht}!bpred_pathneural_t@{bpred\_\-pathneural\_\-t}}
+\subsubsection[{bht}]{\setlength{\rightskip}{0pt plus 5cm}qword\_\-t$\ast$ {\bf bpred\_\-pathneural\_\-t::bht}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pathneural__t_e80816a6f176f8e9472ebc0a3bd3f3aa}
+
+
+
+
+Definition at line 43 of file bpred-pathneural.cpp.
+
+Referenced by bpred\_\-pathneural\_\-t(), and $\sim$bpred\_\-pathneural\_\-t().\index{bpred\_\-pathneural\_\-t@{bpred\_\-pathneural\_\-t}!bht\_\-mask@{bht\_\-mask}}
+\index{bht\_\-mask@{bht\_\-mask}!bpred_pathneural_t@{bpred\_\-pathneural\_\-t}}
+\subsubsection[{bht\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-pathneural\_\-t::bht\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pathneural__t_a3fb89d26e18fff7d30e8f6f44a745c6}
+
+
+
+
+Definition at line 42 of file bpred-pathneural.cpp.
+
+Referenced by bpred\_\-pathneural\_\-t().\index{bpred\_\-pathneural\_\-t@{bpred\_\-pathneural\_\-t}!bht\_\-size@{bht\_\-size}}
+\index{bht\_\-size@{bht\_\-size}!bpred_pathneural_t@{bpred\_\-pathneural\_\-t}}
+\subsubsection[{bht\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-pathneural\_\-t::bht\_\-size}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pathneural__t_7a9c2e417ece85c364ec98641502d789}
+
+
+
+
+Definition at line 41 of file bpred-pathneural.cpp.
+
+Referenced by bpred\_\-pathneural\_\-t().\index{bpred\_\-pathneural\_\-t@{bpred\_\-pathneural\_\-t}!history\_\-length@{history\_\-length}}
+\index{history\_\-length@{history\_\-length}!bpred_pathneural_t@{bpred\_\-pathneural\_\-t}}
+\subsubsection[{history\_\-length}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-pathneural\_\-t::history\_\-length}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pathneural__t_fab2213741e4db516ecaa1ccf93d613a}
+
+
+
+
+Definition at line 58 of file bpred-pathneural.cpp.
+
+Referenced by bpred\_\-pathneural\_\-t().\index{bpred\_\-pathneural\_\-t@{bpred\_\-pathneural\_\-t}!history\_\-mask@{history\_\-mask}}
+\index{history\_\-mask@{history\_\-mask}!bpred_pathneural_t@{bpred\_\-pathneural\_\-t}}
+\subsubsection[{history\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}qword\_\-t {\bf bpred\_\-pathneural\_\-t::history\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pathneural__t_f2c6b7907d971d883b5b2f1c73cfccb7}
+
+
+
+
+Definition at line 59 of file bpred-pathneural.cpp.
+
+Referenced by bpred\_\-pathneural\_\-t().\index{bpred\_\-pathneural\_\-t@{bpred\_\-pathneural\_\-t}!path@{path}}
+\index{path@{path}!bpred_pathneural_t@{bpred\_\-pathneural\_\-t}}
+\subsubsection[{path}]{\setlength{\rightskip}{0pt plus 5cm}{\bf md\_\-addr\_\-t} {\bf bpred\_\-pathneural\_\-t::path}[MAX\_\-PATHNEURAL\_\-PATH]\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pathneural__t_3b3ab0c9f141e3e7440e6203d8f308c5}
+
+
+
+
+Definition at line 52 of file bpred-pathneural.cpp.
+
+Referenced by bpred\_\-pathneural\_\-t().\index{bpred\_\-pathneural\_\-t@{bpred\_\-pathneural\_\-t}!path\_\-head@{path\_\-head}}
+\index{path\_\-head@{path\_\-head}!bpred_pathneural_t@{bpred\_\-pathneural\_\-t}}
+\subsubsection[{path\_\-head}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-pathneural\_\-t::path\_\-head}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pathneural__t_56982d25bb3fe236f0d2237cf52ca42d}
+
+
+
+
+Definition at line 53 of file bpred-pathneural.cpp.
+
+Referenced by bpred\_\-pathneural\_\-t().\index{bpred\_\-pathneural\_\-t@{bpred\_\-pathneural\_\-t}!theta@{theta}}
+\index{theta@{theta}!bpred_pathneural_t@{bpred\_\-pathneural\_\-t}}
+\subsubsection[{theta}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-pathneural\_\-t::theta}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pathneural__t_24050a269eb36a524ed559bf7249e2de}
+
+
+
+
+Definition at line 50 of file bpred-pathneural.cpp.
+
+Referenced by bpred\_\-pathneural\_\-t().\index{bpred\_\-pathneural\_\-t@{bpred\_\-pathneural\_\-t}!top@{top}}
+\index{top@{top}!bpred_pathneural_t@{bpred\_\-pathneural\_\-t}}
+\subsubsection[{top}]{\setlength{\rightskip}{0pt plus 5cm}short$\ast$$\ast$ {\bf bpred\_\-pathneural\_\-t::top}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pathneural__t_5ba0efb5ca04d5068417fb19ba48960c}
+
+
+
+
+Definition at line 46 of file bpred-pathneural.cpp.
+
+Referenced by bpred\_\-pathneural\_\-t(), and $\sim$bpred\_\-pathneural\_\-t().\index{bpred\_\-pathneural\_\-t@{bpred\_\-pathneural\_\-t}!top\_\-mask@{top\_\-mask}}
+\index{top\_\-mask@{top\_\-mask}!bpred_pathneural_t@{bpred\_\-pathneural\_\-t}}
+\subsubsection[{top\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-pathneural\_\-t::top\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pathneural__t_0520005b55ff9ccfb81caff4efdf7b8a}
+
+
+
+
+Definition at line 45 of file bpred-pathneural.cpp.
+
+Referenced by bpred\_\-pathneural\_\-t().\index{bpred\_\-pathneural\_\-t@{bpred\_\-pathneural\_\-t}!top\_\-size@{top\_\-size}}
+\index{top\_\-size@{top\_\-size}!bpred_pathneural_t@{bpred\_\-pathneural\_\-t}}
+\subsubsection[{top\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-pathneural\_\-t::top\_\-size}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pathneural__t_b31653076558d239738c30e3f3803eaf}
+
+
+
+
+Definition at line 44 of file bpred-pathneural.cpp.
+
+Referenced by bpred\_\-pathneural\_\-t(), and $\sim$bpred\_\-pathneural\_\-t().\index{bpred\_\-pathneural\_\-t@{bpred\_\-pathneural\_\-t}!weight\_\-max@{weight\_\-max}}
+\index{weight\_\-max@{weight\_\-max}!bpred_pathneural_t@{bpred\_\-pathneural\_\-t}}
+\subsubsection[{weight\_\-max}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-pathneural\_\-t::weight\_\-max}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pathneural__t_9e4ec522dedd7dfed4502dc297f65339}
+
+
+
+
+Definition at line 48 of file bpred-pathneural.cpp.
+
+Referenced by bpred\_\-pathneural\_\-t().\index{bpred\_\-pathneural\_\-t@{bpred\_\-pathneural\_\-t}!weight\_\-min@{weight\_\-min}}
+\index{weight\_\-min@{weight\_\-min}!bpred_pathneural_t@{bpred\_\-pathneural\_\-t}}
+\subsubsection[{weight\_\-min}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-pathneural\_\-t::weight\_\-min}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pathneural__t_e556de20ec42d1c6b3bf02ee142bb709}
+
+
+
+
+Definition at line 49 of file bpred-pathneural.cpp.
+
+Referenced by bpred\_\-pathneural\_\-t().\index{bpred\_\-pathneural\_\-t@{bpred\_\-pathneural\_\-t}!weight\_\-width@{weight\_\-width}}
+\index{weight\_\-width@{weight\_\-width}!bpred_pathneural_t@{bpred\_\-pathneural\_\-t}}
+\subsubsection[{weight\_\-width}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf bpred\_\-pathneural\_\-t::weight\_\-width}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pathneural__t_450c156ffcc0a6bcf6e193417798a990}
+
+
+
+
+Definition at line 47 of file bpred-pathneural.cpp.
+
+Referenced by bpred\_\-pathneural\_\-t().\index{bpred\_\-pathneural\_\-t@{bpred\_\-pathneural\_\-t}!weights\_\-read@{weights\_\-read}}
+\index{weights\_\-read@{weights\_\-read}!bpred_pathneural_t@{bpred\_\-pathneural\_\-t}}
+\subsubsection[{weights\_\-read}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf bpred\_\-pathneural\_\-t::weights\_\-read}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pathneural__t_cd18053f1159c3c4a6e4bcddf2e5e58f}
+
+
+
+
+Definition at line 55 of file bpred-pathneural.cpp.
+
+Referenced by bpred\_\-pathneural\_\-t().\index{bpred\_\-pathneural\_\-t@{bpred\_\-pathneural\_\-t}!weights\_\-written@{weights\_\-written}}
+\index{weights\_\-written@{weights\_\-written}!bpred_pathneural_t@{bpred\_\-pathneural\_\-t}}
+\subsubsection[{weights\_\-written}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf bpred\_\-pathneural\_\-t::weights\_\-written}\hspace{0.3cm}{\tt  [protected]}}\label{classbpred__pathneural__t_3fbb2d6bd5f4ef3a5bb85a6516ed6301}
+
+
+
+
+Definition at line 56 of file bpred-pathneural.cpp.
+
+Referenced by bpred\_\-pathneural\_\-t().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf bpred-pathneural.cpp}\end{CompactItemize}

@@ -1,0 +1,308 @@
+\section{dram\_\-simplesdram\_\-t Class Reference}
+\label{classdram__simplesdram__t}\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}}
+Inheritance diagram for dram\_\-simplesdram\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classdram__simplesdram__t__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for dram\_\-simplesdram\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classdram__simplesdram__t__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+struct {\bf dram\_\-simplesdram\_\-bank\_\-t}
+\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf dram\_\-simplesdram\_\-t} (int arg\_\-num\_\-ranks, int arg\_\-num\_\-banks, double {\bf t\_\-RAS}, double {\bf t\_\-RCD}, double {\bf t\_\-CAS}, double {\bf t\_\-WR}, double {\bf t\_\-RP}, int arg\_\-refresh\_\-period)
+\item 
+{\bf $\sim$dram\_\-simplesdram\_\-t} ()
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+{\bf counter\_\-t} {\bf row\_\-buffer\_\-hits}
+\item 
+int {\bf num\_\-ranks}
+\item 
+int {\bf num\_\-banks}
+\item 
+int {\bf num\_\-rows}
+\item 
+int {\bf c\_\-RAS}
+\item 
+int {\bf c\_\-RCD}
+\item 
+int {\bf c\_\-CAS}
+\item 
+int {\bf c\_\-WR}
+\item 
+int {\bf c\_\-RP}
+\item 
+int {\bf c\_\-refresh}
+\item 
+int {\bf refresh\_\-rank}
+\item 
+int {\bf refresh\_\-bank}
+\item 
+int {\bf refresh\_\-row}
+\item 
+{\bf tick\_\-t} {\bf last\_\-refresh}
+\item 
+int {\bf rank\_\-shift}
+\item 
+int {\bf rank\_\-mask}
+\item 
+int {\bf bank\_\-shift}
+\item 
+int {\bf bank\_\-mask}
+\item 
+int {\bf row\_\-shift}
+\item 
+int {\bf row\_\-mask}
+\item 
+struct {\bf dram\_\-simplesdram\_\-bank\_\-t} $\ast$$\ast$ {\bf array}
+\item 
+{\bf tick\_\-t} {\bf when\_\-command\_\-bus\_\-ready}
+\item 
+{\bf tick\_\-t} {\bf when\_\-data\_\-bus\_\-ready}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 59 of file dram-simplesdram.cpp.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}}
+\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!dram_simplesdram_t@{dram\_\-simplesdram\_\-t}}
+\subsubsection[{dram\_\-simplesdram\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}dram\_\-simplesdram\_\-t::dram\_\-simplesdram\_\-t (int {\em arg\_\-num\_\-ranks}, \/  int {\em arg\_\-num\_\-banks}, \/  double {\em t\_\-RAS}, \/  double {\em t\_\-RCD}, \/  double {\em t\_\-CAS}, \/  double {\em t\_\-WR}, \/  double {\em t\_\-RP}, \/  int {\em arg\_\-refresh\_\-period})\hspace{0.3cm}{\tt  [inline]}}\label{classdram__simplesdram__t_4779204718761f06ad9c9656f5dd9d22}
+
+
+
+
+Definition at line 103 of file dram-simplesdram.cpp.
+
+References array, bank\_\-mask, bank\_\-shift, dram\_\-t::best\_\-latency, c\_\-CAS, c\_\-RAS, c\_\-RCD, c\_\-refresh, c\_\-RP, c\_\-WR, fatal(), dram\_\-t::init(), log\_\-base2(), num\_\-banks, num\_\-ranks, num\_\-rows, rank\_\-mask, rank\_\-shift, row\_\-mask, row\_\-shift, when\_\-command\_\-bus\_\-ready, and when\_\-data\_\-bus\_\-ready.\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!$\sim$dram\_\-simplesdram\_\-t@{$\sim$dram\_\-simplesdram\_\-t}}
+\index{$\sim$dram\_\-simplesdram\_\-t@{$\sim$dram\_\-simplesdram\_\-t}!dram_simplesdram_t@{dram\_\-simplesdram\_\-t}}
+\subsubsection[{$\sim$dram\_\-simplesdram\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}dram\_\-simplesdram\_\-t::$\sim$dram\_\-simplesdram\_\-t ()\hspace{0.3cm}{\tt  [inline]}}\label{classdram__simplesdram__t_1adced6527cf895024ddd37e924283b5}
+
+
+
+
+Definition at line 166 of file dram-simplesdram.cpp.
+
+References array, and num\_\-ranks.
+
+\subsection{Member Data Documentation}
+\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!array@{array}}
+\index{array@{array}!dram_simplesdram_t@{dram\_\-simplesdram\_\-t}}
+\subsubsection[{array}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf dram\_\-simplesdram\_\-bank\_\-t}$\ast$$\ast$ {\bf dram\_\-simplesdram\_\-t::array}\hspace{0.3cm}{\tt  [read, protected]}}\label{classdram__simplesdram__t_5cd38660f3f475cb0f3dd36611841933}
+
+
+
+
+Definition at line 93 of file dram-simplesdram.cpp.
+
+Referenced by dram\_\-simplesdram\_\-t(), and $\sim$dram\_\-simplesdram\_\-t().\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!bank\_\-mask@{bank\_\-mask}}
+\index{bank\_\-mask@{bank\_\-mask}!dram_simplesdram_t@{dram\_\-simplesdram\_\-t}}
+\subsubsection[{bank\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf dram\_\-simplesdram\_\-t::bank\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classdram__simplesdram__t_13f2693dc58e52765df98233fd06f30d}
+
+
+
+
+Definition at line 89 of file dram-simplesdram.cpp.
+
+Referenced by dram\_\-simplesdram\_\-t().\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!bank\_\-shift@{bank\_\-shift}}
+\index{bank\_\-shift@{bank\_\-shift}!dram_simplesdram_t@{dram\_\-simplesdram\_\-t}}
+\subsubsection[{bank\_\-shift}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf dram\_\-simplesdram\_\-t::bank\_\-shift}\hspace{0.3cm}{\tt  [protected]}}\label{classdram__simplesdram__t_8358a46b5bad7e0637d20a8cbf0a00eb}
+
+
+
+
+Definition at line 88 of file dram-simplesdram.cpp.
+
+Referenced by dram\_\-simplesdram\_\-t().\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!c\_\-CAS@{c\_\-CAS}}
+\index{c\_\-CAS@{c\_\-CAS}!dram_simplesdram_t@{dram\_\-simplesdram\_\-t}}
+\subsubsection[{c\_\-CAS}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf dram\_\-simplesdram\_\-t::c\_\-CAS}\hspace{0.3cm}{\tt  [protected]}}\label{classdram__simplesdram__t_a232228f2c46cd07cafcbe3fe633dffa}
+
+
+
+
+Definition at line 76 of file dram-simplesdram.cpp.
+
+Referenced by dram\_\-simplesdram\_\-t().\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!c\_\-RAS@{c\_\-RAS}}
+\index{c\_\-RAS@{c\_\-RAS}!dram_simplesdram_t@{dram\_\-simplesdram\_\-t}}
+\subsubsection[{c\_\-RAS}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf dram\_\-simplesdram\_\-t::c\_\-RAS}\hspace{0.3cm}{\tt  [protected]}}\label{classdram__simplesdram__t_e4c42ee1ee9ab08a9e5858bd49e27f2f}
+
+
+
+
+Definition at line 74 of file dram-simplesdram.cpp.
+
+Referenced by dram\_\-simplesdram\_\-t().\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!c\_\-RCD@{c\_\-RCD}}
+\index{c\_\-RCD@{c\_\-RCD}!dram_simplesdram_t@{dram\_\-simplesdram\_\-t}}
+\subsubsection[{c\_\-RCD}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf dram\_\-simplesdram\_\-t::c\_\-RCD}\hspace{0.3cm}{\tt  [protected]}}\label{classdram__simplesdram__t_5c55079a4ca6c021ade5ae1546df155e}
+
+
+
+
+Definition at line 75 of file dram-simplesdram.cpp.
+
+Referenced by dram\_\-simplesdram\_\-t().\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!c\_\-refresh@{c\_\-refresh}}
+\index{c\_\-refresh@{c\_\-refresh}!dram_simplesdram_t@{dram\_\-simplesdram\_\-t}}
+\subsubsection[{c\_\-refresh}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf dram\_\-simplesdram\_\-t::c\_\-refresh}\hspace{0.3cm}{\tt  [protected]}}\label{classdram__simplesdram__t_bd2bcb47aaa1b69e81eb159d720e7923}
+
+
+
+
+Definition at line 80 of file dram-simplesdram.cpp.
+
+Referenced by dram\_\-simplesdram\_\-t().\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!c\_\-RP@{c\_\-RP}}
+\index{c\_\-RP@{c\_\-RP}!dram_simplesdram_t@{dram\_\-simplesdram\_\-t}}
+\subsubsection[{c\_\-RP}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf dram\_\-simplesdram\_\-t::c\_\-RP}\hspace{0.3cm}{\tt  [protected]}}\label{classdram__simplesdram__t_769026f7739e8fff88b797bc2922bdf9}
+
+
+
+
+Definition at line 78 of file dram-simplesdram.cpp.
+
+Referenced by dram\_\-simplesdram\_\-t().\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!c\_\-WR@{c\_\-WR}}
+\index{c\_\-WR@{c\_\-WR}!dram_simplesdram_t@{dram\_\-simplesdram\_\-t}}
+\subsubsection[{c\_\-WR}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf dram\_\-simplesdram\_\-t::c\_\-WR}\hspace{0.3cm}{\tt  [protected]}}\label{classdram__simplesdram__t_ddc00e4bc5aed041685c2154324f2a12}
+
+
+
+
+Definition at line 77 of file dram-simplesdram.cpp.
+
+Referenced by dram\_\-simplesdram\_\-t().\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!last\_\-refresh@{last\_\-refresh}}
+\index{last\_\-refresh@{last\_\-refresh}!dram_simplesdram_t@{dram\_\-simplesdram\_\-t}}
+\subsubsection[{last\_\-refresh}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} {\bf dram\_\-simplesdram\_\-t::last\_\-refresh}\hspace{0.3cm}{\tt  [protected]}}\label{classdram__simplesdram__t_c4079911cdc1bdcb8a4051f75d339833}
+
+
+
+
+Definition at line 84 of file dram-simplesdram.cpp.\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!num\_\-banks@{num\_\-banks}}
+\index{num\_\-banks@{num\_\-banks}!dram_simplesdram_t@{dram\_\-simplesdram\_\-t}}
+\subsubsection[{num\_\-banks}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf dram\_\-simplesdram\_\-t::num\_\-banks}\hspace{0.3cm}{\tt  [protected]}}\label{classdram__simplesdram__t_a85882183dd042c33be5aeeb7bda43d1}
+
+
+
+
+Definition at line 72 of file dram-simplesdram.cpp.
+
+Referenced by dram\_\-simplesdram\_\-t().\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!num\_\-ranks@{num\_\-ranks}}
+\index{num\_\-ranks@{num\_\-ranks}!dram_simplesdram_t@{dram\_\-simplesdram\_\-t}}
+\subsubsection[{num\_\-ranks}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf dram\_\-simplesdram\_\-t::num\_\-ranks}\hspace{0.3cm}{\tt  [protected]}}\label{classdram__simplesdram__t_f5ba9d77748fdfd788480a9fb2dcb8dd}
+
+
+
+
+Definition at line 71 of file dram-simplesdram.cpp.
+
+Referenced by dram\_\-simplesdram\_\-t(), and $\sim$dram\_\-simplesdram\_\-t().\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!num\_\-rows@{num\_\-rows}}
+\index{num\_\-rows@{num\_\-rows}!dram_simplesdram_t@{dram\_\-simplesdram\_\-t}}
+\subsubsection[{num\_\-rows}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf dram\_\-simplesdram\_\-t::num\_\-rows}\hspace{0.3cm}{\tt  [protected]}}\label{classdram__simplesdram__t_27363871f4e5abc4d467d566caf36225}
+
+
+
+
+Definition at line 73 of file dram-simplesdram.cpp.
+
+Referenced by dram\_\-simplesdram\_\-t().\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!rank\_\-mask@{rank\_\-mask}}
+\index{rank\_\-mask@{rank\_\-mask}!dram_simplesdram_t@{dram\_\-simplesdram\_\-t}}
+\subsubsection[{rank\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf dram\_\-simplesdram\_\-t::rank\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classdram__simplesdram__t_ef2e277e2eb76c50d80c614be19d30ea}
+
+
+
+
+Definition at line 87 of file dram-simplesdram.cpp.
+
+Referenced by dram\_\-simplesdram\_\-t().\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!rank\_\-shift@{rank\_\-shift}}
+\index{rank\_\-shift@{rank\_\-shift}!dram_simplesdram_t@{dram\_\-simplesdram\_\-t}}
+\subsubsection[{rank\_\-shift}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf dram\_\-simplesdram\_\-t::rank\_\-shift}\hspace{0.3cm}{\tt  [protected]}}\label{classdram__simplesdram__t_c439e85e8b07951b556062e268745d39}
+
+
+
+
+Definition at line 86 of file dram-simplesdram.cpp.
+
+Referenced by dram\_\-simplesdram\_\-t().\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!refresh\_\-bank@{refresh\_\-bank}}
+\index{refresh\_\-bank@{refresh\_\-bank}!dram_simplesdram_t@{dram\_\-simplesdram\_\-t}}
+\subsubsection[{refresh\_\-bank}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf dram\_\-simplesdram\_\-t::refresh\_\-bank}\hspace{0.3cm}{\tt  [protected]}}\label{classdram__simplesdram__t_ca4f44bffa2217a6cb6a88b56f60f027}
+
+
+
+
+Definition at line 82 of file dram-simplesdram.cpp.\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!refresh\_\-rank@{refresh\_\-rank}}
+\index{refresh\_\-rank@{refresh\_\-rank}!dram_simplesdram_t@{dram\_\-simplesdram\_\-t}}
+\subsubsection[{refresh\_\-rank}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf dram\_\-simplesdram\_\-t::refresh\_\-rank}\hspace{0.3cm}{\tt  [protected]}}\label{classdram__simplesdram__t_214d3e45d655c941e35f74748c308d75}
+
+
+
+
+Definition at line 81 of file dram-simplesdram.cpp.\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!refresh\_\-row@{refresh\_\-row}}
+\index{refresh\_\-row@{refresh\_\-row}!dram_simplesdram_t@{dram\_\-simplesdram\_\-t}}
+\subsubsection[{refresh\_\-row}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf dram\_\-simplesdram\_\-t::refresh\_\-row}\hspace{0.3cm}{\tt  [protected]}}\label{classdram__simplesdram__t_96e541f5cb266e75c2e0660bc4ba85fe}
+
+
+
+
+Definition at line 83 of file dram-simplesdram.cpp.\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!row\_\-buffer\_\-hits@{row\_\-buffer\_\-hits}}
+\index{row\_\-buffer\_\-hits@{row\_\-buffer\_\-hits}!dram_simplesdram_t@{dram\_\-simplesdram\_\-t}}
+\subsubsection[{row\_\-buffer\_\-hits}]{\setlength{\rightskip}{0pt plus 5cm}{\bf counter\_\-t} {\bf dram\_\-simplesdram\_\-t::row\_\-buffer\_\-hits}\hspace{0.3cm}{\tt  [protected]}}\label{classdram__simplesdram__t_c9a4538caa3feb52ea0cc344743bae98}
+
+
+
+
+Definition at line 69 of file dram-simplesdram.cpp.\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!row\_\-mask@{row\_\-mask}}
+\index{row\_\-mask@{row\_\-mask}!dram_simplesdram_t@{dram\_\-simplesdram\_\-t}}
+\subsubsection[{row\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf dram\_\-simplesdram\_\-t::row\_\-mask}\hspace{0.3cm}{\tt  [protected]}}\label{classdram__simplesdram__t_276eafd4afec92fac241ee460c47822e}
+
+
+
+
+Definition at line 91 of file dram-simplesdram.cpp.
+
+Referenced by dram\_\-simplesdram\_\-t().\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!row\_\-shift@{row\_\-shift}}
+\index{row\_\-shift@{row\_\-shift}!dram_simplesdram_t@{dram\_\-simplesdram\_\-t}}
+\subsubsection[{row\_\-shift}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf dram\_\-simplesdram\_\-t::row\_\-shift}\hspace{0.3cm}{\tt  [protected]}}\label{classdram__simplesdram__t_d8ab2a975a1a215ee6a8cc4ac5f73718}
+
+
+
+
+Definition at line 90 of file dram-simplesdram.cpp.
+
+Referenced by dram\_\-simplesdram\_\-t().\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!when\_\-command\_\-bus\_\-ready@{when\_\-command\_\-bus\_\-ready}}
+\index{when\_\-command\_\-bus\_\-ready@{when\_\-command\_\-bus\_\-ready}!dram_simplesdram_t@{dram\_\-simplesdram\_\-t}}
+\subsubsection[{when\_\-command\_\-bus\_\-ready}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} {\bf dram\_\-simplesdram\_\-t::when\_\-command\_\-bus\_\-ready}\hspace{0.3cm}{\tt  [protected]}}\label{classdram__simplesdram__t_d615cd81cedfe03d115cd5880f554da5}
+
+
+
+
+Definition at line 96 of file dram-simplesdram.cpp.
+
+Referenced by dram\_\-simplesdram\_\-t().\index{dram\_\-simplesdram\_\-t@{dram\_\-simplesdram\_\-t}!when\_\-data\_\-bus\_\-ready@{when\_\-data\_\-bus\_\-ready}}
+\index{when\_\-data\_\-bus\_\-ready@{when\_\-data\_\-bus\_\-ready}!dram_simplesdram_t@{dram\_\-simplesdram\_\-t}}
+\subsubsection[{when\_\-data\_\-bus\_\-ready}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tick\_\-t} {\bf dram\_\-simplesdram\_\-t::when\_\-data\_\-bus\_\-ready}\hspace{0.3cm}{\tt  [protected]}}\label{classdram__simplesdram__t_59cc66ac28a70a8dba4306a7c401575d}
+
+
+
+
+Definition at line 97 of file dram-simplesdram.cpp.
+
+Referenced by dram\_\-simplesdram\_\-t().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf dram-simplesdram.cpp}\end{CompactItemize}

@@ -1,0 +1,109 @@
+\section{EventBase Class Reference}
+\label{classEventBase}\index{EventBase@{EventBase}}
+{\tt \#include $<$simulator.h$>$}
+
+Inheritance diagram for EventBase:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classEventBase__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf EventBase} (double t)
+\item 
+{\bf EventBase} (double t, int u)
+\item 
+virtual void {\bf CallHandler} ()=0
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+double {\bf time}
+\item 
+int {\bf uid}
+\end{CompactItemize}
+\subsection*{Static Public Attributes}
+\begin{CompactItemize}
+\item 
+static int {\bf nextUID} = 0
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 24 of file simulator.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{EventBase@{EventBase}!EventBase@{EventBase}}
+\index{EventBase@{EventBase}!EventBase@{EventBase}}
+\subsubsection[{EventBase}]{\setlength{\rightskip}{0pt plus 5cm}EventBase::EventBase (double {\em t})\hspace{0.3cm}{\tt  [inline]}}\label{classEventBase_e95c43af6512ec2ab717eeb240ecad0a}
+
+
+
+
+Definition at line 27 of file simulator.h.\index{EventBase@{EventBase}!EventBase@{EventBase}}
+\index{EventBase@{EventBase}!EventBase@{EventBase}}
+\subsubsection[{EventBase}]{\setlength{\rightskip}{0pt plus 5cm}EventBase::EventBase (double {\em t}, \/  int {\em u})\hspace{0.3cm}{\tt  [inline]}}\label{classEventBase_0213a35ffa61ce4f7066128e89da5af8}
+
+
+
+
+Definition at line 28 of file simulator.h.
+
+\subsection{Member Function Documentation}
+\index{EventBase@{EventBase}!CallHandler@{CallHandler}}
+\index{CallHandler@{CallHandler}!EventBase@{EventBase}}
+\subsubsection[{CallHandler}]{\setlength{\rightskip}{0pt plus 5cm}virtual void EventBase::CallHandler ()\hspace{0.3cm}{\tt  [pure virtual]}}\label{classEventBase_121ca64dec88c8d9589c064b0060d037}
+
+
+
+
+Implemented in {\bf EventId} \doxyref{}{p.}{classEventId_8627fa7b92746ddd1bd8b582b68fb3d1}, {\bf Event0$<$ T, OBJ $>$} \doxyref{}{p.}{classEvent0_77176d1040ed4cc48fa750c4854212b9}, {\bf Event1$<$ T, OBJ, U1, T1 $>$} \doxyref{}{p.}{classEvent1_6d7e716e16ab6ee6672807250860cdd8}, {\bf Event2$<$ T, OBJ, U1, T1, U2, T2 $>$} \doxyref{}{p.}{classEvent2_428b314837eee680fa435cad61944af3}, {\bf Event3$<$ T, OBJ, U1, T1, U2, T2, U3, T3 $>$} \doxyref{}{p.}{classEvent3_1b9501d43723072952055c5abd9dc9be}, {\bf Event4$<$ T, OBJ, U1, T1, U2, T2, U3, T3, U4, T4 $>$} \doxyref{}{p.}{classEvent4_69f98edf52e4f93f5cf0e0d5464f6ce0}, {\bf Event0Stat} \doxyref{}{p.}{classEvent0Stat_0cf3e0d44a1c04ee73a8a93a50ca05a1}, {\bf Event1Stat$<$ U1, T1 $>$} \doxyref{}{p.}{classEvent1Stat_d39942fb840e55ee829decdf1927eadf}, {\bf Event2Stat$<$ U1, T1, U2, T2 $>$} \doxyref{}{p.}{classEvent2Stat_84e6e9e412678507da3b2bde8e6a157a}, {\bf Event3Stat$<$ U1, T1, U2, T2, U3, T3 $>$} \doxyref{}{p.}{classEvent3Stat_6901cb7acfdb3f021edd0a79c1766349}, and {\bf Event4Stat$<$ U1, T1, U2, T2, U3, T3, U4, T4 $>$} \doxyref{}{p.}{classEvent4Stat_4dfca297cb5eede83851898b5c4f2f76}.
+
+Referenced by Simulator::Run().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=178pt]{classEventBase_121ca64dec88c8d9589c064b0060d037_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\index{EventBase@{EventBase}!nextUID@{nextUID}}
+\index{nextUID@{nextUID}!EventBase@{EventBase}}
+\subsubsection[{nextUID}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf EventBase::nextUID} = 0\hspace{0.3cm}{\tt  [static]}}\label{classEventBase_22a8c15e90a68f16042fd7b12dfe5935}
+
+
+
+
+Definition at line 33 of file simulator.h.\index{EventBase@{EventBase}!time@{time}}
+\index{time@{time}!EventBase@{EventBase}}
+\subsubsection[{time}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf EventBase::time}}\label{classEventBase_b64e6661c521961aa3a18b8ac34566ed}
+
+
+
+
+Definition at line 31 of file simulator.h.
+
+Referenced by event\_\-less::operator()(), and Simulator::Run().\index{EventBase@{EventBase}!uid@{uid}}
+\index{uid@{uid}!EventBase@{EventBase}}
+\subsubsection[{uid}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf EventBase::uid}}\label{classEventBase_f22f14be6b15b6f99d347b8726a7613a}
+
+
+
+
+Definition at line 32 of file simulator.h.
+
+Referenced by event\_\-less::operator()(), and Simulator::Schedule().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf simulator.h}\item 
+{\bf simulator.cc}\end{CompactItemize}

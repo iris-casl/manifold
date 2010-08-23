@@ -1,0 +1,287 @@
+\section{GenericSink Class Reference}
+\label{classGenericSink}\index{GenericSink@{GenericSink}}
+{\tt \#include $<$genericSink.h$>$}
+
+Inheritance diagram for GenericSink:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classGenericSink__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for GenericSink:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classGenericSink__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf GenericSink} ()
+\item 
+void {\bf setup} ({\bf uint} v, {\bf uint} time, {\bf uint} {\bf no\_\-nodes})
+\item 
+void {\bf process\_\-event} ({\bf IrisEvent} $\ast$e)
+\item 
+string {\bf toString} () const 
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+ofstream {\bf out\_\-file}
+\item 
+{\bf uint} {\bf address}
+\item 
+vector$<$ bool $>$ {\bf ready}
+\item 
+unsigned int {\bf packets}
+\item 
+bool {\bf sending}
+\end{CompactItemize}
+\subsection*{Private Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf handle\_\-new\_\-packet\_\-event} ({\bf IrisEvent} $\ast$e)
+\item 
+void {\bf handle\_\-ready\_\-event} ({\bf IrisEvent} $\ast$e)
+\item 
+void {\bf handle\_\-outpull\_\-event} ({\bf IrisEvent} $\ast$e)
+\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+deque$<$ {\bf HighLevelPacket} $\ast$ $>$ {\bf out\_\-packets}
+\item 
+string {\bf out\_\-filename}
+\item 
+{\bf uint} {\bf last\_\-vc}
+\item 
+{\bf uint} {\bf no\_\-nodes}
+\item 
+{\bf uint} {\bf vcs}
+\item 
+{\bf uint} {\bf max\_\-sim\_\-time}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 37 of file genericSink.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{GenericSink@{GenericSink}!GenericSink@{GenericSink}}
+\index{GenericSink@{GenericSink}!GenericSink@{GenericSink}}
+\subsubsection[{GenericSink}]{\setlength{\rightskip}{0pt plus 5cm}GenericSink::GenericSink ()}\label{classGenericSink_6652e97f87a0a6a93dc979a167d2db8b}
+
+
+
+
+Definition at line 33 of file genericSink.cc.
+
+References NetworkComponent::name, and out\_\-filename.
+
+\subsection{Member Function Documentation}
+\index{GenericSink@{GenericSink}!handle\_\-new\_\-packet\_\-event@{handle\_\-new\_\-packet\_\-event}}
+\index{handle\_\-new\_\-packet\_\-event@{handle\_\-new\_\-packet\_\-event}!GenericSink@{GenericSink}}
+\subsubsection[{handle\_\-new\_\-packet\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void GenericSink::handle\_\-new\_\-packet\_\-event ({\bf IrisEvent} $\ast$ {\em e})\hspace{0.3cm}{\tt  [private]}}\label{classGenericSink_6174bc22b2c2a79245adf8caa952f10c}
+
+
+
+
+Definition at line 92 of file genericSink.cc.
+
+References IrisEvent::event\_\-data, Processor::interface\_\-connections, Simulator::Now(), out\_\-file, NetworkComponent::process\_\-event(), READY\_\-EVENT, Simulator::Schedule(), HighLevelPacket::sent\_\-time, HighLevelPacket::toString(), VirtualChannelDescription::vc, and HighLevelPacket::virtual\_\-channel.
+
+Referenced by process\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{classGenericSink_6174bc22b2c2a79245adf8caa952f10c_icgraph}
+\end{center}
+\end{figure}
+\index{GenericSink@{GenericSink}!handle\_\-outpull\_\-event@{handle\_\-outpull\_\-event}}
+\index{handle\_\-outpull\_\-event@{handle\_\-outpull\_\-event}!GenericSink@{GenericSink}}
+\subsubsection[{handle\_\-outpull\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void GenericSink::handle\_\-outpull\_\-event ({\bf IrisEvent} $\ast$ {\em e})\hspace{0.3cm}{\tt  [private]}}\label{classGenericSink_840059615ede80b09f9365c0902c64d7}
+
+
+
+
+Definition at line 115 of file genericSink.cc.
+
+References \_\-DBG, address, HighLevelPacket::destination, Processor::interface\_\-connections, last\_\-vc, NEW\_\-PACKET\_\-EVENT, no\_\-nodes, NetworkComponent::node\_\-ip, Simulator::Now(), out\_\-file, packets, NetworkComponent::process\_\-event(), ready, Simulator::Schedule(), sending, HighLevelPacket::sent\_\-time, HighLevelPacket::source, HighLevelPacket::toString(), HighLevelPacket::transaction\_\-id, and HighLevelPacket::virtual\_\-channel.
+
+Referenced by process\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{classGenericSink_840059615ede80b09f9365c0902c64d7_icgraph}
+\end{center}
+\end{figure}
+\index{GenericSink@{GenericSink}!handle\_\-ready\_\-event@{handle\_\-ready\_\-event}}
+\index{handle\_\-ready\_\-event@{handle\_\-ready\_\-event}!GenericSink@{GenericSink}}
+\subsubsection[{handle\_\-ready\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void GenericSink::handle\_\-ready\_\-event ({\bf IrisEvent} $\ast$ {\em e})\hspace{0.3cm}{\tt  [private]}}\label{classGenericSink_f9dfbdf5cb244fd53a69742595756f68}
+
+
+
+
+Definition at line 177 of file genericSink.cc.
+
+References IrisEvent::event\_\-data, Simulator::Now(), OUT\_\-PULL\_\-EVENT, NetworkComponent::process\_\-event(), ready, Simulator::Schedule(), sending, IrisEvent::vc, and VirtualChannelDescription::vc.
+
+Referenced by process\_\-event().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=191pt]{classGenericSink_f9dfbdf5cb244fd53a69742595756f68_icgraph}
+\end{center}
+\end{figure}
+\index{GenericSink@{GenericSink}!process\_\-event@{process\_\-event}}
+\index{process\_\-event@{process\_\-event}!GenericSink@{GenericSink}}
+\subsubsection[{process\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void GenericSink::process\_\-event ({\bf IrisEvent} $\ast$ {\em e})\hspace{0.3cm}{\tt  [virtual]}}\label{classGenericSink_a0beb58f52adfe869ba47f4b51537409}
+
+
+
+
+Implements {\bf Processor} \doxyref{}{p.}{classProcessor_18cdeefafbd8225cb3ad18dd098c0e08}.
+
+Definition at line 70 of file genericSink.cc.
+
+References handle\_\-new\_\-packet\_\-event(), handle\_\-outpull\_\-event(), handle\_\-ready\_\-event(), NEW\_\-PACKET\_\-EVENT, OUT\_\-PULL\_\-EVENT, READY\_\-EVENT, and IrisEvent::type.\index{GenericSink@{GenericSink}!setup@{setup}}
+\index{setup@{setup}!GenericSink@{GenericSink}}
+\subsubsection[{setup}]{\setlength{\rightskip}{0pt plus 5cm}void GenericSink::setup ({\bf uint} {\em v}, \/  {\bf uint} {\em time}, \/  {\bf uint} {\em no\_\-nodes})\hspace{0.3cm}{\tt  [virtual]}}\label{classGenericSink_49d81c43be1b9ec34190d4c2abc2babb}
+
+
+
+
+Implements {\bf Processor} \doxyref{}{p.}{classProcessor_dd2277b3c802f5e10419e1180c7e97a5}.
+
+Definition at line 40 of file genericSink.cc.
+
+References address, IrisEvent::event\_\-data, Processor::interface\_\-connections, max\_\-sim\_\-time, Component::myId(), no\_\-nodes, Simulator::Now(), out\_\-file, out\_\-filename, ready, READY\_\-EVENT, Simulator::Schedule(), IrisEvent::type, VirtualChannelDescription::vc, and vcs.\index{GenericSink@{GenericSink}!toString@{toString}}
+\index{toString@{toString}!GenericSink@{GenericSink}}
+\subsubsection[{toString}]{\setlength{\rightskip}{0pt plus 5cm}string GenericSink::toString () const\hspace{0.3cm}{\tt  [virtual]}}\label{classGenericSink_a1703a08208816130a4ee2f4d4a8334f}
+
+
+
+
+Reimplemented from {\bf Processor} \doxyref{}{p.}{classProcessor_d3bdbedfbb00b05f61504e411a418106}.
+
+Definition at line 199 of file genericSink.cc.
+
+References address, and out\_\-filename.
+
+\subsection{Member Data Documentation}
+\index{GenericSink@{GenericSink}!address@{address}}
+\index{address@{address}!GenericSink@{GenericSink}}
+\subsubsection[{address}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf GenericSink::address}}\label{classGenericSink_ccb1d47a4bec1322b3e8c996933e4aaf}
+
+
+
+
+Reimplemented from {\bf NetworkComponent} \doxyref{}{p.}{classNetworkComponent_0428749bde908497630b506071d52191}.
+
+Definition at line 45 of file genericSink.h.
+
+Referenced by handle\_\-outpull\_\-event(), setup(), and toString().\index{GenericSink@{GenericSink}!last\_\-vc@{last\_\-vc}}
+\index{last\_\-vc@{last\_\-vc}!GenericSink@{GenericSink}}
+\subsubsection[{last\_\-vc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf GenericSink::last\_\-vc}\hspace{0.3cm}{\tt  [private]}}\label{classGenericSink_60e8d3129b6dbb5ac71ecc14290a5a49}
+
+
+
+
+Definition at line 55 of file genericSink.h.
+
+Referenced by handle\_\-outpull\_\-event().\index{GenericSink@{GenericSink}!max\_\-sim\_\-time@{max\_\-sim\_\-time}}
+\index{max\_\-sim\_\-time@{max\_\-sim\_\-time}!GenericSink@{GenericSink}}
+\subsubsection[{max\_\-sim\_\-time}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf GenericSink::max\_\-sim\_\-time}\hspace{0.3cm}{\tt  [private]}}\label{classGenericSink_2dcc38ea514ca8c1078ec5560ab13fea}
+
+
+
+
+Definition at line 58 of file genericSink.h.
+
+Referenced by setup().\index{GenericSink@{GenericSink}!no\_\-nodes@{no\_\-nodes}}
+\index{no\_\-nodes@{no\_\-nodes}!GenericSink@{GenericSink}}
+\subsubsection[{no\_\-nodes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf GenericSink::no\_\-nodes}\hspace{0.3cm}{\tt  [private]}}\label{classGenericSink_58407e577b31b1c5400afb40e1e221db}
+
+
+
+
+Definition at line 56 of file genericSink.h.
+
+Referenced by handle\_\-outpull\_\-event(), and setup().\index{GenericSink@{GenericSink}!out\_\-file@{out\_\-file}}
+\index{out\_\-file@{out\_\-file}!GenericSink@{GenericSink}}
+\subsubsection[{out\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}ofstream {\bf GenericSink::out\_\-file}}\label{classGenericSink_6f54713b76e768ddf16799d4921b497f}
+
+
+
+
+Definition at line 44 of file genericSink.h.
+
+Referenced by handle\_\-new\_\-packet\_\-event(), handle\_\-outpull\_\-event(), and setup().\index{GenericSink@{GenericSink}!out\_\-filename@{out\_\-filename}}
+\index{out\_\-filename@{out\_\-filename}!GenericSink@{GenericSink}}
+\subsubsection[{out\_\-filename}]{\setlength{\rightskip}{0pt plus 5cm}string {\bf GenericSink::out\_\-filename}\hspace{0.3cm}{\tt  [private]}}\label{classGenericSink_cbc43a9aa83b593dbe5e7041000a91fa}
+
+
+
+
+Definition at line 54 of file genericSink.h.
+
+Referenced by GenericSink(), setup(), and toString().\index{GenericSink@{GenericSink}!out\_\-packets@{out\_\-packets}}
+\index{out\_\-packets@{out\_\-packets}!GenericSink@{GenericSink}}
+\subsubsection[{out\_\-packets}]{\setlength{\rightskip}{0pt plus 5cm}deque$<${\bf HighLevelPacket}$\ast$$>$ {\bf GenericSink::out\_\-packets}\hspace{0.3cm}{\tt  [private]}}\label{classGenericSink_b45c190917623544e67c4c1d3deefd37}
+
+
+
+
+Definition at line 53 of file genericSink.h.\index{GenericSink@{GenericSink}!packets@{packets}}
+\index{packets@{packets}!GenericSink@{GenericSink}}
+\subsubsection[{packets}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf GenericSink::packets}}\label{classGenericSink_a94fc0ef65f71ba9e4f5412271926788}
+
+
+
+
+Definition at line 47 of file genericSink.h.
+
+Referenced by handle\_\-outpull\_\-event().\index{GenericSink@{GenericSink}!ready@{ready}}
+\index{ready@{ready}!GenericSink@{GenericSink}}
+\subsubsection[{ready}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$bool$>$ {\bf GenericSink::ready}}\label{classGenericSink_a5487685dcd20045ccba7beeda863a94}
+
+
+
+
+Definition at line 46 of file genericSink.h.
+
+Referenced by handle\_\-outpull\_\-event(), handle\_\-ready\_\-event(), and setup().\index{GenericSink@{GenericSink}!sending@{sending}}
+\index{sending@{sending}!GenericSink@{GenericSink}}
+\subsubsection[{sending}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf GenericSink::sending}}\label{classGenericSink_9495f649796254dc03f5fe250808664e}
+
+
+
+
+Definition at line 48 of file genericSink.h.
+
+Referenced by handle\_\-outpull\_\-event(), and handle\_\-ready\_\-event().\index{GenericSink@{GenericSink}!vcs@{vcs}}
+\index{vcs@{vcs}!GenericSink@{GenericSink}}
+\subsubsection[{vcs}]{\setlength{\rightskip}{0pt plus 5cm}{\bf uint} {\bf GenericSink::vcs}\hspace{0.3cm}{\tt  [private]}}\label{classGenericSink_246f83316a6d588bb77b3bfe86b69d23}
+
+
+
+
+Definition at line 57 of file genericSink.h.
+
+Referenced by setup().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+{\bf genericSink.h}\item 
+{\bf genericSink.cc}\end{CompactItemize}

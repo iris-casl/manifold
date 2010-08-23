@@ -1,0 +1,197 @@
+\section{zesto-bpred.h File Reference}
+\label{zesto-bpred_8h}\index{zesto-bpred.h@{zesto-bpred.h}}
+{\tt \#include \char`\"{}machine.h\char`\"{}}\par
+{\tt \#include \char`\"{}zesto-structs.h\char`\"{}}\par
+
+
+Include dependency graph for zesto-bpred.h:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{zesto-bpred_8h__incl}
+\end{center}
+\end{figure}
+
+
+This graph shows which files directly or indirectly include this file:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=385pt]{zesto-bpred_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class {\bf bpred\_\-t}
+\item 
+class {\bf bpred\_\-sc\_\-t}
+\item 
+class {\bf bpred\_\-dir\_\-t}
+\item 
+class {\bf fusion\_\-sc\_\-t}
+\item 
+class {\bf fusion\_\-t}
+\item 
+class {\bf BTB\_\-sc\_\-t}
+\item 
+class {\bf BTB\_\-t}
+\item 
+class {\bf RAS\_\-chkpt\_\-t}
+\item 
+class {\bf RAS\_\-t}
+\item 
+class {\bf bpred\_\-state\_\-cache\_\-t}
+\end{CompactItemize}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define {\bf \_\-2BC\_\-TABLE}~0xD4E8
+\item 
+\#define {\bf MY2BC\_\-DIR\_\-MASK}~0x01
+\item 
+\#define {\bf MY2BC\_\-HYST\_\-MASK}~0x02
+\item 
+\#define {\bf MY2BC\_\-DIR}(ctr)~((ctr)\&MY2BC\_\-DIR\_\-MASK)
+\item 
+\#define {\bf MY2BC\_\-HYST}(ctr)~((ctr)\&MY2BC\_\-HYST\_\-MASK)
+\item 
+\#define {\bf MY2BC\_\-UPDATE}(ctr, dir)~(ctr)=(\_\-2BC\_\-TABLE$>$$>$(((ctr$<$$<$1)+(dir))$<$$<$1))\&3
+\item 
+\#define {\bf \_\-2BC\_\-CINC\_\-TABLE}~0xF6D8
+\item 
+\#define {\bf \_\-2BC\_\-CDEC\_\-TABLE}~0x7290
+\item 
+\#define {\bf MY2BC\_\-COND\_\-INC}(ctr, p)~(ctr)=(\_\-2BC\_\-CINC\_\-TABLE$>$$>$(((ctr$<$$<$1)+(p))$<$$<$1))\&3
+\item 
+\#define {\bf MY2BC\_\-COND\_\-DEC}(ctr, p)~(ctr)=(\_\-2BC\_\-CDEC\_\-TABLE$>$$>$(((ctr$<$$<$1)+(p))$<$$<$1))\&3
+\item 
+\#define {\bf MY2BC\_\-STRONG\_\-TAKEN}~(3)
+\item 
+\#define {\bf MY2BC\_\-WEAKLY\_\-TAKEN}~(1)
+\item 
+\#define {\bf MY2BC\_\-WEAKLY\_\-NT}~(2)
+\item 
+\#define {\bf MY2BC\_\-STRONG\_\-NT}~(0)
+\end{CompactItemize}
+\subsection*{Typedefs}
+\begin{CompactItemize}
+\item 
+typedef unsigned char {\bf my2bc\_\-t}
+\end{CompactItemize}
+
+
+\subsection{Define Documentation}
+\index{zesto-bpred.h@{zesto-bpred.h}!\_\-2BC\_\-CDEC\_\-TABLE@{\_\-2BC\_\-CDEC\_\-TABLE}}
+\index{\_\-2BC\_\-CDEC\_\-TABLE@{\_\-2BC\_\-CDEC\_\-TABLE}!zesto-bpred.h@{zesto-bpred.h}}
+\subsubsection[{\_\-2BC\_\-CDEC\_\-TABLE}]{\setlength{\rightskip}{0pt plus 5cm}\#define \_\-2BC\_\-CDEC\_\-TABLE~0x7290}\label{zesto-bpred_8h_d10fcd3b2e4614678abfd91a68707c45}
+
+
+
+
+Definition at line 520 of file zesto-bpred.h.\index{zesto-bpred.h@{zesto-bpred.h}!\_\-2BC\_\-CINC\_\-TABLE@{\_\-2BC\_\-CINC\_\-TABLE}}
+\index{\_\-2BC\_\-CINC\_\-TABLE@{\_\-2BC\_\-CINC\_\-TABLE}!zesto-bpred.h@{zesto-bpred.h}}
+\subsubsection[{\_\-2BC\_\-CINC\_\-TABLE}]{\setlength{\rightskip}{0pt plus 5cm}\#define \_\-2BC\_\-CINC\_\-TABLE~0xF6D8}\label{zesto-bpred_8h_19d6e1d2a8ba2f79e7568a8c6dfbdbab}
+
+
+
+
+Definition at line 519 of file zesto-bpred.h.\index{zesto-bpred.h@{zesto-bpred.h}!\_\-2BC\_\-TABLE@{\_\-2BC\_\-TABLE}}
+\index{\_\-2BC\_\-TABLE@{\_\-2BC\_\-TABLE}!zesto-bpred.h@{zesto-bpred.h}}
+\subsubsection[{\_\-2BC\_\-TABLE}]{\setlength{\rightskip}{0pt plus 5cm}\#define \_\-2BC\_\-TABLE~0xD4E8}\label{zesto-bpred_8h_b0d3c7f383a6a35b0feb0b7b9bb8faa2}
+
+
+
+
+Definition at line 476 of file zesto-bpred.h.\index{zesto-bpred.h@{zesto-bpred.h}!MY2BC\_\-COND\_\-DEC@{MY2BC\_\-COND\_\-DEC}}
+\index{MY2BC\_\-COND\_\-DEC@{MY2BC\_\-COND\_\-DEC}!zesto-bpred.h@{zesto-bpred.h}}
+\subsubsection[{MY2BC\_\-COND\_\-DEC}]{\setlength{\rightskip}{0pt plus 5cm}\#define MY2BC\_\-COND\_\-DEC(ctr, \/  p)~(ctr)=(\_\-2BC\_\-CDEC\_\-TABLE$>$$>$(((ctr$<$$<$1)+(p))$<$$<$1))\&3}\label{zesto-bpred_8h_861d9cdb4f798747ffb4b10321f430d3}
+
+
+
+
+Definition at line 523 of file zesto-bpred.h.\index{zesto-bpred.h@{zesto-bpred.h}!MY2BC\_\-COND\_\-INC@{MY2BC\_\-COND\_\-INC}}
+\index{MY2BC\_\-COND\_\-INC@{MY2BC\_\-COND\_\-INC}!zesto-bpred.h@{zesto-bpred.h}}
+\subsubsection[{MY2BC\_\-COND\_\-INC}]{\setlength{\rightskip}{0pt plus 5cm}\#define MY2BC\_\-COND\_\-INC(ctr, \/  p)~(ctr)=(\_\-2BC\_\-CINC\_\-TABLE$>$$>$(((ctr$<$$<$1)+(p))$<$$<$1))\&3}\label{zesto-bpred_8h_dc5a79b5bebc786c728da4737d2ac6ff}
+
+
+
+
+Definition at line 522 of file zesto-bpred.h.\index{zesto-bpred.h@{zesto-bpred.h}!MY2BC\_\-DIR@{MY2BC\_\-DIR}}
+\index{MY2BC\_\-DIR@{MY2BC\_\-DIR}!zesto-bpred.h@{zesto-bpred.h}}
+\subsubsection[{MY2BC\_\-DIR}]{\setlength{\rightskip}{0pt plus 5cm}\#define MY2BC\_\-DIR(ctr)~((ctr)\&MY2BC\_\-DIR\_\-MASK)}\label{zesto-bpred_8h_0ecda0251f34a526b1e45daf27c4d0d9}
+
+
+
+
+Definition at line 479 of file zesto-bpred.h.\index{zesto-bpred.h@{zesto-bpred.h}!MY2BC\_\-DIR\_\-MASK@{MY2BC\_\-DIR\_\-MASK}}
+\index{MY2BC\_\-DIR\_\-MASK@{MY2BC\_\-DIR\_\-MASK}!zesto-bpred.h@{zesto-bpred.h}}
+\subsubsection[{MY2BC\_\-DIR\_\-MASK}]{\setlength{\rightskip}{0pt plus 5cm}\#define MY2BC\_\-DIR\_\-MASK~0x01}\label{zesto-bpred_8h_d575efe27a358d2ed96a8611608a4ba6}
+
+
+
+
+Definition at line 477 of file zesto-bpred.h.\index{zesto-bpred.h@{zesto-bpred.h}!MY2BC\_\-HYST@{MY2BC\_\-HYST}}
+\index{MY2BC\_\-HYST@{MY2BC\_\-HYST}!zesto-bpred.h@{zesto-bpred.h}}
+\subsubsection[{MY2BC\_\-HYST}]{\setlength{\rightskip}{0pt plus 5cm}\#define MY2BC\_\-HYST(ctr)~((ctr)\&MY2BC\_\-HYST\_\-MASK)}\label{zesto-bpred_8h_c9c1aec004b8cbb04c9482ccb038cd0d}
+
+
+
+
+Definition at line 480 of file zesto-bpred.h.\index{zesto-bpred.h@{zesto-bpred.h}!MY2BC\_\-HYST\_\-MASK@{MY2BC\_\-HYST\_\-MASK}}
+\index{MY2BC\_\-HYST\_\-MASK@{MY2BC\_\-HYST\_\-MASK}!zesto-bpred.h@{zesto-bpred.h}}
+\subsubsection[{MY2BC\_\-HYST\_\-MASK}]{\setlength{\rightskip}{0pt plus 5cm}\#define MY2BC\_\-HYST\_\-MASK~0x02}\label{zesto-bpred_8h_fdf1125d6be60c842b7f273a15fa6903}
+
+
+
+
+Definition at line 478 of file zesto-bpred.h.\index{zesto-bpred.h@{zesto-bpred.h}!MY2BC\_\-STRONG\_\-NT@{MY2BC\_\-STRONG\_\-NT}}
+\index{MY2BC\_\-STRONG\_\-NT@{MY2BC\_\-STRONG\_\-NT}!zesto-bpred.h@{zesto-bpred.h}}
+\subsubsection[{MY2BC\_\-STRONG\_\-NT}]{\setlength{\rightskip}{0pt plus 5cm}\#define MY2BC\_\-STRONG\_\-NT~(0)}\label{zesto-bpred_8h_5c85ac4938b8aaad4098261c61881d62}
+
+
+
+
+Definition at line 528 of file zesto-bpred.h.\index{zesto-bpred.h@{zesto-bpred.h}!MY2BC\_\-STRONG\_\-TAKEN@{MY2BC\_\-STRONG\_\-TAKEN}}
+\index{MY2BC\_\-STRONG\_\-TAKEN@{MY2BC\_\-STRONG\_\-TAKEN}!zesto-bpred.h@{zesto-bpred.h}}
+\subsubsection[{MY2BC\_\-STRONG\_\-TAKEN}]{\setlength{\rightskip}{0pt plus 5cm}\#define MY2BC\_\-STRONG\_\-TAKEN~(3)}\label{zesto-bpred_8h_391b33a37cdf2ef70dbe9d7e18755b71}
+
+
+
+
+Definition at line 525 of file zesto-bpred.h.\index{zesto-bpred.h@{zesto-bpred.h}!MY2BC\_\-UPDATE@{MY2BC\_\-UPDATE}}
+\index{MY2BC\_\-UPDATE@{MY2BC\_\-UPDATE}!zesto-bpred.h@{zesto-bpred.h}}
+\subsubsection[{MY2BC\_\-UPDATE}]{\setlength{\rightskip}{0pt plus 5cm}\#define MY2BC\_\-UPDATE(ctr, \/  dir)~(ctr)=(\_\-2BC\_\-TABLE$>$$>$(((ctr$<$$<$1)+(dir))$<$$<$1))\&3}\label{zesto-bpred_8h_0282d44b09c8be75d9ab177af9ebb2fe}
+
+
+
+
+Definition at line 482 of file zesto-bpred.h.\index{zesto-bpred.h@{zesto-bpred.h}!MY2BC\_\-WEAKLY\_\-NT@{MY2BC\_\-WEAKLY\_\-NT}}
+\index{MY2BC\_\-WEAKLY\_\-NT@{MY2BC\_\-WEAKLY\_\-NT}!zesto-bpred.h@{zesto-bpred.h}}
+\subsubsection[{MY2BC\_\-WEAKLY\_\-NT}]{\setlength{\rightskip}{0pt plus 5cm}\#define MY2BC\_\-WEAKLY\_\-NT~(2)}\label{zesto-bpred_8h_b9b4f68a03c03f93301c736ec88227be}
+
+
+
+
+Definition at line 527 of file zesto-bpred.h.
+
+Referenced by bpred\_\-2bC\_\-t::bpred\_\-2bC\_\-t(), bpred\_\-2lev\_\-t::bpred\_\-2lev\_\-t(), bpred\_\-bimode\_\-t::bpred\_\-bimode\_\-t(), bpred\_\-blg\_\-t::bpred\_\-blg\_\-t(), bpred\_\-skewed\_\-t::bpred\_\-skewed\_\-t(), bpred\_\-yags\_\-t::bpred\_\-yags\_\-t(), and fusion\_\-multihybrid\_\-t::fusion\_\-multihybrid\_\-t().\index{zesto-bpred.h@{zesto-bpred.h}!MY2BC\_\-WEAKLY\_\-TAKEN@{MY2BC\_\-WEAKLY\_\-TAKEN}}
+\index{MY2BC\_\-WEAKLY\_\-TAKEN@{MY2BC\_\-WEAKLY\_\-TAKEN}!zesto-bpred.h@{zesto-bpred.h}}
+\subsubsection[{MY2BC\_\-WEAKLY\_\-TAKEN}]{\setlength{\rightskip}{0pt plus 5cm}\#define MY2BC\_\-WEAKLY\_\-TAKEN~(1)}\label{zesto-bpred_8h_a3944e6a0db9efce75495ea792264ee0}
+
+
+
+
+Definition at line 526 of file zesto-bpred.h.
+
+Referenced by bpred\_\-2bC\_\-t::bpred\_\-2bC\_\-t(), bpred\_\-2lev\_\-t::bpred\_\-2lev\_\-t(), bpred\_\-bimode\_\-t::bpred\_\-bimode\_\-t(), bpred\_\-blg\_\-t::bpred\_\-blg\_\-t(), bpred\_\-skewed\_\-t::bpred\_\-skewed\_\-t(), bpred\_\-tage\_\-t::bpred\_\-tage\_\-t(), bpred\_\-yags\_\-t::bpred\_\-yags\_\-t(), and fusion\_\-multihybrid\_\-t::fusion\_\-multihybrid\_\-t().
+
+\subsection{Typedef Documentation}
+\index{zesto-bpred.h@{zesto-bpred.h}!my2bc\_\-t@{my2bc\_\-t}}
+\index{my2bc\_\-t@{my2bc\_\-t}!zesto-bpred.h@{zesto-bpred.h}}
+\subsubsection[{my2bc\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef unsigned char {\bf my2bc\_\-t}}\label{zesto-bpred_8h_bda9e00a2a6157fdad8ec356e7ba4820}
+
+
+
+
+Definition at line 474 of file zesto-bpred.h.

@@ -1,0 +1,443 @@
+\section{core\_\-fetch\_\-STM\_\-t Class Reference}
+\label{classcore__fetch__STM__t}\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}}
+Inheritance diagram for core\_\-fetch\_\-STM\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=400pt]{classcore__fetch__STM__t__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for core\_\-fetch\_\-STM\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classcore__fetch__STM__t__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+struct {\bf byteQ\_\-entry\_\-t}
+\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+{\bf core\_\-fetch\_\-STM\_\-t} (struct {\bf core\_\-t} $\ast$const {\bf core})
+\item 
+virtual void {\bf reg\_\-stats} (struct {\bf stat\_\-sdb\_\-t} $\ast$const sdb)
+\item 
+virtual void {\bf update\_\-occupancy} (void)
+\item 
+virtual void {\bf step} (void)
+\item 
+virtual bool {\bf Mop\_\-available} (void)
+\item 
+virtual struct {\bf Mop\_\-t} $\ast$ {\bf Mop\_\-peek} (void)
+\item 
+virtual void {\bf Mop\_\-consume} (void)
+\item 
+virtual void {\bf jeclear\_\-enqueue} (struct {\bf Mop\_\-t} $\ast$const Mop, const {\bf md\_\-addr\_\-t} New\_\-PC)
+\item 
+virtual void {\bf recover} (const {\bf md\_\-addr\_\-t} new\_\-PC)
+\end{CompactItemize}
+\subsection*{Protected Member Functions}
+\begin{CompactItemize}
+\item 
+void {\bf byteQ\_\-request} (const {\bf md\_\-addr\_\-t} lineaddr)
+\item 
+bool {\bf byteQ\_\-is\_\-full} (void)
+\item 
+bool {\bf byteQ\_\-already\_\-requested} (const {\bf md\_\-addr\_\-t} addr)
+\end{CompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{CompactItemize}
+\item 
+static void {\bf IL1\_\-callback} (void $\ast$const op)
+\item 
+static void {\bf ITLB\_\-callback} (void $\ast$const op)
+\item 
+static bool {\bf translated\_\-callback} (void $\ast$const op, const {\bf seq\_\-t} action\_\-id)
+\item 
+static {\bf seq\_\-t} {\bf get\_\-byteQ\_\-action\_\-id} (void $\ast$const op)
+\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+int {\bf byteQ\_\-num}
+\item 
+struct {\bf core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t} $\ast$ {\bf byteQ}
+\item 
+int {\bf byteQ\_\-linemask}
+\item 
+int {\bf byteQ\_\-head}
+\item 
+int {\bf byteQ\_\-tail}
+\end{CompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{CompactItemize}
+\item 
+static const char $\ast$ {\bf fetch\_\-stall\_\-str} [FSTALL\_\-num]
+\end{CompactItemize}
+\subsection*{Private Types}
+\begin{CompactItemize}
+\item 
+enum {\bf fetch\_\-stall\_\-t} \{ \par
+{\bf FSTALL\_\-byteQ\_\-FULL}, 
+{\bf FSTALL\_\-TBR}, 
+{\bf FSTALL\_\-EOL}, 
+{\bf FSTALL\_\-BOGUS}, 
+\par
+{\bf FSTALL\_\-SYSCALL}, 
+{\bf FSTALL\_\-ZPAGE}, 
+{\bf FSTALL\_\-num}
+ \}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 11 of file fetch-STM.cpp.
+
+\subsection{Member Enumeration Documentation}
+\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!fetch\_\-stall\_\-t@{fetch\_\-stall\_\-t}}
+\index{fetch\_\-stall\_\-t@{fetch\_\-stall\_\-t}!core_fetch_STM_t@{core\_\-fetch\_\-STM\_\-t}}
+\subsubsection[{fetch\_\-stall\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf core\_\-fetch\_\-STM\_\-t::fetch\_\-stall\_\-t}\hspace{0.3cm}{\tt  [private]}}\label{classcore__fetch__STM__t_d9a976de5266857ae501e548e1a727fe}
+
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{FSTALL\_\-byteQ\_\-FULL@{FSTALL\_\-byteQ\_\-FULL}!core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}}\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!FSTALL\_\-byteQ\_\-FULL@{FSTALL\_\-byteQ\_\-FULL}}\item[{\em 
+FSTALL\_\-byteQ\_\-FULL\label{classcore__fetch__STM__t_d9a976de5266857ae501e548e1a727feb2cc534544c44f385773fc50981b72d4}
+}]\index{FSTALL\_\-TBR@{FSTALL\_\-TBR}!core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}}\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!FSTALL\_\-TBR@{FSTALL\_\-TBR}}\item[{\em 
+FSTALL\_\-TBR\label{classcore__fetch__STM__t_d9a976de5266857ae501e548e1a727fed237d31ebfaf174e07aad7448f05c074}
+}]\index{FSTALL\_\-EOL@{FSTALL\_\-EOL}!core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}}\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!FSTALL\_\-EOL@{FSTALL\_\-EOL}}\item[{\em 
+FSTALL\_\-EOL\label{classcore__fetch__STM__t_d9a976de5266857ae501e548e1a727fe92ca723e4d8e941cde56eccf526fff87}
+}]\index{FSTALL\_\-BOGUS@{FSTALL\_\-BOGUS}!core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}}\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!FSTALL\_\-BOGUS@{FSTALL\_\-BOGUS}}\item[{\em 
+FSTALL\_\-BOGUS\label{classcore__fetch__STM__t_d9a976de5266857ae501e548e1a727fecf754abe40ec2135c7038984fe6d6ceb}
+}]\index{FSTALL\_\-SYSCALL@{FSTALL\_\-SYSCALL}!core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}}\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!FSTALL\_\-SYSCALL@{FSTALL\_\-SYSCALL}}\item[{\em 
+FSTALL\_\-SYSCALL\label{classcore__fetch__STM__t_d9a976de5266857ae501e548e1a727fec8d8a83fbe9c212c2cd8190feef55cff}
+}]\index{FSTALL\_\-ZPAGE@{FSTALL\_\-ZPAGE}!core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}}\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!FSTALL\_\-ZPAGE@{FSTALL\_\-ZPAGE}}\item[{\em 
+FSTALL\_\-ZPAGE\label{classcore__fetch__STM__t_d9a976de5266857ae501e548e1a727fe8858d4e0673f8cb7bafe751cc608ba52}
+}]\index{FSTALL\_\-num@{FSTALL\_\-num}!core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}}\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!FSTALL\_\-num@{FSTALL\_\-num}}\item[{\em 
+FSTALL\_\-num\label{classcore__fetch__STM__t_d9a976de5266857ae501e548e1a727fe0e7fbb0878850d7cd34fa2e4dda617de}
+}]\end{description}
+\end{Desc}
+
+
+
+Definition at line 13 of file fetch-STM.cpp.
+
+\subsection{Constructor \& Destructor Documentation}
+\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}}
+\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!core_fetch_STM_t@{core\_\-fetch\_\-STM\_\-t}}
+\subsubsection[{core\_\-fetch\_\-STM\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t (struct {\bf core\_\-t} $\ast$const  {\em core})}\label{classcore__fetch__STM__t_aad2a1954e9b2fe513a1cdbe03d23837}
+
+
+
+
+Definition at line 89 of file fetch-STM.cpp.
+
+References core\_\-fetch\_\-t::bpred, core\_\-knobs\_\-t::bpred\_\-opt\_\-str, byteQ, byteQ\_\-head, byteQ\_\-linemask, core\_\-knobs\_\-t::byteQ\_\-linesize, core\_\-knobs\_\-t::byteQ\_\-size, byteQ\_\-tail, cache\_\-create(), CACHE\_\-READONLY, core\_\-fetch\_\-t::core, core\_\-knobs\_\-t::dirjmpbtb\_\-opt\_\-str, core\_\-t::core\_\-t::core\_\-memory\_\-t::DL2, core\_\-t::core\_\-t::core\_\-memory\_\-t::DL2\_\-bus, fatal(), core\_\-knobs\_\-t::fetch, core\_\-knobs\_\-t::fusion\_\-opt\_\-str, core\_\-t::core\_\-t::core\_\-memory\_\-t::IL1, core\_\-knobs\_\-t::IL1\_\-high\_\-watermark, core\_\-knobs\_\-t::IL1\_\-low\_\-watermark, core\_\-knobs\_\-t::IL1\_\-num\_\-PF, core\_\-knobs\_\-t::IL1\_\-opt\_\-str, core\_\-knobs\_\-t::IL1\_\-PF\_\-on\_\-miss, core\_\-knobs\_\-t::IL1\_\-PFFsize, core\_\-knobs\_\-t::IL1\_\-PFmax, core\_\-knobs\_\-t::IL1\_\-PFthresh, core\_\-knobs\_\-t::IL1\_\-WMinterval, core\_\-knobs\_\-t::IL1PF\_\-opt\_\-str, core\_\-knobs\_\-t::indirjmpbtb\_\-opt\_\-str, core\_\-t::core\_\-t::core\_\-memory\_\-t::ITLB, core\_\-knobs\_\-t::ITLB\_\-opt\_\-str, core\_\-knobs\_\-t::jeclear\_\-delay, core\_\-t::knobs, knobs, core\_\-knobs\_\-t::latency, uncore\_\-t::LLC, uncore\_\-t::LLC\_\-bus, core\_\-t::memory, core\_\-knobs\_\-t::memory, cache\_\-t::name, core\_\-knobs\_\-t::num\_\-bpred\_\-components, cache\_\-t::num\_\-prefetchers, cache\_\-t::PF\_\-high\_\-watermark, cache\_\-t::PF\_\-low\_\-watermark, cache\_\-t::PF\_\-sample\_\-interval, cache\_\-t::PFF, cache\_\-t::PFF\_\-size, prefetch\_\-create(), cache\_\-t::prefetch\_\-max, cache\_\-t::prefetch\_\-on\_\-miss, cache\_\-t::prefetch\_\-threshold, cache\_\-t::prefetcher, core\_\-knobs\_\-t::ras\_\-opt\_\-str, and core\_\-t::uncore.
+
+\subsection{Member Function Documentation}
+\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!byteQ\_\-already\_\-requested@{byteQ\_\-already\_\-requested}}
+\index{byteQ\_\-already\_\-requested@{byteQ\_\-already\_\-requested}!core_fetch_STM_t@{core\_\-fetch\_\-STM\_\-t}}
+\subsubsection[{byteQ\_\-already\_\-requested}]{\setlength{\rightskip}{0pt plus 5cm}bool core\_\-fetch\_\-STM\_\-t::byteQ\_\-already\_\-requested (const {\bf md\_\-addr\_\-t} {\em addr})\hspace{0.3cm}{\tt  [protected]}}\label{classcore__fetch__STM__t_b823eca44972f8b3ee288c34be1727c8}
+
+
+
+
+Definition at line 229 of file fetch-STM.cpp.
+
+References byteQ, byteQ\_\-linemask, byteQ\_\-num, core\_\-knobs\_\-t::byteQ\_\-size, byteQ\_\-tail, core\_\-fetch\_\-t::core, core\_\-knobs\_\-t::fetch, core\_\-t::knobs, knobs, and moddec().
+
+Referenced by step().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{classcore__fetch__STM__t_b823eca44972f8b3ee288c34be1727c8_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!byteQ\_\-is\_\-full@{byteQ\_\-is\_\-full}}
+\index{byteQ\_\-is\_\-full@{byteQ\_\-is\_\-full}!core_fetch_STM_t@{core\_\-fetch\_\-STM\_\-t}}
+\subsubsection[{byteQ\_\-is\_\-full}]{\setlength{\rightskip}{0pt plus 5cm}bool core\_\-fetch\_\-STM\_\-t::byteQ\_\-is\_\-full (void)\hspace{0.3cm}{\tt  [protected]}}\label{classcore__fetch__STM__t_6f183c0792faf846ea7fbb8aeb7d0aaf}
+
+
+
+
+Definition at line 222 of file fetch-STM.cpp.
+
+References byteQ\_\-num, core\_\-knobs\_\-t::byteQ\_\-size, core\_\-fetch\_\-t::core, core\_\-knobs\_\-t::fetch, core\_\-t::knobs, and knobs.
+
+Referenced by step().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{classcore__fetch__STM__t_6f183c0792faf846ea7fbb8aeb7d0aaf_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!byteQ\_\-request@{byteQ\_\-request}}
+\index{byteQ\_\-request@{byteQ\_\-request}!core_fetch_STM_t@{core\_\-fetch\_\-STM\_\-t}}
+\subsubsection[{byteQ\_\-request}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-fetch\_\-STM\_\-t::byteQ\_\-request (const {\bf md\_\-addr\_\-t} {\em lineaddr})\hspace{0.3cm}{\tt  [protected]}}\label{classcore__fetch__STM__t_d546589d0f24b23d8a668ea9f928330f}
+
+
+
+
+Definition at line 240 of file fetch-STM.cpp.
+
+References core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::action\_\-id, core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::addr, byteQ, byteQ\_\-num, core\_\-knobs\_\-t::byteQ\_\-size, byteQ\_\-tail, core\_\-fetch\_\-t::core, core\_\-knobs\_\-t::fetch, core\_\-t::knobs, knobs, modinc(), core\_\-t::new\_\-action\_\-id(), TICK\_\-T\_\-MAX, core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::when\_\-fetch\_\-requested, core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::when\_\-fetched, core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::when\_\-translated, and core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::when\_\-translation\_\-requested.
+
+Referenced by step().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{classcore__fetch__STM__t_d546589d0f24b23d8a668ea9f928330f_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!get\_\-byteQ\_\-action\_\-id@{get\_\-byteQ\_\-action\_\-id}}
+\index{get\_\-byteQ\_\-action\_\-id@{get\_\-byteQ\_\-action\_\-id}!core_fetch_STM_t@{core\_\-fetch\_\-STM\_\-t}}
+\subsubsection[{get\_\-byteQ\_\-action\_\-id}]{\setlength{\rightskip}{0pt plus 5cm}{\bf seq\_\-t} core\_\-fetch\_\-STM\_\-t::get\_\-byteQ\_\-action\_\-id (void $\ast$const  {\em op})\hspace{0.3cm}{\tt  [static, protected]}}\label{classcore__fetch__STM__t_5f6d70206465ea63029c8e6d6b877af6}
+
+
+
+
+Definition at line 280 of file fetch-STM.cpp.
+
+References core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::action\_\-id, and byteQ.
+
+Referenced by step().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=197pt]{classcore__fetch__STM__t_5f6d70206465ea63029c8e6d6b877af6_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!IL1\_\-callback@{IL1\_\-callback}}
+\index{IL1\_\-callback@{IL1\_\-callback}!core_fetch_STM_t@{core\_\-fetch\_\-STM\_\-t}}
+\subsubsection[{IL1\_\-callback}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-fetch\_\-STM\_\-t::IL1\_\-callback (void $\ast$const  {\em op})\hspace{0.3cm}{\tt  [static, protected]}}\label{classcore__fetch__STM__t_f91b2cb6ffde02bc014512e0836f7c27}
+
+
+
+
+Definition at line 259 of file fetch-STM.cpp.
+
+References byteQ, sim\_\-cycle, and core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::when\_\-fetched.
+
+Referenced by step().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{classcore__fetch__STM__t_f91b2cb6ffde02bc014512e0836f7c27_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!ITLB\_\-callback@{ITLB\_\-callback}}
+\index{ITLB\_\-callback@{ITLB\_\-callback}!core_fetch_STM_t@{core\_\-fetch\_\-STM\_\-t}}
+\subsubsection[{ITLB\_\-callback}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-fetch\_\-STM\_\-t::ITLB\_\-callback (void $\ast$const  {\em op})\hspace{0.3cm}{\tt  [static, protected]}}\label{classcore__fetch__STM__t_2cd42e4e6a771a1a7b1df9d0e54c1b6a}
+
+
+
+
+Definition at line 265 of file fetch-STM.cpp.
+
+References byteQ, sim\_\-cycle, and core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::when\_\-translated.
+
+Referenced by step().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{classcore__fetch__STM__t_2cd42e4e6a771a1a7b1df9d0e54c1b6a_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!jeclear\_\-enqueue@{jeclear\_\-enqueue}}
+\index{jeclear\_\-enqueue@{jeclear\_\-enqueue}!core_fetch_STM_t@{core\_\-fetch\_\-STM\_\-t}}
+\subsubsection[{jeclear\_\-enqueue}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-fetch\_\-STM\_\-t::jeclear\_\-enqueue (struct {\bf Mop\_\-t} $\ast$const  {\em Mop}, \/  const {\bf md\_\-addr\_\-t} {\em New\_\-PC})\hspace{0.3cm}{\tt  [virtual]}}\label{classcore__fetch__STM__t_3ad47b0fc75aedc66d1c96295747c04f}
+
+
+
+
+Implements {\bf core\_\-fetch\_\-t} \doxyref{}{p.}{classcore__fetch__t_9221709533fb19b4a70b54a426ca8c25}.
+
+Definition at line 505 of file fetch-STM.cpp.
+
+References fatal().\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!Mop\_\-available@{Mop\_\-available}}
+\index{Mop\_\-available@{Mop\_\-available}!core_fetch_STM_t@{core\_\-fetch\_\-STM\_\-t}}
+\subsubsection[{Mop\_\-available}]{\setlength{\rightskip}{0pt plus 5cm}bool core\_\-fetch\_\-STM\_\-t::Mop\_\-available (void)\hspace{0.3cm}{\tt  [virtual]}}\label{classcore__fetch__STM__t_6162b7a5fcf2b9be3ad57937741c061d}
+
+
+
+
+Implements {\bf core\_\-fetch\_\-t} \doxyref{}{p.}{classcore__fetch__t_1992552966bf316268e2c572f6696a0e}.
+
+Definition at line 459 of file fetch-STM.cpp.
+
+References byteQ, byteQ\_\-head, byteQ\_\-num, core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::num\_\-Mop, TICK\_\-T\_\-MAX, core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::when\_\-fetched, and core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::when\_\-translated.\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!Mop\_\-consume@{Mop\_\-consume}}
+\index{Mop\_\-consume@{Mop\_\-consume}!core_fetch_STM_t@{core\_\-fetch\_\-STM\_\-t}}
+\subsubsection[{Mop\_\-consume}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-fetch\_\-STM\_\-t::Mop\_\-consume (void)\hspace{0.3cm}{\tt  [virtual]}}\label{classcore__fetch__STM__t_66d176de79363b837645f8d790c1356f}
+
+
+
+
+Implements {\bf core\_\-fetch\_\-t} \doxyref{}{p.}{classcore__fetch__t_4a0d26ce880329b24586f9a0d4e059e4}.
+
+Definition at line 474 of file fetch-STM.cpp.
+
+References byteQ, byteQ\_\-head, byteQ\_\-num, core\_\-knobs\_\-t::byteQ\_\-size, core\_\-fetch\_\-t::core, uop\_\-t::decode, Mop\_\-t::decode, uop\_\-t::EOM, core\_\-knobs\_\-t::fetch, core\_\-t::core\_\-t::core\_\-stat\_\-t::fetch\_\-insn, core\_\-t::core\_\-t::core\_\-stat\_\-t::fetch\_\-uops, core\_\-oracle\_\-t::get\_\-Mop(), core\_\-t::knobs, knobs, Mop\_\-t::last\_\-uop\_\-index, modinc(), core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::MopQ\_\-first\_\-index, core\_\-oracle\_\-t::next\_\-index(), core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::num\_\-Mop, Mop\_\-t::num\_\-uops, core\_\-t::oracle, sim\_\-cycle, Mop\_\-t::stat, core\_\-t::stat, TICK\_\-T\_\-MAX, Mop\_\-t::timing, Mop\_\-t::uop, core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::when\_\-fetch\_\-requested, core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::when\_\-fetched, Mop\_\-t::when\_\-fetched, core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::when\_\-translated, core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::when\_\-translation\_\-requested, and ZESTO\_\-STAT.\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!Mop\_\-peek@{Mop\_\-peek}}
+\index{Mop\_\-peek@{Mop\_\-peek}!core_fetch_STM_t@{core\_\-fetch\_\-STM\_\-t}}
+\subsubsection[{Mop\_\-peek}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf Mop\_\-t} $\ast$ core\_\-fetch\_\-STM\_\-t::Mop\_\-peek (void)\hspace{0.3cm}{\tt  [read, virtual]}}\label{classcore__fetch__STM__t_10ad9c324a326a7dca085f538844b6f9}
+
+
+
+
+Implements {\bf core\_\-fetch\_\-t} \doxyref{}{p.}{classcore__fetch__t_aee0957830ca1ef3aeb9fa976614c809}.
+
+Definition at line 466 of file fetch-STM.cpp.
+
+References byteQ, byteQ\_\-head, core\_\-fetch\_\-t::core, core\_\-oracle\_\-t::get\_\-Mop(), core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::MopQ\_\-first\_\-index, core\_\-t::oracle, and zesto\_\-assert.\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!recover@{recover}}
+\index{recover@{recover}!core_fetch_STM_t@{core\_\-fetch\_\-STM\_\-t}}
+\subsubsection[{recover}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-fetch\_\-STM\_\-t::recover (const {\bf md\_\-addr\_\-t} {\em new\_\-PC})\hspace{0.3cm}{\tt  [virtual]}}\label{classcore__fetch__STM__t_efa401b9257f82b2feaac0913b269e16}
+
+
+
+
+Implements {\bf core\_\-fetch\_\-t} \doxyref{}{p.}{classcore__fetch__t_5f9f05d72804be74a2a622eeb5456e51}.
+
+Definition at line 512 of file fetch-STM.cpp.
+
+References core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::action\_\-id, core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::addr, core\_\-fetch\_\-t::bogus, byteQ, byteQ\_\-head, byteQ\_\-num, core\_\-knobs\_\-t::byteQ\_\-size, byteQ\_\-tail, core\_\-fetch\_\-t::core, core\_\-knobs\_\-t::fetch, core\_\-t::knobs, knobs, core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::MopQ\_\-first\_\-index, core\_\-t::new\_\-action\_\-id(), core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::num\_\-Mop, core\_\-fetch\_\-t::PC, TICK\_\-T\_\-MAX, core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::when\_\-fetch\_\-requested, core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::when\_\-fetched, core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::when\_\-translated, and core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::when\_\-translation\_\-requested.\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!reg\_\-stats@{reg\_\-stats}}
+\index{reg\_\-stats@{reg\_\-stats}!core_fetch_STM_t@{core\_\-fetch\_\-STM\_\-t}}
+\subsubsection[{reg\_\-stats}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-fetch\_\-STM\_\-t::reg\_\-stats (struct {\bf stat\_\-sdb\_\-t} $\ast$const  {\em sdb})\hspace{0.3cm}{\tt  [virtual]}}\label{classcore__fetch__STM__t_1a13aa718c8481dabf3f0ad3eeb29438}
+
+
+
+
+Implements {\bf core\_\-fetch\_\-t} \doxyref{}{p.}{classcore__fetch__t_89638d036b5eb67ff5a0a85cf36fc03a}.
+
+Definition at line 169 of file fetch-STM.cpp.
+
+References core\_\-fetch\_\-t::bpred, core\_\-t::core\_\-t::core\_\-stat\_\-t::byteQ\_\-occupancy, cache\_\-reg\_\-stats(), core\_\-fetch\_\-t::core, core\_\-t::current\_\-thread, core\_\-t::core\_\-t::core\_\-stat\_\-t::fetch\_\-insn, core\_\-t::core\_\-t::core\_\-stat\_\-t::fetch\_\-stall, fetch\_\-stall\_\-str, core\_\-t::core\_\-t::core\_\-stat\_\-t::fetch\_\-uops, FSTALL\_\-num, thread\_\-t::id, core\_\-t::core\_\-t::core\_\-memory\_\-t::IL1, core\_\-t::core\_\-t::core\_\-memory\_\-t::ITLB, core\_\-t::memory, PF\_\-COUNT, PF\_\-PDF, bpred\_\-t::reg\_\-stats(), core\_\-t::stat, stat\_\-reg\_\-counter, stat\_\-reg\_\-dist(), stat\_\-reg\_\-formula(), and stat\_\-reg\_\-note().\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!step@{step}}
+\index{step@{step}!core_fetch_STM_t@{core\_\-fetch\_\-STM\_\-t}}
+\subsubsection[{step}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-fetch\_\-STM\_\-t::step (void)\hspace{0.3cm}{\tt  [virtual]}}\label{classcore__fetch__STM__t_9366aef38f6639d3999c4efb2f2fb8b4}
+
+
+
+
+Implements {\bf core\_\-fetch\_\-t} \doxyref{}{p.}{classcore__fetch__t_ec94882606f788544146ccc91e8adfcd}.
+
+Definition at line 290 of file fetch-STM.cpp.
+
+References core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::action\_\-id, core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::addr, core\_\-fetch\_\-t::bogus, core\_\-fetch\_\-t::bpred, Mop\_\-t::bpred\_\-update, byteQ, byteQ\_\-already\_\-requested(), byteQ\_\-head, byteQ\_\-is\_\-full(), byteQ\_\-linemask, byteQ\_\-num, byteQ\_\-request(), core\_\-knobs\_\-t::byteQ\_\-size, byteQ\_\-tail, cache\_\-enqueuable(), cache\_\-enqueue(), cache\_\-process(), CACHE\_\-READ, cache\_\-t::check\_\-for\_\-work, core\_\-oracle\_\-t::consume(), core\_\-fetch\_\-t::core, core\_\-t::current\_\-thread, Mop\_\-t::decode, core\_\-oracle\_\-t::exec(), Mop\_\-t::fetch, core\_\-knobs\_\-t::fetch, core\_\-t::core\_\-t::core\_\-stat\_\-t::fetch\_\-stall, Mop\_\-t::first\_\-byte\_\-requested, FSTALL\_\-BOGUS, FSTALL\_\-byteQ\_\-FULL, FSTALL\_\-EOL, FSTALL\_\-SYSCALL, FSTALL\_\-TBR, FSTALL\_\-ZPAGE, get\_\-byteQ\_\-action\_\-id(), core\_\-oracle\_\-t::get\_\-index(), bpred\_\-t::get\_\-state\_\-cache(), thread\_\-t::id, core\_\-t::core\_\-t::core\_\-memory\_\-t::IL1, IL1\_\-callback(), Mop\_\-t::inst, Mop\_\-t::is\_\-ctrl, core\_\-t::core\_\-t::core\_\-memory\_\-t::ITLB, ITLB\_\-callback(), core\_\-t::knobs, knobs, Mop\_\-t::last\_\-byte\_\-requested, Mop\_\-t::last\_\-uop\_\-index, md\_\-inst\_\-t::len, bpred\_\-t::lookup(), core\_\-t::memory, moddec(), modinc(), core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::MopQ\_\-first\_\-index, Mop\_\-t::NextPC, NO\_\-MSHR, core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::num\_\-Mop, Mop\_\-t::opflags, uop\_\-t::oracle, Mop\_\-t::oracle, core\_\-t::oracle, PAGE\_\-SHIFT, PAGE\_\-TABLE\_\-ADDR, Mop\_\-t::PC, core\_\-fetch\_\-t::PC, Mop\_\-t::pred\_\-NPC, uop\_\-t::recover\_\-inst, Mop\_\-t::recover\_\-inst, md\_\-inst\_\-t::rep, sim\_\-cycle, core\_\-oracle\_\-t::spec\_\-mode, bpred\_\-t::spec\_\-update(), core\_\-t::stat, stat\_\-add\_\-sample(), Mop\_\-t::targetPC, TICK\_\-T\_\-MAX, Mop\_\-t::timing, translated\_\-callback(), Mop\_\-t::uop, core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::when\_\-fetch\_\-requested, Mop\_\-t::when\_\-fetch\_\-started, core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::when\_\-fetched, Mop\_\-t::when\_\-fetched, core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::when\_\-translated, core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::when\_\-translation\_\-requested, zesto\_\-assert, and ZESTO\_\-STAT.\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!translated\_\-callback@{translated\_\-callback}}
+\index{translated\_\-callback@{translated\_\-callback}!core_fetch_STM_t@{core\_\-fetch\_\-STM\_\-t}}
+\subsubsection[{translated\_\-callback}]{\setlength{\rightskip}{0pt plus 5cm}bool core\_\-fetch\_\-STM\_\-t::translated\_\-callback (void $\ast$const  {\em op}, \/  const {\bf seq\_\-t} {\em action\_\-id})\hspace{0.3cm}{\tt  [static, protected]}}\label{classcore__fetch__STM__t_a6c3c6ba907a0ef5ab4b968d5c0b7b15}
+
+
+
+
+Definition at line 271 of file fetch-STM.cpp.
+
+References core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::action\_\-id, byteQ, sim\_\-cycle, and core\_\-fetch\_\-STM\_\-t::core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t::when\_\-translated.
+
+Referenced by step().
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{classcore__fetch__STM__t_a6c3c6ba907a0ef5ab4b968d5c0b7b15_icgraph}
+\end{center}
+\end{figure}
+\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!update\_\-occupancy@{update\_\-occupancy}}
+\index{update\_\-occupancy@{update\_\-occupancy}!core_fetch_STM_t@{core\_\-fetch\_\-STM\_\-t}}
+\subsubsection[{update\_\-occupancy}]{\setlength{\rightskip}{0pt plus 5cm}void core\_\-fetch\_\-STM\_\-t::update\_\-occupancy (void)\hspace{0.3cm}{\tt  [virtual]}}\label{classcore__fetch__STM__t_fe8ef61f53ccea1a44f642798f3ef212}
+
+
+
+
+Implements {\bf core\_\-fetch\_\-t} \doxyref{}{p.}{classcore__fetch__t_63b6effc13801b585b86e4cd27557694}.
+
+Definition at line 212 of file fetch-STM.cpp.
+
+References byteQ\_\-num, core\_\-t::core\_\-t::core\_\-stat\_\-t::byteQ\_\-occupancy, core\_\-fetch\_\-t::core, and core\_\-t::stat.
+
+\subsection{Member Data Documentation}
+\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!byteQ@{byteQ}}
+\index{byteQ@{byteQ}!core_fetch_STM_t@{core\_\-fetch\_\-STM\_\-t}}
+\subsubsection[{byteQ}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf core\_\-fetch\_\-STM\_\-t::byteQ\_\-entry\_\-t} $\ast$  {\bf core\_\-fetch\_\-STM\_\-t::byteQ}\hspace{0.3cm}{\tt  [protected]}}\label{classcore__fetch__STM__t_02b6e2436f31a265b6d0aa264675662b}
+
+
+
+
+Referenced by byteQ\_\-already\_\-requested(), byteQ\_\-request(), core\_\-fetch\_\-STM\_\-t(), get\_\-byteQ\_\-action\_\-id(), IL1\_\-callback(), ITLB\_\-callback(), Mop\_\-available(), Mop\_\-consume(), Mop\_\-peek(), recover(), step(), and translated\_\-callback().\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!byteQ\_\-head@{byteQ\_\-head}}
+\index{byteQ\_\-head@{byteQ\_\-head}!core_fetch_STM_t@{core\_\-fetch\_\-STM\_\-t}}
+\subsubsection[{byteQ\_\-head}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf core\_\-fetch\_\-STM\_\-t::byteQ\_\-head}\hspace{0.3cm}{\tt  [protected]}}\label{classcore__fetch__STM__t_680739b960c941b02643db7bec082ba6}
+
+
+
+
+Definition at line 63 of file fetch-STM.cpp.
+
+Referenced by core\_\-fetch\_\-STM\_\-t(), Mop\_\-available(), Mop\_\-consume(), Mop\_\-peek(), recover(), and step().\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!byteQ\_\-linemask@{byteQ\_\-linemask}}
+\index{byteQ\_\-linemask@{byteQ\_\-linemask}!core_fetch_STM_t@{core\_\-fetch\_\-STM\_\-t}}
+\subsubsection[{byteQ\_\-linemask}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf core\_\-fetch\_\-STM\_\-t::byteQ\_\-linemask}\hspace{0.3cm}{\tt  [protected]}}\label{classcore__fetch__STM__t_3f1925703be344fdbd6c375c9fb281a3}
+
+
+
+
+Definition at line 62 of file fetch-STM.cpp.
+
+Referenced by byteQ\_\-already\_\-requested(), core\_\-fetch\_\-STM\_\-t(), and step().\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!byteQ\_\-num@{byteQ\_\-num}}
+\index{byteQ\_\-num@{byteQ\_\-num}!core_fetch_STM_t@{core\_\-fetch\_\-STM\_\-t}}
+\subsubsection[{byteQ\_\-num}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf core\_\-fetch\_\-STM\_\-t::byteQ\_\-num}\hspace{0.3cm}{\tt  [protected]}}\label{classcore__fetch__STM__t_1db25b1f79cd51d72647e320922d7f68}
+
+
+
+
+Definition at line 45 of file fetch-STM.cpp.
+
+Referenced by byteQ\_\-already\_\-requested(), byteQ\_\-is\_\-full(), byteQ\_\-request(), Mop\_\-available(), Mop\_\-consume(), recover(), step(), and update\_\-occupancy().\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!byteQ\_\-tail@{byteQ\_\-tail}}
+\index{byteQ\_\-tail@{byteQ\_\-tail}!core_fetch_STM_t@{core\_\-fetch\_\-STM\_\-t}}
+\subsubsection[{byteQ\_\-tail}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf core\_\-fetch\_\-STM\_\-t::byteQ\_\-tail}\hspace{0.3cm}{\tt  [protected]}}\label{classcore__fetch__STM__t_eba7c51eb4b9df6bf7ce8b09a84392c0}
+
+
+
+
+Definition at line 64 of file fetch-STM.cpp.
+
+Referenced by byteQ\_\-already\_\-requested(), byteQ\_\-request(), core\_\-fetch\_\-STM\_\-t(), recover(), and step().\index{core\_\-fetch\_\-STM\_\-t@{core\_\-fetch\_\-STM\_\-t}!fetch\_\-stall\_\-str@{fetch\_\-stall\_\-str}}
+\index{fetch\_\-stall\_\-str@{fetch\_\-stall\_\-str}!core_fetch_STM_t@{core\_\-fetch\_\-STM\_\-t}}
+\subsubsection[{fetch\_\-stall\_\-str}]{\setlength{\rightskip}{0pt plus 5cm}const char $\ast$ {\bf core\_\-fetch\_\-STM\_\-t::fetch\_\-stall\_\-str}\hspace{0.3cm}{\tt  [static, protected]}}\label{classcore__fetch__STM__t_c2524ba33b5b6435eef5223307dc06d1}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim} {
+  "byteQ full             ",
+  "taken branch           ",
+  "end of cache line      ",
+  "wrong-path invalid inst",
+  "trap waiting on drain  ",
+  "request for page zero  "
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 66 of file fetch-STM.cpp.
+
+Referenced by reg\_\-stats().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf fetch-STM.cpp}\end{CompactItemize}

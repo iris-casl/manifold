@@ -1,0 +1,166 @@
+\section{core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t::STQ\_\-t Struct Reference}
+\label{structcore__exec__STM__t_1_1STQ__t}\index{core\_\-exec\_\-STM\_\-t::STQ\_\-t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}}
+Collaboration diagram for core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t::STQ\_\-t:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{structcore__exec__STM__t_1_1STQ__t__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+struct {\bf uop\_\-t} $\ast$ {\bf sta}
+\item 
+struct {\bf uop\_\-t} $\ast$ {\bf std}
+\item 
+{\bf seq\_\-t} {\bf uop\_\-seq}
+\item 
+{\bf md\_\-addr\_\-t} {\bf virt\_\-addr}
+\item 
+{\bf md\_\-paddr\_\-t} {\bf phys\_\-addr}
+\item 
+int {\bf mem\_\-size}
+\item 
+union {\bf val\_\-t} {\bf value}
+\item 
+bool {\bf addr\_\-valid}
+\item 
+bool {\bf value\_\-valid}
+\item 
+int {\bf next\_\-load}
+\item 
+bool {\bf translation\_\-complete}
+\item 
+bool {\bf write\_\-complete}
+\item 
+{\bf seq\_\-t} {\bf action\_\-id}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 104 of file exec-STM.cpp.
+
+\subsection{Member Data Documentation}
+\index{core\_\-exec\_\-STM\_\-t::STQ\_\-t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}!action\_\-id@{action\_\-id}}
+\index{action\_\-id@{action\_\-id}!core_exec_STM_t::STQ_t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}}
+\subsubsection[{action\_\-id}]{\setlength{\rightskip}{0pt plus 5cm}{\bf seq\_\-t} core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t::STQ\_\-t::action\_\-id}\label{structcore__exec__STM__t_1_1STQ__t_3e0d5f0970009b0a53631fcfff3a84c2}
+
+
+
+
+Definition at line 119 of file exec-STM.cpp.
+
+Referenced by core\_\-exec\_\-STM\_\-t::LDST\_\-exec(), and core\_\-exec\_\-STM\_\-t::STQ\_\-deallocate\_\-std().\index{core\_\-exec\_\-STM\_\-t::STQ\_\-t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}!addr\_\-valid@{addr\_\-valid}}
+\index{addr\_\-valid@{addr\_\-valid}!core_exec_STM_t::STQ_t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}}
+\subsubsection[{addr\_\-valid}]{\setlength{\rightskip}{0pt plus 5cm}bool core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t::STQ\_\-t::addr\_\-valid}\label{structcore__exec__STM__t_1_1STQ__t_9847f16ee60f4b161e68fa9202d52925}
+
+
+
+
+Definition at line 112 of file exec-STM.cpp.
+
+Referenced by core\_\-exec\_\-STM\_\-t::ALU\_\-exec().\index{core\_\-exec\_\-STM\_\-t::STQ\_\-t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}!mem\_\-size@{mem\_\-size}}
+\index{mem\_\-size@{mem\_\-size}!core_exec_STM_t::STQ_t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}}
+\subsubsection[{mem\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}int core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t::STQ\_\-t::mem\_\-size}\label{structcore__exec__STM__t_1_1STQ__t_cd93245ef2cdad52715eb371a359fba5}
+
+
+
+
+Definition at line 110 of file exec-STM.cpp.
+
+Referenced by core\_\-exec\_\-STM\_\-t::check\_\-load\_\-issue\_\-conditions(), and core\_\-exec\_\-STM\_\-t::STQ\_\-insert\_\-sta().\index{core\_\-exec\_\-STM\_\-t::STQ\_\-t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}!next\_\-load@{next\_\-load}}
+\index{next\_\-load@{next\_\-load}!core_exec_STM_t::STQ_t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}}
+\subsubsection[{next\_\-load}]{\setlength{\rightskip}{0pt plus 5cm}int core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t::STQ\_\-t::next\_\-load}\label{structcore__exec__STM__t_1_1STQ__t_e23b7aa44f05976db139a5c296f54adb}
+
+
+
+
+Definition at line 114 of file exec-STM.cpp.
+
+Referenced by core\_\-exec\_\-STM\_\-t::ALU\_\-exec(), and core\_\-exec\_\-STM\_\-t::STQ\_\-insert\_\-sta().\index{core\_\-exec\_\-STM\_\-t::STQ\_\-t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}!phys\_\-addr@{phys\_\-addr}}
+\index{phys\_\-addr@{phys\_\-addr}!core_exec_STM_t::STQ_t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}}
+\subsubsection[{phys\_\-addr}]{\setlength{\rightskip}{0pt plus 5cm}{\bf md\_\-paddr\_\-t} core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t::STQ\_\-t::phys\_\-addr}\label{structcore__exec__STM__t_1_1STQ__t_e6a3f1693daaf4ab2346d7acb88cd8ee}
+
+
+
+
+Definition at line 109 of file exec-STM.cpp.\index{core\_\-exec\_\-STM\_\-t::STQ\_\-t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}!sta@{sta}}
+\index{sta@{sta}!core_exec_STM_t::STQ_t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}}
+\subsubsection[{sta}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf uop\_\-t}$\ast$ core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t::STQ\_\-t::sta\hspace{0.3cm}{\tt  [read]}}\label{structcore__exec__STM__t_1_1STQ__t_639f22dde1faf69fa2a5020e03b792c1}
+
+
+
+
+Definition at line 105 of file exec-STM.cpp.
+
+Referenced by core\_\-exec\_\-STM\_\-t::ALU\_\-exec(), core\_\-exec\_\-STM\_\-t::LDST\_\-exec(), core\_\-exec\_\-STM\_\-t::STQ\_\-deallocate\_\-sta(), core\_\-exec\_\-STM\_\-t::STQ\_\-insert\_\-sta(), and core\_\-exec\_\-STM\_\-t::STQ\_\-squash\_\-sta().\index{core\_\-exec\_\-STM\_\-t::STQ\_\-t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}!std@{std}}
+\index{std@{std}!core_exec_STM_t::STQ_t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}}
+\subsubsection[{std}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf uop\_\-t}$\ast$ core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t::STQ\_\-t::std\hspace{0.3cm}{\tt  [read]}}\label{structcore__exec__STM__t_1_1STQ__t_13ec230e190d35cdf9fadd4adb23a527}
+
+
+
+
+Definition at line 106 of file exec-STM.cpp.
+
+Referenced by core\_\-exec\_\-STM\_\-t::STQ\_\-deallocate\_\-std(), core\_\-exec\_\-STM\_\-t::STQ\_\-insert\_\-std(), core\_\-exec\_\-STM\_\-t::STQ\_\-squash\_\-sta(), and core\_\-exec\_\-STM\_\-t::STQ\_\-squash\_\-std().\index{core\_\-exec\_\-STM\_\-t::STQ\_\-t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}!translation\_\-complete@{translation\_\-complete}}
+\index{translation\_\-complete@{translation\_\-complete}!core_exec_STM_t::STQ_t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}}
+\subsubsection[{translation\_\-complete}]{\setlength{\rightskip}{0pt plus 5cm}bool core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t::STQ\_\-t::translation\_\-complete}\label{structcore__exec__STM__t_1_1STQ__t_609c1339c45518710c56a60e898fe61f}
+
+
+
+
+Definition at line 117 of file exec-STM.cpp.
+
+Referenced by core\_\-exec\_\-STM\_\-t::STQ\_\-deallocate\_\-std().\index{core\_\-exec\_\-STM\_\-t::STQ\_\-t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}!uop\_\-seq@{uop\_\-seq}}
+\index{uop\_\-seq@{uop\_\-seq}!core_exec_STM_t::STQ_t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}}
+\subsubsection[{uop\_\-seq}]{\setlength{\rightskip}{0pt plus 5cm}{\bf seq\_\-t} core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t::STQ\_\-t::uop\_\-seq}\label{structcore__exec__STM__t_1_1STQ__t_17f3481271581bcbccff747e9dcdff73}
+
+
+
+
+Definition at line 107 of file exec-STM.cpp.
+
+Referenced by core\_\-exec\_\-STM\_\-t::check\_\-load\_\-issue\_\-conditions(), and core\_\-exec\_\-STM\_\-t::STQ\_\-insert\_\-sta().\index{core\_\-exec\_\-STM\_\-t::STQ\_\-t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}!value@{value}}
+\index{value@{value}!core_exec_STM_t::STQ_t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}}
+\subsubsection[{value}]{\setlength{\rightskip}{0pt plus 5cm}union {\bf val\_\-t} core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t::STQ\_\-t::value\hspace{0.3cm}{\tt  [write]}}\label{structcore__exec__STM__t_1_1STQ__t_e773ce2e14edbd03b4f976d02d0441f4}
+
+
+
+
+Definition at line 111 of file exec-STM.cpp.
+
+Referenced by core\_\-exec\_\-STM\_\-t::ALU\_\-exec(), and core\_\-exec\_\-STM\_\-t::LDST\_\-exec().\index{core\_\-exec\_\-STM\_\-t::STQ\_\-t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}!value\_\-valid@{value\_\-valid}}
+\index{value\_\-valid@{value\_\-valid}!core_exec_STM_t::STQ_t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}}
+\subsubsection[{value\_\-valid}]{\setlength{\rightskip}{0pt plus 5cm}bool core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t::STQ\_\-t::value\_\-valid}\label{structcore__exec__STM__t_1_1STQ__t_c7309f9b305bb70c48b964812fb529ee}
+
+
+
+
+Definition at line 113 of file exec-STM.cpp.
+
+Referenced by core\_\-exec\_\-STM\_\-t::ALU\_\-exec().\index{core\_\-exec\_\-STM\_\-t::STQ\_\-t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}!virt\_\-addr@{virt\_\-addr}}
+\index{virt\_\-addr@{virt\_\-addr}!core_exec_STM_t::STQ_t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}}
+\subsubsection[{virt\_\-addr}]{\setlength{\rightskip}{0pt plus 5cm}{\bf md\_\-addr\_\-t} core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t::STQ\_\-t::virt\_\-addr}\label{structcore__exec__STM__t_1_1STQ__t_df5a89dae95bfa1fc633f617ea21731a}
+
+
+
+
+Definition at line 108 of file exec-STM.cpp.
+
+Referenced by core\_\-exec\_\-STM\_\-t::ALU\_\-exec(), core\_\-exec\_\-STM\_\-t::check\_\-load\_\-issue\_\-conditions(), and core\_\-exec\_\-STM\_\-t::LDST\_\-exec().\index{core\_\-exec\_\-STM\_\-t::STQ\_\-t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}!write\_\-complete@{write\_\-complete}}
+\index{write\_\-complete@{write\_\-complete}!core_exec_STM_t::STQ_t@{core\_\-exec\_\-STM\_\-t::STQ\_\-t}}
+\subsubsection[{write\_\-complete}]{\setlength{\rightskip}{0pt plus 5cm}bool core\_\-exec\_\-STM\_\-t::core\_\-exec\_\-STM\_\-t::STQ\_\-t::write\_\-complete}\label{structcore__exec__STM__t_1_1STQ__t_f830c0a6715a14a3ec7505dd9625af02}
+
+
+
+
+Definition at line 118 of file exec-STM.cpp.
+
+Referenced by core\_\-exec\_\-STM\_\-t::STQ\_\-deallocate\_\-std().
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+{\bf exec-STM.cpp}\end{CompactItemize}

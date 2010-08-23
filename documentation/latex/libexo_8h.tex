@@ -1,0 +1,356 @@
+\section{libexo.h File Reference}
+\label{libexo_8h}\index{libexo.h@{libexo.h}}
+{\tt \#include \char`\"{}../host.h\char`\"{}}\par
+{\tt \#include \char`\"{}../misc.h\char`\"{}}\par
+{\tt \#include \char`\"{}../machine.h\char`\"{}}\par
+
+
+Include dependency graph for libexo.h:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=305pt]{libexo_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+struct {\bf exo\_\-token\_\-t}
+\item 
+struct {\bf exo\_\-term\_\-t}
+\end{CompactItemize}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define {\bf EXO\_\-FMT\_\-MAJOR}~1
+\item 
+\#define {\bf EXO\_\-FMT\_\-MINOR}~0
+\item 
+\#define {\bf as\_\-integer}~variant.as\_\-integer
+\item 
+\#define {\bf as\_\-address}~variant.as\_\-address
+\item 
+\#define {\bf as\_\-float}~variant.as\_\-float
+\item 
+\#define {\bf as\_\-char}~variant.as\_\-char
+\item 
+\#define {\bf as\_\-string}~variant.as\_\-string
+\item 
+\#define {\bf as\_\-list}~variant.as\_\-list
+\item 
+\#define {\bf as\_\-array}~variant.as\_\-array
+\item 
+\#define {\bf as\_\-token}~variant.as\_\-token
+\item 
+\#define {\bf as\_\-blob}~variant.as\_\-blob
+\item 
+\#define {\bf EXO\_\-ARR}(E, N)
+\item 
+\#define {\bf SET\_\-EXO\_\-ARR}(E, N, V)
+\end{CompactItemize}
+\subsection*{Enumerations}
+\begin{CompactItemize}
+\item 
+enum {\bf exo\_\-class\_\-t} \{ \par
+{\bf ec\_\-integer}, 
+{\bf ec\_\-address}, 
+{\bf ec\_\-float}, 
+{\bf ec\_\-char}, 
+\par
+{\bf ec\_\-string}, 
+{\bf ec\_\-list}, 
+{\bf ec\_\-array}, 
+{\bf ec\_\-token}, 
+\par
+{\bf ec\_\-blob}, 
+{\bf ec\_\-null}, 
+{\bf ec\_\-NUM}
+ \}
+\item 
+enum {\bf lex\_\-t} \{ \par
+{\bf lex\_\-integer} =  256, 
+{\bf lex\_\-address}, 
+{\bf lex\_\-float}, 
+{\bf lex\_\-char}, 
+\par
+{\bf lex\_\-string}, 
+{\bf lex\_\-token}, 
+{\bf lex\_\-byte}, 
+{\bf lex\_\-eof}
+ \}
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+struct {\bf exo\_\-token\_\-t} $\ast$ {\bf exo\_\-intern} (char $\ast$token\_\-str)
+\item 
+struct {\bf exo\_\-token\_\-t} $\ast$ {\bf exo\_\-intern\_\-as} (char $\ast$token\_\-str, int token)
+\item 
+struct {\bf exo\_\-term\_\-t} $\ast$ {\bf exo\_\-new} (enum {\bf exo\_\-class\_\-t} ec,...)
+\item 
+void {\bf exo\_\-delete} (struct {\bf exo\_\-term\_\-t} $\ast$exo)
+\item 
+struct {\bf exo\_\-term\_\-t} $\ast$ {\bf exo\_\-chain} (struct {\bf exo\_\-term\_\-t} $\ast$fore, struct {\bf exo\_\-term\_\-t} $\ast$aft)
+\item 
+struct {\bf exo\_\-term\_\-t} $\ast$ {\bf exo\_\-copy} (struct {\bf exo\_\-term\_\-t} $\ast$exo)
+\item 
+struct {\bf exo\_\-term\_\-t} $\ast$ {\bf exo\_\-deepcopy} (struct {\bf exo\_\-term\_\-t} $\ast$exo)
+\item 
+void {\bf exo\_\-print} (struct {\bf exo\_\-term\_\-t} $\ast$exo, FILE $\ast$stream)
+\item 
+struct {\bf exo\_\-term\_\-t} $\ast$ {\bf exo\_\-read} (FILE $\ast$stream)
+\item 
+int {\bf exo\_\-parse} (struct {\bf exo\_\-term\_\-t} $\ast$exo, char $\ast$fmt,...)
+\item 
+int {\bf exo\_\-check} (struct {\bf exo\_\-term\_\-t} $\ast$exo, char $\ast$fmt)
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+char $\ast$ {\bf exo\_\-class\_\-str} [ec\_\-NUM]
+\end{CompactItemize}
+
+
+\subsection{Define Documentation}
+\index{libexo.h@{libexo.h}!as\_\-address@{as\_\-address}}
+\index{as\_\-address@{as\_\-address}!libexo.h@{libexo.h}}
+\subsubsection[{as\_\-address}]{\setlength{\rightskip}{0pt plus 5cm}\#define as\_\-address~variant.as\_\-address}\label{libexo_8h_becb203382d32d7077430f7be83921d6}
+
+
+
+
+Definition at line 149 of file libexo.h.\index{libexo.h@{libexo.h}!as\_\-array@{as\_\-array}}
+\index{as\_\-array@{as\_\-array}!libexo.h@{libexo.h}}
+\subsubsection[{as\_\-array}]{\setlength{\rightskip}{0pt plus 5cm}\#define as\_\-array~variant.as\_\-array}\label{libexo_8h_d9a01231acf056987b8bf3c850ca890b}
+
+
+
+
+Definition at line 154 of file libexo.h.\index{libexo.h@{libexo.h}!as\_\-blob@{as\_\-blob}}
+\index{as\_\-blob@{as\_\-blob}!libexo.h@{libexo.h}}
+\subsubsection[{as\_\-blob}]{\setlength{\rightskip}{0pt plus 5cm}\#define as\_\-blob~variant.as\_\-blob}\label{libexo_8h_2d4ff1599bdcd12362e8b24790e1402f}
+
+
+
+
+Definition at line 156 of file libexo.h.\index{libexo.h@{libexo.h}!as\_\-char@{as\_\-char}}
+\index{as\_\-char@{as\_\-char}!libexo.h@{libexo.h}}
+\subsubsection[{as\_\-char}]{\setlength{\rightskip}{0pt plus 5cm}\#define as\_\-char~variant.as\_\-char}\label{libexo_8h_1c7fae8968e12ff600821a5ac0ee3fd4}
+
+
+
+
+Definition at line 151 of file libexo.h.\index{libexo.h@{libexo.h}!as\_\-float@{as\_\-float}}
+\index{as\_\-float@{as\_\-float}!libexo.h@{libexo.h}}
+\subsubsection[{as\_\-float}]{\setlength{\rightskip}{0pt plus 5cm}\#define as\_\-float~variant.as\_\-float}\label{libexo_8h_30357be739c7782e699fe1aa3d3d28c6}
+
+
+
+
+Definition at line 150 of file libexo.h.\index{libexo.h@{libexo.h}!as\_\-integer@{as\_\-integer}}
+\index{as\_\-integer@{as\_\-integer}!libexo.h@{libexo.h}}
+\subsubsection[{as\_\-integer}]{\setlength{\rightskip}{0pt plus 5cm}\#define as\_\-integer~variant.as\_\-integer}\label{libexo_8h_d8b7191fe4a561e41a9659a91c7a150a}
+
+
+
+
+Definition at line 148 of file libexo.h.\index{libexo.h@{libexo.h}!as\_\-list@{as\_\-list}}
+\index{as\_\-list@{as\_\-list}!libexo.h@{libexo.h}}
+\subsubsection[{as\_\-list}]{\setlength{\rightskip}{0pt plus 5cm}\#define as\_\-list~variant.as\_\-list}\label{libexo_8h_c46f78c0770bda32f1c9e5c2b02b3dbf}
+
+
+
+
+Definition at line 153 of file libexo.h.\index{libexo.h@{libexo.h}!as\_\-string@{as\_\-string}}
+\index{as\_\-string@{as\_\-string}!libexo.h@{libexo.h}}
+\subsubsection[{as\_\-string}]{\setlength{\rightskip}{0pt plus 5cm}\#define as\_\-string~variant.as\_\-string}\label{libexo_8h_5bbf648f4c5bfaf970266ee6bbac7af3}
+
+
+
+
+Definition at line 152 of file libexo.h.\index{libexo.h@{libexo.h}!as\_\-token@{as\_\-token}}
+\index{as\_\-token@{as\_\-token}!libexo.h@{libexo.h}}
+\subsubsection[{as\_\-token}]{\setlength{\rightskip}{0pt plus 5cm}\#define as\_\-token~variant.as\_\-token}\label{libexo_8h_e18966a5a8266a0d4cb452c955e02f47}
+
+
+
+
+Definition at line 155 of file libexo.h.\index{libexo.h@{libexo.h}!EXO\_\-ARR@{EXO\_\-ARR}}
+\index{EXO\_\-ARR@{EXO\_\-ARR}!libexo.h@{libexo.h}}
+\subsubsection[{EXO\_\-ARR}]{\setlength{\rightskip}{0pt plus 5cm}\#define EXO\_\-ARR(E, \/  N)}\label{libexo_8h_d9214619301f0ba6fd9cd871b201d4f5}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}((E)->ec != ec_array                                                    \
+   ? (fatal("not an array"), *(struct exo_term_t **)(NULL))             \
+   : ((N) >= (E)->as_array.size                                         \
+      ? (fatal("array bounds error"), *(struct exo_term_t **)(NULL))    \
+      : (E)->as_array.array[(N)]))
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 160 of file libexo.h.\index{libexo.h@{libexo.h}!EXO\_\-FMT\_\-MAJOR@{EXO\_\-FMT\_\-MAJOR}}
+\index{EXO\_\-FMT\_\-MAJOR@{EXO\_\-FMT\_\-MAJOR}!libexo.h@{libexo.h}}
+\subsubsection[{EXO\_\-FMT\_\-MAJOR}]{\setlength{\rightskip}{0pt plus 5cm}\#define EXO\_\-FMT\_\-MAJOR~1}\label{libexo_8h_6cbad4c15ea545642884c960bcd7deff}
+
+
+
+
+Definition at line 81 of file libexo.h.\index{libexo.h@{libexo.h}!EXO\_\-FMT\_\-MINOR@{EXO\_\-FMT\_\-MINOR}}
+\index{EXO\_\-FMT\_\-MINOR@{EXO\_\-FMT\_\-MINOR}!libexo.h@{libexo.h}}
+\subsubsection[{EXO\_\-FMT\_\-MINOR}]{\setlength{\rightskip}{0pt plus 5cm}\#define EXO\_\-FMT\_\-MINOR~0}\label{libexo_8h_706a392f2f63aef68afab1abb7bbc664}
+
+
+
+
+Definition at line 82 of file libexo.h.\index{libexo.h@{libexo.h}!SET\_\-EXO\_\-ARR@{SET\_\-EXO\_\-ARR}}
+\index{SET\_\-EXO\_\-ARR@{SET\_\-EXO\_\-ARR}!libexo.h@{libexo.h}}
+\subsubsection[{SET\_\-EXO\_\-ARR}]{\setlength{\rightskip}{0pt plus 5cm}\#define SET\_\-EXO\_\-ARR(E, \/  N, \/  V)}\label{libexo_8h_4083decefe8932885188e141dc23662e}
+
+
+\textbf{Value:}
+
+\begin{Code}\begin{verbatim}((E)->ec != ec_array                                                    \
+   ? (void)fatal("not an array")                                        \
+   : ((N) >= (E)->as_array.size                                         \
+      ? (void)fatal("array bounds error")                               \
+      : (void)((E)->as_array.array[(N)] = (V))))
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 166 of file libexo.h.
+
+\subsection{Enumeration Type Documentation}
+\index{libexo.h@{libexo.h}!exo\_\-class\_\-t@{exo\_\-class\_\-t}}
+\index{exo\_\-class\_\-t@{exo\_\-class\_\-t}!libexo.h@{libexo.h}}
+\subsubsection[{exo\_\-class\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf exo\_\-class\_\-t}}\label{libexo_8h_0ba16a0188ec10b383c21babbc5cec59}
+
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{ec\_\-integer@{ec\_\-integer}!libexo.h@{libexo.h}}\index{libexo.h@{libexo.h}!ec\_\-integer@{ec\_\-integer}}\item[{\em 
+ec\_\-integer\label{libexo_8h_0ba16a0188ec10b383c21babbc5cec5973f82c63c584474d02e859bd482ae21f}
+}]\index{ec\_\-address@{ec\_\-address}!libexo.h@{libexo.h}}\index{libexo.h@{libexo.h}!ec\_\-address@{ec\_\-address}}\item[{\em 
+ec\_\-address\label{libexo_8h_0ba16a0188ec10b383c21babbc5cec5913b9a4f42e2c693460dcddf3e7230c90}
+}]\index{ec\_\-float@{ec\_\-float}!libexo.h@{libexo.h}}\index{libexo.h@{libexo.h}!ec\_\-float@{ec\_\-float}}\item[{\em 
+ec\_\-float\label{libexo_8h_0ba16a0188ec10b383c21babbc5cec59dffc43f71c4a7ae0748847782797ab70}
+}]\index{ec\_\-char@{ec\_\-char}!libexo.h@{libexo.h}}\index{libexo.h@{libexo.h}!ec\_\-char@{ec\_\-char}}\item[{\em 
+ec\_\-char\label{libexo_8h_0ba16a0188ec10b383c21babbc5cec59e26d68e2ed084df5762cf0eb24ce442a}
+}]\index{ec\_\-string@{ec\_\-string}!libexo.h@{libexo.h}}\index{libexo.h@{libexo.h}!ec\_\-string@{ec\_\-string}}\item[{\em 
+ec\_\-string\label{libexo_8h_0ba16a0188ec10b383c21babbc5cec59edb87de61d84f4b695a0f1525c39a5a9}
+}]\index{ec\_\-list@{ec\_\-list}!libexo.h@{libexo.h}}\index{libexo.h@{libexo.h}!ec\_\-list@{ec\_\-list}}\item[{\em 
+ec\_\-list\label{libexo_8h_0ba16a0188ec10b383c21babbc5cec59795942b003bd4c02015a8fc278955bb6}
+}]\index{ec\_\-array@{ec\_\-array}!libexo.h@{libexo.h}}\index{libexo.h@{libexo.h}!ec\_\-array@{ec\_\-array}}\item[{\em 
+ec\_\-array\label{libexo_8h_0ba16a0188ec10b383c21babbc5cec59d8b0ed4293e41dcbf300e65aa9f448c8}
+}]\index{ec\_\-token@{ec\_\-token}!libexo.h@{libexo.h}}\index{libexo.h@{libexo.h}!ec\_\-token@{ec\_\-token}}\item[{\em 
+ec\_\-token\label{libexo_8h_0ba16a0188ec10b383c21babbc5cec593a8ad5e788463113d188257378e42eac}
+}]\index{ec\_\-blob@{ec\_\-blob}!libexo.h@{libexo.h}}\index{libexo.h@{libexo.h}!ec\_\-blob@{ec\_\-blob}}\item[{\em 
+ec\_\-blob\label{libexo_8h_0ba16a0188ec10b383c21babbc5cec59f486655a129a92155f62792aa9e7dc6c}
+}]\index{ec\_\-null@{ec\_\-null}!libexo.h@{libexo.h}}\index{libexo.h@{libexo.h}!ec\_\-null@{ec\_\-null}}\item[{\em 
+ec\_\-null\label{libexo_8h_0ba16a0188ec10b383c21babbc5cec595837fcd4312d7a8a998ab5ac505b50b6}
+}]\index{ec\_\-NUM@{ec\_\-NUM}!libexo.h@{libexo.h}}\index{libexo.h@{libexo.h}!ec\_\-NUM@{ec\_\-NUM}}\item[{\em 
+ec\_\-NUM\label{libexo_8h_0ba16a0188ec10b383c21babbc5cec59e0a1238f4f0ee4c305ca5b44c020aca9}
+}]\end{description}
+\end{Desc}
+
+
+
+Definition at line 85 of file libexo.h.\index{libexo.h@{libexo.h}!lex\_\-t@{lex\_\-t}}
+\index{lex\_\-t@{lex\_\-t}!libexo.h@{libexo.h}}
+\subsubsection[{lex\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf lex\_\-t}}\label{libexo_8h_0298211c0b5ec210cdd69d9b0f9dca66}
+
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{lex\_\-integer@{lex\_\-integer}!libexo.h@{libexo.h}}\index{libexo.h@{libexo.h}!lex\_\-integer@{lex\_\-integer}}\item[{\em 
+lex\_\-integer\label{libexo_8h_0298211c0b5ec210cdd69d9b0f9dca664856866abd322187d9eea4216980d4b6}
+}]\index{lex\_\-address@{lex\_\-address}!libexo.h@{libexo.h}}\index{libexo.h@{libexo.h}!lex\_\-address@{lex\_\-address}}\item[{\em 
+lex\_\-address\label{libexo_8h_0298211c0b5ec210cdd69d9b0f9dca66e626196a2081e2e294888dff7295c9be}
+}]\index{lex\_\-float@{lex\_\-float}!libexo.h@{libexo.h}}\index{libexo.h@{libexo.h}!lex\_\-float@{lex\_\-float}}\item[{\em 
+lex\_\-float\label{libexo_8h_0298211c0b5ec210cdd69d9b0f9dca669ea44fff1c00d266eb4b3ed52ab6b449}
+}]\index{lex\_\-char@{lex\_\-char}!libexo.h@{libexo.h}}\index{libexo.h@{libexo.h}!lex\_\-char@{lex\_\-char}}\item[{\em 
+lex\_\-char\label{libexo_8h_0298211c0b5ec210cdd69d9b0f9dca6653af58ad8e4781d7964db2ce0271a14c}
+}]\index{lex\_\-string@{lex\_\-string}!libexo.h@{libexo.h}}\index{libexo.h@{libexo.h}!lex\_\-string@{lex\_\-string}}\item[{\em 
+lex\_\-string\label{libexo_8h_0298211c0b5ec210cdd69d9b0f9dca66a18bda8e798cdf55d88ed65fd025e67c}
+}]\index{lex\_\-token@{lex\_\-token}!libexo.h@{libexo.h}}\index{libexo.h@{libexo.h}!lex\_\-token@{lex\_\-token}}\item[{\em 
+lex\_\-token\label{libexo_8h_0298211c0b5ec210cdd69d9b0f9dca66a36222297099212770a875c00a80e9ad}
+}]\index{lex\_\-byte@{lex\_\-byte}!libexo.h@{libexo.h}}\index{libexo.h@{libexo.h}!lex\_\-byte@{lex\_\-byte}}\item[{\em 
+lex\_\-byte\label{libexo_8h_0298211c0b5ec210cdd69d9b0f9dca665d59f9af4cd28c3df48232e3bc87d2b4}
+}]\index{lex\_\-eof@{lex\_\-eof}!libexo.h@{libexo.h}}\index{libexo.h@{libexo.h}!lex\_\-eof@{lex\_\-eof}}\item[{\em 
+lex\_\-eof\label{libexo_8h_0298211c0b5ec210cdd69d9b0f9dca66ade5d69e447274d8785ebc7d438be522}
+}]\end{description}
+\end{Desc}
+
+
+
+Definition at line 246 of file libexo.h.
+
+\subsection{Function Documentation}
+\index{libexo.h@{libexo.h}!exo\_\-chain@{exo\_\-chain}}
+\index{exo\_\-chain@{exo\_\-chain}!libexo.h@{libexo.h}}
+\subsubsection[{exo\_\-chain}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf exo\_\-term\_\-t}$\ast$ exo\_\-chain (struct {\bf exo\_\-term\_\-t} $\ast$ {\em fore}, \/  struct {\bf exo\_\-term\_\-t} $\ast$ {\em aft})\hspace{0.3cm}{\tt  [read]}}\label{libexo_8h_56f32be22ecd93a2f74cba73748c684c}
+
+
+\index{libexo.h@{libexo.h}!exo\_\-check@{exo\_\-check}}
+\index{exo\_\-check@{exo\_\-check}!libexo.h@{libexo.h}}
+\subsubsection[{exo\_\-check}]{\setlength{\rightskip}{0pt plus 5cm}int exo\_\-check (struct {\bf exo\_\-term\_\-t} $\ast$ {\em exo}, \/  char $\ast$ {\em fmt})}\label{libexo_8h_1cac107a347c0a5e66b37943bb65f5db}
+
+
+\index{libexo.h@{libexo.h}!exo\_\-copy@{exo\_\-copy}}
+\index{exo\_\-copy@{exo\_\-copy}!libexo.h@{libexo.h}}
+\subsubsection[{exo\_\-copy}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf exo\_\-term\_\-t}$\ast$ exo\_\-copy (struct {\bf exo\_\-term\_\-t} $\ast$ {\em exo})\hspace{0.3cm}{\tt  [read]}}\label{libexo_8h_e82154e12e4c12fcbbdd022e22c6b4d8}
+
+
+\index{libexo.h@{libexo.h}!exo\_\-deepcopy@{exo\_\-deepcopy}}
+\index{exo\_\-deepcopy@{exo\_\-deepcopy}!libexo.h@{libexo.h}}
+\subsubsection[{exo\_\-deepcopy}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf exo\_\-term\_\-t}$\ast$ exo\_\-deepcopy (struct {\bf exo\_\-term\_\-t} $\ast$ {\em exo})\hspace{0.3cm}{\tt  [read]}}\label{libexo_8h_c04a8efc394dc8bd7b894915f4ae560d}
+
+
+\index{libexo.h@{libexo.h}!exo\_\-delete@{exo\_\-delete}}
+\index{exo\_\-delete@{exo\_\-delete}!libexo.h@{libexo.h}}
+\subsubsection[{exo\_\-delete}]{\setlength{\rightskip}{0pt plus 5cm}void exo\_\-delete (struct {\bf exo\_\-term\_\-t} $\ast$ {\em exo})}\label{libexo_8h_20579e0b9063e7392797cb69a6028b9e}
+
+
+\index{libexo.h@{libexo.h}!exo\_\-intern@{exo\_\-intern}}
+\index{exo\_\-intern@{exo\_\-intern}!libexo.h@{libexo.h}}
+\subsubsection[{exo\_\-intern}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf exo\_\-token\_\-t}$\ast$ exo\_\-intern (char $\ast$ {\em token\_\-str})\hspace{0.3cm}{\tt  [read]}}\label{libexo_8h_e14ab7b6d2d654144eba785785bcd88d}
+
+
+\index{libexo.h@{libexo.h}!exo\_\-intern\_\-as@{exo\_\-intern\_\-as}}
+\index{exo\_\-intern\_\-as@{exo\_\-intern\_\-as}!libexo.h@{libexo.h}}
+\subsubsection[{exo\_\-intern\_\-as}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf exo\_\-token\_\-t}$\ast$ exo\_\-intern\_\-as (char $\ast$ {\em token\_\-str}, \/  int {\em token})\hspace{0.3cm}{\tt  [read]}}\label{libexo_8h_414a0d04576b8e8b4277b886c9853509}
+
+
+\index{libexo.h@{libexo.h}!exo\_\-new@{exo\_\-new}}
+\index{exo\_\-new@{exo\_\-new}!libexo.h@{libexo.h}}
+\subsubsection[{exo\_\-new}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf exo\_\-term\_\-t}$\ast$ exo\_\-new (enum {\bf exo\_\-class\_\-t} {\em ec}, \/   {\em ...})\hspace{0.3cm}{\tt  [read]}}\label{libexo_8h_b07270e3a071f1125f8ce98ef4440977}
+
+
+\index{libexo.h@{libexo.h}!exo\_\-parse@{exo\_\-parse}}
+\index{exo\_\-parse@{exo\_\-parse}!libexo.h@{libexo.h}}
+\subsubsection[{exo\_\-parse}]{\setlength{\rightskip}{0pt plus 5cm}int exo\_\-parse (struct {\bf exo\_\-term\_\-t} $\ast$ {\em exo}, \/  char $\ast$ {\em fmt}, \/   {\em ...})}\label{libexo_8h_59704bd189fd3ca0ba4ba111a5247c2b}
+
+
+\index{libexo.h@{libexo.h}!exo\_\-print@{exo\_\-print}}
+\index{exo\_\-print@{exo\_\-print}!libexo.h@{libexo.h}}
+\subsubsection[{exo\_\-print}]{\setlength{\rightskip}{0pt plus 5cm}void exo\_\-print (struct {\bf exo\_\-term\_\-t} $\ast$ {\em exo}, \/  FILE $\ast$ {\em stream})}\label{libexo_8h_f1fb6fb9d13d559b70458611592d58d5}
+
+
+\index{libexo.h@{libexo.h}!exo\_\-read@{exo\_\-read}}
+\index{exo\_\-read@{exo\_\-read}!libexo.h@{libexo.h}}
+\subsubsection[{exo\_\-read}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf exo\_\-term\_\-t}$\ast$ exo\_\-read (FILE $\ast$ {\em stream})\hspace{0.3cm}{\tt  [read]}}\label{libexo_8h_1207a34655cb7ec584e2f6689cae8728}
+
+
+
+
+\subsection{Variable Documentation}
+\index{libexo.h@{libexo.h}!exo\_\-class\_\-str@{exo\_\-class\_\-str}}
+\index{exo\_\-class\_\-str@{exo\_\-class\_\-str}!libexo.h@{libexo.h}}
+\subsubsection[{exo\_\-class\_\-str}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf exo\_\-class\_\-str}[ec\_\-NUM]}\label{libexo_8h_53ddd71a3f784e40d0439d4575db9fe0}
+
+
