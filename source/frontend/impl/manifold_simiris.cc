@@ -33,6 +33,7 @@
 
 unsigned long int net_pack_info[8][8];
 
+string router_model_string, mc_model_string;
 Mesh* mesh;
 
 void
@@ -66,6 +67,8 @@ dump_configuration ( void )
     cerr << " NO_OF_COLUMNS:\t" << NO_OF_COLUMNS << endl;
     cerr << " COLUMN_SIZE:\t" << COLUMN_SIZE << endl;
     cerr << " Msg_class with arbitration priority:\t" << msg_type_string << endl;
+    cerr << " Router model:\t" << router_model_string << endl;
+    cerr << " MC Mode:\t" << mc_model_string << endl;
 
     if( traces.size() < (no_nodes - no_mcs) )
     {
@@ -75,7 +78,6 @@ dump_configuration ( void )
     return ;
 }
 
-string router_model_string, mc_model_string;
 
 int
 main ( int argc, char *argv[] )
@@ -127,9 +129,9 @@ main ( int argc, char *argv[] )
             if ( word.compare("ROUTER_MODEL") == 0)
                 iss >> router_model_string;
             NO_OF_THREADS = no_nodes;
-            /* Init parameters of mc_constants
             if ( word.compare("MC_MODEL") == 0)
                 iss >> mc_model_string;
+            /* Init parameters of mc_constants
             if ( word.compare("THREAD_BITS_POSITION") == 0)
                 iss >> THREAD_BITS_POSITION;
             if ( word.compare("MC_ADDR_BITS") == 0)
