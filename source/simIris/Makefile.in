@@ -70,9 +70,9 @@ am__objects_1 = libIris_a-link.$(OBJEXT) libIris_a-clock.$(OBJEXT) \
 	libIris_a-genericArbiter.$(OBJEXT) \
 	libIris_a-genericLink.$(OBJEXT) libIris_a-ptopSwaVcs.$(OBJEXT) \
 	libIris_a-pvtopv_swa.$(OBJEXT) libIris_a-ptop_swa.$(OBJEXT) \
-	libIris_a-genericRouterVcs.$(OBJEXT) \
-	libIris_a-genericRouterAdaptive.$(OBJEXT) \
-	libIris_a-genericTPGVcs.$(OBJEXT) \
+	libIris_a-genericRouter4Stg.$(OBJEXT) \
+	libIris_a-genericRouter3Stg.$(OBJEXT) \
+	libIris_a-genericTracePktGen.$(OBJEXT) \
 	libIris_a-genericVcAllocator.$(OBJEXT) \
 	libIris_a-genericFlatMc.$(OBJEXT) \
 	libIris_a-memctrlFE.$(OBJEXT)
@@ -208,9 +208,9 @@ IRIS_SOURCES = \
 		  components/impl/ptopSwaVcs.cc \
 		  components/impl/pvtopv_swa.cc \
 		  components/impl/ptop_swa.cc \
-		  components/impl/genericRouterVcs.cc \
-		  components/impl/genericRouterAdaptive.cc \
-		  components/impl/genericTPGVcs.cc \
+		  components/impl/genericRouter4Stg.cc \
+		  components/impl/genericRouter3Stg.cc \
+		  components/impl/genericTracePktGen.cc \
 		  components/impl/genericVcAllocator.cc \
 		  components/impl/genericFlatMc.cc \
 		  components/impl/memctrlFE.cc
@@ -302,9 +302,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libIris_a-genericInterfaceVcs.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libIris_a-genericLink.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libIris_a-genericRC.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libIris_a-genericRouterAdaptive.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libIris_a-genericRouterVcs.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libIris_a-genericTPGVcs.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libIris_a-genericRouter3Stg.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libIris_a-genericRouter4Stg.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libIris_a-genericTracePktGen.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libIris_a-genericVcAllocator.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libIris_a-genericVcArbiter.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libIris_a-highLevelPacket.Po@am__quote@
@@ -672,47 +672,47 @@ libIris_a-ptop_swa.obj: components/impl/ptop_swa.cc
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -c -o libIris_a-ptop_swa.obj `if test -f 'components/impl/ptop_swa.cc'; then $(CYGPATH_W) 'components/impl/ptop_swa.cc'; else $(CYGPATH_W) '$(srcdir)/components/impl/ptop_swa.cc'; fi`
 
-libIris_a-genericRouterVcs.o: components/impl/genericRouterVcs.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -MT libIris_a-genericRouterVcs.o -MD -MP -MF $(DEPDIR)/libIris_a-genericRouterVcs.Tpo -c -o libIris_a-genericRouterVcs.o `test -f 'components/impl/genericRouterVcs.cc' || echo '$(srcdir)/'`components/impl/genericRouterVcs.cc
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libIris_a-genericRouterVcs.Tpo $(DEPDIR)/libIris_a-genericRouterVcs.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='components/impl/genericRouterVcs.cc' object='libIris_a-genericRouterVcs.o' libtool=no @AMDEPBACKSLASH@
+libIris_a-genericRouter4Stg.o: components/impl/genericRouter4Stg.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -MT libIris_a-genericRouter4Stg.o -MD -MP -MF $(DEPDIR)/libIris_a-genericRouter4Stg.Tpo -c -o libIris_a-genericRouter4Stg.o `test -f 'components/impl/genericRouter4Stg.cc' || echo '$(srcdir)/'`components/impl/genericRouter4Stg.cc
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libIris_a-genericRouter4Stg.Tpo $(DEPDIR)/libIris_a-genericRouter4Stg.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='components/impl/genericRouter4Stg.cc' object='libIris_a-genericRouter4Stg.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -c -o libIris_a-genericRouterVcs.o `test -f 'components/impl/genericRouterVcs.cc' || echo '$(srcdir)/'`components/impl/genericRouterVcs.cc
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -c -o libIris_a-genericRouter4Stg.o `test -f 'components/impl/genericRouter4Stg.cc' || echo '$(srcdir)/'`components/impl/genericRouter4Stg.cc
 
-libIris_a-genericRouterVcs.obj: components/impl/genericRouterVcs.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -MT libIris_a-genericRouterVcs.obj -MD -MP -MF $(DEPDIR)/libIris_a-genericRouterVcs.Tpo -c -o libIris_a-genericRouterVcs.obj `if test -f 'components/impl/genericRouterVcs.cc'; then $(CYGPATH_W) 'components/impl/genericRouterVcs.cc'; else $(CYGPATH_W) '$(srcdir)/components/impl/genericRouterVcs.cc'; fi`
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libIris_a-genericRouterVcs.Tpo $(DEPDIR)/libIris_a-genericRouterVcs.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='components/impl/genericRouterVcs.cc' object='libIris_a-genericRouterVcs.obj' libtool=no @AMDEPBACKSLASH@
+libIris_a-genericRouter4Stg.obj: components/impl/genericRouter4Stg.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -MT libIris_a-genericRouter4Stg.obj -MD -MP -MF $(DEPDIR)/libIris_a-genericRouter4Stg.Tpo -c -o libIris_a-genericRouter4Stg.obj `if test -f 'components/impl/genericRouter4Stg.cc'; then $(CYGPATH_W) 'components/impl/genericRouter4Stg.cc'; else $(CYGPATH_W) '$(srcdir)/components/impl/genericRouter4Stg.cc'; fi`
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libIris_a-genericRouter4Stg.Tpo $(DEPDIR)/libIris_a-genericRouter4Stg.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='components/impl/genericRouter4Stg.cc' object='libIris_a-genericRouter4Stg.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -c -o libIris_a-genericRouterVcs.obj `if test -f 'components/impl/genericRouterVcs.cc'; then $(CYGPATH_W) 'components/impl/genericRouterVcs.cc'; else $(CYGPATH_W) '$(srcdir)/components/impl/genericRouterVcs.cc'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -c -o libIris_a-genericRouter4Stg.obj `if test -f 'components/impl/genericRouter4Stg.cc'; then $(CYGPATH_W) 'components/impl/genericRouter4Stg.cc'; else $(CYGPATH_W) '$(srcdir)/components/impl/genericRouter4Stg.cc'; fi`
 
-libIris_a-genericRouterAdaptive.o: components/impl/genericRouterAdaptive.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -MT libIris_a-genericRouterAdaptive.o -MD -MP -MF $(DEPDIR)/libIris_a-genericRouterAdaptive.Tpo -c -o libIris_a-genericRouterAdaptive.o `test -f 'components/impl/genericRouterAdaptive.cc' || echo '$(srcdir)/'`components/impl/genericRouterAdaptive.cc
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libIris_a-genericRouterAdaptive.Tpo $(DEPDIR)/libIris_a-genericRouterAdaptive.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='components/impl/genericRouterAdaptive.cc' object='libIris_a-genericRouterAdaptive.o' libtool=no @AMDEPBACKSLASH@
+libIris_a-genericRouter3Stg.o: components/impl/genericRouter3Stg.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -MT libIris_a-genericRouter3Stg.o -MD -MP -MF $(DEPDIR)/libIris_a-genericRouter3Stg.Tpo -c -o libIris_a-genericRouter3Stg.o `test -f 'components/impl/genericRouter3Stg.cc' || echo '$(srcdir)/'`components/impl/genericRouter3Stg.cc
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libIris_a-genericRouter3Stg.Tpo $(DEPDIR)/libIris_a-genericRouter3Stg.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='components/impl/genericRouter3Stg.cc' object='libIris_a-genericRouter3Stg.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -c -o libIris_a-genericRouterAdaptive.o `test -f 'components/impl/genericRouterAdaptive.cc' || echo '$(srcdir)/'`components/impl/genericRouterAdaptive.cc
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -c -o libIris_a-genericRouter3Stg.o `test -f 'components/impl/genericRouter3Stg.cc' || echo '$(srcdir)/'`components/impl/genericRouter3Stg.cc
 
-libIris_a-genericRouterAdaptive.obj: components/impl/genericRouterAdaptive.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -MT libIris_a-genericRouterAdaptive.obj -MD -MP -MF $(DEPDIR)/libIris_a-genericRouterAdaptive.Tpo -c -o libIris_a-genericRouterAdaptive.obj `if test -f 'components/impl/genericRouterAdaptive.cc'; then $(CYGPATH_W) 'components/impl/genericRouterAdaptive.cc'; else $(CYGPATH_W) '$(srcdir)/components/impl/genericRouterAdaptive.cc'; fi`
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libIris_a-genericRouterAdaptive.Tpo $(DEPDIR)/libIris_a-genericRouterAdaptive.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='components/impl/genericRouterAdaptive.cc' object='libIris_a-genericRouterAdaptive.obj' libtool=no @AMDEPBACKSLASH@
+libIris_a-genericRouter3Stg.obj: components/impl/genericRouter3Stg.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -MT libIris_a-genericRouter3Stg.obj -MD -MP -MF $(DEPDIR)/libIris_a-genericRouter3Stg.Tpo -c -o libIris_a-genericRouter3Stg.obj `if test -f 'components/impl/genericRouter3Stg.cc'; then $(CYGPATH_W) 'components/impl/genericRouter3Stg.cc'; else $(CYGPATH_W) '$(srcdir)/components/impl/genericRouter3Stg.cc'; fi`
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libIris_a-genericRouter3Stg.Tpo $(DEPDIR)/libIris_a-genericRouter3Stg.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='components/impl/genericRouter3Stg.cc' object='libIris_a-genericRouter3Stg.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -c -o libIris_a-genericRouterAdaptive.obj `if test -f 'components/impl/genericRouterAdaptive.cc'; then $(CYGPATH_W) 'components/impl/genericRouterAdaptive.cc'; else $(CYGPATH_W) '$(srcdir)/components/impl/genericRouterAdaptive.cc'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -c -o libIris_a-genericRouter3Stg.obj `if test -f 'components/impl/genericRouter3Stg.cc'; then $(CYGPATH_W) 'components/impl/genericRouter3Stg.cc'; else $(CYGPATH_W) '$(srcdir)/components/impl/genericRouter3Stg.cc'; fi`
 
-libIris_a-genericTPGVcs.o: components/impl/genericTPGVcs.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -MT libIris_a-genericTPGVcs.o -MD -MP -MF $(DEPDIR)/libIris_a-genericTPGVcs.Tpo -c -o libIris_a-genericTPGVcs.o `test -f 'components/impl/genericTPGVcs.cc' || echo '$(srcdir)/'`components/impl/genericTPGVcs.cc
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libIris_a-genericTPGVcs.Tpo $(DEPDIR)/libIris_a-genericTPGVcs.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='components/impl/genericTPGVcs.cc' object='libIris_a-genericTPGVcs.o' libtool=no @AMDEPBACKSLASH@
+libIris_a-genericTracePktGen.o: components/impl/genericTracePktGen.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -MT libIris_a-genericTracePktGen.o -MD -MP -MF $(DEPDIR)/libIris_a-genericTracePktGen.Tpo -c -o libIris_a-genericTracePktGen.o `test -f 'components/impl/genericTracePktGen.cc' || echo '$(srcdir)/'`components/impl/genericTracePktGen.cc
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libIris_a-genericTracePktGen.Tpo $(DEPDIR)/libIris_a-genericTracePktGen.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='components/impl/genericTracePktGen.cc' object='libIris_a-genericTracePktGen.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -c -o libIris_a-genericTPGVcs.o `test -f 'components/impl/genericTPGVcs.cc' || echo '$(srcdir)/'`components/impl/genericTPGVcs.cc
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -c -o libIris_a-genericTracePktGen.o `test -f 'components/impl/genericTracePktGen.cc' || echo '$(srcdir)/'`components/impl/genericTracePktGen.cc
 
-libIris_a-genericTPGVcs.obj: components/impl/genericTPGVcs.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -MT libIris_a-genericTPGVcs.obj -MD -MP -MF $(DEPDIR)/libIris_a-genericTPGVcs.Tpo -c -o libIris_a-genericTPGVcs.obj `if test -f 'components/impl/genericTPGVcs.cc'; then $(CYGPATH_W) 'components/impl/genericTPGVcs.cc'; else $(CYGPATH_W) '$(srcdir)/components/impl/genericTPGVcs.cc'; fi`
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libIris_a-genericTPGVcs.Tpo $(DEPDIR)/libIris_a-genericTPGVcs.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='components/impl/genericTPGVcs.cc' object='libIris_a-genericTPGVcs.obj' libtool=no @AMDEPBACKSLASH@
+libIris_a-genericTracePktGen.obj: components/impl/genericTracePktGen.cc
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -MT libIris_a-genericTracePktGen.obj -MD -MP -MF $(DEPDIR)/libIris_a-genericTracePktGen.Tpo -c -o libIris_a-genericTracePktGen.obj `if test -f 'components/impl/genericTracePktGen.cc'; then $(CYGPATH_W) 'components/impl/genericTracePktGen.cc'; else $(CYGPATH_W) '$(srcdir)/components/impl/genericTracePktGen.cc'; fi`
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libIris_a-genericTracePktGen.Tpo $(DEPDIR)/libIris_a-genericTracePktGen.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='components/impl/genericTracePktGen.cc' object='libIris_a-genericTracePktGen.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -c -o libIris_a-genericTPGVcs.obj `if test -f 'components/impl/genericTPGVcs.cc'; then $(CYGPATH_W) 'components/impl/genericTPGVcs.cc'; else $(CYGPATH_W) '$(srcdir)/components/impl/genericTPGVcs.cc'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -c -o libIris_a-genericTracePktGen.obj `if test -f 'components/impl/genericTracePktGen.cc'; then $(CYGPATH_W) 'components/impl/genericTracePktGen.cc'; else $(CYGPATH_W) '$(srcdir)/components/impl/genericTracePktGen.cc'; fi`
 
 libIris_a-genericVcAllocator.o: components/impl/genericVcAllocator.cc
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -MT libIris_a-genericVcAllocator.o -MD -MP -MF $(DEPDIR)/libIris_a-genericVcAllocator.Tpo -c -o libIris_a-genericVcAllocator.o `test -f 'components/impl/genericVcAllocator.cc' || echo '$(srcdir)/'`components/impl/genericVcAllocator.cc

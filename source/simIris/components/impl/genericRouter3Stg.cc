@@ -1,7 +1,7 @@
 /*
  * =====================================================================================
  *
- *       Filename:  genericRouterAdaptive.cc
+ *       Filename:  genericRouter3Stg.cc
  *
  *! \brief    Description: Implementing a generic 4 stage physical router model
  *    BW->RC->SA->ST->LT
@@ -30,24 +30,24 @@
  * =====================================================================================
  */
 
-#ifndef  _genericRouterAdaptive_cc_INC
-#define  _genericRouterAdaptive_cc_INC
+#ifndef  _genericRouter3Stg_cc_INC
+#define  _genericRouter3Stg_cc_INC
 
-#include        "genericRouterAdaptive.h"
+#include        "genericRouter3Stg.h"
 using namespace std;
 
-GenericRouterAdaptive::GenericRouterAdaptive ()
+GenericRouter3Stg::GenericRouter3Stg ()
 {
     name = "Router" ;
     ticking = false;
-}  /* -----  end of method GenericRouterAdaptive::GenericRouterAdaptive  (constructor)  ----- */
+}  /* -----  end of method GenericRouter3Stg::GenericRouter3Stg  (constructor)  ----- */
 
-GenericRouterAdaptive::~GenericRouterAdaptive()
+GenericRouter3Stg::~GenericRouter3Stg()
 {
 }
 
 void
-GenericRouterAdaptive::init (uint p, uint v, uint cr, uint bs)
+GenericRouter3Stg::init (uint p, uint v, uint cr, uint bs)
 {
     ports =p;
     vcs =v;
@@ -105,12 +105,12 @@ GenericRouterAdaptive::init (uint p, uint v, uint cr, uint bs)
     total_packet_latency = 0;
 
     return ;
-}               /* -----  end of function GenericRouterAdaptive::init  ----- */
+}               /* -----  end of function GenericRouter3Stg::init  ----- */
 
 /*! \brief These functions are mainly for DOR routing and are seperated so as to not
  * force DOR modelling in all designs */
 void
-GenericRouterAdaptive::set_no_nodes( uint nodes )
+GenericRouter3Stg::set_no_nodes( uint nodes )
 {
     for ( uint i=0; i<decoders.size(); i++)
     {
@@ -120,13 +120,13 @@ GenericRouterAdaptive::set_no_nodes( uint nodes )
 }
 
 void
-GenericRouterAdaptive::set_grid_x_location( uint port, uint x_node, uint value)
+GenericRouter3Stg::set_grid_x_location( uint port, uint x_node, uint value)
 {
     decoders[port].grid_xloc[x_node]= value;
 }
 
 void
-GenericRouterAdaptive::set_grid_y_location( uint port, uint y_node, uint value)
+GenericRouter3Stg::set_grid_y_location( uint port, uint y_node, uint value)
 {
     decoders[port].grid_yloc[y_node]= value;
 }
@@ -134,7 +134,7 @@ GenericRouterAdaptive::set_grid_y_location( uint port, uint y_node, uint value)
 /*  End of DOR grid location functions */
 
 void
-GenericRouterAdaptive::process_event ( IrisEvent* e )
+GenericRouter3Stg::process_event ( IrisEvent* e )
 {
     switch(e->type)
     {
@@ -145,14 +145,14 @@ GenericRouterAdaptive::process_event ( IrisEvent* e )
             handle_tick_event(e);
             break;
         default:
-            _DBG("GenericRouterAdaptive:: Unk event exception %d", e->type);
+            _DBG("GenericRouter3Stg:: Unk event exception %d", e->type);
             break;
     }
     return ;
-}               /* -----  end of function GenericRouterAdaptive::process_event  ----- */
+}               /* -----  end of function GenericRouter3Stg::process_event  ----- */
 
 string
-GenericRouterAdaptive::print_stats()
+GenericRouter3Stg::print_stats()
 {
     stringstream str;
     str << "\n router[" << node_ip << "] packet latency: " << total_packet_latency
@@ -225,7 +225,7 @@ GenericRouterAdaptive::print_stats()
 }
 
 void
-GenericRouterAdaptive::init_buffer_state(uint port,uint vc,HeadFlit* hf)
+GenericRouter3Stg::init_buffer_state(uint port,uint vc,HeadFlit* hf)
 {
     input_buffer_state[port*vcs+vc].input_port = port;
     input_buffer_state[port*vcs+vc].input_channel = vc;
@@ -259,7 +259,7 @@ GenericRouterAdaptive::init_buffer_state(uint port,uint vc,HeadFlit* hf)
 
 /*! \brief Event handle for the LINK_ARRIVAL_EVENT event. Entry from DES kernel */
 void
-GenericRouterAdaptive::handle_link_arrival_event ( IrisEvent* e )
+GenericRouter3Stg::handle_link_arrival_event ( IrisEvent* e )
 {
     if ( multiple_flit_in_buf)
         handle_link_arrival_event_multiple_flit_in_buffer(e);
@@ -270,7 +270,7 @@ GenericRouterAdaptive::handle_link_arrival_event ( IrisEvent* e )
 }
 
 void
-GenericRouterAdaptive::handle_link_arrival_event_one_msg_per_buffer( IrisEvent* e )
+GenericRouter3Stg::handle_link_arrival_event_one_msg_per_buffer( IrisEvent* e )
 {
     LinkArrivalData* data = static_cast<LinkArrivalData*>(e->event_data.at(0));
     if(data->type == FLIT_ID)
@@ -366,10 +366,10 @@ GenericRouterAdaptive::handle_link_arrival_event_one_msg_per_buffer( IrisEvent* 
     delete data;
     delete e;
     return ;
-}		/* -----  end of function GenericRouterAdaptive::handle_link_arrival_event  ----- */
+}		/* -----  end of function GenericRouter3Stg::handle_link_arrival_event  ----- */
 
 void
-GenericRouterAdaptive::handle_link_arrival_event_multiple_flit_in_buffer( IrisEvent* e )
+GenericRouter3Stg::handle_link_arrival_event_multiple_flit_in_buffer( IrisEvent* e )
 {
     LinkArrivalData* data = static_cast<LinkArrivalData*>(e->event_data.at(0));
     if(data->type == FLIT_ID)
@@ -507,10 +507,10 @@ GenericRouterAdaptive::handle_link_arrival_event_multiple_flit_in_buffer( IrisEv
     delete data;
     delete e;
     return ;
-}               /* -----  end of function GenericRouterAdaptive::handle_link_arrival_event  ----- */
+}               /* -----  end of function GenericRouter3Stg::handle_link_arrival_event  ----- */
 
 void
-GenericRouterAdaptive::do_switch_traversal()
+GenericRouter3Stg::do_switch_traversal()
 {
     /* Switch traversal */
     for( uint i=0; i<ports*vcs; i++)
@@ -522,7 +522,7 @@ GenericRouterAdaptive::do_switch_traversal()
             bool downstream_pkt_progress = false;
             if (!sent_head && oport!=0)
             {
-                GenericRouterAdaptive* next_router = static_cast<GenericRouterAdaptive*>(
+                GenericRouter3Stg* next_router = static_cast<GenericRouter3Stg*>(
                                                                                          static_cast<GenericLink*>(output_connections[oport])->output_connection);
                 downstream_pkt_progress = next_router->is_pkt_in_progress(static_cast<GenericLink*>(output_connections[oport]),0);
                 _DBG("Sending HEAD but next_buf_free for %d buffst: ",oport); 
@@ -562,7 +562,7 @@ GenericRouterAdaptive::do_switch_traversal()
 
                 if (f->type == HEAD && oport!=0)
                 {
-                    GenericRouterAdaptive* next_router = static_cast<GenericRouterAdaptive*>(
+                    GenericRouter3Stg* next_router = static_cast<GenericRouter3Stg*>(
                                                                                              static_cast<GenericLink*>(output_connections[oport])->output_connection);
                     assert( next_router->is_pkt_in_progress(static_cast<GenericLink*>
                                                             (output_connections[oport]),0) == false );
@@ -644,7 +644,7 @@ GenericRouterAdaptive::do_switch_traversal()
 }
 
 void
-GenericRouterAdaptive::do_switch_allocation()
+GenericRouter3Stg::do_switch_allocation()
 {
     /* Switch Allocation */
     for( uint i=0; i<ports*vcs; i++)
@@ -694,7 +694,7 @@ GenericRouterAdaptive::do_switch_allocation()
 
 /*! \brief Event handle for the TICK_EVENT. Entry from DES kernel */
 void
-GenericRouterAdaptive::handle_tick_event ( IrisEvent* e )
+GenericRouter3Stg::handle_tick_event ( IrisEvent* e )
 {
 
     ticking = false;
@@ -854,13 +854,13 @@ GenericRouterAdaptive::handle_tick_event ( IrisEvent* e )
     delete e;
     return;
 
-}               /* -----  end of function GenericRouterAdaptive::handle_input_arbitration_event  ----- */
+}               /* -----  end of function GenericRouter3Stg::handle_input_arbitration_event  ----- */
 
 string
-GenericRouterAdaptive::toString() const
+GenericRouter3Stg::toString() const
 {
     stringstream str;
-    str << "GenericRouterAdaptive"
+    str << "GenericRouter3Stg"
         << "\t addr: " << address
         << " node_ip: " << node_ip
         << "\n Input buffers: " << in_buffers.size() << " ";
@@ -880,7 +880,7 @@ GenericRouterAdaptive::toString() const
 }
 
 void
-GenericRouterAdaptive::send_credit_back(uint i)
+GenericRouter3Stg::send_credit_back(uint i)
 {
     //    if( input_buffer_state[i].credits_sent)
     //    {
@@ -915,7 +915,7 @@ GenericRouterAdaptive::send_credit_back(uint i)
 }
 
 bool
-GenericRouterAdaptive::is_pkt_in_progress(GenericLink* link, uint vc)
+GenericRouter3Stg::is_pkt_in_progress(GenericLink* link, uint vc)
 {
     bool found = false;
     uint port = -1;
@@ -937,5 +937,5 @@ GenericRouterAdaptive::is_pkt_in_progress(GenericLink* link, uint vc)
     return input_buffer_state[port*vcs+vc].pkt_in_progress;
 }
 
-#endif   /* ----- #ifndef _genericRouterAdaptive_cc_INC  ----- */
+#endif   /* ----- #ifndef _genericRouter3Stg_cc_INC  ----- */
 

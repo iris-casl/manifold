@@ -155,7 +155,7 @@ print_state_at_deadlock(void)
 {
     for ( uint i=0; i<no_nodes; i++)
     {
-        static_cast<GenericRouterVcs*>(mesh->routers[i])->dump_buffer_state();
+        static_cast<GenericRouter4Stg*>(mesh->routers[i])->dump_buffer_state();
     }
     exit(1);
 }
@@ -429,7 +429,7 @@ void iris_init()
     /* Create the mesh->routers and mesh->interfaces */
     for( uint i=0; i<no_nodes; i++)
     {
-        mesh->routers.push_back( new GenericRouterVcs());
+        mesh->routers.push_back( new GenericRouter4Stg());
         mesh->interfaces.push_back ( new GenericInterfaceVcs());
     }
 
@@ -527,8 +527,8 @@ void iris_init()
         for( uint j=0; j < ports ; j++)
             for( uint k=0; k < no_nodes ; k++) // Assuming is a square mesh. 
             {
-                static_cast<GenericRouterVcs*>(mesh->routers[i])->set_grid_x_location(j,k, grid_x[k]);
-                static_cast<GenericRouterVcs*>(mesh->routers[i])->set_grid_y_location(j,k, grid_y[k]);
+                static_cast<GenericRouter4Stg*>(mesh->routers[i])->set_grid_x_location(j,k, grid_x[k]);
+                static_cast<GenericRouter4Stg*>(mesh->routers[i])->set_grid_y_location(j,k, grid_y[k]);
             }
 
     mesh->connect_interface_routers();

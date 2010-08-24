@@ -45,6 +45,7 @@ PToPSwitchArbiterVcs::resize(uint p, uint v)
     {
         requested[i].resize(ports*vcs);
         requesting_inputs[i].resize(ports*vcs);
+        last_winner[i].win_cycle= 0;
     }
 
     for ( uint i=0; i<ports; i++)
@@ -54,9 +55,9 @@ PToPSwitchArbiterVcs::resize(uint p, uint v)
         }
 
     for ( uint i=0; i<ports; i++)
-        {
-            last_port_winner[i] = -1;
-        }
+    {
+        last_port_winner[i] = -1;
+    }
 }
 
 bool
@@ -83,7 +84,7 @@ PToPSwitchArbiterVcs::request(uint oport, uint ovc, uint inport, uint ivc )
 SA_unit
 PToPSwitchArbiterVcs::pick_winner( uint oport)
 {
-            return do_round_robin_arbitration(oport);
+    return do_round_robin_arbitration(oport);
 }
 
 SA_unit
@@ -93,40 +94,40 @@ PToPSwitchArbiterVcs::do_round_robin_arbitration( uint oport)
     if( last_winner[oport].win_cycle >= Simulator::Now())
         return last_winner[oport];
 
-                /* Now look at contesting input ports on this channel and pick
-                 * a winner*/
-                bool winner_found = false;
-                for( uint i=last_port_winner[oport]+1; i<(ports*vcs); i++)
-                {
-                    if(requested[oport][i])
-                    {
-                        last_port_winner[oport] = i;
-                        winner_found = true;
-                        last_winner[oport].port = requesting_inputs[oport][i].port;
-                        last_winner[oport].ch= requesting_inputs[oport][i].ch;
-                        last_winner[oport].win_cycle= Simulator::Now();
-                        return last_winner[oport];
-                    }
-                }
+    /* Now look at contesting input ports on this channel and pick
+     * a winner*/
+    bool winner_found = false;
+    for( uint i=last_port_winner[oport]+1; i<(ports*vcs); i++)
+    {
+        if(requested[oport][i])
+        {
+            last_port_winner[oport] = i;
+            winner_found = true;
+            last_winner[oport].port = requesting_inputs[oport][i].port;
+            last_winner[oport].ch= requesting_inputs[oport][i].ch;
+            last_winner[oport].win_cycle= Simulator::Now();
+            return last_winner[oport];
+        }
+    }
 
-                if(!winner_found)
-                for( uint i=0; i<=last_port_winner[oport]; i++)
-                {
-                    if(requested[oport][i])
-                    {
-                        last_port_winner[oport] = i;
-                        winner_found = true;
-                        last_winner[oport].port = requesting_inputs[oport][i].port;
-                        last_winner[oport].ch= requesting_inputs[oport][i].ch;
-                        last_winner[oport].win_cycle= Simulator::Now();
-                        return last_winner[oport];
-                    }
-                }
-                if(!winner_found)
-                {
-                    _DBG_NOARG("ERROR: RR Cant find port winner" );
-                    exit(1);
-                }
+    if(!winner_found)
+        for( uint i=0; i<=last_port_winner[oport]; i++)
+        {
+            if(requested[oport][i])
+            {
+                last_port_winner[oport] = i;
+                winner_found = true;
+                last_winner[oport].port = requesting_inputs[oport][i].port;
+                last_winner[oport].ch= requesting_inputs[oport][i].ch;
+                last_winner[oport].win_cycle= Simulator::Now();
+                return last_winner[oport];
+            }
+        }
+    if(!winner_found)
+    {
+        _DBG_NOARG("ERROR: RR Cant find port winner" );
+        exit(1);
+    }
 
 
     return last_winner[oport];
@@ -150,7 +151,7 @@ PToPSwitchArbiterVcs::is_empty()
                 return false;
 
     return true;
-    
+
 }
 
 string
@@ -160,8 +161,8 @@ PToPSwitchArbiterVcs::toString() const
     str << "PToPSwitchArbiterVcs: matrix size "
         << "\t requested_qu row_size: " << requested.size();
     if( requested.size())
-       str << " col_size: " << requested[0].size()
-        ;
+        str << " col_size: " << requested[0].size()
+            ;
     return str.str();
 }
 #endif   /* ----- #ifndef _ptopswitcharbitervcs_cc_INC  ----- */

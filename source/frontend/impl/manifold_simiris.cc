@@ -308,10 +308,10 @@ main ( int argc, char *argv[] )
         switch ( router_model )
         {
             case PHYSICAL_3STAGE:
-                mesh->routers.push_back( new GenericRouterAdaptive());
+                mesh->routers.push_back( new GenericRouter3Stg());
                 break;
             case VIRTUAL_4STAGE:
-                mesh->routers.push_back( new GenericRouterVcs());
+                mesh->routers.push_back( new GenericRouter4Stg());
                 break;
             default:
                 cout << " Incorrect router model " << endl;

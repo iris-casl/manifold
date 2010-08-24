@@ -38,7 +38,7 @@ extern void print_state_at_deadlock(void);
 
 /*!
  * =====================================================================================
- *        Class: \class GenericRouterVcs   
+ *        Class: \class GenericRouter4Stg   
  *    Description: Implementing a generic 4 stage physical router model
  *    BW->RC->VCA->SA->ST->LT
  *    Buffer write(BW)
@@ -61,11 +61,11 @@ extern void print_state_at_deadlock(void);
  * =====================================================================================
  */
 
-class GenericRouterVcs: public Router
+class GenericRouter4Stg: public Router
 {
     public:
-        GenericRouterVcs ();                             /*! constructor */
-        ~GenericRouterVcs();                             /*! destructor */
+        GenericRouter4Stg ();                             /*! constructor */
+        ~GenericRouter4Stg();                             /*! destructor */
         void init(uint ports, uint vcs, uint credits, uint buffer_size);
         /*! Initialise the router for ports, vcs and credits. TODO buffer size
          * not used right now. Just make sure its larger than credits.*/
@@ -116,7 +116,7 @@ class GenericRouterVcs: public Router
         void do_switch_traversal();
         void do_switch_allocation();
 
-}; /* -----  end of class GenericRouterVcs  ----- */
+}; /* -----  end of class GenericRouter4Stg  ----- */
 
 #endif   /* ----- #ifndef _genericRouterVcs_h_INC  ----- */
 

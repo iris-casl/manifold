@@ -249,9 +249,9 @@ ALL_HDRS = \
 	   source/simIris/components/impl/pvtopv_swa.h \
 	   source/simIris/components/impl/ptop_swa.h \
 	   source/simIris/components/impl/ptopSwaVcs.h \
-	   source/simIris/components/impl/genericRouterVcs.h \
-	   source/simIris/components/impl/genericRouterAdaptive.h \
-	   source/simIris/components/impl/genericTPGVcs.h \
+	   source/simIris/components/impl/genericRouter4Stg.h \
+	   source/simIris/components/impl/genericRouter3Stg.h \
+	   source/simIris/components/impl/genericTracePktGen.h \
 	   source/simIris/components/impl/genericVcAllocator.h \
 	   source/simIris/components/impl/genericFlatMc.h \
 	   source/simIris/components/impl/memctrlFE.h \

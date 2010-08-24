@@ -103,7 +103,7 @@ GenericFlatMc::handle_new_packet_event ( IrisEvent* e)
     double lat = Simulator::Now() - hlp->sent_time;
     if( min_pkt_latency > lat)
         min_pkt_latency = lat;
-//    _DBG( "-------------- GOT NEW PACKET ---------------\n pkt_latency: %f", lat);
+    _DBG( "-------------- GOT NEW PACKET ---------------\n pkt_latency: %f", lat);
     
 
     // write out the packet data to the output trace file

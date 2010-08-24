@@ -50,9 +50,9 @@
 
 #include	<iostream>
 #include	<fstream>
-#include	"../../simIris/components/impl/genericRouterVcs.h"
+#include	"../../simIris/components/impl/genericRouter4Stg.h"
 #include	"../../simIris/components/impl/genericInterfaceVcs.h"
-#include	"../../simIris/components/impl/genericTPGVcs.h"
+#include	"../../simIris/components/impl/genericTracePktGen.h"
 //#include	"../../simIris/components/impl/mcFrontEnd.h"
 #include        "../../simIris/components/impl/genericFlatMc.h"
 #include        "../../simIris/components/impl/genericLink.h"
@@ -61,8 +61,8 @@
 #include	"../../simIris/data_types/impl/flit.h"
 #include	"../../simIris/data_types/impl/highLevelPacket.h"
 #include	"../../simIris/components/impl/genericFlatMc.h"
-#include	"../../simIris/components/impl/genericRouterAdaptive.h"
-#include	"../../simIris/components/impl/genericRouterVcs.h"
+#include	"../../simIris/components/impl/genericRouter3Stg.h"
+#include	"../../simIris/components/impl/genericRouter4Stg.h"
 #include	"../../util/genericData.h"
 #include	<string.h>
 #include	<sys/time.h>

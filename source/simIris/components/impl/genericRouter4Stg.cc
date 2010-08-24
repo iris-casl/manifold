@@ -1,8 +1,8 @@
 /*!
  * =====================================================================================
  *
- *       Filename: \file  genericRouterVcs.cc
- *       Description: \brief Implements the GenericRouterVcs class.
+ *       Filename: \file  genericRouter4Stg.cc
+ *       Description: \brief Implements the GenericRouter4Stg class.
  *
  *        Version:  1.0
  *        Created:  03/11/2010 09:20:54 PM
@@ -15,24 +15,24 @@
  * =====================================================================================
  */
 
-#ifndef  _genericRouterVcs_cc_INC
-#define  _genericRouterVcs_cc_INC
+#ifndef  _genericRouter4Stg_cc_INC
+#define  _genericRouter4Stg_cc_INC
 
-#include	"genericRouterVcs.h"
+#include	"genericRouter4Stg.h"
 using namespace std;
 
-GenericRouterVcs::GenericRouterVcs ()
+GenericRouter4Stg::GenericRouter4Stg ()
 {
     name = "RouterVcs" ;
     ticking = false;
-}  /* -----  end of method GenericRouterVcs::GenericRouterVcs  (constructor)  ----- */
+}  /* -----  end of method GenericRouter4Stg::GenericRouter4Stg  (constructor)  ----- */
 
-GenericRouterVcs::~GenericRouterVcs()
+GenericRouter4Stg::~GenericRouter4Stg()
 {
 }
 
 void
-GenericRouterVcs::init (uint p, uint v, uint cr, uint bs)
+GenericRouter4Stg::init (uint p, uint v, uint cr, uint bs)
 {
     ports =p;
     vcs =v;
@@ -95,12 +95,12 @@ GenericRouterVcs::init (uint p, uint v, uint cr, uint bs)
         Simulator::Schedule( floor(Simulator::Now())+1, &NetworkComponent::process_event, this, event);
 
     return ;
-}		/* -----  end of function GenericRouterVcs::init  ----- */
+}		/* -----  end of function GenericRouter4Stg::init  ----- */
 
 /*! \brief These functions are mainly for DOR routing and are seperated so as to not
  * force DOR modelling in all designs */
 void
-GenericRouterVcs::set_no_nodes( uint nodes )
+GenericRouter4Stg::set_no_nodes( uint nodes )
 {
     for ( uint i=0; i<decoders.size(); i++)
     {
@@ -110,13 +110,13 @@ GenericRouterVcs::set_no_nodes( uint nodes )
 }
 
 void
-GenericRouterVcs::set_grid_x_location( uint port, uint x_node, uint value)
+GenericRouter4Stg::set_grid_x_location( uint port, uint x_node, uint value)
 {
     decoders[port].grid_xloc[x_node]= value;
 }
 
 void
-GenericRouterVcs::set_grid_y_location( uint port, uint y_node, uint value)
+GenericRouter4Stg::set_grid_y_location( uint port, uint y_node, uint value)
 {
     decoders[port].grid_yloc[y_node]= value;
 }
@@ -124,7 +124,7 @@ GenericRouterVcs::set_grid_y_location( uint port, uint y_node, uint value)
 /*  End of DOR grid location functions */
 
 void
-GenericRouterVcs::process_event ( IrisEvent* e )
+GenericRouter4Stg::process_event ( IrisEvent* e )
 {
     switch(e->type)
     {
@@ -138,14 +138,14 @@ GenericRouterVcs::process_event ( IrisEvent* e )
             handle_detect_deadlock_event(e);
             break;
         default:
-            _DBG("GenericRouterVcs:: Unk event exception %d", e->type);
+            _DBG("GenericRouter4Stg:: Unk event exception %d", e->type);
             break;
     }
     return ;
-}		/* -----  end of function GenericRouterVcs::process_event  ----- */
+}		/* -----  end of function GenericRouter4Stg::process_event  ----- */
 
 void 
-GenericRouterVcs::handle_detect_deadlock_event(IrisEvent* e )
+GenericRouter4Stg::handle_detect_deadlock_event(IrisEvent* e )
 {
     for ( uint i=0; i<ports; i++)
         for ( uint j=0; j<vcs; j++)
@@ -174,7 +174,7 @@ GenericRouterVcs::handle_detect_deadlock_event(IrisEvent* e )
 }
 
 void 
-GenericRouterVcs::dump_buffer_state()
+GenericRouter4Stg::dump_buffer_state()
 {
     for ( uint i=0; i<ports*vcs; i++)
         if(input_buffer_state[i].pipe_stage != EMPTY && input_buffer_state[i].pipe_stage != INVALID)
@@ -187,7 +187,7 @@ GenericRouterVcs::dump_buffer_state()
 }
 
 string
-GenericRouterVcs::print_stats()
+GenericRouter4Stg::print_stats()
 {
     stringstream str;
     str << "\n RouterVcs" 
@@ -262,7 +262,7 @@ GenericRouterVcs::print_stats()
 
 /*! \brief Event handle for the LINK_ARRIVAL_EVENT event. Entry from DES kernel */
 void
-GenericRouterVcs::handle_link_arrival_event ( IrisEvent* e )
+GenericRouter4Stg::handle_link_arrival_event ( IrisEvent* e )
 {
     LinkArrivalData* data = static_cast<LinkArrivalData*>(e->event_data.at(0));
     if(data->type == FLIT_ID)
@@ -417,10 +417,10 @@ GenericRouterVcs::handle_link_arrival_event ( IrisEvent* e )
     delete data;
     delete e;
     return ;
-}		/* -----  end of function GenericRouterVcs::handle_link_arrival_event  ----- */
+}		/* -----  end of function GenericRouter4Stg::handle_link_arrival_event  ----- */
 
 void
-GenericRouterVcs::do_switch_traversal()
+GenericRouter4Stg::do_switch_traversal()
 {
     /* Switch traversal */
     for( uint i=0; i<ports*vcs; i++)
@@ -538,7 +538,7 @@ GenericRouterVcs::do_switch_traversal()
 }
 
 void
-GenericRouterVcs::do_switch_allocation()
+GenericRouter4Stg::do_switch_allocation()
 {
     /* Switch Allocation */
     for( uint i=0; i<ports*vcs; i++)
@@ -597,7 +597,7 @@ GenericRouterVcs::do_switch_allocation()
 
 /*! \brief Event handle for the TICK_EVENT. Entry from DES kernel */
 void
-GenericRouterVcs::handle_tick_event ( IrisEvent* e )
+GenericRouter4Stg::handle_tick_event ( IrisEvent* e )
 {
     ticking = false;
 
@@ -769,13 +769,13 @@ GenericRouterVcs::handle_tick_event ( IrisEvent* e )
     delete e;
     return;
 
-}		/* -----  end of function GenericRouterVcs::handle_input_arbitration_event  ----- */
+}		/* -----  end of function GenericRouter4Stg::handle_input_arbitration_event  ----- */
 
 string
-GenericRouterVcs::toString() const
+GenericRouter4Stg::toString() const
 {
     stringstream str;
-    str << "GenericRouterVcs"
+    str << "GenericRouter4Stg"
         << "\t addr: " << address
         << " node_ip: " << node_ip
         << "\n Input buffers: " << in_buffers.size() << " ";
@@ -795,7 +795,7 @@ GenericRouterVcs::toString() const
 }
 
 void
-GenericRouterVcs::send_credit_back(uint i)
+GenericRouter4Stg::send_credit_back(uint i)
 {
     //    if( input_buffer_state[i].credits_sent)
     //    {
@@ -830,5 +830,5 @@ GenericRouterVcs::send_credit_back(uint i)
      * */
 }
 
-#endif   /* ----- #ifndef _genericRouterVcs_cc_INC  ----- */
+#endif   /* ----- #ifndef _genericRouter4Stg_cc_INC  ----- */
 

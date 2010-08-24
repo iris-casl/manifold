@@ -25,9 +25,9 @@ IRIS_SOURCES = \
 		  components/impl/ptopSwaVcs.cc \
 		  components/impl/pvtopv_swa.cc \
 		  components/impl/ptop_swa.cc \
-		  components/impl/genericRouterVcs.cc \
-		  components/impl/genericRouterAdaptive.cc \
-		  components/impl/genericTPGVcs.cc \
+		  components/impl/genericRouter4Stg.cc \
+		  components/impl/genericRouter3Stg.cc \
+		  components/impl/genericTracePktGen.cc \
 		  components/impl/genericVcAllocator.cc \
 		  components/impl/genericFlatMc.cc \
 		  components/impl/memctrlFE.cc

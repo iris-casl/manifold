@@ -16,8 +16,8 @@
  * =====================================================================================
  */
 
-#ifndef  _genericRouterAdaptive_h_INC
-#define  _genericRouterAdaptive_h_INC
+#ifndef  _genericRouter3Stg_h_INC
+#define  _genericRouter3Stg_h_INC
 
 #include	"../interfaces/router.h"
 #include	"genericBuffer.h"
@@ -35,11 +35,11 @@ extern uint send_early_credit;
 extern uint do_two_stage_router;
 extern const bool multiple_flit_in_buf;
 
-class GenericRouterAdaptive: public Router
+class GenericRouter3Stg: public Router
 {
     public:
-        GenericRouterAdaptive ();                             /* constructor */
-        ~GenericRouterAdaptive();
+        GenericRouter3Stg ();                             /* constructor */
+        ~GenericRouter3Stg();
         void init(uint ports, uint vcs, uint credits, uint buffer_size);
 
         void set_no_nodes( uint nodes);
@@ -83,7 +83,7 @@ class GenericRouterAdaptive: public Router
         void do_switch_allocation();
         bool is_pkt_in_progress(GenericLink*, uint);
 
-}; /* -----  end of class GenericRouterAdaptive  ----- */
+}; /* -----  end of class GenericRouter3Stg  ----- */
 
-#endif   /* ----- #ifndef _genericRouterAdaptive_h_INC  ----- */
+#endif   /* ----- #ifndef _genericRouter3Stg_h_INC  ----- */
 

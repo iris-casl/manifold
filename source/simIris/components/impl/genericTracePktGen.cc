@@ -1,8 +1,8 @@
 #ifndef _generictpgvcs_cc_INC
 #define _generictpgvcs_cc_INC
 
-#include "genericTPGVcs.h"
-#include "genericRouterVcs.h"
+#include "genericTracePktGen.h"
+#include "genericRouter4Stg.h"
 #include "../../../util/mc_constants.h"
 #include <string.h>
 #include "../../../frontend/impl/mesh.h"
