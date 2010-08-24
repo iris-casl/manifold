@@ -82,7 +82,6 @@ void CmdIssuer::process_event(IrisEvent* e)
                     {
                         if (cmd->cmd == READ || cmd->cmd == WRITE)
                         {
-                            cout << "hhh" << endl;
                             ((BusHandler*)parent)->oneReq[cmd->req.channelNo][cmd->req.rankNo][cmd->req.bankNo] = false;
                         }
                     }

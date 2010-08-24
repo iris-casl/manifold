@@ -91,7 +91,6 @@ cout << dec << Simulator::Now() << ": " << hex << req->address << ": Now I am in
 //#endif	
     int bufferId = ((RequestHandler*)parent)->chan[req.channelNo].rank[req.rankNo].bank[req.bankNo].bufferId;
     req.rbufferInsertionTime = (ullint)Simulator::Now()+1;
-    cout << ((RequestHandler*)parent)->chan[req.channelNo].rank[req.rankNo].rbuffer[bufferId].size() << "hshahs " << endl;
     ((RequestHandler*)parent)->chan[req.channelNo].rank[req.rankNo].rbuffer[bufferId].push_back(req);
     event->src = (Component*)this;
     event->dst = (Component*)(&((RequestHandler*)parent)->chan[req.channelNo].rank[req.rankNo].bank[req.bankNo]);

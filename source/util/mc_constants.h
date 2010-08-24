@@ -20,8 +20,8 @@
 #include <math.h>
 #include <stdint.h>
 
-#define DEBUG
-#define DEEP_DEBUG
+//#define DEBUG
+//#define DEEP_DEBUG
 
 typedef unsigned long long int Time;
 typedef unsigned long long int Addr_t;

@@ -273,7 +273,6 @@ bool BankHandler::MainScheduler(Request *req, int* index)
                 }
                 case FR_FCFS:
                 {
-                    cout << "Jggffd" << endl;
 	            return FRFCFS(req,index);
                     break;
                 }

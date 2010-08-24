@@ -44,6 +44,8 @@ class GenericFlatMc : public Processor
 
         /* stats variables */
         unsigned int packets;
+        ullint packets_out;
+        uint last_vc;
         double min_pkt_latency;
         unsigned long long int waiting_at_injection;
 
