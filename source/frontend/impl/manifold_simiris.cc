@@ -20,7 +20,10 @@
 #ifndef  _simmc2mesh_cc_INC
 #define  _simmc2mesh_cc_INC
 
+#include	"topology.h"
 #include	"mesh.h"
+#include	"torus.h"
+#include	"visual.h"
 #include	"../../simIris/data_types/impl/flit.h"
 #include	"../../simIris/data_types/impl/highLevelPacket.h"
 #include	"../../simIris/components/impl/genericFlatMc.h"
@@ -33,12 +36,16 @@
 
 unsigned long int net_pack_info[8][8];
 
-Mesh* mesh;
+//Mesh* mesh; Sharda
+Topology * topology_ptr = NULL;
+//string network_type;
 
 void
 dump_configuration ( void )
 {
     /* Creating mesh topology with the following config */
+    //Sharda
+    cerr << " type:\t" << network_type << endl;
     cerr << " vcs:\t" << vcs << endl;
     cerr << " ports:\t" << ports << endl;
     cerr << " buffer_size:\t" << buffer_size << endl;
@@ -47,7 +54,11 @@ dump_configuration ( void )
     cerr << " grid size:\t" << grid_size << endl;
     cerr << " links:  \t" << links << endl;
     cerr << " no_of_mcs:\t" << no_mcs << endl;
+    cerr << " no_of_cores:\t" << no_of_cores << endl;
+    cerr << " concentration:\t" << concentration << endl;
     cerr << " no_of_traces:\t" << traces.size() << endl;
+    cerr << " interfaces:\t" << concentration << endl;
+    cerr << " cores:\t" << no_of_cores << endl;
     cerr << " max_sim_time:\t" << max_sim_time << endl;
     cerr << " max_phy_link_bits:\t" << max_phy_link_bits << endl;
     cerr << " THREAD_BITS_POSITION:\t" << THREAD_BITS_POSITION<< endl;
@@ -102,6 +113,8 @@ main ( int argc, char *argv[] )
         istringstream iss( data, istringstream::in);
         while ( position > data.size() && iss >> word )
         {
+	    if ( word.compare("TYPE") == 0 || word.compare("Type") == 0)
+        	iss >> network_type;
             if ( word.compare("PRINT_SETUP") == 0)   
                 iss >> print_setup;
             if ( word.compare("VCS") == 0)   
@@ -118,6 +131,10 @@ main ( int argc, char *argv[] )
                 iss >> no_nodes;
             if ( word.compare("MCS") == 0)
                 iss >> no_mcs;
+            if ( word.compare("CORES_PER_NODE") == 0)
+                iss >> no_of_cores;
+            if ( word.compare("CONCENTRATION") == 0)
+                iss >> concentration;
             if ( word.compare("MAX_SIM_TIME") == 0)
                 iss >> max_sim_time;
             if ( word.compare("OUTPUT_PATH") == 0)
@@ -280,7 +297,18 @@ main ( int argc, char *argv[] )
         assert(mc_positions.size() == no_mcs);
 
     /* Compute additional parameters */
-    links = (ports + (grid_size -1)*(ports-1)) + ( (ports-1) + (grid_size -1)*(ports-2))*(grid_size-1);
+    if ( network_type == "MESH" || network_type == "Mesh" || network_type == "mesh")
+    {
+	links = (ports + (grid_size -1)*(ports-1)) + ( (ports-1) + (grid_size -1)*(ports-2))*(grid_size-1);
+    	//links = grid_size * grid_size * ports ;
+	cout << "Links = " << links << endl;
+    }
+    else if (network_type == "TORUS" || network_type == "Torus" || network_type == "torus" )
+    {
+	links = grid_size * grid_size * ports ;
+	cout << "Links = " << links << endl;
+    }
+    
     fd.close();
 
     cerr << "\n-----------------------------------------------------------------------------------\n";
@@ -296,29 +324,45 @@ main ( int argc, char *argv[] )
 
     dump_configuration();
     init_dram_timing_parameters();
-    mesh = new Mesh();
+    /*mesh = new Mesh();
     mesh->init( ports, vcs, credits, buffer_size, no_nodes, grid_size, links);
-    mesh->max_sim_time = max_sim_time;
+    mesh->max_sim_time = max_sim_time;*/
 
-    /* Create the mesh->routers and mesh->interfaces */
+    if ( network_type == "MESH" || network_type == "Mesh" || network_type == "mesh" )
+	topology_ptr = new Mesh();
+    else if ( network_type == "TORUS" || network_type == "Torus" || network_type == "torus" )
+	topology_ptr = new Torus();
+    else if (network_type == "NONE" )
+    {
+	cout << "Topology not specified...exiting \n" ;
+	exit(1);
+    }
+
+    topology_ptr->init( ports, vcs, credits, buffer_size, no_nodes, grid_size, links);
+    topology_ptr->max_sim_time = max_sim_time;
+
+    Visual* vis = new Visual(topology_ptr, no_nodes, links, grid_size);
+
+    /* Create the mesh/torus->routers and mesh/torus->interfaces */
     for( uint i=0; i<no_nodes; i++)
     {
         switch ( router_model )
         {
             case PHYSICAL_3STAGE:
-                mesh->routers.push_back( new GenericRouterAdaptive());
+                topology_ptr->routers.push_back( new GenericRouterAdaptive());
                 break;
             case VIRTUAL_4STAGE:
-                mesh->routers.push_back( new GenericRouterVcs());
+                topology_ptr->routers.push_back( new GenericRouterVcs());
                 break;
             default:
                 cout << " Incorrect router model " << endl;
                 exit(1);
                 break;
         }
-        mesh->interfaces.push_back ( new GenericInterfaceVcs());
+        topology_ptr->interfaces.push_back ( new GenericInterfaceVcs());
     }
 
+    cout << "done creating routers and interfaces \n";
     /*  Create the TPG and mc modules */
     vector<uint>::iterator itr;
     for( uint i=0; i<no_nodes; i++)
@@ -329,10 +373,10 @@ main ( int argc, char *argv[] )
             switch ( mc_model )
             {
                 case GENERIC_MC:
-                    mesh->processors.push_back( new NI() );
+                    topology_ptr->processors.push_back( new NI() );
                     break;
                 case FLAT_MC:
-                    mesh->processors.push_back( new GenericFlatMc());
+                    topology_ptr->processors.push_back( new GenericFlatMc());
                     break;
                 default:
                     cout << " Unknown MC model " << endl;
@@ -342,63 +386,67 @@ main ( int argc, char *argv[] )
         }
         else
         {
-            mesh->processors.push_back( new GenericTPGVcs() );
-            static_cast<GenericTPGVcs*>(mesh->processors[i])->set_trace_filename(traces[i]);
+		cout << "creating processors \n";
+            topology_ptr->processors.push_back( new GenericTPGVcs() );
+            static_cast<GenericTPGVcs*>(topology_ptr->processors[i])->set_trace_filename(traces[i]);
             for ( uint j=0; j<mc_positions.size(); j++)
             {
-                static_cast<GenericTPGVcs*>(mesh->processors[i])->mc_node_ip.push_back(mc_positions[j]);;
+                static_cast<GenericTPGVcs*>(topology_ptr->processors[i])->mc_node_ip.push_back(mc_positions[j]);;
             }
         }
     }
 
+    cout << "done creating tpg and mc modules  \n";
     /* Create the links */
     for ( uint i=0; i<links; i++)
     { 
-        mesh->link_a.push_back(new GenericLink());
-        mesh->link_b.push_back(new GenericLink());
+        topology_ptr->link_a.push_back(new GenericLink());
+        topology_ptr->link_b.push_back(new GenericLink());
     }
 
-    mesh->connect_interface_processor();
+    cout << "done creating links \n";
+    topology_ptr->connect_interface_processor();
 
+    cout << "done connect_interface_processor \n";
     /* Set all the component ids */
     uint comp_id = 0, alink_comp_id = 1000, blink_comp_id = 5000;
     for ( uint i=0 ; i<no_nodes; i++ )
     {
-        mesh->processors[i]->setComponentId(comp_id++);
+        topology_ptr->processors[i]->setComponentId(comp_id++);
         //        mesh->processors[i]->my_mesh = (void*)mesh;
-        mesh->interfaces[i]->setComponentId(comp_id++);
-        mesh->routers[i]->setComponentId(comp_id++);
+        topology_ptr->interfaces[i]->setComponentId(comp_id++);
+        topology_ptr->routers[i]->setComponentId(comp_id++);
     }
 
     for ( uint i=0 ; i<links; i++ )
     {
-        mesh->link_a[i]->setComponentId(alink_comp_id++);
-        mesh->link_b[i]->setComponentId(blink_comp_id++);
-        mesh->link_a[i]->setup();
-        mesh->link_b[i]->setup();
+        topology_ptr->link_a[i]->setComponentId(alink_comp_id++);
+        topology_ptr->link_b[i]->setComponentId(blink_comp_id++);
+        topology_ptr->link_a[i]->setup();
+        topology_ptr->link_b[i]->setup();
     }
     cout << " ******************** SETUP COMPLETE " << endl;
     /*  Set up the node ips for components */
     for ( uint i=0 ; i<no_nodes ; i++ )
     {
-        mesh->interfaces[i]->node_ip = i;
-        mesh->routers[i]->node_ip = i;
-        mesh->processors[i]->node_ip = i;
+        topology_ptr->interfaces[i]->node_ip = i;
+        topology_ptr->routers[i]->node_ip = i;
+        topology_ptr->processors[i]->node_ip = i;
     }
 
     /* Set the number of ports, vcs, credits and buffer sizes for the
      * components */
     for ( uint i=0 ; i<no_nodes ; i++ )
     {
-        mesh->interfaces[i]->set_no_vcs(vcs);
-        mesh->interfaces[i]->set_no_credits(credits);
-        mesh->interfaces[i]->set_buffer_size(credits);
-        //        mesh->processors[i]->set_output_path(output_path);
+        topology_ptr->interfaces[i]->set_no_vcs(vcs);
+        topology_ptr->interfaces[i]->set_no_credits(credits);
+        topology_ptr->interfaces[i]->set_buffer_size(credits);
+        //        topology_ptr->processors[i]->set_output_path(output_path);
     }
 
-    mesh->setup();
+    topology_ptr->setup();
     for ( uint i=0 ; i<no_nodes ; i++ )
-        mesh->processors[i]->set_output_path(output_path);
+        topology_ptr->processors[i]->set_output_path(output_path);
 
     /*  Set no of ports and positions for routing */
     vector< uint > grid_x;
@@ -416,49 +464,52 @@ main ( int argc, char *argv[] )
 
 
     for ( uint i=0 ; i<no_nodes ; i++ )
-        mesh->routers[i]->set_no_nodes(no_nodes);
+        topology_ptr->routers[i]->set_no_nodes(no_nodes);
 
     for ( uint i=0 ; i<no_nodes ; i++ )
         for( uint j=0; j < ports ; j++)
-            for( uint k=0; k < no_nodes ; k++) // Assuming is a square mesh. 
+            for( uint k=0; k < no_nodes ; k++) // Assuming is a square topology_ptr. 
             {
-                static_cast<Router*>(mesh->routers[i])->set_grid_x_location(j,k, grid_x[k]);
-                static_cast<Router*>(mesh->routers[i])->set_grid_y_location(j,k, grid_y[k]);
+                static_cast<Router*>(topology_ptr->routers[i])->set_grid_x_location(j,k, grid_x[k]);
+                static_cast<Router*>(topology_ptr->routers[i])->set_grid_y_location(j,k, grid_y[k]);
             }
 
-    mesh->connect_interface_routers();
-    mesh->connect_routers();
+    topology_ptr->connect_interface_routers();
+    topology_ptr->connect_routers();
 
     /*  Printing out all component after setup */
     if( print_setup )
     {
         for ( uint i=0 ; i<no_nodes; i++ )
         {
-            cout << "\nTPG: " << i << " " << mesh->processors[i]->toString();
-            cout << "\ninterface: " << i << " " << mesh->interfaces[i]->toString();
-            cout << "\nrouter: " << i << " " << mesh->routers[i]->toString();
+            cout << "\nTPG: " << i << " " << topology_ptr->processors[i]->toString();
+            cout << "\ninterface: " << i << " " << topology_ptr->interfaces[i]->toString();
+            cout << "\nrouter: " << i << " " << topology_ptr->routers[i]->toString();
         }
 
         for ( uint i=0 ; i<links ; i++ )
         {
-            cout << "\nlinka_" << i << " " << mesh->link_a[i]->toString();
-            cout << "\nlinkb_" << i << " " << mesh->link_b[i]->toString();
+            cout << "\nlinka_" << i << " " << topology_ptr->link_a[i]->toString();
+            cout << "\nlinkb_" << i << " " << topology_ptr->link_b[i]->toString();
         }
     }
+
+    vis->create_new_connections();
+    vis->create_graphml();
 
     Simulator::StopAt(max_sim_time);
     Simulator::Run();
 
-    cerr << mesh->print_stats();
+    cerr << topology_ptr->print_stats();
     ullint total_link_utilization = 0;
     uint no_of_non_zero_util_links = 0;
     uint edge_links = 0;
     for ( uint i=0 ; i<links ; i++ )
     {
-        double link_util = mesh->link_a[i]->get_flits_utilization();
+        double link_util = topology_ptr->link_a[i]->get_flits_utilization();
         if( link_util )
             no_of_non_zero_util_links++;
-        if( mesh->link_a[i]->input_connection == NULL || mesh->link_a[i]->output_connection == NULL )
+        if( topology_ptr->link_a[i]->input_connection == NULL || topology_ptr->link_a[i]->output_connection == NULL )
             edge_links++;
 
         total_link_utilization += (ullint)link_util;
@@ -466,11 +517,11 @@ main ( int argc, char *argv[] )
 
     for ( uint i=0 ; i<links ; i++ )
     {
-        double link_util = mesh->link_b[i]->get_flits_utilization();
+        double link_util = topology_ptr->link_b[i]->get_flits_utilization();
         total_link_utilization += (ullint)link_util;
         if( link_util )
             no_of_non_zero_util_links++;
-        if( mesh->link_b[i]->input_connection == NULL || mesh->link_b[i]->output_connection == NULL )
+        if( topology_ptr->link_b[i]->input_connection == NULL || topology_ptr->link_b[i]->output_connection == NULL )
             edge_links++;
     }
 
@@ -487,9 +538,9 @@ main ( int argc, char *argv[] )
     ullint tot_pkts = 0, tot_pkts_out = 0, tot_flits = 0;
     for ( uint i=0 ; i<no_nodes ; i++ )
     {
-        tot_pkts_out += mesh->interfaces[i]->get_packets_out();
-        tot_pkts += mesh->interfaces[i]->get_packets();
-        tot_flits += mesh->interfaces[i]->get_flits_out();
+        tot_pkts_out += topology_ptr->interfaces[i]->get_packets_out();
+        tot_pkts += topology_ptr->interfaces[i]->get_packets();
+        tot_flits += topology_ptr->interfaces[i]->get_flits_out();
     }
 
     ullint sim_time_ms = (time(NULL) - sim_start_time);
@@ -500,7 +551,7 @@ main ( int argc, char *argv[] )
     cerr << " Total Mem Req serviced: " << tot_pkts_out/2 << endl;
     cerr << "------------ End SimIris ---------------------" << endl;
 
-    delete mesh;
+    delete topology_ptr;
 
     return 0;
 }				/* ----------  end of function main  ---------- */

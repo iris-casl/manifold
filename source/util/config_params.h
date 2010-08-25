@@ -24,6 +24,7 @@
 #include	"genericData.h"
 #include	"mc_constants.h"
 
+
 //#define DEBUG
 //#define DEEP_DEBUG
 /* Generic topology parameters */
@@ -34,6 +35,11 @@ uint no_nodes = 0,
      links = 0;
 
 ullint max_sim_time = 1000000;
+
+//Sharda
+string network_type = "NONE";
+uint no_of_cores = 0;
+uint concentration = 0;
 
 ROUTING_SCHEME rc_method = XY;
 SW_ARBITRATION sw_arbitration = ROUND_ROBIN;
@@ -66,7 +72,7 @@ uint RESPONSE_BUFFER_SIZE = 56*8;
 
  
 //   uint NO_OF_CHANNELS=1;		//  (int)log2() = k bits. 
-   uint NO_OF_RANKS=1;       		//  (int)log2() = l bits.
+    uint NO_OF_RANKS = 1;       		//  (int)log2() = l bits.
 
     uint NO_OF_BANKS=8;         		//  (int)log2() = b bits. 
 //   uint NO_OF_BUFFERS = NO_OF_BANKS;
