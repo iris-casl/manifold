@@ -16,7 +16,9 @@ CXXLD_PROFILE = g++ -lgcov -lc
 DEBUG_FLAGS = -g -pg -D_STLP_DEBUG -D_DEBUG -DDEBUG -D_DEBUG_ROUTER -D_DEBUG_INTERFACE -DDEBUG
 PROFILE_FLAGS = -fprofile-arcs -ftest-coverage -lgcov -g -pg
 FE_SOURCES = \
-		  source/frontend/impl/mesh.cc 
+		  source/frontend/impl/mesh.cc \
+ 		  source/frontend/impl/torus.cc \
+		  source/frontend/impl/visual.cc
 
 ##source/util/mc_constants.h \
 
@@ -58,7 +60,10 @@ ALL_HDRS = \
 	   source/simIris/components/impl/genericVcAllocator.h \
 	   source/simIris/components/impl/genericFlatMc.h \
 	   source/simIris/components/impl/memctrlFE.h \
+	   source/frontend/impl/topology.h \
 	   source/frontend/impl/mesh.h \
+           source/frontend/impl/visual.h \
+	   source/frontend/impl/torus.h \
 	   source/memctrl/addr_map.h \
 	   source/memctrl/request.h \
 	   source/memctrl/request_handler.h \

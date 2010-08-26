@@ -48,59 +48,17 @@
 #ifndef  _mesh_h_INC
 #define  _mesh_h_INC
 
-#include	<iostream>
-#include	<fstream>
-#include	"../../simIris/components/impl/genericRouter4Stg.h"
-#include	"../../simIris/components/impl/genericInterfaceVcs.h"
-#include	"../../simIris/components/impl/genericTracePktGen.h"
-//#include	"../../simIris/components/impl/mcFrontEnd.h"
-#include        "../../simIris/components/impl/genericFlatMc.h"
-#include        "../../simIris/components/impl/genericLink.h"
-#include 	"../../simIris/components/impl/memctrlFE.h"
+#include 	"topology.h"
 
-#include	"../../simIris/data_types/impl/flit.h"
-#include	"../../simIris/data_types/impl/highLevelPacket.h"
-#include	"../../simIris/components/impl/genericFlatMc.h"
-#include	"../../simIris/components/impl/genericRouter3Stg.h"
-#include	"../../simIris/components/impl/genericRouter4Stg.h"
-#include	"../../util/genericData.h"
-#include	<string.h>
-#include	<sys/time.h>
-#include	<algorithm>
-#include 	<stdio.h>
-#include 	<stdlib.h>
-#include 	<time.h>
-#include 	<setjmp.h>
-#include 	<signal.h>
-#include 	<sys/types.h>
-#include 	<unistd.h>
-#include 	<sys/time.h>
-#include 	<sys/io.h>
-
-#include 	"../../zesto/host.h"
-#include 	"../../zesto/misc.h"
-#include 	"../../zesto/sim.h"
-#include 	"../../zesto/machine.h"
-#include 	"../../zesto/endian.h"
-#include 	"../../zesto/version.h"
-#include 	"../../zesto/options.h"
-#include 	"../../zesto/stats.h"
-//#include 	"../../zesto/loader.h"
-#include 	"../../zesto/regs.h"
-#include 	"../../zesto/memory.h"
-#include 	"../../zesto/thread.h"
 extern vector<unsigned int> mc_positions;
+extern uint no_of_cores;
+extern uint concentration;
 
-class Mesh
+class Mesh : public Topology
 {
     public:
         Mesh ();
         ~Mesh ();
-        vector <Router*> routers;
-        vector <Interface*> interfaces;
-        vector <Processor*> processors;
-        vector <GenericLink*> link_a;
-        vector <GenericLink*> link_b;
 
         void init(uint ports, uint vcs, uint credits, uint buffer_size, uint no_nodes, uint grid_size, uint links);
         void setup(void);
@@ -108,8 +66,8 @@ class Mesh
         void connect_interface_routers(void);
         void connect_routers(void);
         string print_stats(void);
-        unsigned long long int max_sim_time;
         void set_max_phy_link_bits ( uint a);
+	unsigned long long int max_sim_time;
 
     protected:
 

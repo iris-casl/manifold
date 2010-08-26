@@ -29,3 +29,38 @@ Environment details
     Linux 2.6.28-18-generic #60-Ubuntu SMP i686 GNU/Linux
 2. gcc version 4.2.4 (Ubuntu 4.2.4-1ubuntu4)
     Linux 2.6.24-23-generic #1 SMP i686 GNU/Linux
+
+To add parameters to the config file
+------------------------------------
+1. Add the new parameter to the manifold/source/util/config_params.h file. 
+Example: 	uint no_of_cores = 0;
+		uint concentration = 0;
+
+2. To use the new parameter in a source file, use "extern" keyword.
+Example:	To use these variables in mesh.h file, we include the following lines:
+		extern uint no_of_cores;
+		extern uint concentration;
+
+To add additional fields to high level and low level packets
+------------------------------------------------------------
+1. Add the new field to the file manifold/source/simIris/data_types/highLevelPacket.h ( for a high level packet ) and manifold/source/simIris/data_types/lowLevelPacket.h (for a low level packet)
+Example: unsigned int transaction_idt;
+
+2. Add the new field to the corresponding part in the head/body/tail of the flit packet as defined in manifold/source/simIris/data_types/flit.h
+Example: unsigned int transaction_id; // added to class HeadFlit 
+
+3. In manifold/source/simIris/data_types/lowLevelPacket.cc file, add the new field to the corresponding part of LowLevelPacket::add(Flit* ptr) function.
+Example: this->transaction_id = hf->transaction_id;
+
+4. In manifold/source/simIris/data_types/highLevelPacket.cc file, make entries for the new field in the 2 functions for converting from high level to low level packets and vice-versa.
+Example: In HighLevelPacket::to_low_level_packet(LowLevelPacket* pkt) 
+		hf->transaction_id = transaction_id; 
+	and in HighLevelPacket::from_low_level_packet (LowLevelPacket* llp)
+		transaction_id = llp->transaction_id; 
+
+5. To use this field, include code as shown in sample below from manifold/simIris/source/components/impl/genericTPGVcs.cc file which uses hop_count in the function
+GenericTPGVcs::handle_out_pull_event ( IrisEvent* e )
+Example: 	hlp->transaction_id = 1000;
+
+
+
