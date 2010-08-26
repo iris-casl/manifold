@@ -2,13 +2,6 @@
 #define _generictpgvcs_cc_INC
 
 #include "genericTracePktGen.h"
-#include "genericRouter4Stg.h"
-#include "../../../util/mc_constants.h"
-#include <string.h>
-#include "../../../frontend/impl/mesh.h"
-#include        "../zesto/zesto-cache.h"
-
-
 
 extern unsigned int MC_ADDR_BITS;
 //unsigned int NUM_OF_CONTROLLERS = 8;

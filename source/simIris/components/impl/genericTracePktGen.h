@@ -3,6 +3,7 @@
 #define  _GenericTPGVcs_h_INC
 
 #include        "genericInterface.h"
+#include        "genericRouter4Stg.h"
 #include        "genericEvents.h"
 #include        "../../../util/genericData.h"
 #include        "../interfaces/processor.h"
@@ -10,9 +11,12 @@
 #include	"../../../memctrl/request.h"
 #include        "../../../memctrl/mshr.h"
 #include	"../../../util/mc_constants.h"
+#include        "../../../frontend/impl/mesh.h"
+#include        "../../../zesto/zesto-cache.h"
 #include        <math.h>
 #include        <fstream>
 #include        <deque>
+#include        <string.h>
 
 #define DEFAULT_RAN_MAX_TIME 100
 #define MAX_ADDRESS 3

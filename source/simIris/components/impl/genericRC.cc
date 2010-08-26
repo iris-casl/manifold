@@ -516,12 +516,12 @@ GenericRC::push (Flit* f, uint ch )
             if (header->msg_class == RESPONSE_PKT )
             {
                 for ( uint i=0; i<ceil(vcs/2); i++)
-                    addresses[ch].possible_out_vcs.push_back(i)
+                    addresses[ch].possible_out_vcs.push_back(i);
             }
             else
             {
                 for ( uint i=ceil(vcs/2); i<vcs; i++)
-                    addresses[ch].possible_out_vcs.push_back(i)
+                    addresses[ch].possible_out_vcs.push_back(i);
             }
         }
 
