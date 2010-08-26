@@ -505,10 +505,24 @@ GenericRC::push (Flit* f, uint ch )
          }
          else
          * */
+        if( !do_request_reply_network)
         {
             for ( uint i=0;i<vcs;i++)
                 addresses[ch].possible_out_vcs.push_back(i);
 
+        }
+        else
+        {
+            if (header->msg_class == RESPONSE_PKT )
+            {
+                for ( uint i=0; i<ceil(vcs/2); i++)
+                    addresses[ch].possible_out_vcs.push_back(i)
+            }
+            else
+            {
+                for ( uint i=ceil(vcs/2); i<vcs; i++)
+                    addresses[ch].possible_out_vcs.push_back(i)
+            }
         }
 
         addresses [ch].route_valid = true;
@@ -581,7 +595,7 @@ GenericRC::get_virtual_channel ( uint ch )
 
     och = addresses[ch].possible_out_vcs[addresses[ch].last_vc];
     addresses[ch].last_vc++;
-    
+
     return och;
 }		/* -----  end of method genericRC::get_vc  ----- */
 
@@ -593,7 +607,7 @@ GenericRC::resize ( uint ch )
     for ( uint i = 0 ; i<ch ; i++ )
     {
         addresses[i].route_valid = false;
-	addresses[i].last_vc = 0;
+        addresses[i].last_vc = 0;
     }
     return ;
 }		/* -----  end of method genericRC::set_no_channels  ----- */
