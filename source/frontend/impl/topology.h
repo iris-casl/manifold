@@ -24,14 +24,12 @@
 #include	"../../simIris/components/impl/genericRouter4Stg.h"
 #include	"../../simIris/components/impl/genericInterfaceVcs.h"
 #include	"../../simIris/components/impl/genericTracePktGen.h"
-//#include	"../../simIris/components/impl/mcFrontEnd.h"
 #include        "../../simIris/components/impl/genericFlatMc.h"
 #include        "../../simIris/components/impl/genericLink.h"
 #include 	"../../simIris/components/impl/memctrlFE.h"
 
 #include	"../../simIris/data_types/impl/flit.h"
 #include	"../../simIris/data_types/impl/highLevelPacket.h"
-#include	"../../simIris/components/impl/genericFlatMc.h"
 #include	"../../simIris/components/impl/genericRouter3Stg.h"
 #include	"../../util/genericData.h"
 
@@ -48,6 +46,7 @@
 #include 	<sys/time.h>
 #include 	<sys/io.h>
 
+/*
 #include 	"../../zesto/host.h"
 #include 	"../../zesto/misc.h"
 #include 	"../../zesto/sim.h"
@@ -60,6 +59,7 @@
 #include 	"../../zesto/regs.h"
 #include 	"../../zesto/memory.h"
 #include 	"../../zesto/thread.h"
+*/
 
 class Topology
 {

@@ -1,4 +1,4 @@
-bin_PROGRAMS = manifold_simIris manifold_fullSim manifold_simMC 
+bin_PROGRAMS = manifold_simIris manifold_simMC # manifold_fullSim 
 
 OBJDIR = $(TOPDIR)/build
 BUILDDIR = $(TOPDIR)/build
@@ -22,7 +22,9 @@ FE_SOURCES = \
 
 ##source/util/mc_constants.h \
 
-SUBDIRS = source/zesto source/memctrl source/simIris .
+#SUBDIRS = source/zesto source/memctrl source/simIris .
+SUBDIRS = source/memctrl source/simIris .
+
 ALL_HDRS = \
 	   source/kernel/simulator.h \
 	   source/kernel/link.h \
@@ -60,10 +62,10 @@ ALL_HDRS = \
 	   source/simIris/components/impl/genericVcAllocator.h \
 	   source/simIris/components/impl/genericFlatMc.h \
 	   source/simIris/components/impl/memctrlFE.h \
-	   source/frontend/impl/topology.h \
 	   source/frontend/impl/mesh.h \
            source/frontend/impl/visual.h \
 	   source/frontend/impl/torus.h \
+	   source/frontend/impl/topology.h \
 	   source/memctrl/addr_map.h \
 	   source/memctrl/request.h \
 	   source/memctrl/request_handler.h \
@@ -80,7 +82,9 @@ ALL_HDRS = \
 	   source/memctrl/response_handler.h \
 	   source/memctrl/stats.h \
 	   source/memctrl/mshr.h \
-	   source/memctrl/mshr_standalone.h \
+	   source/memctrl/mshr_standalone.h 
+
+ZESTO_HDRS=
 	   source/zesto/bbtracker.h \
 	   source/zesto/thread.h    \
 	   source/zesto/eio.h \
@@ -118,16 +122,16 @@ ALL_HDRS = \
 	   source/zesto/zesto-uncore.h 
 
 
-## manifold_fullSim
-manifold_fullSim_CXXFLAGS = $(CXX_FLAGS) 
-manifold_fullSim_CXXLD= $(ZESTOCXXLD) 
+### manifold_fullSim
+#manifold_fullSim_CXXFLAGS = $(CXX_FLAGS) 
+#manifold_fullSim_CXXLD= $(ZESTOCXXLD) 
 
-manifold_fullSim_SOURCES = $(FE_SOURCES)\
-			   source/frontend/impl/manifold_fullsim.cc
+#manifold_fullSim_SOURCES = $(FE_SOURCES)\
+#			   source/frontend/impl/manifold_fullsim.cc
 
-manifold_fullSim_LDADD = source/simIris/libIris.a \
-			 source/memctrl/libsimMC.a \
-			 source/zesto/libZesto.a 
+#manifold_fullSim_LDADD = source/simIris/libIris.a \
+#			 source/memctrl/libsimMC.a \
+#			 source/zesto/libZesto.a 
 
 ## manifold_simIris
 manifold_simIris_CXXFLAGS = $(CXX_FLAGS) 

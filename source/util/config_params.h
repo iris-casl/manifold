@@ -61,6 +61,7 @@ uint MC_ADDR_BITS = 12;
 uint BANK_BITS = 13;
 
 DRAM_CONFIG dram_config_string = DDR3_1600_10;
+bool do_request_reply_network = false;
 
 
 DRAM_PAGE_POLICY dram_page_policy = OPEN_PAGE_POLICY; 

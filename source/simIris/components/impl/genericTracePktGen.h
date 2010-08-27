@@ -11,8 +11,7 @@
 #include	"../../../memctrl/request.h"
 #include        "../../../memctrl/mshr.h"
 #include	"../../../util/mc_constants.h"
-#include        "../../../frontend/impl/mesh.h"
-#include        "../../../zesto/zesto-cache.h"
+//#include        "../../../zesto/zesto-cache.h"
 #include        <math.h>
 #include        <fstream>
 #include        <deque>
