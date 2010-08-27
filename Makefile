@@ -50,7 +50,9 @@ CONFIG_CLEAN_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
-am__objects_1 = manifold_fullSim-mesh.$(OBJEXT)
+am__objects_1 = manifold_fullSim-mesh.$(OBJEXT) \
+	manifold_fullSim-torus.$(OBJEXT) \
+	manifold_fullSim-visual.$(OBJEXT)
 am_manifold_fullSim_OBJECTS = $(am__objects_1) \
 	manifold_fullSim-manifold_fullsim.$(OBJEXT)
 manifold_fullSim_OBJECTS = $(am_manifold_fullSim_OBJECTS)
@@ -58,7 +60,9 @@ manifold_fullSim_DEPENDENCIES = source/simIris/libIris.a \
 	source/memctrl/libsimMC.a source/zesto/libZesto.a
 manifold_fullSim_LINK = $(CXXLD) $(manifold_fullSim_CXXFLAGS) \
 	$(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-am__objects_2 = manifold_simIris-mesh.$(OBJEXT)
+am__objects_2 = manifold_simIris-mesh.$(OBJEXT) \
+	manifold_simIris-torus.$(OBJEXT) \
+	manifold_simIris-visual.$(OBJEXT)
 am_manifold_simIris_OBJECTS = $(am__objects_2) \
 	manifold_simIris-manifold_simiris.$(OBJEXT)
 manifold_simIris_OBJECTS = $(am_manifold_simIris_OBJECTS)
@@ -66,7 +70,8 @@ manifold_simIris_DEPENDENCIES = source/simIris/libIris.a \
 	source/memctrl/libsimMC.a
 manifold_simIris_LINK = $(CXXLD) $(manifold_simIris_CXXFLAGS) \
 	$(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-am__objects_3 = manifold_simMC-mesh.$(OBJEXT)
+am__objects_3 = manifold_simMC-mesh.$(OBJEXT) \
+	manifold_simMC-torus.$(OBJEXT) manifold_simMC-visual.$(OBJEXT)
 am_manifold_simMC_OBJECTS = $(am__objects_3) \
 	manifold_simMC-manifold_simmc.$(OBJEXT)
 manifold_simMC_OBJECTS = $(am_manifold_simMC_OBJECTS)
@@ -215,7 +220,9 @@ CXXLD_PROFILE = g++ -lgcov -lc
 DEBUG_FLAGS = -g -pg -D_STLP_DEBUG -D_DEBUG -DDEBUG -D_DEBUG_ROUTER -D_DEBUG_INTERFACE -DDEBUG
 PROFILE_FLAGS = -fprofile-arcs -ftest-coverage -lgcov -g -pg
 FE_SOURCES = \
-		  source/frontend/impl/mesh.cc 
+		  source/frontend/impl/mesh.cc \
+ 		  source/frontend/impl/torus.cc \
+		  source/frontend/impl/visual.cc
 
 SUBDIRS = source/zesto source/memctrl source/simIris .
 ALL_HDRS = \
@@ -255,7 +262,10 @@ ALL_HDRS = \
 	   source/simIris/components/impl/genericVcAllocator.h \
 	   source/simIris/components/impl/genericFlatMc.h \
 	   source/simIris/components/impl/memctrlFE.h \
+	   source/frontend/impl/topology.h \
 	   source/frontend/impl/mesh.h \
+           source/frontend/impl/visual.h \
+	   source/frontend/impl/torus.h \
 	   source/memctrl/addr_map.h \
 	   source/memctrl/request.h \
 	   source/memctrl/request_handler.h \
@@ -435,10 +445,16 @@ distclean-compile:
 
 include ./$(DEPDIR)/manifold_fullSim-manifold_fullsim.Po
 include ./$(DEPDIR)/manifold_fullSim-mesh.Po
+include ./$(DEPDIR)/manifold_fullSim-torus.Po
+include ./$(DEPDIR)/manifold_fullSim-visual.Po
 include ./$(DEPDIR)/manifold_simIris-manifold_simiris.Po
 include ./$(DEPDIR)/manifold_simIris-mesh.Po
+include ./$(DEPDIR)/manifold_simIris-torus.Po
+include ./$(DEPDIR)/manifold_simIris-visual.Po
 include ./$(DEPDIR)/manifold_simMC-manifold_simmc.Po
 include ./$(DEPDIR)/manifold_simMC-mesh.Po
+include ./$(DEPDIR)/manifold_simMC-torus.Po
+include ./$(DEPDIR)/manifold_simMC-visual.Po
 
 .cc.o:
 	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -468,6 +484,34 @@ manifold_fullSim-mesh.obj: source/frontend/impl/mesh.cc
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_fullSim_CXXFLAGS) $(CXXFLAGS) -c -o manifold_fullSim-mesh.obj `if test -f 'source/frontend/impl/mesh.cc'; then $(CYGPATH_W) 'source/frontend/impl/mesh.cc'; else $(CYGPATH_W) '$(srcdir)/source/frontend/impl/mesh.cc'; fi`
 
+manifold_fullSim-torus.o: source/frontend/impl/torus.cc
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_fullSim_CXXFLAGS) $(CXXFLAGS) -MT manifold_fullSim-torus.o -MD -MP -MF $(DEPDIR)/manifold_fullSim-torus.Tpo -c -o manifold_fullSim-torus.o `test -f 'source/frontend/impl/torus.cc' || echo '$(srcdir)/'`source/frontend/impl/torus.cc
+	mv -f $(DEPDIR)/manifold_fullSim-torus.Tpo $(DEPDIR)/manifold_fullSim-torus.Po
+#	source='source/frontend/impl/torus.cc' object='manifold_fullSim-torus.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_fullSim_CXXFLAGS) $(CXXFLAGS) -c -o manifold_fullSim-torus.o `test -f 'source/frontend/impl/torus.cc' || echo '$(srcdir)/'`source/frontend/impl/torus.cc
+
+manifold_fullSim-torus.obj: source/frontend/impl/torus.cc
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_fullSim_CXXFLAGS) $(CXXFLAGS) -MT manifold_fullSim-torus.obj -MD -MP -MF $(DEPDIR)/manifold_fullSim-torus.Tpo -c -o manifold_fullSim-torus.obj `if test -f 'source/frontend/impl/torus.cc'; then $(CYGPATH_W) 'source/frontend/impl/torus.cc'; else $(CYGPATH_W) '$(srcdir)/source/frontend/impl/torus.cc'; fi`
+	mv -f $(DEPDIR)/manifold_fullSim-torus.Tpo $(DEPDIR)/manifold_fullSim-torus.Po
+#	source='source/frontend/impl/torus.cc' object='manifold_fullSim-torus.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_fullSim_CXXFLAGS) $(CXXFLAGS) -c -o manifold_fullSim-torus.obj `if test -f 'source/frontend/impl/torus.cc'; then $(CYGPATH_W) 'source/frontend/impl/torus.cc'; else $(CYGPATH_W) '$(srcdir)/source/frontend/impl/torus.cc'; fi`
+
+manifold_fullSim-visual.o: source/frontend/impl/visual.cc
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_fullSim_CXXFLAGS) $(CXXFLAGS) -MT manifold_fullSim-visual.o -MD -MP -MF $(DEPDIR)/manifold_fullSim-visual.Tpo -c -o manifold_fullSim-visual.o `test -f 'source/frontend/impl/visual.cc' || echo '$(srcdir)/'`source/frontend/impl/visual.cc
+	mv -f $(DEPDIR)/manifold_fullSim-visual.Tpo $(DEPDIR)/manifold_fullSim-visual.Po
+#	source='source/frontend/impl/visual.cc' object='manifold_fullSim-visual.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_fullSim_CXXFLAGS) $(CXXFLAGS) -c -o manifold_fullSim-visual.o `test -f 'source/frontend/impl/visual.cc' || echo '$(srcdir)/'`source/frontend/impl/visual.cc
+
+manifold_fullSim-visual.obj: source/frontend/impl/visual.cc
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_fullSim_CXXFLAGS) $(CXXFLAGS) -MT manifold_fullSim-visual.obj -MD -MP -MF $(DEPDIR)/manifold_fullSim-visual.Tpo -c -o manifold_fullSim-visual.obj `if test -f 'source/frontend/impl/visual.cc'; then $(CYGPATH_W) 'source/frontend/impl/visual.cc'; else $(CYGPATH_W) '$(srcdir)/source/frontend/impl/visual.cc'; fi`
+	mv -f $(DEPDIR)/manifold_fullSim-visual.Tpo $(DEPDIR)/manifold_fullSim-visual.Po
+#	source='source/frontend/impl/visual.cc' object='manifold_fullSim-visual.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_fullSim_CXXFLAGS) $(CXXFLAGS) -c -o manifold_fullSim-visual.obj `if test -f 'source/frontend/impl/visual.cc'; then $(CYGPATH_W) 'source/frontend/impl/visual.cc'; else $(CYGPATH_W) '$(srcdir)/source/frontend/impl/visual.cc'; fi`
+
 manifold_fullSim-manifold_fullsim.o: source/frontend/impl/manifold_fullsim.cc
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_fullSim_CXXFLAGS) $(CXXFLAGS) -MT manifold_fullSim-manifold_fullsim.o -MD -MP -MF $(DEPDIR)/manifold_fullSim-manifold_fullsim.Tpo -c -o manifold_fullSim-manifold_fullsim.o `test -f 'source/frontend/impl/manifold_fullsim.cc' || echo '$(srcdir)/'`source/frontend/impl/manifold_fullsim.cc
 	mv -f $(DEPDIR)/manifold_fullSim-manifold_fullsim.Tpo $(DEPDIR)/manifold_fullSim-manifold_fullsim.Po
@@ -496,6 +540,34 @@ manifold_simIris-mesh.obj: source/frontend/impl/mesh.cc
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_simIris_CXXFLAGS) $(CXXFLAGS) -c -o manifold_simIris-mesh.obj `if test -f 'source/frontend/impl/mesh.cc'; then $(CYGPATH_W) 'source/frontend/impl/mesh.cc'; else $(CYGPATH_W) '$(srcdir)/source/frontend/impl/mesh.cc'; fi`
 
+manifold_simIris-torus.o: source/frontend/impl/torus.cc
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_simIris_CXXFLAGS) $(CXXFLAGS) -MT manifold_simIris-torus.o -MD -MP -MF $(DEPDIR)/manifold_simIris-torus.Tpo -c -o manifold_simIris-torus.o `test -f 'source/frontend/impl/torus.cc' || echo '$(srcdir)/'`source/frontend/impl/torus.cc
+	mv -f $(DEPDIR)/manifold_simIris-torus.Tpo $(DEPDIR)/manifold_simIris-torus.Po
+#	source='source/frontend/impl/torus.cc' object='manifold_simIris-torus.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_simIris_CXXFLAGS) $(CXXFLAGS) -c -o manifold_simIris-torus.o `test -f 'source/frontend/impl/torus.cc' || echo '$(srcdir)/'`source/frontend/impl/torus.cc
+
+manifold_simIris-torus.obj: source/frontend/impl/torus.cc
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_simIris_CXXFLAGS) $(CXXFLAGS) -MT manifold_simIris-torus.obj -MD -MP -MF $(DEPDIR)/manifold_simIris-torus.Tpo -c -o manifold_simIris-torus.obj `if test -f 'source/frontend/impl/torus.cc'; then $(CYGPATH_W) 'source/frontend/impl/torus.cc'; else $(CYGPATH_W) '$(srcdir)/source/frontend/impl/torus.cc'; fi`
+	mv -f $(DEPDIR)/manifold_simIris-torus.Tpo $(DEPDIR)/manifold_simIris-torus.Po
+#	source='source/frontend/impl/torus.cc' object='manifold_simIris-torus.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_simIris_CXXFLAGS) $(CXXFLAGS) -c -o manifold_simIris-torus.obj `if test -f 'source/frontend/impl/torus.cc'; then $(CYGPATH_W) 'source/frontend/impl/torus.cc'; else $(CYGPATH_W) '$(srcdir)/source/frontend/impl/torus.cc'; fi`
+
+manifold_simIris-visual.o: source/frontend/impl/visual.cc
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_simIris_CXXFLAGS) $(CXXFLAGS) -MT manifold_simIris-visual.o -MD -MP -MF $(DEPDIR)/manifold_simIris-visual.Tpo -c -o manifold_simIris-visual.o `test -f 'source/frontend/impl/visual.cc' || echo '$(srcdir)/'`source/frontend/impl/visual.cc
+	mv -f $(DEPDIR)/manifold_simIris-visual.Tpo $(DEPDIR)/manifold_simIris-visual.Po
+#	source='source/frontend/impl/visual.cc' object='manifold_simIris-visual.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_simIris_CXXFLAGS) $(CXXFLAGS) -c -o manifold_simIris-visual.o `test -f 'source/frontend/impl/visual.cc' || echo '$(srcdir)/'`source/frontend/impl/visual.cc
+
+manifold_simIris-visual.obj: source/frontend/impl/visual.cc
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_simIris_CXXFLAGS) $(CXXFLAGS) -MT manifold_simIris-visual.obj -MD -MP -MF $(DEPDIR)/manifold_simIris-visual.Tpo -c -o manifold_simIris-visual.obj `if test -f 'source/frontend/impl/visual.cc'; then $(CYGPATH_W) 'source/frontend/impl/visual.cc'; else $(CYGPATH_W) '$(srcdir)/source/frontend/impl/visual.cc'; fi`
+	mv -f $(DEPDIR)/manifold_simIris-visual.Tpo $(DEPDIR)/manifold_simIris-visual.Po
+#	source='source/frontend/impl/visual.cc' object='manifold_simIris-visual.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_simIris_CXXFLAGS) $(CXXFLAGS) -c -o manifold_simIris-visual.obj `if test -f 'source/frontend/impl/visual.cc'; then $(CYGPATH_W) 'source/frontend/impl/visual.cc'; else $(CYGPATH_W) '$(srcdir)/source/frontend/impl/visual.cc'; fi`
+
 manifold_simIris-manifold_simiris.o: source/frontend/impl/manifold_simiris.cc
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_simIris_CXXFLAGS) $(CXXFLAGS) -MT manifold_simIris-manifold_simiris.o -MD -MP -MF $(DEPDIR)/manifold_simIris-manifold_simiris.Tpo -c -o manifold_simIris-manifold_simiris.o `test -f 'source/frontend/impl/manifold_simiris.cc' || echo '$(srcdir)/'`source/frontend/impl/manifold_simiris.cc
 	mv -f $(DEPDIR)/manifold_simIris-manifold_simiris.Tpo $(DEPDIR)/manifold_simIris-manifold_simiris.Po
@@ -523,6 +595,34 @@ manifold_simMC-mesh.obj: source/frontend/impl/mesh.cc
 #	source='source/frontend/impl/mesh.cc' object='manifold_simMC-mesh.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_simMC_CXXFLAGS) $(CXXFLAGS) -c -o manifold_simMC-mesh.obj `if test -f 'source/frontend/impl/mesh.cc'; then $(CYGPATH_W) 'source/frontend/impl/mesh.cc'; else $(CYGPATH_W) '$(srcdir)/source/frontend/impl/mesh.cc'; fi`
+
+manifold_simMC-torus.o: source/frontend/impl/torus.cc
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_simMC_CXXFLAGS) $(CXXFLAGS) -MT manifold_simMC-torus.o -MD -MP -MF $(DEPDIR)/manifold_simMC-torus.Tpo -c -o manifold_simMC-torus.o `test -f 'source/frontend/impl/torus.cc' || echo '$(srcdir)/'`source/frontend/impl/torus.cc
+	mv -f $(DEPDIR)/manifold_simMC-torus.Tpo $(DEPDIR)/manifold_simMC-torus.Po
+#	source='source/frontend/impl/torus.cc' object='manifold_simMC-torus.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_simMC_CXXFLAGS) $(CXXFLAGS) -c -o manifold_simMC-torus.o `test -f 'source/frontend/impl/torus.cc' || echo '$(srcdir)/'`source/frontend/impl/torus.cc
+
+manifold_simMC-torus.obj: source/frontend/impl/torus.cc
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_simMC_CXXFLAGS) $(CXXFLAGS) -MT manifold_simMC-torus.obj -MD -MP -MF $(DEPDIR)/manifold_simMC-torus.Tpo -c -o manifold_simMC-torus.obj `if test -f 'source/frontend/impl/torus.cc'; then $(CYGPATH_W) 'source/frontend/impl/torus.cc'; else $(CYGPATH_W) '$(srcdir)/source/frontend/impl/torus.cc'; fi`
+	mv -f $(DEPDIR)/manifold_simMC-torus.Tpo $(DEPDIR)/manifold_simMC-torus.Po
+#	source='source/frontend/impl/torus.cc' object='manifold_simMC-torus.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_simMC_CXXFLAGS) $(CXXFLAGS) -c -o manifold_simMC-torus.obj `if test -f 'source/frontend/impl/torus.cc'; then $(CYGPATH_W) 'source/frontend/impl/torus.cc'; else $(CYGPATH_W) '$(srcdir)/source/frontend/impl/torus.cc'; fi`
+
+manifold_simMC-visual.o: source/frontend/impl/visual.cc
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_simMC_CXXFLAGS) $(CXXFLAGS) -MT manifold_simMC-visual.o -MD -MP -MF $(DEPDIR)/manifold_simMC-visual.Tpo -c -o manifold_simMC-visual.o `test -f 'source/frontend/impl/visual.cc' || echo '$(srcdir)/'`source/frontend/impl/visual.cc
+	mv -f $(DEPDIR)/manifold_simMC-visual.Tpo $(DEPDIR)/manifold_simMC-visual.Po
+#	source='source/frontend/impl/visual.cc' object='manifold_simMC-visual.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_simMC_CXXFLAGS) $(CXXFLAGS) -c -o manifold_simMC-visual.o `test -f 'source/frontend/impl/visual.cc' || echo '$(srcdir)/'`source/frontend/impl/visual.cc
+
+manifold_simMC-visual.obj: source/frontend/impl/visual.cc
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_simMC_CXXFLAGS) $(CXXFLAGS) -MT manifold_simMC-visual.obj -MD -MP -MF $(DEPDIR)/manifold_simMC-visual.Tpo -c -o manifold_simMC-visual.obj `if test -f 'source/frontend/impl/visual.cc'; then $(CYGPATH_W) 'source/frontend/impl/visual.cc'; else $(CYGPATH_W) '$(srcdir)/source/frontend/impl/visual.cc'; fi`
+	mv -f $(DEPDIR)/manifold_simMC-visual.Tpo $(DEPDIR)/manifold_simMC-visual.Po
+#	source='source/frontend/impl/visual.cc' object='manifold_simMC-visual.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_simMC_CXXFLAGS) $(CXXFLAGS) -c -o manifold_simMC-visual.obj `if test -f 'source/frontend/impl/visual.cc'; then $(CYGPATH_W) 'source/frontend/impl/visual.cc'; else $(CYGPATH_W) '$(srcdir)/source/frontend/impl/visual.cc'; fi`
 
 manifold_simMC-manifold_simmc.o: source/frontend/impl/manifold_simmc.cc
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(manifold_simMC_CXXFLAGS) $(CXXFLAGS) -MT manifold_simMC-manifold_simmc.o -MD -MP -MF $(DEPDIR)/manifold_simMC-manifold_simmc.Tpo -c -o manifold_simMC-manifold_simmc.o `test -f 'source/frontend/impl/manifold_simmc.cc' || echo '$(srcdir)/'`source/frontend/impl/manifold_simmc.cc
