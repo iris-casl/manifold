@@ -65,11 +65,11 @@ void PowerStats::CalcPower(float BNK_PRE, float CLK_LO_PRE, float CLK_LO_ACT, fl
 
     Pow_DQ        = (BL+DQS) * PdqRD * RDsch;
 
-    Pow_termWR    = (BL+DQS+DM) * PdqWR * WRsch;
+    Pow_termWR    = (BL+DQS+DM_MC) * PdqWR * WRsch;
 
     Pow_termRDoth = (BL+DQS) * PdqRD * termRDsch;   
 
-    Pow_termWRoth = (BL+DQS+DM) * PdqWR * termWRsch;   
+    Pow_termWRoth = (BL+DQS+DM_MC) * PdqWR * termWRsch;   
 
     Pow_Term      = Pow_termWR + Pow_termRDoth + Pow_termWRoth;
 

@@ -116,7 +116,7 @@ class Statistic
 #define MaxVcc 1.58
 #define MinVcc 1.43
 #define DQS 2	// mostly remain same 
-//#define DM 1	// mostly remain same 
+#define DM_MC 1	// mostly remain same 
 #define IDD0 120 
 #define IDD2PS 10
 #define IDD2PF 25

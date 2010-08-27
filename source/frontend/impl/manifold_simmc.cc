@@ -36,7 +36,7 @@
 #include	"../../memctrl/response_handler.h"
 #include	"../../memctrl/MC.h"
 #include	"../../memctrl/mshr_standalone.h"
-#include        "../../zesto/zesto-cache.h"
+//#include        "../../zesto/zesto-cache.h"
 
 using namespace std;
 

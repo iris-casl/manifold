@@ -21,7 +21,7 @@
 #include "request.h"
 #include "../simIris/components/impl/genericEvents.h"
 #include "../simIris/components/impl/genericTracePktGen.h"
-#include        "../zesto/zesto-cache.h"
+//#include        "../zesto/zesto-cache.h"
 
 using namespace std;
 

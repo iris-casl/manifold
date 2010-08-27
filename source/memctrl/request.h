@@ -26,9 +26,6 @@
 #include        <map>
 #include        "../kernel/component.h"
 #include        "../kernel/simulator.h"
-#include	"../zesto/host.h"
-#include	"../zesto/machine.h"
-#include	"../zesto/zesto-cache.h"
 #include	"../util/mc_constants.h"
 
 using namespace std;

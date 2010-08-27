@@ -38,6 +38,7 @@ extern uint no_mcs;
 extern vector <uint> mc_positions;
 
 using namespace std;
+typedef unsigned long long int md_paddr_t;
 
 /*
  * =====================================================================================

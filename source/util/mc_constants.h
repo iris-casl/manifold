@@ -37,6 +37,7 @@ typedef unsigned int UInt;
 ////////	4) Cache block size * blocks per row = cols per row * column size = row * size
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	 
    enum DRAM_PAGE_POLICY { OPEN_PAGE_POLICY, CLOSE_PAGE_POLICY};
+   enum cache_command { CACHE_READ, CACHE_PREFETCH,CACHE_WRITE, CACHE_WRITEBACK, REFRESH};
    enum MC_SCHEDULLING_ALGO { PAR_BS, FR_FCFS, FC_FS, NFQ};
    enum ADDR_MAP_SCHEME { PAGE_INTERLEAVING, PERMUTATION, CACHELINE_INTERLEAVING, SWAPPING, GENERIC, NO_SCHEME, LOCAL_ADDR_MAP};
    enum DRAM_CONFIG { DDR3_1333_9, 
