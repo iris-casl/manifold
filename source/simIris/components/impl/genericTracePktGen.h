@@ -1,9 +1,8 @@
 
-#ifndef  _GenericTPGVcs_h_INC
-#define  _GenericTPGVcs_h_INC
+#ifndef  _genericTracePktGen_h_INC
+#define  _genericTracePktGen_h_INC
 
 #include        "genericInterface.h"
-#include        "genericRouter4Stg.h"
 #include        "genericEvents.h"
 #include        "../../../util/genericData.h"
 #include        "../interfaces/processor.h"
@@ -11,7 +10,6 @@
 #include	"../../../memctrl/request.h"
 #include        "../../../memctrl/mshr.h"
 #include	"../../../util/mc_constants.h"
-//#include        "../../../zesto/zesto-cache.h"
 #include        <math.h>
 #include        <fstream>
 #include        <deque>
@@ -23,7 +21,7 @@
 extern uint no_nodes;
 extern uint no_mcs;
 
-class GenericTPGVcs : public Processor
+class GenericTracePktGen : public Processor
 {
 
     private:
@@ -48,8 +46,8 @@ class GenericTPGVcs : public Processor
         void handle_out_pull_event(IrisEvent* e);
 
     public :
-        GenericTPGVcs();
-        ~GenericTPGVcs();
+        GenericTracePktGen();
+        ~GenericTracePktGen();
         /* stats variables */
         unsigned int packets;
         unsigned int packets_in;
@@ -82,5 +80,5 @@ class GenericTPGVcs : public Processor
 
 
 
-#endif   /* ----- #ifndef _GenericTPGVcs_h_INC  ----- */
+#endif   /* ----- #ifndef _genericTracePktGen_h_INC  ----- */
 

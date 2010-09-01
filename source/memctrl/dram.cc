@@ -35,8 +35,11 @@ using namespace std;
 
 DRAM::DRAM()
 {
+    dc.resize(NO_OF_CHANNELS);
     for (unsigned int i=0; i<NO_OF_CHANNELS; i++)
     {
+        dc[i].dramReadCycles = 0;
+        dc[i].dramWriteCycles = 0;
     	dc[i].dramBusyTime = 0;
     	dc[i].dramBusyCycles = 0;	
 	dc[i].dramBankBusyTime.resize(NO_OF_RANKS);

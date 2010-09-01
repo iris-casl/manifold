@@ -36,8 +36,12 @@ typedef unsigned int UInt;
 ////////	3) Tag bilastFinishTimets t should be less than k+l+r
 ////////	4) Cache block size * blocks per row = cols per row * column size = row * size
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	 
+#ifndef USE_ZESTO
+enum cache_command { CACHE_NOP, CACHE_READ, CACHE_WRITE, CACHE_WRITEBACK, CACHE_PREFETCH, REFRESH, INVALIDATE, FWD_DIRTY, READ_RESPONSE, WRITE_RESPONSE, ACK };
+#else
+#include "../zesto/zesto-cache.h"
+#endif
    enum DRAM_PAGE_POLICY { OPEN_PAGE_POLICY, CLOSE_PAGE_POLICY};
-   enum cache_command { CACHE_READ, CACHE_PREFETCH,CACHE_WRITE, CACHE_WRITEBACK, REFRESH};
    enum MC_SCHEDULLING_ALGO { PAR_BS, FR_FCFS, FC_FS, NFQ};
    enum ADDR_MAP_SCHEME { PAGE_INTERLEAVING, PERMUTATION, CACHELINE_INTERLEAVING, SWAPPING, GENERIC, NO_SCHEME, LOCAL_ADDR_MAP};
    enum DRAM_CONFIG { DDR3_1333_9, 
@@ -51,7 +55,7 @@ extern MC_SCHEDULLING_ALGO mc_scheduling_algorithm;
 extern ADDR_MAP_SCHEME addr_map_scheme;
 
 extern uint NO_OF_THREADS; 
-#define NO_OF_CHANNELS 1		//  (int)log2() = k bits. 
+extern uint NO_OF_CHANNELS ;		//  (int)log2() = k bits. 
 extern uint NO_OF_RANKS ;       		//  (int)log2() = l bits.
 extern uint NO_OF_BANKS ;         		//  (int)log2() = b bits. 
 #define NO_OF_BUFFERS NO_OF_BANKS

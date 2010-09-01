@@ -16,8 +16,8 @@
  * =====================================================================================
  */
 
-#ifndef  _genericRouterVcs_h_INC
-#define  _genericRouterVcs_h_INC
+#ifndef  _genericRouter4Stg_h_INC
+#define  _genericRouter4Stg_h_INC
 
 #include	"../interfaces/router.h"
 #include	"genericBuffer.h"
@@ -118,5 +118,5 @@ class GenericRouter4Stg: public Router
 
 }; /* -----  end of class GenericRouter4Stg  ----- */
 
-#endif   /* ----- #ifndef _genericRouterVcs_h_INC  ----- */
+#endif   /* ----- #ifndef _genericRouter4Stg_h_INC  ----- */
 

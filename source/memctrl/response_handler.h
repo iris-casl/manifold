@@ -29,7 +29,7 @@
 #include        "../simIris/data_types/impl/irisEvent.h"
 #include        "request.h"
 #include	"../util/mc_constants.h" 
-#include        "../simIris/components/impl/memctrlFE.h"
+#include        "../simIris/components/impl/mcFrontEnd.h"
 #include 	"cmd_issuer.h"
 #include        "mshr_standalone.h"
 

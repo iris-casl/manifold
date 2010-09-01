@@ -21,9 +21,10 @@
 #define  _simmc2mesh_cc_INC
 
 #include	"mesh.h"
-#include	"../../zesto/zesto-uncore.h"
-#include	"../../util/config_params.h"
-
+#include	"../../util/genericData.h"
+#include        "../../util/config_params.h"
+#include        "../../zesto/zesto-uncore.h"
+#include	"../../simIris/components/impl/genericFlatMc.h"
 
 
 
@@ -155,7 +156,7 @@ print_state_at_deadlock(void)
 {
     for ( uint i=0; i<no_nodes; i++)
     {
-        static_cast<GenericRouter4Stg*>(mesh->routers[i])->dump_buffer_state();
+        static_cast<GenericRouterVcs*>(mesh->routers[i])->dump_buffer_state();
     }
     exit(1);
 }
@@ -172,11 +173,11 @@ sim_print_stats(FILE *fd)		/* output stream */
 
   /* print simulation stats */
   fprintf(fd, "\nsim: ** simulation statistics **\n");
-  //stat_print_stats(sim_sdb, fd);
+  stat_print_stats(sim_sdb, fd);
   sim_aux_stats(fd);
   fprintf(fd, "\n");
 
-  //cerr << mesh->print_stats();
+  cerr << mesh->print_stats();
   ullint total_link_utilization = 0;
   uint no_of_non_zero_util_links = 0;
   uint edge_links = 0;
@@ -283,22 +284,66 @@ unsigned int iris_process_options(int argc,char *argv[])
                 iss >> max_sim_time;
             if ( word.compare("OUTPUT_PATH") == 0)
                 iss >> output_path;
-            if ( word.compare("PHY_LINK_WIDTH") == 0)
+             if ( word.compare("PHY_LINK_WIDTH") == 0)
                 iss >> max_phy_link_bits;
-	    if ( word.compare("THREAD_BITS_POSITION") == 0)
+    //        if ( word.compare("ROUTER_MODEL") == 0)
+      //          iss >> router_model_string;
+            NO_OF_THREADS = no_nodes;
+            /* Init parameters of mc_constants*/
+        //    if ( word.compare("MC_MODEL") == 0)
+          //      iss >> mc_model_string;
+            if ( word.compare("THREAD_BITS_POSITION") == 0)
                 iss >> THREAD_BITS_POSITION;
-	    if ( word.compare("MC_ADDR_BITS") == 0)
-                 iss >> MC_ADDR_BITS;
-	    if ( word.compare("BANK_BITS") == 0)
-                 iss >> BANK_BITS;
-	    if ( word.compare("TWO_STAGE_ROUTER") == 0)
-                 iss >> do_two_stage_router;
-	    if ( word.compare("ROUTING_SCHEME") == 0)
-                 iss >> routing_scheme;
-	    if ( word.compare("SW_ARBITRATION") == 0)
-                 iss >> sw_arbitration_scheme;
-	    if ( word.compare("PRIORITY_MSG_TYPE") == 0)
-                 iss >> msg_type_string;
+            if ( word.compare("MC_ADDR_BITS") == 0)
+                iss >> MC_ADDR_BITS;
+            if ( word.compare("BANK_BITS") == 0)
+                iss >> BANK_BITS;
+            if ( word.compare("NO_OF_CHANNELS") == 0)
+                iss >> NO_OF_CHANNELS;
+                
+            if ( word.compare("NO_OF_RANKS") == 0)
+                iss >> NO_OF_RANKS;
+            if ( word.compare("NO_OF_BANKS") == 0)
+                iss >> NO_OF_BANKS;
+                
+            if ( word.compare("NO_OF_ROWS") == 0)
+                iss >> NO_OF_ROWS;
+            if ( word.compare("NO_OF_COLUMNS") == 0)
+                iss >> NO_OF_COLUMNS;
+            if ( word.compare("COLUMN_SIZE") == 0)
+                iss >> COLUMN_SIZE;
+            if ( word.compare("MSHR_SIZE") == 0)
+                iss >> MSHR_SIZE;
+                
+            if ( word.compare("MAX_BUFFER_SIZE") == 0)
+                iss >> MAX_BUFFER_SIZE;
+            if ( word.compare("MAX_CMD_BUFFER_SIZE") == 0)
+                iss >> MAX_CMD_BUFFER_SIZE;
+            if ( word.compare("RESPONSE_BUFFER_SIZE") == 0)
+                iss >> RESPONSE_BUFFER_SIZE;
+             
+            if ( word.compare("NETWORK_ADDRESS_BITS") == 0)
+                iss >> NETWORK_ADDRESS_BITS;
+            if ( word.compare("NETWORK_THREADID_BITS") == 0)
+                iss >> NETWORK_THREADID_BITS ;
+            if ( word.compare("NETWORK_COMMAND_BITS") == 0)
+                iss >> NETWORK_COMMAND_BITS;
+
+            /*  ******************************************* */
+            if ( word.compare("TWO_STAGE_ROUTER") == 0)
+                iss >> do_two_stage_router;
+            if ( word.compare("ROUTING_SCHEME") == 0)
+                iss >> routing_scheme;
+            if ( word.compare("SW_ARBITRATION") == 0)
+                iss >> sw_arbitration_scheme;
+            if ( word.compare("PRIORITY_MSG_TYPE") == 0)
+                iss >> msg_type_string;
+            if ( word.compare("DRAM_PAGE_POLICY") == 0)
+                iss >> dram_page_policy_string;
+            if ( word.compare("ADDRESS_MAP_SCHEME") == 0)
+                iss >> addr_map_scheme_string;
+            if ( word.compare("MC_SCHEDULING_ALGORITHM") == 0)
+                iss >> mc_scheduling_algorithm_string;
             if ( word.compare("MC_LOC") == 0)
             {
                 uint mc_xpos, mc_ypos;
@@ -306,6 +351,7 @@ unsigned int iris_process_options(int argc,char *argv[])
                 iss >> mc_ypos;
                 mc_positions.push_back(mc_xpos*grid_size + mc_ypos);
             }
+            NO_OF_THREADS = no_nodes;
         }
     }
 
@@ -409,12 +455,22 @@ unsigned int iris_process_options(int argc,char *argv[])
         cerr << " max_sim_time:\t" << max_sim_time << endl;
         cerr << " max_phy_link_bits:\t" << max_phy_link_bits << endl;
 	cerr << " THREAD_BITS_POSITION:\t" << THREAD_BITS_POSITION<< endl;
-        cerr << " MC_ADDR_BITS:\t" << MC_ADDR_BITS<< endl;
-        cerr << " TWO_STAGE_ROUTER:\t" << do_two_stage_router << endl;
-        cerr << " ROUTING_SCHEME:\t" << routing_scheme << " " << rc_method << endl;
-        cerr << " SW_ARBITRATION:\t" << sw_arbitration_scheme<< " " << sw_arbitration<< endl;
-        cerr << " BANK_BITS:\t" << BANK_BITS << endl;
-        cerr << " Msg_class with arbitration priority:\t" << msg_type_string << endl;
+    cerr << " MC_ADDR_BITS:\t" << MC_ADDR_BITS<< endl;
+    cerr << " TWO_STAGE_ROUTER:\t" << do_two_stage_router << endl;
+    cerr << " ROUTING_SCHEME:\t" << routing_scheme << " " << rc_method << endl;
+    cerr << " SW_ARBITRATION:\t" << sw_arbitration_scheme<< " " << sw_arbitration<< endl;
+    cerr << " BANK_BITS:\t" << BANK_BITS << endl;
+    cerr << " NETWORK_BITS:\t" << NETWORK_ADDRESS_BITS << endl;
+    cerr << " COMMAND_BITS:\t" << NETWORK_THREADID_BITS << endl;
+    cerr << " COREID_BITS:\t" << NETWORK_COMMAND_BITS << endl;
+    cerr << " NO_OF_THREADS:\t" << NO_OF_THREADS << endl;
+    cerr << " NO_OF_CHANNELS:\t" << NO_OF_RANKS << endl;
+    cerr << " NO_OF_RANKS:\t" << NO_OF_RANKS << endl;
+    cerr << " NO_OF_BANKS:\t" << NO_OF_BANKS << endl;
+    cerr << " NO_OF_ROWS:\t" << NO_OF_ROWS << endl;
+    cerr << " NO_OF_COLUMNS:\t" << NO_OF_COLUMNS << endl;
+    cerr << " COLUMN_SIZE:\t" << COLUMN_SIZE << endl;
+    cerr << " Msg_class with arbitration priority:\t" << msg_type_string << endl;
 	return offset;	
 }
 
@@ -429,7 +485,7 @@ void iris_init()
     /* Create the mesh->routers and mesh->interfaces */
     for( uint i=0; i<no_nodes; i++)
     {
-        mesh->routers.push_back( new GenericRouter4Stg());
+        mesh->routers.push_back( new GenericRouterVcs());
         mesh->interfaces.push_back ( new GenericInterfaceVcs());
     }
 
@@ -527,8 +583,8 @@ void iris_init()
         for( uint j=0; j < ports ; j++)
             for( uint k=0; k < no_nodes ; k++) // Assuming is a square mesh. 
             {
-                static_cast<GenericRouter4Stg*>(mesh->routers[i])->set_grid_x_location(j,k, grid_x[k]);
-                static_cast<GenericRouter4Stg*>(mesh->routers[i])->set_grid_y_location(j,k, grid_y[k]);
+                static_cast<GenericRouterVcs*>(mesh->routers[i])->set_grid_x_location(j,k, grid_x[k]);
+                static_cast<GenericRouterVcs*>(mesh->routers[i])->set_grid_y_location(j,k, grid_y[k]);
             }
 
     mesh->connect_interface_routers();
@@ -668,7 +724,8 @@ int main( int argc, char *argv[] )
 
   /* initialize all simulation modules - thread structures, uncore & core structures,register files, oracle/exec/alloc/decode models for all cores */
   sim_post_init();
-
+  
+  init_dram_timing_parameters();
   /*IRIS: Instatiates the mesh,routers,MC's,interfaces and links them to the uncore*/
   iris_init();
 
@@ -699,7 +756,7 @@ int main( int argc, char *argv[] )
 
   class zesto_component *tick = new zesto_component();
 
-  Simulator::StopAt(4000000000);
+  Simulator::StopAt(1000000000);
   Simulator::Run();
 
   sim_print_stats(stderr);

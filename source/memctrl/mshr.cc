@@ -16,12 +16,8 @@
  * =====================================================================================
  */
 
-#include <math.h>
 #include "mshr.h"
-#include "request.h"
-#include "../simIris/components/impl/genericEvents.h"
 #include "../simIris/components/impl/genericTracePktGen.h"
-//#include        "../zesto/zesto-cache.h"
 
 using namespace std;
 
@@ -135,7 +131,7 @@ void MSHR_H::process_event(IrisEvent* e)
 
 	uint destination=map_addr(&req->address);
 	req->mcNo = destination;
-        req->mcNo= ((GenericTPGVcs*)parent)->mc_node_ip[req->mcNo];
+        req->mcNo= ((GenericTracePktGen*)parent)->mc_node_ip[req->mcNo];
 	req->arrivalTime = (ullint)Simulator::Now();
 	local_map_addr(req);
 	req->startTime = (ullint)Simulator::Now();
@@ -156,7 +152,11 @@ void MSHR_H::process_event(IrisEvent* e)
 	    trace_filename >> dec >> time;
 	    trace_filename >> dec >> cmd; 
 
+#ifdef _64BIT
+	    addr= addr & 0xffffffffffc0;	//masking out cache line index bits if they exist
+#else
 	    addr= addr & 0xffffffc0;	//masking out cache line index bits if they exist
+#endif
 	    time = time+lastFinishTime;
 	    if (trace_filename.eof())
 	    {
@@ -205,14 +205,14 @@ void MSHR_H::process_event(IrisEvent* e)
 	event->type = 1120;	
     	Simulator::Schedule(time+unsink, &MSHR_H::process_event, (MSHR_H*)event->dst, event);
 	nextReq = *req2; 
-         if (!(((GenericTPGVcs*)parent)->sending))
+         if (!(((GenericTracePktGen*)parent)->sending))
         {
             IrisEvent *event3 = new IrisEvent();
             event3->src = (Component*)this;
     	    event3->dst = (Component*)parent;
 	    event3->type = OUT_PULL_EVENT;	
-    	    Simulator::Schedule(Simulator::Now()+1, &GenericTPGVcs::process_event, (GenericTPGVcs*)event3->dst, event3);
-            ((GenericTPGVcs*)parent)->sending = true;
+    	    Simulator::Schedule(Simulator::Now()+1, &GenericTracePktGen::process_event, (GenericTracePktGen*)event3->dst, event3);
+            ((GenericTracePktGen*)parent)->sending = true;
         }
     }
     else
@@ -247,11 +247,11 @@ void MSHR_H::DeleteInMSHR(Request* req)
 	    lastScheduledIndex--;		
 	    mshr.erase(i+index);
 	    //((GenericTPG*)parent)->roundTripLat += (Simulator::Now() - mshr[i].startTime);	 
-	    ((GenericTPGVcs*)parent)->roundTripLat += ((ullint)Simulator::Now() - req->startTime);	 
+	    ((GenericTracePktGen*)parent)->roundTripLat += ((ullint)Simulator::Now() - req->startTime);	 
 #ifdef DEBUG
 	    cout << endl << Simulator::Now() << hex << ": Deletion Time of Request " 
                 << req->address << dec << ", of Thread " << id << ", " << req->mcNo << ", " << lastScheduledIndex 
-                << " ready:" << ((GenericTPGVcs*)parent)->ready[0] << endl;
+                << " ready:" << ((GenericTracePktGen*)parent)->ready[0] << endl;
 #endif	
 	     break;
 	}
@@ -303,11 +303,15 @@ void MSHR_H::demap_addr(Addr_t oldAddress, Addr_t newAddress)
 short int 
 MSHR_H::map_addr(unsigned long long int *addr)
 {
-    unsigned int temp = MC_ADDR_BITS;   
-    unsigned int temp2 = temp-(int)log2(no_mcs);   
-    unsigned int lower_mask = (uint)pow(2.0,temp2*1.0)-1;
+    unsigned long long int temp = MC_ADDR_BITS;   
+    unsigned long long int temp2 = temp-(int)log2(no_mcs);   
+    unsigned long long int lower_mask = (ullint)pow(2.0,temp2*1.0)-1;
+#ifdef _64BIT
+    unsigned long long int upper_mask = (ullint)((0xFFFFFFFFFFFF)-(pow(2.0,temp*1.0)-1));
+#else
     unsigned long long int upper_mask = (ullint)((0xFFFFFFFF)-(pow(2.0,temp*1.0)-1));
-    unsigned int lower_addr = (*addr) & lower_mask;
+#endif
+    unsigned long long int lower_addr = (*addr) & lower_mask;
     unsigned long long int upper_addr = ((*addr) & upper_mask) >> (int)log2(no_mcs);
 
 #ifdef GLOBAL_XOR

@@ -40,7 +40,6 @@ class Torus : public Topology
         void connect_routers(void);
         string print_stats(void);
         void set_max_phy_link_bits ( uint a);
-	unsigned long long int max_sim_time;
 
     protected:
 

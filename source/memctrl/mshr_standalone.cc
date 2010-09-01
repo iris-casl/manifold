@@ -91,13 +91,7 @@ void MSHR_SA_H::process_event(IrisEvent* e)
             event->type = 1120;
     	    event->event_data.push_back(req);	
     	    Simulator::Schedule(Simulator::Now()+1, &MSHR_SA_H::process_event, (MSHR_SA_H*)event->dst, event);
-/*	    
-	    IrisEvent *event2 = new IrisEvent();	
-    	    event2->src = (Component*)this;
-    	    event2->dst = (Component*)parent;
-	    event2->type = OUT_PULL_EVENT;	
-    	    Simulator::Schedule(Simulator::Now()+1, &GenericTPG::process_event, (GenericTPG*)event2->dst, event2);
-*/	}
+	}
         else
             delete req;
     }		
@@ -106,24 +100,16 @@ void MSHR_SA_H::process_event(IrisEvent* e)
 	lastFullTime = Simulator::Now();
 	waitingForMSHR = *((Request*)e->event_data.at(0));
 	waiting = true;
-/*	unsink++;
-    	Request * req = new Request();	
-    	IrisEvent *event = new IrisEvent();
-    	*req = *((Request*)e->event_data.at(0));	//TODO needs to set this through manifold kernel's links
-    	event->src = (Component*)this;
-    	event->dst = (Component*)this;
-    	event->event_data.push_back(req);	
-*/
+
 #ifdef DEEP_DEBUG
     	cout << dec << Simulator::Now() << ": " << hex << waitingForMSHR.address << ": MSHR Full Now Waiting " << endl;	
 #endif
-//    	Simulator::Schedule(Simulator::Now()+1, &MSHR_SA_H::process_event, (MSHR_SA_H*)event->dst, event);  
     }
     else if (!waiting)
     {
 	Request * req = new Request();
 	*req = *((Request*)e->event_data.at(0));	//TODO needs to set this through manifold kernel's links
-//        assert( req->arrivalTime < max_sim_time);
+        assert( req->arrivalTime <= max_sim_time+1);
 	req->startTime = Simulator::Now();
 	if (req->cmdType!=CACHE_WRITEBACK)
 	    mshr.push_back(*req);

@@ -38,7 +38,7 @@ using namespace std;
 
 GenericRouter3Stg::GenericRouter3Stg ()
 {
-    name = "Router" ;
+    name = "RouterAdap" ;
     ticking = false;
 }  /* -----  end of method GenericRouter3Stg::GenericRouter3Stg  (constructor)  ----- */
 
@@ -308,19 +308,10 @@ GenericRouter3Stg::handle_link_arrival_event_one_msg_per_buffer( IrisEvent* e )
             hf->inport = port;
             decoders[port].push(data->ptr,data->vc);
             init_buffer_state(port,data->vc,hf);
-            _DBG(" push HEAD into inbuf inp: %d",port);
         }
         else
         {
             decoders[port].push(data->ptr,data->vc);
-            if ( data->ptr->type == BODY )
-            {
-                _DBG(" push BODY into inbuf inp: %d",port);
-            }
-            else
-            {
-                _DBG(" push TAIL into inbuf inp: %d",port);
-            }
         }
 
     }
@@ -415,7 +406,6 @@ GenericRouter3Stg::handle_link_arrival_event_multiple_flit_in_buffer( IrisEvent*
                 hf->inport = port;
                 decoders[port].push(data->ptr,data->vc);
                 init_buffer_state(port,data->vc,hf);
-                _DBG(" push HEAD into inbuf inp: %d",port);
 
             }
             else
@@ -423,7 +413,6 @@ GenericRouter3Stg::handle_link_arrival_event_multiple_flit_in_buffer( IrisEvent*
                 input_buffer_state[port*vcs+data->vc].has_pending_pkts = true;
                 new_pkt_buffer[port].change_push_channel(data->vc);
                 new_pkt_buffer[port].push(data->ptr);
-                _DBG(" push HEAD into newpktbuf inp: %d",port);
             }
         }
         else
@@ -433,13 +422,8 @@ GenericRouter3Stg::handle_link_arrival_event_multiple_flit_in_buffer( IrisEvent*
                 in_buffers[port].change_push_channel(data->vc);
                 in_buffers[port].push(data->ptr);
                 decoders[port].push(data->ptr,data->vc);
-                if( data->ptr->type == BODY)
+                if( data->ptr->type == TAIL)
                 {
-                    _DBG(" push BODY into inbuf inp: %d",port);
-                }
-                else
-                {
-                    _DBG(" push TAIL into inbuf inp: %d",port);
                     input_buffer_state[port*vcs+data->vc].pkt_in_progress = false;
                 }
 
@@ -448,16 +432,6 @@ GenericRouter3Stg::handle_link_arrival_event_multiple_flit_in_buffer( IrisEvent*
             {
                 new_pkt_buffer[port].change_push_channel(data->vc);
                 new_pkt_buffer[port].push(data->ptr);
-                if( data->ptr->type == BODY)
-                {
-                    _DBG(" push BODY into nepktbuf inp: %d",port);
-                }
-                else
-                {
-                    _DBG(" push TAIL into newpktbuf inp: %d",port);
-//                    input_buffer_state[port*vcs+data->vc].pkt_in_progress = false;
-                }
-
             }
 
         }
@@ -525,8 +499,8 @@ GenericRouter3Stg::do_switch_traversal()
                 GenericRouter3Stg* next_router = static_cast<GenericRouter3Stg*>(
                                                                                          static_cast<GenericLink*>(output_connections[oport])->output_connection);
                 downstream_pkt_progress = next_router->is_pkt_in_progress(static_cast<GenericLink*>(output_connections[oport]),0);
-                _DBG("Sending HEAD but next_buf_free for %d buffst: ",oport); 
-                cout << downstream_pkt_progress;
+//                _DBG("Sending HEAD but next_buf_free for %d buffst: ",oport); 
+//                cout << downstream_pkt_progress;
 
             }
             /* 
@@ -542,10 +516,6 @@ GenericRouter3Stg::do_switch_traversal()
                 && input_buffer_state[i].flits_in_ib > 0
                 && downstream_credits[oport][0]>0 && !downstream_pkt_progress)
             {
-                if( oport == 0)
-                    cout << "\n *********OP0 SENDING a pkt from ROUTER" << endl;
-                else
-                    cout << "\n ********* SENDING a pkt from ROUTER" << endl;
                 in_buffers[iport].change_pull_channel(0);
                 Flit* f = in_buffers[iport].pull();
                 input_buffer_state[i].flits_in_ib--;
@@ -823,17 +793,14 @@ GenericRouter3Stg::handle_tick_event ( IrisEvent* e )
                         hf->inport = inp;
                         decoders[inp].push(hf,0);
                         init_buffer_state(inp,0,hf);
-                        _DBG(" push HEAD into inbuf inp: %d",inp);
                     }
                     else if ( f->type == BODY)
                     {
                         decoders[inp].push(f,0);
-                        _DBG(" push HEAD into inbuf inp: %d",inp);
                     }
                     else if ( f->type == TAIL)
                     {
                         decoders[inp].push(f,0);
-                        _DBG(" push HEAD into inbuf inp: %d",inp);
                         break;
                     }
 

@@ -27,6 +27,7 @@
 #include        "../kernel/component.h"
 #include        "../kernel/simulator.h"
 #include        "../simIris/data_types/impl/irisEvent.h"
+#include        "../simIris/components/impl/mcFrontEnd.h"
 #include        "request.h" 
 #include	"channel_handler.h"
 #include	"bus_handler.h"
@@ -53,7 +54,7 @@ class RequestHandler : public Component
 	Component* mc;
         Component* parent;
 	Component* child;
-	ChannelHandler chan[NO_OF_CHANNELS];
+        ChannelHandler *chan;
 	BusHandler *busHandler;
 	AddrMap	*addrMap;
 	Component* resPtr;		// TODO Pointer to response handler needs to be changed via manifold link

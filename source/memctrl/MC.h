@@ -27,10 +27,10 @@
 #include        "bus_handler.h"
 #include        "bus.h"
 #include        "dram.h"
+#include        "../simIris/components/impl/mcFrontEnd.h"
 #include	"refresh_manager.h"
 #include	"response_handler.h"
 #include	"stats.h"
-#include	"../simIris/components/impl/memctrlFE.h"
 
 class MC
 {
@@ -59,7 +59,7 @@ class MC
     	~MC () 
 	{
 	    delete reqH;
-	    delete refMgr;
+	  //  delete refMgr;
 	    delete bus;
 	    delete responseH;
 	    delete dram;

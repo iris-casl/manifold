@@ -181,12 +181,8 @@ OBJDIR = $(TOPDIR)/build
 BUILDDIR = $(TOPDIR)/build
 CXX_FLAGS = -D_FILE_OFFSET_BITS=64 -I source -m32 -ansi -g -gstabs+ -O0 -static-libgcc
 ZESTO_FLAGS = -O0 -g -m32 -DMIN_SYSCALL_MODE -DUSE_SSE_MOVE -Wall -DDEBUG -msse4a -mfpmath=sse
-#Zesto needs to be compiled as 64 bit
-#ZESTO_FLAGS = -O0 -g -m64 -DMIN_SYSCALL_MODE -DUSE_SSE_MOVE -Wall -DDEBUG -msse4a -mfpmath=sse
-MLIBS = -lm -ldl -lqsim -L../qsim-0.1-pre5/
-#for zesto to be compiled with qsim and g++ 4.4
-#ZESTOCXXLD = g++-4.4 -lc -lm -ldl -lqsim -L../qsim-0.1-pre5/
-ZESTOCXXLD = g++ -lc -lm -ldl -lqsim -L../qsim-0.1-pre5/
+MLIBS = -lm  
+ZESTOCXXLD = g++ -lc -lm  
 CXXLD = g++ -lc -lm -ldl
 CXXLD_PROFILE = g++ -lgcov -lc
 #DEBUG_FLAGS = -D_DEBUG -D_DEBUG_ROUTER 
@@ -194,8 +190,8 @@ DEBUG_FLAGS = -g -pg -D_STLP_DEBUG -D_DEBUG -DDEBUG -D_DEBUG_ROUTER -D_DEBUG_INT
 PROFILE_FLAGS = -fprofile-arcs -ftest-coverage -lgcov -g -pg
 FE_SOURCES = \
 		  source/frontend/impl/mesh.cc \
- 		  source/frontend/impl/torus.cc \
-		  source/frontend/impl/visual.cc
+		 source/frontend/impl/torus.cc \
+		 source/frontend/impl/visual.cc
 
 
 #SUBDIRS = source/zesto source/memctrl source/simIris .
@@ -235,12 +231,7 @@ ALL_HDRS = \
 	   source/simIris/components/impl/genericRouter3Stg.h \
 	   source/simIris/components/impl/genericTracePktGen.h \
 	   source/simIris/components/impl/genericVcAllocator.h \
-	   source/simIris/components/impl/genericFlatMc.h \
-	   source/simIris/components/impl/memctrlFE.h \
 	   source/frontend/impl/mesh.h \
-           source/frontend/impl/visual.h \
-	   source/frontend/impl/torus.h \
-	   source/frontend/impl/topology.h \
 	   source/memctrl/addr_map.h \
 	   source/memctrl/request.h \
 	   source/memctrl/request_handler.h \
@@ -256,10 +247,48 @@ ALL_HDRS = \
 	   source/memctrl/refresh_manager.h \
 	   source/memctrl/response_handler.h \
 	   source/memctrl/stats.h \
+	   source/simIris/components/impl/mcFrontEnd.h \
+	   source/simIris/components/impl/genericFlatMc.h \
 	   source/memctrl/mshr.h \
 	   source/memctrl/mshr_standalone.h 
 
-ZESTO_HDRS = 
+ZESTO_HDRS = \
+	   source/zesto/bbtracker.h \
+	   source/zesto/thread.h    \
+	   source/zesto/eio.h \
+	   source/zesto/endian.h \
+	   source/zesto/eval.h \
+	   source/zesto/host.h \
+	   source/zesto/loader.h \
+	   source/zesto/machine.h \
+	   source/zesto/memory.h  \
+	   source/zesto/misc.h \
+	   source/zesto/options.h \
+	   source/zesto/range.h \
+	   source/zesto/regs.h \
+	   source/zesto/sim.h  \
+	   source/zesto/stats.h \
+	   source/zesto/symbol.h \
+	   source/zesto/syscall.h \
+	   source/zesto/version.h  \
+	   source/zesto/machine.def \
+	   source/zesto/elf.h \
+	   source/zesto/x86flow.def \
+	   source/zesto/zesto-structs.h \
+	   source/zesto/zesto-core.h \
+	   source/zesto/zesto-opts.h \
+	   source/zesto/zesto-oracle.h \
+	   source/zesto/zesto-fetch.h \
+	   source/zesto/zesto-decode.h \
+	   source/zesto/zesto-alloc.h \
+	   source/zesto/zesto-exec.h \
+	   source/zesto/zesto-commit.h \
+	   source/zesto/zesto-cache.h \
+	   source/zesto/zesto-bpred.h \
+	   source/zesto/zesto-memdep.h \
+	   source/zesto/zesto-prefetch.h \
+	   source/zesto/zesto-uncore.h 
+
 
 ### manifold_fullSim
 #manifold_fullSim_CXXFLAGS = $(CXX_FLAGS) 
@@ -895,41 +924,12 @@ uninstall-info: uninstall-info-recursive
 	mostlyclean-recursive pdf pdf-am ps ps-am tags tags-recursive \
 	uninstall uninstall-am uninstall-binPROGRAMS uninstall-info-am
 
-	   source/zesto/bbtracker.h \
-	   source/zesto/thread.h    \
-	   source/zesto/eio.h \
-	   source/zesto/endian.h \
-	   source/zesto/eval.h \
-	   source/zesto/host.h \
-	   source/zesto/loader.h \
-	   source/zesto/machine.h \
-	   source/zesto/memory.h  \
-	   source/zesto/misc.h \
-	   source/zesto/options.h \
-	   source/zesto/range.h \
-	   source/zesto/regs.h \
-	   source/zesto/sim.h  \
-	   source/zesto/stats.h \
-	   source/zesto/symbol.h \
-	   source/zesto/syscall.h \
-	   source/zesto/version.h  \
-	   source/zesto/machine.def \
-	   source/zesto/elf.h \
-	   source/zesto/x86flow.def \
-	   source/zesto/zesto-structs.h \
-	   source/zesto/zesto-core.h \
-	   source/zesto/zesto-opts.h \
-	   source/zesto/zesto-oracle.h \
-	   source/zesto/zesto-fetch.h \
-	   source/zesto/zesto-decode.h \
-	   source/zesto/zesto-alloc.h \
-	   source/zesto/zesto-exec.h \
-	   source/zesto/zesto-commit.h \
-	   source/zesto/zesto-cache.h \
-	   source/zesto/zesto-bpred.h \
-	   source/zesto/zesto-memdep.h \
-	   source/zesto/zesto-prefetch.h \
-	   source/zesto/zesto-uncore.h 
+
+###Headers
+#noinst_HEADERS = \
+#		 source/frontend/impl/mesh.h \
+#		 source/util/config_params.h \
+#		 $(ALL_HDRS) $(ZESTO_HDRS)
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

@@ -28,6 +28,12 @@
 #include        "../kernel/simulator.h"
 #include	"../util/mc_constants.h"
 
+#ifdef USE_ZESTO
+#include	"../zesto/host.h"
+#include	"../zesto/machine.h"
+#include	"../zesto/zesto-cache.h"
+#endif
+
 using namespace std;
 
 enum CStatus {OPEN, CLOSED, CONFLICT, IDLE}; /*!< enumeration for the req status */
@@ -54,9 +60,9 @@ typedef Data Data;
 class Request
 {
     public:
-        Request();              /*!< \brief constructor*/
-        ~ Request();            /*!< \brief deconstructor*/
-	UInt mcNo;              /*!< \brief Id of MC which the request belongs to*/
+        Request();             /*!< \brief constructor*/
+        ~Request();            /*!< \brief deconstructor*/
+        UInt mcNo;              /*!< \brief Id of MC which the request belongs to*/
         UInt channelNo;         
         UInt dimmNo;            // For future use
         UInt rankNo;            
@@ -67,31 +73,31 @@ class Request
         cache_command cmdType;      /*!< \brief The type of cmd (read(load), write(store), writeback, prefetch) coming from the cache. */
         UInt threadId;          /*!< \brief Core Id from where the request came. */        
         Addr_t address;         /*!< \brief Requesting memory operation's address. */
-	Data data;              /*!< Data field to store the actual value of the request. Not used currently. */
+        Data data;              /*!< Data field to store the actual value of the request. Not used currently. */
         bool mark;              /*!< \brief Signal to indicate that the request belongs to a batch or not. Used in PAR-BS. */
         bool local;             // For future use
-	bool scheduledInMSHR;	/*< \brief Signal to indicate this request has been sent out to the network. Used by MSHR. */
-	CStatus status;         /*!< \brief Signal to indicate the request is a hit or conflict. */      
-	int tag;                /*!< \brief Unique tag of the request in Mem Ctrl. */
+        bool scheduledInMSHR;	/*< \brief Signal to indicate this request has been sent out to the network. Used by MSHR. */
+        CStatus status;         /*!< \brief Signal to indicate the request is a hit or conflict. */      
+        int tag;                /*!< \brief Unique tag of the request in Mem Ctrl. */
         bool serviced;          // For future use
-	
-	Request *child_req;     /*!< \brief Pointer of the child req in MSHR clubbed */
-	Request *mother_req;    /*!< \brief Pointer of the mother req in MSHR clubbed */
+
+        Request *child_req;     /*!< \brief Pointer of the child req in MSHR clubbed */
+        Request *mother_req;    /*!< \brief Pointer of the mother req in MSHR clubbed */
 
         //////////////////////* Stats variables */////////////////
 
         Time startTime;                 /*!< Time at which it enters the MSHR */
-	Time arrivalTime;	        /*!< Time at which it enters the Mem Ctrl */
-	Time scheduleTime;	        /*!< Time at which it is sent out to the network */
+        Time arrivalTime;	        /*!< Time at which it enters the Mem Ctrl */
+        Time scheduleTime;	        /*!< Time at which it is sent out to the network */
         Time retireTime;	        /*!< Time at which it retires from the MC */
-	Time busInsertionTime;          /*!< Time when it is inserted into the bus */
-	Time rbufferInsertionTime       /*!< Time when it is inserted into request buffer */;
-	Time cbufferInsertionTime;	/*!< Time when it is inserted into the cmd buffer */
+        Time busInsertionTime;          /*!< Time when it is inserted into the bus */
+        Time rbufferInsertionTime       /*!< Time when it is inserted into request buffer */;
+        Time cbufferInsertionTime;	/*!< Time when it is inserted into the cmd buffer */
         uint hop_count;                 /*!< Network hop count of this memory operation until now */
         double avg_network_latency;     /*!< Total memory latency of this memory operation until now */
-	Time throttleTime;
+        Time throttleTime;
     protected:
-                                                                            
+
     private:
 
 }; /* ----- end of class Request ------ */

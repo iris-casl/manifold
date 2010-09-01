@@ -77,7 +77,7 @@ class Statistic
 	string PrintAggregateStats(uint n);
 	void CollectStatsPerCycle();
 
-	bool *doneOnce;
+	vector<bool*> doneOnce;
     	vector<double> avgLatPerThread;	
     	vector<ullint> latPerThread;
     	vector<ullint> reqPerThread;

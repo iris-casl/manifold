@@ -1,15 +1,11 @@
-bin_PROGRAMS = manifold_simIris manifold_simMC # manifold_fullSim 
+bin_PROGRAMS = manifold_simIris manifold_simMC #manifold_fullSim 
 
 OBJDIR = $(TOPDIR)/build
 BUILDDIR = $(TOPDIR)/build
 CXX_FLAGS = -D_FILE_OFFSET_BITS=64 -I source -m32 -ansi -g -gstabs+ -O0 -static-libgcc
 ZESTO_FLAGS = -O0 -g -m32 -DMIN_SYSCALL_MODE -DUSE_SSE_MOVE -Wall -DDEBUG -msse4a -mfpmath=sse
-#Zesto needs to be compiled as 64 bit
-#ZESTO_FLAGS = -O0 -g -m64 -DMIN_SYSCALL_MODE -DUSE_SSE_MOVE -Wall -DDEBUG -msse4a -mfpmath=sse
-MLIBS  = -lm -ldl -lqsim -L../qsim-0.1-pre5/
-#for zesto to be compiled with qsim and g++ 4.4
-#ZESTOCXXLD = g++-4.4 -lc -lm -ldl -lqsim -L../qsim-0.1-pre5/
-ZESTOCXXLD = g++ -lc -lm -ldl -lqsim -L../qsim-0.1-pre5/
+MLIBS  = -lm  
+ZESTOCXXLD = g++ -lc -lm  
 CXXLD = g++ -lc -lm -ldl
 CXXLD_PROFILE = g++ -lgcov -lc
 #DEBUG_FLAGS = -D_DEBUG -D_DEBUG_ROUTER 
@@ -17,8 +13,8 @@ DEBUG_FLAGS = -g -pg -D_STLP_DEBUG -D_DEBUG -DDEBUG -D_DEBUG_ROUTER -D_DEBUG_INT
 PROFILE_FLAGS = -fprofile-arcs -ftest-coverage -lgcov -g -pg
 FE_SOURCES = \
 		  source/frontend/impl/mesh.cc \
- 		  source/frontend/impl/torus.cc \
-		  source/frontend/impl/visual.cc
+		 source/frontend/impl/torus.cc \
+		 source/frontend/impl/visual.cc
 
 ##source/util/mc_constants.h \
 
@@ -60,12 +56,7 @@ ALL_HDRS = \
 	   source/simIris/components/impl/genericRouter3Stg.h \
 	   source/simIris/components/impl/genericTracePktGen.h \
 	   source/simIris/components/impl/genericVcAllocator.h \
-	   source/simIris/components/impl/genericFlatMc.h \
-	   source/simIris/components/impl/memctrlFE.h \
 	   source/frontend/impl/mesh.h \
-           source/frontend/impl/visual.h \
-	   source/frontend/impl/torus.h \
-	   source/frontend/impl/topology.h \
 	   source/memctrl/addr_map.h \
 	   source/memctrl/request.h \
 	   source/memctrl/request_handler.h \
@@ -81,10 +72,12 @@ ALL_HDRS = \
 	   source/memctrl/refresh_manager.h \
 	   source/memctrl/response_handler.h \
 	   source/memctrl/stats.h \
+	   source/simIris/components/impl/mcFrontEnd.h \
+	   source/simIris/components/impl/genericFlatMc.h \
 	   source/memctrl/mshr.h \
 	   source/memctrl/mshr_standalone.h 
 
-ZESTO_HDRS=
+ZESTO_HDRS = \
 	   source/zesto/bbtracker.h \
 	   source/zesto/thread.h    \
 	   source/zesto/eio.h \
@@ -157,3 +150,9 @@ noinst_HEADERS = \
 		 source/frontend/impl/mesh.h \
 		 source/util/config_params.h \
 		 $(ALL_HDRS)
+
+###Headers
+#noinst_HEADERS = \
+#		 source/frontend/impl/mesh.h \
+#		 source/util/config_params.h \
+#		 $(ALL_HDRS) $(ZESTO_HDRS)

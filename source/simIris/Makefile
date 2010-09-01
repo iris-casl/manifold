@@ -78,8 +78,8 @@ am__objects_1 = libIris_a-link.$(OBJEXT) libIris_a-clock.$(OBJEXT) \
 	libIris_a-genericRouter3Stg.$(OBJEXT) \
 	libIris_a-genericTracePktGen.$(OBJEXT) \
 	libIris_a-genericVcAllocator.$(OBJEXT) \
-	libIris_a-genericFlatMc.$(OBJEXT) \
-	libIris_a-memctrlFE.$(OBJEXT)
+	libIris_a-mcFrontEnd.$(OBJEXT) \
+	libIris_a-genericFlatMc.$(OBJEXT)
 am_libIris_a_OBJECTS = $(am__objects_1)
 libIris_a_OBJECTS = $(am_libIris_a_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
@@ -96,13 +96,13 @@ HEADERS = $(noinst_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/sharda/manifold/missing --run aclocal-1.9
+ACLOCAL = ${SHELL} /home/sharda/new/manifold/missing --run aclocal-1.9
 AMDEP_FALSE = #
 AMDEP_TRUE = 
-AMTAR = ${SHELL} /home/sharda/manifold/missing --run tar
-AUTOCONF = ${SHELL} /home/sharda/manifold/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/sharda/manifold/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/sharda/manifold/missing --run automake-1.9
+AMTAR = ${SHELL} /home/sharda/new/manifold/missing --run tar
+AUTOCONF = ${SHELL} /home/sharda/new/manifold/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/sharda/new/manifold/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/sharda/new/manifold/missing --run automake-1.9
 AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -128,7 +128,7 @@ LDFLAGS =
 LIBOBJS = 
 LIBS = 
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/sharda/manifold/missing --run makeinfo
+MAKEINFO = ${SHELL} /home/sharda/new/manifold/missing --run makeinfo
 OBJEXT = o
 PACKAGE = Iris
 PACKAGE_BUGREPORT = mitchelle dot rasquinha at gatech.edu
@@ -162,7 +162,7 @@ exec_prefix = ${prefix}
 host_alias = 
 includedir = ${prefix}/include
 infodir = ${prefix}/info
-install_sh = /home/sharda/manifold/install-sh
+install_sh = /home/sharda/new/manifold/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localstatedir = ${prefix}/var
@@ -205,8 +205,8 @@ IRIS_SOURCES = \
 		  components/impl/genericRouter3Stg.cc \
 		  components/impl/genericTracePktGen.cc \
 		  components/impl/genericVcAllocator.cc \
-		  components/impl/genericFlatMc.cc \
-		  components/impl/memctrlFE.cc
+		  components/impl/mcFrontEnd.cc \
+		  components/impl/genericFlatMc.cc 
 
 libIris_a_CXXFLAGS = $(CXX_FLAGS)
 libIris_a_SOURCES = $(IRIS_SOURCES)
@@ -306,7 +306,7 @@ include ./$(DEPDIR)/libIris_a-irisEvent.Po
 include ./$(DEPDIR)/libIris_a-irisLink.Po
 include ./$(DEPDIR)/libIris_a-link.Po
 include ./$(DEPDIR)/libIris_a-lowLevelPacket.Po
-include ./$(DEPDIR)/libIris_a-memctrlFE.Po
+include ./$(DEPDIR)/libIris_a-mcFrontEnd.Po
 include ./$(DEPDIR)/libIris_a-networkComponent.Po
 include ./$(DEPDIR)/libIris_a-processor.Po
 include ./$(DEPDIR)/libIris_a-ptopSwaVcs.Po
@@ -721,6 +721,20 @@ libIris_a-genericVcAllocator.obj: components/impl/genericVcAllocator.cc
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -c -o libIris_a-genericVcAllocator.obj `if test -f 'components/impl/genericVcAllocator.cc'; then $(CYGPATH_W) 'components/impl/genericVcAllocator.cc'; else $(CYGPATH_W) '$(srcdir)/components/impl/genericVcAllocator.cc'; fi`
 
+libIris_a-mcFrontEnd.o: components/impl/mcFrontEnd.cc
+	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -MT libIris_a-mcFrontEnd.o -MD -MP -MF "$(DEPDIR)/libIris_a-mcFrontEnd.Tpo" -c -o libIris_a-mcFrontEnd.o `test -f 'components/impl/mcFrontEnd.cc' || echo '$(srcdir)/'`components/impl/mcFrontEnd.cc; \
+	then mv -f "$(DEPDIR)/libIris_a-mcFrontEnd.Tpo" "$(DEPDIR)/libIris_a-mcFrontEnd.Po"; else rm -f "$(DEPDIR)/libIris_a-mcFrontEnd.Tpo"; exit 1; fi
+#	source='components/impl/mcFrontEnd.cc' object='libIris_a-mcFrontEnd.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -c -o libIris_a-mcFrontEnd.o `test -f 'components/impl/mcFrontEnd.cc' || echo '$(srcdir)/'`components/impl/mcFrontEnd.cc
+
+libIris_a-mcFrontEnd.obj: components/impl/mcFrontEnd.cc
+	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -MT libIris_a-mcFrontEnd.obj -MD -MP -MF "$(DEPDIR)/libIris_a-mcFrontEnd.Tpo" -c -o libIris_a-mcFrontEnd.obj `if test -f 'components/impl/mcFrontEnd.cc'; then $(CYGPATH_W) 'components/impl/mcFrontEnd.cc'; else $(CYGPATH_W) '$(srcdir)/components/impl/mcFrontEnd.cc'; fi`; \
+	then mv -f "$(DEPDIR)/libIris_a-mcFrontEnd.Tpo" "$(DEPDIR)/libIris_a-mcFrontEnd.Po"; else rm -f "$(DEPDIR)/libIris_a-mcFrontEnd.Tpo"; exit 1; fi
+#	source='components/impl/mcFrontEnd.cc' object='libIris_a-mcFrontEnd.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -c -o libIris_a-mcFrontEnd.obj `if test -f 'components/impl/mcFrontEnd.cc'; then $(CYGPATH_W) 'components/impl/mcFrontEnd.cc'; else $(CYGPATH_W) '$(srcdir)/components/impl/mcFrontEnd.cc'; fi`
+
 libIris_a-genericFlatMc.o: components/impl/genericFlatMc.cc
 	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -MT libIris_a-genericFlatMc.o -MD -MP -MF "$(DEPDIR)/libIris_a-genericFlatMc.Tpo" -c -o libIris_a-genericFlatMc.o `test -f 'components/impl/genericFlatMc.cc' || echo '$(srcdir)/'`components/impl/genericFlatMc.cc; \
 	then mv -f "$(DEPDIR)/libIris_a-genericFlatMc.Tpo" "$(DEPDIR)/libIris_a-genericFlatMc.Po"; else rm -f "$(DEPDIR)/libIris_a-genericFlatMc.Tpo"; exit 1; fi
@@ -734,20 +748,6 @@ libIris_a-genericFlatMc.obj: components/impl/genericFlatMc.cc
 #	source='components/impl/genericFlatMc.cc' object='libIris_a-genericFlatMc.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -c -o libIris_a-genericFlatMc.obj `if test -f 'components/impl/genericFlatMc.cc'; then $(CYGPATH_W) 'components/impl/genericFlatMc.cc'; else $(CYGPATH_W) '$(srcdir)/components/impl/genericFlatMc.cc'; fi`
-
-libIris_a-memctrlFE.o: components/impl/memctrlFE.cc
-	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -MT libIris_a-memctrlFE.o -MD -MP -MF "$(DEPDIR)/libIris_a-memctrlFE.Tpo" -c -o libIris_a-memctrlFE.o `test -f 'components/impl/memctrlFE.cc' || echo '$(srcdir)/'`components/impl/memctrlFE.cc; \
-	then mv -f "$(DEPDIR)/libIris_a-memctrlFE.Tpo" "$(DEPDIR)/libIris_a-memctrlFE.Po"; else rm -f "$(DEPDIR)/libIris_a-memctrlFE.Tpo"; exit 1; fi
-#	source='components/impl/memctrlFE.cc' object='libIris_a-memctrlFE.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -c -o libIris_a-memctrlFE.o `test -f 'components/impl/memctrlFE.cc' || echo '$(srcdir)/'`components/impl/memctrlFE.cc
-
-libIris_a-memctrlFE.obj: components/impl/memctrlFE.cc
-	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -MT libIris_a-memctrlFE.obj -MD -MP -MF "$(DEPDIR)/libIris_a-memctrlFE.Tpo" -c -o libIris_a-memctrlFE.obj `if test -f 'components/impl/memctrlFE.cc'; then $(CYGPATH_W) 'components/impl/memctrlFE.cc'; else $(CYGPATH_W) '$(srcdir)/components/impl/memctrlFE.cc'; fi`; \
-	then mv -f "$(DEPDIR)/libIris_a-memctrlFE.Tpo" "$(DEPDIR)/libIris_a-memctrlFE.Po"; else rm -f "$(DEPDIR)/libIris_a-memctrlFE.Tpo"; exit 1; fi
-#	source='components/impl/memctrlFE.cc' object='libIris_a-memctrlFE.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libIris_a_CXXFLAGS) $(CXXFLAGS) -c -o libIris_a-memctrlFE.obj `if test -f 'components/impl/memctrlFE.cc'; then $(CYGPATH_W) 'components/impl/memctrlFE.cc'; else $(CYGPATH_W) '$(srcdir)/components/impl/memctrlFE.cc'; fi`
 uninstall-info-am:
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)

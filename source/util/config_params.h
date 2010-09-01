@@ -24,7 +24,6 @@
 #include	"genericData.h"
 #include	"mc_constants.h"
 
-
 //#define DEBUG
 //#define DEEP_DEBUG
 /* Generic topology parameters */
@@ -34,7 +33,7 @@ uint no_nodes = 0,
      max_phy_link_bits = 128,
      links = 0;
 
-ullint max_sim_time = 1000000;
+ullint max_sim_time = 10000000;
 
 //Sharda
 string network_type = "NONE";
@@ -53,28 +52,26 @@ vector<uint> mc_positions;
 vector<string> traces;
 uint vcs=0, ports=0, buffer_size=0, credits=0;
 string trace_name, output_path, msg_type_string;
-string routing_scheme = "xy";
-string sw_arbitration_scheme = "round-robin";
+string routing_scheme, sw_arbitration_scheme;
 string addr_map_scheme_string,mc_scheduling_algorithm_string,dram_page_policy_string;
 uint THREAD_BITS_POSITION = 25;
 uint MC_ADDR_BITS = 12;
 uint BANK_BITS = 13;
 
 DRAM_CONFIG dram_config_string = DDR3_1600_10;
-bool do_request_reply_network = false;
 
 
 DRAM_PAGE_POLICY dram_page_policy = OPEN_PAGE_POLICY; 
 MC_SCHEDULLING_ALGO mc_scheduling_algorithm = FR_FCFS;
 ADDR_MAP_SCHEME addr_map_scheme = PAGE_INTERLEAVING;
-uint NO_OF_THREADS=2;
+uint NO_OF_THREADS=16;
 uint MAX_BUFFER_SIZE = 8;
 uint MAX_CMD_BUFFER_SIZE = 16;
 uint RESPONSE_BUFFER_SIZE = 56*8; 
 
  
-//   uint NO_OF_CHANNELS=1;		//  (int)log2() = k bits. 
-    uint NO_OF_RANKS = 1;       		//  (int)log2() = l bits.
+   uint NO_OF_CHANNELS=1;		//  (int)log2() = k bits. 
+   uint NO_OF_RANKS=1;       		//  (int)log2() = l bits.
 
     uint NO_OF_BANKS=8;         		//  (int)log2() = b bits. 
 //   uint NO_OF_BUFFERS = NO_OF_BANKS;

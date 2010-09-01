@@ -54,8 +54,8 @@ class Bus : public Component
 	Component* parent;                      /*!< \brief  pointer to its parent */
 	Component* child1;      		/*!< \brief  DRAM side link */
 	Component* child2;	        	/*!< \brief  Response side link */
-	DataBusHandler dataBus[NO_OF_CHANNELS]; /*!< \brief  Array of data buses (1 per channel) */
-	CmdBusHandler cmdBus[NO_OF_CHANNELS];   /*!< \brief  Array of cmd buses (1 per channel) */
+	vector<DataBusHandler> dataBus;         /*!< \brief  Array of data buses (1 per channel) */
+	vector<CmdBusHandler> cmdBus;           /*!< \brief  Array of cmd buses (1 per channel) */
         void process_event (IrisEvent* e);      
 	void SetLinks();                        /*!< \brief  Setd the links of buses with various components */        
         std::string toString();

@@ -88,7 +88,7 @@ void PowerStats::CalcPower(float BNK_PRE, float CLK_LO_PRE, float CLK_LO_ACT, fl
 
 void Statistic::CollectStatsPerRequest(Request *req)
 {
- //   if (!(*doneOnce[req->threadId]))	
+//    if (!(*doneOnce[req->threadId]))	
     {	
     ///////// calculating runing average ////////////////
 
@@ -109,6 +109,7 @@ void Statistic::CollectStatsPerRequest(Request *req)
     TotalQueueDelayPerThreadPerBank[req->threadId][req->bankNo] += (req->cbufferInsertionTime - req->rbufferInsertionTime);
     TotalCBufDelayPerThreadPerBank[req->threadId][req->bankNo] += (req->busInsertionTime - req->cbufferInsertionTime);
     TotalBusMemDelayPerThreadPerBank[req->threadId][req->bankNo] += (req->retireTime - req->busInsertionTime - 1);
+
 #ifdef DEBUG
     cout << "MC[" << ((MC*)mc)->id << "] " << req->address << ": " << Simulator::Now() 
 	<<  ": Reached stats collection with arrival Time = "<< req->arrivalTime 
@@ -117,7 +118,7 @@ void Statistic::CollectStatsPerRequest(Request *req)
 	<< ", bus insertion time = " << req->busInsertionTime 
 	<< "and retire time = " << req->retireTime << endl;
 #endif
-    //throttlePerThreadPerBank[req->threadId][req->bankNo] += req->throttleTime;	
+
     if (req->status == OPEN)    
 	hitsPerThreadPerBank[req->threadId][req->bankNo]++;
     hitRatePerThreadPerBank[req->threadId][req->bankNo] =  hitsPerThreadPerBank[req->threadId][req->bankNo] * 100.0
@@ -151,6 +152,8 @@ void Statistic::CollectStatsPerCycle()
 
 void Statistic::InitStats()
 {
+    doneOnce.resize(NO_OF_THREADS);
+
     avgLatPerThread.resize(NO_OF_THREADS);
     latPerThread.resize(NO_OF_THREADS);
     reqPerThread.resize(NO_OF_THREADS);

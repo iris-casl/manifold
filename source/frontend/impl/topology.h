@@ -26,7 +26,7 @@
 #include	"../../simIris/components/impl/genericTracePktGen.h"
 #include        "../../simIris/components/impl/genericFlatMc.h"
 #include        "../../simIris/components/impl/genericLink.h"
-#include 	"../../simIris/components/impl/memctrlFE.h"
+//#include 	"../../simIris/components/impl/memctrlFE.h"
 
 #include	"../../simIris/data_types/impl/flit.h"
 #include	"../../simIris/data_types/impl/highLevelPacket.h"

@@ -34,7 +34,7 @@ RankHandler::RankHandler()
     readsOWrite = 0;
     prevReadsOWrite = 0;
     bank.resize(NO_OF_BANKS);
-    rbuffer.resize(NO_OF_BANKS);
+    rbuffer.resize(NO_OF_BUFFERS);
 }
 
 /*

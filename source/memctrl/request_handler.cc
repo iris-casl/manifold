@@ -40,7 +40,8 @@ RequestHandler::RequestHandler()
     addrMap = new AddrMap();
     addrMap->parent = this;
     busHandler = new BusHandler();
-    busHandler->parent = this;				
+    busHandler->parent = this;
+    chan = new ChannelHandler[NO_OF_CHANNELS];
     for(short i=0; i<NO_OF_CHANNELS; i++)
     {
 	chan[i].chanId = i;
@@ -70,7 +71,7 @@ RequestHandler::RequestHandler()
 RequestHandler::~RequestHandler()
 {
     delete addrMap;
-    delete busHandler;	
+//    delete busHandler;	
 }
 
 void RequestHandler::SetLinks()
@@ -111,26 +112,6 @@ void RequestHandler::process_event(IrisEvent* e)
 		}
 	    delete req;	                
        	    break;		
-
-	case STOP_CMD_QUEUE:
-	    for (unsigned int i=0; i<NO_OF_CHANNELS; i++)
-	    {	
-	    	busHandler->full[i] = true;
-		busHandler->stopSignal = true;	
-	    }	
-	    delete event;
-	    delete req;	
-	    break;
-	
-	case START_CMD_QUEUE:
-	    for (unsigned int i=0; i<NO_OF_CHANNELS; i++)
-	    {	   	
-		busHandler->full[i] = false;
-		busHandler->stopSignal = false;	
-	    }
-	    delete event;
-	    delete req;			
-	    break;		
 
     case CONTINUE: 
             {

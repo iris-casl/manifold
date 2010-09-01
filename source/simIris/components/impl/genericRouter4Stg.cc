@@ -348,9 +348,9 @@ GenericRouter4Stg::handle_link_arrival_event ( IrisEvent* e )
             input_buffer_state[port*vcs+data->vc].clear_message= false;
             //            input_buffer_state[port*vcs+data->vc].flits_in_ib = 0;
 
-            //            _DBG(" New Msg ip:%d ivc:%d pop:%d povc:%d ", input_buffer_state[port*vcs+data->vc].input_port,
-            //                 input_buffer_state[port*vcs+data->vc].input_channel, input_buffer_state[port*vcs+data->vc].possible_oports.size(),
-            //                 input_buffer_state[port*vcs+data->vc].possible_ovcs.size());
+//            _DBG(" New Msg ip:%d ivc:%d pop:%d povc:%d ", input_buffer_state[port*vcs+data->vc].input_port,
+//                 input_buffer_state[port*vcs+data->vc].input_channel, input_buffer_state[port*vcs+data->vc].possible_oports.size(),
+//                 input_buffer_state[port*vcs+data->vc].possible_ovcs.size());
         }
         else
         {

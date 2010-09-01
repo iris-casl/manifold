@@ -29,8 +29,8 @@ IRIS_SOURCES = \
 		  components/impl/genericRouter3Stg.cc \
 		  components/impl/genericTracePktGen.cc \
 		  components/impl/genericVcAllocator.cc \
-		  components/impl/genericFlatMc.cc \
-		  components/impl/memctrlFE.cc
+		  components/impl/mcFrontEnd.cc \
+		  components/impl/genericFlatMc.cc 
 
 ##libIris
 libIris_a_CXXFLAGS = $(CXX_FLAGS)

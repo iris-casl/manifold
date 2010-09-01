@@ -1,45 +1,48 @@
-#ifndef _generictpgvcs_cc_INC
-#define _generictpgvcs_cc_INC
+#ifndef _genericTracePktGen_cc_INC
+#define _genericTracePktGen_cc_INC
 
 #include "genericTracePktGen.h"
+#include "../../../memctrl/mshr.h"
+
+
 
 extern unsigned int MC_ADDR_BITS;
 //unsigned int NUM_OF_CONTROLLERS = 8;
-GenericTPGVcs::GenericTPGVcs ()
+GenericTracePktGen::GenericTracePktGen ()
 {
-    name = "GenericTPGVcs";
+    name = "GenericTracePktGen";
     sending = false;
     /* Do this in setup with the address or node_ip appended */
     out_filename = "traceOut.tr";
     last_vc = 0;
 //    interface_connections.resize(1);	
     ni_recv = false;
-} /* ----- end of function GenericTPGVcs::GenericTPGVcs ----- */
+} /* ----- end of function GenericTracePktGen::GenericTracePktGen ----- */
 
-GenericTPGVcs::~GenericTPGVcs ()
+GenericTracePktGen::~GenericTracePktGen ()
 {
     out_file.close();
     mshrHandler->trace_filename.close();
     mshrHandler->mshr.clear();
     delete mshrHandler;
 
-} /* ----- end of function GenericTPGVcs::~GenericTPGVcs ----- */
+} /* ----- end of function GenericTracePktGen::~GenericTracePktGen ----- */
 
 void
-GenericTPGVcs::set_trace_filename( string filename )
+GenericTracePktGen::set_trace_filename( string filename )
 {
     trace_name = filename;
     cout<<"TraceName: "<<trace_name<<endl;
 }
 
 void
-GenericTPGVcs::set_no_vcs ( uint v)
+GenericTracePktGen::set_no_vcs ( uint v)
 {
     vcs = v;
 }
 
 void
-GenericTPGVcs::setup (uint n, uint v, uint time)
+GenericTracePktGen::setup (uint n, uint v, uint time)
 {
     vcs =v;
     no_nodes = n;
@@ -128,10 +131,10 @@ GenericTPGVcs::setup (uint n, uint v, uint time)
 
 
     return ;
-} /* ----- end of function GenericTPGVcs::setup ----- */
+} /* ----- end of function GenericTracePktGen::setup ----- */
 
 void
-GenericTPGVcs::set_output_path( string name)
+GenericTracePktGen::set_output_path( string name)
 {
     // open the output trace file
     stringstream str;
@@ -149,15 +152,15 @@ GenericTPGVcs::set_output_path( string name)
 }
 
 void
-GenericTPGVcs::finish ()
+GenericTracePktGen::finish ()
 {
     out_file.close();
     trace_filename->close();
     return ;
-} /* ----- end of function GenericTPGVcs::finish ----- */
+} /* ----- end of function GenericTracePktGen::finish ----- */
 
 void
-GenericTPGVcs::process_event (IrisEvent* e)
+GenericTracePktGen::process_event (IrisEvent* e)
 {
     switch(e->type)
     {
@@ -175,10 +178,10 @@ GenericTPGVcs::process_event (IrisEvent* e)
             break;
     }
     return ;
-} /* ----- end of function GenericTPGVcs::process_event ----- */
+} /* ----- end of function GenericTracePktGen::process_event ----- */
 
 void
-GenericTPGVcs::handle_new_packet_event ( IrisEvent* e)
+GenericTracePktGen::handle_new_packet_event ( IrisEvent* e)
 {
     ni_recv = false;
     // get the packet data
@@ -232,10 +235,10 @@ GenericTPGVcs::handle_new_packet_event ( IrisEvent* e)
 
     delete e;
     return ;
-} /* ----- end of function GenericTPGVcs::handle_new_packet_event ----- */
+} /* ----- end of function GenericTracePktGen::handle_new_packet_event ----- */
 
 void
-GenericTPGVcs::handle_out_pull_event ( IrisEvent* e )
+GenericTracePktGen::handle_out_pull_event ( IrisEvent* e )
 {
     sending =false;
     bool found = false;
@@ -341,7 +344,7 @@ GenericTPGVcs::handle_out_pull_event ( IrisEvent* e )
 }
 
 void
-GenericTPGVcs::handle_ready_event ( IrisEvent* e)
+GenericTracePktGen::handle_ready_event ( IrisEvent* e)
 {
 
     if ( e->vc > vcs )
@@ -362,9 +365,9 @@ GenericTPGVcs::handle_ready_event ( IrisEvent* e)
 
     delete e;
     return ;
-} /* ----- end of function GenericTPGVcs::handle_ready_event ----- */
+} /* ----- end of function GenericTracePktGen::handle_ready_event ----- */
 Request*
-GenericTPGVcs::GetNextRequest()
+GenericTracePktGen::GetNextRequest()
 {
     Addr_t addr =0;
     uint thread_id = 0;
@@ -402,7 +405,7 @@ GenericTPGVcs::GetNextRequest()
 }
 
 bool
-GenericTPGVcs::GetNewRequest(Request *req)
+GenericTracePktGen::GetNewRequest(Request *req)
 {
     if (!mshrHandler->writeQueue.empty())
     {
@@ -434,7 +437,7 @@ GenericTPGVcs::GetNewRequest(Request *req)
 }
 
 Request*
-GenericTPGVcs::GetRequest()
+GenericTracePktGen::GetRequest()
 {
     Request* req = new Request();
     if (GetNewRequest(req))
@@ -446,7 +449,7 @@ GenericTPGVcs::GetRequest()
 }
 
 void
-GenericTPGVcs::convertToBitStream(Request* req, HighLevelPacket* hlp)
+GenericTracePktGen::convertToBitStream(Request* req, HighLevelPacket* hlp)
 {
     for ( uint i=0 ; i < NETWORK_ADDRESS_BITS ; i++ )
     {
@@ -484,7 +487,7 @@ GenericTPGVcs::convertToBitStream(Request* req, HighLevelPacket* hlp)
 
 
 void 
-GenericTPGVcs::convertFromBitStream(Request* req, HighLevelPacket *hlp)
+GenericTracePktGen::convertFromBitStream(Request* req, HighLevelPacket *hlp)
 {
     req->address = 0;	
     req->mcNo=hlp->source;
@@ -516,20 +519,20 @@ GenericTPGVcs::convertFromBitStream(Request* req, HighLevelPacket *hlp)
 }
 
 string
-GenericTPGVcs::toString () const
+GenericTracePktGen::toString () const
 {
     stringstream str;
-    str << "\nGenericTPGVcs: "
+    str << "\nGenericTracePktGen: "
         << "\t trace: " << trace_name
         << "\t vcs: " << ready.size()
         << "\t address: " <<address
         << "\t node_ip: " << node_ip
         ;
     return str.str();
-} /*  ----- end of function GenericTPGVcs::toString ----- */
+} /*  ----- end of function GenericTracePktGen::toString ----- */
 
 string
-GenericTPGVcs::print_stats() const
+GenericTracePktGen::print_stats() const
 {
     stringstream str;
     str << "\nTPG [" << node_ip << "] packets_out:\t" << packets
@@ -546,6 +549,6 @@ GenericTPGVcs::print_stats() const
         << "\nTPG [" << node_ip << "] avg_round_trip_waiting_in_ni:\t" << (stat_waiting_in_ni+0.0)/packets_in
         ;
     return str.str();
-} /* ----- end of function GenericTPGVcs::toString ----- */
+} /* ----- end of function GenericTracePktGen::toString ----- */
 
-#endif /* ----- #ifndef _generictpgvcs_cc_INC ----- */
+#endif /* ----- #ifndef _genericTracePktGen_cc_INC ----- */

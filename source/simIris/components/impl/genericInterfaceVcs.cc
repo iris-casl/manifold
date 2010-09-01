@@ -308,13 +308,16 @@ GenericInterfaceVcs::handle_new_packet_event(IrisEvent* e)
 {
     HighLevelPacket* pkt = static_cast<HighLevelPacket*>(e->event_data.at(0));
     /* 
-    if( pkt->msg_class == RESPONSE_PKT)
-        pkt->virtual_channel = 1;
-    else
-        pkt->virtual_channel = 0;
+       if( pkt->msg_class == RESPONSE_PKT)
+       pkt->virtual_channel = 1;
+       else
+       pkt->virtual_channel = 0;
      * */
 
     pkt->to_low_level_packet(&out_packets[pkt->virtual_channel]);
+    //        _DBG(" IntM NI->MInt ch%d %llx", pkt->virtual_channel,pkt->addr);
+    //        cout << out_packets[pkt->virtual_channel].toString() ;
+    //        cout << "HLP: " << pkt->toString() ;
 #ifdef _DEBUG_INTERFACE
     if(is_mc_interface)
     {
@@ -399,8 +402,8 @@ GenericInterfaceVcs::handle_tick_event(IrisEvent* e)
             }
 #endif
 
-        static_cast<HeadFlit*>(f)->avg_network_latency = Simulator::Now() 
-            - static_cast<HeadFlit*>(f)->avg_network_latency;
+            static_cast<HeadFlit*>(f)->avg_network_latency = Simulator::Now() 
+                - static_cast<HeadFlit*>(f)->avg_network_latency;
         }
 
         if (f->type == TAIL || ( f->type == HEAD && static_cast<HeadFlit*>(f)->msg_class == ONE_FLIT_REQ) )
@@ -408,7 +411,7 @@ GenericInterfaceVcs::handle_tick_event(IrisEvent* e)
             packets_out++;
             in_packet_complete[winner] = false;
 
-//            _DBG(" Sending READY to NI pkt_vc:%d ready_vc:%d ad:%llx", f->vc, out_packets[winner].virtual_channel, out_packets[winner].addr);
+            //            _DBG(" Sending READY to NI pkt_vc:%d ready_vc:%d ad:%llx", f->vc, out_packets[winner].virtual_channel, out_packets[winner].addr);
             IrisEvent* event = new IrisEvent();
             event->type = READY_EVENT;
             event->vc = winner;
@@ -470,12 +473,12 @@ GenericInterfaceVcs::handle_tick_event(IrisEvent* e)
 
     if(!found)
     {    for ( uint i=0; i<=flast_vc ; i++)
-            if ( in_ready[i] )  
-            {
-                flast_vc = i;
-                found = true;
-                break;
-            }
+        if ( in_ready[i] )  
+        {
+            flast_vc = i;
+            found = true;
+            break;
+        }
     }
 
     bool pkt_fnd = false;
@@ -485,7 +488,7 @@ GenericInterfaceVcs::handle_tick_event(IrisEvent* e)
         {
             pkt_fnd = true;
             comp_pkt_index = i;
-//            break;
+            //            break;
         }
 
 

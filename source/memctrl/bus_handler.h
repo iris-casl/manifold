@@ -50,23 +50,17 @@ class BusHandler
         ~ BusHandler ();
 	Component* parent;
 //	short busId;
- 	CmdQueue cmdQueue[NO_OF_CHANNELS];	
-	CmdIssuer cmdIssuer[NO_OF_CHANNELS];
-	bool stopSignal;
-	bool full[NO_OF_CHANNELS];
-	bool linkBusy[NO_OF_CHANNELS];
+// 	CmdQueue cmdQueue[1];
+ 	vector<CmdQueue> cmdQueue;	
+	vector<CmdIssuer> cmdIssuer;
+	vector<bool> full;
+	vector<bool> linkBusy;
+        bool stopSignal;
 	vector< vector< vector<bool> > > oneReq;
 	bool BankRankFree(unsigned int bankNo, unsigned int rankNo, unsigned int channelNo);
 	void SetIfFull();
 	bool IsFull(int i);
 	void LowLevelCmdGen(Request *req);
-//	bool stoppedUpper;
-//	bool stoppedLower;		
-//      void process_event(IrisEvent* e);
-//	bool HasWork();
-//	bool StopUpper();
-//	bool CanUpperStart();
-//	void SetEvent(IrisEvent *event, Component* src, Component* dst, unsigned int type);
         std::string toString();
                                                                             
     protected:

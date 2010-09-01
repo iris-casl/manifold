@@ -75,8 +75,8 @@ LowLevelPacket::toString () const
         << "\t hop_count: " << hop_count
         << "\t network_latency: " << avg_network_latency
 		<< "\t PacketCount: " << dec << pkt_cnt
+	<< "\t size: " << static_cast<HeadFlit*>(flits[0])->payload.size() 
         << endl;
-/* 
     for ( uint i=0 ; i<flits.size() ; i++ )
         if( flits[i]->type == HEAD)
             str << static_cast<HeadFlit*>(flits[i])->toString();
@@ -86,6 +86,7 @@ LowLevelPacket::toString () const
             str << static_cast<TailFlit*>(flits[i])->toString();
         else
             str << " Error unk flit type" ;
+/* 
  * */
     return str.str();
 }		/* -----  end of function LoeLevelPacket::toString  ----- */

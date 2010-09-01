@@ -26,10 +26,12 @@
 #include        <cstdlib>
 #include 	<fstream>
 #include        <map>
+#include        <math.h>
+#include        "request.h"
 #include        "../kernel/component.h"
 #include        "../kernel/simulator.h"
 #include        "../simIris/data_types/impl/irisEvent.h"
-#include        "request.h"
+#include        "../simIris/components/impl/genericEvents.h"
 
 using namespace std;
 

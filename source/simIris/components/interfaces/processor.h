@@ -33,8 +33,8 @@ class Processor : public NetworkComponent
 {
     public:
         Processor ();                             /* constructor */
-        vector < Interface* > interface_connections;
         virtual ~Processor();
+        vector < Interface* > interface_connections;
         void init();
         virtual string toString() const;
         virtual void process_event(IrisEvent* e) = 0;

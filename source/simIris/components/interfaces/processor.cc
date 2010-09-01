@@ -22,11 +22,11 @@
 Processor::Processor ()
 {
     type = NetworkComponent::processor;
-}		/* -----  end of method Processor::Processor  ----- */
+}
 
 Processor::~Processor ()
 {
-}		/* -----  end of function Processor::~Processor  ----- */
+}
 
 string Processor::toString() const
 {

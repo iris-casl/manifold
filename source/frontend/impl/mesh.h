@@ -50,6 +50,48 @@
 
 #include 	"topology.h"
 
+#include	<iostream>
+#include	<fstream>
+#include	"../../simIris/components/impl/genericRouter4Stg.h"
+#include	"../../simIris/components/impl/genericRouter3Stg.h"
+#include	"../../simIris/components/impl/genericInterfaceVcs.h"
+#include	"../../simIris/components/impl/genericTracePktGen.h"
+#include	"../../simIris/components/impl/mcFrontEnd.h"
+#include        "../../simIris/components/impl/genericFlatMc.h"
+#include        "../../simIris/components/impl/genericLink.h"
+#include 	"../../simIris/components/impl/mcFrontEnd.h"
+
+#include	"../../simIris/data_types/impl/flit.h"
+#include	"../../simIris/data_types/impl/highLevelPacket.h"
+#include	"../../simIris/components/impl/genericFlatMc.h"
+#include	"../../util/genericData.h"
+#include	<string.h>
+#include	<sys/time.h>
+#include	<algorithm>
+#include 	<stdio.h>
+#include 	<stdlib.h>
+#include 	<time.h>
+#include 	<setjmp.h>
+#include 	<signal.h>
+#include 	<sys/types.h>
+#include 	<unistd.h>
+#include 	<sys/time.h>
+#include 	<sys/io.h>
+
+#ifdef USE_ZESTO
+#include 	"../../zesto/host.h"
+#include 	"../../zesto/misc.h"
+#include 	"../../zesto/sim.h"
+#include 	"../../zesto/machine.h"
+#include 	"../../zesto/endian.h"
+#include 	"../../zesto/version.h"
+#include 	"../../zesto/options.h"
+#include 	"../../zesto/stats.h"
+#include 	"../../zesto/regs.h"
+#include 	"../../zesto/memory.h"
+#include 	"../../zesto/thread.h"
+#endif
+
 extern vector<unsigned int> mc_positions;
 extern uint no_of_cores;
 extern uint concentration;
@@ -67,7 +109,6 @@ class Mesh : public Topology
         void connect_routers(void);
         string print_stats(void);
         void set_max_phy_link_bits ( uint a);
-	unsigned long long int max_sim_time;
 
     protected:
 

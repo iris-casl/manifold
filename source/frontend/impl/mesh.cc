@@ -112,7 +112,6 @@ void
 Mesh::connect_routers()
 {
     //  Router input and output connections
-
     /* ------------- Configure east links for the router ----------- */
     uint last_link_id = no_nodes;
     for ( uint router_no=0 ; router_no<no_nodes; router_no++ )
@@ -171,7 +170,6 @@ Mesh::connect_routers()
 /* ------------ End West links --------------------- */
 
 /* ------------ Begin North links --------------------- */
-
     map < uint, uint > col_major_ordering;
     for ( uint i=0; i<grid_size; i++)
         for ( uint j=0; j<grid_size; j++)
@@ -241,7 +239,6 @@ Mesh::connect_routers()
         cout << "ERROR : incorrect topology last_link_id: " << last_link_id << " links: " << links <<endl;
         exit(1);
     }
-    
 /* ------------ End South links --------------------- */
 
     return;

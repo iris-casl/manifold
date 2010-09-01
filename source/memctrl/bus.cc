@@ -31,7 +31,8 @@ using namespace std;
 
 Bus::Bus()
 {
-
+    dataBus.resize(NO_OF_CHANNELS);
+    cmdBus.resize(NO_OF_CHANNELS);
 }
 
 /*

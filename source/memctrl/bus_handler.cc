@@ -33,7 +33,11 @@ using namespace std;
 
 BusHandler::BusHandler()
 {
+    cmdIssuer.resize(NO_OF_CHANNELS);
+    linkBusy.resize(NO_OF_CHANNELS);
+    full.resize(NO_OF_CHANNELS);
     oneReq.resize(NO_OF_CHANNELS);
+    cmdQueue.resize(NO_OF_CHANNELS);
     for (unsigned int i=0; i<NO_OF_CHANNELS; i++)
         oneReq[i].resize(NO_OF_RANKS);
     

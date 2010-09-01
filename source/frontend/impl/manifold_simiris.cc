@@ -26,7 +26,6 @@
 #include	"visual.h"
 #include	"../../simIris/data_types/impl/flit.h"
 #include	"../../simIris/data_types/impl/highLevelPacket.h"
-#include	"../../simIris/components/impl/genericFlatMc.h"
 #include	"../../util/genericData.h"
 #include	"../../util/config_params.h"
 #include        "../../memctrl/mshr.cc"
@@ -36,10 +35,8 @@
 
 unsigned long int net_pack_info[8][8];
 
-string router_model_string, mc_model_string;
-//Mesh* mesh; Sharda
 Topology * topology_ptr = NULL;
-//string network_type;
+string router_model_string, mc_model_string;
 
 void
 dump_configuration ( void )
@@ -71,14 +68,15 @@ dump_configuration ( void )
     cerr << " COMMAND_BITS:\t" << NETWORK_THREADID_BITS << endl;
     cerr << " COREID_BITS:\t" << NETWORK_COMMAND_BITS << endl;
     cerr << " NO_OF_THREADS:\t" << NO_OF_THREADS << endl;
+    cerr << " NO_OF_CHANNELS:\t" << NO_OF_RANKS << endl;
     cerr << " NO_OF_RANKS:\t" << NO_OF_RANKS << endl;
     cerr << " NO_OF_BANKS:\t" << NO_OF_BANKS << endl;
     cerr << " NO_OF_ROWS:\t" << NO_OF_ROWS << endl;
     cerr << " NO_OF_COLUMNS:\t" << NO_OF_COLUMNS << endl;
     cerr << " COLUMN_SIZE:\t" << COLUMN_SIZE << endl;
+    cerr << " Router Model String:\t" << router_model_string<< endl;
+    cerr << " mc_model_string:\t" << mc_model_string<< endl;
     cerr << " Msg_class with arbitration priority:\t" << msg_type_string << endl;
-    cerr << " Router model:\t" << router_model_string << endl;
-    cerr << " MC Mode:\t" << mc_model_string << endl;
 
     if( traces.size() < (no_nodes - no_mcs) )
     {
@@ -114,8 +112,8 @@ main ( int argc, char *argv[] )
         istringstream iss( data, istringstream::in);
         while ( position > data.size() && iss >> word )
         {
-	    if ( word.compare("TYPE") == 0 || word.compare("Type") == 0)
-        	iss >> network_type;
+	    if ( word.compare("TYPE") == 0)
+		iss >> network_type;
             if ( word.compare("PRINT_SETUP") == 0)   
                 iss >> print_setup;
             if ( word.compare("VCS") == 0)   
@@ -145,9 +143,9 @@ main ( int argc, char *argv[] )
             if ( word.compare("ROUTER_MODEL") == 0)
                 iss >> router_model_string;
             NO_OF_THREADS = no_nodes;
+            /* Init parameters of mc_constants*/
             if ( word.compare("MC_MODEL") == 0)
                 iss >> mc_model_string;
-            /* Init parameters of mc_constants
             if ( word.compare("THREAD_BITS_POSITION") == 0)
                 iss >> THREAD_BITS_POSITION;
             if ( word.compare("MC_ADDR_BITS") == 0)
@@ -156,7 +154,7 @@ main ( int argc, char *argv[] )
                 iss >> BANK_BITS;
             if ( word.compare("NO_OF_CHANNELS") == 0)
                 iss >> NO_OF_CHANNELS;
-                */
+                
             if ( word.compare("NO_OF_RANKS") == 0)
                 iss >> NO_OF_RANKS;
             if ( word.compare("NO_OF_BANKS") == 0)
@@ -308,7 +306,6 @@ main ( int argc, char *argv[] )
 	links = grid_size * grid_size * ports ;
 	cout << "Links = " << links << endl;
     }
-    
     fd.close();
 
     cerr << "\n-----------------------------------------------------------------------------------\n";
@@ -324,10 +321,6 @@ main ( int argc, char *argv[] )
 
     dump_configuration();
     init_dram_timing_parameters();
-    /*mesh = new Mesh();
-    mesh->init( ports, vcs, credits, buffer_size, no_nodes, grid_size, links);
-    mesh->max_sim_time = max_sim_time;*/
-
     if ( network_type == "MESH" || network_type == "Mesh" || network_type == "mesh" )
 	topology_ptr = new Mesh();
     else if ( network_type == "TORUS" || network_type == "Torus" || network_type == "torus" )
@@ -337,13 +330,12 @@ main ( int argc, char *argv[] )
 	cout << "Topology not specified...exiting \n" ;
 	exit(1);
     }
-
     topology_ptr->init( ports, vcs, credits, buffer_size, no_nodes, grid_size, links);
     topology_ptr->max_sim_time = max_sim_time;
 
     Visual* vis = new Visual(topology_ptr, no_nodes, links, grid_size);
-
-    /* Create the mesh/torus->routers and mesh/torus->interfaces */
+    
+    /* Create the mesh->routers and mesh->interfaces */
     for( uint i=0; i<no_nodes; i++)
     {
         switch ( router_model )
@@ -362,7 +354,6 @@ main ( int argc, char *argv[] )
         topology_ptr->interfaces.push_back ( new GenericInterfaceVcs());
     }
 
-    cout << "done creating routers and interfaces \n";
     /*  Create the TPG and mc modules */
     vector<uint>::iterator itr;
     for( uint i=0; i<no_nodes; i++)
@@ -386,11 +377,11 @@ main ( int argc, char *argv[] )
         }
         else
         {
-            topology_ptr->processors.push_back( new GenericTPGVcs() );
-            static_cast<GenericTPGVcs*>(topology_ptr->processors[i])->set_trace_filename(traces[i]);
+            topology_ptr->processors.push_back( new GenericTracePktGen() );
+            static_cast<GenericTracePktGen*>(topology_ptr->processors[i])->set_trace_filename(traces[i]);
             for ( uint j=0; j<mc_positions.size(); j++)
             {
-                static_cast<GenericTPGVcs*>(topology_ptr->processors[i])->mc_node_ip.push_back(mc_positions[j]);;
+                static_cast<GenericTracePktGen*>(topology_ptr->processors[i])->mc_node_ip.push_back(mc_positions[j]);;
             }
         }
     }
@@ -409,7 +400,7 @@ main ( int argc, char *argv[] )
     for ( uint i=0 ; i<no_nodes; i++ )
     {
         topology_ptr->processors[i]->setComponentId(comp_id++);
-        //        mesh->processors[i]->my_mesh = (void*)mesh;
+        //        topology_ptr->processors[i]->my_mesh = (void*)topology_ptr;
         topology_ptr->interfaces[i]->setComponentId(comp_id++);
         topology_ptr->routers[i]->setComponentId(comp_id++);
     }

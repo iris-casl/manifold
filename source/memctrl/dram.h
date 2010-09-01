@@ -74,7 +74,7 @@ class DRAM : public Component
         ~ DRAM ();
 	Component* mc;
 	Component* parent;
-	DRAMChannel dc[NO_OF_CHANNELS]; 
+	vector<DRAMChannel> dc; 
         void process_event (IrisEvent* e);
 	void SetLinks();
         std::string toString();
