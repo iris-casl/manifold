@@ -142,7 +142,7 @@ void Visual::create_graphml()
 	cout << "cores and interfaces = " << concentration << "\t" << no_of_cores << "\n";
 #endif
 	ofstream graphml_file;
-	graphml_file.open("output.graphml");
+	graphml_file.open("visualization/irisViewer/irisData/output.graphml");
 
     vector<uint>::iterator itr;
 
