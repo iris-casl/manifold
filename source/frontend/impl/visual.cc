@@ -18,7 +18,7 @@
 
 #ifndef  _visual_cc_INC
 #define  _visual_cc_INC
-#define DEBUG 0
+//#define DEBUG 0
 
 #include "visual.h"
 

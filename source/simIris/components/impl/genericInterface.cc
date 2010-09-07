@@ -260,6 +260,7 @@ GenericInterface::handle_link_arrival ( IrisEvent* e)
             else
                 Simulator::Schedule( floor(Simulator::Now())+1.75, 
                                      &NetworkComponent::process_event, static_cast<GenericLink*>(input_connection)->input_connection, event);
+            static_cast<GenericLink*>(input_connection)->credits_passed++;
 
         }
     }
@@ -496,6 +497,7 @@ GenericInterface::handle_tick_event(IrisEvent* e)
         else
             Simulator::Schedule( floor(Simulator::Now())+1.75, 
                                  &NetworkComponent::process_event, static_cast<GenericLink*>(input_connection)->input_connection, event2);
+        static_cast<GenericLink*>(input_connection)->credits_passed++;
         ticking = true;
 #ifdef _DEBUG_INTERFACE
         _DBG("Packet to Processor. Sent credit back: %s", pkt->toString().c_str());

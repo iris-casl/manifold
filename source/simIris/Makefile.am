@@ -6,6 +6,7 @@ IRIS_SOURCES = \
 		  ../kernel/simulator.cc \
 		  ../kernel/component.cc \
 		  ../util/genericData.cc \
+		  ../util/stats.cc \
 		  data_types/impl/irisEvent.cc \
 		  data_types/impl/flit.cc \
 		  data_types/impl/highLevelPacket.cc \
@@ -28,6 +29,7 @@ IRIS_SOURCES = \
 		  components/impl/genericRouter4Stg.cc \
 		  components/impl/genericRouter3Stg.cc \
 		  components/impl/genericTracePktGen.cc \
+		  components/impl/genericPktGen.cc \
 		  components/impl/genericVcAllocator.cc \
 		  components/impl/mcFrontEnd.cc \
 		  components/impl/genericFlatMc.cc 

@@ -278,6 +278,7 @@ GenericInterfaceVcs::handle_link_arrival ( IrisEvent* e)
                 Simulator::Schedule( floor(Simulator::Now())+1.75, 
                                      &NetworkComponent::process_event, 
                                      static_cast<GenericLink*>(input_connection)->input_connection, event);
+            static_cast<GenericLink*>(input_connection)->credits_passed++;
 
         }
     }
@@ -547,6 +548,7 @@ GenericInterfaceVcs::handle_tick_event(IrisEvent* e)
                 Simulator::Schedule( floor(Simulator::Now())+1.75, 
                                      &NetworkComponent::process_event, 
                                      static_cast<GenericLink*>(input_connection)->input_connection, event2);
+            static_cast<GenericLink*>(input_connection)->credits_passed++;
             ticking = true;
 
         }

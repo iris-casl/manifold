@@ -25,6 +25,7 @@
 #include	"torus.h"
 #include	"visual.h"
 #include	"../../simIris/data_types/impl/flit.h"
+#include	"../../util/stats.h"
 #include	"../../simIris/data_types/impl/highLevelPacket.h"
 #include	"../../util/genericData.h"
 #include	"../../util/config_params.h"
@@ -35,8 +36,10 @@
 
 unsigned long int net_pack_info[8][8];
 
+extern void interface_simiris(void);
+
 Topology * topology_ptr = NULL;
-string router_model_string, mc_model_string;
+string router_model_string, mc_model_string, terminal_model_string;
 
 void
 dump_configuration ( void )
@@ -75,7 +78,8 @@ dump_configuration ( void )
     cerr << " NO_OF_COLUMNS:\t" << NO_OF_COLUMNS << endl;
     cerr << " COLUMN_SIZE:\t" << COLUMN_SIZE << endl;
     cerr << " Router Model String:\t" << router_model_string<< endl;
-    cerr << " mc_model_string:\t" << mc_model_string<< endl;
+    cerr << " mc_model :\t" << mc_model_string<< endl;
+    cerr << " terminal_model :\t" << terminal_model_string<< endl;
     cerr << " Msg_class with arbitration priority:\t" << msg_type_string << endl;
 
     if( traces.size() < (no_nodes - no_mcs) )
@@ -87,6 +91,7 @@ dump_configuration ( void )
 }
 
 
+IrisStats* istat = new IrisStats();
 int
 main ( int argc, char *argv[] )
 {
@@ -146,6 +151,8 @@ main ( int argc, char *argv[] )
             /* Init parameters of mc_constants*/
             if ( word.compare("MC_MODEL") == 0)
                 iss >> mc_model_string;
+            if ( word.compare("TERMINAL_MODEL") == 0)
+                iss >> terminal_model_string;
             if ( word.compare("THREAD_BITS_POSITION") == 0)
                 iss >> THREAD_BITS_POSITION;
             if ( word.compare("MC_ADDR_BITS") == 0)
@@ -287,18 +294,29 @@ main ( int argc, char *argv[] )
         router_model = VIRTUAL_4STAGE;
     if( router_model_string.compare("PHYSICAL_3STAGE") == 0)
         router_model = PHYSICAL_3STAGE;
+
     if( mc_model_string.compare("GENERIC_MC") == 0)
         mc_model = GENERIC_MC;
     if( mc_model_string.compare("FLAT_MC") == 0)
         mc_model = FLAT_MC;
 
+    if( terminal_model_string.compare("GENERIC") == 0)
+        terminal_model = GENERIC_PKTGEN;
+    if( terminal_model_string.compare("TPG") == 0)
+        terminal_model = TPG;
+
     /* Number of MC's and the size of the position vector should be the same. */
         assert(mc_positions.size() == no_mcs);
 
     /* Compute additional parameters */
+        uint edge_links = 0;
     if ( network_type == "MESH" || network_type == "Mesh" || network_type == "mesh")
     {
-	links = (ports + (grid_size -1)*(ports-1)) + ( (ports-1) + (grid_size -1)*(ports-2))*(grid_size-1);
+//	links = (ports + (grid_size -1)*(ports-1)) + ( (ports-1) + (grid_size -1)*(ports-2))*(grid_size-1);
+	/* For a 2D mesh [Gs*(GS-1)*k] internal links + edge links [4*GS] +
+	terminal connections [GS*GS] */
+	links = (grid_size * (grid_size-1) *2 /*k*/ ) + (grid_size*4 /* 2D mesh as 4 edges */ )+(grid_size*grid_size);
+        edge_links = grid_size*4;
 	cout << "Links = " << links << endl;
     }
     else if (network_type == "TORUS" || network_type == "Torus" || network_type == "torus" )
@@ -377,11 +395,24 @@ main ( int argc, char *argv[] )
         }
         else
         {
-            topology_ptr->processors.push_back( new GenericTracePktGen() );
-            static_cast<GenericTracePktGen*>(topology_ptr->processors[i])->set_trace_filename(traces[i]);
-            for ( uint j=0; j<mc_positions.size(); j++)
+            switch ( terminal_model )
             {
-                static_cast<GenericTracePktGen*>(topology_ptr->processors[i])->mc_node_ip.push_back(mc_positions[j]);;
+                case GENERIC_PKTGEN:
+                    topology_ptr->processors.push_back( new GenericPktGen() );
+                    break;
+                case TPG:
+                    topology_ptr->processors.push_back( new GenericTracePktGen() );
+                    static_cast<GenericTracePktGen*>(topology_ptr->processors[i])->set_trace_filename(traces[i]);
+                    for ( uint j=0; j<mc_positions.size(); j++)
+                    {
+                        static_cast<GenericTracePktGen*>(topology_ptr->processors[i])->mc_node_ip.push_back(mc_positions[j]);;
+                    }
+                    break;
+                default:
+                    cout << " Unknown Terminal model " << endl;
+                    exit(1);
+                    break;
+
             }
         }
     }
@@ -412,7 +443,7 @@ main ( int argc, char *argv[] )
         topology_ptr->link_a[i]->setup();
         topology_ptr->link_b[i]->setup();
     }
-    cout << " ******************** SETUP COMPLETE " << endl;
+    cout << " ******************** SETUP COMPLETE *****************\n" << endl;
     /*  Set up the node ips for components */
     for ( uint i=0 ; i<no_nodes ; i++ )
     {
@@ -432,6 +463,7 @@ main ( int argc, char *argv[] )
     }
 
     topology_ptr->setup();
+    istat->init();
     for ( uint i=0 ; i<no_nodes ; i++ )
         topology_ptr->processors[i]->set_output_path(output_path);
 
@@ -488,38 +520,31 @@ main ( int argc, char *argv[] )
     Simulator::Run();
 
     cerr << topology_ptr->print_stats();
+    /* Init McPat for Energy model and use the counters to compute energy */
+    interface_simiris();
     ullint total_link_utilization = 0;
-    uint no_of_non_zero_util_links = 0;
-    uint edge_links = 0;
+    ullint total_link_cr_utilization = 0;
     for ( uint i=0 ; i<links ; i++ )
     {
-        double link_util = topology_ptr->link_a[i]->get_flits_utilization();
-        if( link_util )
-            no_of_non_zero_util_links++;
-        if( topology_ptr->link_a[i]->input_connection == NULL || topology_ptr->link_a[i]->output_connection == NULL )
-            edge_links++;
-
-        total_link_utilization += (ullint)link_util;
+        total_link_utilization += topology_ptr->link_a[i]->get_flits_utilization();
+        total_link_cr_utilization += topology_ptr->link_a[i]->get_credits_utilization();
     }
 
     for ( uint i=0 ; i<links ; i++ )
     {
-        double link_util = topology_ptr->link_b[i]->get_flits_utilization();
-        total_link_utilization += (ullint)link_util;
-        if( link_util )
-            no_of_non_zero_util_links++;
-        if( topology_ptr->link_b[i]->input_connection == NULL || topology_ptr->link_b[i]->output_connection == NULL )
-            edge_links++;
+        total_link_utilization += topology_ptr->link_b[i]->get_flits_utilization();
+        total_link_cr_utilization += topology_ptr->link_a[i]->get_credits_utilization();
     }
 
-    double bytes_delivered = (total_link_utilization + 0.0 )*max_phy_link_bits/(8*max_sim_time*0.33e-9); /* Assuming 1flit=1phit */
-    double available_bw = ((2*links - edge_links )*max_phy_link_bits + 0.0)/(8*0.33e-9);
+    double bytes_delivered = (total_link_utilization + 0.0 )*max_phy_link_bits/(network_frequency*1e6); /* Assuming 1flit=1phit */
+    double available_bw = (links - edge_links+0.0)*max_phy_link_bits*max_sim_time/(network_frequency*1e6);
     cerr << "\n\n************** Link Stats ***************\n";
     cerr << " Total flits passed on the links: " << total_link_utilization << endl;
-    cerr << " Links used: " << no_of_non_zero_util_links << " of " << 2*links - edge_links << " links." << endl;
-    cerr << " Avg flits per link used " << (total_link_utilization+0.0)/no_of_non_zero_util_links << endl;
-    cerr << " Net bytes delivered:(A) " << bytes_delivered*1e-9 << " MB. " << endl;
-    cerr << " Max BW available in the network:(B) " << available_bw*1e-9 << " MB. " << endl;
+    cerr << " Total credits passed on the links: " << total_link_cr_utilization << endl;
+    cerr << " Links not used: " << 2*edge_links << " of " << 2*links << " links." << endl;
+    cerr << " Avg flits per link used " << (total_link_utilization+0.0)/(2*(links - edge_links)) << endl;
+    cerr << " Utilized BW (data only) :(A) " << bytes_delivered *1e-6<< " Mbps. " << endl;
+    cerr << " Max BW available in the network:(B) " << available_bw *1e-6<< " Mbps. " << endl;
     cerr << " \% A/B " << bytes_delivered/available_bw << endl;
 
     ullint tot_pkts = 0, tot_pkts_out = 0, tot_flits = 0;
@@ -533,8 +558,8 @@ main ( int argc, char *argv[] )
     ullint sim_time_ms = (time(NULL) - sim_start_time);
     cerr << "\n\n************** Simulation Stats ***************\n";
     cerr << " Simulation Time: " << sim_time_ms << " s. " << endl;
-    cerr << " No of pkts per s: " << (tot_pkts+0.0)/sim_time_ms<< endl;
-    cerr << " No of flits per s: " << (tot_flits+0.0)/sim_time_ms << endl;
+    cerr << " No of pkts/terminal/s: " << (tot_pkts+0.0)/(no_nodes*sim_time_ms)<< endl;
+    cerr << " No of flits/terminal/s: " << (tot_flits+0.0)/(no_nodes*sim_time_ms) << endl;
     cerr << " Total Mem Req serviced: " << tot_pkts_out/2 << endl;
     cerr << "------------ End SimIris ---------------------" << endl;
 

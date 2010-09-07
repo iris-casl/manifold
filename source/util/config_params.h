@@ -27,30 +27,34 @@
 //#define DEBUG
 //#define DEEP_DEBUG
 /* Generic topology parameters */
-uint no_nodes = 0, 
-     no_mcs = 0,
+uint no_nodes = 16, 
+     no_mcs = 2,
      do_two_stage_router = 0,
      max_phy_link_bits = 128,
      links = 0;
+
+uint network_frequency = 1200; //MHz
+uint stat_print_level = 1;
 
 ullint max_sim_time = 10000000;
 
 //Sharda
 string network_type = "NONE";
-uint no_of_cores = 0;
-uint concentration = 0;
+uint no_of_cores = 14;
+uint concentration = 1;
 
 ROUTING_SCHEME rc_method = XY;
 SW_ARBITRATION sw_arbitration = ROUND_ROBIN;
 ROUTER_MODEL router_model = PHYSICAL_3STAGE;
 MC_MODEL mc_model = GENERIC_MC;
+TERMINAL_MODEL terminal_model = TPG;
 message_class priority_msg_type = PRIORITY_REQ;
 uint print_setup = 0;
-uint grid_size=0; 
+uint grid_size=4; 
 const bool multiple_flit_in_buf = true;
 vector<uint> mc_positions;
 vector<string> traces;
-uint vcs=0, ports=0, buffer_size=0, credits=0;
+uint vcs=1, ports=5, buffer_size=1, credits=1;
 string trace_name, output_path, msg_type_string;
 string routing_scheme, sw_arbitration_scheme;
 string addr_map_scheme_string,mc_scheduling_algorithm_string,dram_page_policy_string;
@@ -84,7 +88,7 @@ uint RESPONSE_BUFFER_SIZE = 56*8;
    uint ROW_SIZE = NO_OF_COLUMNS*COLUMN_SIZE; //(Also equal to BLOCKS_PER_ROW*CACHE_BLOCK_SIZE)
    uint DRAM_SIZE =  NO_OF_CHANNELS*NO_OF_RANKS*NO_OF_BANKS*NO_OF_ROWS*ROW_SIZE;
 */
-   uint NETWORK_ADDRESS_BITS = 48;
+   uint NETWORK_ADDRESS_BITS = 32;
    uint NETWORK_THREADID_BITS = 6;
    uint NETWORK_COMMAND_BITS = 3;
 

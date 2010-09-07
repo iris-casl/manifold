@@ -68,8 +68,8 @@ InputBufferState::toString() const
         case SW_ALLOCATED:
             str << " SW_ALLOCATED";
             break;
-        case ST:
-            str << " ST";
+        case SW_TRAVERSAL:
+            str << " SW_TRAVERSAL";
             break;
         case REQ_OUTVC_ARB:
             str << " REQ_OUTVC_ARB";

@@ -65,13 +65,13 @@ Mesh::print_stats()
         str << processors[i]->print_stats()<< endl;
     }
 
-    /* Removed LT and hence there is no need for the link stats
+    /* Removed LT and hence there is no need for the link stats */
+if(stat_print_level > 2)
     for ( uint i=0 ; i<links ; i++ )
     {
         str << link_a[i]->print_stats()<< endl;
         str << link_b[i]->print_stats()<< endl;
     }
-     * */
 
     return str.str();
 }

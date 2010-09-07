@@ -27,13 +27,16 @@
 #include	"genericCrossbar.h"
 #include	"genericEvents.h"
 #include	"../../../util/genericData.h"
+#include	"../../../util/stats.h"
 #include	"genericLink.h"
 #include	<sys/time.h>
 #include	<algorithm>
 
 extern uint send_early_credit;
+extern uint stat_print_level;
 extern uint do_two_stage_router;
 extern const bool multiple_flit_in_buf;
+extern IrisStats* istat;
 
 class GenericRouter3Stg: public Router
 {

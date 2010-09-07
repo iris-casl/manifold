@@ -56,6 +56,7 @@
 #include	"../../simIris/components/impl/genericRouter3Stg.h"
 #include	"../../simIris/components/impl/genericInterfaceVcs.h"
 #include	"../../simIris/components/impl/genericTracePktGen.h"
+#include	"../../simIris/components/impl/genericPktGen.h"
 #include	"../../simIris/components/impl/mcFrontEnd.h"
 #include        "../../simIris/components/impl/genericFlatMc.h"
 #include        "../../simIris/components/impl/genericLink.h"

@@ -23,7 +23,7 @@ using namespace std;
 
 GenericRouter4Stg::GenericRouter4Stg ()
 {
-    name = "RouterVcs" ;
+    name = "GenericRouter4Stg" ;
     ticking = false;
 }  /* -----  end of method GenericRouter4Stg::GenericRouter4Stg  (constructor)  ----- */
 
@@ -190,71 +190,74 @@ string
 GenericRouter4Stg::print_stats()
 {
     stringstream str;
-    str << "\n RouterVcs" 
-        << "\n router[" << node_ip << "] packet latency: " << total_packet_latency
+    str << name ;
+    str << "\n router[" << node_ip << "] packet latency: " << total_packet_latency
         << "\n router[" << node_ip << "] flits/packets: " << (flits+0.0)/(packets)
         << "\n router[" << node_ip << "] average packet latency: " << (total_packet_latency+0.0)/packets
         << "\n router[" << node_ip << "] last_flit_out_cycle: " << last_flit_out_cycle
         << " ";
     str << "\n router[" << node_ip << "] packets: " << packets
         << "\n router[" << node_ip << "] flits: " << flits;
-    for( uint i=0; i<ports; i++)
-        for ( uint j=0; j<ports; j++)
-        {
-            string in_port = "Inv";
-            switch( i )
+    if( stat_print_level > 2 )
+    {
+        for( uint i=0; i<ports; i++)
+            for ( uint j=0; j<ports; j++)
             {
-                case 0 : 
-                    in_port = "Inj";
-                    break;
-                case 1:
-                    in_port = 'E';
-                    break;
-                case 2:
-                    in_port = 'W';
-                    break;
-                case 3:
-                    in_port = 'S';
-                    break;
-                case 4:
-                    in_port = 'N';
-                    break;
-                default:
-                    in_port = "Invalid";
-                    break;
-            }
+                string in_port = "Inv";
+                switch( i )
+                {
+                    case 0 : 
+                        in_port = "Inj";
+                        break;
+                    case 1:
+                        in_port = 'E';
+                        break;
+                    case 2:
+                        in_port = 'W';
+                        break;
+                    case 3:
+                        in_port = 'S';
+                        break;
+                    case 4:
+                        in_port = 'N';
+                        break;
+                    default:
+                        in_port = "Invalid";
+                        break;
+                }
 
-            string out_port = "Inv";
-            switch( j )
-            {
-                case 0 : 
-                    out_port = "Ejection";
-                    break;
-                case 1:
-                    out_port = 'W';
-                    break;
-                case 2:
-                    out_port = 'E';
-                    break;
-                case 3:
-                    out_port = 'N';
-                    break;
-                case 4:
-                    out_port = 'S';
-                    break;
-                default:
-                    out_port = "Invalid";
-                    break;
-            }
-            if ( i != j) 
-            {
-                str << "\n    router[" << node_ip << "] Packets out " << in_port 
-                    << " going " << out_port << " : " << stat_packet_out[i][j];
-                str << "\n    router[" << node_ip << "] Flits out " << in_port 
-                    << " going " << out_port << " : " << stat_flit_out[i][j];
-            }
+                string out_port = "Inv";
+                switch( j )
+                {
+                    case 0 : 
+                        out_port = "Ejection";
+                        break;
+                    case 1:
+                        out_port = 'W';
+                        break;
+                    case 2:
+                        out_port = 'E';
+                        break;
+                    case 3:
+                        out_port = 'N';
+                        break;
+                    case 4:
+                        out_port = 'S';
+                        break;
+                    default:
+                        out_port = "Invalid";
+                        break;
+                }
+                if ( i != j) 
+                {
+                    str << "\n    router[" << node_ip << "] Packets out " << in_port 
+                        << " going " << out_port << " : " << stat_packet_out[i][j];
+                    str << "\n    router[" << node_ip << "] Flits out " << in_port 
+                        << " going " << out_port << " : " << stat_flit_out[i][j];
+                }
 
-        }
+            }
+    }
 
 
     return str.str();
@@ -269,6 +272,7 @@ GenericRouter4Stg::handle_link_arrival_event ( IrisEvent* e )
     {
         /*  Update stats */
         flits++;
+        istat->stat_router[node_ip]->ib_cycles++;
         if( data->ptr->type == TAIL || data->ptr->is_single_flit_pkt )
             packets++;
 
@@ -348,9 +352,9 @@ GenericRouter4Stg::handle_link_arrival_event ( IrisEvent* e )
             input_buffer_state[port*vcs+data->vc].clear_message= false;
             //            input_buffer_state[port*vcs+data->vc].flits_in_ib = 0;
 
-//            _DBG(" New Msg ip:%d ivc:%d pop:%d povc:%d ", input_buffer_state[port*vcs+data->vc].input_port,
-//                 input_buffer_state[port*vcs+data->vc].input_channel, input_buffer_state[port*vcs+data->vc].possible_oports.size(),
-//                 input_buffer_state[port*vcs+data->vc].possible_ovcs.size());
+            //            _DBG(" New Msg ip:%d ivc:%d pop:%d povc:%d ", input_buffer_state[port*vcs+data->vc].input_port,
+            //                 input_buffer_state[port*vcs+data->vc].input_channel, input_buffer_state[port*vcs+data->vc].possible_oports.size(),
+            //                 input_buffer_state[port*vcs+data->vc].possible_ovcs.size());
         }
         else
         {
@@ -424,7 +428,7 @@ GenericRouter4Stg::do_switch_traversal()
 {
     /* Switch traversal */
     for( uint i=0; i<ports*vcs; i++)
-        if( input_buffer_state[i].pipe_stage == ST)
+        if( input_buffer_state[i].pipe_stage == SW_TRAVERSAL)
         {
             uint op = input_buffer_state[i].output_port;
             uint oc = input_buffer_state[i].output_channel;
@@ -434,6 +438,7 @@ GenericRouter4Stg::do_switch_traversal()
                 && in_buffers[ip].get_occupancy(ic)> 0
                 && downstream_credits[op][oc]>0 )
             {
+                istat->stat_router[node_ip]->st_cycles++;
                 in_buffers[ip].change_pull_channel(ic);
                 Flit* f = in_buffers[ip].pull();
                 f->vc = oc;
@@ -552,6 +557,7 @@ GenericRouter4Stg::do_switch_allocation()
                 op = input_buffer_state[i].output_port;
                 oc= input_buffer_state[i].output_channel;
                 sa_winner = swa.pick_winner(op);
+                istat->stat_router[node_ip]->sa_cycles++;
 
                 if(input_buffer_state[i].sa_head_done)
                 {
@@ -559,7 +565,7 @@ GenericRouter4Stg::do_switch_allocation()
                         && in_buffers[ip].get_occupancy(ic) > 0
                         && downstream_credits[op][oc]>0 )
                     {
-                        input_buffer_state[i].pipe_stage = ST;
+                        input_buffer_state[i].pipe_stage = SW_TRAVERSAL;
                         xbar.configure_crossbar(ip,op,oc);
                         xbar.push(op,oc); 
                         /* TODO: Remove oc from the crossbar. phy crossbar (pxp) */
@@ -578,7 +584,7 @@ GenericRouter4Stg::do_switch_allocation()
                         && downstream_credits[op][oc]==credits )
                     {
                         input_buffer_state[i].sa_head_done = true;
-                        input_buffer_state[i].pipe_stage = ST;
+                        input_buffer_state[i].pipe_stage = SW_TRAVERSAL;
                         xbar.configure_crossbar(ip,op,oc);
                         xbar.push(op,oc); 
                         /* TODO: Remove oc from the crossbar. phy crossbar (pxp) */
@@ -607,6 +613,7 @@ GenericRouter4Stg::handle_tick_event ( IrisEvent* e )
     if(!vca.is_empty())
     {
         vca.pick_winner();
+        istat->stat_router[node_ip]->sa_cycles++;
         /* 
            _DBG_NOARG(" VCA winners: " );
            for ( uint ai=0; ai<vca.current_winners.size(); ai++)
@@ -719,7 +726,7 @@ GenericRouter4Stg::handle_tick_event ( IrisEvent* e )
      uint ip = input_buffer_state[i].input_port;
      uint ic = input_buffer_state[i].input_channel;
 
-     if ((input_buffer_state[i].pipe_stage == ST || input_buffer_state[i].pipe_stage == IB )
+     if ((input_buffer_state[i].pipe_stage == SW_TRAVERSAL || input_buffer_state[i].pipe_stage == IB )
      && (input_buffer_state[i].flits_in_ib < in_buffers[ip].get_occupancy(ivc)))
      { 
      input_buffer_state[i].flits_in_ib++;
@@ -752,7 +759,7 @@ GenericRouter4Stg::handle_tick_event ( IrisEvent* e )
         }
 
     for( uint i=0; i<(ports*vcs); i++)
-        if( input_buffer_state[i].pipe_stage == ST )
+        if( input_buffer_state[i].pipe_stage == SW_TRAVERSAL )
             ticking = true;
     /* 
      * */
@@ -809,6 +816,7 @@ GenericRouter4Stg::send_credit_back(uint i)
     event->event_data.push_back(data);
     event->src_id = address;
     event->vc = data->vc; 
+    static_cast<GenericLink*>(input_connections[port])->credits_passed++;
     if(do_two_stage_router)
         Simulator::Schedule(Simulator::Now()+0.75, &NetworkComponent::process_event,
                             static_cast<GenericLink*>(input_connections[port])->input_connection, event);

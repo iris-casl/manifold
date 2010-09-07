@@ -91,9 +91,11 @@ GenericLink::print_stats() const
 {
     stringstream str;
     str << endl << toString()
-        << "\n link[" << address << "] Link Utilization for Flits: " << flits_passed/max_sim_time
-        << "\n link[" << address << "] Credit utilization for Flits: " << credits_passed/max_sim_time
+        << "\n link[" << address << "] No flits passed: " << flits_passed
+        << "\n link[" << address << "] No credits passed: " << credits_passed
         << ". " << endl;
+    if( flits_passed != credits_passed)
+        str << " ERROR in link stat.. should be equal for Flit level Flow Control " << endl;
 
     return str.str();
 }
@@ -102,6 +104,12 @@ ullint
 GenericLink::get_flits_utilization()
 {
     return flits_passed;
+}
+
+ullint
+GenericLink::get_credits_utilization()
+{
+    return credits_passed;
 }
 
 

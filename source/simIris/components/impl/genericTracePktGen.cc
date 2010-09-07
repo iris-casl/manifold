@@ -493,7 +493,7 @@ GenericTracePktGen::convertFromBitStream(Request* req, HighLevelPacket *hlp)
     req->mcNo=hlp->source;
     for (unsigned int i=0; i < NETWORK_ADDRESS_BITS; i++)
     {
-        req->address = req->address | (hlp->data[i] << i);
+        req->address = req->address | (static_cast<ullint>(hlp->data[i]) << i);
     }
     /*    unsigned int temp = 0;
           for (unsigned int i = 0; i < NETWORK_COMMAND_BITS; i++)

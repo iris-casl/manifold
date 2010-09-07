@@ -44,6 +44,7 @@ class GenericLink : public IrisLink
         string toString() const;
         string print_stats() const;
         ullint get_flits_utilization();
+        ullint get_credits_utilization();
         unsigned long long int flits_passed;
         unsigned long long int credits_passed;
 

@@ -17,6 +17,7 @@
  */
 
 #include        <string>
+#include        <string.h>
 #include        <sstream>
 #include        <iostream>
 #include 	<iomanip>

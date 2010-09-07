@@ -6,7 +6,7 @@ CXX_FLAGS = -D_FILE_OFFSET_BITS=64 -I source -m32 -ansi -g -gstabs+ -O0 -static-
 ZESTO_FLAGS = -O0 -g -m32 -DMIN_SYSCALL_MODE -DUSE_SSE_MOVE -Wall -DDEBUG -msse4a -mfpmath=sse
 MLIBS  = -lm  
 ZESTOCXXLD = g++ -lc -lm  
-CXXLD = g++ -lc -lm -ldl
+CXXLD = g++ -lc -lm -ldl -lpthread
 CXXLD_PROFILE = g++ -lgcov -lc
 #DEBUG_FLAGS = -D_DEBUG -D_DEBUG_ROUTER 
 DEBUG_FLAGS = -g -pg -D_STLP_DEBUG -D_DEBUG -DDEBUG -D_DEBUG_ROUTER -D_DEBUG_INTERFACE -DDEBUG
@@ -19,7 +19,7 @@ FE_SOURCES = \
 ##source/util/mc_constants.h \
 
 #SUBDIRS = source/zesto source/memctrl source/simIris .
-SUBDIRS = source/memctrl source/simIris .
+SUBDIRS = source/memctrl source/simIris source/mcpat .
 
 ALL_HDRS = \
 	   source/kernel/simulator.h \
@@ -31,6 +31,7 @@ ALL_HDRS = \
 	   source/simIris/data_types/impl/flit.h \
 	   source/simIris/data_types/impl/highLevelPacket.h \
 	   source/simIris/data_types/impl/lowLevelPacket.h \
+	   source/util/stats.h \
 	   source/simIris/components/interfaces/crossbar.h \
 	   source/simIris/components/interfaces/addressDecoder.h \
 	   source/simIris/components/interfaces/interface.h \
@@ -55,6 +56,7 @@ ALL_HDRS = \
 	   source/simIris/components/impl/genericRouter4Stg.h \
 	   source/simIris/components/impl/genericRouter3Stg.h \
 	   source/simIris/components/impl/genericTracePktGen.h \
+	   source/simIris/components/impl/genericPktGen.h \
 	   source/simIris/components/impl/genericVcAllocator.h \
 	   source/frontend/impl/mesh.h \
 	   source/memctrl/addr_map.h \
@@ -114,27 +116,44 @@ ZESTO_HDRS = \
 	   source/zesto/zesto-prefetch.h \
 	   source/zesto/zesto-uncore.h 
 
+MCPAT_OBJS= \
+	    source/mcpat/obj_opt/Ucache.o source/mcpat/obj_opt/XML_Parse.o \
+	    source/mcpat/obj_opt/arbiter.o source/mcpat/obj_opt/area.o \
+	    source/mcpat/obj_opt/array.o source/mcpat/obj_opt/bank.o \
+	    source/mcpat/obj_opt/basic_circuit.o source/mcpat/obj_opt/basic_components.o \
+	    source/mcpat/obj_opt/cacti_interface.o \
+	    source/mcpat/obj_opt/component.o source/mcpat/obj_opt/core.o \
+	    source/mcpat/obj_opt/crossbar.o source/mcpat/obj_opt/decoder.o \
+	    source/mcpat/obj_opt/htree2.o source/mcpat/obj_opt/interconnect.o \
+	    source/mcpat/obj_opt/io.o source/mcpat/obj_opt/logic.o \
+	    source/mcpat/obj_opt/iris_interface.o source/mcpat/obj_opt/mat.o \
+	    source/mcpat/obj_opt/memoryctrl.o source/mcpat/obj_opt/noc.o \
+	    source/mcpat/obj_opt/nuca.o source/mcpat/obj_opt/parameter.o source/mcpat/obj_opt/processor.o \
+	    source/mcpat/obj_opt/router.o \
+	    source/mcpat/obj_opt/sharedcache.o source/mcpat/obj_opt/subarray.o \
+	    source/mcpat/obj_opt/technology.o source/mcpat/obj_opt/uca.o \
+	    source/mcpat/obj_opt/wire.o source/mcpat/obj_opt/xmlParser.o
 
 ### manifold_fullSim
 #manifold_fullSim_CXXFLAGS = $(CXX_FLAGS) 
 #manifold_fullSim_CXXLD= $(ZESTOCXXLD) 
 
 #manifold_fullSim_SOURCES = $(FE_SOURCES)\
-#			   source/frontend/impl/manifold_fullsim.cc
+    #			   source/frontend/impl/manifold_fullsim.cc
 
 #manifold_fullSim_LDADD = source/simIris/libIris.a \
-#			 source/memctrl/libsimMC.a \
-#			 source/zesto/libZesto.a 
+    #			 source/memctrl/libsimMC.a \
+    #			 source/zesto/libZesto.a 
 
 ## manifold_simIris
-manifold_simIris_CXXFLAGS = $(CXX_FLAGS) 
-manifold_simIris_CXXLD= $(CXXLD) 
+manifold_simIris_CXXFLAGS = $(CXX_FLAGS) -lpthread
+manifold_simIris_CXXLD= $(CXXLD)
 
 manifold_simIris_SOURCES = $(FE_SOURCES)\
 			   source/frontend/impl/manifold_simiris.cc
 
 manifold_simIris_LDADD = source/simIris/libIris.a \
-			 source/memctrl/libsimMC.a 
+			 source/memctrl/libsimMC.a $(MCPAT_OBJS)
 
 ## manifold_simMC
 manifold_simMC_CXXFLAGS = $(CXX_FLAGS) 
@@ -153,6 +172,6 @@ noinst_HEADERS = \
 
 ###Headers
 #noinst_HEADERS = \
-#		 source/frontend/impl/mesh.h \
-#		 source/util/config_params.h \
-#		 $(ALL_HDRS) $(ZESTO_HDRS)
+    #		 source/frontend/impl/mesh.h \
+    #		 source/util/config_params.h \
+    #		 $(ALL_HDRS) $(ZESTO_HDRS)

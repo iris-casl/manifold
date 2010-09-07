@@ -115,8 +115,8 @@ Torus::connect_routers()
 	routers[i]->input_connections.push_back(link_a[link_id->second]);
 	routers[i]->output_connections.push_back(link_b[link_id->second]);
    }
-   cout << "\n End East links " << last_link_id << endl;
 #ifdef DEBUG
+   cout << "\n End East links " << last_link_id << endl;
    for ( it=east_links.begin() ; it != east_links.end(); it++ )
       cout << (*it).first << " => " << (*it).second << endl;
 #endif
@@ -143,8 +143,8 @@ Torus::connect_routers()
 		routers[i]->input_connections.push_back(link_b[link_id->second]);
 		routers[i]->output_connections.push_back(link_a[link_id->second]);
     }
-    cout << "\n End West links " << last_link_id << endl;
 #ifdef DEBUG
+    cout << "\n End West links " << last_link_id << endl;
     for ( it=west_links.begin() ; it != west_links.end(); it++ )
     cout << (*it).first << " => " << (*it).second << endl;
 #endif
@@ -190,8 +190,8 @@ Torus::connect_routers()
        routers[i]->output_connections.push_back(link_b[link_id->second]);
    }
 
-   cout << "\n End North links " << last_link_id << endl;
 #ifdef DEBUG
+   cout << "\n End North links " << last_link_id << endl;
    for ( it=north_links.begin() ; it != north_links.end(); it++ )
       cout << (*it).first << " => " << (*it).second << endl;
 #endif
@@ -222,8 +222,8 @@ Torus::connect_routers()
 		routers[i]->output_connections.push_back(link_a[link_id->second]);
    }
 
-   cout << "\n End South links " << last_link_id << endl;
 #ifdef DEBUG
+   cout << "\n End South links " << last_link_id << endl;
    for ( it=south_links.begin() ; it != south_links.end(); it++ )
       cout << (*it).first << " => " << (*it).second << endl;
 #endif

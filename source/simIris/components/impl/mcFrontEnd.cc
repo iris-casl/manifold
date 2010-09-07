@@ -331,37 +331,37 @@ NI::handle_out_pull_event(IrisEvent* e)
             hlp->virtual_channel = sending_vc;
             hlp->source = node_ip;
     	    hlp->recv_time = (ullint)Simulator::Now();	
-	        add_mc_bits(req);
+            add_mc_bits(req);
             hlp->addr = req->address;
-	    hlp->destination = req->threadId;
+            hlp->destination = req->threadId;
             hlp->transaction_id = 1000;
-	    	hlp->msg_class = RESPONSE_PKT;
+            hlp->msg_class = RESPONSE_PKT;
             hlp->req_start_time = req->startTime;
             hlp->hop_count = req->hop_count;
             hlp->avg_network_latency = req->avg_network_latency;
             hlp->waiting_in_ni = (ullint)Simulator::Now() - req->retireTime;
             hlp->stat_memory_serviced_time = req->retireTime - req->arrivalTime;
-	
-	    	convertToBitStream(req, hlp);      
+
+            convertToBitStream(req, hlp);      
 #ifdef _DEBUG
-                cout << dec << "\n[" << Simulator::Now() << "] Sending packet from NI 0x" << hex << req->address << endl;
+            cout << dec << "\n[" << Simulator::Now() << "] Sending packet from NI 0x" << hex << req->address << endl;
 #endif
-                hlp->sent_time = (ullint)Simulator::Now();
-                total_backward_time += ((ullint)Simulator::Now() - req->retireTime);
-                packets_out++;
+            hlp->sent_time = (ullint)Simulator::Now();
+            total_backward_time += ((ullint)Simulator::Now() - req->retireTime);
+            packets_out++;
 
-                event->event_data.push_back(hlp);
-                Simulator::Schedule(Simulator::Now()+1, &NetworkComponent::process_event,interface_connections[0], event);
+            event->event_data.push_back(hlp);
+            Simulator::Schedule(Simulator::Now()+1, &NetworkComponent::process_event,interface_connections[0], event);
 
-                ready[sending_vc] = false;
-                niQueue.erase(queueIndex);
+            ready[sending_vc] = false;
+            niQueue.erase(queueIndex);
 
-                IrisEvent* event3 = new IrisEvent();
-                event3->type = SEND_TO_NI; //ask response handler for more
-                event3->dst = ((MC*)mc)->responseH; //e->vc;
-                Simulator::Schedule(Simulator::Now()+1, &ResponseHandler::process_event, (ResponseHandler*)event3->dst, event3);
+            IrisEvent* event3 = new IrisEvent();
+            event3->type = SEND_TO_NI; //ask response handler for more
+            event3->dst = ((MC*)mc)->responseH; //e->vc;
+            Simulator::Schedule(Simulator::Now()+1, &ResponseHandler::process_event, (ResponseHandler*)event3->dst, event3);
 
-                last_out_pull_cycle = Simulator::Now();
+            last_out_pull_cycle = Simulator::Now();
     }
 
     else
