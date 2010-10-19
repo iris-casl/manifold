@@ -13,7 +13,7 @@
  *       Revision:  none
  *       Compiler:  gcc
  *
- *         Author:  Mitchelle Rasquinha (), mitchelle.rasquinha@gatech.edu
+ *         Author:  Mitchelle Rasquinha
  *        Company:  Georgia Institute of Technology
  *
  * =====================================================================================
@@ -346,7 +346,7 @@ RouterReqReply::handle_link_arrival_event ( IrisEvent* e )
             stat_ib_cycles++;
         }
 
-        _DBG(" handle_link_arrival_event: port %d vc %d ft %d ps:%d ", port, data->vc, data->ptr->type, input_buffer_state[port].pipe_stage);
+       // _DBG(" handle_link_arrival_event: port %d vc %d ft %d ps:%d ", port, data->vc, data->ptr->type, input_buffer_state[port].pipe_stage);
         if(data->ptr->type == HEAD)
         {
             cout	<< static_cast<HeadFlit*>(data->ptr)->addr<< endl;
@@ -561,7 +561,7 @@ RouterReqReply::do_switch_traversal()
                 data->vc = oc;
                 data->ptr = f;
 
-                _DBG(" Fout %d=%d %d",ip*vcs+ic,op*vcs+oc, f->type);
+               // _DBG(" Fout %d=%d %d",ip*vcs+ic,op*vcs+oc, f->type);
 
                 /*  Updating all pkt stats in the head irrespective of msg
                  *  class. Assuming all pkts do have a head. However latency
@@ -572,7 +572,7 @@ RouterReqReply::do_switch_traversal()
                 {
                     HeadFlit* hf = static_cast<HeadFlit*>(f);
                     hf->hop_count++;
-                    _DBG(" Fout %d %d %d %d %d %d addr:%lld ",ip,ic,op,oc,hf->src_address, hf->dst_address, hf->addr);
+                   // _DBG(" Fout %d %d %d %d %d %d addr:%lld ",ip,ic,op,oc,hf->src_address, hf->dst_address, hf->addr);
                     cout << f->is_single_flit_pkt;
                     //                    cout << "  " << hf->addr;
                 }
@@ -671,7 +671,6 @@ RouterReqReply::do_switch_allocation()
             {
                 sw_alloc[i].erase(it);
                 input_buffer_state[msg_id].pipe_stage = SW_TRAVERSAL;
-_DBG(" SW_TRAV %d=%d cr:%d occ:%d",ip*vcs+ic,op*vcs+oc,downstream_credits[op][oc], in_buffers[ip].get_occupancy(ic));
                 ticking = true;
                 was_swa_active = true;
             }
@@ -739,8 +738,6 @@ RouterReqReply::do_virtual_channel_allocation()
                         /* can request only if there are credits improving 
                          * chances of winning for other pkts that can actually 
                          * exit the router */
-                        //                    _DBG(" VCA COMP %d=%d",ip*vcs+ic,op*vcs+oc);
-                        _DBG(" VCA COMP %d %d %lld",op,msg_oc, input_buffer_state[msg_index].address);
                         input_buffer_state[msg_index].output_channel = msg_oc;
                         input_buffer_state[msg_index].pipe_stage = VCA_COMPLETE;
                         ticking = true;
