@@ -1,9 +1,9 @@
-/*
+/*!
  * =====================================================================================
  *
  *       Filename:  genericbuffer.h
  *
- *    Description:  
+ *    Description:  implements a buffer component 
  *
  *        Version:  1.0
  *        Created:  02/20/2010 11:48:27 PM
@@ -21,21 +21,14 @@
 
 #include	"../interfaces/buffer.h"
 #include	"../../data_types/impl/flit.h"
-#include	<queue>
+#include	<deque>
 #include	<vector>
-#define BUFFER_SIZE 20
 
-/*
- * =====================================================================================
- *        Class:  GenericBuffer
- *  Description:  
- * =====================================================================================
- */
 class GenericBuffer: public Buffer
 {
     public:
         GenericBuffer ();                             /* constructor */
-        ~GenericBuffer ();                             /* constructor */
+        ~GenericBuffer ();                             /* desstructor */
         void push( Flit* f );
         Flit* pull();
         Flit* peek();
@@ -54,7 +47,7 @@ class GenericBuffer: public Buffer
         void got_credit( uint ch ) ;
         uint get_no_credits( uint ch ) const;
         void set_no_credits( uint no );
-        vector < queue<Flit*> > buffers;
+        vector < deque<Flit*> > buffers;
         vector < int > next_port;
 
     protected:

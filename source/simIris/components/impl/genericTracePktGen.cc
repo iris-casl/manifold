@@ -110,7 +110,7 @@ GenericTracePktGen::setup (uint n, uint v, uint time)
 	IrisEvent *event = new IrisEvent();
     	event->src = this;
     	event->dst = (Component*)(mshrHandler);
-        event->type = 0;
+        event->type =CREDIT_EVENT; /*  NOTE: This event type has no meaning. Just dummy */
     	event->event_data.push_back(req2);	
 #ifdef DEEP_DEBUG
     	cout << dec << Simulator::Now() << ": " << hex << req2->address << ": First Request of each trace to be send to mshrs" << endl;	

@@ -89,20 +89,24 @@ Torus::connect_routers()
    {
        if( (router_no%grid_size) == 0 ) /* Left side end node */
        {
-	    link_a[last_link_id]->input_connection = routers[router_no + grid_size - 1];
-	    link_a[last_link_id]->output_connection = routers[router_no];
-	    link_b[last_link_id]->input_connection = routers[router_no];
-	    link_b[last_link_id]->output_connection = routers[router_no + grid_size - 1];
+           //east going link for router_no
+           link_a[last_link_id]->input_connection = routers[router_no + grid_size - 1];
+           link_a[last_link_id]->output_connection = routers[router_no];
+           link_a[last_link_id]->is_dateline = true;
+           //west going link for router_no
+           link_b[last_link_id]->input_connection = routers[router_no];
+           link_b[last_link_id]->output_connection = routers[router_no + grid_size - 1];
+           link_b[last_link_id]->is_dateline = true;
            east_links.insert(make_pair(router_no, last_link_id));
            west_links.insert(make_pair(router_no + grid_size - 1, last_link_id));
            last_link_id++;
        }
        else
        {
-	    link_a[last_link_id]->input_connection = routers[router_no-1];
-       link_a[last_link_id]->output_connection = routers[router_no];
-	    link_b[last_link_id]->input_connection = routers[router_no];
-	    link_b[last_link_id]->output_connection = routers[router_no-1];
+           link_a[last_link_id]->input_connection = routers[router_no-1];
+           link_a[last_link_id]->output_connection = routers[router_no];
+           link_b[last_link_id]->input_connection = routers[router_no];
+           link_b[last_link_id]->output_connection = routers[router_no-1];
            east_links.insert(make_pair(router_no, last_link_id));
            west_links.insert(make_pair(router_no-1, last_link_id));
            last_link_id++;
@@ -112,45 +116,29 @@ Torus::connect_routers()
    for ( uint i=0 ; i<no_nodes; i++ )
    {
        map<uint,uint>::iterator link_id = east_links.find(i);
-	routers[i]->input_connections.push_back(link_a[link_id->second]);
-	routers[i]->output_connections.push_back(link_b[link_id->second]);
+       routers[i]->input_connections.push_back(link_a[link_id->second]);
+       routers[i]->output_connections.push_back(link_b[link_id->second]);
    }
 #ifdef DEBUG
    cout << "\n End East links " << last_link_id << endl;
    for ( it=east_links.begin() ; it != east_links.end(); it++ )
-      cout << (*it).first << " => " << (*it).second << endl;
+       cout << (*it).first << " => " << (*it).second << endl;
 #endif
 
-/* ------------ End East links --------------------- */
-
-/* ------------ Begin West links --------------------- */
-   for ( uint router_no=0 ; router_no<no_nodes; router_no++ )
+   for ( uint i=0 ; i<no_nodes; i++ )
    {
-       if ( (router_no%grid_size) == (grid_size-1))
-       {
-    	   link_a[last_link_id]->input_connection = routers[router_no];
-    	   link_a[last_link_id]->output_connection = routers[router_no - grid_size + 1];
-           link_b[last_link_id]->input_connection = routers[router_no - grid_size + 1];
-           link_b[last_link_id]->output_connection = routers[router_no];
-			   west_links.insert(make_pair(router_no, last_link_id));
-			   last_link_id++;
-       }
+       map<uint,uint>::iterator link_id = west_links.find(i);
+       routers[i]->input_connections.push_back(link_b[link_id->second]);
+       routers[i]->output_connections.push_back(link_a[link_id->second]);
    }
-
-    for ( uint i=0 ; i<no_nodes; i++ )
-    {
-		map<uint,uint>::iterator link_id = west_links.find(i);
-		routers[i]->input_connections.push_back(link_b[link_id->second]);
-		routers[i]->output_connections.push_back(link_a[link_id->second]);
-    }
 #ifdef DEBUG
-    cout << "\n End West links " << last_link_id << endl;
-    for ( it=west_links.begin() ; it != west_links.end(); it++ )
-    cout << (*it).first << " => " << (*it).second << endl;
+   cout << "\n End West links " << last_link_id << endl;
+   for ( it=west_links.begin() ; it != west_links.end(); it++ )
+       cout << (*it).first << " => " << (*it).second << endl;
 #endif
-    /* ------------ End West links --------------------- */
+   /* ------------ End East/West links --------------------- */
 
-	/* ------------ Begin North links --------------------- */
+   /* ------------ Begin North links --------------------- */
 
    map < uint, uint > col_major_ordering;
    for ( uint i=0; i<grid_size; i++)
@@ -163,23 +151,25 @@ Torus::connect_routers()
        uint col_major_router_no = iter->second;
        if( (col_major_router_no%grid_size) == 0 ) /* Top end node */
        {
-			link_a[last_link_id]->input_connection = routers[router_no + no_nodes - grid_size] ;
-			link_a[last_link_id]->output_connection = routers[router_no];
-			link_b[last_link_id]->input_connection = routers[router_no];
-			link_b[last_link_id]->output_connection = routers[router_no + no_nodes - grid_size] ;
-			   north_links.insert(make_pair(router_no, last_link_id));
-			   south_links.insert(make_pair(router_no + no_nodes - grid_size, last_link_id));
-			   last_link_id++;
+           link_a[last_link_id]->input_connection = routers[router_no + no_nodes - grid_size] ;
+           link_a[last_link_id]->output_connection = routers[router_no];
+           link_a[last_link_id]->is_dateline = true;
+           link_b[last_link_id]->input_connection = routers[router_no];
+           link_b[last_link_id]->output_connection = routers[router_no + no_nodes - grid_size] ;
+           link_b[last_link_id]->is_dateline = true;
+           north_links.insert(make_pair(router_no, last_link_id));
+           south_links.insert(make_pair(router_no + no_nodes - grid_size, last_link_id));
+           last_link_id++;
        }
        else
        {
-			link_a[last_link_id]->input_connection = routers[router_no - grid_size];
-			link_a[last_link_id]->output_connection = routers[router_no];
-			link_b[last_link_id]->input_connection = routers[router_no];
-			link_b[last_link_id]->output_connection = routers[router_no - grid_size];
-			   north_links.insert(make_pair(router_no, last_link_id));
-			   south_links.insert(make_pair(router_no - grid_size, last_link_id));
-			   last_link_id++;
+           link_a[last_link_id]->input_connection = routers[router_no - grid_size];
+           link_a[last_link_id]->output_connection = routers[router_no];
+           link_b[last_link_id]->input_connection = routers[router_no];
+           link_b[last_link_id]->output_connection = routers[router_no - grid_size];
+           north_links.insert(make_pair(router_no, last_link_id));
+           south_links.insert(make_pair(router_no - grid_size, last_link_id));
+           last_link_id++;
        }
    }
 
@@ -193,40 +183,24 @@ Torus::connect_routers()
 #ifdef DEBUG
    cout << "\n End North links " << last_link_id << endl;
    for ( it=north_links.begin() ; it != north_links.end(); it++ )
-      cout << (*it).first << " => " << (*it).second << endl;
+       cout << (*it).first << " => " << (*it).second << endl;
 #endif
 
-   /* ------------ End North links --------------------- */
 
-   /* ------------ Begin South links --------------------- */
-
-   for ( uint router_no=0 ; router_no<no_nodes; router_no++ )
-   {
-       map<uint,uint>::iterator iter = col_major_ordering.find(router_no);
-       uint col_major_router_no = iter->second;
-       if ( (col_major_router_no%grid_size) == (grid_size-1))
-       {
-    	   link_a[last_link_id]->input_connection = routers[router_no];
-           link_a[last_link_id]->output_connection = routers[router_no - grid_size + 1];
-           link_b[last_link_id]->input_connection = routers[router_no - grid_size + 1];
-           link_b[last_link_id]->output_connection = routers[router_no];
-           south_links.insert(make_pair(router_no, last_link_id));
-           last_link_id++;
-       }
-   }
 
    for ( uint i=0 ; i<no_nodes; i++ )
    {
-        map<uint,uint>::iterator link_id = south_links.find(i);
-		routers[i]->input_connections.push_back(link_b[link_id->second]);
-		routers[i]->output_connections.push_back(link_a[link_id->second]);
+       map<uint,uint>::iterator link_id = south_links.find(i);
+       routers[i]->input_connections.push_back(link_b[link_id->second]);
+       routers[i]->output_connections.push_back(link_a[link_id->second]);
    }
 
 #ifdef DEBUG
    cout << "\n End South links " << last_link_id << endl;
    for ( it=south_links.begin() ; it != south_links.end(); it++ )
-      cout << (*it).first << " => " << (*it).second << endl;
+       cout << (*it).first << " => " << (*it).second << endl;
 #endif
+   /* ------------ End North/South links --------------------- */
 
    if(last_link_id > links )
    {
@@ -259,12 +233,12 @@ Torus::connect_interface_routers()
     // Input and output link connections
     for ( uint i=0 ; i<no_nodes ; i++ )
     {
-	link_a[i]->input_connection = interfaces[i];
-	link_a[i]->output_connection = routers[i];
-	link_b[i]->input_connection = routers[i];
-	link_b[i]->output_connection = interfaces[i];
-	routers[i]->input_connections.push_back(link_a[i]);
-	routers[i]->output_connections.push_back(link_b[i]);
+        link_a[i]->input_connection = interfaces[i];
+        link_a[i]->output_connection = routers[i];
+        link_b[i]->input_connection = routers[i];
+        link_b[i]->output_connection = interfaces[i];
+        routers[i]->input_connections.push_back(link_a[i]);
+        routers[i]->output_connections.push_back(link_b[i]);
     }
     return;
 }
@@ -276,7 +250,7 @@ Torus::setup()
     for ( uint i=0 ; i<no_nodes ; i++ )
     {
         processors[i]->setup( no_nodes, vcs, max_sim_time);
-        interfaces[i]->setup(vcs, credits);
+        interfaces[i]->setup(vcs, credits, buffer_size);
         routers[i]->init(ports, vcs, credits, buffer_size);
     }
 

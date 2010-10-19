@@ -98,6 +98,7 @@ HeadFlit::HeadFlit()
     dst_address = -1;
     transaction_id = -1;
     pkt_cnt = 0;
+    is_dateline_traversed = false;
 }
 
 HeadFlit::~HeadFlit()

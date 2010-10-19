@@ -23,6 +23,7 @@
 #include	"simIrisComponentHeader.h"
 #include	"genericData.h"
 #include	"mc_constants.h"
+#include	"stats.h"
 
 //#define DEBUG
 //#define DEEP_DEBUG
@@ -32,12 +33,14 @@ uint no_nodes = 16,
      do_two_stage_router = 0,
      max_phy_link_bits = 128,
      links = 0;
+uint no_msg_classes = 1;
 
 uint network_frequency = 1200; //MHz
 uint stat_print_level = 1;
 
 ullint max_sim_time = 10000000;
 
+IrisStats* istat = new IrisStats();
 //Sharda
 string network_type = "NONE";
 uint no_of_cores = 14;
@@ -45,22 +48,36 @@ uint concentration = 1;
 
 ROUTING_SCHEME rc_method = XY;
 SW_ARBITRATION sw_arbitration = ROUND_ROBIN;
-ROUTER_MODEL router_model = PHYSICAL_3STAGE;
-MC_MODEL mc_model = GENERIC_MC;
-TERMINAL_MODEL terminal_model = TPG;
+ROUTER_MODEL router_model = PHYSICAL;
+string router_model_string = "PHYSICAL";
+MC_MODEL mc_model = SINK;
+string mc_model_string = "SINK";
+TERMINAL_MODEL terminal_model = GENERIC_PKTGEN;
+string terminal_model_string= "GENERIC_PKTGEN";
 message_class priority_msg_type = PRIORITY_REQ;
+message_class terminal_msg_class = RESPONSE_PKT;
+string terminal_msg_class_string = "RESPONSE_PKT";
 uint print_setup = 0;
 uint grid_size=4; 
 const bool multiple_flit_in_buf = true;
 vector<uint> mc_positions;
 vector<string> traces;
-uint vcs=1, ports=5, buffer_size=1, credits=1;
+uint vcs=1, ports=5, buffer_size=2, credits=2;
 string trace_name, output_path, msg_type_string;
 string routing_scheme, sw_arbitration_scheme;
+
+/* TPG parameters */
+uint mean_irt = 50;
+uint pkt_payload_length = 128;
+
+/* Flat mc and other mc knobs */
+uint mc_response_pkt_payload_length = 512;
+
 string addr_map_scheme_string,mc_scheduling_algorithm_string,dram_page_policy_string;
 uint THREAD_BITS_POSITION = 25;
 uint MC_ADDR_BITS = 12;
 uint BANK_BITS = 13;
+bool do_request_reply_network = false;
 
 DRAM_CONFIG dram_config_string = DDR3_1600_10;
 
@@ -73,27 +90,27 @@ uint MAX_BUFFER_SIZE = 8;
 uint MAX_CMD_BUFFER_SIZE = 16;
 uint RESPONSE_BUFFER_SIZE = 56*8; 
 
- 
-   uint NO_OF_CHANNELS=1;		//  (int)log2() = k bits. 
-   uint NO_OF_RANKS=1;       		//  (int)log2() = l bits.
 
-    uint NO_OF_BANKS=8;         		//  (int)log2() = b bits. 
+uint NO_OF_CHANNELS=1;		//  (int)log2() = k bits. 
+uint NO_OF_RANKS=1;       		//  (int)log2() = l bits.
+
+uint NO_OF_BANKS=8;         		//  (int)log2() = b bits. 
 //   uint NO_OF_BUFFERS = NO_OF_BANKS;
 
-   uint NO_OF_ROWS = 8192; 		//4096 //  (int)log2() = r bits. 
-   uint NO_OF_COLUMNS = 128;         	//  (int)log2() = c bits. 
-   uint COLUMN_SIZE = 64;        		//  (int)log2() = v bits.  Column Size = 2bytes
+uint NO_OF_ROWS = 8192; 		//4096 //  (int)log2() = r bits. 
+uint NO_OF_COLUMNS = 128;         	//  (int)log2() = c bits. 
+uint COLUMN_SIZE = 64;        		//  (int)log2() = v bits.  Column Size = 2bytes
 /* uint BLOCKS_PER_ROW = 128;          	//  (int)log2() = n bits.  Cache line Per Row
    uint CACHE_BLOCK_SIZE = 64;         	//  (int)log2() = z bits.  L2 Cache Block Size
    uint ROW_SIZE = NO_OF_COLUMNS*COLUMN_SIZE; //(Also equal to BLOCKS_PER_ROW*CACHE_BLOCK_SIZE)
    uint DRAM_SIZE =  NO_OF_CHANNELS*NO_OF_RANKS*NO_OF_BANKS*NO_OF_ROWS*ROW_SIZE;
-*/
-   uint NETWORK_ADDRESS_BITS = 32;
-   uint NETWORK_THREADID_BITS = 6;
-   uint NETWORK_COMMAND_BITS = 3;
+ */
+uint NETWORK_ADDRESS_BITS = 32;
+uint NETWORK_THREADID_BITS = 6;
+uint NETWORK_COMMAND_BITS = 3;
 
-   uint MSHR_SIZE= 8;
- 
+uint MSHR_SIZE= 8;
+
 float CORE_SPEED = 3000;
 float CYCLE_2_NS = (CORE_SPEED*1.0 / 1000);
 

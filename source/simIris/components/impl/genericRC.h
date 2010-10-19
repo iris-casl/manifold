@@ -1,9 +1,10 @@
-/*
+/*!
  * =====================================================================================
  *
  *       Filename:  genericrc.h
  *
- *    Description:  
+ *    Description:  All routing algos are implemented here for the time being.
+ *    Need to re arrange
  *
  *        Version:  1.0
  *        Created:  02/19/2010 11:54:57 AM
@@ -30,12 +31,7 @@ extern uint req_rep;
 extern uint grid_size;
 extern uint no_nodes;
 extern bool do_request_reply_network;
-/*
- * =====================================================================================
- *        Class:  GenericRC
- *  Description:  
- * =====================================================================================
- */
+
 class GenericRC
 {
     public:
@@ -63,6 +59,8 @@ class GenericRC
         string name;
         uint vcs;
         uint route_x_y( uint addr );
+        void route_torus( HeadFlit* hf );
+        void route_ring( HeadFlit* hf );
         void route_negative_first(HeadFlit* hf);
         void route_west_first(HeadFlit* hf);
         void route_north_last(HeadFlit* hf);

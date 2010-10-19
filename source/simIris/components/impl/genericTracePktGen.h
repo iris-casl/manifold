@@ -1,9 +1,28 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  genericTracePktGen.h
+ *
+ *    Description: Used to inject traces from a cycle accurate simulator into
+ *    iris as network traffic.
+ *    Does have some additional queues for mshr modelling which a genericTPG
+ *    does not need. TODO: Remove mshr modelling.
+ *
+ *        Version:  1.0
+ *        Created:  10/19/2010 01:44:00 PM
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  Mitchelle Rasquinha (), mitchelle.rasquinha@gatech.edu
+ *        Company:  Georgia Institute of Technology
+ *
+ * =====================================================================================
+ */
 
 #ifndef  _genericTracePktGen_h_INC
 #define  _genericTracePktGen_h_INC
 
-#include        "genericInterface.h"
-#include        "genericEvents.h"
+#include        "genericInterfaceNB.h"
 #include        "../../../util/genericData.h"
 #include        "../interfaces/processor.h"
 #include        "../../data_types/impl/highLevelPacket.h"

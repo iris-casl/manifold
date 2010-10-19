@@ -1,9 +1,13 @@
-/*
+/*!
  * =====================================================================================
  *
  *       Filename:  genericLink.h
  *
- *    Description:  
+ *    Description:  Simple link btw router->router interface->router
+ *    router->interface.
+ *    Unidirectional Link. for bidirectional use two of these
+ *    Future uses may be minimal when moving to the parallel kernal and links
+ *    cross LP boundaries.
  *
  *        Version:  1.0
  *        Created:  02/22/2010 07:27:35 PM
@@ -21,17 +25,11 @@
 
 #include	"../interfaces/irisLink.h"
 #include	"../../../util/genericData.h"
-#include	"genericEvents.h"
 #include	"../../data_types/impl/irisEvent.h"
 
 using namespace std;
 extern ullint max_sim_time;
-/*
- * =====================================================================================
- *        Class:  GenericLink
- *  Description:  
- * =====================================================================================
- */
+
 class GenericLink : public IrisLink
 {
     public:
@@ -45,8 +43,10 @@ class GenericLink : public IrisLink
         string print_stats() const;
         ullint get_flits_utilization();
         ullint get_credits_utilization();
-        unsigned long long int flits_passed;
-        unsigned long long int credits_passed;
+        ullint flits_passed;
+        ullint credits_passed;
+        uint link_id;
+        bool is_dateline;
 
     protected:
 

@@ -1,9 +1,21 @@
-/*
+/*!
  * =====================================================================================
  *
  *       Filename:  genericvcarbiter.h
  *
- *    Description:  
+ *    Description:  This is a simple arbiter class that is used with the
+ *    interface to multiplex among available packets to be sent.
+ *    (for usage example: genericInterfaceNB.h)
+ *
+ *    pick_winner is the main function that arbitration.
+ *    Example of how it works:
+ *              req0    req1    req2    req3    req4    req5    req6
+ *              avilable 2 grants gr0 and gr1
+ *              cycle3: req3 req4 req5 request
+ *                      gr0  gr1
+ *                      after req3 is completed
+ *                      req4 req5
+ *                      gr1  gr0
  *
  *        Version:  1.0
  *        Created:  05/02/2010 01:35:51 AM
@@ -21,12 +33,6 @@
 #include	<vector>
 #include	"../interfaces/arbiter.h"
 
-/*
- * =====================================================================================
- *        Class:  GenericArbiter
- *  Description:  
- * =====================================================================================
- */
 class GenericArbiter
 {
     public:

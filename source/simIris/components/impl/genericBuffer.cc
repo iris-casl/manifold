@@ -1,9 +1,9 @@
-/*
+/*!
  * =====================================================================================
  *
  *       Filename:  genericbuffer.cc
  *
- *    Description:  
+ *    Description:  Implements the buffer class. 
  *
  *        Version:  1.0
  *        Created:  02/21/2010 12:55:17 AM
@@ -33,7 +33,8 @@ GenericBuffer::~GenericBuffer ()
 void
 GenericBuffer::push ( Flit* f )
 {
-    buffers[push_channel].push(f);
+    buffers[push_channel].push_back(f);
+    assert(buffers[push_channel].size() <= buffer_size);
     return;
 }		/* -----  end of function GenericBuffer::push  ----- */
 
@@ -47,10 +48,19 @@ GenericBuffer::pull ()
         exit(1);
     }
     Flit* f = buffers[pull_channel].front();
-    buffers[pull_channel].pop();
+    buffers[pull_channel].pop_front();
+    assert(buffers[pull_channel].size() <= buffer_size);
     return f;
 }		/* -----  end of function GenericBuffer::pull  ----- */
 
+/*!
+ * ===  FUNCTION  ======================================================================
+ *         Name:  peek
+ *  Description:  Uses the pull channel. Make sure to set it before peek is
+ *  called. Normal usage is to get a pointer to the head of the buffer without
+ *  actually pulling it out from the buffer
+ * =====================================================================================
+ */
 Flit*
 GenericBuffer::peek ()
 {
@@ -60,6 +70,7 @@ GenericBuffer::peek ()
         exit(1);
     }
     Flit* f = buffers[pull_channel].front();
+    assert(buffers[pull_channel].size() <= buffer_size);
     return f;
 }		/* -----  end of function GenericBuffer::pull  ----- */
 
@@ -83,6 +94,12 @@ GenericBuffer::resize( uint v, uint bs )
     vcs =v;
     buffer_size = bs;
     buffers.resize(vcs);
+    for( uint i=0; i<vcs; i++)
+    {
+       buffers[i].clear();
+       assert(buffers[i].size()<=buffer_size);
+    }
+
     return;
 }		/* -----  end of function GenericBuffer::change_vcs  ----- */
 
@@ -126,7 +143,7 @@ bool
 GenericBuffer::is_channel_full ( uint ch ) const
 {
     /* this is the buffer size that the router is configured for the implementation allow for a bigger buffer[i].size which is the simulation artifact and not the buffer size in the physical router */
-    return buffers[ch].size() >= BUFFER_SIZE;  
+    return buffers[ch].size() > buffer_size;  
 }		/* -----  end of function GenericBuffer::full  ----- */
 
 bool
@@ -143,7 +160,7 @@ GenericBuffer::toString () const
         << "\t buffer_size: " << buffer_size
         << "\t No of buffers: " << buffers.size() << "\n";
     for( uint i=0; i<buffers.size() && !buffers[i].empty(); i++)
-            str << buffers[i].front()->toString();
+        str << buffers[i].front()->toString();
     return str.str();
 }		/* -----  end of function GenericBuffer::toString  ----- */
 

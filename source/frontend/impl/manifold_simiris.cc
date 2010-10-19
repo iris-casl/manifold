@@ -23,6 +23,7 @@
 #include	"topology.h"
 #include	"mesh.h"
 #include	"torus.h"
+#include	"ring.h"
 #include	"visual.h"
 #include	"../../simIris/data_types/impl/flit.h"
 #include	"../../util/stats.h"
@@ -36,11 +37,9 @@
 
 unsigned long int net_pack_info[8][8];
 
-extern void interface_simiris(void);
+extern void interface_simiris(ullint);
 
 Topology * topology_ptr = NULL;
-string router_model_string, mc_model_string, terminal_model_string;
-
 void
 dump_configuration ( void )
 {
@@ -50,9 +49,9 @@ dump_configuration ( void )
     cerr << " ports:\t" << ports << endl;
     cerr << " buffer_size:\t" << buffer_size << endl;
     cerr << " credits:\t" << credits << endl;
-    cerr << " no_nodes( spread over a 2D Mesh topology):\t" << no_nodes << endl;
-    cerr << " grid size:\t" << grid_size << endl;
-    cerr << " links:  \t" << links << endl;
+    cerr << " no_nodes:\t" << no_nodes << endl;
+    cerr << " grid_size:\t" << grid_size << endl;
+    cerr << " unidirectional_links:  \t" << 2*links << endl;
     cerr << " no_of_mcs:\t" << no_mcs << endl;
     cerr << " no_of_cores:\t" << no_of_cores << endl;
     cerr << " concentration:\t" << concentration << endl;
@@ -66,6 +65,7 @@ dump_configuration ( void )
     cerr << " TWO_STAGE_ROUTER:\t" << do_two_stage_router << endl;
     cerr << " ROUTING_SCHEME:\t" << routing_scheme << " " << rc_method << endl;
     cerr << " SW_ARBITRATION:\t" << sw_arbitration_scheme<< " " << sw_arbitration<< endl;
+    cerr << " Msg_class with arbitration priority:\t" << msg_type_string << endl;
     cerr << " BANK_BITS:\t" << BANK_BITS << endl;
     cerr << " NETWORK_BITS:\t" << NETWORK_ADDRESS_BITS << endl;
     cerr << " COMMAND_BITS:\t" << NETWORK_THREADID_BITS << endl;
@@ -77,12 +77,23 @@ dump_configuration ( void )
     cerr << " NO_OF_ROWS:\t" << NO_OF_ROWS << endl;
     cerr << " NO_OF_COLUMNS:\t" << NO_OF_COLUMNS << endl;
     cerr << " COLUMN_SIZE:\t" << COLUMN_SIZE << endl;
-    cerr << " Router Model String:\t" << router_model_string<< endl;
-    cerr << " mc_model :\t" << mc_model_string<< endl;
-    cerr << " terminal_model :\t" << terminal_model_string<< endl;
-    cerr << " Msg_class with arbitration priority:\t" << msg_type_string << endl;
+    cerr << " router_model:\t" << router_model_string<< endl;
+    cerr << " mc_model:\t" << mc_model_string<< endl;
+    cerr << " do_request_reply_network:\t" << do_request_reply_network << endl;
+    cerr << " mc_response_pkt_payload_length:\t" << mc_response_pkt_payload_length<< endl;
+    cerr << " mc_positions:\t";
+    for( uint i=0; i<mc_positions.size(); i++)
+        cerr << mc_positions[i] << " ";
+    cerr << endl;
 
-    if( traces.size() < (no_nodes - no_mcs) )
+    cerr << " terminal_model:\t" << terminal_model_string<< endl;
+    cerr << " mean_irt:\t" << mean_irt<< endl;
+    cerr << " terminal_msg_class:\t" << terminal_msg_class_string << endl;
+    cerr << " no_msg_classes:\t" << no_msg_classes<< endl;
+    cerr << " pkt_payload_length:\t" << pkt_payload_length<< endl;
+    cerr << " stat_print_level:\t" << stat_print_level<< endl;
+
+    if( terminal_model_string == "TPG" && traces.size() < (no_nodes - no_mcs) )
     {
         cout << " Not enough trace files for simulation " << endl;
         exit(1);
@@ -90,8 +101,18 @@ dump_configuration ( void )
     return ;
 }
 
+void
+print_access_counts()
+{
+    cerr << "IB_cycles: " << istat->get_total_ib_cycles() << endl;
+    cerr << "RC_cycles: " << istat->get_total_rc_cycles() << endl;
+    cerr << "VCA_cycles: " << istat->get_total_vca_cycles() << endl;
+    cerr << "SA_cycles: " << istat->get_total_sa_cycles() << endl;
+    cerr << "ST_cycles: " << istat->get_total_st_cycles() << endl;
+    cerr << "Total_flits: " << istat->get_total_flits_passed() << endl;
+    cerr << "Total_credits: " << istat->get_total_credits_passed() << endl;
+}
 
-IrisStats* istat = new IrisStats();
 int
 main ( int argc, char *argv[] )
 {
@@ -109,6 +130,7 @@ main ( int argc, char *argv[] )
 
     ifstream fd(argv[1]);
     string data, word;
+
     while(!fd.eof())
     {
         getline(fd,data);
@@ -117,8 +139,8 @@ main ( int argc, char *argv[] )
         istringstream iss( data, istringstream::in);
         while ( position > data.size() && iss >> word )
         {
-	    if ( word.compare("TYPE") == 0)
-		iss >> network_type;
+            if ( word.compare("TYPE") == 0)
+                iss >> network_type;
             if ( word.compare("PRINT_SETUP") == 0)   
                 iss >> print_setup;
             if ( word.compare("VCS") == 0)   
@@ -153,6 +175,16 @@ main ( int argc, char *argv[] )
                 iss >> mc_model_string;
             if ( word.compare("TERMINAL_MODEL") == 0)
                 iss >> terminal_model_string;
+            if ( word.compare("MEAN_IRT") == 0)
+                iss >> mean_irt;
+            if ( word.compare("TERMINAL_MSG_CLASS") == 0)
+                iss >> terminal_msg_class_string;
+            if ( word.compare("NO_MSG_CLASS") == 0)
+                iss >> no_msg_classes;
+            if ( word.compare("PKT_PAYLOAD_LEN") == 0)
+                iss >> pkt_payload_length;
+            if ( word.compare("MC_RESP_PAYLOAD_LEN") == 0)
+                iss >> mc_response_pkt_payload_length;
             if ( word.compare("THREAD_BITS_POSITION") == 0)
                 iss >> THREAD_BITS_POSITION;
             if ( word.compare("MC_ADDR_BITS") == 0)
@@ -161,12 +193,12 @@ main ( int argc, char *argv[] )
                 iss >> BANK_BITS;
             if ( word.compare("NO_OF_CHANNELS") == 0)
                 iss >> NO_OF_CHANNELS;
-                
+
             if ( word.compare("NO_OF_RANKS") == 0)
                 iss >> NO_OF_RANKS;
             if ( word.compare("NO_OF_BANKS") == 0)
                 iss >> NO_OF_BANKS;
-                
+
             if ( word.compare("NO_OF_ROWS") == 0)
                 iss >> NO_OF_ROWS;
             if ( word.compare("NO_OF_COLUMNS") == 0)
@@ -175,14 +207,14 @@ main ( int argc, char *argv[] )
                 iss >> COLUMN_SIZE;
             if ( word.compare("MSHR_SIZE") == 0)
                 iss >> MSHR_SIZE;
-                
+
             if ( word.compare("MAX_BUFFER_SIZE") == 0)
                 iss >> MAX_BUFFER_SIZE;
             if ( word.compare("MAX_CMD_BUFFER_SIZE") == 0)
                 iss >> MAX_CMD_BUFFER_SIZE;
             if ( word.compare("RESPONSE_BUFFER_SIZE") == 0)
                 iss >> RESPONSE_BUFFER_SIZE;
-             
+
             if ( word.compare("NETWORK_ADDRESS_BITS") == 0)
                 iss >> NETWORK_ADDRESS_BITS;
             if ( word.compare("NETWORK_THREADID_BITS") == 0)
@@ -205,6 +237,8 @@ main ( int argc, char *argv[] )
                 iss >> addr_map_scheme_string;
             if ( word.compare("MC_SCHEDULING_ALGORITHM") == 0)
                 iss >> mc_scheduling_algorithm_string;
+            if ( word.compare("REQ_REPLY") == 0)
+                iss >> do_request_reply_network;
             if ( word.compare("TRACE") == 0)
             {
                 iss >> trace_name;
@@ -236,6 +270,8 @@ main ( int argc, char *argv[] )
             msg_type_string = argv[i+1];
         if( strcmp(argv[i],"--bank_bits")==0)
             BANK_BITS = atoi(argv[i+1]);
+        if( strcmp(argv[i],"--mirt")==0)
+            mean_irt= atoi(argv[i+1]);
     }
 
     if( routing_scheme.compare("odd-even") == 0)
@@ -250,6 +286,10 @@ main ( int argc, char *argv[] )
         rc_method = NORTH_LAST_NON_MINIMAL;
     if( routing_scheme.compare("xy") == 0)
         rc_method = XY;
+    if( routing_scheme.compare("torus-routing") == 0)
+        rc_method = TORUS_ROUTING;
+    if( routing_scheme.compare("ring-routing") == 0)
+        rc_method = RING_ROUTING;
 
     if( strcmp(sw_arbitration_scheme.c_str(),"round-robin") == 0)
         sw_arbitration = ROUND_ROBIN;
@@ -264,19 +304,19 @@ main ( int argc, char *argv[] )
         priority_msg_type = ONE_FLIT_REQ;
     if( strcmp(msg_type_string.c_str(),"RESPONSE_PKT") == 0)
         priority_msg_type = RESPONSE_PKT;
- 
+
     if( dram_page_policy_string.compare("OPEN_PAGE_POLICY") == 0)
         dram_page_policy = OPEN_PAGE_POLICY;
     if( dram_page_policy_string.compare("CLOSE_PAGE_POLICY") == 0)
         dram_page_policy = CLOSE_PAGE_POLICY;
-    
+
     if( mc_scheduling_algorithm_string.compare("FR_FCFS") == 0)
         mc_scheduling_algorithm = FR_FCFS;
     if( mc_scheduling_algorithm_string.compare("FC_FS") == 0)
         mc_scheduling_algorithm = FC_FS;
     if( mc_scheduling_algorithm_string.compare("PAR_BS") == 0)
         mc_scheduling_algorithm = PAR_BS;
-    
+
     if( addr_map_scheme_string.compare("PAGE_INTERLEAVING") == 0)
         addr_map_scheme = PAGE_INTERLEAVING;
     if( addr_map_scheme_string.compare("PERMUTATION") == 0)
@@ -289,40 +329,59 @@ main ( int argc, char *argv[] )
         addr_map_scheme = NO_SCHEME;
     if( addr_map_scheme_string.compare("LOCAL_ADDR_MAP") == 0)
         addr_map_scheme = LOCAL_ADDR_MAP;
- 
-    if( router_model_string.compare("VIRTUAL_4STAGE") == 0)
-        router_model = VIRTUAL_4STAGE;
-    if( router_model_string.compare("PHYSICAL_3STAGE") == 0)
-        router_model = PHYSICAL_3STAGE;
+
+    if( router_model_string.compare("VIRTUAL") == 0)
+        router_model = VIRTUAL;
+    if( router_model_string.compare("PHYSICAL") == 0)
+        router_model = PHYSICAL;
 
     if( mc_model_string.compare("GENERIC_MC") == 0)
         mc_model = GENERIC_MC;
     if( mc_model_string.compare("FLAT_MC") == 0)
         mc_model = FLAT_MC;
+    if( mc_model_string.compare("SINK") == 0)
+        mc_model = SINK;
 
     if( terminal_model_string.compare("GENERIC") == 0)
         terminal_model = GENERIC_PKTGEN;
     if( terminal_model_string.compare("TPG") == 0)
         terminal_model = TPG;
 
+    if( strcmp(terminal_msg_class_string.c_str(),"PRIORITY_REQ") == 0)
+        terminal_msg_class = PRIORITY_REQ;
+    if( strcmp(terminal_msg_class_string.c_str(),"ONE_FLIT_REQ") == 0)
+        terminal_msg_class = ONE_FLIT_REQ;
+    if( strcmp(terminal_msg_class_string.c_str(),"RESPONSE_PKT") == 0)
+        terminal_msg_class = RESPONSE_PKT;
+
     /* Number of MC's and the size of the position vector should be the same. */
-        assert(mc_positions.size() == no_mcs);
+    assert(mc_positions.size() == no_mcs);
 
     /* Compute additional parameters */
-        uint edge_links = 0;
+    uint edge_links = 0;
     if ( network_type == "MESH" || network_type == "Mesh" || network_type == "mesh")
     {
-//	links = (ports + (grid_size -1)*(ports-1)) + ( (ports-1) + (grid_size -1)*(ports-2))*(grid_size-1);
-	/* For a 2D mesh [Gs*(GS-1)*k] internal links + edge links [4*GS] +
-	terminal connections [GS*GS] */
-	links = (grid_size * (grid_size-1) *2 /*k*/ ) + (grid_size*4 /* 2D mesh as 4 edges */ )+(grid_size*grid_size);
-        edge_links = grid_size*4;
-	cout << "Links = " << links << endl;
+        /* For a 2D mesh [Gs*(GS-1)*k] internal links + edge links [4*GS] +
+           terminal connections [GS*GS]. Note this is the unidirectional measure.
+           Links are denoted as 
+           follows east going for router_n, west going for router_n, north going for router_n
+           and south going for router_n (0<n<no_nodes). Going by this convention one of the edge 
+           links will be east going for rightmost router+1 which is not part of the mesh. Hence 
+           there are grid_size such unidirectional nodes for every k dimension that dont get connected. FIX tht */
+        links = (grid_size * (grid_size+1) *2 /*k=2 for mesh*/ ) + (grid_size*grid_size /* for the interfaces */ );
+        edge_links = grid_size*4*2; /* for a mesh there are 4 sides each with GS nodes, 2 bidirectional */
     }
     else if (network_type == "TORUS" || network_type == "Torus" || network_type == "torus" )
     {
-	links = grid_size * grid_size * ports ;
-	cout << "Links = " << links << endl;
+        links = (grid_size * grid_size * 2/* k */) +(grid_size*grid_size)/*interfaces*/;
+        /*no edge links for the torus */
+        cout << "Links = " << links << endl;
+    }
+    else if (network_type == "RING" || network_type == "Ring" || network_type == "ring" )
+    {
+        //links = grid_size * grid_size * ports ;
+        links = grid_size * 2;
+        cout << "Links = " << links << endl;
     }
     fd.close();
 
@@ -340,36 +399,38 @@ main ( int argc, char *argv[] )
     dump_configuration();
     init_dram_timing_parameters();
     if ( network_type == "MESH" || network_type == "Mesh" || network_type == "mesh" )
-	topology_ptr = new Mesh();
+        topology_ptr = new Mesh();
     else if ( network_type == "TORUS" || network_type == "Torus" || network_type == "torus" )
-	topology_ptr = new Torus();
+        topology_ptr = new Torus();
+    else if ( network_type == "RING" || network_type == "Ring" || network_type == "ring" )
+        topology_ptr = new Ring();
     else if (network_type == "NONE" )
     {
-	cout << "Topology not specified...exiting \n" ;
-	exit(1);
+        cout << "Topology not specified...exiting \n" ;
+        exit(1);
     }
     topology_ptr->init( ports, vcs, credits, buffer_size, no_nodes, grid_size, links);
     topology_ptr->max_sim_time = max_sim_time;
 
-    Visual* vis = new Visual(topology_ptr, no_nodes, links, grid_size);
-    
-    /* Create the mesh->routers and mesh->interfaces */
+    //    Visual* vis = new Visual(topology_ptr, no_nodes, links, grid_size);
+
+    /* Create the routers and interfaces */
     for( uint i=0; i<no_nodes; i++)
     {
         switch ( router_model )
         {
-            case PHYSICAL_3STAGE:
-                topology_ptr->routers.push_back( new GenericRouter3Stg());
+            case PHYSICAL:
+                topology_ptr->routers.push_back( new GenericRouterPhy());
                 break;
-            case VIRTUAL_4STAGE:
-                topology_ptr->routers.push_back( new GenericRouter4Stg());
+            case VIRTUAL:
+                topology_ptr->routers.push_back( new RouterVcMP());
                 break;
             default:
                 cout << " Incorrect router model " << endl;
                 exit(1);
                 break;
         }
-        topology_ptr->interfaces.push_back ( new GenericInterfaceVcs());
+        topology_ptr->interfaces.push_back ( new GenericInterfaceNB());
     }
 
     /*  Create the TPG and mc modules */
@@ -382,10 +443,13 @@ main ( int argc, char *argv[] )
             switch ( mc_model )
             {
                 case GENERIC_MC:
-                    topology_ptr->processors.push_back( new NI() );
+                    topology_ptr->processors.push_back( new McFrontEnd() );
                     break;
                 case FLAT_MC:
                     topology_ptr->processors.push_back( new GenericFlatMc());
+                    break;
+                case SINK:
+                    topology_ptr->processors.push_back( new GenericSink());
                     break;
                 default:
                     cout << " Unknown MC model " << endl;
@@ -399,14 +463,22 @@ main ( int argc, char *argv[] )
             {
                 case GENERIC_PKTGEN:
                     topology_ptr->processors.push_back( new GenericPktGen() );
+                    for ( uint j=0; j<mc_positions.size(); j++)
+                        static_cast<GenericPktGen*>(topology_ptr->processors[i])->mc_node_ip.push_back(mc_positions[j]);;
                     break;
                 case TPG:
                     topology_ptr->processors.push_back( new GenericTracePktGen() );
                     static_cast<GenericTracePktGen*>(topology_ptr->processors[i])->set_trace_filename(traces[i]);
+                    /*
+                     * Need to pass the mc positions to the injecting node so it can pick a destination node_ip 
+                     * from the mc_positions vector. This may not be needed if
+                     * the node_ip is available as part of the trace. In
+                     * either case make sure to assert that the destination
+                     * node_ip is one of the sink nodes.
+                     */
                     for ( uint j=0; j<mc_positions.size(); j++)
-                    {
                         static_cast<GenericTracePktGen*>(topology_ptr->processors[i])->mc_node_ip.push_back(mc_positions[j]);;
-                    }
+
                     break;
                 default:
                     cout << " Unknown Terminal model " << endl;
@@ -440,10 +512,12 @@ main ( int argc, char *argv[] )
     {
         topology_ptr->link_a[i]->setComponentId(alink_comp_id++);
         topology_ptr->link_b[i]->setComponentId(blink_comp_id++);
+        topology_ptr->link_a[i]->link_id=i;
+        topology_ptr->link_b[i]->link_id=links+i;
         topology_ptr->link_a[i]->setup();
         topology_ptr->link_b[i]->setup();
     }
-    cout << " ******************** SETUP COMPLETE *****************\n" << endl;
+    cerr << " ******************** SETUP COMPLETE *****************\n" << endl;
     /*  Set up the node ips for components */
     for ( uint i=0 ; i<no_nodes ; i++ )
     {
@@ -459,39 +533,64 @@ main ( int argc, char *argv[] )
         topology_ptr->interfaces[i]->set_no_vcs(vcs);
         topology_ptr->interfaces[i]->set_no_credits(credits);
         topology_ptr->interfaces[i]->set_buffer_size(credits);
-        //        topology_ptr->processors[i]->set_output_path(output_path);
+        topology_ptr->processors[i]->set_output_path(output_path);
     }
 
     topology_ptr->setup();
     istat->init();
-    for ( uint i=0 ; i<no_nodes ; i++ )
-        topology_ptr->processors[i]->set_output_path(output_path);
 
-    /*  Set no of ports and positions for routing */
-    vector< uint > grid_x;
-    vector< uint > grid_y;
-    grid_x.resize(no_nodes);
-    grid_y.resize(no_nodes);
+    if (network_type == "RING" || network_type == "Ring" || network_type == "ring" )
+    {
+        vector< uint > grid_x;
+        vector< uint > grid_y;
+        grid_x.resize(no_nodes);
+        grid_y.resize(1);
 
-    /* Limitation of only modelling squares */
-    for ( uint i=0 ; i<grid_size ; i++ )
-        for ( uint j=0 ; j<grid_size ; j++ )
-        {
-            grid_x[(i*grid_size)+j] = j;
-            grid_y[(i*grid_size)+j] = i;
-        }
+        /* Limitation of only modelling squares */
+        for ( uint i=0 ; i<no_nodes; i++ )
+            grid_x[i] = i;
 
+        grid_y[0] = 0;
 
-    for ( uint i=0 ; i<no_nodes ; i++ )
-        topology_ptr->routers[i]->set_no_nodes(no_nodes);
+        for ( uint i=0 ; i<no_nodes ; i++ )
+            topology_ptr->routers[i]->set_no_nodes(no_nodes);
 
-    for ( uint i=0 ; i<no_nodes ; i++ )
-        for( uint j=0; j < ports ; j++)
-            for( uint k=0; k < no_nodes ; k++) // Assuming is a square topology_ptr. 
+        for ( uint i=0 ; i<no_nodes ; i++ )
+            for( uint j=0; j < ports ; j++)
+                for( uint k=0; k < no_nodes ; k++) // Assuming is a square topology_ptr. 
+                {
+                    static_cast<Router*>(topology_ptr->routers[i])->set_grid_x_location(j,k, grid_x[k]);
+                    static_cast<Router*>(topology_ptr->routers[i])->set_grid_y_location(j,0, grid_y[0]);
+                }
+    }
+    else
+    {
+        /*  Set no of ports and positions for routing */
+        vector< uint > grid_x;
+        vector< uint > grid_y;
+        grid_x.resize(no_nodes);
+        grid_y.resize(no_nodes);
+
+        /* Limitation of only modelling squares */
+        for ( uint i=0 ; i<grid_size ; i++ )
+            for ( uint j=0 ; j<grid_size ; j++ )
             {
-                static_cast<Router*>(topology_ptr->routers[i])->set_grid_x_location(j,k, grid_x[k]);
-                static_cast<Router*>(topology_ptr->routers[i])->set_grid_y_location(j,k, grid_y[k]);
+                grid_x[(i*grid_size)+j] = j;
+                grid_y[(i*grid_size)+j] = i;
             }
+
+
+        for ( uint i=0 ; i<no_nodes ; i++ )
+            topology_ptr->routers[i]->set_no_nodes(no_nodes);
+
+        for ( uint i=0 ; i<no_nodes ; i++ )
+            for( uint j=0; j < ports ; j++)
+                for( uint k=0; k < no_nodes ; k++) // Assuming is a square topology_ptr. 
+                {
+                    static_cast<Router*>(topology_ptr->routers[i])->set_grid_x_location(j,k, grid_x[k]);
+                    static_cast<Router*>(topology_ptr->routers[i])->set_grid_y_location(j,k, grid_y[k]);
+                }
+    }
 
     topology_ptr->connect_interface_routers();
     topology_ptr->connect_routers();
@@ -513,15 +612,17 @@ main ( int argc, char *argv[] )
         }
     }
 
-    vis->create_new_connections();
-    vis->create_graphml();
+    //    vis->create_new_connections();
+    //    vis->create_graphml();
 
     Simulator::StopAt(max_sim_time);
     Simulator::Run();
 
     cerr << topology_ptr->print_stats();
     /* Init McPat for Energy model and use the counters to compute energy */
-    interface_simiris();
+    //interface_simiris(max_sim_time);
+    print_access_counts();
+
     ullint total_link_utilization = 0;
     ullint total_link_cr_utilization = 0;
     for ( uint i=0 ; i<links ; i++ )
@@ -533,7 +634,7 @@ main ( int argc, char *argv[] )
     for ( uint i=0 ; i<links ; i++ )
     {
         total_link_utilization += topology_ptr->link_b[i]->get_flits_utilization();
-        total_link_cr_utilization += topology_ptr->link_a[i]->get_credits_utilization();
+        total_link_cr_utilization += topology_ptr->link_b[i]->get_credits_utilization();
     }
 
     double bytes_delivered = (total_link_utilization + 0.0 )*max_phy_link_bits/(network_frequency*1e6); /* Assuming 1flit=1phit */

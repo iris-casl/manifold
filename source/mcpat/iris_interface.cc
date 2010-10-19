@@ -31,7 +31,7 @@ using namespace std;
 
 extern IrisStats* istat;
 
-int interface_simiris(void)
+int interface_simiris(ullint sim_time)
 {
     cerr<<"Using McPAT (version "<< VER_MAJOR <<"."<< VER_MINOR
         << " of " << VER_UPDATE << ") for Energy Computation.\n "<<endl;
@@ -44,10 +44,7 @@ int interface_simiris(void)
     cerr<<"\n\n************* McPat per access POWER STATS *************\n";
 //    proc.displayEnergy(2, 5);
     cerr<<"\n\n************* SIMULATION POWER STATS *************\n";
-        cerr << "Total Router Dyn Energy: " << istat->compute_total_router_dyn_energy( proc.nocs[0]->rt_power.readOp.dynamic)*1e3<< " mJ"<< endl;
-        cerr << "\tBuffer Energy: " << istat->compute_total_buffer_dyn_energy( proc.nocs[0]->router->buffer.rt_power.readOp.dynamic)*1e3<< " mJ"<< endl;
-        cerr << "\tArbiter Energy: " << istat->compute_total_arbiter_dyn_energy( proc.nocs[0]->router->arbiter.rt_power.readOp.dynamic)*1e3<< " mJ"<< endl;
-        cerr << "\tCrossbar Energy: " << istat->compute_total_crossbar_dyn_energy( proc.nocs[0]->router->crossbar.rt_power.readOp.dynamic)*1e3<< " mJ"<< endl;
+
     delete p1;
     return 0;
 }

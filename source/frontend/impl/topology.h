@@ -21,16 +21,19 @@
 
 #include	<iostream>
 #include	<fstream>
-#include	"../../simIris/components/impl/genericRouter4Stg.h"
-#include	"../../simIris/components/impl/genericInterfaceVcs.h"
+#include	"../../simIris/components/impl/genericRouterPhy.h"
+#include	"../../simIris/components/impl/routerVcMP.h"
+#include	"../../simIris/components/impl/routerReqReply.h"
+#include	"../../simIris/components/impl/genericInterfaceNB.h"
 #include	"../../simIris/components/impl/genericTracePktGen.h"
+#include	"../../simIris/components/impl/genericPktGen.h"
 #include        "../../simIris/components/impl/genericFlatMc.h"
+#include        "../../simIris/components/impl/genericSink.h"
 #include        "../../simIris/components/impl/genericLink.h"
-//#include 	"../../simIris/components/impl/memctrlFE.h"
+#include        "../../simIris/components/impl/mcFrontEnd.h"
 
 #include	"../../simIris/data_types/impl/flit.h"
 #include	"../../simIris/data_types/impl/highLevelPacket.h"
-#include	"../../simIris/components/impl/genericRouter3Stg.h"
 #include	"../../util/genericData.h"
 
 #include	<string.h>
@@ -83,7 +86,8 @@ class Topology
 		vector <Processor*> processors;
 		vector <GenericLink*> link_a;
 		vector <GenericLink*> link_b;
-};
+}
+;
 
 #endif /* TOPOLOGY_H_ */
 

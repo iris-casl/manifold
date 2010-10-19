@@ -1,9 +1,9 @@
-/*
+/*!
  * =====================================================================================
  *
  *       Filename:  genericarbiter.cc
  *
- *    Description:  
+ *    Description: Implements the class in genericArbiter.h
  *
  *        Version:  1.0
  *        Created:  05/02/2010 01:41:41 AM

@@ -23,6 +23,7 @@
 #include	"../../../util/simIrisComponentHeader.h"
 #include	"../../data_types/impl/irisEvent.h"
 #include	<sstream>
+#include	<fstream>
 
 using namespace std;
 /*

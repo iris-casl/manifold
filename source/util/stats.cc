@@ -60,7 +60,7 @@ IrisStats::init( void )
 {
     for( uint i=0; i<no_nodes; i++)
         stat_router.push_back( new StatRouter() );
-    for( uint i=0; i<links; i++)
+    for( uint i=0; i<2*links; i++)
         stat_link.push_back( new StatLink() );
 
 }
@@ -155,11 +155,80 @@ double
 IrisStats::compute_total_link_dyn_energy ( double en )
 {
     double total_en = 0.0;
-    for( uint i=0; i<links; i++)
+    for( uint i=0; i<2*links; i++)
         total_en += (stat_link[i]->credits_transferred + stat_link[i]->flits_transferred)* en;
 
     return total_en;
 }		/* -----  end of method IrisStats::compute_total_link_dyn_energy  ----- */
 
+ullint
+IrisStats::get_total_ib_cycles ( void )
+{
+    ullint total = 0;
+    for( uint i=0; i<no_nodes; i++)
+        total += stat_router[i]->ib_cycles;
+
+    return total;
+}
+
+ullint
+IrisStats::get_total_rc_cycles ( void )
+{
+    ullint total = 0;
+    for( uint i=0; i<no_nodes; i++)
+        total += stat_router[i]->rc_cycles;
+
+    return total;
+}
+
+ullint
+IrisStats::get_total_vca_cycles ( void )
+{
+    ullint total = 0;
+    for( uint i=0; i<no_nodes; i++)
+        total += stat_router[i]->vca_cycles;
+
+    return total;
+}
+
+ullint
+IrisStats::get_total_sa_cycles ( void )
+{
+    ullint total = 0;
+    for( uint i=0; i<no_nodes; i++)
+        total += stat_router[i]->sa_cycles;
+
+    return total;
+}
+
+ullint
+IrisStats::get_total_st_cycles ( void )
+{
+    ullint total = 0;
+    for( uint i=0; i<no_nodes; i++)
+        total += stat_router[i]->st_cycles;
+
+    return total;
+}
+
+ullint
+IrisStats::get_total_flits_passed( void )
+{
+    ullint total = 0;
+    for( uint i=0; i<2*links; i++)
+        total += stat_link[i]->flits_transferred;
+
+    return total;
+}
+
+ullint
+IrisStats::get_total_credits_passed( void )
+{
+    ullint total = 0;
+    for( uint i=0; i<2*links; i++)
+        total += stat_link[i]->credits_transferred;
+
+    return total;
+}
 
 #endif   /* ----- #ifndef _STATS_CC_INC  ----- */

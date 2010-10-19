@@ -1,3 +1,21 @@
+/*!
+ * =====================================================================================
+ *
+ *       Filename:  genericFlatMc.cc
+ *
+ *    Description:  Implements the flatmc class.
+ *
+ *        Version:  1.0
+ *        Created:  02/20/2010 02:09:13 PM
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  Mitchelle Rasquinha (), mitchelle.rasquinha@gatech.edu
+ *        Company:  Georgia Institute of Technology
+ *
+ * =====================================================================================
+ */
+
 #ifndef _genericflatmc_cc_INC
 #define _genericflatmc_cc_INC
 
@@ -28,9 +46,11 @@ GenericFlatMc::setup (uint n, uint v, uint time)
     no_nodes = n;
     address = myId();
     
-    packets = 0;
     min_pkt_latency = 999999999;
     packets_out = 0;
+    packets_in = 0;
+    last_packet_in_cycle = 0;
+    last_packet_out_cycle = 0;
     packets_pending = 0;
 
     ready.resize( vcs );
@@ -103,7 +123,7 @@ GenericFlatMc::handle_new_packet_event ( IrisEvent* e)
     double lat = Simulator::Now() - hlp->sent_time;
     if( min_pkt_latency > lat)
         min_pkt_latency = lat;
-    _DBG( "-------------- GOT NEW PACKET ---------------\n pkt_latency: %f", lat);
+//    _DBG( "-------------- GOT NEW PACKET ---------------\n pkt_latency: %f", lat);
     
 
     // write out the packet data to the output trace file
@@ -130,6 +150,11 @@ GenericFlatMc::handle_new_packet_event ( IrisEvent* e)
     packets_pending++;
     pending_packets_time.push_back(Simulator::Now()+200);
     pending_packets.push_back(hlp);
+
+
+    /* Stats */
+    packets_in++;
+    last_packet_in_cycle = Simulator::Now();
 
 
     IrisEvent* event = new IrisEvent();
@@ -170,8 +195,10 @@ GenericFlatMc::handle_out_pull_event ( IrisEvent* e )
     }
     if( found && packets_pending > 0)
     {
-        packets++;
+        /* stats */
         packets_out++;
+        last_packet_out_cycle= Simulator::Now();
+
         packets_pending--;
         HighLevelPacket* hlp = pending_packets.front();
         hlp->virtual_channel = sending_vc;
@@ -183,12 +210,13 @@ GenericFlatMc::handle_out_pull_event ( IrisEvent* e )
         hlp->sent_time = pending_packets_time.front();
         pending_packets_time.pop_front();
         pending_packets.pop_front();
-        int xx = hlp->data.size();
-        for ( uint i=xx ; i < 10*max_phy_link_bits ; i++ )
-            hlp->data.push_back(true);
-        hlp->data_payload_length = hlp->data.size();
+//        int xx = hlp->data.size();
+//        for ( uint i=xx ; i < 10*max_phy_link_bits ; i++ )
+//            hlp->data.push_back(true);
+        hlp->data_payload_length = mc_response_pkt_payload_length;
 
-        hlp->sent_time = Simulator::Now();
+        hlp->sent_time += (Simulator::Now()-hlp->sent_time);
+        hlp->hop_count++;
 
         ready[sending_vc] = false;
         IrisEvent* event = new IrisEvent();
@@ -242,7 +270,10 @@ GenericFlatMc::print_stats() const
 {
     stringstream str;
     str << toString()
-        << "\n packets:\t " << packets
+        << "\n packets_out:\t " << packets_out
+        << "\n last_packet_out_cycle :\t " << last_packet_out_cycle
+        << "\n packets_in:\t " << packets_in
+        << "\n last_packet_in_cycle :\t " << last_packet_in_cycle
         << "\n min_pkt_latency:\t" << min_pkt_latency
         ;
     return str.str();

@@ -1,9 +1,15 @@
-/*
+/*!
  * =====================================================================================
  *
  *       Filename:  genericRC.cc
  *
- *    Description:  
+ *    Description:  All routing is here for time time being. Every node knows
+ *    its position in the grid and has a table as follows
+ *      node_id         grid_x_position         grid_y_position
+ *      node0                   0               0
+ *      node1                   0               1
+ *      .. and so on
+ *      
  *
  *        Version:  1.0
  *        Created:  02/19/2010 12:13:39 PM
@@ -61,6 +67,19 @@ GenericRC::route_x_y(uint dest)
 #endif
 
     return oport;
+}
+
+void
+GenericRC::route_torus(HeadFlit* hf)
+{
+    cout << " Torus routing not supported yet " << endl;
+    exit(1);
+}
+void
+GenericRC::route_ring(HeadFlit* hf)
+{
+    cout << " Rings not supported yet " << endl;
+    exit(1);
 }
 
 void
@@ -488,33 +507,60 @@ GenericRC::push (Flit* f, uint ch )
                 addresses [ch].possible_out_ports.push_back(possible_out_ports[i]);
 
         }
+        else if( rc_method == RING_ROUTING)
+        {
+            possible_out_ports.clear();
+            possible_out_vcs.clear();
+            route_ring( header );
+
+            /*  For wrap around links */
+            if( possible_out_vcs.size() == 0 )
+            {
+                if ( node_ip%grid_size == 0 && header->inport==1 )
+                    possible_out_vcs.push_back((vcs - header->vc -1)%vcs);
+                else if( static_cast<int>(node_ip-grid_size)<0 && header->inport== 3 )
+                    possible_out_vcs.push_back((vcs - header->vc -1)%vcs);
+                else
+                    possible_out_vcs.push_back(header->vc);
+
+            }
+
+            addresses[ch].possible_out_ports.push_back(possible_out_ports[0]);
+            addresses[ch].possible_out_vcs.push_back(possible_out_vcs[0]);
+
+            addresses [ch].out_port = possible_out_ports.at(0);
+            addresses [ch].channel = possible_out_vcs.at(0);
+
+//            _DBG(" src:%d dst:%d ip:%d op:%d ic:%d oc:%d %llx",header->src_address, header->dst_address, header->inport,
+//                 addresses [ch].out_port, header->vc, addresses[ch].possible_out_vcs.at(0), header->addr);
+        }
         else
         {
             addresses [ch].out_port = route_x_y(header->dst_address);
             addresses [ch].possible_out_ports.push_back(route_x_y(header->dst_address));
         }
 
-        addresses [ch].channel = header->vc;
-
-        /* 
-         {
-         if( header->msg_class == RESPONSE_PKT )
-         addresses[ch].possible_out_vcs.push_back(1);
-         else
-         addresses[ch].possible_out_vcs.push_back(0);
-         }
-         else
-         * */
+        if( rc_method != TORUS_ROUTING && rc_method != RING_ROUTING )
         {
-            for ( uint i=0;i<vcs;i++)
-                addresses[ch].possible_out_vcs.push_back(i);
+            if( do_request_reply_network )
+            {
+                if( header->msg_class == RESPONSE_PKT )
+                    addresses[ch].possible_out_vcs.push_back(1);
+                else
+                    addresses[ch].possible_out_vcs.push_back(0);
+            }
+            else
+            {
+                for ( uint i=0;i<vcs;i++)
+                    addresses[ch].possible_out_vcs.push_back(i);
+            }
 
         }
 
         addresses [ch].route_valid = true;
 
 #ifdef _DEEP_DEBUG
-        _DBG(" computed oport %d %d dest: %d",addresses [ch].out_port, addresses [ch].channel, header->dst_address);
+        _DBG(" computed oport %d %d dest: %d src:%d addr:%lld",addresses [ch].out_port, addresses [ch].channel, header->dst_address, header->src_address, header->addr);
 #endif
 
     }
@@ -581,7 +627,7 @@ GenericRC::get_virtual_channel ( uint ch )
 
     och = addresses[ch].possible_out_vcs[addresses[ch].last_vc];
     addresses[ch].last_vc++;
-    
+
     return och;
 }		/* -----  end of method genericRC::get_vc  ----- */
 

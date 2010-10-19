@@ -19,21 +19,24 @@ IRIS_SOURCES = \
 		  components/impl/genericBuffer.cc \
 		  components/impl/genericRC.cc \
 		  components/impl/genericCrossbar.cc \
-		  components/impl/genericInterfaceVcs.cc \
-		  components/impl/genericVcArbiter.cc \
+		  components/impl/genericInterfaceNB.cc \
 		  components/impl/genericArbiter.cc \
 		  components/impl/genericLink.cc \
 		  components/impl/ptopSwaVcs.cc \
 		  components/impl/pvtopv_swa.cc \
 		  components/impl/ptop_swa.cc \
-		  components/impl/genericRouter4Stg.cc \
-		  components/impl/genericRouter3Stg.cc \
+		  components/impl/vcaMsgAware.cc \
+		  components/impl/routerVcMP.cc \
+		  components/impl/routerReqReply.cc \
+		  components/impl/genericRouterPhy.cc \
 		  components/impl/genericTracePktGen.cc \
+		  components/impl/genericSink.cc \
 		  components/impl/genericPktGen.cc \
 		  components/impl/genericVcAllocator.cc \
 		  components/impl/mcFrontEnd.cc \
 		  components/impl/genericFlatMc.cc 
 
+#		  components/impl/genericRouter4Stg.cc \
 ##libIris
 libIris_a_CXXFLAGS = $(CXX_FLAGS)
 libIris_a_SOURCES = $(IRIS_SOURCES)

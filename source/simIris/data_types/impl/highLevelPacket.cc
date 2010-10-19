@@ -133,11 +133,13 @@ HighLevelPacket::to_low_level_packet(LowLevelPacket* pkt)
         hf->control_bits[i] = ( mask >> i ) & 0x01;
     }
 
+    /* 
     if( msg_class == PRIORITY_REQ || msg_class == ONE_FLIT_REQ || msg_class == REQUEST_PKT)
         for( uint i=0; i<this->data.size(); i++)
         {
             hf->payload.push_back(this->data[i]);
         }
+     * */
 
     hf->packet_originated_time = pkt->sent_time;
     hf->addr = addr;
@@ -158,18 +160,20 @@ HighLevelPacket::to_low_level_packet(LowLevelPacket* pkt)
 
     if( msg_class == RESPONSE_PKT || msg_class == WRITE_REQ)
     {
-    vector< bool> temp;
-    uint no_of_body_flits = (uint)( ceil(this->data.size()*1.0/max_phy_link_bits));
-    for ( uint i=0 ; i<no_of_body_flits ; i++ )
-    {
-        BodyFlit* bf = new BodyFlit();
-        for ( uint j=0 ; j<max_phy_link_bits && (i*max_phy_link_bits + j)< data.size() ; j++ )
-            bf->bf_data.push_back(this->data[i*max_phy_link_bits + j]);
+        vector< bool> temp;
+        uint no_of_body_flits = ceil(this->data_payload_length/max_phy_link_bits);
+        for ( uint i=0 ; i<no_of_body_flits ; i++ )
+        {
+            BodyFlit* bf = new BodyFlit();
+            /* 
+               for ( uint j=0 ; j<max_phy_link_bits && (i*max_phy_link_bits + j)< data.size() ; j++ )
+               bf->bf_data.push_back(this->data[i*max_phy_link_bits + j]);
+               */
 
-        bf->populate_body_flit();
-        pkt->flits.push_back(bf);
-        temp.clear();
-    }
+            bf->populate_body_flit();
+            pkt->flits.push_back(bf);
+            temp.clear();
+        }
     }
 
     if( msg_class == REQUEST_PKT || msg_class == RESPONSE_PKT || msg_class == WRITE_REQ)

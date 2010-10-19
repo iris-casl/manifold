@@ -1,9 +1,26 @@
+/*!
+ * =====================================================================================
+ *
+ *       Filename:  genericFlatMc.h
+ *
+ *    Description:  This class can be used to stub a memmory controller with
+ *    infinite queues. You can adjust the return latency(200)
+ *
+ *        Version:  1.0
+ *        Created:  02/20/2010 02:09:13 PM
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  Mitchelle Rasquinha (), mitchelle.rasquinha@gatech.edu
+ *        Company:  Georgia Institute of Technology
+ *
+ * =====================================================================================
+ */
 
 #ifndef  _genericflatmc_h_INC
 #define  _genericflatmc_h_INC
 
-#include        "genericInterface.h"
-#include        "genericEvents.h"
+#include        "genericInterfaceNB.h"
 #include        "../../../util/genericData.h"
 #include        "../interfaces/processor.h"
 #include        "../../data_types/impl/highLevelPacket.h"
@@ -18,6 +35,8 @@
 
 using namespace std;
 
+extern uint mc_response_pkt_payload_length;
+
 class GenericFlatMc : public Processor
 {
 
@@ -25,6 +44,9 @@ class GenericFlatMc : public Processor
         uint vcs;
         uint no_nodes;
         unsigned long long int max_sim_time;
+        ullint last_packet_in_cycle;
+        ullint last_packet_out_cycle;
+        ullint packets_in;
         deque< HighLevelPacket > out_packets;
         string out_filename;
         ofstream out_file;

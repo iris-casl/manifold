@@ -1,9 +1,11 @@
 /*
  * =====================================================================================
  *
- *       Filename:  packetSource.cc
+ *       Filename:  mcFrontEnd.cc
  *
- *    Description:  
+ *    Description: Implements the interface to the memory controller module.
+ *    Can be used as an example of how to interface other cycle accurate
+ *    simulators to IRIS
  *
  *        Version:  1.0
  *        Created:  03/11/2010 05:12:58 PM
@@ -15,8 +17,8 @@
  *
  * =====================================================================================
  */
-#ifndef  _packetsource_cc_INC
-#define  _packetsource_cc_INC
+#ifndef  _mcFrontEnd_cc_INC
+#define  _mcFrontEnd_cc_INC
 
 #include	"mcFrontEnd.h"
 #include	"../../../memctrl/MC.h"
@@ -26,9 +28,9 @@
 //#define SEND_ONE_PACKET 1
 using namespace std;
 
-NI::NI()
+McFrontEnd::McFrontEnd()
 {
-    name = "NI";
+    name = "mcFrontEnd";
     //interface_connections.resize(1);
     mc = (Component*)(new MC());
     ((MC*)mc)->parent = this;
@@ -37,18 +39,18 @@ NI::NI()
     ni_recv = false;
 }
 
-NI::~NI()
+McFrontEnd::~McFrontEnd()
 {
 }
 
 void
-NI::set_no_vcs ( uint v)
+McFrontEnd::set_no_vcs ( uint v)
 {
     vcs = v;
 }
 
 void
-NI::setup(uint n, uint v, uint time)
+McFrontEnd::setup(uint n, uint v, uint time)
 {
 
     vcs =v;
@@ -82,7 +84,7 @@ NI::setup(uint n, uint v, uint time)
 } /* ----- end of function GenericTPG::setup ----- */
 
 void
-NI::set_output_path( string name)
+McFrontEnd::set_output_path( string name)
 {
     // open the output trace file
     stringstream str;
@@ -98,14 +100,14 @@ NI::set_output_path( string name)
 }
 
 void
-NI::finish()
+McFrontEnd::finish()
 {
     out_file.close();
 }
 
 
 void 
-NI::process_event(IrisEvent* e)
+McFrontEnd::process_event(IrisEvent* e)
 {
     switch(e->type)
     {
@@ -122,13 +124,13 @@ NI::process_event(IrisEvent* e)
           //  handle_detect_deadlock_event(e);
             //break;
         default:
-            cout << "NI:: Unk event exception" << endl;
+            cout << "McFrontEnd:: Unk event exception" << endl;
             break;
     }
     return ;
 } /* ----- end of function GenericTPG::process_event ----- */
 
-void NI::add_mc_bits(Request *req)
+void McFrontEnd::add_mc_bits(Request *req)
 {
     //cout << "Address before adding mcbits 0x" << hex << req->address << endl;	
     ullint addr = req->address;
@@ -153,7 +155,7 @@ cout << endl << hex << "Adding McBits 0x" << req->address << " upper_mask 0x" <<
 }
 
 
-void NI::strip_mc_bits(Request *req)
+void McFrontEnd::strip_mc_bits(Request *req)
 {	
     ullint addr = req->address;
     ullint temp = MC_ADDR_BITS;   
@@ -187,13 +189,13 @@ cout << endl << hex << "Stripping Address 0x" << req->address << " upper_mask 0x
 
 
 void 
-NI::handle_new_packet_event(IrisEvent* e)
+McFrontEnd::handle_new_packet_event(IrisEvent* e)
 {
     ni_recv = false;
 	//cout << "Interface size " << interface_connections.size() << endl;
 //    _DBG_NOARG("I reached here");
 #ifdef _DEBUG
-    _DBG(" NI handle_new_packet_event %s \n Int from is %s %d", e->toString().c_str(), interface_connections[0]->toString().c_str(),e->vc);
+    _DBG(" mcFrontEnd handle_new_packet_event %s \n Int from is %s %d", e->toString().c_str(), interface_connections[0]->toString().c_str(),e->vc);
     cout << endl;	
 #endif
     HighLevelPacket* hlp = NULL;
@@ -238,7 +240,7 @@ NI::handle_new_packet_event(IrisEvent* e)
 
 	strip_mc_bits(req);
 
-//	cout << "\n[" << Simulator::Now() << "] NI got packet " << hex << req->address << dec << " from Uncore" << req->threadId << endl;
+//	cout << "\n[" << Simulator::Now() << "] mcFrontEnd got packet " << hex << req->address << dec << " from Uncore" << req->threadId << endl;
         IrisEvent *e2 = new IrisEvent();
         e2->src = this;
         e2->dst = ((MC*)mc)->reqH;
@@ -290,7 +292,7 @@ NI::handle_new_packet_event(IrisEvent* e)
 }
 
 void 
-NI::handle_out_pull_event(IrisEvent* e)
+McFrontEnd::handle_out_pull_event(IrisEvent* e)
 {
     bool found = false;
     uint sending_vc = -1;
@@ -316,7 +318,7 @@ NI::handle_out_pull_event(IrisEvent* e)
 
 
     Request* req = new Request();
-    if ( found && GetFromNIQueue(req))
+    if ( found && GetFrommcFrontEndQueue(req))
     {
         avg_resp_buff_occ += ((MC*)mc)->responseH->responseBuffer.size();
         resp_buff_occ_cycles++;
@@ -344,7 +346,7 @@ NI::handle_out_pull_event(IrisEvent* e)
 
             convertToBitStream(req, hlp);      
 #ifdef _DEBUG
-            cout << dec << "\n[" << Simulator::Now() << "] Sending packet from NI 0x" << hex << req->address << endl;
+            cout << dec << "\n[" << Simulator::Now() << "] Sending packet from mcFrontEnd 0x" << hex << req->address << endl;
 #endif
             hlp->sent_time = (ullint)Simulator::Now();
             total_backward_time += ((ullint)Simulator::Now() - req->retireTime);
@@ -372,11 +374,11 @@ NI::handle_out_pull_event(IrisEvent* e)
 }
 /*
    void 
-   NI::handle_detect_deadlock_event(IrisEvent* e)
+   McFrontEnd::handle_detect_deadlock_event(IrisEvent* e)
    {
    if( (Simulator::Now() - last_out_pull_cycle) > 30000 )
    {
-   cout << "ERROR IN NI" << endl;
+   cout << "ERROR IN mcFrontEnd" << endl;
    exit(1);
    }
    e->type = DETECT_DEADLOCK_EVENT;
@@ -384,14 +386,14 @@ NI::handle_out_pull_event(IrisEvent* e)
    }*/
 
 void 
-NI::handle_ready_event(IrisEvent* e)
+McFrontEnd::handle_ready_event(IrisEvent* e)
 {
     if ( e->vc > vcs )
     {
         _DBG(" Got ready for vc %d no_vcs %d ", e->vc, vcs);
         exit(1);
     }
-    //    _DBG(" NI GOT READY %d",e->vc);
+    //    _DBG(" mcFrontEnd GOT READY %d",e->vc);
     if( ready[e->vc] )
     {
         cout << " Error Recv incorrect READY !" << endl;
@@ -413,10 +415,10 @@ NI::handle_ready_event(IrisEvent* e)
 
 /* 
    void 
-   NI::handle_old_packet_event(IrisEvent* e)
+   McFrontEnd::handle_old_packet_event(IrisEvent* e)
    {
 #ifdef _DEBUG
-cout << "NI " << address << " handle_old_packet_event " << e->vc ;
+cout << "mcFrontEnd " << address << " handle_old_packet_event " << e->vc ;
 #endif
 
 if (!((MC*)mc)->reqH->oneBufferFull)
@@ -454,10 +456,10 @@ delete e;
  * */
 
 string 
-NI::toString() const
+McFrontEnd::toString() const
 {
     stringstream str;
-    str << "NI"
+    str << "mcFrontEnd"
         << "\t addr: " << address
         << "\tOutput File= " << out_filename
         << "\tInt is " << interface_connections[0]->address
@@ -466,7 +468,7 @@ NI::toString() const
 }
 
 bool
-NI::GetFromNIQueue(Request* req)
+McFrontEnd::GetFrommcFrontEndQueue(Request* req)
 {
     //    vector<Request>::iterator queueIndex = niQueue.begin();
     if (!niQueue.empty())
@@ -480,7 +482,7 @@ NI::GetFromNIQueue(Request* req)
 }
 
 void 
-NI::convertToBitStream(Request* req, HighLevelPacket *hlp)
+McFrontEnd::convertToBitStream(Request* req, HighLevelPacket *hlp)
 {
     //cout << "HLP data " << endl;
     for ( uint i=0 ; i < NETWORK_ADDRESS_BITS ; i++ )
@@ -519,7 +521,7 @@ NI::convertToBitStream(Request* req, HighLevelPacket *hlp)
 }
 
 void 
-NI::convertFromBitStream(Request* req, HighLevelPacket *hlp)
+McFrontEnd::convertFromBitStream(Request* req, HighLevelPacket *hlp)
 {
     req->address = 0;	
     for (unsigned int i=0; i < NETWORK_ADDRESS_BITS; i++)
@@ -549,23 +551,23 @@ NI::convertFromBitStream(Request* req, HighLevelPacket *hlp)
 }
 
 string
-NI::print_stats() const
+McFrontEnd::print_stats() const
 {
     stringstream str;
-    //    str << "\n NI addr: " << address <<endl;
+    //    str << "\n mcFrontEnd addr: " << address <<endl;
     ((MC*)mc)->stats->CalculateAggregateStats();
     str << ((MC*)mc)->stats->PrintAggregateStats(node_ip);
-    str << "NI [" << node_ip << "] " << "last_pkt_out_cycle:\t" << last_pkt_out_cycle << endl;
-    str << "NI [" << node_ip << "] " << "total_missed_time:\t" << total_missed_time<< endl;
-    str << "NI [" << node_ip << "] " << "packets_in:\t" << packets << endl;
-    str << "NI [" << node_ip << "] " << "packets_out:\t" << packets_out << endl;
-    str << "NI [" << node_ip << "] " << "total_backward_time:\t" << total_backward_time << endl;
-    str << "NI [" << node_ip << "] " << "avg_latency_waiting_in_ni(fwd path):\t" << (total_missed_time+0.0)/packets << endl;
-    str << "NI [" << node_ip << "] " << "avg_latency_waiting_in_ni(bwd path):\t" << (total_backward_time+0.0)/packets_out << endl;
+    str << "mcFrontEnd [" << node_ip << "] " << "last_pkt_out_cycle:\t" << last_pkt_out_cycle << endl;
+    str << "mcFrontEnd [" << node_ip << "] " << "total_missed_time:\t" << total_missed_time<< endl;
+    str << "mcFrontEnd [" << node_ip << "] " << "packets_in:\t" << packets << endl;
+    str << "mcFrontEnd [" << node_ip << "] " << "packets_out:\t" << packets_out << endl;
+    str << "mcFrontEnd [" << node_ip << "] " << "total_backward_time:\t" << total_backward_time << endl;
+    str << "mcFrontEnd [" << node_ip << "] " << "avg_latency_waiting_in_ni(fwd path):\t" << (total_missed_time+0.0)/packets << endl;
+    str << "mcFrontEnd [" << node_ip << "] " << "avg_latency_waiting_in_ni(bwd path):\t" << (total_backward_time+0.0)/packets_out << endl;
     if ( resp_buff_occ_cycles != 0)
-        str << "NI [" << node_ip << "] " << "Resp buff occ:\t" << avg_resp_buff_occ/resp_buff_occ_cycles<< endl;
+        str << "mcFrontEnd [" << node_ip << "] " << "Resp buff occ:\t" << avg_resp_buff_occ/resp_buff_occ_cycles<< endl;
 
     return str.str();
 }
 
-#endif   /* ----- #ifndef _NI_cc_INC  ----- */
+#endif   /* ----- #ifndef _mcFrontEnd_cc_INC  ----- */

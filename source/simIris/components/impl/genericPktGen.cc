@@ -1,3 +1,21 @@
+/*!
+ * =====================================================================================
+ *
+ *       Filename:  genericPktGen.cc
+ *
+ *    Description:  Implements the stochastic pkt gen class.
+ *
+ *        Version:  1.0
+ *        Created:  02/20/2010 02:09:13 PM
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  Mitchelle Rasquinha (), mitchelle.rasquinha@gatech.edu
+ *        Company:  Georgia Institute of Technology
+ *
+ * =====================================================================================
+ */
+
 #ifndef _genericPktGen_cc_INC
 #define _genericPktGen_cc_INC
 
@@ -18,6 +36,9 @@ GenericPktGen::GenericPktGen ()
 GenericPktGen::~GenericPktGen ()
 {
     out_file.close();
+    gsl_rng_free(dest_gen);
+    gsl_rng_free(arate_gen);
+    gsl_rng_free(plen_gen);
 } /* ----- end of function GenericPktGen::~GenericPktGen ----- */
 
 void
@@ -47,14 +68,23 @@ GenericPktGen::setup (uint n, uint v, uint time)
     stat_packets_out = 0;
     stat_min_pkt_latency = 999999999;
     stat_last_packet_out_cycle = 0;
+    stat_last_packet_in_cycle = 0;
     stat_total_lat = 0;
     stat_hop_count= 0;
+
+    gsl_rng_env_setup();
+    gsl_rng_default_seed = 2^25;
+    T = gsl_rng_default;
+    dest_gen = gsl_rng_alloc (T);
+    plen_gen = gsl_rng_alloc (T);
+    arate_gen = gsl_rng_alloc (T);
 
     ready.resize( vcs );
     ready.insert( ready.begin(), ready.size(), false );
     for(unsigned int i = 0; i < ready.size(); i++)
         ready[i] = false;
     lastSentTime = 0;
+    irt = 0;
 
 
     for( unsigned int i = 0; i < vcs; i++ )
@@ -63,7 +93,6 @@ GenericPktGen::setup (uint n, uint v, uint time)
         event->type = READY_EVENT;
         event->vc = i;
         Simulator::Schedule(Simulator::Now()+1, &NetworkComponent::process_event,this, event);
-        // interface_connections[0], event);
     }
 
 
@@ -77,15 +106,12 @@ GenericPktGen::set_output_path( string name)
     stringstream str;
     str << name << "/tpg_" << node_ip << "_trace_out.tr";
     out_filename = str.str();
-    /*
-       out_file.open(out_filename.c_str());
-       if( !out_file.is_open() )
-       {
-       stringstream stream;
-       stream << "Could not open output trace file " << out_filename << ".\n";
-       timed_cout(stream.str());
-       }
-     */
+    out_file.open(out_filename.c_str());
+    if( !out_file.is_open() )
+    {
+        _DBG_NOARG("Could not open output trace file ");
+        cout << out_filename << endl;
+    }
 }
 
 void
@@ -124,12 +150,13 @@ GenericPktGen::handle_new_packet_event ( IrisEvent* e)
     // get the packet data
     HighLevelPacket* hlp = static_cast< HighLevelPacket* >( e->event_data.at(0));
     double lat = Simulator::Now() - hlp->sent_time;
-    stat_last_packet_out_cycle = Simulator::Now();
     if( stat_min_pkt_latency > lat)
         stat_min_pkt_latency = lat;
 
+    stat_last_packet_in_cycle = Simulator::Now();
     stat_packets_in++;
     stat_hop_count += hlp->hop_count;
+    stat_total_lat += lat;
 
 #ifdef DEBUG
     _DBG( "-------------- TPG GOT NEW PACKET ---------------\n pkt_latency: %f", lat);
@@ -160,7 +187,11 @@ GenericPktGen::handle_out_pull_event ( IrisEvent* e )
     sending =false;
     bool found = false;
     uint sending_vc = -1;
-    for( uint i=last_vc+1; i<vcs; i++)
+    uint max_vc = vcs;
+    if(do_request_reply_network)
+        max_vc = vcs/2;
+
+    for( uint i=last_vc+1; i<max_vc; i++)
     {
         if(ready[i])
         {
@@ -183,36 +214,44 @@ GenericPktGen::handle_out_pull_event ( IrisEvent* e )
             }
         }
     }
+    /* Example of how to allow some nodes to inject 
+       if( node_ip != (no_nodes-1))
+       found = false;
+     */
     if( found )
     {
-        ullint interval = rand() % 5 ;
-        if( interval == 4 )
+        if( lastSentTime+irt <= Simulator::Now() )
+            //        if( rand()%5 == 4 )
         {
             stat_packets_out++;
             HighLevelPacket* hlp = new HighLevelPacket();
             hlp->virtual_channel = sending_vc;
             hlp->source = node_ip;
-            hlp->destination = ( no_nodes - node_ip - 1 ) % ( no_nodes ); //(rand() % 1000) % no_nodes ;
-            hlp->addr = 0xfff;
+            hlp->destination = mc_positions[gsl_rng_uniform_int( dest_gen , no_mcs) % ( no_mcs)];
+            hlp->addr = node_ip*10000 + stat_packets_out;
             hlp->transaction_id = 1000;
             if( hlp->destination == node_ip )
                 hlp->destination = (hlp->destination + 1) % no_nodes ;
 
-            hlp->sent_time = (ullint)Simulator::Now()+1;
-            hlp->data_payload_length = 4*max_phy_link_bits;	
-            hlp->msg_class = RESPONSE_PKT;	
-            for ( uint i=0 ; i < 4*max_phy_link_bits ; i++ )
-            {
-                hlp->data.push_back(true);
-            }
+            hlp->sent_time = (ullint)Simulator::Now();
+            uint pkt_len = pkt_payload_length; //1*max_phy_link_bits; //Static for now but can use gsl_ran
+            hlp->data_payload_length = pkt_len;	
+            hlp->msg_class = terminal_msg_class;	
+            /* 
+               for ( uint i=0 ; i < pkt_len ; i++ )
+               {
+               hlp->data.push_back(true);
+               }
+             * */
             ready[sending_vc] = false;
 
-#ifdef _DEEP_DEBUG
             assert ( hlp->destination < no_nodes);
+#ifdef _DEEP_DEBUG
             _DBG( " Sending at TPG out pull: VC %d dest:%d ", sending_vc, hlp->destination );
             cout << "HLP: " << hlp->toString() << endl;
             _DBG( " Sending pkt: no of packets %d ", stat_packets_out);
 #endif
+            out_file << Simulator::Now() << " " << hlp->destination << endl;
 
             IrisEvent* event = new IrisEvent();
             event->type = NEW_PACKET_EVENT;
@@ -221,36 +260,41 @@ GenericPktGen::handle_out_pull_event ( IrisEvent* e )
             Simulator::Schedule( hlp->sent_time, &NetworkComponent::process_event, interface_connections[0], event );
 
             lastSentTime = (ullint)Simulator::Now();
+            irt = gsl_ran_gaussian_tail( arate_gen ,0,mean_irt) ;
+            //            irt = gsl_ran_poisson( arate_gen ,mean_irt) ;
+            stat_last_packet_out_cycle = Simulator::Now();
+            //            if( stat_packets_out >= 10000 )
+            //                irt = max_sim_time;
+            /* 
+               for( uint i=0; i<vcs; i++)
+               if(ready[i])
+               {
+               irt = 10;
+               break;
+               }
+               else
+               irt=10;
+             * */
+            sending = true;
         }
-        sending = true;
 
     }
     else
     {
         sending = true;
+        irt = gsl_ran_poisson( arate_gen ,mean_irt) ;
     }
 
-    /* 
-       if( Simulator::Now()-lastSentTime > 1000000 )
-       {
-       cout << " ******* Deaslock detected ****** " << endl;
-       cout << " TPG " << node_ip << endl;
-       cout << " last_packet_out_cycle: " << last_packet_out_cycle << endl;
-       cout << " SimNow: " << Simulator::Now() << endl;
-       cout << " mshrsize: " << mshrHandler->mshr.size() << endl;
-
-       for (unsigned int i=0; i<mshrHandler->mshr.size(); i++)
-       cout << mshrHandler->mshr[i].address << endl;
-    //        for ( uint i=0; i<64; i++)
-    //            static_cast<GenericRouterVcs*>(mesh->routers[i])->dump_ib_state();
-    exit(1);
-    }
+    /* Example of how to allow some nodes to inject 
+       if( node_ip != (no_nodes-1))
+       sending = false;
      * */
+
     if( sending)
     {
         IrisEvent* event2 = new IrisEvent();
         event2->type = OUT_PULL_EVENT;
-        Simulator::Schedule(Simulator::Now()+1, &NetworkComponent::process_event, this, event2);
+        Simulator::Schedule(Simulator::Now()+irt, &NetworkComponent::process_event, this, event2);
         sending = true;
     }		
     delete e; 
@@ -267,7 +311,7 @@ GenericPktGen::handle_ready_event ( IrisEvent* e)
     }
     // send the first packet and schedule a out pull if ur ready
     ready[e->vc] = true;
-    if( !sending && Simulator::Now() < max_sim_time )
+    if( !sending && Simulator::Now()==1)// < max_sim_time )
     {
         IrisEvent* event = new IrisEvent();
         event->type = OUT_PULL_EVENT;
@@ -296,13 +340,14 @@ string
 GenericPktGen::print_stats() const
 {
     stringstream str;
-    str << "\nPktGen [" << node_ip << "] packets_out:\t" << stat_packets_out
-        << "\nPktGen [" << node_ip << "] packets_in:\t" << stat_packets_in
-        << "\nPktGen [" << node_ip << "] min_pkt_latency:\t" << stat_min_pkt_latency
-        << "\nPktGen [" << node_ip << "] last_packet_out_cycle:\t" << stat_last_packet_out_cycle
-        << "\nPktGen [" << node_ip << "] avg_latency:\t" << (stat_total_lat+0.0)/stat_packets_in
-        << "\nPktGen [" << node_ip << "] avg_hop_count:\t" << (stat_hop_count+0.0)/stat_packets_in
-        ;
+    str << "\n PktGen[" << node_ip << "] packets_out: " << stat_packets_out
+        << "\n PktGen[" << node_ip << "] packets_in: " << stat_packets_in
+        << "\n PktGen[" << node_ip << "] min_pkt_latency: " << stat_min_pkt_latency
+        << "\n PktGen[" << node_ip << "] last_packet_out_cycle: " << stat_last_packet_out_cycle
+        << "\n PktGen[" << node_ip << "] last_packet_in_cycle: " << stat_last_packet_in_cycle
+        << "\n PktGen[" << node_ip << "] avg_latency: " << (stat_total_lat+0.0)/stat_packets_in
+        << "\n PktGen[" << node_ip << "] avg_hop_count: " << (stat_hop_count+0.0)/stat_packets_in
+        << endl;
     return str.str();
 } /* ----- end of function GenericPktGen::toString ----- */
 

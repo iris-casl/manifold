@@ -1,9 +1,9 @@
-/*
+/*!
  * =====================================================================================
  *
  *       Filename:  GenericCrossbar.cc
  *
- *    Description:  
+ *    Description:  This class is to be deprecated. 
  *
  *        Version:  1.0
  *        Created:  02/20/2010 02:24:57 PM
@@ -20,7 +20,6 @@
 #define  _genericcrossbar_cc_INC
 
 #include	"genericCrossbar.h"
-using namespace std;
 
 GenericCrossbar::GenericCrossbar ()
 {

@@ -118,8 +118,12 @@ Mesh::connect_routers()
     {
         if( (router_no%grid_size) == 0 ) /* Left side end node */
         {
+            // east going link for router_no
 	    link_a[last_link_id]->input_connection = NULL;
 	    link_a[last_link_id]->output_connection = routers[router_no];
+            // west going link for router_no. This is router_no -1's second
+            // input connection but since router_no-1 is out of the mesh you
+            // dont put it in the map.
 	    link_b[last_link_id]->input_connection = routers[router_no];
 	    link_b[last_link_id]->output_connection = NULL;
             east_links.insert(make_pair(router_no, last_link_id));
@@ -147,6 +151,7 @@ Mesh::connect_routers()
 /* ------------ End East links --------------------- */
 
 /* ------------ Begin West links --------------------- */
+    //Missing west going links that were missed above
     for ( uint router_no=0 ; router_no<no_nodes; router_no++ )
     {
         if ( (router_no%grid_size) == (grid_size-1))
@@ -170,6 +175,7 @@ Mesh::connect_routers()
 /* ------------ End West links --------------------- */
 
 /* ------------ Begin North links --------------------- */
+    // This is the same as above after transposing the mesh
     map < uint, uint > col_major_ordering;
     for ( uint i=0; i<grid_size; i++)
         for ( uint j=0; j<grid_size; j++)
@@ -251,7 +257,7 @@ Mesh::setup()
     for ( uint i=0 ; i<no_nodes ; i++ )
     {
         processors[i]->setup( no_nodes, vcs, max_sim_time);
-        interfaces[i]->setup(vcs, credits);
+        interfaces[i]->setup(vcs, credits, buffer_size);
         routers[i]->init(ports, vcs, credits, buffer_size);
     }
 

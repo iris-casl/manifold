@@ -71,7 +71,7 @@ LowLevelPacket::toString () const
         << "\t No of flits: " << flits.size()
         << "\t length: " << length
         << "\t msg_class: " << msg_class
-        << "\t addr: " << hex << addr << dec
+        << "\t addr: " << addr << dec
         << "\t hop_count: " << hop_count
         << "\t network_latency: " << avg_network_latency
 		<< "\t PacketCount: " << dec << pkt_cnt

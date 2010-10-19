@@ -76,6 +76,13 @@ class IrisStats
         double compute_total_vc_arbiter_dyn_energy( double en );
         double compute_total_crossbar_dyn_energy( double en );
         double compute_total_link_dyn_energy(double en );
+        ullint get_total_ib_cycles(void);
+        ullint get_total_rc_cycles(void);
+        ullint get_total_vca_cycles(void);
+        ullint get_total_sa_cycles(void);
+        ullint get_total_st_cycles(void);
+        ullint get_total_credits_passed(void);
+        ullint get_total_flits_passed(void);
 };
 
 #endif   /* ----- #ifndef _stats_H_INC  ----- */

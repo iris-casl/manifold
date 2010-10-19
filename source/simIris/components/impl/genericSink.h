@@ -1,28 +1,10 @@
-/*
- * =====================================================================================
- *
- *       Filename:  genericSink.h
- *
- *    Description:  
- *
- *        Version:  1.0
- *        Created:  02/21/2010 08:48:26 PM
- *       Revision:  none
- *       Compiler:  gcc
- *
- *         Author:  Mitchelle Rasquinha (), mitchelle.rasquinha@gatech.edu
- *        Company:  Georgia Institute of Technology
- *
- * =====================================================================================
- */
+
 #ifndef  _genericsink_h_INC
 #define  _genericsink_h_INC
 #include	"../interfaces/processor.h"
 #include	"../../data_types/impl/highLevelPacket.h"
-#include	"genericEvents.h"
-#include	"genericData.h"
-#include "genericInterface.h"
-#include        "../../tests/MersenneTwister.h"
+#include        "../../../util/genericData.h"
+#include        "genericInterfaceNB.h"
 #include	<deque>
 #include	<fstream>
 
@@ -36,31 +18,40 @@ using namespace std;
  */
 class GenericSink : public Processor
 {
+    private:
+        uint vcs;
+        uint no_nodes;
+        ullint max_sim_time;
+        string out_filename;
+        uint last_vc;
+        /* stats variables */
+        unsigned int stat_packets_in;
+        double stat_min_pkt_latency;
+        ullint stat_last_packet_in_cycle;
+        ullint stat_last_packet_out_cycle;
+        ullint stat_total_lat;
+        ullint stat_hop_count;
+        ullint stat_packets_out;
+        
+        //Event handlers
+        void handle_new_packet_event( IrisEvent* e);
+        void handle_ready_event( IrisEvent* e);
+        void handle_out_pull_event( IrisEvent* e);
     public:
         GenericSink ();                             /* constructor */
         void setup(uint v, uint time, uint no_nodes);
         void process_event(IrisEvent* e);
         string toString() const;
+        string print_stats() const;
         ofstream out_file;
         uint address;
         vector<bool> ready;
         unsigned int packets;
         bool sending;
+        void set_output_path( string outpath );
 
     protected:
 
-    private:
-        deque<HighLevelPacket*> out_packets;
-        string out_filename;
-        uint last_vc;
-        uint no_nodes;
-        uint vcs;
-        uint max_sim_time;
-        
-        //Event handlers
-        void handle_new_packet_event( IrisEvent* e);
-        void handle_ready_event( IrisEvent* e);
-        void handle_outpull_event( IrisEvent* e);
 
 }; /* -----  end of class GenericSink  ----- */
 

@@ -87,7 +87,7 @@ void MSHR_H::process_event(IrisEvent* e)
 	    IrisEvent *event = new IrisEvent();	
     	    event->src = (Component*)this;
     	    event->dst = (Component*)this;
-            event->type = 1120;
+            event->type = CREDIT_EVENT; /* Note this is dummy for a bug fix. Event type means nothing */
     	    event->event_data.push_back(req);	
     	    Simulator::Schedule(Simulator::Now()+1, &MSHR_H::process_event, (MSHR_H*)event->dst, event);
 /*
@@ -202,21 +202,21 @@ void MSHR_H::process_event(IrisEvent* e)
     	event->src = (Component*)this;
     	event->dst = (Component*)this;
     	event->event_data.push_back(req2);
-	event->type = 1120;	
-    	Simulator::Schedule(time+unsink, &MSHR_H::process_event, (MSHR_H*)event->dst, event);
-	nextReq = *req2; 
-         if (!(((GenericTracePktGen*)parent)->sending))
+        event->type = CREDIT_EVENT; /* Note this is dummy for a bug fix. Event type means nothing */
+        Simulator::Schedule(time+unsink, &MSHR_H::process_event, (MSHR_H*)event->dst, event);
+        nextReq = *req2; 
+        if (!(((GenericTracePktGen*)parent)->sending))
         {
             IrisEvent *event3 = new IrisEvent();
             event3->src = (Component*)this;
-    	    event3->dst = (Component*)parent;
-	    event3->type = OUT_PULL_EVENT;	
-    	    Simulator::Schedule(Simulator::Now()+1, &GenericTracePktGen::process_event, (GenericTracePktGen*)event3->dst, event3);
+            event3->dst = (Component*)parent;
+            event3->type = OUT_PULL_EVENT;	
+            Simulator::Schedule(Simulator::Now()+1, &GenericTracePktGen::process_event, (GenericTracePktGen*)event3->dst, event3);
             ((GenericTracePktGen*)parent)->sending = true;
         }
     }
     else
-	cout << "I should never come in else of MSHR" << endl;	
+        cout << "I should never come in else of MSHR" << endl;	
     delete (Request*)e->event_data.at(0);	
     delete e;
 }
@@ -233,7 +233,7 @@ Addr_t MSHR_H::GlobalAddrMap(Addr_t addr, UInt threadId)
     Addr_t upperAddr = addr & upperMask;
     Addr_t threadAddr = (threadId & ((Addr_t)pow(2.0,threadBits*1.0)-1));
     newAddr = lowerAddr | (threadAddr << threadBitsPos)| (upperAddr << threadBits);
-//    cout << hex << addr << ", " << threadId << ", " << newAddr << endl;	
+    //    cout << hex << addr << ", " << threadId << ", " << newAddr << endl;	
     return newAddr;
 }
 
@@ -242,21 +242,21 @@ void MSHR_H::DeleteInMSHR(Request* req)
     vector<Request>::iterator index = mshr.begin();
     for (unsigned int i=0; i<mshr.size(); i++)
     {
-	if ( (mshr[i].address == req->address) && (mshr[i].mcNo == req->mcNo) )
-	{	
-	    lastScheduledIndex--;		
-	    mshr.erase(i+index);
-	    //((GenericTPG*)parent)->roundTripLat += (Simulator::Now() - mshr[i].startTime);	 
-	    ((GenericTracePktGen*)parent)->roundTripLat += ((ullint)Simulator::Now() - req->startTime);	 
+        if ( (mshr[i].address == req->address) && (mshr[i].mcNo == req->mcNo) )
+        {	
+            lastScheduledIndex--;		
+            mshr.erase(i+index);
+            //((GenericTPG*)parent)->roundTripLat += (Simulator::Now() - mshr[i].startTime);	 
+            ((GenericTracePktGen*)parent)->roundTripLat += ((ullint)Simulator::Now() - req->startTime);	 
 #ifdef DEBUG
-	    cout << endl << Simulator::Now() << hex << ": Deletion Time of Request " 
+            cout << endl << Simulator::Now() << hex << ": Deletion Time of Request " 
                 << req->address << dec << ", of Thread " << id << ", " << req->mcNo << ", " << lastScheduledIndex 
                 << " ready:" << ((GenericTracePktGen*)parent)->ready[0] << endl;
 #endif	
-	     break;
-	}
-     }
-     cout << dec;	
+            break;
+        }
+    }
+    cout << dec;	
 }
 
 unsigned int MSHR_H::countBLP(Request req)
@@ -264,21 +264,21 @@ unsigned int MSHR_H::countBLP(Request req)
     unsigned int count = 0;		
     for (unsigned int i=0; i<no_mcs; i++)
     {
-//	BoolVector *temp = countOnce[i]; 
-	for (unsigned int j=0; j<NO_OF_BANKS; j++)
-	{
-	     countOnce[i][j] = false;
-	}
+        //	BoolVector *temp = countOnce[i]; 
+        for (unsigned int j=0; j<NO_OF_BANKS; j++)
+        {
+            countOnce[i][j] = false;
+        }
     }			
     for (unsigned int i=0; i<lastScheduledIndex; i++)
     {
-	if (!countOnce[mshr[i].mcNo][mshr[i].bankNo])
-	{
-	    countOnce[mshr[i].mcNo][mshr[i].bankNo] = true;	
+        if (!countOnce[mshr[i].mcNo][mshr[i].bankNo])
+        {
+            countOnce[mshr[i].mcNo][mshr[i].bankNo] = true;	
             count++;
-	}
+        }
     }
-//    cout << lastScheduledIndex << "saji " << count << endl;			
+    //    cout << lastScheduledIndex << "saji " << count << endl;			
     return count;	
 }
 
@@ -287,16 +287,16 @@ void MSHR_H::demap_addr(Addr_t oldAddress, Addr_t newAddress)
     vector<Request>::iterator index = mshr.begin();
     for (unsigned int i=0; i<mshr.size(); i++)
     {
-	if (mshr[i].address == oldAddress)
-	{
+        if (mshr[i].address == oldAddress)
+        {
             mshr[i].address = newAddress;
 #ifdef DEEP_DEBUG
-	    cout << Simulator::Now() << hex << ": Replace Address " << oldAddress << " in MSHR of Thread " << id << " to " << mshr[i].address << endl;
+            cout << Simulator::Now() << hex << ": Replace Address " << oldAddress << " in MSHR of Thread " << id << " to " << mshr[i].address << endl;
 #endif	
             //cout << hex <<  oldAddress << " hihi " << newAddress << endl;
-	     break;
-	}
-     }
+            break;
+        }
+    }
 
 }
 
@@ -322,105 +322,105 @@ MSHR_H::map_addr(unsigned long long int *addr)
     short int mc_addr = ((*addr) >> temp2) & (no_mcs-1);
 #endif
 
-//    *addr = upper_addr | lower_addr;
+    //    *addr = upper_addr | lower_addr;
     return mc_addr;
 }
 
 void MSHR_H::local_map_addr(Request* req)
 {
-	req->lowerBits = req->address & COLUMN_SIZE;
-	//TODO needs to set this
-	req->channelNo = ( req->address >> ((Addr_t)log2(DRAM_SIZE)-(Addr_t)log2(NO_OF_CHANNELS)) ) & (NO_OF_CHANNELS-1); 	
-											// Masking higher bits to find channel No;
+    req->lowerBits = req->address & COLUMN_SIZE;
+    //TODO needs to set this
+    req->channelNo = ( req->address >> ((Addr_t)log2(DRAM_SIZE)-(Addr_t)log2(NO_OF_CHANNELS)) ) & (NO_OF_CHANNELS-1); 	
+    // Masking higher bits to find channel No;
 
 #ifdef PAGE_INTERLEAVING		// equivalent to l:r:b:c:v	As defined by Bruce Jacob's book.   c:v = n:z
 
-	req->columnNo = (req->address >> (Addr_t)log2(COLUMN_SIZE)) & (NO_OF_COLUMNS-1);// Masking lower bits to find Column No.
-	req->bankNo = (req->address >> (Addr_t)log2(ROW_SIZE)) & (NO_OF_BANKS-1); 	// Masking the next b bits after page bits
-	req->rowNo = ( req->address >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)) ) & (NO_OF_ROWS-1);// Masking the next r bits	 
-	req->rankNo = ( req->address >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)+(Addr_t)log2(NO_OF_ROWS)) ) & (NO_OF_RANKS-1);  
-													// Masking next l bits	
+    req->columnNo = (req->address >> (Addr_t)log2(COLUMN_SIZE)) & (NO_OF_COLUMNS-1);// Masking lower bits to find Column No.
+    req->bankNo = (req->address >> (Addr_t)log2(ROW_SIZE)) & (NO_OF_BANKS-1); 	// Masking the next b bits after page bits
+    req->rowNo = ( req->address >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)) ) & (NO_OF_ROWS-1);// Masking the next r bits	 
+    req->rankNo = ( req->address >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)+(Addr_t)log2(NO_OF_ROWS)) ) & (NO_OF_RANKS-1);  
+    // Masking next l bits	
 #endif
 
 #ifdef PERMUTATION			// equivalent to l:r:(b xor tlower):c:v
 
-	Addr_t temp;
-	Addr_t temp2;	
-	req->columnNo = (req->address >> (Addr_t)log2(COLUMN_SIZE)) & (NO_OF_COLUMNS-1);// Masking lower bits to find Column No.
-	temp = (req->address >> (Addr_t)log2(ROW_SIZE)) & (NO_OF_BANKS-1); 		// Masking the next b bits after page bits
-	temp2 = (req->address >> ((Addr_t)log2(DRAM_SIZE)-TAG_BITS)) & (NO_OF_BANKS-1); // Masking lower b bits of the tag
-	req->bankNo = temp ^ temp2;	
-	req->rowNo = ( req->address >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)) ) & (NO_OF_ROWS-1);// Masking the next r bits	 
-	req->rankNo = ( req->address >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)+(Addr_t)log2(NO_OF_ROWS)) ) & (NO_OF_RANKS-1);  
-													// Masking next l bits	
+    Addr_t temp;
+    Addr_t temp2;	
+    req->columnNo = (req->address >> (Addr_t)log2(COLUMN_SIZE)) & (NO_OF_COLUMNS-1);// Masking lower bits to find Column No.
+    temp = (req->address >> (Addr_t)log2(ROW_SIZE)) & (NO_OF_BANKS-1); 		// Masking the next b bits after page bits
+    temp2 = (req->address >> ((Addr_t)log2(DRAM_SIZE)-TAG_BITS)) & (NO_OF_BANKS-1); // Masking lower b bits of the tag
+    req->bankNo = temp ^ temp2;	
+    req->rowNo = ( req->address >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)) ) & (NO_OF_ROWS-1);// Masking the next r bits	 
+    req->rankNo = ( req->address >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)+(Addr_t)log2(NO_OF_ROWS)) ) & (NO_OF_RANKS-1);  
+    // Masking next l bits	
 #endif
 
 #ifdef CACHELINE_INTERLEAVING		// equivalent to l:r:n:b:z	
-	
-	Addr_t temp;
-	Addr_t temp2;	
-	temp = (req->address & (CACHE_BLOCK_SIZE-1)) >> (Addr_t)log2(COLUMN_SIZE);// Masking upper z bits only and leaving bits of the col
-	req->bankNo = (req->address >> (Addr_t)log2(CACHE_BLOCK_SIZE)) & (NO_OF_BANKS-1); // Masking the next b bits after cache block bits
-	temp2 = ( req->address >> ((Addr_t)log2(CACHE_BLOCK_SIZE)+(Addr_t)log2(NO_OF_BANKS)) ) & (BLOCKS_PER_ROW-1);// Masking next n bits 
-//TODO I think this line is incorrect should be temp2 << ((int)log2(CACHE_BLOCK_SIZE-1)-log2(COLUMN_SIZE)) | temp;
-	req->columnNo = (temp2 << ((Addr_t)log2(CACHE_BLOCK_SIZE)-(Addr_t)log2(COLUMN_SIZE))) | temp;
-//	req->columnNo = (temp2 >> (CACHE_BLOCK_SIZE-1) ) | temp;
-	req->rowNo = ( req->address >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)) ) & (NO_OF_ROWS-1);// Masking the next r bits	 
-	req->rankNo = ( req->address >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)+(Addr_t)log2(NO_OF_ROWS)) ) & (NO_OF_RANKS-1);  
-													// Masking next l bits
+
+    Addr_t temp;
+    Addr_t temp2;	
+    temp = (req->address & (CACHE_BLOCK_SIZE-1)) >> (Addr_t)log2(COLUMN_SIZE);// Masking upper z bits only and leaving bits of the col
+    req->bankNo = (req->address >> (Addr_t)log2(CACHE_BLOCK_SIZE)) & (NO_OF_BANKS-1); // Masking the next b bits after cache block bits
+    temp2 = ( req->address >> ((Addr_t)log2(CACHE_BLOCK_SIZE)+(Addr_t)log2(NO_OF_BANKS)) ) & (BLOCKS_PER_ROW-1);// Masking next n bits 
+    //TODO I think this line is incorrect should be temp2 << ((int)log2(CACHE_BLOCK_SIZE-1)-log2(COLUMN_SIZE)) | temp;
+    req->columnNo = (temp2 << ((Addr_t)log2(CACHE_BLOCK_SIZE)-(Addr_t)log2(COLUMN_SIZE))) | temp;
+    //	req->columnNo = (temp2 >> (CACHE_BLOCK_SIZE-1) ) | temp;
+    req->rowNo = ( req->address >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)) ) & (NO_OF_ROWS-1);// Masking the next r bits	 
+    req->rankNo = ( req->address >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)+(Addr_t)log2(NO_OF_ROWS)) ) & (NO_OF_RANKS-1);  
+    // Masking next l bits
 #endif
 
 #ifdef SWAPPING 				// equivalent to l:(rupper:n:rlower):b:(rmiddle):z //(v+clower) n is put in lower tag bits
-	
-	unsigned short n = log2(BLOCKS_PER_ROW); 		// n is a design parameter, should be changed to explore 
-	Addr_t nMask = BLOCKS_PER_ROW-1;
-	Addr_t colMask;
-	Addr_t rowMask;
-	Addr_t temp;
-	Addr_t temp2;
-	req->columnNo = (req->address >> (Addr_t)log2(COLUMN_SIZE)) & (NO_OF_COLUMNS-1);	// Masking lower bits to find req->columnNo temporarily
-	req->bankNo = (req->address >> (Addr_t)log2(ROW_SIZE)) & (NO_OF_BANKS-1); 	// Masking the next b bits after page bits
-	req->rowNo = ( req->address >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)) ) & (NO_OF_ROWS-1);  
-									// Masking the next r bits to find req->rowNo temporarily
-	//// Very ugly logic but it works ///////////
-	temp = ((req->address >> ((Addr_t)log2(ROW_SIZE)-n)) & nMask) << ((Addr_t)log2(DRAM_SIZE)-TAG_BITS-(Addr_t)log2(ROW_SIZE)-(Addr_t)log2(NO_OF_BANKS));
-	temp2 = ((req->address >> ((Addr_t)log2(DRAM_SIZE)-TAG_BITS)) & nMask) << ((Addr_t)log2(ROW_SIZE)-n); 
-										// Rip the required bits out from req->address
-	cout << hex << temp << "        " << temp2 << "    " << req->rowNo << "   " << req->columnNo << endl;
-	colMask = nMask << ((Addr_t)log2(ROW_SIZE)-n); 		// Shift the mask to required bit position
-	rowMask = nMask << ((Addr_t)log2(DRAM_SIZE)-TAG_BITS-(Addr_t)log2(ROW_SIZE)-(Addr_t)log2(NO_OF_BANKS));	
-	cout << colMask << "  " <<  rowMask << endl;
-	req->columnNo = (req->columnNo & (~colMask)) | temp2;	// Make the required bit position of column zero & or with temp2
-	req->columnNo = req->columnNo >> (Addr_t)log2(COLUMN_SIZE);	// Remove the lower z bits from column no	
-	req->rowNo = (req->rowNo & (~rowMask)) | temp;
-	req->rankNo = ( req->address >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)+(Addr_t)log2(NO_OF_ROWS)) ) & (NO_OF_RANKS-1);  
-													// Masking next l bits
+
+    unsigned short n = log2(BLOCKS_PER_ROW); 		// n is a design parameter, should be changed to explore 
+    Addr_t nMask = BLOCKS_PER_ROW-1;
+    Addr_t colMask;
+    Addr_t rowMask;
+    Addr_t temp;
+    Addr_t temp2;
+    req->columnNo = (req->address >> (Addr_t)log2(COLUMN_SIZE)) & (NO_OF_COLUMNS-1);	// Masking lower bits to find req->columnNo temporarily
+    req->bankNo = (req->address >> (Addr_t)log2(ROW_SIZE)) & (NO_OF_BANKS-1); 	// Masking the next b bits after page bits
+    req->rowNo = ( req->address >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)) ) & (NO_OF_ROWS-1);  
+    // Masking the next r bits to find req->rowNo temporarily
+    //// Very ugly logic but it works ///////////
+    temp = ((req->address >> ((Addr_t)log2(ROW_SIZE)-n)) & nMask) << ((Addr_t)log2(DRAM_SIZE)-TAG_BITS-(Addr_t)log2(ROW_SIZE)-(Addr_t)log2(NO_OF_BANKS));
+    temp2 = ((req->address >> ((Addr_t)log2(DRAM_SIZE)-TAG_BITS)) & nMask) << ((Addr_t)log2(ROW_SIZE)-n); 
+    // Rip the required bits out from req->address
+    cout << hex << temp << "        " << temp2 << "    " << req->rowNo << "   " << req->columnNo << endl;
+    colMask = nMask << ((Addr_t)log2(ROW_SIZE)-n); 		// Shift the mask to required bit position
+    rowMask = nMask << ((Addr_t)log2(DRAM_SIZE)-TAG_BITS-(Addr_t)log2(ROW_SIZE)-(Addr_t)log2(NO_OF_BANKS));	
+    cout << colMask << "  " <<  rowMask << endl;
+    req->columnNo = (req->columnNo & (~colMask)) | temp2;	// Make the required bit position of column zero & or with temp2
+    req->columnNo = req->columnNo >> (Addr_t)log2(COLUMN_SIZE);	// Remove the lower z bits from column no	
+    req->rowNo = (req->rowNo & (~rowMask)) | temp;
+    req->rankNo = ( req->address >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)+(Addr_t)log2(NO_OF_ROWS)) ) & (NO_OF_RANKS-1);  
+    // Masking next l bits
 #endif	
 
 #ifdef GENERIC 		// l:r:b:c:v    User should swap these around to find a good result
 
-///////////////////////////////// This is just to demonstrate how a mask should be created ////////////////////////////////////////
-	Addr_t zbits = (req->address & (CACHE_BLOCK_SIZE-1)); //>> (int)log2(COLUMN_SIZE);	
-	Addr_t nbits = ( (req->address >> (Addr_t)log2(CACHE_BLOCK_SIZE)) & (BLOCKS_PER_ROW-1) ) << (Addr_t)log2(CACHE_BLOCK_SIZE);
-	Addr_t bbits = ( (req->address >> (Addr_t)log2(ROW_SIZE)) & (NO_OF_BANKS-1) ) << (Addr_t)log2(ROW_SIZE);
-	Addr_t rbits = ( (req->address >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS))) & (NO_OF_ROWS-1) ) 
-				    << ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS));
-	Addr_t lbits = ( (req->address >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)+(Addr_t)log2(NO_OF_ROWS)) ) & (NO_OF_RANKS-1) )
-				    <<  ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)+(Addr_t)log2(NO_OF_ROWS));// Masking next l bits
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
-//	cout << zbits << " " << nbits << endl; 
-	req->columnNo = (zbits | nbits) >> (Addr_t)log2(COLUMN_SIZE);	// Oring lower and removing column bits to find Column No
-	req->bankNo = bbits >> (Addr_t)log2(ROW_SIZE);		// Taking bbits shifting to LSBs
-	req->rowNo = rbits >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)); // Taking rbits and shifting to LSBs
-	req->rankNo = lbits >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)+(Addr_t)log2(NO_OF_ROWS)); // Taking lbits and shifting to LSBs
+    ///////////////////////////////// This is just to demonstrate how a mask should be created ////////////////////////////////////////
+    Addr_t zbits = (req->address & (CACHE_BLOCK_SIZE-1)); //>> (int)log2(COLUMN_SIZE);	
+    Addr_t nbits = ( (req->address >> (Addr_t)log2(CACHE_BLOCK_SIZE)) & (BLOCKS_PER_ROW-1) ) << (Addr_t)log2(CACHE_BLOCK_SIZE);
+    Addr_t bbits = ( (req->address >> (Addr_t)log2(ROW_SIZE)) & (NO_OF_BANKS-1) ) << (Addr_t)log2(ROW_SIZE);
+    Addr_t rbits = ( (req->address >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS))) & (NO_OF_ROWS-1) ) 
+        << ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS));
+    Addr_t lbits = ( (req->address >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)+(Addr_t)log2(NO_OF_ROWS)) ) & (NO_OF_RANKS-1) )
+        <<  ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)+(Addr_t)log2(NO_OF_ROWS));// Masking next l bits
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+    //	cout << zbits << " " << nbits << endl; 
+    req->columnNo = (zbits | nbits) >> (Addr_t)log2(COLUMN_SIZE);	// Oring lower and removing column bits to find Column No
+    req->bankNo = bbits >> (Addr_t)log2(ROW_SIZE);		// Taking bbits shifting to LSBs
+    req->rowNo = rbits >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)); // Taking rbits and shifting to LSBs
+    req->rankNo = lbits >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)+(Addr_t)log2(NO_OF_ROWS)); // Taking lbits and shifting to LSBs
 #endif
 
 #ifdef NO_SCHEME				// no scheme   equivalent to l:b:r:c:v
 
-	req->columnNo = (req->address >> (Addr_t)log2(COLUMN_SIZE)) & (NO_OF_COLUMNS-1);// Masking lower bits to find Column No.
-	req->rowNo = (req->address >> (Addr_t)log2(ROW_SIZE)) & (NO_OF_ROWS-1);		// Masking the next r bits	 
-	req->bankNo = ( req->address >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_ROWS)) ) & (NO_OF_BANKS-1); 	// Masking the next b bits
-	req->rankNo = ( req->address >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)+(Addr_t)log2(NO_OF_ROWS)) ) & (NO_OF_RANKS-1);  
-													// Masking next l bits 
+    req->columnNo = (req->address >> (Addr_t)log2(COLUMN_SIZE)) & (NO_OF_COLUMNS-1);// Masking lower bits to find Column No.
+    req->rowNo = (req->address >> (Addr_t)log2(ROW_SIZE)) & (NO_OF_ROWS-1);		// Masking the next r bits	 
+    req->bankNo = ( req->address >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_ROWS)) ) & (NO_OF_BANKS-1); 	// Masking the next b bits
+    req->rankNo = ( req->address >> ((Addr_t)log2(ROW_SIZE)+(Addr_t)log2(NO_OF_BANKS)+(Addr_t)log2(NO_OF_ROWS)) ) & (NO_OF_RANKS-1);  
+    // Masking next l bits 
 #endif
 }

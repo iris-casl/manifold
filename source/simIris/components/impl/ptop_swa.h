@@ -23,6 +23,7 @@
 #include	"../../data_types/impl/flit.h"
 #include	"../../../util/genericData.h"
 #include	<vector>
+#include	<fstream>
 
 using namespace std;
 extern SW_ARBITRATION sw_arbitration;

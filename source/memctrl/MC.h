@@ -35,7 +35,7 @@
 class MC
 {
     public:
-        NI *ni;
+        McFrontEnd *ni;
 	RequestHandler *reqH;
 	RefreshMgr *refMgr;
 	Bus *bus;

@@ -31,18 +31,9 @@
 #include        "../kernel/component.h"
 #include        "../kernel/simulator.h"
 #include        "../simIris/data_types/impl/irisEvent.h"
-#include        "../simIris/components/impl/genericEvents.h"
 
 using namespace std;
 
-/*  
- *  =====================================================================================
- *      Class:  MSHR_H
- *      Description:  
- *     
- *     
- *   =====================================================================================
- */
 extern unsigned long long int max_sim_time;
 extern uint no_mcs;
 extern unsigned int MC_ADDR_BITS;

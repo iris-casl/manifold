@@ -1,9 +1,11 @@
-/*
+/*!
  * =====================================================================================
  *
  *       Filename:  genericCrossbar.h
  *
- *    Description:  
+ *    Description:  This class is to be deprecated. Its used with the physical
+ *    router and tries to describe how a crossbar can be written as a
+ *    component.
  *
  *        Version:  1.0
  *        Created:  02/20/2010 02:09:13 PM
@@ -24,12 +26,6 @@
 
 using namespace std;
 
-/*
- * =====================================================================================
- *        Class:  GenericCrossbar
- *  Description:  
- * =====================================================================================
- */
 class GenericCrossbar: public Crossbar
 {
     public:

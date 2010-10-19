@@ -27,7 +27,6 @@
 #include        "../kernel/component.h"
 #include        "../kernel/simulator.h"
 #include        "../simIris/data_types/impl/irisEvent.h"
-#include        "../simIris/components/impl/genericEvents.h"
 #include        "request.h"
 #include	"dram.h" 
 

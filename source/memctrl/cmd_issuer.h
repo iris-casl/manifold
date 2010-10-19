@@ -27,7 +27,7 @@
 #include        "../kernel/component.h"
 #include        "../kernel/simulator.h"
 #include        "../simIris/data_types/impl/irisEvent.h"
-#include        "../simIris/components/impl/genericEvents.h"
+#include        "../util/genericEvents.h"
 #include        "request.h" 
 #include	"data_bus_handler.h"
 #include	"cmd_bus_handler.h"

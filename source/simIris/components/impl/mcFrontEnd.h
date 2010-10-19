@@ -1,10 +1,10 @@
 /*
  * =====================================================================================
  *
- *       Filename:  NI.h
+ *       Filename:  mcFrontEnd.h
  *
- *    Description:  This is a test packet to send packets to a interface on
- *    VC0 at some random time and random packet length. 
+ *    Description: This is the interface to connect to the memory controller
+ *    module. 
  *
  *        Version:  1.0
  *        Created:  03/11/2010 05:00:00 PM
@@ -17,11 +17,10 @@
  * =====================================================================================
  */
 
-#ifndef  _NI_h_INC
-#define  _NI_h_INC
+#ifndef  _mcFrontEnd_h_INC
+#define  _mcFrontEnd_h_INC
 
 #include        "../interfaces/processor.h"
-#include        "genericEvents.h"
 #include        "../../data_types/impl/highLevelPacket.h"
 #include	"../../data_types/impl/irisEvent.h"
 #include	"../../../util/genericData.h"
@@ -32,24 +31,17 @@
 #include	<algorithm>
 
 #define DEFAULT_RAN_MAX_TIME 100
-//#define PURE_SINK 1
 extern uint MC_ADDR_BITS;
 extern uint no_mcs;
 extern vector <uint> mc_positions;
 
 using namespace std;
 
-/*
- * =====================================================================================
- *        Class:  NI
- *  Description:  
- * =====================================================================================
- */
-class NI : public Processor
+class McFrontEnd : public Processor
 {
     public:
-        NI ();                             /* constructor */
-        ~NI ();
+        McFrontEnd ();                             /* constructor */
+        ~McFrontEnd ();
         Component* mc;
 	vector<Request> niQueue;
         void setup(uint no_nodes, uint vcs, uint max_sim_time);
@@ -96,9 +88,9 @@ class NI : public Processor
         void handle_detect_deadlock_event(IrisEvent*);
 	void convertToBitStream(Request* req, HighLevelPacket *hlp);
 	void convertFromBitStream(Request* req, HighLevelPacket *hlp);
-	bool GetFromNIQueue(Request* req);
+	bool GetFrommcFrontEndQueue(Request* req);
 	void add_mc_bits(Request *req);
 	void strip_mc_bits(Request *req);
-}; /* -----  end of class NI  ----- */
+}; /* -----  end of class mcFrontEnd  ----- */
 
-#endif   /* ----- #ifndef _NI_h_INC  ----- */
+#endif   /* ----- #ifndef _mcFrontEnd_h_INC  ----- */

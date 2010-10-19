@@ -58,6 +58,7 @@ PToPSwitchArbiterVcs::resize(uint p, uint v)
         {
             last_port_winner[i] = -1;
         }
+
 }
 
 bool

@@ -31,11 +31,14 @@
 #include        <stdio.h>
 #include	<cassert>
 #include	"../kernel/simulator.h"
+#include	"genericEvents.h"
 
 /*  macro for general debug print statements. */
-#define LOC std::cout << "\nTime:" << dec << Simulator::Now() <<" " << name << " " << address << " " << node_ip << " ";
+#define LOC cout << "\nTime:" << dec << Simulator::Now() <<" " << name << " " << address << " " << node_ip << " ";
 #define _DBG(fmt,...) LOC printf(fmt,__VA_ARGS__);
 #define _DBG_NOARG(fmt) LOC printf(fmt);
+#define LOC_log debug_log<< "\nTime:" << dec << Simulator::Now() <<" " << name << " " << address << " " << node_ip << " ";
+#define _DBG_log(fmt,...) LOC_log printf(fmt,__VA_ARGS__);
 
 
 using namespace std;

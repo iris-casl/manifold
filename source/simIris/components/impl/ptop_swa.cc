@@ -63,6 +63,7 @@ PToPSwitchArbiter::resize(uint port)
             done[i] = false;
             last_port_winner[i] = 0;
         }
+
 }
 
 bool

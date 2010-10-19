@@ -1,23 +1,3 @@
-/*
- * =====================================================================================
- *! \brief
- *       Filename:  genericSink.cc
- *
- *    Description: This class models a sink that drains out network packets
- *    and sends a response after a fixed 60 cycle latency. ( 60 from the flat
- *    mc model )
- *
- *        Version:  1.0
- *        Created:  02/21/2010 08:48:12 PM
- *       Revision:  none
- *       Compiler:  gcc
- *
- *         Author:  Mitchelle Rasquinha (), mitchelle.rasquinha@gatech.edu
- *        Company:  Georgia Institute of Technology
- *
- * =====================================================================================
- */
-
 #ifndef  _genericsink_cc_INC
 #define  _genericsink_cc_INC
 
@@ -37,34 +17,43 @@ GenericSink::GenericSink ()
 }  /* -----  end of method GenericSink::GenericSink  (constructor)  ----- */
 
 void
-GenericSink::setup (uint v, uint time, uint n)
+GenericSink::setup (uint n, uint v, uint time)
 {
-    address = myId();
     vcs =v;
-    max_sim_time = time;
     no_nodes = n;
+    max_sim_time = time;
+    address = myId();
+    node_ip = address/3;
+    last_vc = 0;
+
+    stat_packets_in = 0;
+    stat_min_pkt_latency = 9999999;
+    stat_last_packet_out_cycle = 0;
+    stat_total_lat = 0;
+    stat_hop_count = 0;
+
     ready.resize(vcs);
-//    interface_connections.resize(1);
 
-    stringstream str;
-    str << out_filename << address ;
-    out_file.open(str.str().c_str());
+    ready.resize( vcs );
+    ready.insert( ready.begin(), ready.size(), false );
 
-    /* Send ready events for each virtual channel */
-    for ( uint i = 0; i < vcs; i++ )
+    for( uint i = 0; i < vcs; i++ )
     {
-        ready[i] = false;
         IrisEvent* e = new IrisEvent();
-        VirtualChannelDescription* vc = new VirtualChannelDescription();
-        vc->vc = i;
-        e->event_data.push_back(vc);
         e->type = READY_EVENT;
-        Simulator::Schedule(Simulator::Now()+1, this, interface_connections[0], e);
-        
-        cout	<< "GenericSink:: Sending ready event to interface" << endl;
+        e->vc = i;
+        Simulator::Schedule(Simulator::Now()+1, &NetworkComponent::process_event,this, e);
     }
         return;
 }		/* -----  end of function GenericSink  ----- */
+
+void
+GenericSink::set_output_path( string name)
+{
+    stringstream str;
+    str << name << "/tpg_" << node_ip << "_trace_out.tr";
+    out_filename = str.str();
+}
 
 void
 GenericSink::process_event (IrisEvent* e)
@@ -75,13 +64,13 @@ GenericSink::process_event (IrisEvent* e)
             handle_new_packet_event(e);
             break;
         case OUT_PULL_EVENT:
-            handle_outpull_event(e);
+            handle_out_pull_event(e);
             break;
         case READY_EVENT:
             handle_ready_event(e);
             break;
         default:
-            cout << "Unk event type" <<endl;
+            cout << "\nSINK: Unk event type" <<endl;
             break;
     }
 
@@ -91,83 +80,44 @@ GenericSink::process_event (IrisEvent* e)
 void
 GenericSink::handle_new_packet_event ( IrisEvent* e )
 {
-    HighLevelPacket* hlp = static_cast<HighLevelPacket*>(e->event_data.at(0));
-    cout << " GenericSink:: ********** GOT NEW PACKET ************" << endl;
-    cout << hlp->toString()<< " Latency: " << Simulator::Now() - hlp->sent_time << endl;
-    out_file << hlp->toString()<< " Latency: " << Simulator::Now() - hlp->sent_time << endl;
-    /* Event handled now delete it */
+    ni_recv = false;
+    // get the packet data
+    HighLevelPacket* hlp = static_cast< HighLevelPacket* >( e->event_data.at(0));
+    ullint lat = Simulator::Now() - hlp->sent_time;
+    if( stat_min_pkt_latency > lat)
+        stat_min_pkt_latency = lat;
 
-    //send back a ready event
-    IrisEvent* event = new IrisEvent();
-    event->type = READY_EVENT;
-    VirtualChannelDescription* vc = new VirtualChannelDescription();
-    vc->vc = hlp->virtual_channel;
-    event->event_data.push_back(vc);
-    Simulator::Schedule( Simulator::Now()+1, &NetworkComponent::process_event, interface_connections[0], event);
+    stat_last_packet_in_cycle = Simulator::Now();
+    stat_packets_in++;
+    stat_hop_count += hlp->hop_count;
+    stat_total_lat += lat;
+
+#ifdef DEBUG
+    _DBG( "-------------- GENERIC_SINK GOT NEW PACKET --------------- pkt_latency: %f", lat);
+    // write out the packet data to the output trace file
+    if( !out_file.is_open() )
+        out_file.open( out_filename.c_str(), std::ios_base::app );
+
+    out_file << hlp->toString();
+    out_file << "\tPkt latency: " << lat << endl;
+#endif
 
     delete hlp;
-    delete e;
 
+    // send back a ready event
+    IrisEvent* event2 = new IrisEvent();
+    event2->type = READY_EVENT;
+    event2->vc = hlp->virtual_channel;
+    Simulator::Schedule( Simulator::Now()+1, &NetworkComponent::process_event, interface_connections[0], event2);
+
+
+    delete e;
     return ;
 }		/* -----  end of function GenericSink::handle_new_packet_event  ----- */
 
 void
-GenericSink::handle_outpull_event ( IrisEvent* e )
+GenericSink::handle_out_pull_event ( IrisEvent* e )
 {
-    bool found = false;
-    for( unsigned int i = last_vc ; i < ready.size(); i++ )
-        if( ready[i] )
-        {
-            found = true;
-            last_vc= i;
-            break;
-        }
-	
-    if(!found )
-        for( unsigned int i = 0; i < last_vc ; i++ )
-            if( ready[i] )
-            {
-                found = true;
-                last_vc = i;
-                break;
-            }
-		
-    MTRand mtrand1;
-    if( found )
-    {
-        packets++;
-        unsigned int current_packet_time = 0;
-        HighLevelPacket* hlp = new HighLevelPacket();
-        hlp->virtual_channel = last_vc;
-        last_vc++;
-        hlp->source = address;
-        hlp->destination = mtrand1.randInt(no_nodes); 
-        hlp->transaction_id = mtrand1.randInt(1000);
-        if( hlp->destination == node_ip )
-            hlp->destination = (hlp->destination + 1) % (no_nodes + 1);
-/* 
-        if ( node_ip == 0)
-            hlp->destination = 1;
-        else
-            hlp->destination = 0;
- * */
-
-        hlp->sent_time = Simulator::Now()+60 ; //MAX(generator.delay() , 1);
-
-        _DBG( " Sending pkt: no of packets %d ", packets );
-
-        out_file << "HLP: " << hlp->toString() << endl;
-
-        ready[ hlp->virtual_channel ] = false;
-        IrisEvent* event = new IrisEvent();
-        event->type = NEW_PACKET_EVENT;
-        event->event_data.push_back(hlp);
-        current_packet_time = hlp->sent_time; 
-        Simulator::Schedule( hlp->sent_time, &NetworkComponent::process_event, interface_connections[0], event );
-                
-    }
-    else
-        sending = false;
 
     delete e;
     return ;
@@ -176,22 +126,16 @@ GenericSink::handle_outpull_event ( IrisEvent* e )
 void
 GenericSink::handle_ready_event ( IrisEvent* e )
 {
-    VirtualChannelDescription* vc = static_cast<VirtualChannelDescription*>(e->event_data.at(0));
-    ready[vc->vc] = true;
-
-    if( !sending  )
+    if ( e->vc > vcs )
     {
-        IrisEvent* event = new IrisEvent();
-        event->type = OUT_PULL_EVENT;
-        event->vc = e->vc;
-        /* Need to be careful with the same cycles scheduling. Can result in
-         * events of the past. Need to test this. */
-        Simulator::Schedule(Simulator::Now()+1, &NetworkComponent::process_event, this, event); 
-        sending = true;
+        _DBG(" Got ready for vc %d no_vcs %d ", e->vc, vcs);
+        exit(1);
     }
 
+    ready[e->vc] = true;
+
+
     delete e;
-    cout << " GenericSink:: got ready event at time " << Simulator::Now() << endl;
     return ;
 }		/* -----  end of function GenericSink::handle_ready_event  ----- */
 
@@ -205,5 +149,19 @@ GenericSink::toString () const
     return str.str();
 }		/* -----  end of function GenericSink::toString  ----- */
 
+string
+GenericSink::print_stats() const
+{
+    stringstream str;
+    str << "\n sink[" << node_ip << "] packets_out: " << stat_packets_out
+        << "\n sink[" << node_ip << "] packets_in: " << stat_packets_in
+        << "\n sink[" << node_ip << "] min_pkt_latency: " << stat_min_pkt_latency
+        << "\n sink[" << node_ip << "] last_packet_out_cycle: " << stat_last_packet_out_cycle
+        << "\n sink[" << node_ip << "] last_packet_in_cycle: " << stat_last_packet_in_cycle
+        << "\n sink[" << node_ip << "] avg_latency: " << (stat_total_lat+0.0)/stat_packets_in
+        << "\n sink[" << node_ip << "] avg_hop_count: " << (stat_hop_count+0.0)/stat_packets_in
+        << endl;
+    return str.str();
+} /* ----- end of function GenericGenericSink::toString ----- */
 #endif   /* ----- #ifndef _genericsink_cc_INC  ----- */
 

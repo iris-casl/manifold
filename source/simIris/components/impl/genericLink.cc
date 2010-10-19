@@ -1,9 +1,10 @@
-/*
+/*!
  * =====================================================================================
  *
  *       Filename:  genericLink.cc
  *
- *    Description:  
+ *    Description:  Implements the link component. Per link stats can be
+ *    updated within this.
  *
  *        Version:  1.0
  *        Created:  02/27/2010 11:48:46 PM

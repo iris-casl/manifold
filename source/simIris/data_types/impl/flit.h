@@ -105,6 +105,8 @@ class HeadFlit : public Flit
         simTime packet_originated_time;
         uint inport;
 
+        /* For torus routing */
+        bool is_dateline_traversed;
         /* Stats variables */
         double avg_network_latency;
         unsigned int hop_count;
