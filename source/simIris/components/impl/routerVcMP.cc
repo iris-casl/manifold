@@ -236,6 +236,7 @@ RouterVcMP::print_stats()
 
     str << "\n router[" << node_ip << "] out_port_links_utilization: ";
     for( uint i=0; i<ports; i++)
+       if( output_connections[i] )
         str << static_cast<GenericLink*>(output_connections[i])->flits_passed*1.0/max_sim_time << " ";
     str << endl;
 
