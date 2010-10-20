@@ -512,27 +512,6 @@ GenericRC::push (Flit* f, uint ch )
             possible_out_ports.clear();
             possible_out_vcs.clear();
             route_ring( header );
-
-            /*  For wrap around links */
-            if( possible_out_vcs.size() == 0 )
-            {
-                if ( node_ip%grid_size == 0 && header->inport==1 )
-                    possible_out_vcs.push_back((vcs - header->vc -1)%vcs);
-                else if( static_cast<int>(node_ip-grid_size)<0 && header->inport== 3 )
-                    possible_out_vcs.push_back((vcs - header->vc -1)%vcs);
-                else
-                    possible_out_vcs.push_back(header->vc);
-
-            }
-
-            addresses[ch].possible_out_ports.push_back(possible_out_ports[0]);
-            addresses[ch].possible_out_vcs.push_back(possible_out_vcs[0]);
-
-            addresses [ch].out_port = possible_out_ports.at(0);
-            addresses [ch].channel = possible_out_vcs.at(0);
-
-//            _DBG(" src:%d dst:%d ip:%d op:%d ic:%d oc:%d %llx",header->src_address, header->dst_address, header->inport,
-//                 addresses [ch].out_port, header->vc, addresses[ch].possible_out_vcs.at(0), header->addr);
         }
         else
         {
