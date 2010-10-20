@@ -159,7 +159,7 @@ GenericPktGen::handle_new_packet_event ( IrisEvent* e)
     stat_total_lat += lat;
 
 #ifdef DEBUG
-    _DBG( "-------------- TPG GOT NEW PACKET ---------------\n pkt_latency: %f", lat);
+    _DBG( "-------------- TPG GOT NEW PACKET --------------- pkt_latency: %f", lat);
     // write out the packet data to the output trace file
     if( !out_file.is_open() )
         out_file.open( out_filename.c_str(), std::ios_base::app );
