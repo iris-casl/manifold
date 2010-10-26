@@ -156,8 +156,7 @@ manifold_simIris_CXXLD= $(CXXLD)
 manifold_simIris_SOURCES = $(FE_SOURCES)\
 			   source/frontend/impl/manifold_simiris.cc
 
-manifold_simIris_LDADD = source/simIris/libIris.a \
-			 source/memctrl/libsimMC.a $(MCPAT_OBJS)
+manifold_simIris_LDADD = source/simIris/libIris.a 
 
 ## manifold_simMC
 #manifold_simMC_CXXFLAGS = $(CXX_FLAGS) 
