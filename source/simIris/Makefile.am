@@ -29,7 +29,6 @@ IRIS_SOURCES = \
 		  components/impl/routerVcMP.cc \
 		  components/impl/routerReqReply.cc \
 		  components/impl/genericRouterPhy.cc \
-		  components/impl/genericTracePktGen.cc \
 		  components/impl/genericSink.cc \
 		  components/impl/genericPktGen.cc \
 		  components/impl/genericVcAllocator.cc \

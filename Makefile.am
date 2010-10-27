@@ -58,7 +58,6 @@ ALL_HDRS = \
 	   source/simIris/components/impl/routerVcMP.h \
 	   source/simIris/components/impl/routerReqReply.h \
 	   source/simIris/components/impl/genericRouterPhy.h \
-	   source/simIris/components/impl/genericTracePktGen.h \
 	   source/simIris/components/impl/genericPktGen.h \
 	   source/simIris/components/impl/genericSink.h \
 	   source/simIris/components/impl/genericVcAllocator.h \
@@ -78,7 +77,6 @@ ALL_HDRS = \
 	   source/memctrl/refresh_manager.h \
 	   source/memctrl/response_handler.h \
 	   source/memctrl/stats.h \
-	   source/simIris/components/impl/mcFrontEnd.h \
 	   source/simIris/components/impl/genericFlatMc.h \
 	   source/memctrl/mshr.h \
 	   source/memctrl/mshr_standalone.h 

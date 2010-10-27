@@ -25,12 +25,10 @@
 #include	"../../simIris/components/impl/routerVcMP.h"
 #include	"../../simIris/components/impl/routerReqReply.h"
 #include	"../../simIris/components/impl/genericInterfaceNB.h"
-#include	"../../simIris/components/impl/genericTracePktGen.h"
 #include	"../../simIris/components/impl/genericPktGen.h"
 #include        "../../simIris/components/impl/genericFlatMc.h"
 #include        "../../simIris/components/impl/genericSink.h"
 #include        "../../simIris/components/impl/genericLink.h"
-#include        "../../simIris/components/impl/mcFrontEnd.h"
 
 #include	"../../simIris/data_types/impl/flit.h"
 #include	"../../simIris/data_types/impl/highLevelPacket.h"

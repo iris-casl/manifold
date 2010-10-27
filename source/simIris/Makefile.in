@@ -65,10 +65,9 @@ am__objects_1 = link.$(OBJEXT) clock.$(OBJEXT) simulator.$(OBJEXT) \
 	genericLink.$(OBJEXT) ptopSwaVcs.$(OBJEXT) \
 	pvtopv_swa.$(OBJEXT) ptop_swa.$(OBJEXT) vcaMsgAware.$(OBJEXT) \
 	routerVcMP.$(OBJEXT) routerReqReply.$(OBJEXT) \
-	genericRouterPhy.$(OBJEXT) genericTracePktGen.$(OBJEXT) \
-	genericSink.$(OBJEXT) genericPktGen.$(OBJEXT) \
-	genericVcAllocator.$(OBJEXT) mcFrontEnd.$(OBJEXT) \
-	genericFlatMc.$(OBJEXT)
+	genericRouterPhy.$(OBJEXT) genericSink.$(OBJEXT) \
+	genericPktGen.$(OBJEXT) genericVcAllocator.$(OBJEXT) \
+	mcFrontEnd.$(OBJEXT) genericFlatMc.$(OBJEXT)
 am_libIris_a_OBJECTS = $(am__objects_1)
 libIris_a_OBJECTS = $(am_libIris_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
@@ -205,7 +204,6 @@ IRIS_SOURCES = \
 		  components/impl/routerVcMP.cc \
 		  components/impl/routerReqReply.cc \
 		  components/impl/genericRouterPhy.cc \
-		  components/impl/genericTracePktGen.cc \
 		  components/impl/genericSink.cc \
 		  components/impl/genericPktGen.cc \
 		  components/impl/genericVcAllocator.cc \
@@ -304,7 +302,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/genericRC.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/genericRouterPhy.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/genericSink.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/genericTracePktGen.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/genericVcAllocator.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/highLevelPacket.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/interface.Po@am__quote@
@@ -730,20 +727,6 @@ genericRouterPhy.obj: components/impl/genericRouterPhy.cc
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='components/impl/genericRouterPhy.cc' object='genericRouterPhy.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o genericRouterPhy.obj `if test -f 'components/impl/genericRouterPhy.cc'; then $(CYGPATH_W) 'components/impl/genericRouterPhy.cc'; else $(CYGPATH_W) '$(srcdir)/components/impl/genericRouterPhy.cc'; fi`
-
-genericTracePktGen.o: components/impl/genericTracePktGen.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT genericTracePktGen.o -MD -MP -MF $(DEPDIR)/genericTracePktGen.Tpo -c -o genericTracePktGen.o `test -f 'components/impl/genericTracePktGen.cc' || echo '$(srcdir)/'`components/impl/genericTracePktGen.cc
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/genericTracePktGen.Tpo $(DEPDIR)/genericTracePktGen.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='components/impl/genericTracePktGen.cc' object='genericTracePktGen.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o genericTracePktGen.o `test -f 'components/impl/genericTracePktGen.cc' || echo '$(srcdir)/'`components/impl/genericTracePktGen.cc
-
-genericTracePktGen.obj: components/impl/genericTracePktGen.cc
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT genericTracePktGen.obj -MD -MP -MF $(DEPDIR)/genericTracePktGen.Tpo -c -o genericTracePktGen.obj `if test -f 'components/impl/genericTracePktGen.cc'; then $(CYGPATH_W) 'components/impl/genericTracePktGen.cc'; else $(CYGPATH_W) '$(srcdir)/components/impl/genericTracePktGen.cc'; fi`
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/genericTracePktGen.Tpo $(DEPDIR)/genericTracePktGen.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='components/impl/genericTracePktGen.cc' object='genericTracePktGen.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o genericTracePktGen.obj `if test -f 'components/impl/genericTracePktGen.cc'; then $(CYGPATH_W) 'components/impl/genericTracePktGen.cc'; else $(CYGPATH_W) '$(srcdir)/components/impl/genericTracePktGen.cc'; fi`
 
 genericSink.o: components/impl/genericSink.cc
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT genericSink.o -MD -MP -MF $(DEPDIR)/genericSink.Tpo -c -o genericSink.o `test -f 'components/impl/genericSink.cc' || echo '$(srcdir)/'`components/impl/genericSink.cc

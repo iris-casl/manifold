@@ -30,7 +30,6 @@
 #include	"../../simIris/data_types/impl/highLevelPacket.h"
 #include	"../../util/genericData.h"
 #include	"../../util/config_params.h"
-#include        "../../memctrl/mshr.cc"
 #include	<string.h>
 #include	<sys/time.h>
 #include	<algorithm>
@@ -443,7 +442,10 @@ main ( int argc, char *argv[] )
             switch ( mc_model )
             {
                 case GENERIC_MC:
+                    /* 
                     topology_ptr->processors.push_back( new McFrontEnd() );
+                     * */
+                    cout << " MC not integrated this rev " << endl;
                     break;
                 case FLAT_MC:
                     topology_ptr->processors.push_back( new GenericFlatMc());
@@ -467,17 +469,21 @@ main ( int argc, char *argv[] )
                         static_cast<GenericPktGen*>(topology_ptr->processors[i])->mc_node_ip.push_back(mc_positions[j]);;
                     break;
                 case TPG:
+                    /* 
                     topology_ptr->processors.push_back( new GenericTracePktGen() );
                     static_cast<GenericTracePktGen*>(topology_ptr->processors[i])->set_trace_filename(traces[i]);
+                     * */
+                    cout << " not supported this revision " << endl;
+                    exit(1);
                     /*
                      * Need to pass the mc positions to the injecting node so it can pick a destination node_ip 
                      * from the mc_positions vector. This may not be needed if
                      * the node_ip is available as part of the trace. In
                      * either case make sure to assert that the destination
                      * node_ip is one of the sink nodes.
-                     */
                     for ( uint j=0; j<mc_positions.size(); j++)
                         static_cast<GenericTracePktGen*>(topology_ptr->processors[i])->mc_node_ip.push_back(mc_positions[j]);;
+                     */
 
                     break;
                 default:
