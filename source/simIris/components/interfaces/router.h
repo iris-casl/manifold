@@ -44,6 +44,24 @@ class Router : public NetworkComponent
         virtual void set_grid_x_location ( uint a, uint b, uint c) = 0;
         virtual void set_grid_y_location ( uint a, uint b, uint c) = 0;
 
+	/* For visualization */
+        virtual double get_average_packet_latency(); 
+        virtual double get_last_flit_out_cycle(); 
+	virtual double get_flits_per_packet() {}
+	virtual double get_buffer_occupancy() {}
+	virtual double get_swa_fail_msg_ratio() {}
+	virtual double get_swa_load() {}
+	virtual double get_vca_fail_msg_ratio() {}
+	virtual double get_vca_load() {}
+	virtual double get_stat_packets() {}
+	virtual double get_stat_flits() {}
+	virtual double get_stat_ib_cycles() {}
+	virtual double get_stat_rc_cycles() {}
+	virtual double get_stat_vca_cycles() {}
+	virtual double get_stat_swa_cycles() {}
+	virtual double get_stat_st_cycles() {}
+	/* end */
+
         uint ports;
         uint vcs;
         uint credits;

@@ -14,16 +14,15 @@
  *
  *    Router ports
  *    port 0: Connects to interface
- *    port 1: Connects to direction east (p1)
- *    port 2: Connects to direction west (p2)
- *    port 3: Connects to direction north (p3)
- *    port 4: Connects to direction south (p4)
+ *    port 1: Connects to direction east
+ *    port 2: Connects to direction west
+ *    port 3: Connects to direction north
+ *    port 4: Connects to direction south
  *
  *              a links
- *                    p3
- *              ----> R0 p2----> R1 ---->
- *              <---p1  |^ <---  |^   <---
- *              blinks p4
+ *              ----> R0 ----> R1 ---->
+ *              <---  |^ <---  |^   <---
+ *              blinks
  *                    ||       ||
  *                    v|       v| 
  *              ----> R2 ----> R3 ---->

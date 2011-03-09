@@ -148,6 +148,81 @@ GenericRouterPhy::process_event ( IrisEvent* e )
     return ;
 }		/* -----  end of function GenericRouterPhy::process_event  ----- */
 
+double GenericRouterPhy::get_average_packet_latency()
+{
+        return ((total_packet_latency+0.0)/packets);
+}
+        
+double GenericRouterPhy::get_last_flit_out_cycle()
+{
+        return last_flit_out_cycle;
+}
+
+double GenericRouterPhy::get_flits_per_packet()
+{
+        return (flits+0.0/packets) ;
+}
+
+double GenericRouterPhy::get_buffer_occupancy()
+{
+        return 0.0;
+}
+
+double GenericRouterPhy::get_swa_fail_msg_ratio()
+{
+        return 0.0;
+}
+
+double GenericRouterPhy::get_swa_load()
+{
+        return 0.0;
+}
+
+double GenericRouterPhy::get_vca_fail_msg_ratio()
+{
+        return 0.0;
+}
+
+double GenericRouterPhy::get_vca_load()
+{
+        return 0.0;
+}
+
+double GenericRouterPhy::get_stat_packets()
+{
+        return packets;
+}
+
+double GenericRouterPhy::get_stat_flits()
+{
+        return flits;
+}
+
+double GenericRouterPhy::get_stat_ib_cycles()
+{
+        return 0.0;
+}
+
+double GenericRouterPhy::get_stat_rc_cycles()
+{
+        return 0.0;
+}
+
+double GenericRouterPhy::get_stat_vca_cycles()
+{
+        return 0.0;
+}
+
+double GenericRouterPhy::get_stat_swa_cycles()
+{
+        return 0.0;
+}
+
+double GenericRouterPhy::get_stat_st_cycles()
+{
+        return 0.0;
+}
+
 /*!\brief Prints out all the accumulated stats at the end of the
  * simulation. Routers have a print_stats component that gets called
  * on all routers at the end of the simulation. For information on

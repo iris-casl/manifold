@@ -67,7 +67,22 @@ class RouterVcMP: public Router
         void set_edge_links();
         vector< vector<uint> > downstream_credits;
         void dump_buffer_state();
-
+	double get_average_packet_latency();
+	double get_last_flit_out_cycle();
+        double get_flits_per_packet();
+        double get_buffer_occupancy();
+        double get_swa_fail_msg_ratio();
+        double get_swa_load();
+        double get_vca_fail_msg_ratio();
+        double get_vca_load();
+        double get_stat_packets();
+        double get_stat_flits();
+        double get_stat_ib_cycles();
+        double get_stat_rc_cycles();
+        double get_stat_vca_cycles();
+        double get_stat_swa_cycles();
+        double get_stat_st_cycles();
+	
 
     protected:
 

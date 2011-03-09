@@ -211,6 +211,82 @@ RouterVcMP::dump_buffer_state()
     return;
 }
 
+double RouterVcMP::get_average_packet_latency()
+{
+	return ((stat_total_packet_latency+0.0)/stat_packets);
+}
+
+double RouterVcMP::get_last_flit_out_cycle()
+{
+	return last_flit_out_cycle;
+}
+
+double RouterVcMP::get_flits_per_packet()
+{
+	return (stat_flits+0.0)/(stat_packets) ;
+}
+
+double RouterVcMP::get_buffer_occupancy()
+{
+	return stat_buffer_occupancy;	
+}
+
+double RouterVcMP::get_swa_fail_msg_ratio()
+{
+	return stat_swa_fail_msg_ratio;	
+}
+
+double RouterVcMP::get_swa_load()
+{
+	return stat_swa_load;
+}
+
+double RouterVcMP::get_vca_fail_msg_ratio()
+{
+	return stat_vca_fail_msg_ratio;
+}
+
+double RouterVcMP::get_vca_load()
+{
+	return stat_vca_load;
+}
+ 
+double RouterVcMP::get_stat_packets()
+{
+	return stat_packets;	
+}
+
+double RouterVcMP::get_stat_flits()
+{
+	return stat_flits;
+}
+
+double RouterVcMP::get_stat_ib_cycles()
+{
+	return stat_ib_cycles;	
+}
+
+double RouterVcMP::get_stat_rc_cycles()
+{
+	return stat_rc_cycles;
+}
+
+double RouterVcMP::get_stat_vca_cycles()
+{
+	return stat_vca_cycles;
+}
+        
+double RouterVcMP::get_stat_swa_cycles()
+{
+	return stat_swa_cycles;
+}
+ 
+double RouterVcMP::get_stat_st_cycles()
+{
+	return stat_st_cycles;
+}
+
+
 string
 RouterVcMP::print_stats()
 {

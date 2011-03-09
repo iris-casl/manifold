@@ -129,6 +129,7 @@ main ( int argc, char *argv[] )
 
     ifstream fd(argv[1]);
     string data, word;
+    string rtr_model;
 
     while(!fd.eof())
     {
@@ -411,7 +412,6 @@ main ( int argc, char *argv[] )
     topology_ptr->init( ports, vcs, credits, buffer_size, no_nodes, grid_size, links);
     topology_ptr->max_sim_time = max_sim_time;
 
-    //    Visual* vis = new Visual(topology_ptr, no_nodes, links, grid_size);
 
     /* Create the routers and interfaces */
     for( uint i=0; i<no_nodes; i++)
@@ -420,9 +420,11 @@ main ( int argc, char *argv[] )
         {
             case PHYSICAL:
                 topology_ptr->routers.push_back( new GenericRouterPhy());
+		rtr_model = "GenericRouterPhy";
                 break;
             case VIRTUAL:
                 topology_ptr->routers.push_back( new RouterVcMP());
+		rtr_model = "RouterVcMP";
                 break;
             default:
                 cout << " Incorrect router model " << endl;
@@ -618,11 +620,9 @@ main ( int argc, char *argv[] )
         }
     }
 
-    //    vis->create_new_connections();
-    //    vis->create_graphml();
-
     Simulator::StopAt(max_sim_time);
     Simulator::Run();
+
 
     cerr << topology_ptr->print_stats();
     /* Init McPat for Energy model and use the counters to compute energy */
@@ -654,6 +654,7 @@ main ( int argc, char *argv[] )
     cerr << " Max BW available in the network:(B) " << available_bw *1e-6<< " Mbps. " << endl;
     cerr << " \% A/B " << bytes_delivered/available_bw << endl;
 
+
     ullint tot_pkts = 0, tot_pkts_out = 0, tot_flits = 0;
     for ( uint i=0 ; i<no_nodes ; i++ )
     {
@@ -670,7 +671,12 @@ main ( int argc, char *argv[] )
     cerr << " Total Mem Req serviced: " << tot_pkts_out/2 << endl;
     cerr << "------------ End SimIris ---------------------" << endl;
 
+    Visual* vis = new Visual(topology_ptr, no_nodes, links, grid_size, network_type, rtr_model, total_link_utilization, total_link_cr_utilization, bytes_delivered, available_bw, tot_pkts, tot_flits, sim_time_ms);
+    vis->create_new_connections();
+    vis->create_graphml();
+
     delete topology_ptr;
+    delete vis;
 
     return 0;
 }				/* ----------  end of function main  ---------- */

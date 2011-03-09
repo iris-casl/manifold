@@ -1,0 +1,642 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename: Visual.cc
+ *
+ *    Description:
+ *
+ *        Version:  1.0
+ *        Created:  06/28/2010 3:31:47 PM
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  Sharda Murthi, smurthi3@gatech.edu
+ *        Company:  Georgia Institute of Technology
+ *
+ * =====================================================================================
+ */
+
+#ifndef  _visual_cc_INC
+#define  _visual_cc_INC
+#define DEBUG 0
+
+#include "visual.h"
+
+Visual::Visual()
+{
+	topo_ptr = NULL;
+	nodes = 0;
+	links = 0;
+}
+
+Visual::Visual(Topology* topo, int n, int l, int g, string nw_type, string r_type): topo_ptr(topo), nodes(n), links(l), grid_size(g), type(nw_type),rtr_type(r_type)
+{
+	links = (nodes)*2*6;
+	link_ptr = new link_connection *[links]; // declaring an array of pointers
+	for (uint l = 0; l < links; l++)
+		link_ptr[l] = new link_connection;
+	cout << "TYPEID = " << type << endl;
+	if ( type == "NONE" )
+	{
+		cout << "unknown topology\n";
+		exit(1);
+	}
+#ifdef DEBUG
+	std::cout << "In Parameterized Visual ctor\n";
+	cout << "Nodes = " << nodes << "\t" << "Links = " << links << "\ttype = " << type << "\n";
+#endif
+	
+}
+
+Visual::~Visual()
+{
+	for ( uint l = 0; l < links; l++)
+		delete[] link_ptr[l];
+
+
+#ifdef DEBUG
+	std::cout << "In Visual dtor\n";
+#endif
+}
+
+void Visual::create_graphml()
+{
+	if (type == "mesh" || type == "Mesh" || type == "MESH" )
+		create_graphml_mesh();
+	else if (type == "torus" || type == "Torus" || type == "TORUS" )
+		create_graphml_torus();
+	else
+	{
+		cout << "Unknown topology..exiting\n";
+		exit(1);
+	}
+}
+
+void Visual::create_new_connections() /* Function to get links as {link_id, <source, destination>} format */
+{
+	map<uint , uint >::iterator it1;
+	map<uint , uint >::iterator it2;
+
+	it1 = topo_ptr->east_links.begin();
+	uint k = 0;
+
+	/* For East and West connections */
+	for ( ; it1 != topo_ptr->east_links.end(); it1++ )
+	{
+#ifdef DEBUG
+		cout << "in for loop east-west " << (*it1).second << " \n";
+#endif
+		it2 = topo_ptr->west_links.begin();
+		for (; it2 != topo_ptr->west_links.end(); it2++ ) // we got a match
+		{
+			if ( (*it1).second == (*it2).second )
+			{
+#ifdef DEBUG
+				cout << "source = " << (*it2).first << "\n";
+				cout << "destination = " << (*it1).first << "\n";
+#endif
+				link_ptr[k]->link_id = (*it1).second;
+				link_ptr[k]->source = (*it2).first;
+				link_ptr[k]->destination = (*it1).first;
+
+				new_east_links.push_back(link_ptr[k]);
+				k++;
+
+#ifdef DEBUG
+				cout << "source = " << (*it1).first << "\n";
+				cout << "destination = " << (*it2).first << "\n";
+#endif
+				link_ptr[k]->link_id = (*it1).second + 9000;
+				link_ptr[k]->source = (*it1).first;
+				link_ptr[k]->destination = (*it2).first;
+
+				new_west_links.push_back(link_ptr[k]);
+				k++;
+			}
+		}
+	}
+
+	/* For North and South connections */
+
+	it1 = topo_ptr->north_links.begin();
+
+	for ( ; it1 != topo_ptr->north_links.end(); it1++ )
+	{
+#ifdef DEBUG
+		cout << "in for loop north-south " << (*it1).second << " \n";
+#endif
+		it2 = topo_ptr->south_links.begin();
+		for (; it2 != topo_ptr->south_links.end(); it2++ ) // we got a match
+		{
+			if ( (*it1).second == (*it2).second )
+			{
+#ifdef DEBUG
+				cout << "source = " << (*it2).first << "\n";
+				cout << "destination = " << (*it1).first << "\n";
+#endif
+				link_ptr[k]->link_id = (*it1).second;
+				link_ptr[k]->source = (*it2).first;
+				link_ptr[k]->destination = (*it1).first;
+
+				new_east_links.push_back(link_ptr[k]);
+				k++;
+
+#ifdef DEBUG
+				cout << "source = " << (*it1).first << "\n";
+				cout << "destination = " << (*it2).first << "\n";
+#endif
+				link_ptr[k]->link_id = (*it1).second + 9000;
+				link_ptr[k]->source = (*it1).first;
+				link_ptr[k]->destination = (*it2).first;
+
+				new_west_links.push_back(link_ptr[k]);
+				k++;
+			}
+		}
+	}
+
+}
+
+void Visual::create_graphml_torus()
+{
+	graphml_file.open("output.graphml", ios::out);
+        vector<uint>::iterator itr;
+
+        graphml_file << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << "\n";
+        graphml_file << "<graphml xmlns=\"http://graphml.graphdrawing.org/xmlns\"" << "\n";
+        graphml_file << "\t" << "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"" << "\n";
+        graphml_file << "\t" << "xsi:schemaLocation=\"http://graphml.graphdrawing.org/xmlns" << "\n";
+        graphml_file << "\t" << "http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd\">" << "\n";
+        graphml_file << "\t" << "<graph id=\"G\" edgedefault=\"directed\">" << "\n";
+
+        graphml_file << "<!-- data schema -->\n";
+        graphml_file << "<key id=\"name\" for=\"node\" attr.name=\"name\" attr.type=\"string\"/>" << "\n";
+        graphml_file << "<key id=\"type\" for=\"node\" attr.name=\"type\" attr.type=\"string\"/>" << "\n";
+        graphml_file << "<key id=\"x_coord\" for=\"node\" attr.name=\"x_coord\" attr.type=\"integer\"/>" << "\n";
+        graphml_file << "<key id=\"y_coord\" for=\"node\" attr.name=\"y_coord\" attr.type=\"integer\"/>" << "\n";
+        graphml_file << "<key id=\"avg_pkt_latency\" for=\"node\" attr.name=\"avg_pkt_latency\" attr.type=\"double\"/>" << "\n";
+        graphml_file << "<key id=\"last_flit_out_cycle\" for=\"node\" attr.name=\"last_flit_out_cycle\" attr.type=\"double\"/>" << "\n";
+        graphml_file << "<key id=\"flits_per_packet\" for=\"node\" attr.name=\"flits_per_packet\" attr.type=\"double\"/>" << "\n";
+        graphml_file << "<key id=\"buffer_occupancy\" for=\"node\" attr.name=\"buffer_occupancy\" attr.type=\"double\"/>" << "\n";
+        graphml_file << "<key id=\"swa_fail_msg_ratio\" for=\"node\" attr.name=\"swa_fail_msg_ratio\" attr.type=\"double\"/>" << "\n";
+        graphml_file << "<key id=\"vca_fail_msg_ratio\" for=\"node\" attr.name=\"vca_fail_msg_ratio\" attr.type=\"double\"/>" << "\n";
+        graphml_file << "<key id=\"swa_load\" for=\"node\" attr.name=\"swa_load\" attr.type=\"double\"/>" << "\n";
+        graphml_file << "<key id=\"vca_load\" for=\"node\" attr.name=\"vca_load\" attr.type=\"double\"/>" << "\n";
+        graphml_file << "<key id=\"stat_packets\" for=\"node\" attr.name=\"stat_packets\" attr.type=\"double\"/>" << "\n";
+        graphml_file << "<key id=\"stat_flits\" for=\"node\" attr.name=\"stat_flits\" attr.type=\"double\"/>" << "\n";
+        graphml_file << "<key id=\"stat_ib_cycles\" for=\"node\" attr.name=\"stat_ib_cycles\" attr.type=\"double\"/>" << "\n";
+        graphml_file << "<key id=\"stat_rc_cycles\" for=\"node\" attr.name=\"stat_rc_cycles\" attr.type=\"double\"/>" << "\n";
+        graphml_file << "<key id=\"stat_vca_cycles\" for=\"node\" attr.name=\"stat_vca_cycles\" attr.type=\"double\"/>" << "\n";
+        graphml_file << "<key id=\"stat_swa_cycles\" for=\"node\" attr.name=\"stat_swa_cycles\" attr.type=\"double\"/>" << "\n";
+        graphml_file << "<key id=\"stat_st_cycles\" for=\"node\" attr.name=\"stat_st_cycles\" attr.type=\"double\"/>" << "\n";
+        graphml_file << "<key id=\"link_utilization\" for=\"node\" attr.name=\"link_utilization\" attr.type=\"integer\"/>" <<"\n";
+        graphml_file << "<key id=\"link_cr_utilization\" for=\"node\" attr.name=\"link_cr_utilization\" attr.type=\"integer\"/>" << "\n";
+        graphml_file << "<key id=\"bytes\" for=\"node\" attr.name=\"bytes\" attr.type=\"double\"/>" << "\n";
+        graphml_file << "<key id=\"av_bw\" for=\"node\" attr.name=\"av_bw\" attr.type=\"double\"/>" << "\n";
+        graphml_file << "<key id=\"pkts\" for=\"node\" attr.name=\"pkts\" attr.type=\"integer\"/>" << "\n";
+        graphml_file << "<key id=\"flits\" for=\"node\" attr.name=\"flits\" attr.type=\"integer\"/>" << "\n";
+        graphml_file << "<key id=\"sim_time\" for=\"node\" attr.name=\"sim_time\" attr.type=\"double\"/>" << "\n";
+
+        graphml_file << "<key id=\"name\" for=\"edge\" attr.name=\"name\" attr.type=\"string\"/>" << "\n";
+        graphml_file << "<key id=\"type\" for=\"edge\" attr.name=\"type\" attr.type=\"int\"/>" << "\n" ;
+
+        unsigned int i=0;
+        static unsigned int node_count = 0; // node count
+	unsigned int max_count = grid_size/2;
+	unsigned int count = 0;
+        bool flag = false;
+
+        unsigned int x = 100;
+        unsigned int y = (100*grid_size*2 - 100);
+
+        uint interface_id = 5000; // interface count
+        uint processor_id = 6000; // processor count
+        static unsigned int j = 8000; // edge count
+
+	unsigned int l = 100*grid_size*2;
+	unsigned int m = l-100;
+
+	unsigned int new_x1 = 0, new_x2 = 0;
+	unsigned int new_y1 = 0, new_y2 = 0;
+	unsigned int new_count = 0;
+
+	for ( i = 0; i<nodes; i+=grid_size)
+	{	
+		graphml_file << "<!-- ********* " << i << " ******** -->" << "\n";
+		if ( count < max_count)
+		{
+			add_entry(i, j, x, y, interface_id, processor_id);
+			new_x1 = x;
+			new_y1 = y;
+			new_x2 = x+100;
+			new_y2 = 100;
+			new_count = 0;
+			for ( int k = i+1; k<i+grid_size; k++ )
+			{
+				interface_id++;
+				processor_id++;
+				if ( new_count < max_count-1 )
+				{
+					new_y1 -= 400;
+					add_entry(k, j, new_x1, new_y1, interface_id, processor_id);
+					new_count++;
+				}
+				else
+				{
+					add_entry(k, j, new_x2, new_y2, interface_id, processor_id);
+					new_y2 += 400;
+				}
+			}
+			x += 400;
+		}
+		else
+		{
+			add_entry(i, j, m, l, interface_id, processor_id);	
+			new_x1 = m;
+			new_y1 = l;
+			new_x2 = m+100;
+			new_y2 = 200;
+			new_count = 0;
+			for ( int k = i+1; k<i+grid_size; k++ )
+			{
+				interface_id++;
+				processor_id++;
+				if ( new_count < max_count-1 )
+				{
+					new_y1 -= 400;
+					add_entry(k, j, new_x1, new_y1, interface_id, processor_id);
+					new_count++;
+				}
+				else
+				{
+					add_entry(k, j, new_x2, new_y2, interface_id, processor_id);
+					new_y2 += 400;
+				}
+			}
+			m -= 400;
+		}
+		count++;
+		interface_id++;
+		processor_id++;
+	}
+		vector<link_connection *>::iterator it;
+
+		graphml_file << "<!-- east links -->\n";
+		for ( it = new_east_links.begin(); it != new_east_links.end(); it++ )
+		{
+			graphml_file << "\t" << "<edge source=\"n" << (*it)->source << "\"" << " target=\"n" << (*it)->destination << "\">" << "\n";
+			graphml_file << "\t \t" << "<data key=\"name\">" << (*it)->link_id << "</data>" << "\n";
+                	graphml_file << "\t \t" << "<data key=\"type\">" << "1" << "</data>" << "\n";
+			graphml_file << "\t" << "</edge>" << "\n";
+		}
+
+		graphml_file << "<!-- west links -->\n";
+		for ( it = new_west_links.begin(); it != new_west_links.end(); it++ )
+		{
+			graphml_file << "\t" << "<edge source=\"n" << (*it)->source << "\"" << " target=\"n" << (*it)->destination << "\">" << "\n";
+			graphml_file << "\t \t" << "<data key=\"name\">" << (*it)->link_id << "</data>" << "\n";
+                	graphml_file << "\t \t" << "<data key=\"type\">" << "1" << "</data>" << "\n";
+			graphml_file << "\t" << "</edge>" << "\n";
+		}
+
+		graphml_file << "<!-- south links -->\n";
+		for ( it = new_south_links.begin(); it != new_south_links.end(); it++ )
+		{
+			graphml_file << "\t" << "<edge source=\"n" << (*it)->source << "\"" << " target=\"n" << (*it)->destination << "\">" << "\n";
+			graphml_file << "\t \t" << "<data key=\"name\">" << (*it)->link_id << "</data>" << "\n";
+                	graphml_file << "\t \t" << "<data key=\"type\">" << "1" << "</data>" << "\n";
+			graphml_file << "\t" << "</edge>" << "\n";
+		}
+
+		graphml_file << "<!-- north links -->\n";
+		for ( it = new_north_links.begin(); it != new_north_links.end(); it++ )
+		{
+			graphml_file << "\t" << "<edge source=\"n" << (*it)->source << "\"" << " target=\"n" << (*it)->destination << "\">" << "\n";
+			graphml_file << "\t \t" << "<data key=\"name\">" << (*it)->link_id << "</data>" << "\n";
+                	graphml_file << "\t \t" << "<data key=\"type\">" << "1" << "</data>" << "\n";
+			graphml_file << "\t" << "</edge>" << "\n";
+		}
+	graphml_file << "\t" << "</graph>" << "\n";
+	graphml_file << "</graphml>" << "\n";
+
+	graphml_file.close();
+	new_east_links.clear();
+	new_west_links.clear();
+	new_north_links.clear();
+	new_south_links.clear();
+}
+
+void Visual::create_graphml_mesh()
+{
+#ifdef DEBUG
+	cout << " ****************** HERE ************************\n";
+	std::cout << "Create graphml file  " <<  system("pwd") << " \n ";
+	cout << "cores and interfaces = " << concentration << "\t" << no_of_cores << "\n";
+#endif
+	graphml_file.open("output.graphml", ios::out);
+    	vector<uint>::iterator itr;
+
+	graphml_file << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << "\n";
+	graphml_file << "<graphml xmlns=\"http://graphml.graphdrawing.org/xmlns\"" << "\n";
+	graphml_file << "\t" << "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"" << "\n";
+	graphml_file << "\t" << "xsi:schemaLocation=\"http://graphml.graphdrawing.org/xmlns" << "\n";
+	graphml_file << "\t" << "http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd\">" << "\n";
+	graphml_file << "\t" << "<graph id=\"G\" edgedefault=\"directed\">" << "\n";
+
+	graphml_file << "<!-- data schema -->\n";
+	graphml_file << "<key id=\"name\" for=\"node\" attr.name=\"name\" attr.type=\"string\"/>" << "\n";
+	graphml_file << "<key id=\"type\" for=\"node\" attr.name=\"type\" attr.type=\"string\"/>" << "\n";
+	graphml_file << "<key id=\"x_coord\" for=\"node\" attr.name=\"x_coord\" attr.type=\"integer\"/>" << "\n";
+	graphml_file << "<key id=\"y_coord\" for=\"node\" attr.name=\"y_coord\" attr.type=\"integer\"/>" << "\n";
+	graphml_file << "<key id=\"avg_pkt_latency\" for=\"node\" attr.name=\"avg_pkt_latency\" attr.type=\"double\"/>" << "\n";
+	graphml_file << "<key id=\"last_flit_out_cycle\" for=\"node\" attr.name=\"last_flit_out_cycle\" attr.type=\"double\"/>" << "\n";
+	graphml_file << "<key id=\"flits_per_packet\" for=\"node\" attr.name=\"flits_per_packet\" attr.type=\"double\"/>" << "\n";
+	graphml_file << "<key id=\"buffer_occupancy\" for=\"node\" attr.name=\"buffer_occupancy\" attr.type=\"double\"/>" << "\n";
+	graphml_file << "<key id=\"swa_fail_msg_ratio\" for=\"node\" attr.name=\"swa_fail_msg_ratio\" attr.type=\"double\"/>" << "\n";
+	graphml_file << "<key id=\"vca_fail_msg_ratio\" for=\"node\" attr.name=\"vca_fail_msg_ratio\" attr.type=\"double\"/>" << "\n";
+	graphml_file << "<key id=\"swa_load\" for=\"node\" attr.name=\"swa_load\" attr.type=\"double\"/>" << "\n";
+	graphml_file << "<key id=\"vca_load\" for=\"node\" attr.name=\"vca_load\" attr.type=\"double\"/>" << "\n";
+	graphml_file << "<key id=\"stat_packets\" for=\"node\" attr.name=\"stat_packets\" attr.type=\"double\"/>" << "\n";
+	graphml_file << "<key id=\"stat_flits\" for=\"node\" attr.name=\"stat_flits\" attr.type=\"double\"/>" << "\n";
+	graphml_file << "<key id=\"stat_ib_cycles\" for=\"node\" attr.name=\"stat_ib_cycles\" attr.type=\"double\"/>" << "\n";
+	graphml_file << "<key id=\"stat_rc_cycles\" for=\"node\" attr.name=\"stat_rc_cycles\" attr.type=\"double\"/>" << "\n";
+	graphml_file << "<key id=\"stat_vca_cycles\" for=\"node\" attr.name=\"stat_vca_cycles\" attr.type=\"double\"/>" << "\n";
+	graphml_file << "<key id=\"stat_swa_cycles\" for=\"node\" attr.name=\"stat_swa_cycles\" attr.type=\"double\"/>" << "\n";
+	graphml_file << "<key id=\"stat_st_cycles\" for=\"node\" attr.name=\"stat_st_cycles\" attr.type=\"double\"/>" << "\n";
+	graphml_file << "<key id=\"link_utilization\" for=\"node\" attr.name=\"link_utilization\" attr.type=\"integer\"/>" <<"\n";
+	graphml_file << "<key id=\"link_cr_utilization\" for=\"node\" attr.name=\"link_cr_utilization\" attr.type=\"integer\"/>" << "\n";
+	graphml_file << "<key id=\"bytes\" for=\"node\" attr.name=\"bytes\" attr.type=\"double\"/>" << "\n";
+	graphml_file << "<key id=\"av_bw\" for=\"node\" attr.name=\"av_bw\" attr.type=\"double\"/>" << "\n";
+	graphml_file << "<key id=\"pkts\" for=\"node\" attr.name=\"pkts\" attr.type=\"integer\"/>" << "\n";
+	graphml_file << "<key id=\"flits\" for=\"node\" attr.name=\"flits\" attr.type=\"integer\"/>" << "\n";
+	graphml_file << "<key id=\"sim_time\" for=\"node\" attr.name=\"sim_time\" attr.type=\"double\"/>" << "\n";
+
+	graphml_file << "<key id=\"name\" for=\"edge\" attr.name=\"name\" attr.type=\"string\"/>" << "\n";
+	graphml_file << "<key id=\"type\" for=\"edge\" attr.name=\"type\" attr.type=\"int\"/>" << "\n" ;
+
+	unsigned int i=0;
+	static unsigned int node_count = 0; // node count
+	bool flag = false;
+	unsigned int x = 100;
+	unsigned int y = 100;
+	
+	uint interface_id = 5000; // interface count
+	uint processor_id = 6000; // processor count
+	static unsigned int j = 8000; // edge count
+	
+	double avg_pkt_latency = 0.0;
+	double last_flit_out_cycle = 0;
+	Router* ptr = NULL;	
+
+	for (; i < nodes; i++)
+	{
+		if(rtr_type == "GenericRouterPhy")
+			ptr = dynamic_cast<GenericRouterPhy*>(topo_ptr->routers[i]);
+		else if (rtr_type == "RouterVcMP") 
+			ptr = dynamic_cast<RouterVcMP*>(topo_ptr->routers[i]);
+		else
+		{
+			cout << "Unknown router type for visualization...exiting\n";
+			exit(1);
+		}
+		avg_pkt_latency =  ptr->get_average_packet_latency();
+		last_flit_out_cycle = ptr->get_last_flit_out_cycle();
+
+		flag = false;
+		graphml_file << "\t" << "<node id=\"n" << i << "\">" << "\n";
+		graphml_file << "\t \t" << "<data key=\"name\">Router" << i << "</data>" << "\n";
+		for (itr = mc_positions.begin(); itr!=mc_positions.end(); itr++)
+	        {
+			if ( i == *itr )
+			{
+				graphml_file << "\t \t" << "<data key=\"type\">mc</data>" << "\n";
+				flag = true;
+			}
+	        }
+		if (flag == false )
+			graphml_file << "\t \t" << "<data key=\"type\">router</data>" << "\n";
+		
+		graphml_file << "\t \t" << "<data key=\"x_coord\">" << x << "</data>" << "\n";
+		graphml_file << "\t \t" << "<data key=\"y_coord\">" << y << "</data>" << "\n";
+		graphml_file << "\t \t" << "<data key=\"avg_pkt_latency\">" << avg_pkt_latency << "</data>" << "\n";
+		graphml_file << "\t \t" << "<data key=\"last_flit_out_cycle\">" << last_flit_out_cycle << "</data>" << "\n"; 
+		graphml_file << "\t" << "</node>" << "\n";
+
+		// add the interface & processor nodes also
+                graphml_file << "\t" << "<node id=\"n" << interface_id << "\">" << "\n";
+                graphml_file << "\t \t" << "<data key=\"name\">Interface" << interface_id-5000 << "</data>" << "\n";
+		graphml_file << "\t \t" << "<data key=\"type\">interface</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"x_coord\">" << x+20 << "</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"y_coord\">" << y-20 << "</data>" << "\n";
+                graphml_file << "\t" << "</node>" << "\n";
+
+                graphml_file << "\t" << "<node id=\"n" << processor_id << "\">" << "\n";
+                graphml_file << "\t \t" << "<data key=\"name\">Processor" << processor_id-6000 << "</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"type\">processor</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"x_coord\">" << x+40 << "</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"y_coord\">" << y-40 << "</data>" << "\n";
+                graphml_file << "\t" << "</node>" << "\n";
+
+		// add the interface & processor edges too
+                graphml_file << "\t" << "<edge source=\"n" << i << "\"" << " target=\"n" << interface_id << "\">" << "\n";
+                graphml_file << "\t \t" << "<data key=\"name\">" << j++ << "</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"type\">" << "1" << "</data>" << "\n";
+                graphml_file << "\t" << "</edge>" << "\n";
+
+                graphml_file << "\t" << "<edge source=\"n" << interface_id << "\"" << " target=\"n" << i << "\">" << "\n";
+                graphml_file << "\t \t" << "<data key=\"name\">" << j++ << "</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"type\">" << "1" << "</data>" << "\n";
+                graphml_file << "\t" << "</edge>" << "\n";
+
+                graphml_file << "\t" << "<edge source=\"n" << interface_id << "\"" << " target=\"n" << processor_id << "\">" << "\n";
+                graphml_file << "\t \t" << "<data key=\"name\">" << j++ << "</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"type\">" << "1" << "</data>" << "\n";
+                graphml_file << "\t" << "</edge>" << "\n";
+
+                graphml_file << "\t" << "<edge source=\"n" << processor_id << "\"" << " target=\"n" << interface_id << "\">" << "\n";
+                graphml_file << "\t \t" << "<data key=\"name\">" << j++ << "</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"type\">" << "1" << "</data>" << "\n";
+                graphml_file << "\t" << "</edge>" << "\n";
+
+                if ( (i%grid_size) == grid_size-1 )
+		{
+                        x = x+100;
+			y = 100;
+		}
+		else
+			y = y+100;
+
+		interface_id++;
+		processor_id++;
+	}
+
+	node_count = nodes;
+
+	if ( grid_size == 2 )
+	{
+		graphml_file << "\t" << "<edge source=\"n" << 0 << "\"" << " target=\"n" << 1 << "\">" << "\n";
+		graphml_file << "\t \t" << "<data key=\"name\">" << j << "</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"type\">" << "1" << "</data>" << "\n";
+		graphml_file << "\t" << "</edge>" << "\n";
+
+		graphml_file << "\t" << "<edge source=\"n" << 1 << "\"" << " target=\"n" << 0 << "\">" << "\n";
+		graphml_file << "\t \t" << "<data key=\"name\">" << j++ << "</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"type\">" << "1" << "</data>" << "\n";
+		graphml_file << "\t" << "</edge>" << "\n";
+
+		graphml_file << "\t" << "<edge source=\"n" << 2 << "\"" << " target=\"n" << 3 << "\">" << "\n";
+		graphml_file << "\t \t" << "<data key=\"name\">" << j << "</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"type\">" << "1" << "</data>" << "\n";
+		graphml_file << "\t" << "</edge>" << "\n";
+
+		graphml_file << "\t" << "<edge source=\"n" << 3 << "\"" << " target=\"n" << 2 << "\">" << "\n";
+		graphml_file << "\t \t" << "<data key=\"name\">" << j++ << "</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"type\">" << "1" << "</data>" << "\n";
+		graphml_file << "\t" << "</edge>" << "\n";
+
+		graphml_file << "\t" << "<edge source=\"n" << 0 << "\"" << " target=\"n" << 2 << "\">" << "\n";
+		graphml_file << "\t \t" << "<data key=\"name\">" << j << "</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"type\">" << "1" << "</data>" << "\n";
+		graphml_file << "\t" << "</edge>" << "\n";
+
+		graphml_file << "\t" << "<edge source=\"n" << 2 << "\"" << " target=\"n" << 0 << "\">" << "\n";
+		graphml_file << "\t \t" << "<data key=\"name\">" << j++ << "</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"type\">" << "1" << "</data>" << "\n";
+		graphml_file << "\t" << "</edge>" << "\n";
+
+		graphml_file << "\t" << "<edge source=\"n" << 1 << "\"" << " target=\"n" << 3 << "\">" << "\n";
+		graphml_file << "\t \t" << "<data key=\"name\">" << j << "</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"type\">" << "1" << "</data>" << "\n";
+		graphml_file << "\t" << "</edge>" << "\n";
+
+		graphml_file << "\t" << "<edge source=\"n" << 3 << "\"" << " target=\"n" << 1 << "\">" << "\n";
+		graphml_file << "\t \t" << "<data key=\"name\">" << j++ << "</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"type\">" << "1" << "</data>" << "\n";
+		graphml_file << "\t" << "</edge>" << "\n";
+	}
+	else
+	{
+		vector<link_connection *>::iterator it;
+
+		graphml_file << "<!-- east links -->\n";
+		for ( it = new_east_links.begin(); it != new_east_links.end(); it++ )
+		{
+			graphml_file << "\t" << "<edge source=\"n" << (*it)->source << "\"" << " target=\"n" << (*it)->destination << "\">" << "\n";
+			graphml_file << "\t \t" << "<data key=\"name\">" << (*it)->link_id << "</data>" << "\n";
+                	graphml_file << "\t \t" << "<data key=\"type\">" << "1" << "</data>" << "\n";
+			graphml_file << "\t" << "</edge>" << "\n";
+		}
+
+		graphml_file << "<!-- west links -->\n";
+		for ( it = new_west_links.begin(); it != new_west_links.end(); it++ )
+		{
+			graphml_file << "\t" << "<edge source=\"n" << (*it)->source << "\"" << " target=\"n" << (*it)->destination << "\">" << "\n";
+			graphml_file << "\t \t" << "<data key=\"name\">" << (*it)->link_id << "</data>" << "\n";
+                	graphml_file << "\t \t" << "<data key=\"type\">" << "1" << "</data>" << "\n";
+			graphml_file << "\t" << "</edge>" << "\n";
+		}
+
+		graphml_file << "<!-- south links -->\n";
+		for ( it = new_south_links.begin(); it != new_south_links.end(); it++ )
+		{
+			graphml_file << "\t" << "<edge source=\"n" << (*it)->source << "\"" << " target=\"n" << (*it)->destination << "\">" << "\n";
+			graphml_file << "\t \t" << "<data key=\"name\">" << (*it)->link_id << "</data>" << "\n";
+                	graphml_file << "\t \t" << "<data key=\"type\">" << "1" << "</data>" << "\n";
+			graphml_file << "\t" << "</edge>" << "\n";
+		}
+
+		graphml_file << "<!-- north links -->\n";
+		for ( it = new_north_links.begin(); it != new_north_links.end(); it++ )
+		{
+			graphml_file << "\t" << "<edge source=\"n" << (*it)->source << "\"" << " target=\"n" << (*it)->destination << "\">" << "\n";
+			graphml_file << "\t \t" << "<data key=\"name\">" << (*it)->link_id << "</data>" << "\n";
+                	graphml_file << "\t \t" << "<data key=\"type\">" << "1" << "</data>" << "\n";
+			graphml_file << "\t" << "</edge>" << "\n";
+		}
+	}
+
+
+	graphml_file << "\t" << "</graph>" << "\n";
+	graphml_file << "</graphml>" << "\n";
+
+	graphml_file.close();
+	new_east_links.clear();
+	new_west_links.clear();
+	new_north_links.clear();
+	new_south_links.clear();
+}
+
+void Visual::add_entry(int i, int j, int x, int y, int interface_id, int processor_id )
+{
+	        Router* ptr = NULL;
+		vector<uint>::iterator itr;
+		if(rtr_type == "GenericRouterPhy")
+			ptr = dynamic_cast<GenericRouterPhy*>(topo_ptr->routers[i]);
+		else if (rtr_type == "RouterVcMP") 
+			ptr = dynamic_cast<RouterVcMP*>(topo_ptr->routers[i]);
+		else
+		{
+			cout << "Unknown router type for visualization...exiting\n";
+			exit(1);
+		}
+
+		bool flag = false;
+		graphml_file << "\t" << "<node id=\"n" << i << "\">" << "\n";
+		graphml_file << "\t \t" << "<data key=\"name\">Router" << i << "</data>" << "\n";
+		for (itr = mc_positions.begin(); itr!=mc_positions.end(); itr++)
+	        {
+			if ( i == *itr )
+			{
+				graphml_file << "\t \t" << "<data key=\"type\">mc</data>" << "\n";
+				flag = true;
+			}
+	        }
+		if (flag == false )
+			graphml_file << "\t \t" << "<data key=\"type\">router</data>" << "\n";
+		
+		graphml_file << "\t \t" << "<data key=\"x_coord\">" << x << "</data>" << "\n";
+		graphml_file << "\t \t" << "<data key=\"y_coord\">" << y << "</data>" << "\n";
+		graphml_file << "\t \t" << "<data key=\"avg_pkt_latency\">" << ptr->get_avg_pkt_latency() << "</data>" << "\n";
+		graphml_file << "\t \t" << "<data key=\"last_flit_out_cycle\">" << ptr->get_last_flit_out_cycle() << "</data>" << "\n"; 
+		graphml_file << "\t" << "</node>" << "\n";
+
+		// add the interface & processor nodes also
+                graphml_file << "\t" << "<node id=\"n" << interface_id << "\">" << "\n";
+                graphml_file << "\t \t" << "<data key=\"name\">Interface" << interface_id-5000 << "</data>" << "\n";
+		graphml_file << "\t \t" << "<data key=\"type\">interface</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"x_coord\">" << x+20 << "</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"y_coord\">" << y-20 << "</data>" << "\n";
+                graphml_file << "\t" << "</node>" << "\n";
+
+                graphml_file << "\t" << "<node id=\"n" << processor_id << "\">" << "\n";
+                graphml_file << "\t \t" << "<data key=\"name\">Processor" << processor_id-6000 << "</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"type\">processor</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"x_coord\">" << x+40 << "</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"y_coord\">" << y-40 << "</data>" << "\n";
+                graphml_file << "\t" << "</node>" << "\n";
+
+		// add the interface & processor edges too
+                graphml_file << "\t" << "<edge source=\"n" << i << "\"" << " target=\"n" << interface_id << "\">" << "\n";
+                graphml_file << "\t \t" << "<data key=\"name\">" << j++ << "</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"type\">" << "0" << "</data>" << "\n";
+                graphml_file << "\t" << "</edge>" << "\n";
+
+                graphml_file << "\t" << "<edge source=\"n" << interface_id << "\"" << " target=\"n" << i << "\">" << "\n";
+                graphml_file << "\t \t" << "<data key=\"name\">" << j++ << "</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"type\">" << "0" << "</data>" << "\n";
+                graphml_file << "\t" << "</edge>" << "\n";
+
+                graphml_file << "\t" << "<edge source=\"n" << interface_id << "\"" << " target=\"n" << processor_id << "\">" << "\n";
+                graphml_file << "\t \t" << "<data key=\"name\">" << j++ << "</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"type\">" << "0" << "</data>" << "\n";
+                graphml_file << "\t" << "</edge>" << "\n";
+
+                graphml_file << "\t" << "<edge source=\"n" << processor_id << "\"" << " target=\"n" << interface_id << "\">" << "\n";
+                graphml_file << "\t \t" << "<data key=\"name\">" << j++ << "</data>" << "\n";
+                graphml_file << "\t \t" << "<data key=\"type\">" << "0" << "</data>" << "\n";
+                graphml_file << "\t" << "</edge>" << "\n";
+}
+
+
+#endif
+

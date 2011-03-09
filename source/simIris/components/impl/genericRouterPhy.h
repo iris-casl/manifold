@@ -94,6 +94,22 @@ class GenericRouterPhy: public Router
         unsigned long long int stat_sim_total_time;
         vector< vector<uint> > stat_packet_out;
         vector< vector<uint> > stat_flit_out;
+	double get_average_packet_latency();
+	double get_last_flit_out_cycle();
+        double get_flits_per_packet();
+        double get_buffer_occupancy();
+        double get_swa_fail_msg_ratio();
+        double get_swa_load();
+        double get_vca_fail_msg_ratio();
+        double get_vca_load();
+        double get_stat_packets();
+        double get_stat_flits();
+        double get_stat_ib_cycles();
+        double get_stat_rc_cycles();
+        double get_stat_vca_cycles();
+        double get_stat_swa_cycles();
+        double get_stat_st_cycles();
+
 
     protected:
 

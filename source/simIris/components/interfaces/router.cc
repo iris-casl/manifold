@@ -30,4 +30,13 @@ Router::toString () const
     return str.str() ;
 }		/* -----  end of method Router::toString  ----- */
 
+double Router::get_average_packet_latency()
+{
+	return 0.0;
+}
+
+double Router::get_last_flit_out_cycle()
+{
+	return 0.0;
+}
 #endif   /* ----- #ifndef _router_cc_INC  ----- */
